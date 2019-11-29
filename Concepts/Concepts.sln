@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.87
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverridingEquals", "OverridingEquals\OverridingEquals.csproj", "{122BE29D-5DB5-415D-9DC9-D1F22A2A7ED2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList", "LinkedList\LinkedList.csproj", "{FF74A067-E0EF-4F45-BBB7-21D4A49247A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{122BE29D-5DB5-415D-9DC9-D1F22A2A7ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{122BE29D-5DB5-415D-9DC9-D1F22A2A7ED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{122BE29D-5DB5-415D-9DC9-D1F22A2A7ED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF74A067-E0EF-4F45-BBB7-21D4A49247A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF74A067-E0EF-4F45-BBB7-21D4A49247A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF74A067-E0EF-4F45-BBB7-21D4A49247A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF74A067-E0EF-4F45-BBB7-21D4A49247A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
