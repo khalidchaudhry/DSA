@@ -8,6 +8,88 @@ namespace BinaryTree
 {
     public class TreeTraversal
     {
+        public static void PrintInSpiralOrder(Node n)
+        {
+            var stk1 = new Stack<Node>();
+            var stk2 = new Stack<Node>();
+            if (n != null)
+                stk1.Push(n);
+            while (stk1.Count != 0 || stk2.Count != 0)
+            {
+                while (stk1.Count != 0)
+                {
+                    var poppedNode = stk1.Pop();
+                    Console.Write($" {poppedNode.data}");
+
+                    if (poppedNode.right != null)
+                    {
+                        stk2.Push(poppedNode.right);
+                    }
+                    if (poppedNode.left != null)
+                    {
+                        stk2.Push(poppedNode.left);
+                    }
+                }
+                Console.WriteLine();
+                while (stk2.Count != 0)
+                {
+                    var poppedNode = stk2.Pop();
+                    Console.Write($" {poppedNode.data}");
+
+                    if (poppedNode.left != null)
+                    {
+                        stk1.Push(poppedNode.left);
+                    }
+                    if (poppedNode.right != null)
+                    {
+                        stk1.Push(poppedNode.right);
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void PrintLevelOrderLineByLine(Node n)
+        {
+            var q1 = new Queue<Node>();
+            var q2 = new Queue<Node>();
+            if (n != null)
+                q1.Enqueue(n);
+            while (q1.Count != 0 || q2.Count != 0)
+            {
+
+
+                while (q1.Count != 0)
+                {
+                    var dequeue = q1.Dequeue();
+                    Console.Write($" {dequeue.data}");
+                    if (dequeue.left != null)
+                    {
+                        q2.Enqueue(dequeue.left);
+                    }
+                    if (dequeue.right != null)
+                    {
+                        q2.Enqueue(dequeue.right);
+                    }
+                }
+                Console.WriteLine();
+
+                while (q2.Count != 0)
+                {
+                    var dequeue = q2.Dequeue();
+                    Console.Write($" {dequeue.data}");
+                    if (dequeue.left != null)
+                    {
+                        q1.Enqueue(dequeue.left);
+                    }
+                    if (dequeue.right != null)
+                    {
+                        q1.Enqueue(dequeue.right);
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
 
         public static void PrintDepthFirst(Node n)
         {
@@ -29,12 +111,10 @@ namespace BinaryTree
                 {
                     nodeStack.Push(poppedNode.left);
                 }
-                
+
 
             }
         }
-
-
         //Print Breadth First Traversal
         public static void PrintBreadthFirst(Node n)
         {
@@ -59,8 +139,8 @@ namespace BinaryTree
 
             }
         }
-            // Inorder tree traversal
-            public  static void InOrderTreeTraversal(Node n)
+        // Inorder tree traversal
+        public static void InOrderTreeTraversal(Node n)
         {
             if (n == null)
                 return;

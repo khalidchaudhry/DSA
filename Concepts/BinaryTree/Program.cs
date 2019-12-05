@@ -40,9 +40,13 @@ namespace BinaryTree
             //TreeTraversal.PrintBreadthFirst(node);
 
             // Depth First using Stack 
-            TreeTraversal.PrintDepthFirst(node);
+            //TreeTraversal.PrintDepthFirst(node);
 
+            // Print level order by line
+            //TreeTraversal.PrintLevelOrderLineByLine(node);
 
+            // Print 
+            TreeTraversal.PrintInSpiralOrder(node);
             //Console.WriteLine("Inorder traversal");
             //TreeTraversal.InOrderTreeTraversal(node);
 
