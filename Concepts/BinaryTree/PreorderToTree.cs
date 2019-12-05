@@ -8,6 +8,7 @@ namespace BinaryTree
 {
     class PreorderToTree
     {
+        // https://algorithms.tutorialhorizon.com/construct-binary-search-tree-from-a-given-preorder-traversal-using-stack-without-recursion/
         public Node ConstructTree(int[] preorder)
         {
             Stack<Node> s = new Stack<Node>();

@@ -36,8 +36,15 @@ namespace BinaryTree
             //t2.inOrder(t2.root);
             var node=new PreorderToTree().ConstructTree(arr);
 
-            Console.WriteLine("Inorder traversal");
-            TreeTraversal.InOrderTreeTraversal(node);
+            // Breadth First traversal
+            //TreeTraversal.PrintBreadthFirst(node);
+
+            // Depth First using Stack 
+            TreeTraversal.PrintDepthFirst(node);
+
+
+            //Console.WriteLine("Inorder traversal");
+            //TreeTraversal.InOrderTreeTraversal(node);
 
             Console.ReadLine();
         }     
