@@ -8,6 +8,68 @@ namespace BinaryTree
 {
     public class TreeTraversal
     {
+        public static void PrintAllLeafPathsInBinaryTree(Node n,Stack<int> stk)
+        {
+            if (n == null)
+                return;
+            
+            stk.Push(n.data);
+            PrintAllLeafPathsInBinaryTree(n.left,stk);
+            if (n.left == null && n.right == null)
+            {
+                foreach (var data in stk)
+                {
+                    Console.Write($"{data}-->");
+                }
+            }
+            PrintAllLeafPathsInBinaryTree(n.right,stk);
+            Console.WriteLine();
+            stk.Pop();
+        }
+
+        public static void PrintNthPreOrderElement(Node n, int index, int[] count)
+        {
+            if (n != null)
+            {
+                count[0]++;
+                if (index == count[0])
+                {
+                    Console.WriteLine($"{index} node Data:{n.data}");                
+                }
+                PrintNthPreOrderElement(n.left,index,count);
+                PrintNthPreOrderElement(n.right, index, count);
+            }       
+        }
+
+        public static void PrintNthInOrderElement(Node n, int index, int[] count)
+        {
+            if (n != null)
+            {
+                PrintNthPreOrderElement(n.left, index, count);
+                count[0]++;
+                if (index == count[0])
+                {
+                    Console.WriteLine($"{index} node Data:{n.data}");
+                }
+              
+                PrintNthPreOrderElement(n.right, index, count);
+            }
+        }
+
+        public static void PrintNthPostOrderElement(Node n, int index, int[] count)
+        {
+            if (n != null)
+            {
+                PrintNthPreOrderElement(n.left, index, count);     
+                PrintNthPreOrderElement(n.right, index, count);
+                count[0]++;
+                if (index == count[0])
+                {
+                    Console.WriteLine($"{index} node Data:{n.data}");
+                }
+            }
+        }
+
         public static void PrintInSpiralOrder(Node n)
         {
             var stk1 = new Stack<Node>();

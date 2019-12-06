@@ -46,9 +46,16 @@ namespace BinaryTree
             //TreeTraversal.PrintLevelOrderLineByLine(node);
 
             // Print 
-            TreeTraversal.PrintInSpiralOrder(node);
+            //TreeTraversal.PrintInSpiralOrder(node);
             //Console.WriteLine("Inorder traversal");
             //TreeTraversal.InOrderTreeTraversal(node);
+
+            Console.WriteLine($"PrintNthPreOrderElement");
+            //var countArray = new int[1] { 0 };
+            //TreeTraversal.PrintNthPreOrderElement(node,2, countArray);
+            var stk = new Stack<int>();
+            TreeTraversal.PrintAllLeafPathsInBinaryTree(node, stk);
+
 
             Console.ReadLine();
         }     
