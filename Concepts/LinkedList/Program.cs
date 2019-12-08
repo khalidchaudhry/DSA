@@ -10,6 +10,7 @@ namespace LinkedList
     {
         static void Main(string[] args)
         {
+            // 1->2->3->4->5->6
             var linkedList = new LinkedList();
             linkedList.head = new Node(1);
             var second = new Node(2);
@@ -22,7 +23,7 @@ namespace LinkedList
             fourth.next = five;
             var six = new Node(6);
             five.next = six;
-
+            //6->5->4->3->2->1
             var linkedList2 = new LinkedList();
             linkedList2.head = new Node(6);
             var second2 = new Node(5);
@@ -39,7 +40,8 @@ namespace LinkedList
             var temp1 = linkedList.head;
             var temp2 = linkedList2.head;
 
-            Recursion(temp1,temp2);
+            PrintLinkedList.PrintInReverse(linkedList.head);
+            //Recursion(temp1,temp2);
             //var flag = false;
             //while (temp1 != null)
             //{

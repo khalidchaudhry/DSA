@@ -50,13 +50,16 @@ namespace BinaryTree
             //Console.WriteLine("Inorder traversal");
             //TreeTraversal.InOrderTreeTraversal(node);
 
-            Console.WriteLine($"PrintNthPreOrderElement");
-            //var countArray = new int[1] { 0 };
-            //TreeTraversal.PrintNthPreOrderElement(node,2, countArray);
-            var stk = new Stack<int>();
-            TreeTraversal.PrintAllLeafPathsInBinaryTree(node, stk);
+            //Console.WriteLine($"PrintNthPreOrderElement");
+            var countArray = new int[1] { 0 };
+            TreeTraversal.PrintNthPreOrderElement(node,5, countArray);
+            //var stk = new Stack<int>();
+            //TreeTraversal.PrintAllLeafPathsInBinaryTree(node, stk);
 
-
+            //Console.WriteLine($"PostOrderTraversalIteratively");
+            //TreeTraversal.PostOrderTraversalIteratively(node);
+            int[] path = new int[1000];
+            TreeTraversal.PrintPathsRecur(node,path,0);
             Console.ReadLine();
         }     
     }

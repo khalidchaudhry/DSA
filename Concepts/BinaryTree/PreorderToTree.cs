@@ -11,6 +11,12 @@ namespace BinaryTree
         // https://algorithms.tutorialhorizon.com/construct-binary-search-tree-from-a-given-preorder-traversal-using-stack-without-recursion/
         public Node ConstructTree(int[] preorder)
         {
+            //      10
+            //   /     \
+            //  5       15
+            // / \     /  \
+            // 2  7   12  20
+
             Stack<Node> s = new Stack<Node>();
             //First element in the preorder[] will definitely be the root
             Node root = new Node(preorder[0]);

@@ -8,13 +8,45 @@ namespace BinaryTree
 {
     public class TreeTraversal
     {
-        public static void PrintAllLeafPathsInBinaryTree(Node n,Stack<int> stk)
+        public static void PrintPathsRecur(Node n, int[] path,int pathLen)
         {
             if (n == null)
                 return;
-            
+            /* append this node to the path array */
+            path[pathLen] = n.data;
+            pathLen++;
+
+            /* it's a leaf, so print the path that led to here */
+            if (n.left == null && n.right == null)
+            {
+                PrintArray(path, pathLen);
+            }
+            else
+            {
+                /* otherwise try both subtrees */
+                PrintPathsRecur(n.left, path, pathLen);
+                PrintPathsRecur(n.right, path, pathLen);
+            }
+        }
+        public static void PrintArray(int[] ints, int len)
+        {
+            int i;
+            for (i = 0; i < len; i++)
+            {
+                Console.Write(ints[i] + " ");
+            }
+            Console.WriteLine("");
+        }
+
+
+
+        public static void PrintAllLeafPathsInBinaryTree(Node n, Stack<int> stk)
+        {
+            if (n == null)
+                return;
+
             stk.Push(n.data);
-            PrintAllLeafPathsInBinaryTree(n.left,stk);
+            PrintAllLeafPathsInBinaryTree(n.left, stk);
             if (n.left == null && n.right == null)
             {
                 foreach (var data in stk)
@@ -22,23 +54,23 @@ namespace BinaryTree
                     Console.Write($"{data}-->");
                 }
             }
-            PrintAllLeafPathsInBinaryTree(n.right,stk);
+            PrintAllLeafPathsInBinaryTree(n.right, stk);
             Console.WriteLine();
             stk.Pop();
         }
 
         public static void PrintNthPreOrderElement(Node n, int index, int[] count)
         {
-            if (n != null)
+            if (n == null)
+                return;
+
+            count[0]++;
+            if (index == count[0])
             {
-                count[0]++;
-                if (index == count[0])
-                {
-                    Console.WriteLine($"{index} node Data:{n.data}");                
-                }
-                PrintNthPreOrderElement(n.left,index,count);
-                PrintNthPreOrderElement(n.right, index, count);
-            }       
+                Console.WriteLine($"{index} node Data:{n.data}");
+            }
+            PrintNthPreOrderElement(n.left, index, count);
+            PrintNthPreOrderElement(n.right, index, count);
         }
 
         public static void PrintNthInOrderElement(Node n, int index, int[] count)
@@ -51,7 +83,7 @@ namespace BinaryTree
                 {
                     Console.WriteLine($"{index} node Data:{n.data}");
                 }
-              
+
                 PrintNthPreOrderElement(n.right, index, count);
             }
         }
@@ -60,7 +92,7 @@ namespace BinaryTree
         {
             if (n != null)
             {
-                PrintNthPreOrderElement(n.left, index, count);     
+                PrintNthPreOrderElement(n.left, index, count);
                 PrintNthPreOrderElement(n.right, index, count);
                 count[0]++;
                 if (index == count[0])
@@ -227,6 +259,33 @@ namespace BinaryTree
             PostOrderTreeTraversal(n.left);
             PostOrderTreeTraversal(n.right);
             Console.WriteLine($"Data at node:{n.data}");
+        }
+        public static void PostOrderTraversalIteratively(Node n)
+        {
+            if (n == null)
+                return;
+            Stack<Node> stk1 = new Stack<Node>();
+            Stack<Node> stk2 = new Stack<Node>();
+
+            stk1.Push(n);
+            while (stk1.Count != 0)
+            {
+                var s = stk1.Pop();
+                stk2.Push(s);
+                if (s.left != null)
+                {
+                    stk1.Push(s.left);
+                }
+                if (s.right != null)
+                {
+                    stk1.Push(s.right);
+                }
+            }
+            while (stk2.Count != 0)
+            {
+                var s = stk2.Pop();
+                Console.Write($"{s.data} ");
+            }
         }
     }
 }
