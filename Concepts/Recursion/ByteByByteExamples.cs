@@ -22,6 +22,21 @@ namespace Recursion
             return result;
         }
 
+        public void InsertItemAtStackBottom(Stack<int> stk)
+        {
+            if (stk.Count == 0)
+            {
+                stk.Push(6);
+                return;
+            }
+
+            var item=stk.Pop();
+            InsertItemAtStackBottom(stk);
+            stk.Push(item);
+        
+        
+        }
+
 
     }
 }
