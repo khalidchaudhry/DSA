@@ -14,14 +14,18 @@ namespace Strings
 
             //RabinKarpSearch rks = new RabinKarpSearch();
             //Console.WriteLine(rks.PatternSearch("TusharRoy".ToCharArray(), "sharRoy".ToCharArray()));
-            var stringPermutations = new StringPermutation();
-            var result=stringPermutations.StringPermutations("ABCD");
-            foreach (var one in result)
-            {
-                Console.WriteLine(one);            
-            }
+            //var stringPermutations = new StringPermutation();
+            //var result=stringPermutations.StringPermutations("ABCD");
+            //foreach (var one in result)
+            //{
+            //    Console.WriteLine(one);            
+            //}
 
+            String str = "ca";
+            PrintSubsequencesString.PrintSubSeq(str);
             Console.ReadLine();
         }
+
+
     }
 }
