@@ -21,8 +21,10 @@ namespace Strings
             //    Console.WriteLine(one);            
             //}
 
-            String str = "ca";
-            PrintSubsequencesString.PrintSubSeq(str);
+            String str = "dedededca";
+            //PrintSubsequencesString.PrintSubSeq(str);
+            //Console.WriteLine(SortCharactersInString.SortCharacters(str));
+            AllSubStrings.AllSubstrings("abc");
             Console.ReadLine();
         }
 
