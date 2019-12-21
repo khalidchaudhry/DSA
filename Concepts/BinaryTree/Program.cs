@@ -24,7 +24,7 @@ namespace BinaryTree
         public static void Main(String[] args)
         {
             //Tree t2 = new Tree();
-            int[] arr = { 10, 5, 2, 7, 15, 12, 20 };
+            int[] arr = {1,2,3 };
             //Tree t = Tree.CreateSimpleTree();
             //Console.WriteLine("Inorder traversal");
             //TreeTraversal.InOrderTreeTraversal(t.root);
