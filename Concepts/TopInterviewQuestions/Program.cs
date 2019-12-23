@@ -66,9 +66,28 @@ namespace TopInterviewQuestions
             //int[] nums = new int[] {3, 1, 0};
             //Console.Write($"Missing number:{missingNumber.MissingNumber2(nums)}");
 
-            _242 anagram = new _242();
+            //_242 anagram = new _242();
+            //Console.Write(anagram.IsAnagram("aacc", "ccac"));
 
-            Console.Write(anagram.IsAnagram("aacc", "ccac"));
+            //Palindrome linked list
+            
+            //1->2->2->1
+            LinkedList list = new LinkedList();
+            //list.head = new ListNode(1);
+            //list.head.next = new ListNode(2);
+            //list.head.next.next = new ListNode(2);
+            //list.head.next.next = new ListNode(1);
+            
+            //1->2
+            list.head = new ListNode(1);
+            list.head.next = new ListNode(2);
+            //_234 palindrome = new _234();
+            //Console.WriteLine(palindrome.IsPalindrome(list.head));
+
+            _204 primesCount = new _204();
+
+            Console.WriteLine(primesCount.CountPrimes(10));
+
 
             Console.Read();
 

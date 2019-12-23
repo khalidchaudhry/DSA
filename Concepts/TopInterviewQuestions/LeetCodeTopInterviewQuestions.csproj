@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Easy\204.Count Primes.cs" />
+    <Compile Include="Easy\206.ReverseLinkedList.cs" />
+    <Compile Include="Easy\217.ContainsDuplicate.cs" />
+    <Compile Include="Easy\234.PalindromeLinkedList.cs" />
     <Compile Include="Easy\242.cs" />
     <Compile Include="Easy\286.MissingNumber.cs" />
     <Compile Include="Easy\387.FirstUniqueCharacterInString.cs" />
