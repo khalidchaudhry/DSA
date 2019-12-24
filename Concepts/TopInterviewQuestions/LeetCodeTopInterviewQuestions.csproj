@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Easy\190.ReverseBits.cs" />
+    <Compile Include="Easy\198.HouseRobber.cs" />
+    <Compile Include="Easy\202.HappyNumber.cs" />
     <Compile Include="Easy\204.Count Primes.cs" />
     <Compile Include="Easy\206.ReverseLinkedList.cs" />
     <Compile Include="Easy\217.ContainsDuplicate.cs" />
@@ -61,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Compile Include="Easy\191.Numberof1Bits.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

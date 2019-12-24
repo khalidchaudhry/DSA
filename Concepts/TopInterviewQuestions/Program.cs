@@ -84,9 +84,21 @@ namespace TopInterviewQuestions
             //_234 palindrome = new _234();
             //Console.WriteLine(palindrome.IsPalindrome(list.head));
 
-            _204 primesCount = new _204();
+            //_204 primesCount = new _204();
 
-            Console.WriteLine(primesCount.CountPrimes(10));
+            //Console.WriteLine(primesCount.CountPrimes(10));
+
+            //_202 happyNumber = new _202();
+            //Console.Write(happyNumber.IsHappy(19));
+
+            // _198 RObHouse = new _198();
+            // int[] nums = new int[] { 2, 7, 9, 3, 1 };
+            // Console.Write(RObHouse.Rob(nums));
+            //_191 hammingWeight = new _191();
+
+            //Console.Write(hammingWeight.HammingWeight(11));
+            _190 reverseBits = new _190();
+            Console.Write(reverseBits.reverseBits(0));
 
 
             Console.Read();
