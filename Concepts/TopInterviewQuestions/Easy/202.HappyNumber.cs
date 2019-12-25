@@ -11,9 +11,11 @@ namespace TopInterviewQuestions.Easy
         public bool IsHappy(int n)
         {
             HashSet<int> hs = new HashSet<int>();
+            //if n == 1 than it means number is happy number and we can break loop
             while (n != 1)
             {
                 n = NewNumber(n);
+                //If we encounter the same number again than it means that it's not happy number and we return it back
                 if (hs.Contains(n))
                 {
                     return false;

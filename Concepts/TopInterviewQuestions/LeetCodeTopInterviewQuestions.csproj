@@ -43,6 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Easy\104.MaximumDepthofBinaryTree.cs" />
+    <Compile Include="Easy\121.BestTimetoBuyandSellStock.cs" />
+    <Compile Include="Easy\125.ValidPalindrome.cs" />
+    <Compile Include="Easy\136.SingleNumber.cs" />
+    <Compile Include="Easy\141.LinkedListCycle.cs" />
+    <Compile Include="Easy\155.MinStack.cs" />
+    <Compile Include="Easy\160.IntersectionofTwoLinkedLists.cs" />
+    <Compile Include="Easy\169.MajorityElement.cs" />
+    <Compile Include="Easy\171.ExcelSheetColumnNumber.cs" />
+    <Compile Include="Easy\172.Factorial TrailingZeroes.cs" />
+    <Compile Include="Easy\189.RotateArray.cs" />
     <Compile Include="Easy\190.ReverseBits.cs" />
     <Compile Include="Easy\198.HouseRobber.cs" />
     <Compile Include="Easy\202.HappyNumber.cs" />
@@ -58,6 +69,7 @@
     <Compile Include="Easy\350.IntersectionOfArray.cs" />
     <Compile Include="Easy\344.ReverseString.cs" />
     <Compile Include="Easy\326.IsPowerOfThree.cs" />
+    <Compile Include="Easy\53.MaximumSubarray.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Easy\371.SumOfTwoIntegers.cs" />

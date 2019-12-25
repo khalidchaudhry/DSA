@@ -18,7 +18,7 @@ namespace TopInterviewQuestions.Easy
 
                  n = n / 2;
             }
-            //Since its 32 bit signed integer
+            //Since its 32 bit unsigned integer
             while (stk.Count != 32)
             {
                 stk.Push(0);
