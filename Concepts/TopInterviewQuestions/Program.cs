@@ -185,9 +185,45 @@ namespace TopInterviewQuestions
             //int[] prices = new int[] { 2,4,1};
             //Console.Write(MaxProfit.MaxProfit(prices));
 
-            _53 KadanesAlgorithm = new _53();
-            int[] nums = new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
-            Console.Write(KadanesAlgorithm.MaxSubArray(nums));
+            //_53 KadanesAlgorithm = new _53();
+            ///int[] nums = new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
+            //Console.Write(KadanesAlgorithm.MaxSubArray(nums));
+
+
+            //_7 ReverseInteger = new _7();
+            //Console.Write(ReverseInteger.Reverse2(-120));
+
+            //_1 twoSum = new _1();
+            //int[] nums = new int[] { 2, 7, 11, 15 };
+            //int target = 9;
+            //var result=twoSum.TwoSum(nums,9);
+
+            //foreach (var item in result)
+            //{
+            //    Console.Write(item);
+            //}
+
+            //_88 MergeArray = new _88();
+            //int[] nums1 = new int[] {2,0};
+            //int[] nums2 = new int[] { 1 };
+            //MergeArray.Merge(nums1,1,nums2,1);
+
+            //_26 Duplicates = new _26();
+            //int[] nums = new int[] { 1, 1, 2 };
+            //Duplicates.RemoveDuplicates(nums);
+
+            //_20 Parenthesis = new _20();
+
+            //Console.Write(Parenthesis.IsValid("(])"));
+
+
+            _14 longestCommonPrefix = new _14();
+            string[] strs = new string[] {"flower", "flow", "flight" };
+
+            //string[] strs = new string[] { "dog", "racecar", "car" };
+
+            Console.Write(longestCommonPrefix.LongestCommonPrefix(strs));
+
 
             Console.Read();
 

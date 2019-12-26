@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Easy\1.TwoSum.cs" />
     <Compile Include="Easy\104.MaximumDepthofBinaryTree.cs" />
     <Compile Include="Easy\121.BestTimetoBuyandSellStock.cs" />
     <Compile Include="Easy\125.ValidPalindrome.cs" />
     <Compile Include="Easy\136.SingleNumber.cs" />
+    <Compile Include="Easy\14.LongestCommonPrefix.cs" />
     <Compile Include="Easy\141.LinkedListCycle.cs" />
     <Compile Include="Easy\155.MinStack.cs" />
     <Compile Include="Easy\160.IntersectionofTwoLinkedLists.cs" />
@@ -56,12 +58,14 @@
     <Compile Include="Easy\189.RotateArray.cs" />
     <Compile Include="Easy\190.ReverseBits.cs" />
     <Compile Include="Easy\198.HouseRobber.cs" />
+    <Compile Include="Easy\20.ValidParentheses.cs" />
     <Compile Include="Easy\202.HappyNumber.cs" />
     <Compile Include="Easy\204.Count Primes.cs" />
     <Compile Include="Easy\206.ReverseLinkedList.cs" />
     <Compile Include="Easy\217.ContainsDuplicate.cs" />
     <Compile Include="Easy\234.PalindromeLinkedList.cs" />
     <Compile Include="Easy\242.cs" />
+    <Compile Include="Easy\26.RemoveDuplicatesfromSortedArray.cs" />
     <Compile Include="Easy\286.MissingNumber.cs" />
     <Compile Include="Easy\387.FirstUniqueCharacterInString.cs" />
     <Compile Include="Easy\412.FizzBuzProblem.cs" />
@@ -70,6 +74,8 @@
     <Compile Include="Easy\344.ReverseString.cs" />
     <Compile Include="Easy\326.IsPowerOfThree.cs" />
     <Compile Include="Easy\53.MaximumSubarray.cs" />
+    <Compile Include="Easy\7.ReverseInteger.cs" />
+    <Compile Include="Easy\88.MergeSortedArray.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Easy\371.SumOfTwoIntegers.cs" />
