@@ -217,12 +217,63 @@ namespace TopInterviewQuestions
             //Console.Write(Parenthesis.IsValid("(])"));
 
 
-            _14 longestCommonPrefix = new _14();
-            string[] strs = new string[] {"flower", "flow", "flight" };
+            //_14 longestCommonPrefix = new _14();
+            //string[] strs = new string[] {"flower", "flow", "flight" };
 
             //string[] strs = new string[] { "dog", "racecar", "car" };
 
-            Console.Write(longestCommonPrefix.LongestCommonPrefix(strs));
+            //Console.Write(longestCommonPrefix.LongestCommonPrefix(strs));
+
+            //_21 MergeTwoLists = new _21();
+            //0->9->1->2->4
+            //LinkedList listA = new LinkedList();
+            //listA.head = new ListNode(1);
+            //listA.head.next = new ListNode(2);
+            //listA.head.next.next = new ListNode(3);
+            //listA.head.next.next.next = new ListNode(4);
+
+            //1->3->4
+            //LinkedList listB = new LinkedList();
+            //listB.head = new ListNode(1);
+            //listB.head.next = new ListNode(3);
+            //listB.head.next.next = new ListNode(4);
+
+            //MergeTwoLists.MergeTwoLists2(listA.head, listB.head);
+
+            //_66 PlusOne = new _66();
+            //PlusOne.PlusOne();
+
+            //_108 ArrayToBST = new _108();
+            //int[] arr = new int[] { -10, -3, 0, 5, 9 };
+            //var result=ArrayToBST.SortedArrayToBST(arr);
+
+            //_28 Strstr = new _28();
+
+            //Console.Write(Strstr.StrStr("mississippi", "issip"));
+            //_118 PascalTriangle = new _118();
+            //PascalTriangle.Generate(5);
+            _101 SymmetricTree = new _101();
+            
+            /*
+                1
+               / \
+              2   2
+             / \ / \
+            3  4 4  3
+            */
+
+            var t = new TreeNode(1);
+
+            t.left = new TreeNode(2);
+            t.left.left = new TreeNode(3);
+            t.left.right = new TreeNode(4);
+
+
+            t.right = new TreeNode(2);
+            t.right.left = new TreeNode(4);
+            t.right.right = new TreeNode(3);
+
+            SymmetricTree.IsSymmetric(t);            
 
 
             Console.Read();

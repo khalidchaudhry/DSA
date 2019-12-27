@@ -37,20 +37,6 @@ namespace TopInterviewQuestions.Easy
             return true;                       
         }      
     }
-
-
-
-    public class LinkedList
-    {
-        public ListNode head;
-    }
-
-    // Definition for singly-linked list.
-    public class ListNode
-    {
-        public int val;
-        public ListNode next;
-        public ListNode(int x) { val = x; }
-    }
+   
 
 }

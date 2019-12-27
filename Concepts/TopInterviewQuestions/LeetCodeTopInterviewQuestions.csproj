@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Easy\1.TwoSum.cs" />
+    <Compile Include="Easy\101.SymmetricTree.cs" />
     <Compile Include="Easy\104.MaximumDepthofBinaryTree.cs" />
+    <Compile Include="Easy\108.ConvertSortedArraytoBinarySearchTree.cs" />
+    <Compile Include="Easy\118.Pascal%27sTriangle.cs" />
     <Compile Include="Easy\121.BestTimetoBuyandSellStock.cs" />
     <Compile Include="Easy\125.ValidPalindrome.cs" />
     <Compile Include="Easy\136.SingleNumber.cs" />
@@ -62,10 +65,12 @@
     <Compile Include="Easy\202.HappyNumber.cs" />
     <Compile Include="Easy\204.Count Primes.cs" />
     <Compile Include="Easy\206.ReverseLinkedList.cs" />
+    <Compile Include="Easy\21.MergeTwoSortedLists.cs" />
     <Compile Include="Easy\217.ContainsDuplicate.cs" />
     <Compile Include="Easy\234.PalindromeLinkedList.cs" />
     <Compile Include="Easy\242.cs" />
     <Compile Include="Easy\26.RemoveDuplicatesfromSortedArray.cs" />
+    <Compile Include="Easy\28.ImplementstrStr%28%29.cs" />
     <Compile Include="Easy\286.MissingNumber.cs" />
     <Compile Include="Easy\387.FirstUniqueCharacterInString.cs" />
     <Compile Include="Easy\412.FizzBuzProblem.cs" />
@@ -74,11 +79,15 @@
     <Compile Include="Easy\344.ReverseString.cs" />
     <Compile Include="Easy\326.IsPowerOfThree.cs" />
     <Compile Include="Easy\53.MaximumSubarray.cs" />
+    <Compile Include="Easy\66.PlusOne.cs" />
+    <Compile Include="Easy\69.Sqrt%28x%29.cs" />
     <Compile Include="Easy\7.ReverseInteger.cs" />
     <Compile Include="Easy\88.MergeSortedArray.cs" />
+    <Compile Include="LinkedList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Easy\371.SumOfTwoIntegers.cs" />
+    <Compile Include="TreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
