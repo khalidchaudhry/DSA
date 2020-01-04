@@ -35,7 +35,7 @@ namespace TopInterviewQuestions.Easy
             else if (leftSubTree != null && rightSubTree != null)
             {
                 return leftSubTree.val == rightSubTree.val &&
-                    Check(leftSubTree.left, rightSubTree.right) &&
+                    Check(leftSubTree.left, rightSubTree.right)&&
                     Check(leftSubTree.right, rightSubTree.left);
             }
           

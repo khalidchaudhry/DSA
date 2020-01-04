@@ -147,11 +147,11 @@ namespace TopInterviewQuestions
             /*
             MinStack minStack = new MinStack();
             //minStack.Push(-2);
-            minStack.Push(0);
+            //minStack.Push(0);
             minStack.Push(1);
             minStack.Push(0);
             minStack.GetMin(); 
-            minStack.Pop();
+            //minStack.Pop();
             minStack.Top(); 
             minStack.GetMin(); 
             */
@@ -252,8 +252,8 @@ namespace TopInterviewQuestions
             //Console.Write(Strstr.StrStr("mississippi", "issip"));
             //_118 PascalTriangle = new _118();
             //PascalTriangle.Generate(5);
-            _101 SymmetricTree = new _101();
-            
+            //_101 SymmetricTree = new _101();
+
             /*
                 1
                / \
@@ -262,6 +262,46 @@ namespace TopInterviewQuestions
             3  4 4  3
             */
 
+            //var t = new TreeNode(1);
+
+            //t.left = new TreeNode(2);
+            //t.left.left = new TreeNode(3);
+            //t.left.right = new TreeNode(4);
+
+
+            //t.right = new TreeNode(2);
+            //t.right.left = new TreeNode(4);
+            //t.right.right = new TreeNode(3);
+
+            //SymmetricTree.IsSymmetric(t);            
+
+            //_13 romanToInteger = new _13();
+
+            //Console.Write(romanToInteger.RomanToInt("MCMXCIV"));
+
+            //_38 CountAndSay = new _38();
+            //Console.Write(CountAndSay.CountAndSay(6));
+
+            //_70 ClimbingStairs = new _70();
+
+            //Console.Write(ClimbingStairs.ClimbStairs(44));
+
+            //_122 Profit = new _122();
+            //int[] prices = new int[] { 7, 1, 5, 3, 6, 4 };
+            //int[] prices = new int[] { 1,2,3,4,5 };
+            //Console.Write(Profit.MaxProfit(prices));
+
+            /*
+           _226 InvertBinaryTree = new _226();
+
+            /*
+                1
+               / \
+              2   2
+             / \ / \
+            3  4 5  9
+            */
+            /*
             var t = new TreeNode(1);
 
             t.left = new TreeNode(2);
@@ -270,10 +310,77 @@ namespace TopInterviewQuestions
 
 
             t.right = new TreeNode(2);
-            t.right.left = new TreeNode(4);
-            t.right.right = new TreeNode(3);
+            t.right.left = new TreeNode(5);
+            t.right.right = new TreeNode(9);
 
-            SymmetricTree.IsSymmetric(t);            
+            InvertBinaryTree.InvertTree(t);
+            */
+            //int[] nums = new int[] { 4, 3, 2, 7, 8, 2, 3, 1};
+            //_448 _448 = new _448();
+            //_448.FindDisappearedNumbers2(nums);
+
+
+
+
+
+            /*
+               1
+              / \
+             3   2
+            / 
+            5
+            */
+
+
+            //var t = new TreeNode(1);
+
+            ///t.left = new TreeNode(3);
+            //t.left.left = new TreeNode(5);
+
+            //t.right = new TreeNode(2);
+
+            /*
+                2
+               / \
+              1   3
+              \    \
+               4    5
+             
+             */
+            //var t2 = new TreeNode(2);
+
+            //t2.left = new TreeNode(1);
+            //t2.left.right = new TreeNode(4);
+
+            //t2.right = new TreeNode(3);
+            //t2.right.right = new TreeNode(7);
+
+
+
+            //_617 MergeTrees =new _617();
+            //var treeNode=MergeTrees.MergeTrees(t,t2);
+
+            /*
+                    1
+                   / \
+                  2   3
+                 / \     
+                4   5
+           */
+
+
+            _543 TreeDiameter = new _543();
+
+
+            var t = new TreeNode(1);
+
+            t.left = new TreeNode(2);
+            t.left.left = new TreeNode(4);
+            t.left.right = new TreeNode(5);
+
+            t.right = new TreeNode(3);
+
+            Console.Write(TreeDiameter.DiameterOfBinaryTree(t));
 
 
             Console.Read();

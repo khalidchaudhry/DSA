@@ -43,29 +43,38 @@ namespace TopInterviewQuestions.Easy
         public int MajorityElement2(int[] nums)
         {
 
-            int majorityElement = nums[0];
-            int count = 1;
-            for (int i = 1; i < nums.Length; i++)
+            int maj_index = 0, count = 1;
+            int i;
+            for (i = 1; i < nums.Length; i++)
             {
-                if (nums[i] == majorityElement)
-                {
-                    ++count;
-                }
+                if (nums[maj_index] == nums[i])
+                    count++;
                 else
-                {
-                    --count;
-                }
+                    count--;
 
                 if (count == 0)
                 {
-                    majorityElement = nums[i];
+                    maj_index = i;
                     count = 1;
                 }
             }
 
-
-            return majorityElement;
-
+            return nums[maj_index];
+        }
+        // Function to check if the candidate  
+        // occurs more than n/2 times 
+        static bool isMajority(int[] a, int size, int cand)
+        {
+            int i, count = 0;
+            for (i = 0; i < size; i++)
+            {
+                if (a[i] == cand)
+                    count++;
+            }
+            if (count > size / 2)
+                return true;
+            else
+                return false;
         }
 
 

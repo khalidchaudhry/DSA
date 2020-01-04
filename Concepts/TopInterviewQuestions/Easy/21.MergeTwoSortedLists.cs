@@ -83,11 +83,14 @@ namespace TopInterviewQuestions.Easy
             return headNode;
         }
 
+        // Time complexity=O(m+n)
+        // Space complexity =O(1)
 
         public ListNode MergeTwoLists2(ListNode l1, ListNode l2)
         {
 
             ListNode dummyNode = new ListNode(0);
+            //This variable always sits at the endOfSortedList
             ListNode endOfSortedList = dummyNode;
 
 
@@ -97,6 +100,8 @@ namespace TopInterviewQuestions.Easy
                 if (l1.val < l2.val)
                 {
                     //doing a rewiring to ensure that end of sorted list points to the  node with lesser value
+                    // endOfSortedList always sits at the end of sorted list 
+                    // so below line simply points to the next element of sorted list to smaller value
                     endOfSortedList.next = l1;
                     l1 = l1.next;
                 }
@@ -110,11 +115,15 @@ namespace TopInterviewQuestions.Easy
                 endOfSortedList = endOfSortedList.next;
             }
 
+            // l1==null means that we exhausted the l1 and now everything in l2 will be greater than last element in l1
+            // so we simply points it out to l2.
             if (l1 == null)
             {
                 endOfSortedList.next = l2;
             }
 
+            // l2==null means that we exhausted the l2 and now everything in l1 will be greater than last element in l1
+            // so we simply points it out to l1.
             if (l2 == null)
             {
                 endOfSortedList.next = l1;
