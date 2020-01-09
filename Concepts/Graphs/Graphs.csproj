@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgorithmsII\BFSPaths\BreadthFirstPaths.cs" />
+    <Compile Include="AlgorithmsII\ConnectedComponents\CC.cs" />
+    <Compile Include="AlgorithmsII\DFSPaths\DepthFirstPaths.cs" />
     <Compile Include="KoderDojo\Algorithms.cs" />
     <Compile Include="KoderDojo\Graph.cs" />
     <Compile Include="Traversal\BFS.cs" />
@@ -55,5 +58,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

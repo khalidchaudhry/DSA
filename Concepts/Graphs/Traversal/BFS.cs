@@ -9,6 +9,7 @@ namespace Graphs.Traversal
 {
     public class BFS
     {
+        // Approach followed in Hermant Jain book
         public static void BFSTraversalQueue(Graph graph, int start)
         {
             int count = graph.count;
