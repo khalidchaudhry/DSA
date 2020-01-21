@@ -369,18 +369,40 @@ namespace TopInterviewQuestions
            */
 
 
-            _543 TreeDiameter = new _543();
+            //_543 TreeDiameter = new _543();
 
 
-            var t = new TreeNode(1);
+            //var t = new TreeNode(1);
 
-            t.left = new TreeNode(2);
-            t.left.left = new TreeNode(4);
-            t.left.right = new TreeNode(5);
+            //t.left = new TreeNode(2);
+            //t.left.left = new TreeNode(4);
+            //t.left.right = new TreeNode(5);
 
-            t.right = new TreeNode(3);
+            //t.right = new TreeNode(3);
 
-            Console.Write(TreeDiameter.DiameterOfBinaryTree(t));
+            //Console.Write(TreeDiameter.DiameterOfBinaryTree(t));
+
+            /*
+                  1
+                 / \
+                2   3
+               / \     
+              4   5
+             
+            
+         */
+
+            var t = new TreeNode(7);
+
+            //t.left = new TreeNode(2);
+            //t.left.left = new TreeNode(4);
+            //t.left.right = new TreeNode(5);
+
+            //t.right = new TreeNode(3);
+
+            _437 pathSum = new _437();
+
+            pathSum.PathSum(t,7);
 
 
             Console.Read();

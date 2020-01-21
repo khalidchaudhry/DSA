@@ -16,7 +16,11 @@ namespace Graphs
     {
         static void Main(string[] args)
         {
-            //GraphAM graphAM = new GraphAM(5);
+            /***********************************************************************************/
+            // Hermant Jain book
+            /***********************************************************************************/
+            // Adjacency Matrix representation
+            GraphAM graphAM = new GraphAM(5);
             //graphAM.AddUnDirectedEdge(0, 1, 1);
             //graphAM.AddUnDirectedEdge(0, 2, 1);
             //graphAM.AddUnDirectedEdge(1, 2, 1);
@@ -31,10 +35,11 @@ namespace Graphs
            |       ↗         |
            ↓   ↗             ↓
            4------>3<------->2
-                          
+
 
 
             *********/
+            //Adjacency list representation
             /*
             Graph graph = new Graph(5);
             graph.AddDirectedEdge(0, 1, 3);
@@ -50,9 +55,11 @@ namespace Graphs
             //DFS.DFSTraversalStack2(graph, 0);
 
             //Console.WriteLine("---------------------");
-            
-            */
 
+            */
+            /***********************************************************************************/
+            //https://www.koderdojo.com/blog/depth-first-search-algorithm-in-csharp-and-net-core
+            /***********************************************************************************/
             /*
             var vertices = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var edges = new[]{Tuple.Create(1,2), Tuple.Create(1,3),
@@ -123,23 +130,28 @@ namespace Graphs
          4------>3<------->2
 
          *********/
-            //Graph graph = new Graph(5);
-            //graph.AddDirectedEdge(0, 1, 3);
-            //graph.AddDirectedEdge(0, 4, 2);
-            //graph.AddDirectedEdge(1, 2, 1);
-            //graph.AddDirectedEdge(2, 3, 1);
-            //graph.AddDirectedEdge(3, 2, 1);
-            //graph.AddDirectedEdge(4, 1, -2);
-            //graph.AddDirectedEdge(4, 3, -1);
-            //bool[] visited = new bool[5];
+
+            /***********************************************************************************/
+            //Algorithms Part II by Robert
+            /***********************************************************************************/
+
+            Graph graph = new Graph(5);
+            graph.AddDirectedEdge(0, 1, 3);
+            graph.AddDirectedEdge(0, 4, 2);
+            graph.AddDirectedEdge(1, 2, 1);
+            graph.AddDirectedEdge(2, 3, 1);
+            graph.AddDirectedEdge(3, 2, 1);
+            graph.AddDirectedEdge(4, 1, -2);
+            graph.AddDirectedEdge(4, 3, -1);
+            bool[] visited = new bool[5];
             //Console.WriteLine("Recursive version ");
             //DFS.DFSTraversalRecursive(graph, 0, visited);
             //Console.WriteLine("--------------------------------");
             //Console.WriteLine("Iterative  version ");
             //DFS.DFSTraversalStack(graph, 0);
 
-            //BFS.BFSTraversalQueue(graph,0);
-            /*
+            //BFS.BFSTraversalQueue(graph, 0);
+
             int s = 0;
 
             DepthFirstPaths dfs = new DepthFirstPaths(graph, s);
@@ -148,7 +160,7 @@ namespace Graphs
             {
                 if (dfs.hasPathTo(v))
                 {
-                   Console.Write($"{s} to {v}:");
+                    Console.Write($"{s} to {v}:");
                     foreach (int x in dfs.PathTo(v))
                     {
                         if (x == s)
@@ -162,9 +174,9 @@ namespace Graphs
                 else
                 {
                     Console.WriteLine($"{s} to {v}:  not connected");
-                }                
+                }
             }
-            */
+
             /*
             int s = 0;
             
@@ -207,6 +219,7 @@ namespace Graphs
 
 
             *********/
+            /*
             Graph graph = new Graph(9);
             graph.AddDirectedEdge(0, 1, 3);
             graph.AddDirectedEdge(0, 4, 2);
@@ -225,7 +238,7 @@ namespace Graphs
 
             Console.WriteLine(cc.CCSize(4));
             Console.WriteLine(cc.CCCount());
-
+            */
             Console.Read();
         }
     }
