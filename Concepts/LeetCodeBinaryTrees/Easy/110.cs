@@ -75,21 +75,39 @@ namespace LeetCodeBinaryTrees.Easy
         }
         private static TreeInfo BalanceTreeHelper(TreeNode node)
         {
+            /*
+            * Base case, an empty subtree is balanced and has a height of -1 as we define
+            * it (since it is technically below "sea level", weird analogy)
+            */
             if (node == null)
             {
                 return new TreeInfo(true, -1);
             }
 
+            /*
+             * Go deep into the left subtree and get a result back
+             */
+
             TreeInfo leftTree = BalanceTreeHelper(node.left);
+
             if (!leftTree.IsBalanced)
             {
-                return leftTree;
+                return leftTree;// Left subtree is not balanced. Bubble up failure.
             }
             TreeInfo rightTree = BalanceTreeHelper(node.right);
             if (!rightTree.IsBalanced)
             {
-                return rightTree;
+                return rightTree;// Right subtree is not balanced. Bubble up failure.
             }
+            
+            /*
+             * Our left and right subtrees are back and we have our results. Let us analyze
+             * them here and bubble up our own answer.
+             * 
+             * 1.) Check if the subtreesAreBalanced 2.) Notate the height that this node
+             * sits at (which is 1 plus the height of the larger of the left and right
+             * subtrees coming off of this node)
+             */
 
             return new TreeInfo(Math.Abs(leftTree.Height - rightTree.Height) < 2, Math.Max(leftTree.Height, rightTree.Height) + 1);
         }
