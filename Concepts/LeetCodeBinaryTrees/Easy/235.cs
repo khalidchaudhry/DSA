@@ -106,6 +106,8 @@ namespace LeetCodeBinaryTrees.Easy
 
 
         }
+
+        // If tree is a BST 
         public TreeNode LowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q)
         {
             if (root.val > Math.Max(p.val, q.val))
