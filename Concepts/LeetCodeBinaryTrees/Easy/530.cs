@@ -29,7 +29,5 @@ namespace LeetCodeBinaryTrees.Easy
             lst.Add(node.val);
             InOrder(node.right, lst);
         }
-
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LeetCodeBinaryTrees.Easy;
 using System;
+using System.Collections.Generic;
 
 namespace LeetCodeBinaryTrees
 {
@@ -515,17 +516,59 @@ namespace LeetCodeBinaryTrees
                 
             */
 
-            var p = new TreeNode(236);
-            p.right = new TreeNode(701);
-            p.left = new TreeNode(104);
+            //var p = new TreeNode(236);
+            //p.right = new TreeNode(701);
+            //p.left = new TreeNode(104);
 
-            p.right.right = new TreeNode(911);
+            //p.right.right = new TreeNode(911);
 
-            p.left.right = new TreeNode(227);
+            //p.left.right = new TreeNode(227);
 
-            _530 MinimumAbsoluteDiff = new _530();
-            MinimumAbsoluteDiff.GetMinimumDifference(p);
+            //_530 MinimumAbsoluteDiff = new _530();
+            //MinimumAbsoluteDiff.GetMinimumDifference(p);
 
+            /********559. Maximum Depth of N-ary Tree****************************/
+            //Node node2 = new Node(2);
+            //Node node3 = new Node(3);
+            //Node node4 = new Node(4);
+            //Node node5 = new Node(5);
+            //Node node6 = new Node(6);
+
+            //Node root = new Node(1);
+            //root.children = new List<Node>();
+            //root.children.Add(node3);
+            //root.children.Add(node2);
+            //root.children.Add(node4);
+
+            //node3.children = new List<Node>();
+            //node3.children.Add(node5);
+            //node3.children.Add(node6);
+
+
+            //_559 maxDepth = new _559();
+
+            //maxDepth.MaxDepth2(root);
+
+            /********589. N-ary Tree Preorder Traversal********************/
+            Node node2 = new Node(2);
+            Node node3 = new Node(3);
+            Node node4 = new Node(4);
+            Node node5 = new Node(5);
+            Node node6 = new Node(6);
+
+            Node root = new Node(1);
+            root.children = new List<Node>();
+            root.children.Add(node3);
+            root.children.Add(node2);
+            root.children.Add(node4);
+
+            node3.children = new List<Node>();
+            node3.children.Add(node5);
+            node3.children.Add(node6);
+
+            _589 PreOrder = new _589();
+
+            PreOrder.Preorder2(root);
 
             Console.ReadLine();
         }
