@@ -485,7 +485,7 @@ namespace LeetCodeBinaryTrees
                       2     3
                      /     /
                     4     5
-              
+
              */
 
             //var p = new TreeNode(1);
@@ -510,10 +510,10 @@ namespace LeetCodeBinaryTrees
 
              236
              /  \
-           104  701
+            104  701
             \     \
              227  911
-                
+
             */
 
             //var p = new TreeNode(236);
@@ -569,6 +569,144 @@ namespace LeetCodeBinaryTrees
             _589 PreOrder = new _589();
 
             PreOrder.Preorder2(root);
+
+            /********270.Closest Binary Search Tree Value********************/
+
+            //_270 CBSTV = new _270();
+
+            /*
+
+                 4
+                / \
+               2   5
+              / \
+             1   3                        
+             */
+
+            //var p = new TreeNode(4);
+
+            //p.left = new TreeNode(2);
+
+            //p.right = new TreeNode(5);
+
+            //p.left.left = new TreeNode(1);
+            //p.left.right = new TreeNode(3);
+
+
+            //double target = 3.714286;
+
+
+            //Console.WriteLine(CBSTV.ClosestValue2(p,target));
+
+            /********783. Minimum Distance Between BST Nodes********************/
+            /*
+
+               4
+              / \
+             2   6
+            / \
+            1   3                        
+            */
+
+            //var p = new TreeNode(4);
+
+            //p.left = new TreeNode(2);
+
+            //p.right = new TreeNode(6);
+
+            //p.left.left = new TreeNode(1);
+            //p.left.right = new TreeNode(3);
+
+            //_783 MinDiff = new _783();
+
+            //MinDiff.MinDiffInBST(p);
+
+            /********700.Search in a Binary Search Tree****************/
+            /*
+
+             4
+            / \
+            2   7
+            / \
+            1   3                        
+            */
+
+            //var p = new TreeNode(4);
+
+            //p.left = new TreeNode(2);
+
+            //p.right = new TreeNode(7);
+
+            //p.left.left = new TreeNode(1);
+            //p.left.right = new TreeNode(3);
+            /*
+                2
+               / \
+              1   3                                  
+            */
+
+
+            //_700 SearchBST = new _700();
+
+            //var p = new TreeNode(2);
+
+            //p.left = new TreeNode(1);
+
+            //p.right = new TreeNode(3);
+
+            //var val =SearchBST.SearchBST(p, 5);
+            /*
+                  2
+                 / \
+                2   5
+                   / \
+                  5   7                                  
+            */
+            //var p = new TreeNode(2);
+
+            //p.left = new TreeNode(2);
+
+            //p.right = new TreeNode(5);
+
+            //p.right.left = new TreeNode(5);
+            //p.right.right = new TreeNode(7);
+
+
+            /*
+                 2
+                / \
+               2   2
+
+            */
+
+            //var p = new TreeNode(2);
+
+            //p.left = new TreeNode(2);
+
+            //p.right = new TreeNode(2147483647);
+
+            //_671 SecondMin =new _671();
+            //SecondMin.FindSecondMinimumValue(p);
+
+            /********590.N - ary Tree Postorder Traversal**********************/
+            //Node node2 = new Node(2);
+            //Node node3 = new Node(3);
+            //Node node4 = new Node(4);
+            //Node node5 = new Node(5);
+            //Node node6 = new Node(6);
+
+            //Node root = new Node(1);
+            //root.children = new List<Node>();
+            //root.children.Add(node3);
+            //root.children.Add(node2);
+            //root.children.Add(node4);
+
+            //node3.children = new List<Node>();
+            //node3.children.Add(node5);
+            //node3.children.Add(node6);
+
+            //_590 PostOrderTraversal = new _590();
+            //PostOrderTraversal.Postorder(root);
 
             Console.ReadLine();
         }

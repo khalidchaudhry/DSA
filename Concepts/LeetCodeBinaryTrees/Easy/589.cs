@@ -11,18 +11,20 @@ namespace LeetCodeBinaryTrees.Easy
         public IList<int> Preorder2(Node root)
         {
             List<int> preOrder = new List<int>();
-            if (root == null)
-                return preOrder;
-            preOrder.Add(root.val);
-            foreach (Node child in root.children)
-            {
-                preOrder.Add(child.val);
+            Stack<Node> stk = new Stack<Node>();
 
-                if (child.children != null)
+            if (root != null)
+                stk.Push(root);
+
+            while (stk.Count != 0)
+            {
+                var node = stk.Pop();
+                preOrder.Add(node.val);
+                if (node.children != null)
                 {
-                    foreach (Node subChild in child.children)
+                    for (int i=node.children.Count-1;i>=0;i--)
                     {
-                        preOrder.Add(subChild.val);
+                        stk.Push(node.children[i]);
                     }
                 }
             }
