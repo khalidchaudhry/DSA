@@ -550,25 +550,25 @@ namespace LeetCodeBinaryTrees
             //maxDepth.MaxDepth2(root);
 
             /********589. N-ary Tree Preorder Traversal********************/
-            Node node2 = new Node(2);
-            Node node3 = new Node(3);
-            Node node4 = new Node(4);
-            Node node5 = new Node(5);
-            Node node6 = new Node(6);
+            //Node node2 = new Node(2);
+            //Node node3 = new Node(3);
+            //Node node4 = new Node(4);
+            //Node node5 = new Node(5);
+            //Node node6 = new Node(6);
 
-            Node root = new Node(1);
-            root.children = new List<Node>();
-            root.children.Add(node3);
-            root.children.Add(node2);
-            root.children.Add(node4);
+            //Node root = new Node(1);
+            //root.children = new List<Node>();
+            //root.children.Add(node3);
+            //root.children.Add(node2);
+            //root.children.Add(node4);
 
-            node3.children = new List<Node>();
-            node3.children.Add(node5);
-            node3.children.Add(node6);
+            //node3.children = new List<Node>();
+            //node3.children.Add(node5);
+            //node3.children.Add(node6);
 
-            _589 PreOrder = new _589();
+            //_589 PreOrder = new _589();
 
-            PreOrder.Preorder2(root);
+            //PreOrder.Preorder2(root);
 
             /********270.Closest Binary Search Tree Value********************/
 
@@ -707,6 +707,37 @@ namespace LeetCodeBinaryTrees
 
             //_590 PostOrderTraversal = new _590();
             //PostOrderTraversal.Postorder(root);
+            /*
+                    3
+                   / \
+                  4   5
+                 / \
+                1   2
+               /
+              0
+
+                 4 
+                / \
+               1   2
+
+
+            */
+            var t = new TreeNode(3);
+
+            t.left = new TreeNode(4);
+            t.left.left = new TreeNode(1);
+            t.left.left.left = new TreeNode(0);
+            t.left.right = new TreeNode(2);
+            //t.left.right.left = new TreeNode(0);
+
+            t.right = new TreeNode(5);
+
+            var t2 = new TreeNode(4);
+            t2.left = new TreeNode(1);
+            t2.right = new TreeNode(2);
+            _572 treeSubset = new _572();
+            treeSubset.IsSubTree2(t, t2);
+
 
             Console.ReadLine();
         }
