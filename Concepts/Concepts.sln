@@ -23,7 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphs", "Graphs\Graphs.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LCIQEasy", "LCIQEasy\LCIQEasy.csproj", "{754AFD9D-8944-437B-A3D2-5B4956053A42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeBinaryTrees", "LeetCodeBinaryTrees\LeetCodeBinaryTrees.csproj", "{B7946FDB-DC82-42C2-9A8B-9EA3BCD877BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeBinaryTrees", "LeetCodeBinaryTrees\LeetCodeBinaryTrees.csproj", "{B7946FDB-DC82-42C2-9A8B-9EA3BCD877BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeArrays", "LeetCodeArrays\LeetCodeArrays.csproj", "{66C699B7-1949-414E-88F9-F9262E2BEDF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{B7946FDB-DC82-42C2-9A8B-9EA3BCD877BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7946FDB-DC82-42C2-9A8B-9EA3BCD877BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7946FDB-DC82-42C2-9A8B-9EA3BCD877BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66C699B7-1949-414E-88F9-F9262E2BEDF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66C699B7-1949-414E-88F9-F9262E2BEDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66C699B7-1949-414E-88F9-F9262E2BEDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66C699B7-1949-414E-88F9-F9262E2BEDF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
