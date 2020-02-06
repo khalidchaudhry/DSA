@@ -50,11 +50,34 @@ namespace LeetCodeArrays
             //Duplicates.ContainsNearbyDuplicate(nums,k);
 
             /*************167.Two Sum II -Input array is sorted*********************/
-            int[] numbers = new int[] { 2, 7, 11, 15 };
-            int target = 9;
-            _167 TwoSum = new _167();
+            //int[] numbers = new int[] { 2, 7, 11, 15 };
+            //int target = 9;
+            //_167 TwoSum = new _167();
 
-            TwoSum.TwoSum(numbers,9);
+            //TwoSum.TwoSum(numbers,9);
+
+            /*************283.Move Zeroes****************************/
+            //int[] nums = new int[] { 0, 1, 0, 3, 12 };
+            //_283 MoveZeros = new _283();
+            //MoveZeros.MoveZeroes(nums);
+
+            /*************122.Best Time to Buy and Sell Stock II**********************/
+            //int[] nums = new int[] { 7, 6, 4, 3, 1 };
+
+            //_122 MaxProfit = new _122();
+
+            //MaxProfit.MaxProfit(nums);
+
+            //_697 ShortestSubbary = new _697();
+            //int[] arr = new int[] { 1, 2, 2, 3, 1 };
+
+            //ShortestSubbary.FindShortestSubArray(arr);
+
+            /***********************717. 1 - bit and 2 - bit Characters******************************************/
+
+            _717 characters = new _717();
+            int[] bits = new int[] { 1, 0, 0 };
+            characters.IsOneBitCharacter(bits);
 
 
             Console.ReadLine();
