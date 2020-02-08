@@ -75,10 +75,60 @@ namespace LeetCodeArrays
 
             /***********************717. 1 - bit and 2 - bit Characters******************************************/
 
-            _717 characters = new _717();
-            int[] bits = new int[] { 1, 0, 0 };
-            characters.IsOneBitCharacter(bits);
+            //_717 characters = new _717();
+            //int[] bits = new int[] { 1, 0, 0 };
+            //characters.IsOneBitCharacter(bits);
 
+
+            /***********************832.Flipping an Image***********************************/
+
+            //int[][] A = new int[3][];
+            //A[0] = new int[3] { 1, 1, 0 };
+            //A[1] = new int[3] { 1, 0, 1 };
+            //A[2] = new int[3] { 0, 0, 0 };
+
+            //_832 ImageFlip = new _832();
+
+            //ImageFlip.PrintArray(A);
+
+            //ImageFlip.FlipAndInvertImage2(A);
+
+            //Console.WriteLine("After flip and invert");
+            //ImageFlip.PrintArray(A);
+
+            /***********************905.Sort Array By Parity***********************************/
+            //int[] A = new int[] { 1, 2, 2, 3, 1 };
+
+            //_905 ArrayParity = new _905();
+            //ArrayParity.SortArrayByParity2(A);
+
+            //_35 InsertionPoint = new _35();
+            //int[] nums = new int[] { 1, 3, 5, 6 };
+            //int target = 7;
+            //InsertionPoint.SearchInsert(nums,target);
+
+            ////118.Pascal's Triangle
+            //_118 PascalTriangle = new _118();
+            //PascalTriangle.Generate(5);
+
+
+            /***********************119.Pascal's Triangle II********************************/
+
+            //_119 PascalTriangle = new _119();
+            //PascalTriangle.GetRow2(2);
+
+
+            /***************746.Min Cost Climbing Stairs***************************************/
+
+            //_746 MinCost = new _746();
+            //int[] cost = new int[] { 1, 100, 1, 1, 1, 100, 1, 1, 100, 1 };
+            //Console.Write(MinCost.MinCostClimbingStairs(cost));
+
+            _628 MaximumProduct = new _628();
+
+            int[] cost = new int[] { -1, -2, -3 };
+
+            MaximumProduct.MaximumProduct(cost);
 
             Console.ReadLine();
         }

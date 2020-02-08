@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LeetCodeArrays
+namespace LeetCodeArrays.Easy
 {
     class _717
     {
