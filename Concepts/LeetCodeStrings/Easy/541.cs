@@ -62,7 +62,7 @@ namespace LeetCodeStrings.Easy
                  It deals with the case when there are less than k characters left, 
                  reverse all of them, since i + k - 1 could be larger than n - 1, 
                  causing access violation at runtime.
-                 i + k - 1 = When character left is >=k and <=2k reverse k characters
+                 j = i + k - 1 = When character left is >=k and <=2k reverse k characters
                  n-1 = When character left <k reverse all the characters
                 */
 
