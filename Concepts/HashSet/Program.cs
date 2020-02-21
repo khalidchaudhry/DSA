@@ -44,12 +44,20 @@ namespace HashSet
 
             //Visits.SubdomainVisits(cpdomains);
 
-            _760 AnagramMappings = new _760();
-            int[] A = new int[] { 12, 28, 46, 32, 50 };
-            int[] B = new int[] { 50, 12, 32, 46, 28 };
+            //_760 AnagramMappings = new _760();
+            //int[] A = new int[] { 12, 28, 46, 32, 50 };
+            //int[] B = new int[] { 50, 12, 32, 46, 28 };
 
-            AnagramMappings.AnagramMappings(A, B);
+            //AnagramMappings.AnagramMappings(A, B);
 
+            _447 BoomeRangs = new _447();
+            int[][] points = new int[][]
+                {
+                    new int[]{0,0},
+                    new int[]{1,0},
+                    new int[]{2,0}
+                };
+            BoomeRangs.NumberOfBoomerangs(points);
 
 
             Console.ReadLine();
