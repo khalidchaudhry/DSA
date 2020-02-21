@@ -50,15 +50,24 @@ namespace HashSet
 
             //AnagramMappings.AnagramMappings(A, B);
 
-            _447 BoomeRangs = new _447();
-            int[][] points = new int[][]
-                {
-                    new int[]{0,0},
-                    new int[]{1,0},
-                    new int[]{2,0}
-                };
-            BoomeRangs.NumberOfBoomerangs(points);
+            //_447 BoomeRangs = new _447();
+            //int[][] points = new int[][]
+            //    {
+            //        new int[]{0,0},
+            //        new int[]{1,0},
+            //        new int[]{2,0}
+            //    };
+            //BoomeRangs.NumberOfBoomerangs(points);
 
+            //_299 BullsAndCows = new _299();
+            //string secret = "1123";
+            //string guess = "0111";
+            //Console.WriteLine(BullsAndCows.GetHint2(secret,guess));
+
+            _389 Difference = new _389();
+            string s = "abcd";
+            string t = "abcde";
+            Console.WriteLine(Difference.FindTheDifference2(s,t));
 
             Console.ReadLine();
         }
