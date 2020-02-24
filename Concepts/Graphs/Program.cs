@@ -135,15 +135,15 @@ namespace Graphs
             //Algorithms Part II by Robert
             /***********************************************************************************/
 
-            Graph graph = new Graph(5);
-            graph.AddDirectedEdge(0, 1, 3);
-            graph.AddDirectedEdge(0, 4, 2);
-            graph.AddDirectedEdge(1, 2, 1);
-            graph.AddDirectedEdge(2, 3, 1);
-            graph.AddDirectedEdge(3, 2, 1);
-            graph.AddDirectedEdge(4, 1, -2);
-            graph.AddDirectedEdge(4, 3, -1);
-            bool[] visited = new bool[5];
+            //Graph graph = new Graph(5);
+            //graph.AddDirectedEdge(0, 1, 3);
+            //graph.AddDirectedEdge(0, 4, 2);
+            //graph.AddDirectedEdge(1, 2, 1);
+            //graph.AddDirectedEdge(2, 3, 1);
+            //graph.AddDirectedEdge(3, 2, 1);
+            //graph.AddDirectedEdge(4, 1, -2);
+            //graph.AddDirectedEdge(4, 3, -1);
+            //bool[] visited = new bool[5];
             //Console.WriteLine("Recursive version ");
             //DFS.DFSTraversalRecursive(graph, 0, visited);
             //Console.WriteLine("--------------------------------");
@@ -152,30 +152,30 @@ namespace Graphs
 
             //BFS.BFSTraversalQueue(graph, 0);
 
-            int s = 0;
+            //int s = 0;
 
-            DepthFirstPaths dfs = new DepthFirstPaths(graph, s);
+            //DepthFirstPaths dfs = new DepthFirstPaths(graph, s);
 
-            for (int v = 0; v < graph.count; v++)
-            {
-                if (dfs.hasPathTo(v))
-                {
-                    Console.Write($"{s} to {v}:");
-                    foreach (int x in dfs.PathTo(v))
-                    {
-                        if (x == s)
-                            Console.Write(x);
-                        else
-                            Console.Write("-" + x);
-                    }
-                    Console.WriteLine();
-                }
+            //for (int v = 0; v < graph.count; v++)
+            //{
+            //    if (dfs.hasPathTo(v))
+            //    {
+            //        Console.Write($"{s} to {v}:");
+            //        foreach (int x in dfs.PathTo(v))
+            //        {
+            //            if (x == s)
+            //                Console.Write(x);
+            //            else
+            //                Console.Write("-" + x);
+            //        }
+            //        Console.WriteLine();
+            //    }
 
-                else
-                {
-                    Console.WriteLine($"{s} to {v}:  not connected");
-                }
-            }
+            //    else
+            //    {
+            //        Console.WriteLine($"{s} to {v}:  not connected");
+            //    }
+            //}
 
             /*
             int s = 0;

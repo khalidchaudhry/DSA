@@ -64,10 +64,40 @@ namespace HashSet
             //string guess = "0111";
             //Console.WriteLine(BullsAndCows.GetHint2(secret,guess));
 
-            _389 Difference = new _389();
-            string s = "abcd";
-            string t = "abcde";
-            Console.WriteLine(Difference.FindTheDifference2(s,t));
+            //_389 Difference = new _389();
+            //string s = "abcd";
+            //string t = "abcde";
+            //Console.WriteLine(Difference.FindTheDifference2(s,t));
+
+            //_290 WordPattern = new _290();
+            //string pattern = "abba";
+            //string str = "dog dog dog dog";
+            //Console.WriteLine(WordPattern.WordPattern(pattern,str));
+
+            //_575 DistributeCandies = new _575();
+            //int[] candies = new int[] { 1,1,2,3 };
+            //Console.WriteLine(DistributeCandies.DistributeCandies2(candies));
+
+
+            //MyHashMap hashMap = new MyHashMap();
+            //hashMap.Put(1, 1);
+            //hashMap.Put(2, 2);
+            //hashMap.Get(1);            // returns 1
+            //hashMap.Put(2, 1);          // update the existing value
+            //hashMap.Get(2);            // returns 1 
+            //hashMap.Remove(2);          // remove the mapping for 2
+            //hashMap.Get(2);            // returns -1 (not found) 
+
+
+            //_1002 CommonChar = new _1002();
+            //string[] A = new string[] { "bella", "label", "roller" };
+            //CommonChar.CommonChars(A);
+
+
+            _205 Isomorphic = new _205();
+
+            Console.WriteLine(Isomorphic.IsIsomorphic2("ab","ac"));
+
 
             Console.ReadLine();
         }

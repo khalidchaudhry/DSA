@@ -8,6 +8,7 @@ namespace Graphs.GraphRepresentation
 {
     public class Graph
     {
+        // Number of nodes in graph
         public int count { get; }
 
         public List<List<Edge>> adj { get; }
@@ -55,7 +56,7 @@ namespace Graphs.GraphRepresentation
                 Console.WriteLine();
             }
 
-        }
+         }
     }
 
     public class Edge
