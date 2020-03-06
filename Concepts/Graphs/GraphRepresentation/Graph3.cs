@@ -6,26 +6,27 @@ using System.Threading.Tasks;
 
 namespace Graphs.GraphRepresentation
 {
-    // Approach followed in Hermant Jain book
-    public class Graph
+    // Approach followed in GeeksForGeeks
+    public class Graph3
     {
         // Number of nodes in graph
         public int count { get; }
 
-        public List<List<Edge>> adj { get; }
-        public Graph(int cnt)
+        public Dictionary<int, int>[] adj { get; }
+        public Graph3(int cnt)
         {
             count = cnt;
-            adj = new List<List<Edge>>();
+            adj = new Dictionary<int, int>[count];
             for (int i = 0; i < count; i++)
             {
-                adj.Add(new List<Edge>());
+                adj[i] = new Dictionary<int, int>();
             }
         }
         public void AddDirectedEdge(int src, int dst, int cst)
         {
-            Edge edge = new Edge(dst, cst);
-            adj[src].Add(edge);
+            var dictionary = adj[src];
+            dictionary.Add(dst, cst);
+            adj[src] = dictionary;
 
         }
         public void AddDirectedEdge(int src, int dst)
@@ -45,36 +46,16 @@ namespace Graphs.GraphRepresentation
         }
         public void Print()
         {
-
             for (int i = 0; i < count; i++)
             {
                 Console.Write($"Vertex:{i} is connected with ");
-                for (int j = 0; j < adj[i].Count; j++)
+                foreach (var key in adj[i].Keys)
                 {
-                    Console.Write($" {adj[i][j]}");
+                    Console.Write($"{key} ");
                 }
 
                 Console.WriteLine();
             }
-
-         }
-    }
-
-    public class Edge
-    {
-        public int dest { get; }
-        public int cost { get; }
-        public Edge(int dst, int cst)
-        {
-            dest = dst;
-            cost = cst;
-        }
-        public override string ToString()
-        {
-            return dest.ToString();
         }
     }
-
-
-
 }

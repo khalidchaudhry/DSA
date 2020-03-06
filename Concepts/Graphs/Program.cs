@@ -14,13 +14,13 @@ namespace Graphs
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main2(string[] args)
         {
             /***********************************************************************************/
             // Hermant Jain book
             /***********************************************************************************/
             // Adjacency Matrix representation
-            GraphAM graphAM = new GraphAM(5);
+            //GraphAM graphAM = new GraphAM(5);
             //graphAM.AddUnDirectedEdge(0, 1, 1);
             //graphAM.AddUnDirectedEdge(0, 2, 1);
             //graphAM.AddUnDirectedEdge(1, 2, 1);
@@ -239,6 +239,14 @@ namespace Graphs
             Console.WriteLine(cc.CCSize(4));
             Console.WriteLine(cc.CCCount());
             */
+            ///////////////////////////////////////
+
+            //////////////////////////////////////
+            Graph3 g = new Graph3(3);
+            g.AddUnDirectedEdge(0,1);
+            g.AddUnDirectedEdge(1, 2);
+            g.AddUnDirectedEdge(2, 0);
+            g.Print();
             Console.Read();
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Graphs.GraphRepresentation
 {
+    // Approach followed in Hermant Jain book
     class GraphAM
     {
         private int count;

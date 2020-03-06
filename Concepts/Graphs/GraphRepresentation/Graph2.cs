@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Graphs.GraphRepresentation
 {
-    // Approach followed in Hermant Jain book
-    public class Graph
+    // Approach followed in GeeksForGeeks
+    public class Graph2
     {
         // Number of nodes in graph
         public int count { get; }
 
-        public List<List<Edge>> adj { get; }
-        public Graph(int cnt)
+        public List<Edge>[] adj { get; }
+        public Graph2(int cnt)
         {
             count = cnt;
-            adj = new List<List<Edge>>();
+            adj = new List<Edge>[count];
             for (int i = 0; i < count; i++)
             {
-                adj.Add(new List<Edge>());
+                adj[i]=new List<Edge>();
             }
         }
         public void AddDirectedEdge(int src, int dst, int cst)
@@ -59,22 +59,4 @@ namespace Graphs.GraphRepresentation
 
          }
     }
-
-    public class Edge
-    {
-        public int dest { get; }
-        public int cost { get; }
-        public Edge(int dst, int cst)
-        {
-            dest = dst;
-            cost = cst;
-        }
-        public override string ToString()
-        {
-            return dest.ToString();
-        }
-    }
-
-
-
 }

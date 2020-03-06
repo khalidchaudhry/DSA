@@ -43,11 +43,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADSAAIC\Program.cs" />
+    <Compile Include="ADSAAIC\ShortestPath.cs" />
     <Compile Include="AlgorithmsII\BFSPaths\BreadthFirstPaths.cs" />
     <Compile Include="AlgorithmsII\ConnectedComponents\CC.cs" />
     <Compile Include="AlgorithmsII\DFSPaths\DepthFirstPaths.cs" />
+    <Compile Include="GeeksForGeeks\CountNodesAtLevel.cs" />
+    <Compile Include="GeeksForGeeks\CountPaths.cs" />
+    <Compile Include="GeeksForGeeks\CountTrees.cs" />
+    <Compile Include="GeeksForGeeks\IterativeDepthFirstTraversal2.cs" />
+    <Compile Include="GeeksForGeeks\IterativeDepthFirstTraversal.cs" />
+    <Compile Include="GeeksForGeeks\MotherVertex2.cs" />
+    <Compile Include="GeeksForGeeks\MotherVertex.cs" />
+    <Compile Include="GeeksForGeeks\Program.cs" />
+    <Compile Include="GeeksForGeeks\TransitiveClosure.cs" />
+    <Compile Include="GraphRepresentation\Graph3.cs" />
+    <Compile Include="GraphRepresentation\Graph2.cs" />
     <Compile Include="KoderDojo\Algorithms.cs" />
     <Compile Include="KoderDojo\Graph.cs" />
+    <Compile Include="Practice\BFS.cs" />
+    <Compile Include="Practice\DFS.cs" />
+    <Compile Include="Practice\Graph2.cs" />
+    <Compile Include="Practice\Graph.cs" />
+    <Compile Include="Practice\GraphAM.cs" />
+    <Compile Include="Program2.cs" />
+    <Compile Include="GeeksForGeeks\TransitiveClosure2.cs" />
     <Compile Include="Traversal\BFS.cs" />
     <Compile Include="Traversal\DFS.cs" />
     <Compile Include="GraphRepresentation\Graph.cs" />
