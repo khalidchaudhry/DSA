@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADSAAIC\Kruskal.cs" />
+    <Compile Include="ADSAAIC\Prims.cs" />
+    <Compile Include="ADSAAIC\Dijkstra.cs" />
     <Compile Include="ADSAAIC\Program.cs" />
+    <Compile Include="ADSAAIC\RecursiveDepthFirstSearch.cs" />
     <Compile Include="ADSAAIC\ShortestPath.cs" />
     <Compile Include="AlgorithmsII\BFSPaths\BreadthFirstPaths.cs" />
     <Compile Include="AlgorithmsII\ConnectedComponents\CC.cs" />

@@ -33,7 +33,7 @@ namespace PracticingRecursionInJava
 
             //_15 InvFacSum = new _15();
             //Console.Write(InvFacSum.InvFacSum(5));
-            _20 ReverseInteger = new _20();
+            //_20 ReverseInteger = new _20();
 
             //ReverseInteger.ReverseInteger(10);
 
@@ -51,10 +51,18 @@ namespace PracticingRecursionInJava
 
             //Console.WriteLine(Binomial.Binomial(4,2));
 
-            _23 DecimalToBinary = new _23();
+            //_23 DecimalToBinary = new _23();
 
-            DecimalToBinary.Convert(10);
+            //DecimalToBinary.Convert(10);
 
+            //_28 PrinCommas = new _28();
+
+            //long number = 10000;
+            //PrinCommas.PrintCommas(number);
+
+            _29 PrintA = new _29();
+
+            PrintA.PrintAExpTimes(4);
             Console.ReadLine();
         }
     }
