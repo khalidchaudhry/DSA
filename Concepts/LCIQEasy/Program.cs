@@ -11,13 +11,6 @@ namespace LCIQEasy
         static void Main(string[] args)
         {
             /*
-            _937 ReorderDatainLogFiles = new _937();
-
-            string[] logs = new string[] { "dig1 8 1 5 1", "let1 art can", "dig2 3 6", "let2 own kit dig", "let3 art zero" };
-
-            //ReorderDatainLogFiles.ReorderLogFiles(logs);
-            */
-            /*
             _953 alienSorted = new _953();
             string[] words = new string[] { "apple", "app" };
             string order = "abcdefghijklmnopqrstuvwxyz";
@@ -64,11 +57,11 @@ namespace LCIQEasy
             //treeSubset.IsSubtree(t,t2);
 
 
-            String paragraph = "a.";//"Bob hit a ball, the hit BALL flew far after it was hit.";
-            String[] banned = new String[] { };
-            _819 mostCommonWord=new _819();
+            //String paragraph = "a.";//"Bob hit a ball, the hit BALL flew far after it was hit.";
+            //String[] banned = new String[] { };
+            //_819 mostCommonWord=new _819();
 
-            Console.WriteLine(mostCommonWord.MostCommonWord2(paragraph, banned));
+            //Console.WriteLine(mostCommonWord.MostCommonWord2(paragraph, banned));
 
             Console.Read();
 

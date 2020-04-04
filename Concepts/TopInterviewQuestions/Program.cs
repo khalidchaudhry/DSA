@@ -91,9 +91,10 @@ namespace TopInterviewQuestions
             //_202 happyNumber = new _202();
             //Console.Write(happyNumber.IsHappy(19));
 
-            // _198 RObHouse = new _198();
-            // int[] nums = new int[] { 2, 7, 9, 3, 1 };
-            // Console.Write(RObHouse.Rob(nums));
+            _198 RObHouse = new _198();
+            int[] nums = new int[] { 3, 1, 2, 5, 4, 2 };
+            Console.Write(RObHouse.Rob(nums));
+
             //_191 hammingWeight = new _191();
 
             //Console.Write(hammingWeight.HammingWeight(11));
@@ -392,17 +393,17 @@ namespace TopInterviewQuestions
             
          */
 
-            var t = new TreeNode(7);
+            //var t = new TreeNode(7);
 
-            //t.left = new TreeNode(2);
-            //t.left.left = new TreeNode(4);
-            //t.left.right = new TreeNode(5);
+            ////t.left = new TreeNode(2);
+            ////t.left.left = new TreeNode(4);
+            ////t.left.right = new TreeNode(5);
 
-            //t.right = new TreeNode(3);
+            ////t.right = new TreeNode(3);
 
-            _437 pathSum = new _437();
+            //_437 pathSum = new _437();
 
-            pathSum.PathSum(t,7);
+            //pathSum.PathSum(t, 7);
 
 
             Console.Read();

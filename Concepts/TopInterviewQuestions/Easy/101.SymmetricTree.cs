@@ -8,6 +8,8 @@ namespace TopInterviewQuestions.Easy
 {
     class _101
     {
+        // space complexity =O(n)
+        // Time complexity =O(h)
         public bool IsSymmetric(TreeNode root)
         {
             if (root == null)

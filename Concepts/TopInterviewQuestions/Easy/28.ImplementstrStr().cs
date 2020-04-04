@@ -31,7 +31,7 @@ namespace TopInterviewQuestions.Easy
                         break;
                     }
                 }
-
+                // j iterates number of times(did not break) the elements in needle array 
                 if (j == n)
                 {
                     return i;

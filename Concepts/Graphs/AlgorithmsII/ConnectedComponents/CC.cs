@@ -25,6 +25,7 @@ namespace Graphs.AlgorithmsII.ConnectedComponents
             {
                 if (!marked[i])
                 {
+                    // run DFS from one vertext in each component. 
                     DFS(graph, i);
                     count++;
                 }
@@ -34,6 +35,7 @@ namespace Graphs.AlgorithmsII.ConnectedComponents
         private void DFS(Graph G, int v)
         {
             marked[v] = true;
+            // all the vertices discovered in same call of dfs have the same id
             id[v] = count;
             size[count]++;
             foreach (var w in G.adj[v])

@@ -25,47 +25,19 @@ namespace LeetCodeBinaryTrees.Easy
             {
                 return true;
             }
-
-
-
         }
-
-        public int Height(TreeNode node)
-        {
-            if (node == null)
-            {
-                return 0;
-            }
-
-            int lHeight = Height(node.left);
-            int rHeight = Height(node.right);
-            return 1 + Math.Max(lHeight, rHeight);
-        }
-
-
-
+        // Top down recursion 
         public bool IsBalanced2(TreeNode root)
         {
             if (root == null)
                 return true;
-
+            // Check if subtrees have height within 1. If they do, check if the
+            // subtrees are balanced
             return Math.Abs(Height(root.left) - Height(root.right)) < 2 &&
                 IsBalanced2(root.left) &&
                 IsBalanced2(root.right);
         }
-
-        public int Height2(TreeNode node)
-        {
-            if (node == null)
-            {
-                return -1;
-            }
-
-            int lHeight = Height(node.left);
-            int rHeight = Height(node.right);
-            return 1 + Math.Max(lHeight, rHeight);
-        }
-
+        // Bottom up recursion 
         public bool IsBalanced3(TreeNode root)
         {
             if (root == null)
@@ -73,6 +45,7 @@ namespace LeetCodeBinaryTrees.Easy
 
             return BalanceTreeHelper(root).IsBalanced;
         }
+
         private static TreeInfo BalanceTreeHelper(TreeNode node)
         {
             /*
@@ -99,7 +72,7 @@ namespace LeetCodeBinaryTrees.Easy
             {
                 return rightTree;// Right subtree is not balanced. Bubble up failure.
             }
-            
+
             /*
              * Our left and right subtrees are back and we have our results. Let us analyze
              * them here and bubble up our own answer.
@@ -109,9 +82,35 @@ namespace LeetCodeBinaryTrees.Easy
              * subtrees coming off of this node)
              */
 
-            return new TreeInfo(Math.Abs(leftTree.Height - rightTree.Height) < 2, Math.Max(leftTree.Height, rightTree.Height) + 1);
+            return new TreeInfo(Math.Abs(leftTree.Height - rightTree.Height) > 1 ? false : true, Math.Max(leftTree.Height, rightTree.Height) + 1);
+        }
+        private int Height(TreeNode node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+
+            int lHeight = Height(node.left);
+            int rHeight = Height(node.right);
+            return 1 + Math.Max(lHeight, rHeight);
         }
 
+
+
+
+
+        public int Height2(TreeNode node)
+        {
+            if (node == null)
+            {
+                return -1;
+            }
+
+            int lHeight = Height(node.left);
+            int rHeight = Height(node.right);
+            return 1 + Math.Max(lHeight, rHeight);
+        }
     }
 
     public class TreeInfo

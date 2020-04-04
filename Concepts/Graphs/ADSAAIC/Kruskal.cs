@@ -37,6 +37,7 @@ namespace Graphs.ADSAAIC
         {
             PriorityQueue pq = new PriorityQueue();
             int u, v;
+            // insert all the edges of the graph in priority queue
             for (u = 0; u < vertex; u++)
             {
                 for (v = 0; v < vertex; v++)
@@ -51,7 +52,9 @@ namespace Graphs.ADSAAIC
             // r1 represents the root of the tree to which v1 belongs 
             // r2 represents the root of the tree to which v2 belongs 
             int v1, v2, r1 = NIL, r2 = NIL;
+            // number of edges included in the minimum spanning tree
             int edgesInTree = 0;
+            // weight of the minimum spanning tree
             int wtTree = 0;
 
             while (!pq.IsEmpty() && edgesInTree < vertex - 1)
@@ -68,6 +71,9 @@ namespace Graphs.ADSAAIC
                 {
                     v = father[v];
                 }
+
+                r1 = v;
+
                 // Finding the root vertex of the tree to which v2 belongs 
                 v = v2;
                 while (father[v] != NIL)

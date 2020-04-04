@@ -18,6 +18,7 @@ namespace LeetCodeBinaryTrees.Easy
 
                     */
         /* 1-----3*/
+        // Post order traversal of the tree
         public TreeNode TrimBST2(TreeNode root, int L, int R)
         {
             if (root == null)
@@ -30,12 +31,19 @@ namespace LeetCodeBinaryTrees.Easy
             root.right = TrimBST2(root.right, L, R);
 
             // then fix the root. 
-            
 
+            // If current node’s value is less than min, then we return the reference to its right subtree, 
+            // and discard the left subtree.Because if a node’s value is less than min, then its left children are 
+            // definitely less than min since this is a binary search tree
+            // But its right children may or may not be less than min we can’t be sure, so we return the reference to it.
             if (root.val < L)
             {
                 return root.right;
             }
+            // when node’s value is greater than max, we now return the reference to its left subtree.
+            // Because if a node’s value is greater than max, then its right children are definitely greater than max.
+            // But its left children may or may not be greater than max. So we discard the right subtree and return the 
+            // reference to the already valid left subtree.
             if (root.val > R)
             {
                 return root.left;
@@ -47,7 +55,7 @@ namespace LeetCodeBinaryTrees.Easy
         public TreeNode TrimBST(TreeNode root, int L, int R)
         {
                 if (root == null)
-                return null;           
+                return null;
 
             TreeNode newNode = new TreeNode(root.val);
             newNode.left = TrimBST(root.left, L, R);

@@ -8,7 +8,7 @@ namespace Graphs.ADSAAIC
 {
     public class Program
     {
-        public static void Main()
+        public static void Main_ADSAAIC()
         {
             //ShortestPath sp = new ShortestPath(5);
 
@@ -25,7 +25,16 @@ namespace Graphs.ADSAAIC
             //graph.AddEdge(0, 1);
             //graph.AddEdge(1, 2);
 
-            //graph.DFSTraversal(0);
+            ////graph.DFSTraversal(0);
+            //Warshall warshall = new Warshall(4);
+            //warshall.AddEdge(0, 1);
+            //warshall.AddEdge(0, 3);
+            //warshall.AddEdge(1, 2);
+            //warshall.AddEdge(2, 1);
+            //warshall.AddEdge(3, 0);
+            //warshall.AddEdge(3, 2);
+
+            //warshall.WarshallAlgorithm();
 
             //Dijkstra d = new Dijkstra(3);
             //d.AddEdge(0, 1, 1);
@@ -42,12 +51,12 @@ namespace Graphs.ADSAAIC
 
             //p.PrimsAlgorithim(0);
 
-            Kruskal k = new Kruskal(3);
-            k.AddEdge(0, 1, 1);
-            k.AddEdge(1, 2, 2);
-            k.AddEdge(0, 2, 5);
+            //Kruskal k = new Kruskal(3);
+            //k.AddEdge(0, 1, 1);
+            //k.AddEdge(1, 2, 2);
+            //k.AddEdge(0, 2, 5);
 
-            k.KruskalAlgorithm();
+            //k.KruskalAlgorithm();
 
             Console.ReadLine();
         }

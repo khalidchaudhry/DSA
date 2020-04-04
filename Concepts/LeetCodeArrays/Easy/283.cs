@@ -12,6 +12,8 @@ namespace LeetCodeArrays.Easy
             {
                 if (nums[explorer] != 0)
                 {
+                    // unnecessary swap in case both anchor and explorer are same.   
+                    // Can be optimized by adding condition that if anchor==explorer don't swap but increment anchor
                     Swap(nums, anchor, explorer);
                     ++anchor;
                 }

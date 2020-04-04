@@ -14,10 +14,16 @@ namespace Graphs.ADSAAIC
         // adj matrix representation 
         private int[,] adj;
         // To get the path 
+        // initially all predecessor will be NIL(-1).
         int[] predecessor;
         // To find the length of shortest path
+        // initially all paths length will be infinity(Int.MaxValue). 
         int[] pathLength;
         // 0 for temporary and 1 for permanent
+        // temporary means shortest path has not been finalized. 
+        // permanent means shortest path has been finalized. 
+        // initially all the vertices will be of temporary status and each step of the algoirthm 
+        //  we will change the state of the vertex from temporary to permanent. 
         Status[] status;
 
         public Dijkstra(int v)

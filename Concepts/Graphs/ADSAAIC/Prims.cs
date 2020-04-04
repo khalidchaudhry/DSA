@@ -50,7 +50,9 @@ namespace Graphs.ADSAAIC
         public void PrimsAlgorithim(int start)
         {
 
+            // Store the number of edges that are included in minimum spanning tree. 
             int edgeInTree = 0;
+            // stores the weight of the minimum spanning tree
             int wtTree = 0;
 
             // Make the length of source/root vertex equal to 0. 
@@ -86,6 +88,7 @@ namespace Graphs.ADSAAIC
                     // add the weight of the edge to the weight of the minimumn spanning tree
                     wtTree = wtTree + adj[predecessor[c], c];
                 }
+
                 for (int v = 0; v < vertex; v++)
                 {
                     // Check all the vertices adjacent to c and Status is Temporary

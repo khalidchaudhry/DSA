@@ -9,7 +9,7 @@ namespace Graphs.GeeksForGeeks
 {
     class Program
     {
-        static void Main5(string[] args)
+        static void Main(string[] args)
         {
             //Graph3 g = new Graph3(5);
             //g.AddDirectedEdge(1, 0);
@@ -117,15 +117,77 @@ namespace Graphs.GeeksForGeeks
 
             //countPaths.CountPathsBetweenNodes(0, 5);
 
-            CountTrees g = new CountTrees(5);
+            //CountTrees g = new CountTrees(5);
 
-            g.AddEdge(0, 1);
-            g.AddEdge(0, 2);
-            g.AddEdge(3, 4);
+            //g.AddEdge(0, 1);
+            //g.AddEdge(0, 2);
+            //g.AddEdge(3, 4);
 
-            Console.WriteLine(g.CountTreesInForest());
+            //Console.WriteLine(g.CountTreesInForest());
 
-            Console.Read();
+
+            //BFSUsingAdjacencyMatrix bfs = new BFSUsingAdjacencyMatrix(4);
+            //bfs.AddEdge(0,1);
+            //bfs.AddEdge(0, 2);
+            //bfs.AddEdge(1, 3);
+
+            //bfs.BFS(0);
+
+            ///* Let us create following graph 
+            // 0 
+            //|  \ 
+            //|    \ 
+            //1-----2 */
+            //int V = 3, E = 3;
+            //UnionFind.Graph graph = new UnionFind.Graph(V,E);
+            //// add edge 0-1 
+            //graph.Edges[0].src = 0;
+            //graph.Edges[0].dest = 1;
+
+            //// add edge 1-2 
+            //graph.Edges[1].src = 1;
+            //graph.Edges[1].dest = 2;
+
+            //// add edge 0-2 
+            //graph.Edges[2].src = 0;
+            //graph.Edges[2].dest = 2;
+
+            //if (graph.IsCycle(graph) == 1)
+            //    Console.WriteLine("Graph contains cycle");
+            //else
+            //    Console.WriteLine("Graph does not contains cycle");
+
+            /* Let us create the following graph  
+            0  
+            | \  
+            | \  
+            1-----2 */
+
+            int V = 3, E = 3;
+            UnionFindByRankAndPathCompression.Graph graph = new UnionFindByRankAndPathCompression.Graph(V, E);
+
+            // add edge 0-1  
+            graph.Edges[0].src = 0;
+            graph.Edges[0].dest = 1;
+
+            // add edge 1-2  
+            graph.Edges[1].src = 1;
+            graph.Edges[1].dest = 2;
+
+            // add edge 0-2  
+            graph.Edges[2].src = 0;
+            graph.Edges[2].dest = 2;
+
+            if (graph.IsCycle(graph))
+                Console.WriteLine("Graph contains cycle");
+            else
+                Console.WriteLine("Graph doesn't contain cycle");
+        }
+    }
+
+
+
+    Console.Read();
         }
     }
 }

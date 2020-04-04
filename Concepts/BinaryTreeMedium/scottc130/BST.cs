@@ -47,11 +47,14 @@ namespace BinaryTreeMedium.scottc130
         {
             RemoveRec(this.root, key);
         }
-
         private TreeNode RemoveRec(TreeNode current, int key)
         {
             if (current == null)
                 return current;
+            // We need to first locate the value we wish to remove inside of the tree.
+            // We do this by starting at the root and moving left or right 
+            // depending on if the current value is smaller or larger than the value we want.
+
             if (key < current.Value)
             {
                 current.Left = RemoveRec(current.Left, key);
@@ -60,8 +63,12 @@ namespace BinaryTreeMedium.scottc130
             {
                 current.Right = RemoveRec(current.Right, key);
             }
+            // Once we find the value, we remove it from the tree, updating all the previous nodes through recursion.
+            // Doing so will give us an updated tree with the targeted node removed.
             else
             {
+                // When  the node has only one value linked to it, the remove is easy. 
+                // We simply replace with the value that exists, either the left or right.
                 if (current.Left == null)
                 {
                     return current.Right;
@@ -70,9 +77,12 @@ namespace BinaryTreeMedium.scottc130
                 {
                     return current.Left;
                 }
-
+                // If there is both a left and right, 
+                // then we need to find the smallest node that exists to the right of the node we want to remove
                 current.Value = MinValue(current.Right);
-                current.Right = RemoveRec(current.Right,current.Value);
+                // Recursively call the function to update the right-hand side to link based 
+                // on the smallest value that succeeds the one being removed. 
+                current.Right = RemoveRec(current.Right, current.Value);
             }
 
             return current;

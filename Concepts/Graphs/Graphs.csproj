@@ -49,9 +49,11 @@
     <Compile Include="ADSAAIC\Program.cs" />
     <Compile Include="ADSAAIC\RecursiveDepthFirstSearch.cs" />
     <Compile Include="ADSAAIC\ShortestPath.cs" />
+    <Compile Include="ADSAAIC\Warshall.cs" />
     <Compile Include="AlgorithmsII\BFSPaths\BreadthFirstPaths.cs" />
     <Compile Include="AlgorithmsII\ConnectedComponents\CC.cs" />
     <Compile Include="AlgorithmsII\DFSPaths\DepthFirstPaths.cs" />
+    <Compile Include="GeeksForGeeks\BFSUsingAdjacencyMatrix.cs" />
     <Compile Include="GeeksForGeeks\CountNodesAtLevel.cs" />
     <Compile Include="GeeksForGeeks\CountPaths.cs" />
     <Compile Include="GeeksForGeeks\CountTrees.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="GeeksForGeeks\MotherVertex.cs" />
     <Compile Include="GeeksForGeeks\Program.cs" />
     <Compile Include="GeeksForGeeks\TransitiveClosure.cs" />
+    <Compile Include="GeeksForGeeks\UnionFind.cs" />
     <Compile Include="GraphRepresentation\Graph3.cs" />
     <Compile Include="GraphRepresentation\Graph2.cs" />
     <Compile Include="KoderDojo\Algorithms.cs" />

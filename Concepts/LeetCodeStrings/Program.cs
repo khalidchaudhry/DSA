@@ -1,4 +1,6 @@
 ﻿using LeetCodeStrings.Easy;
+using LeetCodeStrings.Easy2;
+using LeetCodeStrings.Medium;
 using System;
 
 namespace LeetCodeStrings
@@ -62,10 +64,35 @@ namespace LeetCodeStrings
             //string s = "aA";
             //Console.WriteLine(ReverseVowels.ReverseVowels(s));
 
-            _541 ReverseString = new _541();
-            string s = "abcdefg";
-            int k = 2;
-            Console.WriteLine(ReverseString.ReverseStr(s,k));
+            //_541 ReverseString = new _541();
+            //string s = "abcdefg";
+            //int k = 2;
+            //Console.WriteLine(ReverseString.ReverseStr(s,k));
+
+
+            //_13 romanToInteger = new _13();
+
+            //romanToInteger.RomanToInt("IX");
+
+            //string s = "PAYPALISHIRING";
+
+            //_6 zigZagConversion = new _6();
+
+            //Console.WriteLine(zigZagConversion.Convert(s,3));
+
+            //_3 longestSubstring = new _3();
+            //string s = "dvdf";
+            //Console.Write(longestSubstring.LengthOfLongestSubstring0(s));
+
+            //_937 ReorderLogs = new _937();
+            //string[] logs = new string[] { "dig1 8 1 5 1", "let1 art can", "dig2 3 6", "let2 own kit dig", "let3 art zero" };
+            //ReorderLogs.ReorderLogFiles2(logs);
+
+            string s = "adam";
+
+            _5 LongestPalindrome = new _5();
+
+            var result=LongestPalindrome.LongestPalindrome0(s);
 
             Console.ReadLine();
         }

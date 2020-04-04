@@ -52,12 +52,17 @@ namespace LeetCodeArrays.Easy
                 hash[ele+10000]++;
             }
             int sum = 0;
+            // p is to  determine if number is at even or odd index.
+            // as we are storing numbers in ascending order we will take element at even index 
+            // and skip element at odd index. 
             int p = 0;
             for (int i = 0; i < 20001; i++)
             {
                 //if 0 than means no corresponding element exists in provided array
                 if (hash[i] == 0) continue;
                 //If not 0 than it means value exists in provided array
+                // reason for having below while loop is if same value is comming multiple times
+                // e.g. 1,2,2,3,4
                 while (hash[i] != 0)
                 {
                     // We will take the first element encountered as !=0 for sum

@@ -60,9 +60,33 @@ namespace PracticingRecursionInJava
             //long number = 10000;
             //PrinCommas.PrintCommas(number);
 
-            _29 PrintA = new _29();
+            //_29 PrintA = new _29();
 
-            PrintA.PrintAExpTimes(4);
+            //PrintA.PrintAExpTimes(4);
+
+            //_31 Print = new _31();
+
+            //Print.PrintTriangle(5);
+
+            //_32 Print = new _32();
+
+            //Print.PrintTriangle(5);
+
+            //_34 Permutation = new _34();
+
+            //var result=Permutation.Permutation2(2);
+
+            //_35 PowerSet = new _35();
+
+            //var result=PowerSet.PowerSet(3);
+            //int[] arr = new int[5] { 1, 2, 3, 4, 5 };
+            //var PrintArray = new Arrays._1();
+            //PrintArray.PrintArray(arr,0);
+
+            int[] arr = new int[5] { 1, 2, 3, 4, 5 };
+            var PrintArrayInReverseOrder = new Arrays._2();
+            PrintArrayInReverseOrder.PrintArrayInReverseOrder(arr, arr.Length-1);
+
             Console.ReadLine();
         }
     }

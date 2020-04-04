@@ -22,8 +22,8 @@ namespace TopInterviewQuestions.Easy
             {
                 return null;
             }
-
-            int middleIndex = (startIndex + endIndex) / 2;
+            //https://ai.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
+            int middleIndex = startIndex + ((endIndex - startIndex) / 2);
 
             TreeNode node = new TreeNode(nums[middleIndex]);
 

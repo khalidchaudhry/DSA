@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="819.cs" />
-    <Compile Include="937.cs" />
     <Compile Include="953.cs" />
     <Compile Include="994.cs" />
     <Compile Include="Program.cs" />

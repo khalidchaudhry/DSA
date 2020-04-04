@@ -21,7 +21,8 @@ namespace BinaryTreeMedium.scottc130
 
         public TreeNode Left
         {
-            get => left; set => left = value;
+            get => left;
+            set => left = value;
         }
         public TreeNode Right
         {
