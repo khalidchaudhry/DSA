@@ -9,9 +9,12 @@ namespace LeetCodeStrings.Medium
 
         /*
           http://www.goodtecher.com/leetcode-5-longest-palindromic-substring/
+        basic idea is to use dynamic programming to determine whether 
+        a substring is palindromic string base on above criteria.
         Approach
-           1. First letter =LastLetter
-           2. inner word is also palindormic
+           1. Create DP array
+           2. First letter =LastLetter
+           3. inner word is also palindormic
         */
 
 
@@ -25,20 +28,28 @@ namespace LeetCodeStrings.Medium
             bool[,] dp = new bool[length, length];
             int right = 0;
             int left = 0;
+            /*
+            i is the left index and j is the right index of a word.
+            In order to get at least one character of a word, j has been to at least one index after i. 
+            If i’s index is 0, then j’s index would be 1.
+            For i, its value could start from 0 to j – 1.
+            For j, its value could start from 1 to the last character index of the input string(s.length() – 1).
+            */
             for (int j = 1; j < length; j++)
             {
                 for (int i = 0; i < j; i++)
                 {
-
-
-                    if (s[i] == s[j] &&   // first letter ==last letter 
-                         (dp[i + 1, j - 1] || //inner word is also palindrome
-                          j - i <= 2          // for single character e.g. aba i=0 and j=2, above condition (dp[i + 1, j - 1]) false but its palindrome
+                    //first letter ==last letter
+                    if (s[i] == s[j] &&
+                         //inner word is also palindrome 
+                         (dp[i + 1, j - 1] ||
+                          //for single character 
+                          //e.g. aba i=0 and j=2, above condition (dp[i + 1, j - 1]) false but its palindrome
+                          j - i <= 2
                          )
                        )
                     {
                         dp[i, j] = true;
-
                         // to get longest palindrome so far
                         if (j - i > right - left)
                         {

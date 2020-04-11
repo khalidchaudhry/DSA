@@ -1,4 +1,5 @@
 using LeetCodeGraphs.Easy;
+using LeetCodeGraphs.Medium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,15 @@ namespace LeetCodeGraphs
         {
 
 
-            int[][] paths = new int[][]
-            {
-               //new int[] { 1, 2},
-               //new int[] { 3, 4},
-               //new int[] { 3,1},
-               //new int[] { 4,1},
-               //new int[] { 1,3},
-               //new int[] { 2,4}
-            };
+            //int[][] paths = new int[][]
+            //{
+            //   //new int[] { 1, 2},
+            //   //new int[] { 3, 4},
+            //   //new int[] { 3,1},
+            //   //new int[] { 4,1},
+            //   //new int[] { 1,3},
+            //   //new int[] { 2,4}
+            //};
 
 
             //_1042 FlowerPlanting = new _1042();
@@ -56,21 +57,30 @@ namespace LeetCodeGraphs
             //    new int[]{2,3}            
             //};
 
-            int N = 4;
-            int[][] trust = new int[][]
-            {
-                new int[]{1,3},
-                new int[]{1,4},
-                new int[] {2,3},
-                new int[]{2, 4},
-                new int[]{4, 3 }
+            //int N = 4;
+            //int[][] trust = new int[][]
+            //{
+            //    new int[]{1,3},
+            //    new int[]{1,4},
+            //    new int[] {2,3},
+            //    new int[]{2, 4},
+            //    new int[]{4, 3 }
 
+            //};
+
+
+            //_997 townJudge = new _997();
+
+            //townJudge.FindJudge(N, trust);
+
+            string[] grid = new string[] 
+            { " /",
+              "/ "
             };
 
+            _959 RegionsBySlashes = new _959();
 
-            _997 townJudge = new _997();
-
-            townJudge.FindJudge(N, trust);
+            var ans=RegionsBySlashes.RegionsBySlashes(grid);
 
 
             Console.ReadKey();

@@ -57,21 +57,25 @@ namespace TopInterviewQuestions.Easy
                 nums1[r] = result[r];
             }
         }
-
-        void Merge2(int[] nums1, int m, int[] nums2, int n)
+        // start the pointers from end and decrement 
+        // Set pointer k to track the position of an added element.
+        public void Merge2(int[] nums1, int m, int[] nums2, int n)
         {
             int i = m - 1;
             int j = n - 1;
             int k = m + n - 1;
+
             while (i >= 0 && j >= 0)
             {
-                if (nums1[i] > nums1[j])
+                if (nums1[i] > nums2[j])
                     nums1[k--] = nums1[i--];
                 else
                     nums1[k--] = nums2[j--];
             }
+            // add missing elements from nums2
+            // for example nums1=4,5,6,0,0,0 and nums2=1,2,3 
             while (j >= 0)
-                nums1[k--] = nums1[j--];
+                nums1[k--] = nums2[j--];
         }
     }
 }

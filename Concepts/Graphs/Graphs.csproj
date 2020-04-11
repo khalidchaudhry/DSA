@@ -64,6 +64,7 @@
     <Compile Include="GeeksForGeeks\Program.cs" />
     <Compile Include="GeeksForGeeks\TransitiveClosure.cs" />
     <Compile Include="GeeksForGeeks\UnionFind.cs" />
+    <Compile Include="GeeksForGeeks\UnionFindByRankAndPathCompression.cs" />
     <Compile Include="GraphRepresentation\Graph3.cs" />
     <Compile Include="GraphRepresentation\Graph2.cs" />
     <Compile Include="KoderDojo\Algorithms.cs" />

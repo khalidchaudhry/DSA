@@ -83,9 +83,16 @@ namespace PracticingRecursionInJava
             //var PrintArray = new Arrays._1();
             //PrintArray.PrintArray(arr,0);
 
-            int[] arr = new int[5] { 1, 2, 3, 4, 5 };
-            var PrintArrayInReverseOrder = new Arrays._2();
-            PrintArrayInReverseOrder.PrintArrayInReverseOrder(arr, arr.Length-1);
+            //int[] arr = new int[5] { 1, 2, 3, 4, 5 };
+            //var PrintArrayInReverseOrder = new Arrays._2();
+            //PrintArrayInReverseOrder.PrintArrayInReverseOrder(arr, arr.Length-1);
+
+            //int[] arr = new int[5] { 1, 2, 3, 4, 5 };
+
+            //var BinarySearch = new Arrays._22();
+            //BinarySearch.BinarySearch(arr,0,arr.Length-1,2);
+
+
 
             Console.ReadLine();
         }

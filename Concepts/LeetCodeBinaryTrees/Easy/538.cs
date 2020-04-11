@@ -6,6 +6,7 @@ namespace LeetCodeBinaryTrees.Easy
 {
     class _538
     {
+        // global variable
         int sum = 0;
         public TreeNode ConvertBST(TreeNode root)
         {

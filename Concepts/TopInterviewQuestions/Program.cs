@@ -91,9 +91,9 @@ namespace TopInterviewQuestions
             //_202 happyNumber = new _202();
             //Console.Write(happyNumber.IsHappy(19));
 
-            _198 RObHouse = new _198();
-            int[] nums = new int[] { 3, 1, 2, 5, 4, 2 };
-            Console.Write(RObHouse.Rob(nums));
+            //_198 RObHouse = new _198();
+            //int[] nums = new int[] { 3, 1, 2, 5, 4, 2 };
+            //Console.Write(RObHouse.Rob(nums));
 
             //_191 hammingWeight = new _191();
 
@@ -404,6 +404,11 @@ namespace TopInterviewQuestions
             //_437 pathSum = new _437();
 
             //pathSum.PathSum(t, 7);
+
+            _88 MergeArray = new _88();
+            int[] nums1 = new int[] { 1, 2, 3, 0, 0, 0 };
+            int[] nums2 = new int[] { 2, 5, 6 };
+            MergeArray.Merge2(nums1, 3, nums2, 3);
 
 
             Console.Read();

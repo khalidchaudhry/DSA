@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A918BCC3-8FD0-476A-B936-232C950F0903}</ProjectGuid>
+    <ProjectGuid>{E4A3871A-F6E3-4A3E-88F1-2C79021E0825}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LeetCodeGraphs</RootNamespace>
-    <AssemblyName>LeetCodeGraphs</AssemblyName>
+    <RootNamespace>GraphTheoryAlgorithms</RootNamespace>
+    <AssemblyName>GraphTheoryAlgorithms</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,14 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Easy\1042.cs" />
-    <Compile Include="Easy\997.cs" />
-    <Compile Include="Medium\959.cs" />
+    <Compile Include="DFS\DepthFirstSearchAdjacencyListRecursive .cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

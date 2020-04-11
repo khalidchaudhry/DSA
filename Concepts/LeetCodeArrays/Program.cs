@@ -145,11 +145,15 @@ namespace LeetCodeArrays
             //int[] nums = new int[] { -1, 0, 1, 2, -1, -4 };
             //var result = threeSum.ThreeSum0(nums);
 
-            int[] nums = new int[] { 1, 2, 3, 4 };
-            _238 Product = new _238();
+            //int[] nums = new int[] { 1, 2, 3, 4 };
+            //_238 Product = new _238();
 
-            var answer=Product.ProductExceptSelf2(nums);
-                       
+            //var answer=Product.ProductExceptSelf2(nums);
+
+            _16 ThreeSumClosest = new _16();
+            int[] nums = new int[] { 1, 2, 4, 8, 16, 32, 64, 128 };
+            ThreeSumClosest.ThreeSumClosest(nums, 82);
+
             Console.ReadLine();
         }
     }
