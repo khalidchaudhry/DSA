@@ -42,7 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BFS\BreadthFirstSearchAdjacencyListIterative.cs" />
+    <Compile Include="CC\ConnectedComponents.cs" />
+    <Compile Include="CC\ConnectedComponentsDfsSolverAdjacencyList.cs" />
     <Compile Include="DFS\DepthFirstSearchAdjacencyListRecursive .cs" />
+    <Compile Include="Edge.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

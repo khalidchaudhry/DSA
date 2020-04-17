@@ -60,6 +60,7 @@ namespace TopInterviewQuestions.Easy
                     stk.Push('}');
                 else if (c == '[')
                     stk.Push(']');
+                // ! stk.Count==0 is there becuase in case input contains only closing bracket  e.g. s="]"
                 else if (stk.Count==0 || stk.Pop() != c)
                     return false;
             }

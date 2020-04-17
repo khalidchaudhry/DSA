@@ -1,3 +1,4 @@
+using LeetCodeDynamicProgramming.Easy;
 using LeetCodeDynamicProgramming.Medium;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,20 @@ namespace LeetCodeDynamicProgramming
             //// Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
             ///
 
-            _139 WordBreak = new _139();
-            List<string> wordDict = new List<string>()
-            {
-               "leet", "code"
-            };
-            var answer=WordBreak.WordBreak0("leetcode", wordDict);
+            //_139 WordBreak = new _139();
+            //List<string> wordDict = new List<string>()
+            //{
+            //   "leet", "code"
+            //};
+            //var answer=WordBreak.WordBreak0("leetcode", wordDict);           
+
+            _256 MinCost = new _256();
+
+            int[][] cost = new int[][] { new int[] { 7, 6, 2 } };
+            int minCost=MinCost.MinCost(cost);
+
+
+
             Console.ReadLine();
         }
     }

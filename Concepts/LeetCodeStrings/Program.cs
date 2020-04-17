@@ -94,10 +94,13 @@ namespace LeetCodeStrings
 
             //var result=LongestPalindrome.LongestPalindrome0(s);
 
-            _12 IntegerToRoman = new _12();
+            //_12 IntegerToRoman = new _12();
 
-            var result=IntegerToRoman.IntToRoman(101);
-           
+            //var result=IntegerToRoman.IntToRoman(101);
+
+            _22 GenerateParenthesis = new _22();
+
+            var result=GenerateParenthesis.GenerateParenthesis(2);
 
             Console.ReadLine();
         }

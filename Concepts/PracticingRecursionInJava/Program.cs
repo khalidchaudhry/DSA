@@ -1,5 +1,6 @@
 ﻿using PracticingRecursionInJava.Integers;
 using System;
+using System.Collections.Generic;
 
 namespace PracticingRecursionInJava
 {
@@ -92,9 +93,21 @@ namespace PracticingRecursionInJava
             //var BinarySearch = new Arrays._22();
             //BinarySearch.BinarySearch(arr,0,arr.Length-1,2);
 
+            //Arrays._23 TernarySearch = new Arrays._23();
+
+            //int[] arr = new int[] {9,7,12,1,3 };
+            //Array.Sort(arr);
+
+            //var result=TernarySearch.TernarySearch(arr, 3,0, arr.Length);
+
+            Arrays._24 CountStringItems = new Arrays._24();
+            string item = "abc";
+            string[] arr = new string[] {"abc","def","ghi","abc","xyz" };
+            int size = 4;
+            var result=CountStringItems.CountStringItem(item,arr,size);
 
 
-            Console.ReadLine();
+             Console.ReadLine();
         }
     }
 }

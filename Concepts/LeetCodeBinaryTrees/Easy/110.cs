@@ -104,7 +104,7 @@ namespace LeetCodeBinaryTrees.Easy
         {
             if (node == null)
             {
-                return -1;
+                return -1; //if we want to consider edges for height than return -1
             }
 
             int lHeight = Height(node.left);

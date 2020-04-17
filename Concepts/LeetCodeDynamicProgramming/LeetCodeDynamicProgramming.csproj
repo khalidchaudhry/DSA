@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Easy\256.cs" />
     <Compile Include="Easy\276.cs" />
     <Compile Include="Easy\303.cs" />
     <Compile Include="Medium\139.cs" />

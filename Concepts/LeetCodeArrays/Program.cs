@@ -150,9 +150,26 @@ namespace LeetCodeArrays
 
             //var answer=Product.ProductExceptSelf2(nums);
 
-            _16 ThreeSumClosest = new _16();
-            int[] nums = new int[] { 1, 2, 4, 8, 16, 32, 64, 128 };
-            ThreeSumClosest.ThreeSumClosest(nums, 82);
+            //_16 ThreeSumClosest = new _16();
+            //int[] nums = new int[] { 1, 2, 4, 8, 16, 32, 64, 128 };
+            //ThreeSumClosest.ThreeSumClosest(nums, 82);
+
+            _56 MergeIntervals = new _56();
+            int[][] intervals = new int[][]
+            {
+                //new int[]{1, 3},
+                // new int[]{8, 10},
+                //new int[]{2, 6},
+               
+                //new int[]{15, 18}
+
+                new int[]{1,4 },
+                new int[]{4,5 }
+            };
+
+
+            var result = MergeIntervals.Merge(intervals);
+
 
             Console.ReadLine();
         }
