@@ -1,6 +1,7 @@
 using GraphTheoryAlgorithms.BFS;
 using GraphTheoryAlgorithms.CC;
 using GraphTheoryAlgorithms.DFS;
+using GraphTheoryAlgorithms.RootingTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,36 +128,102 @@ namespace GraphTheoryAlgorithms
             //Breadth First Search Adjacency List Iterative 
             /*****************************************************************************/
             // BFS example #1 from slides.
-            int n = 13;
-            List<List<Edge>> graph = CreateEmptyGraph(n);
+            //int n = 13;
+            //List<List<Edge>> graph = CreateEmptyGraph(n);
 
-            AddUnWeightedUnDirectedEdge(graph, 0, 7);
-            AddUnWeightedUnDirectedEdge(graph, 0, 9);
-            AddUnWeightedUnDirectedEdge(graph, 0, 11);
-            AddUnWeightedUnDirectedEdge(graph, 7, 11);
-            AddUnWeightedUnDirectedEdge(graph, 7, 6);
-            AddUnWeightedUnDirectedEdge(graph, 7, 3);
-            AddUnWeightedUnDirectedEdge(graph, 6, 5);
-            AddUnWeightedUnDirectedEdge(graph, 3, 4);
-            AddUnWeightedUnDirectedEdge(graph, 2, 3);
-            AddUnWeightedUnDirectedEdge(graph, 2, 12);
-            AddUnWeightedUnDirectedEdge(graph, 12, 8);
-            AddUnWeightedUnDirectedEdge(graph, 8, 1);
-            AddUnWeightedUnDirectedEdge(graph, 1, 10);
-            AddUnWeightedUnDirectedEdge(graph, 10, 9);
-            AddUnWeightedUnDirectedEdge(graph, 9, 8);
+            //AddUnWeightedUnDirectedEdge(graph, 0, 7);
+            //AddUnWeightedUnDirectedEdge(graph, 0, 9);
+            //AddUnWeightedUnDirectedEdge(graph, 0, 11);
+            //AddUnWeightedUnDirectedEdge(graph, 7, 11);
+            //AddUnWeightedUnDirectedEdge(graph, 7, 6);
+            //AddUnWeightedUnDirectedEdge(graph, 7, 3);
+            //AddUnWeightedUnDirectedEdge(graph, 6, 5);
+            //AddUnWeightedUnDirectedEdge(graph, 3, 4);
+            //AddUnWeightedUnDirectedEdge(graph, 2, 3);
+            //AddUnWeightedUnDirectedEdge(graph, 2, 12);
+            //AddUnWeightedUnDirectedEdge(graph, 12, 8);
+            //AddUnWeightedUnDirectedEdge(graph, 8, 1);
+            //AddUnWeightedUnDirectedEdge(graph, 1, 10);
+            //AddUnWeightedUnDirectedEdge(graph, 10, 9);
+            //AddUnWeightedUnDirectedEdge(graph, 9, 8);
 
-            BreadthFirstSearchAdjacencyListIterative solver;
-            solver = new BreadthFirstSearchAdjacencyListIterative(graph);
+            //BreadthFirstSearchAdjacencyListIterative solver;
+            //solver = new BreadthFirstSearchAdjacencyListIterative(graph);
 
-            int start = 10, end = 5;
-            List<int> path = solver.ReconstructPath(start, end);
-            Console.WriteLine($"The shortest path from {start} to {end} is: {FormatPath(path)}");
+            //int start = 10, end = 5;
+            //List<int> path = solver.ReconstructPath(start, end);
+            //Console.WriteLine($"The shortest path from {start} to {end} is: {FormatPath(path)}");
             // Prints:
             // The shortest path from 10 to 5 is: [10 -> 9 -> 0 -> 7 -> 6 -> 5]
 
+            /*****************************************************************/
+            // Rooting tree
+            /*****************************************************************/
+
+            //List<List<int>> graph = CreateGraph(9);
+            //AddUnDirectedEdge(graph, 0, 1);
+            //AddUnDirectedEdge(graph, 2, 1);
+            //AddUnDirectedEdge(graph, 2, 3);
+            //AddUnDirectedEdge(graph, 3, 4);
+            //AddUnDirectedEdge(graph, 5, 3);
+            //AddUnDirectedEdge(graph, 2, 6);
+            //AddUnDirectedEdge(graph, 6, 7);
+            //AddUnDirectedEdge(graph, 6, 8);
+
+            //// Rooted at 6 the tree should look like:
+            ////           6
+            ////      2    7     8
+            ////    1   3
+            ////  0    4 5
+            //TreeNode root = RootingTree.RootingTree.RootTree(graph, 6);
+
+            //// Layer 0: [6]
+            //Console.WriteLine($"[{root}]");
+
+            //// Layer 1: [2, 7, 8]
+            //Console.WriteLine($"[{string.Join(",", root.Children)}]");
+
+            //// Layer 2: [1, 3]
+            ////root.Children[0].Children
+            //Console.WriteLine($"[{string.Join(",", root.Children[0].Children)}]");
+
+            //// Layer 3: [0], [4, 5]
+            //Console.WriteLine(
+            //    $"[{string.Join(",", root.Children[0].Children[0].Children)}]" +
+            //    $"[{string.Join(",", root.Children[0].Children[1].Children)}]");
+
+            /*****************************************************************/
+            // Finding tree center
+            /*****************************************************************/
+
+            List<List<int>> graph = CreateEmptyTree(9);
+            AddUnDirectedEdge(graph, 0, 1);
+            AddUnDirectedEdge(graph, 2, 1);
+            AddUnDirectedEdge(graph, 2, 3);
+            AddUnDirectedEdge(graph, 3, 4);
+            AddUnDirectedEdge(graph, 5, 3);
+            AddUnDirectedEdge(graph, 2, 6);
+            AddUnDirectedEdge(graph, 6, 7);
+            AddUnDirectedEdge(graph, 6, 8);
+
+            // Centers are 2
+            var treeCenter=TreeCenter.TreeCenter.FindTreeCenters(graph);
+            Console.WriteLine(string.Join(",", $"[{string.Join(",", treeCenter)}]"));
+            
             Console.ReadKey();
         }
+
+
+        // Create an empty tree as a adjacency list.
+        public static List<List<int>> CreateEmptyTree(int n)
+        {
+            List<List<int>> tree = new List<List<int>>(n);
+            for (int i = 0; i < n; i++)
+                tree.Add(new List<int>());
+
+            return tree;
+        }
+
         private static string FormatPath(List<int> path)
         {
             return string.Join(" -> ", path);

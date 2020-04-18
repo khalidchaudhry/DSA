@@ -182,12 +182,8 @@ namespace Graphs.GeeksForGeeks
                 Console.WriteLine("Graph contains cycle");
             else
                 Console.WriteLine("Graph doesn't contain cycle");
-        }
-    }
 
-
-
-    Console.Read();
+            Console.Read();
         }
     }
 }
