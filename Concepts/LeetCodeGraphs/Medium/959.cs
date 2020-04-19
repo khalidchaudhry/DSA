@@ -8,6 +8,10 @@ namespace LeetCodeGraphs.Medium
 {
     public class _959
     {
+        // https://www.youtube.com/watch?v=tIZkh7mpIDo
+        // https://www.youtube.com/watch?v=528smPZySRs
+        //https://github.com/zebointexas/licold/blob/master/6_Union_Find/_959_Regions_Cut_By_Slashes
+        //https://github.com/Nideesh1/Algo/blob/master/leetcode/L_959.java
         public int RegionsBySlashes(String[] grid)
         {
             /*
@@ -22,12 +26,15 @@ namespace LeetCodeGraphs.Medium
            */
 
 
-            int N = grid.Length;/*grid lenght is the cube's height*/
+            int N = grid.Length;/*grid length is the cube's height*/
+            //! 
             DSU dsu = new DSU(4 * N * N); /*Here we cut the one single grid into 4 places two knives \ and / */
 
             for (int r = 0; r < N; ++r) /*Tranverse the grid height(row)*/
                 for (int c = 0; c < N; ++c)  /*Tranverse the grid widht(row)*/
                 {
+                    //! since we are splitting every square into 4 triangles. We are multiplying by 4
+                    // !  Roots will be like 0 , 4, 8, 12.......
                     int root = 4 * (r * N + c); /*record the total number of root so far, at this moment */
                     char val = grid[r][c];  /*check this cube's input ---> "\" or "/" or " "*/
                     // if val!=\\ than we can union 0 and 1, 2 and 3 regions since they are contiguous 
@@ -66,6 +73,7 @@ namespace LeetCodeGraphs.Medium
             return ans;
         }
     }
+    // !DSU=Disjoint set union 
     class DSU
     {
 

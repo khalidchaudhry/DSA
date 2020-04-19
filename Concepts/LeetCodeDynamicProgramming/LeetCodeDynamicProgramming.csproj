@@ -45,6 +45,7 @@
     <Compile Include="Easy\256.cs" />
     <Compile Include="Easy\276.cs" />
     <Compile Include="Easy\303.cs" />
+    <Compile Include="Medium\1043.cs" />
     <Compile Include="Medium\139.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

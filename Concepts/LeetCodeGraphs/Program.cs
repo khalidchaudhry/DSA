@@ -73,14 +73,36 @@ namespace LeetCodeGraphs
 
             //townJudge.FindJudge(N, trust);
 
-            string[] grid = new string[] 
-            { " /",
-              "/ "
+            //string[] grid = new string[] 
+            //{ " /",
+            //  "/ "
+            //};
+
+            //_959 RegionsBySlashes = new _959();
+
+            //var ans=RegionsBySlashes.RegionsBySlashes(grid);
+
+            _399 Division = new _399();
+
+            List<IList<string>> equations = new List<IList<string>>
+            {
+                new List<string>{ "a", "b" },
+                new List<string>{ "b", "c"}
             };
 
-            _959 RegionsBySlashes = new _959();
+            double[] values = new double[] { 2.0, 3.0 };
 
-            var ans=RegionsBySlashes.RegionsBySlashes(grid);
+            List<IList<string>> queries = new List<IList<string>>
+            {
+                new List<string>{ "a", "c" },
+                new List<string>{ "b", "a"},
+                new List<string>{ "a", "e"},
+                new List<string>{ "a", "a"},
+                new List<string>{ "x", "x"},
+            };
+
+
+            var result=Division.CalcEquation(equations,values,queries);
 
 
             Console.ReadKey();
