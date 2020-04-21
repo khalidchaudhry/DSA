@@ -47,6 +47,8 @@
     <Compile Include="Easy\303.cs" />
     <Compile Include="Medium\1043.cs" />
     <Compile Include="Medium\139.cs" />
+    <Compile Include="Medium\322.cs" />
+    <Compile Include="Medium\64.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

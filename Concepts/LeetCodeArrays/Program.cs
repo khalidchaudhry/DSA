@@ -154,21 +154,26 @@ namespace LeetCodeArrays
             //int[] nums = new int[] { 1, 2, 4, 8, 16, 32, 64, 128 };
             //ThreeSumClosest.ThreeSumClosest(nums, 82);
 
-            _56 MergeIntervals = new _56();
-            int[][] intervals = new int[][]
-            {
-                //new int[]{1, 3},
-                // new int[]{8, 10},
-                //new int[]{2, 6},
-               
-                //new int[]{15, 18}
+            //_56 MergeIntervals = new _56();
+            //int[][] intervals = new int[][]
+            //{
+            //    //new int[]{1, 3},
+            //    // new int[]{8, 10},
+            //    //new int[]{2, 6},
 
-                new int[]{1,4 },
-                new int[]{4,5 }
-            };
+            //    //new int[]{15, 18}
+
+            //    new int[]{1,4 },
+            //    new int[]{4,5 }
+            //};
 
 
-            var result = MergeIntervals.Merge(intervals);
+            //var result = MergeIntervals.Merge(intervals);
+
+
+            _152 Max = new _152();
+
+            var result=Max.MaxProduct(new int[] { 2, 3, -2, -4 });
 
 
             Console.ReadLine();

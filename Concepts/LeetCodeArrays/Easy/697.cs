@@ -46,8 +46,12 @@ namespace LeetCodeArrays.Easy
             int maxCount = Int32.MinValue;
             foreach (var item in dict)
             {
+                //!  item.Value[0] will give us the element count in array
                 if (item.Value[0] > maxCount)
                 {
+                    // item.Value[2]=last seen end index
+                    // item.Value[1]=first index
+                    //! +1 in below equation is becuase array is zero based index 
                     shortestSubArrayLength = item.Value[2] - item.Value[1] + 1;
                     maxCount = item.Value[0];
                 }

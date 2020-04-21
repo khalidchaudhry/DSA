@@ -12,7 +12,7 @@ namespace GraphTheoryAlgorithms.TreeCenter
     public class TreeCenter
     {
         /*
-         ! Approach is to find the center is to iteratively pick off each lead node layer like we were peeling an onion 
+         ! Approach is to find the center is to iteratively pick off each leaf node layer like we were peeling an onion 
          */
         public static List<int> FindTreeCenters(List<List<int>> tree)
         {
@@ -36,7 +36,7 @@ namespace GraphTheoryAlgorithms.TreeCenter
             int processedLeafs = leaves.Count;
             //! Remove leaf nodes and decrease the degree of each node adding new leaf nodes progressively
             // ! until only the centers remain.
-            //! The way we are going to know that we founc center or centers is when we have processed all the nodes in the tree
+            //! The way we are going to know that we found center or centers is when we have processed all the nodes in the tree
             while (processedLeafs < n)
             {
                 List<int> newLeaves = new List<int>();

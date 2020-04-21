@@ -25,9 +25,9 @@ namespace LeetCodeStrings.Medium
             {
                 if (map.ContainsKey(s[end]))
                 {
-                    //Reason for below line  is we don't want to go back in case we encounter the character again and its index
-                    // is less than where we are right now
-                    // e.g. abba
+                    //! Reason for below line  is we don't want to go back in case we encounter the character again and its index
+                    //!  is less than where we are right now
+                    //! e.g. abba
                     start = Math.Max(start, map[s[end]] + 1);
 
                     map[s[end]] = end;

@@ -27,12 +27,21 @@ namespace LeetCodeDynamicProgramming
             //};
             //var answer=WordBreak.WordBreak0("leetcode", wordDict);           
 
-            _256 MinCost = new _256();
+            //_256 MinCost = new _256();
 
-            int[][] cost = new int[][] { new int[] { 7, 6, 2 } };
-            int minCost=MinCost.MinCost(cost);
+            //int[][] cost = new int[][] { new int[] { 7, 6, 2 } };
+            //int minCost=MinCost.MinCost(cost);
 
+            // _322 CoinChange = new _322();
+            //var result=CoinChange.CoinChange2(new int[] { 1,2,5 }, 11);
 
+            _64 MinPathSum = new _64();
+            int[][] grid = new int[2][]
+           {
+               new int[]{1,2,5},
+               new int[]{3,2,1}
+           };
+            var ans=MinPathSum.MinPathSum(grid);
 
             Console.ReadLine();
         }

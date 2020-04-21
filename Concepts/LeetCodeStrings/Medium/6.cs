@@ -28,7 +28,13 @@ namespace LeetCodeStrings.Medium
                 {
                     sbArray[idx].Append(s[j++]);
                 }
-                // 
+                /*
+                    P   A   H   N
+                    A P L S I I G
+                    Y   I   R
+                 */
+                 //! below loop takes cares of copying P,S and I as  per above example 
+                 // 
                 for (int idx = numRows-2; idx >0 && j < s.Length; idx--) // obliquely up
 
                 {

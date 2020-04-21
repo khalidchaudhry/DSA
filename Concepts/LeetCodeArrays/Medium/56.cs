@@ -26,23 +26,29 @@ namespace LeetCodeArrays.Medium
 
           );
 
+            //!  inserted the first interval in the result set. 
             result.Add(new int[] { intervals[0][0], intervals[0][1] });
 
             for (int i = 1; i < intervals.GetLength(0); i++)
             {
-                int lastElement = result.Count - 1;
-                if (intervals[i][0] >= result[lastElement][0] && intervals[i][0] <= result[lastElement][1])
+                //! Gives last element index in the result set to compare it with currently processing element in the array 
+                int lastElementIndex = result.Count - 1;
+                // ! checking  only the first element of input with interval in the result set
+                // input=[2,6]
+                // result =[1,3]
+                // 2>=1 and 2<=6 then merge 
+                if (intervals[i][0] >= result[lastElementIndex][0] && intervals[i][0] <= result[lastElementIndex][1])
                 {
                     // merge intervals 
                     // last element's second index in result list will be overridden with the 
                     // maximum of (result last element's second index,interval array current iterating element second index
                     // ! You forgot Math.Max in first attempt and it failed for this input: [[1,4],[2,3]] 
-
-                    result[lastElement][1] = Math.Max(intervals[i][1], result[lastElement][1]);
+                    //! only changing the ending index
+                    result[lastElementIndex][1] = Math.Max(intervals[i][1], result[lastElementIndex][1]);
                 }
                 else
                 {
-                    result.Add(new int[] { intervals[i][0], intervals[i][1] });
+                    result.Add(new int[] { intervals[i][0], intervals[i][1]});
                 }
             }
 

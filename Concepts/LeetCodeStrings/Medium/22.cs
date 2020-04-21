@@ -16,7 +16,7 @@ namespace LeetCodeStrings.Medium
 
         }
 
-        private void GenerateParenthesisHelper(int numLeftParenthsisNeeded, int numRightParenthsisNeeded, string sparenStringInProgress, List<string> results)
+        private void GenerateParenthesisHelper(int numLeftParenthsisNeeded, int numRightParenthsisNeeded, string parentStringInProgress, List<string> results)
         {
             /*
                The recursion has bottomed out.
@@ -30,7 +30,7 @@ namespace LeetCodeStrings.Medium
              */
             if (numLeftParenthsisNeeded == 0 && numRightParenthsisNeeded == 0)
             {
-                results.Add(sparenStringInProgress);
+                results.Add(parentStringInProgress);
                 return;
             }
 
@@ -56,7 +56,7 @@ namespace LeetCodeStrings.Medium
                    parenStringInProgress + "(" ->   We append a left paren to the string in progress
                    result ->                        Just pass the result list along for the next call to use
                  */
-                GenerateParenthesisHelper(numLeftParenthsisNeeded - 1, numRightParenthsisNeeded, sparenStringInProgress + "(", results);
+                GenerateParenthesisHelper(numLeftParenthsisNeeded - 1, numRightParenthsisNeeded, parentStringInProgress + "(", results);
             }
             /*
                Can we insert a right parenthesis? Only if the number of left parens needed
@@ -74,7 +74,7 @@ namespace LeetCodeStrings.Medium
                     result ->                        Just pass the result list along for the next call to use
                   */
 
-                GenerateParenthesisHelper(numLeftParenthsisNeeded, numRightParenthsisNeeded - 1, sparenStringInProgress + ")", results);
+                GenerateParenthesisHelper(numLeftParenthsisNeeded, numRightParenthsisNeeded - 1, parentStringInProgress + ")", results);
             }
         }
     }
