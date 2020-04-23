@@ -17,7 +17,12 @@ namespace LeetCodeStrings.Medium
            3. inner word is also palindormic
         */
 
+        /*!
+         Time complexity=O(n^2)
 
+         Space complexity=O(n^2)
+         We are creating 2-dimensional array as per input string of size n
+         */
         public string LongestPalindrome0(string s)
         {
             int length = s.Length;
@@ -26,10 +31,12 @@ namespace LeetCodeStrings.Medium
                 return s;
             }
             bool[,] dp = new bool[length, length];
+            //! indicates the end(right) and start(left) index of longest palindrome substring
             int right = 0;
             int left = 0;
-            /*
-            i is the left index and j is the right index of a word.
+            /*!
+             i=left index  of a word.
+             j =right index of a word.
             In order to get at least one character of a word, j has been to at least one index after i. 
             If i’s index is 0, then j’s index would be 1.
             For i, its value could start from 0 to j – 1.
@@ -43,8 +50,8 @@ namespace LeetCodeStrings.Medium
                     if (s[i] == s[j] &&
                          //inner word is also palindrome 
                          (dp[i + 1, j - 1] ||
-                          //for single character 
-                          //e.g. aba i=0 and j=2, above condition (dp[i + 1, j - 1]) false but its palindrome
+                          //!for single character 
+                          //!e.g. aba i=0 and j=2, above condition (dp[i + 1, j - 1]) false but its palindrome
                           j - i <= 2
                          )
                        )

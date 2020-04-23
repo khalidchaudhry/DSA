@@ -88,19 +88,28 @@ namespace LeetCodeStrings
             //string[] logs = new string[] { "dig1 8 1 5 1", "let1 art can", "dig2 3 6", "let2 own kit dig", "let3 art zero" };
             //ReorderLogs.ReorderLogFiles2(logs);
 
-            //string s = "adam";
+            string s = "aba";
 
-            //_5 LongestPalindrome = new _5();
+            _5 LongestPalindrome = new _5();
 
-            //var result=LongestPalindrome.LongestPalindrome0(s);
+            var result = LongestPalindrome.LongestPalindrome0(s);
 
             //_12 IntegerToRoman = new _12();
 
             //var result=IntegerToRoman.IntToRoman(101);
 
-            _22 GenerateParenthesis = new _22();
+            //_22 GenerateParenthesis = new _22();
 
-            var result=GenerateParenthesis.GenerateParenthesis(2);
+            //var result=GenerateParenthesis.GenerateParenthesis(2);
+
+            //_151 Reverse = new _151();
+            //string s = "a good   example";
+
+            //var result=Reverse.ReverseWords(s);
+
+            ////_17 LetterCombinations = new _17();
+            //var result=LetterCombinations.LetterCombinations2("23");
+
 
             Console.ReadLine();
         }

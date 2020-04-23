@@ -6,11 +6,13 @@ namespace LeetCodeStrings.Medium
 {
     public class _3
     {
-        /*
+        /*!
          Sliding window problem having start and end.
          We slide start forward as soon as we encounter the repeating character in string
          Key is not to slide start backward by using below line
-           start = Math.Max(start, map[s[end]] + 1);           
+           start = Math.Max(start, map[s[end]] + 1);          
+        
+        Example input: "pwwkew","au","dvdf","abba","abcabcbb"
         */
         public int LengthOfLongestSubstring0(string s)
         {
@@ -41,6 +43,8 @@ namespace LeetCodeStrings.Medium
             }
             return longestSubstring;
         }
+
+        //! Below code will not work in case of "dvdf" input
         public int LengthOfLongestSubstring(string s)
         {
             if (s.Length <= 1)
@@ -209,6 +213,6 @@ namespace LeetCodeStrings.Medium
         }
 
 
-       
+
     }
 }

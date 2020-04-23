@@ -170,10 +170,30 @@ namespace LeetCodeArrays
 
             //var result = MergeIntervals.Merge(intervals);
 
+            //_152 Max = new _152();
 
-            _152 Max = new _152();
+            //var result=Max.MaxProduct(new int[] { 2, 3, -2, -4 });
 
-            var result=Max.MaxProduct(new int[] { 2, 3, -2, -4 });
+            _48 RotateImage = new _48();
+
+            //int[][] matrix = new int[3][]
+            //    {
+            //        new int[3]{1,2,3 },
+            //        new int[3]{4,5,6 },
+            //        new int[3]{7,8,9 }
+            //    };
+
+            int[][] matrix = new int[4][]
+                {
+                 new int[4]{5, 1, 9,11 },
+                 new int[4]{2, 4, 8,10 },
+                 new int[4]{13, 3, 6,7 },
+                 new int[4]{15, 14, 12,16}
+                };
+
+
+
+            RotateImage.Rotate(matrix);
 
 
             Console.ReadLine();

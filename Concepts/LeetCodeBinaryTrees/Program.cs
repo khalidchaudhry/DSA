@@ -723,44 +723,44 @@ namespace LeetCodeBinaryTrees
 
 
             */
-            //var t = new TreeNode(3);
+            var t = new TreeNode(3);
 
-            //t.left = new TreeNode(4);
-            //t.left.left = new TreeNode(1);
-            //t.left.left.left = new TreeNode(0);
-            //t.left.right = new TreeNode(2);
-            ////t.left.right.left = new TreeNode(0);
+            t.left = new TreeNode(4);
+            t.left.left = new TreeNode(1);
+            t.left.left.left = new TreeNode(0);
+            t.left.right = new TreeNode(2);
+            //t.left.right.left = new TreeNode(0);
 
-            //t.right = new TreeNode(5);
+            t.right = new TreeNode(5);
 
-            //var t2 = new TreeNode(4);
-            //t2.left = new TreeNode(1);
-            //t2.right = new TreeNode(2);
-            //_572 treeSubset = new _572();
-            //treeSubset.IsSubTree2(t, t2);
+            var t2 = new TreeNode(4);
+            t2.left = new TreeNode(1);
+            t2.right = new TreeNode(2);
+            _572 treeSubset = new _572();
+            var ans=treeSubset.IsSubtree1(t, t2);
 
             //_96 UniqueBinarySearchTree = new _96();
-            //UniqueBinarySearchTree.NumTrees(4);
+            //UniqueBinarySearchTree.NumTrees(3);
 
-            var root = new TreeNode(7);
+            //var root = new TreeNode(7);
 
-            root.left = new TreeNode(3);
-           
-            root.right = new TreeNode(15);
-            root.right.left = new TreeNode(9);
-            root.right.right = new TreeNode(20);
+            //root.left = new TreeNode(3);
 
-            BSTIterator iterator = new BSTIterator(root);
+            //root.right = new TreeNode(15);
+            //root.right.left = new TreeNode(9);
+            //root.right.right = new TreeNode(20);
 
-            iterator.Next();    // return 3
-            iterator.Next();    // return 7
-            iterator.HasNext(); // return true
-            iterator.Next();    // return 9
-            iterator.HasNext(); // return true
-            iterator.Next();    // return 15
-            iterator.HasNext(); // return true
-            iterator.HasNext();    // return 20
-            iterator.HasNext(); // return false
+            //BSTIterator iterator = new BSTIterator(root);
+
+            //iterator.Next();    // return 3
+            //iterator.Next();    // return 7
+            //iterator.HasNext(); // return true
+            //iterator.Next();    // return 9
+            //iterator.HasNext(); // return true
+            //iterator.Next();    // return 15
+            //iterator.HasNext(); // return true
+            //iterator.HasNext();    // return 20
+            //iterator.HasNext(); // return false
 
             Console.ReadLine();
         }
