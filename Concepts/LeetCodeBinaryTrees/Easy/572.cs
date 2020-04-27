@@ -9,6 +9,50 @@ namespace LeetCodeBinaryTrees.Easy
     public class _572
     {
         /// <summary>
+        /// https://leetcode.com/problems/subtree-of-another-tree/discuss/102760/Easy-O(n)-java-solution-using-preorder-traversal
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public bool IsSubtree2(TreeNode s, TreeNode t)
+        {
+            if (s == null || t == null)
+            {
+                return false;
+            }
+
+            string sPreOrder = GeneratePreOrderString(s);
+            string tPreOrder = GeneratePreOrderString(t);
+            return sPreOrder.Contains(tPreOrder);
+
+        }
+
+        private string GeneratePreOrderString(TreeNode root)
+        {
+            StringBuilder sb = new StringBuilder();
+            Stack<TreeNode> stk = new Stack<TreeNode>();
+            stk.Push(root);
+            while (stk.Count != 0)
+            {
+                TreeNode poppedItem = stk.Pop();
+                if (poppedItem == null)
+                {
+                    sb.Append(",#"); //// Appending # inorder to handle same values but not subtree cases
+                }
+                else
+                {
+                    sb.Append(",");
+                    sb.Append($"{poppedItem.val}");
+
+                    stk.Push(poppedItem.right);
+                    stk.Push(poppedItem.left);
+                }
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
         //! Using preorder tranversal 
         //Rather than assuming a null value for the childern of the leaf nodes, 
         //!we need to treat the left and right child as a lnull and rnull value respectively
@@ -58,6 +102,18 @@ namespace LeetCodeBinaryTrees.Easy
 
         }
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //!  Does not work for below input
         // [3,4,5,1,2,null,null,0]
         // [4,1,2]

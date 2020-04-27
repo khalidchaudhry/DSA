@@ -8,6 +8,25 @@ namespace LeetCodeGraphs.Medium
 {
     public class _399
     {
+        /// <summary>
+        // # of equations - m
+        //# of queries - n
+        //# of variables - v <= 2 * m
+        //!Build Graph: O(|Edge(# of Equations)|)
+        //Assume there are K queries:
+        //Evaluate one query: O(|Edge| +|Vertex|) (Assume the graph is a list)
+        // totaltime:Evaulate K queries+Build Graph
+        //!total time: O(K* (|E| + |V|) + |E|)
+
+        //Space:
+        //Graph: O(2 * (|E| + |V|))
+        //visited set: O(|V|)
+        //!total space: O(2*|E| + 3*|V|)
+        /// </summary>
+        /// <param name="equations"></param>
+        /// <param name="values"></param>
+        /// <param name="queries"></param>
+        /// <returns></returns>
         //https://leetcode.com/problems/evaluate-division/discuss/171649/1ms-DFS-with-Explanations
         public double[] CalcEquation(
             IList<IList<string>> equations,
@@ -16,11 +35,11 @@ namespace LeetCodeGraphs.Medium
         {
             double[] result = new double[queries.Count];
             var graph = new Dictionary<string, Dictionary<string, double>>();
-            CreateGraph(equations,values,graph);
+            CreateGraph(equations, values, graph);
             int i = 0;
             foreach (List<string> query in queries)
             {
-                result[i++]=GetPathWeight(query[0], query[1], graph, new HashSet<string>());
+                result[i++] = GetPathWeight(query[0], query[1], graph, new HashSet<string>());
             }
 
             return result;

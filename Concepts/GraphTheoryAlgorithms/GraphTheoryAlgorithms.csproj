@@ -47,9 +47,14 @@
     <Compile Include="CC\ConnectedComponentsDfsSolverAdjacencyList.cs" />
     <Compile Include="DFS\DepthFirstSearchAdjacencyListRecursive .cs" />
     <Compile Include="Edge.cs" />
+    <Compile Include="LazyDijkstra\DijkstrasShortestPathAdjacencyList .cs" />
+    <Compile Include="LazyDijkstra\Node.cs" />
+    <Compile Include="LazyDijkstra\PriorityQueue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RootingTree\RootingTree.cs" />
+    <Compile Include="TopSort\TopologicalSortAdjacencyList.cs" />
+    <Compile Include="TopSort\TopologicalSortAdjacencyMatrix.cs" />
     <Compile Include="TreeCenter\TreeCenter.cs" />
   </ItemGroup>
   <ItemGroup>

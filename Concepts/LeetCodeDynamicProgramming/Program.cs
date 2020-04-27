@@ -35,17 +35,38 @@ namespace LeetCodeDynamicProgramming
             //};
             // var ans = MinPathSum.MinPathSum(grid);
 
-            _120 Triangle = new _120();
-            List<IList<int>> triangle = new List<IList<int>>()
-            {
-                new List<int>{2},
-                new List<int>{3,4 },
-                new List<int>{6,5,7},
-                new List<int>{4,1,8,3 }
+            //_120 Triangle = new _120();
+            //List<IList<int>> triangle = new List<IList<int>>()
+            //{
+            //    new List<int>{2},
+            //    new List<int>{3,4 },
+            //    new List<int>{6,5,7},
+            //    new List<int>{4,1,8,3 }
 
-            };
+            //};
 
-            var ans=Triangle.MinimumTotal2(triangle);
+            //var ans=Triangle.MinimumTotal2(triangle);
+            //_221 MaximalSquare = new _221();
+            //char[][] matrix = new char[][]
+            //    {
+            //        new char[]{ '1'}
+            //        //new char[]{ '1', '0', '1', '0', '0' },
+            //        //new char[]{ '1', '0', '1', '1', '1' },
+            //        //new char[]{ '1', '1', '1', '1', '1' },
+            //        //new char[]{ '1', '0', '0', '1', '0' }
+            //    };
+
+
+
+            //MaximalSquare.MaximalSquare(matrix);
+
+
+            _1143 longest = new _1143();
+            string s1 = "pmjghexybyrgzczy";
+            string s2 = "hafcdqbgncrcbihkd";
+            longest.LongestCommonSubsequence(s1, s2);
+
+
 
             Console.ReadLine();
         }

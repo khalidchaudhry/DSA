@@ -39,6 +39,7 @@ namespace GraphTheoryAlgorithms.CC
         {
             if (visited[at])
                 return;
+
             visited[at] = true;
             components[at] =count;
             // Visit all edges adjacent to where we're at

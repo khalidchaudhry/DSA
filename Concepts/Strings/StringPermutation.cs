@@ -15,7 +15,7 @@ namespace Strings
             return result;
         }
 
-        private void StringPermutations(string prefix, string suffix, List<String> results)
+        private void StringPermutations(string prefix, string suffix, List<string> results)
         {
             if (suffix.Length == 0)
             {

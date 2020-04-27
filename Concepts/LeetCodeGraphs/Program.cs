@@ -1,6 +1,7 @@
 using LeetCodeGraphs.Easy;
 using LeetCodeGraphs.Medium;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,27 +83,50 @@ namespace LeetCodeGraphs
 
             //var ans=RegionsBySlashes.RegionsBySlashes(grid);
 
-            _399 Division = new _399();
+            //_399 Division = new _399();
 
-            List<IList<string>> equations = new List<IList<string>>
+            //List<IList<string>> equations = new List<IList<string>>
+            //{
+            //    new List<string>{ "a", "b" },
+            //    new List<string>{ "b", "c"}
+            //};
+
+            //double[] values = new double[] { 2.0, 3.0 };
+
+            //List<IList<string>> queries = new List<IList<string>>
+            //{
+            //    new List<string>{ "a", "c" },
+            //    new List<string>{ "b", "a"},
+            //    new List<string>{ "a", "e"},
+            //    new List<string>{ "a", "a"},
+            //    new List<string>{ "x", "x"},
+            //};
+
+
+            //var result=Division.CalcEquation(equations,values,queries);
+
+            //_332 It = new _332();
+            //IList<IList<string>> tickets = new List<IList<string>>
+            //{
+            //    new List<string>{ "MUC", "LHR" },
+            //    new List<string>{ "JFK", "MUC" },
+            //    new List<string>{ "SFO", "SJC" },
+            //    new List<string>{ "LHR", "SFO" }                
+            //};
+
+            //var result=It.FindItinerary2(tickets);
+
+            int numCourses = 2;
+            int[][] prerequisites = new int[][]
             {
-                new List<string>{ "a", "b" },
-                new List<string>{ "b", "c"}
+                new int[]{1,0},
+                new int[]{2}
             };
 
-            double[] values = new double[] { 2.0, 3.0 };
 
-            List<IList<string>> queries = new List<IList<string>>
-            {
-                new List<string>{ "a", "c" },
-                new List<string>{ "b", "a"},
-                new List<string>{ "a", "e"},
-                new List<string>{ "a", "a"},
-                new List<string>{ "x", "x"},
-            };
-
-
-            var result=Division.CalcEquation(equations,values,queries);
+            _207 CourseSchedule = new _207();
+            CourseSchedule.CanFinish2(numCourses, prerequisites);
+           
 
 
             Console.ReadKey();
