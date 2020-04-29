@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayPermutations.cs" />
     <Compile Include="Merge.cs" />
     <Compile Include="NGE.cs" />
     <Compile Include="Program.cs" />
