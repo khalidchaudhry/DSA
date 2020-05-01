@@ -88,11 +88,11 @@ namespace LeetCodeStrings
             //string[] logs = new string[] { "dig1 8 1 5 1", "let1 art can", "dig2 3 6", "let2 own kit dig", "let3 art zero" };
             //ReorderLogs.ReorderLogFiles2(logs);
 
-            string s = "aba";
+            //string s = "aba";
 
-            _5 LongestPalindrome = new _5();
+            //_5 LongestPalindrome = new _5();
 
-            var result = LongestPalindrome.LongestPalindrome0(s);
+            //var result = LongestPalindrome.LongestPalindrome0(s);
 
             //_12 IntegerToRoman = new _12();
 
@@ -109,6 +109,11 @@ namespace LeetCodeStrings
 
             ////_17 LetterCombinations = new _17();
             //var result=LetterCombinations.LetterCombinations2("23");
+
+            _49 GroupAnagrams = new _49();
+            string[] strs = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
+            GroupAnagrams.GroupAnagrams(strs);
+
 
 
             Console.ReadLine();

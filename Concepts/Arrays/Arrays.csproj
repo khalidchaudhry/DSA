@@ -46,6 +46,7 @@
     <Compile Include="ArrayPermutations.cs" />
     <Compile Include="Merge.cs" />
     <Compile Include="NGE.cs" />
+    <Compile Include="PermutationsInPlace.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

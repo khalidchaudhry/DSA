@@ -100,14 +100,62 @@ namespace PracticingRecursionInJava
 
             //var result=TernarySearch.TernarySearch(arr, 3,0, arr.Length);
 
-            Arrays._24 CountStringItems = new Arrays._24();
-            string item = "abc";
-            string[] arr = new string[] {"abc","def","ghi","abc","xyz" };
-            int size = 4;
-            var result=CountStringItems.CountStringItem(item,arr,size);
+            //Arrays._24 CountStringItems = new Arrays._24();
+            //string item = "abc";
+            //string[] arr = new string[] {"abc","def","ghi","abc","xyz" };
+            //int size = 4;
+            //var result=CountStringItems.CountStringItem(item,arr,size);
+                       
+            LinkedList.LinkedList linkedList = new LinkedList.LinkedList();
+            linkedList.head = new LinkedList.ListNode(1);
+            linkedList.head.next = new LinkedList.ListNode(2);
+            linkedList.head.next.next = new LinkedList.ListNode(2);
+            linkedList.head.next.next.next = new LinkedList.ListNode(2);
+            linkedList.head.next.next.next.next = new LinkedList.ListNode(2);
 
 
-             Console.ReadLine();
+            //Console.WriteLine("Printing Linked list in order");
+            //LinkedList._1 LinkedListTraverse = new LinkedList._1();
+            //LinkedListTraverse.Traverse(linkedList.head);
+
+            //Console.WriteLine();
+            //Console.WriteLine("Printing Linked list in reverse");
+            //LinkedList._2 LinkedListTraverseReverse = new LinkedList._2();
+            //LinkedListTraverseReverse.TraverseReverse(linkedList.head);
+
+            //Console.WriteLine();
+            //Console.WriteLine("Count nodes in the linked list");
+            //LinkedList._3 CountNodees = new LinkedList._3();
+            //var ans=CountNodees.CountNodes(linkedList.head);
+            //Console.WriteLine(ans);
+
+            //LinkedList._4 Count = new LinkedList._4();
+
+            //var ans=Count.CountItems(linkedList.head,2);
+
+            //LinkedList._5 ItemInList = new LinkedList._5();
+
+            //Console.WriteLine(ItemInList.ItemInList(linkedList.head,2));
+
+
+            //LinkedList._7 PointToItem = new LinkedList._7();
+
+            //var ans=PointToItem.PointToItem(linkedList.head,2);
+
+            //LinkedList._8 PointToLastItem = new PracticingRecursionInJava.LinkedList._8();
+
+            //var ans=PointToLastItem.PointToLastItem(linkedList.head,1);
+
+            //LinkedList._9 NthNode = new LinkedList._9();
+            //var result=NthNode.Return_N_Node2(linkedList.head, 5);
+
+            LinkedList._10 Sum = new LinkedList._10();
+
+            var ans=Sum.Sum(linkedList.head);
+
+
+
+            Console.ReadLine();
         }
     }
 }

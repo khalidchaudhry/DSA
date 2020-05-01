@@ -61,11 +61,13 @@ namespace LeetCodeDynamicProgramming
             //MaximalSquare.MaximalSquare(matrix);
 
 
-            _1143 longest = new _1143();
-            string s1 = "pmjghexybyrgzczy";
-            string s2 = "hafcdqbgncrcbihkd";
-            longest.LongestCommonSubsequence(s1, s2);
+            //_1143 longest = new _1143();
+            //string s1 = "pmjghexybyrgzczy";
+            //string s2 = "hafcdqbgncrcbihkd";
+            //longest.LongestCommonSubsequence(s1, s2);
+            _647 Count = new _647();
 
+            var result=Count.CountSubstrings("aaa");
 
 
             Console.ReadLine();
