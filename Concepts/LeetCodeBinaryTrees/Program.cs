@@ -723,21 +723,21 @@ namespace LeetCodeBinaryTrees
 
 
             */
-            var t = new TreeNode(3);
+            //var t = new TreeNode(3);
 
-            t.left = new TreeNode(4);
-            t.left.left = new TreeNode(1);
-            t.left.left.left = new TreeNode(0);
-            t.left.right = new TreeNode(2);
-            //t.left.right.left = new TreeNode(0);
+            //t.left = new TreeNode(4);
+            //t.left.left = new TreeNode(1);
+            //t.left.left.left = new TreeNode(0);
+            //t.left.right = new TreeNode(2);
+            ////t.left.right.left = new TreeNode(0);
 
-            t.right = new TreeNode(5);
+            //t.right = new TreeNode(5);
 
-            var t2 = new TreeNode(4);
-            t2.left = new TreeNode(1);
-            t2.right = new TreeNode(2);
-            _572 treeSubset = new _572();
-            var ans=treeSubset.IsSubtree1(t, t2);
+            //var t2 = new TreeNode(4);
+            //t2.left = new TreeNode(1);
+            //t2.right = new TreeNode(2);
+            //_572 treeSubset = new _572();
+            //var ans=treeSubset.IsSubtree1(t, t2);
 
             //_96 UniqueBinarySearchTree = new _96();
             //UniqueBinarySearchTree.NumTrees(3);
@@ -761,6 +761,15 @@ namespace LeetCodeBinaryTrees
             //iterator.HasNext(); // return true
             //iterator.HasNext();    // return 20
             //iterator.HasNext(); // return false
+
+            _105 ConstructBinaryTree = new _105();
+            int[] preOrder = new int[] { 3, 9, 20, 15, 7 };
+            int[] inOrder = new int[] { 9, 3, 15, 20, 7 };
+
+
+
+            var ans=ConstructBinaryTree.BuildTree(preOrder,inOrder);
+
 
             Console.ReadLine();
         }
