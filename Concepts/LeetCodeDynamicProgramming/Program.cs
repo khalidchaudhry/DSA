@@ -65,9 +65,15 @@ namespace LeetCodeDynamicProgramming
             //string s1 = "pmjghexybyrgzczy";
             //string s2 = "hafcdqbgncrcbihkd";
             //longest.LongestCommonSubsequence(s1, s2);
-            _647 Count = new _647();
+            //_647 Count = new _647();
 
-            var result=Count.CountSubstrings("aaa");
+            //var result=Count.CountSubstrings("aaa");
+
+            int[] prices = new int[] { 1,3,7,5,10,3 };
+            int fee = 3;
+            _714 MaxProfit = new _714();
+
+            var ans=MaxProfit.MaxProfit(prices,fee);
 
 
             Console.ReadLine();

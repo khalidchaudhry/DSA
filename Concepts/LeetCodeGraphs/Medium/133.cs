@@ -29,7 +29,7 @@ namespace LeetCodeGraphs.Medium
             // Start BFS traversal
             while (queue.Count != 0)
             {
-                // Pop a node say "n" from the from the front of the queue.
+                // Pop a node say "n" from the front of the queue.
                 Node n = queue.Dequeue();
                 IList<Node> neighbours = n.neighbors;
                 // Iterate through all the neighbors of the node "n"

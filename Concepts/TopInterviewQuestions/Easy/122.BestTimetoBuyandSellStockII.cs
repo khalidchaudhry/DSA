@@ -10,22 +10,23 @@ namespace TopInterviewQuestions.Easy
     {
         public int MaxProfit(int[] prices)
         {
-            int maxProfit = 0;
+            int minValue = Int32.MaxValue;
+            int profit = 0;
+            int totalProfit = 0;
 
-            if (prices.Length == 0 || prices.Length == 1)
+            for (int i = 0; i < prices.Length; i++)
             {
-                return maxProfit;
-            }
-
-            for (int i = 1; i < prices.Length; i++)
-            {
-                if (prices[i]>prices[i-1])
+                minValue = Math.Min(minValue, prices[i]);
+                profit = prices[i] - minValue;
+                if (profit > 0)
                 {
-                    maxProfit += prices[i] - prices[i - 1];
+                    totalProfit += profit;
+                    profit = 0;
+                    minValue = prices[i];
                 }
-
             }
-            return maxProfit;
+
+            return totalProfit;
         }
 
 

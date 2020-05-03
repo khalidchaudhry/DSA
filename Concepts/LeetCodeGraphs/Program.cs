@@ -116,17 +116,32 @@ namespace LeetCodeGraphs
 
             //var result=It.FindItinerary2(tickets);
 
-            int numCourses = 2;
+            //int numCourses = 2;
+            //int[][] prerequisites = new int[][]
+            //{
+            //    new int[]{1,0},
+            //    new int[]{2}
+            //};
+
+
+            //_207 CourseSchedule = new _207();
+            //CourseSchedule.CanFinish2(numCourses, prerequisites);
+
+            //_743 SortedNodeTest = new _743();
+
+            //SortedNodeTest.SortedSetTest();
+
+            _210 CourseSchedule = new _210();
+
+            int numCourses = 4;
             int[][] prerequisites = new int[][]
             {
-                new int[]{1,0},
-                new int[]{2}
+               new int[]{1, 0 },
+               new int[]{2, 0 },
+               new int[]{3, 1 },
+               new int[]{3, 2 }
             };
-
-
-            _207 CourseSchedule = new _207();
-            CourseSchedule.CanFinish2(numCourses, prerequisites);
-           
+            CourseSchedule.FindOrder(numCourses, prerequisites);
 
 
             Console.ReadKey();

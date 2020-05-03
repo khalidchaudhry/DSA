@@ -24,12 +24,24 @@ namespace Arrays
             ///*******************************************************/
             ///******************************************************/
 
-            PermutationsInPlace p = new PermutationsInPlace();
-            char[] A = new char[] { 'a', 'b', 'c', 'd', 'e' };
-            int[] P = new int[] { 4, 0, 1, 2, 3 };
-            p.Permute(A, P);
+            //PermutationsInPlace p = new PermutationsInPlace();
+            //char[] A = new char[] { 'a', 'b', 'c', 'd', 'e' };
+            //int[] P = new int[] { 4, 0, 1, 2, 3 };
+            //p.Permute(A, P);
 
-            Console.WriteLine(string.Join(",", A));
+            //Console.WriteLine(string.Join(",", A));
+
+            int[,] matrix = new int[,]
+            {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 16}
+
+            };
+            BFSOn2DArray BFSOn2DArray = new BFSOn2DArray();
+            BFSOn2DArray.BFS(matrix);
+
 
             Console.ReadLine();
         }

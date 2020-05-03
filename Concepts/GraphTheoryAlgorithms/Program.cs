@@ -312,7 +312,7 @@ namespace GraphTheoryAlgorithms
             //           > <
             //           (3)
 
-            DijkstrasShortestPathAdjacencyList dijkstra = new DijkstrasShortestPathAdjacencyList(5);
+            DijkstrasShortestPathAdjacencyList2 dijkstra = new DijkstrasShortestPathAdjacencyList2(5);
             
             dijkstra.AddEdge(0, 1, 4);
             dijkstra.AddEdge(0, 2, 5);
@@ -321,7 +321,7 @@ namespace GraphTheoryAlgorithms
             dijkstra.AddEdge(2, 3, 1);     
 
 
-            var result = dijkstra.ReconstructPath(0, 4);
+            var result = dijkstra.ReconstructPath(0, 3);
 
             // 0->2-3
             Console.WriteLine(string.Join("->",result));
