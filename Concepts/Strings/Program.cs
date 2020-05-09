@@ -14,8 +14,8 @@ namespace Strings
 
             //RabinKarpSearch rks = new RabinKarpSearch();
             //Console.WriteLine(rks.PatternSearch("TusharRoy".ToCharArray(), "sharRoy".ToCharArray()));
-            var stringPermutations = new StringPermutation();
-            var result=stringPermutations.StringPermutations("abc");
+            //var stringPermutations = new StringPermutation();
+            //var result=stringPermutations.StringPermutations("abc");
             //foreach (var one in result)
             //{
             //    Console.WriteLine(one);            
@@ -25,6 +25,14 @@ namespace Strings
             ////PrintSubsequencesString.PrintSubSeq(str);
             ////Console.WriteLine(SortCharactersInString.SortCharacters(str));
             //AllSubStrings.AllSubstrings("abc");
+
+            String S = "ADOBECODEBANC";
+            string T = "ABC";
+
+            MinimumWindowSubstring Minimum = new MinimumWindowSubstring();
+            var ans=Minimum.MinWindow(S,T);
+
+
             Console.ReadLine();
         }
 

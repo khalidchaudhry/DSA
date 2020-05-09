@@ -119,7 +119,7 @@ namespace LeetCodeStrings.Medium
                 }
                 //! reason for making key based on all 26 characters is becuase it will help group them seperately
                 //!e.g abc and def. They will not be different  if we don't consider all the 26 characters 
-                //! essentially they will fall to the same group of anagrams whereas they are not
+                //! hey will fall to the same group of anagrams whereas they are not
 
                 string key = sb.ToString();
 

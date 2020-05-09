@@ -16,7 +16,13 @@ namespace LeetCodeGraphs.Medium
             priorityQueue.Add((0, 2));
             priorityQueue.Add((1, 0));
         }
-
+        /// <summary>
+        /// https://leetcode.com/problems/network-delay-time/discuss/390399/C-Readable-Clean-Named-Tuple-SortedSet-%2B-BFS
+        /// </summary>
+        /// <param name="times"></param>
+        /// <param name="N"></param>
+        /// <param name="K"></param>
+        /// <returns></returns>
         public int NetworkDelayTime(int[][] times, int N, int K)
         {
             var nodeMap = new Dictionary<int, GraphNode>();

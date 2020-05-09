@@ -21,7 +21,7 @@ namespace LeetCodeArrays.Medium
 
             //! We are moving from right to left till left element is greater than k
             //! It is to find the longest descreasing suffix 
-            //! nums[k] >= nums[k + 1] ---   >= is important incase there are duplicate elements  like [2,3,1,3,3]
+            //! nums[k] >= nums[k + 1] ---   >=(equal to) is important incase there are duplicate elements  like [2,3,1,3,3]
             while (k >= 0 && nums[k] >= nums[k + 1])
             {
                 --k;
@@ -33,7 +33,7 @@ namespace LeetCodeArrays.Medium
                 Reverse(nums,0,nums.Length-1);
                 return;
             }
-            //!We need to find the smallest element suffix which are bigger than element at k index and swap it with k index
+            //!We need to find the smallest element in the suffix which is  bigger than element at k index and swap it with k index
             for (int l = nums.Length - 1; l > k; l--)
             {
                 if (nums[l] > nums[k])

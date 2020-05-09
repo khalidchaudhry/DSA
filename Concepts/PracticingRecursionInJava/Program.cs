@@ -1,6 +1,8 @@
 ﻿using PracticingRecursionInJava.Integers;
+using PracticingRecursionInJava.LinkedList;
 using System;
 using System.Collections.Generic;
+using _15 = PracticingRecursionInJava.LinkedList._15;
 
 namespace PracticingRecursionInJava
 {
@@ -105,13 +107,13 @@ namespace PracticingRecursionInJava
             //string[] arr = new string[] {"abc","def","ghi","abc","xyz" };
             //int size = 4;
             //var result=CountStringItems.CountStringItem(item,arr,size);
-                       
-            LinkedList.LinkedList linkedList = new LinkedList.LinkedList();
-            linkedList.head = new LinkedList.ListNode(1);
-            linkedList.head.next = new LinkedList.ListNode(2);
-            linkedList.head.next.next = new LinkedList.ListNode(2);
-            linkedList.head.next.next.next = new LinkedList.ListNode(2);
-            linkedList.head.next.next.next.next = new LinkedList.ListNode(2);
+
+            //LinkedList.LinkedList linkedList = new LinkedList.LinkedList();
+            //linkedList.head = new LinkedList.ListNode(1);
+            //linkedList.head.next = new LinkedList.ListNode(2);
+            //linkedList.head.next.next = new LinkedList.ListNode(2);
+            //linkedList.head.next.next.next = new LinkedList.ListNode(2);
+            //linkedList.head.next.next.next.next = new LinkedList.ListNode(2);
 
 
             //Console.WriteLine("Printing Linked list in order");
@@ -149,11 +151,23 @@ namespace PracticingRecursionInJava
             //LinkedList._9 NthNode = new LinkedList._9();
             //var result=NthNode.Return_N_Node2(linkedList.head, 5);
 
-            LinkedList._10 Sum = new LinkedList._10();
+            ////LinkedList._10 Sum = new LinkedList._10();
 
-            var ans=Sum.Sum(linkedList.head);
+            ////var ans=Sum.Sum(linkedList.head);
 
+            LinkedList.LinkedList linkedList = new LinkedList.LinkedList();
+            linkedList.head = new LinkedList.ListNode(1);
+            linkedList.head.next = new LinkedList.ListNode(2);
+            linkedList.head.next.next = new LinkedList.ListNode(3);
+            linkedList.head.next.next.next = new LinkedList.ListNode(4);
+            linkedList.head.next.next.next.next = new LinkedList.ListNode(5);
 
+            //_12 Minimum = new _12();
+
+            //var result=Minimum.Minimum(linkedList.head);
+            _16 Ascending = new _16();
+
+            var result= Ascending.IsAscending(linkedList.head);
 
             Console.ReadLine();
         }

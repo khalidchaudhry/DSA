@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="ArrayPermutations.cs" />
     <Compile Include="BFSOn2DArray.cs" />
+    <Compile Include="MatrixRollOut.cs" />
     <Compile Include="Merge.cs" />
     <Compile Include="NGE.cs" />
     <Compile Include="PermutationsInPlace.cs" />

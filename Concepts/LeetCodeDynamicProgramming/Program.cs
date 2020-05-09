@@ -69,13 +69,22 @@ namespace LeetCodeDynamicProgramming
 
             //var result=Count.CountSubstrings("aaa");
 
-            int[] prices = new int[] { 1,3,7,5,10,3 };
-            int fee = 3;
-            _714 MaxProfit = new _714();
+            //int[] prices = new int[] { 1,3,7,5,10,3 };
+            //int fee = 3;
+            //_714 MaxProfit = new _714();
 
-            var ans=MaxProfit.MaxProfit(prices,fee);
+            //var ans=MaxProfit.MaxProfit(prices,fee);
 
+            //_309 ProfitWithCoolDown = new _309();
+            //int[] prices = new int[] { 1, 2, 3, 0, 2 };
 
+            //var ans=ProfitWithCoolDown.MaxProfit(prices);
+
+            _213 HouseRobber = new _213();
+
+            int[] nums = new int[4] {2,1,1,2 };
+
+            HouseRobber.Rob(nums);
             Console.ReadLine();
         }
     }

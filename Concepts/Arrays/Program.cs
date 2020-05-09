@@ -31,16 +31,45 @@ namespace Arrays
 
             //Console.WriteLine(string.Join(",", A));
 
-            int[,] matrix = new int[,]
-            {
-                {1, 2, 3, 4},
-                {5, 6, 7, 8},
-                {9, 10, 11, 12},
-                {13, 14, 15, 16}
+            //int[,] matrix = new int[,]
+            //{
+            //    {1, 2, 3, 4},
+            //    {5, 6, 7, 8},
+            //    {9, 10, 11, 12},
+            //    {13, 14, 15, 16}
 
-            };
+            //};
+
+            char[][] matrix = new char[3][]
+        {
+                new char[]{'A', 'B', 'C','E'},
+                new char[]{'S', 'F', 'C','S'},
+                new char[]{'A', 'D', 'E', 'F'}
+        };
             BFSOn2DArray BFSOn2DArray = new BFSOn2DArray();
-            BFSOn2DArray.BFS(matrix);
+            BFSOn2DArray.BFS2(matrix);
+
+            // Matrix rollout 
+            //int[][] matrix = new int[3][]
+            //{
+            //    new int[]{1, 2, 3},
+            //    new int[]{4, 5, 6},
+            //    new int[]{7, 8, 9},
+            //    ///new int[]{13, 14, 15}
+            //};
+
+            //int[][] matrix = new int[3][]
+            //{
+            //   new int[]{1, 2, 3, 4 },
+            //   new int[]{5, 6, 7, 8 },
+            //   new int[]{9, 10, 11, 12}
+            //    ///new int[]{13, 14, 15}
+            //};
+
+
+            //MatrixRollOut Spiral = new MatrixRollOut();
+
+            //var result = Spiral.MatricRollOut(matrix);
 
 
             Console.ReadLine();

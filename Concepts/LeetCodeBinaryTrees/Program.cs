@@ -762,14 +762,15 @@ namespace LeetCodeBinaryTrees
             //iterator.HasNext();    // return 20
             //iterator.HasNext(); // return false
 
-            _105 ConstructBinaryTree = new _105();
-            int[] preOrder = new int[] { 3, 9, 20, 15, 7 };
-            int[] inOrder = new int[] { 9, 3, 15, 20, 7 };
+            //_105 ConstructBinaryTree = new _105();
+            //int[] preOrder = new int[] { 3, 9, 20, 15, 7 };
+            //int[] inOrder = new int[] { 9, 3, 15, 20, 7 };
 
+            //var ans=ConstructBinaryTree.BuildTree(preOrder,inOrder);
 
+            _894 FBT = new _894();
 
-            var ans=ConstructBinaryTree.BuildTree(preOrder,inOrder);
-
+            var result=FBT.allPossibleFBT(3);
 
             Console.ReadLine();
         }

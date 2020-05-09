@@ -110,10 +110,15 @@ namespace LeetCodeStrings
             ////_17 LetterCombinations = new _17();
             //var result=LetterCombinations.LetterCombinations2("23");
 
-            _49 GroupAnagrams = new _49();
-            string[] strs = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
-            GroupAnagrams.GroupAnagrams(strs);
+            //_49 GroupAnagrams = new _49();
+            //string[] strs = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
+            //GroupAnagrams.GroupAnagrams(strs);
 
+            _43 Multiplier = new _43();
+
+            string nums1 = "9133";
+            string nums2 = "0";
+            var result=Multiplier.Multiply0(nums1,nums2);
 
 
             Console.ReadLine();

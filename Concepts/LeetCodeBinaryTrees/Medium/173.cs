@@ -4,8 +4,8 @@ using System.Text;
 
 namespace LeetCodeBinaryTrees.Medium
 {
-    // below implementation does not satisfy the requirement of question 
-    //uses O(h) memory, where h is the height of the tree.
+    //! below implementation does not satisfy the requirement of question 
+    //!uses O(h) memory, where h is the height of the tree.
     public class BSTIterator
     {
 
