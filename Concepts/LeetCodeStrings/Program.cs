@@ -114,11 +114,16 @@ namespace LeetCodeStrings
             //string[] strs = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
             //GroupAnagrams.GroupAnagrams(strs);
 
-            _43 Multiplier = new _43();
+            //_43 Multiplier = new _43();
 
-            string nums1 = "9133";
-            string nums2 = "0";
-            var result=Multiplier.Multiply0(nums1,nums2);
+            //string nums1 = "9133";
+            //string nums2 = "0";
+            //var result=Multiplier.Multiply0(nums1,nums2);
+
+
+            _8 Atoi = new _8();
+            string str = "-5-";
+            var result=Atoi.MyAtoi1(str);
 
 
             Console.ReadLine();

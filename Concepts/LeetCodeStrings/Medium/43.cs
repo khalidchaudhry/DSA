@@ -8,6 +8,7 @@ namespace LeetCodeStrings.Medium
     {
         /// <summary>
         /// https://www.youtube.com/watch?v=CnEFY5Y3Z68    
+        //!Time complexity is O(m*n)
         /// </summary>
         /// <param name="num1"></param>
         /// <param name="num2"></param>

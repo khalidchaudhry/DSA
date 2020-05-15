@@ -1,3 +1,4 @@
+using GraphTheoryAlgorithms.BellmanFord;
 using GraphTheoryAlgorithms.BFS;
 using GraphTheoryAlgorithms.CC;
 using GraphTheoryAlgorithms.DFS;
@@ -312,19 +313,96 @@ namespace GraphTheoryAlgorithms
             //           > <
             //           (3)
 
-            DijkstrasShortestPathAdjacencyList2 dijkstra = new DijkstrasShortestPathAdjacencyList2(5);
-            
-            dijkstra.AddEdge(0, 1, 4);
-            dijkstra.AddEdge(0, 2, 5);
-            dijkstra.AddEdge(1, 2, 2);
-            dijkstra.AddEdge(1, 3, 6);
-            dijkstra.AddEdge(2, 3, 1);     
+            //DijkstrasShortestPathAdjacencyList2 dijkstra = new DijkstrasShortestPathAdjacencyList2(5);
+
+            //dijkstra.AddEdge(0, 1, 4);
+            //dijkstra.AddEdge(0, 2, 5);
+            //dijkstra.AddEdge(1, 2, 2);
+            //dijkstra.AddEdge(1, 3, 6);
+            //dijkstra.AddEdge(2, 3, 1);     
 
 
-            var result = dijkstra.ReconstructPath(0, 3);
+            //var result = dijkstra.ReconstructPath(0, 3);
 
             // 0->2-3
-            Console.WriteLine(string.Join("->",result));
+            //Console.WriteLine(string.Join("->",result));
+
+
+            /*****************************************************************************/
+            // Bellman ford Adjacency matrix algorithm
+            /*****************************************************************************/
+            int n = 9;
+            double[][] graph = new double[n][];
+
+            // Setup completely disconnected graph with the distance
+            // from a node to itself to be zero.
+            for (int i = 0; i < n; i++)
+            {
+                graph[i] = new double[n];
+                graph[i] = Enumerable.Repeat(double.PositiveInfinity, n).ToArray();
+                graph[i][i] = 0;
+            }
+
+
+            graph[0][1] = 1;
+            graph[1][2] = 1;
+            graph[2][4] = 1;
+            graph[4][3] = -3;
+            graph[3][2] = 1;
+            graph[1][5] = 4;
+            graph[1][6] = 4;
+            graph[5][6] = 5;
+            graph[6][7] = 4;
+            graph[5][7] = 3;
+
+            int start = 0;
+
+            BellmanFordAdjacencyMatrix solver;
+            solver = new BellmanFordAdjacencyMatrix(start, graph);
+            double[] d = solver.GetShortestPaths();
+
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine($"The cost to get from node {start} to {i} is {d[i]}");
+            }
+
+            // Output:
+            // The cost to get from node 0 to 0 is 0.00
+            // The cost to get from node 0 to 1 is 1.00
+            // The cost to get from node 0 to 2 is -Infinity
+            // The cost to get from node 0 to 3 is -Infinity
+            // The cost to get from node 0 to 4 is -Infinity
+            // The cost to get from node 0 to 5 is 5.00
+            // The cost to get from node 0 to 6 is 5.00
+            // The cost to get from node 0 to 7 is 8.00
+            // The cost to get from node 0 to 8 is Infinity
+
+
+            /*****************************************************************************/
+            // Bellman ford Adjacency List algorithm
+            /*****************************************************************************/
+
+            //int E = 10, V = 9, start = 0;
+
+            //List<BellmanFord.Edge>[] graph = BellmanFordAdjacencyList.CreateGraph(V);
+
+            //BellmanFordAdjacencyList.AddEdge(graph, 0, 1, 1);
+            //BellmanFordAdjacencyList.AddEdge(graph, 1, 2, 1);
+            //BellmanFordAdjacencyList.AddEdge(graph, 2, 4, 1);
+            //BellmanFordAdjacencyList.AddEdge(graph, 4, 3, -3);
+            //BellmanFordAdjacencyList.AddEdge(graph, 3, 2, 1);
+            //BellmanFordAdjacencyList.AddEdge(graph, 1, 5, 4);
+            //BellmanFordAdjacencyList.AddEdge(graph, 1, 6, 4);
+            //BellmanFordAdjacencyList.AddEdge(graph, 5, 6, 5);
+            //BellmanFordAdjacencyList.AddEdge(graph, 6, 7, 4);
+            //BellmanFordAdjacencyList.AddEdge(graph, 5, 7, 3);
+
+            //double[] d = BellmanFordAdjacencyList.BellmanFord(graph, V, start);
+
+            //for (int i = 0; i < V; i++)
+            //{
+            //    Console.WriteLine($"The cost to get from node {start} to {i} is {d[i]}");
+            //}
 
             Console.ReadKey();
         }

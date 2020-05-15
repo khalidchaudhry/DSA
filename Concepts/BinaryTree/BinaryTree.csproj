@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InsertLevelOrder.cs" />
+    <Compile Include="Medium\KthSmallest.cs" />
     <Compile Include="Medium\BST.cs" />
     <Compile Include="Medium\TreeNode.cs" />
+    <Compile Include="Medium\ValidBST.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="PreorderToTree.cs" />
     <Compile Include="Program.cs" />

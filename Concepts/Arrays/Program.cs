@@ -40,14 +40,14 @@ namespace Arrays
 
             //};
 
-            char[][] matrix = new char[3][]
-        {
-                new char[]{'A', 'B', 'C','E'},
-                new char[]{'S', 'F', 'C','S'},
-                new char[]{'A', 'D', 'E', 'F'}
-        };
-            BFSOn2DArray BFSOn2DArray = new BFSOn2DArray();
-            BFSOn2DArray.BFS2(matrix);
+            //    char[][] matrix = new char[3][]
+            //{
+            //        new char[]{'A', 'B', 'C','E'},
+            //        new char[]{'S', 'F', 'C','S'},
+            //        new char[]{'A', 'D', 'E', 'F'}
+            //};
+            //    BFSOn2DArray BFSOn2DArray = new BFSOn2DArray();
+            //    BFSOn2DArray.BFS2(matrix);
 
             // Matrix rollout 
             //int[][] matrix = new int[3][]
@@ -70,6 +70,25 @@ namespace Arrays
             //MatrixRollOut Spiral = new MatrixRollOut();
 
             //var result = Spiral.MatricRollOut(matrix);
+
+            //char[][] matrix = new char[4][] {
+            //    new char[]{'S', '0', '1', '1'},
+            //    new char[]{'1', '1', '0', '1'},
+            //    new char[]{'0', '1', '1', '1'},
+            //    new char[]{'1', '0', 'D', '1'}
+            //};
+
+
+            char[][] matrix = new char[4][] {
+                new char[]{'S', '0', '1', 'D'},
+                new char[]{'1', '0', '1', '0'},
+                new char[]{'1', '0', '1', '0'},
+                new char[]{'1', '1', '1', '0'}
+            };
+
+
+            var result = ShortestPathin2DArray.PathExists(matrix);
+
 
 
             Console.ReadLine();

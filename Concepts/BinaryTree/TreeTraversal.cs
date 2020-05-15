@@ -8,7 +8,7 @@ namespace BinaryTree
 {
     public class TreeTraversal
     {
-        public static void PrintPathsRecur(Node n, int[] path,int pathLen)
+        public static void PrintPathsRecur(Node n, int[] path, int pathLen)
         {
             if (n == null)
                 return;
@@ -234,14 +234,44 @@ namespace BinaryTree
             }
         }
         // Inorder tree traversal
-        public static void InOrderTreeTraversal(Node n)
+        public static void InOrderTreeTraversalRecursive(Node n)
         {
             if (n == null)
                 return;
-            InOrderTreeTraversal(n.left);
+            InOrderTreeTraversalRecursive(n.left);
             Console.WriteLine($"Data at node:{n.data}");
-            InOrderTreeTraversal(n.right);
+            InOrderTreeTraversalRecursive(n.right);
         }
+        /// <summary>
+        /// https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
+        /// </summary>
+        /// <param name="n"></param>
+        public static void InOrderTreeTraversalIterative(Node n)
+        {
+            if (n == null)
+                return;
+            Node curr = n;
+            Stack<Node> stk = new Stack<Node>();
+            while (curr != null)
+            {
+                /* Reach the left most Node of the curr Node */
+                while (curr != null)
+                {
+                    //place pointer to a tree node on  
+                    //the stack before traversing
+                    //the node's left subtree */
+                    stk.Push(curr);
+                    curr = curr.left;
+                }
+                curr = stk.Pop();
+                Console.WriteLine($"{curr.data}");
+                // we have visited the node and its  
+                //left subtree.  Now, it's right  
+                //subtree's turn */
+                curr = curr.right;
+            }
+        }
+
 
         public static void PreOrderTreeTraversal(Node n)
         {

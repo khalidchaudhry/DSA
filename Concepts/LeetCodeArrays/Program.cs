@@ -201,25 +201,31 @@ namespace LeetCodeArrays
 
             /////////////////////////////
             ///
-            int[][] matrix = new int[3][]
-         {
-               new int[]{1, 2, 3, 4 },
-               new int[]{5, 6, 7, 8 },
-               new int[]{9, 10, 11, 12}
-               //new int[]{1, 2, 3 },
-               //new int[]{4, 5, 6 },
-               //new int[]{7, 8, 9 }
-               //new int[]{7},
-               //new int[]{9},
-               //new int[]{6}
-               // new int[]{2,5,8},
-               //new int[]{4,0,-1},
+            //   int[][] matrix = new int[3][]
+            //{
+            //      new int[]{1, 2, 3, 4 },
+            //      new int[]{5, 6, 7, 8 },
+            //      new int[]{9, 10, 11, 12}
+            //      //new int[]{1, 2, 3 },
+            //      //new int[]{4, 5, 6 },
+            //      //new int[]{7, 8, 9 }
+            //      //new int[]{7},
+            //      //new int[]{9},
+            //      //new int[]{6}
+            //      // new int[]{2,5,8},
+            //      //new int[]{4,0,-1},
 
-         };
+            //};
 
-            _54 Spiral = new _54();
+            //   _54 Spiral = new _54();
 
-            var result=Spiral.SpiralOrder0(matrix);
+            //   var result=Spiral.SpiralOrder0(matrix);
+
+            _442 Duplicates = new _442();
+
+            int[] nums = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
+
+            var result=Duplicates.FindDuplicates(nums);
 
 
             Console.ReadLine();

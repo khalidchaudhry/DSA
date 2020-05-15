@@ -45,8 +45,8 @@ namespace LeetCodeArrays.Medium
                     result.Add(matrix[r1][c]);
                 }
 
-                // copy the last column excluding value at matrix[r1][c2] as its already copied previously. 
-                // That is the reason we are setting r=r1+1
+                // copy the last column excluding value at matrix[r1][c2](row=r1 and column C2) as its already copied previously. 
+                //!That is the reason we are setting r=r1+1
                 for (int r = r1 + 1; r <= r2; r++)
                 {
                     result.Add(matrix[r][c2]);
@@ -58,7 +58,7 @@ namespace LeetCodeArrays.Medium
                 //        [2]}
                 if (r1 < r2 && c1 < c2)
                 {
-                    //!copy the last row excluding the value at first cloumn(c>c1) as below loop will copy it
+                    //!copy the last row start from one less than last column and excluding the value at first cloumn(c>c1) as below loop will copy it
                     for (int c = c2 - 1; c > c1; --c)
                     {
                         result.Add(matrix[r2][c]);

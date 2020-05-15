@@ -131,17 +131,43 @@ namespace LeetCodeGraphs
 
             //SortedNodeTest.SortedSetTest();
 
-            _210 CourseSchedule = new _210();
+            //_210 CourseSchedule = new _210();
 
-            int numCourses = 4;
-            int[][] prerequisites = new int[][]
+            //int numCourses = 4;
+            //int[][] prerequisites = new int[][]
+            //{
+            //   new int[]{1, 0 },
+            //   new int[]{2, 0 },
+            //   new int[]{3, 1 },
+            //   new int[]{3, 2 }
+            //};
+            //CourseSchedule.FindOrder(numCourses, prerequisites);
+
+            //_310 MinHeight = new _310();
+            //int n = 6;
+            //int[][] edges = new int[5][]
+            //{
+            //    new int[]{0,3 },
+            //    new int[]{1,3 },
+            //    new int[]{2,3 },
+            //    new int[]{4,3 },
+            //    new int[]{5,4 },
+            //};
+
+            //MinHeight.FindMinHeightTrees(n,edges);
+
+            int[][] graph = new int[4][]
             {
-               new int[]{1, 0 },
-               new int[]{2, 0 },
-               new int[]{3, 1 },
-               new int[]{3, 2 }
+                new int[]{1,3 },
+                new int[]{0,2 },
+                new int[]{1,3},
+                new int[]{0,2 },
+
             };
-            CourseSchedule.FindOrder(numCourses, prerequisites);
+
+            _785 Bipartite = new _785();
+
+            Bipartite.IsBipartite(graph);
 
 
             Console.ReadKey();

@@ -26,11 +26,22 @@ namespace Strings
             ////Console.WriteLine(SortCharactersInString.SortCharacters(str));
             //AllSubStrings.AllSubstrings("abc");
 
-            String S = "ADOBECODEBANC";
-            string T = "ABC";
+            //String S = "ADOBBECODEBANC";
+            //string T = "ABBC";
 
-            MinimumWindowSubstring Minimum = new MinimumWindowSubstring();
-            var ans=Minimum.MinWindow(S,T);
+            //MinimumWindowSubstring Minimum = new MinimumWindowSubstring();
+            //var ans=Minimum.MinWindow0(S,T);
+
+            //FindAllAnagrams All = new FindAllAnagrams();
+
+            //var result=All.FindAnagrams("cbaebabacd", "abc");
+
+            FindSubstring substring = new FindSubstring();
+
+            string s = "barfoothefoobarman";
+            List<string> words = new List<string> { "foo", "bar" };
+
+            var ans=substring.SubstringWithAllConcatenateWords(s,words);
 
 
             Console.ReadLine();

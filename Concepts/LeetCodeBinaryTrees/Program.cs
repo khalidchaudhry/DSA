@@ -768,9 +768,15 @@ namespace LeetCodeBinaryTrees
 
             //var ans=ConstructBinaryTree.BuildTree(preOrder,inOrder);
 
-            _894 FBT = new _894();
+            //_894 FBT = new _894();
+            //var result=FBT.allPossibleFBT(3);
 
-            var result=FBT.allPossibleFBT(3);
+            _654 MaxBinaryTree = new _654();
+
+            int[] nums = new int[]{};
+
+            var ans=MaxBinaryTree.ConstructMaximumBinaryTree(nums);
+
 
             Console.ReadLine();
         }

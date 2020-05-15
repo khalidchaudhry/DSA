@@ -155,19 +155,32 @@ namespace PracticingRecursionInJava
 
             ////var ans=Sum.Sum(linkedList.head);
 
-            LinkedList.LinkedList linkedList = new LinkedList.LinkedList();
-            linkedList.head = new LinkedList.ListNode(1);
-            linkedList.head.next = new LinkedList.ListNode(2);
-            linkedList.head.next.next = new LinkedList.ListNode(3);
-            linkedList.head.next.next.next = new LinkedList.ListNode(4);
-            linkedList.head.next.next.next.next = new LinkedList.ListNode(5);
+            //LinkedList.LinkedList linkedList = new LinkedList.LinkedList();
+            //linkedList.head = new LinkedList.ListNode(1);
+            //linkedList.head.next = new LinkedList.ListNode(2);
+            //linkedList.head.next.next = new LinkedList.ListNode(4);
+            //linkedList.head.next.next.next = new LinkedList.ListNode(5);
+            //linkedList.head.next.next.next.next = new LinkedList.ListNode(6);
 
             //_12 Minimum = new _12();
 
             //var result=Minimum.Minimum(linkedList.head);
-            _16 Ascending = new _16();
+            //_16 Ascending = new _16();
 
-            var result= Ascending.IsAscending(linkedList.head);
+            //var result= Ascending.IsAscending(linkedList.head);
+
+            //LinkedList._20 InsertNode = new LinkedList._20();
+            //var test=InsertNode.Insert0(linkedList.head,3);
+
+            //LinkedList._21 MakeLinkedList = new LinkedList._21();
+            //int[] nums = new int[5] { 1, 2, 3, 4, 5 };
+
+            //var result=MakeLinkedList.MakeLinkedList(nums,nums.Length);
+
+            LinkedList._22 MakeLinkedList = new LinkedList._22();
+
+            var ans=MakeLinkedList.MakeLinkedList(1,5,2);
+
 
             Console.ReadLine();
         }

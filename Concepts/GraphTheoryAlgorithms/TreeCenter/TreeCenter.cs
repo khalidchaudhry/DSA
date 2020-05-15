@@ -35,7 +35,7 @@ namespace GraphTheoryAlgorithms.TreeCenter
             }
             int processedLeafs = leaves.Count;
             //! Remove leaf nodes and decrease the degree of each node adding new leaf nodes progressively
-            // ! until only the centers remain.
+            // ! until only the center(s) remain.
             //! The way we are going to know that we found center or centers is when we have processed all the nodes in the tree
             while (processedLeafs < n)
             {
@@ -49,7 +49,7 @@ namespace GraphTheoryAlgorithms.TreeCenter
                             newLeaves.Add(neighbor);
                         }
                     }
-                    //! every time we finished processing formal leaf node , feel free to explicitly give it a degree of 0 to marked it as done 
+                    //! every time we finished processing formal leaf node , explicitly give it a degree of 0 to marked it as done 
                     degree[node] = 0;
                 }
                 processedLeafs += newLeaves.Count;

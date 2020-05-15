@@ -50,9 +50,11 @@
     <Compile Include="Easy\997.cs" />
     <Compile Include="Medium\207.cs" />
     <Compile Include="Medium\210.cs" />
+    <Compile Include="Medium\310.cs" />
     <Compile Include="Medium\332.cs" />
     <Compile Include="Medium\399.cs" />
     <Compile Include="Medium\743.cs" />
+    <Compile Include="Medium\785.cs" />
     <Compile Include="Medium\959.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinaryTree.Medium.scottc130
+namespace BinaryTree.Medium
 {
     public class TreeNode
     {
