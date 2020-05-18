@@ -52,6 +52,7 @@
     <Compile Include="CC\ConnectedComponentsDfsSolverAdjacencyList.cs" />
     <Compile Include="DFS\DepthFirstSearchAdjacencyListRecursive .cs" />
     <Compile Include="Edge.cs" />
+    <Compile Include="FloydWarshall\FloyadWarshalAlgorithm.cs" />
     <Compile Include="LazyDijkstra\DijkstrasShortestPathAdjacencyList2.cs" />
     <Compile Include="LazyDijkstra\DijkstrasShortestPathAdjacencyList .cs" />
     <Compile Include="LazyDijkstra\Node.cs" />

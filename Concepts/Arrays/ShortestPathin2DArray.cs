@@ -43,22 +43,22 @@ namespace Arrays
         {
             List<Node> neighbours = new List<Node>();
 
-            if (node.x - 1 > -1 && matrix[node.x - 1][node.y] != '0')//up
+            if (node.x - 1 > -1 && matrix[node.x - 1][node.y] != '0') //!up
             {
                 neighbours.Add(new Node(node.x - 1, node.y, node.distanceFromSource + 1));
             }
 
-            if ( node.x + 1 < matrix.Length && matrix[node.x + 1][node.y] != '0')//down
+            if ( node.x + 1 < matrix.Length && matrix[node.x + 1][node.y] != '0')//!down
             {
                 neighbours.Add(new Node(node.x + 1, node.y, node.distanceFromSource + 1));
             }
 
-            if (node.y - 1 > -1  && matrix[node.x][node.y - 1] != '0')//left
+            if (node.y - 1 > -1  && matrix[node.x][node.y - 1] != '0')//!left
             {
                 neighbours.Add(new Node(node.x, node.y - 1, node.distanceFromSource + 1));
             }           
 
-            if (node.y + 1 < matrix.Length && matrix[node.x][node.y + 1] != '0')//right
+            if (node.y + 1 < matrix.Length && matrix[node.x][node.y + 1] != '0')//!right
             {
                 neighbours.Add(new Node(node.x, node.y + 1, node.distanceFromSource + 1));
             } 

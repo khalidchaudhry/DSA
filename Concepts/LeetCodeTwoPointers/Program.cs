@@ -21,15 +21,29 @@ namespace LeetCodeTwoPointers
             //var ans=MinimumSize.MinSubArrayLen(80,nums);
 
 
-            _904 Fruit = new _904();
+            //_904 Fruit = new _904();
 
-            int[] tree = new int[] {1,2,1 };
+            //int[] tree = new int[] {1,2,1 };
 
-            var ans=Fruit.TotalFruit(tree);
+            //var ans=Fruit.TotalFruit(tree);
 
-            Console.ReadKey();
+            //Console.ReadKey();
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+
+            _86 Partition = new _86();
+
+            // 1->4->3->2->5->2
+            ListNode listA = new ListNode(1);
+            listA.next = new ListNode(4);
+            listA.next.next = new ListNode(3);
+            listA.next.next.next = new ListNode(2);
+            listA.next.next.next.next = new ListNode(5);
+            listA.next.next.next.next.next = new ListNode(2);
+            //listA.next.next.next.next.next.next = new ListNode(2);
+
+            var result=Partition.Partition0(listA,3);
+            Console.ReadLine();
+       
         }
     }
 }

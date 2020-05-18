@@ -156,18 +156,47 @@ namespace LeetCodeGraphs
 
             //MinHeight.FindMinHeightTrees(n,edges);
 
-            int[][] graph = new int[4][]
-            {
-                new int[]{1,3 },
-                new int[]{0,2 },
-                new int[]{1,3},
-                new int[]{0,2 },
+            //int[][] graph = new int[4][]
+            //{
+            //    new int[]{1,3 },
+            //    new int[]{0,2 },
+            //    new int[]{1,3},
+            //    new int[]{0,2 },
 
+            //};
+
+            //_785 Bipartite = new _785();
+
+            //Bipartite.IsBipartite(graph);
+
+            //_684 RedundantConnection = new _684();
+
+            //int[][] edges = new int[3][]
+            //{
+            //    new int[]{ 1,2},
+            //    new int[]{1,3 },
+            //    new int[]{2,3 },
+            //};
+
+
+            //RedundantConnection.FindRedundantConnection(edges);
+
+
+            _802 EventualSafe = new _802();
+
+            int[][] graph = new int[5][]
+            {
+                new int[]{0},
+                new int[]{2,3,4 },
+                new int[]{3,4},
+                new int[]{0,4},
+                new int[]{}
             };
 
-            _785 Bipartite = new _785();
 
-            Bipartite.IsBipartite(graph);
+            EventualSafe.EventualSafeNodes0(graph);
+
+
 
 
             Console.ReadKey();

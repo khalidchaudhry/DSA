@@ -2,6 +2,7 @@ using GraphTheoryAlgorithms.BellmanFord;
 using GraphTheoryAlgorithms.BFS;
 using GraphTheoryAlgorithms.CC;
 using GraphTheoryAlgorithms.DFS;
+using GraphTheoryAlgorithms.FloydWarshall;
 using GraphTheoryAlgorithms.LazyDijkstra;
 using GraphTheoryAlgorithms.RootingTree;
 using GraphTheoryAlgorithms.TopSort;
@@ -330,41 +331,41 @@ namespace GraphTheoryAlgorithms
 
             /*****************************************************************************/
             // Bellman ford Adjacency matrix algorithm
-            /*****************************************************************************/
-            int n = 9;
-            double[][] graph = new double[n][];
+            ///*****************************************************************************/
+            //int n = 9;
+            //double[][] graph = new double[n][];
 
-            // Setup completely disconnected graph with the distance
-            // from a node to itself to be zero.
-            for (int i = 0; i < n; i++)
-            {
-                graph[i] = new double[n];
-                graph[i] = Enumerable.Repeat(double.PositiveInfinity, n).ToArray();
-                graph[i][i] = 0;
-            }
+            //// Setup completely disconnected graph with the distance
+            //// from a node to itself to be zero.
+            //for (int i = 0; i < n; i++)
+            //{
+            //    graph[i] = new double[n];
+            //    graph[i] = Enumerable.Repeat(double.PositiveInfinity, n).ToArray();
+            //    graph[i][i] = 0;
+            //}
 
 
-            graph[0][1] = 1;
-            graph[1][2] = 1;
-            graph[2][4] = 1;
-            graph[4][3] = -3;
-            graph[3][2] = 1;
-            graph[1][5] = 4;
-            graph[1][6] = 4;
-            graph[5][6] = 5;
-            graph[6][7] = 4;
-            graph[5][7] = 3;
+            //graph[0][1] = 1;
+            //graph[1][2] = 1;
+            //graph[2][4] = 1;
+            //graph[4][3] = -3;
+            //graph[3][2] = 1;
+            //graph[1][5] = 4;
+            //graph[1][6] = 4;
+            //graph[5][6] = 5;
+            //graph[6][7] = 4;
+            //graph[5][7] = 3;
 
-            int start = 0;
+            //int start = 0;
 
-            BellmanFordAdjacencyMatrix solver;
-            solver = new BellmanFordAdjacencyMatrix(start, graph);
-            double[] d = solver.GetShortestPaths();
+            //BellmanFordAdjacencyMatrix solver;
+            //solver = new BellmanFordAdjacencyMatrix(start, graph);
+            //double[] d = solver.GetShortestPaths();
 
-            for (int i = 0; i < n; i++)
-            {
-                Console.WriteLine($"The cost to get from node {start} to {i} is {d[i]}");
-            }
+            //for (int i = 0; i < n; i++)
+            //{
+            //    Console.WriteLine($"The cost to get from node {start} to {i} is {d[i]}");
+            //}
 
             // Output:
             // The cost to get from node 0 to 0 is 0.00
@@ -403,6 +404,89 @@ namespace GraphTheoryAlgorithms
             //{
             //    Console.WriteLine($"The cost to get from node {start} to {i} is {d[i]}");
             //}
+
+            /*****************************************************************************/
+            // Floyd Warshall algorithm
+            /*****************************************************************************/
+            // Construct graph.
+            int n = 7;
+            double[][] m = FloyadWarshalAlgorithm.createGraph(n);
+
+            // Add some edge values.
+            m[0][1] = 2;
+            m[0][2] = 5;
+            m[0][6] = 10;
+            m[1][2] = 2;
+            m[1][4] = 11;
+            m[2][6] = 2;
+            m[6][5] = 11;
+            m[4][5] = 1;
+            m[5][4] = -2;
+
+            FloyadWarshalAlgorithm solver = new FloyadWarshalAlgorithm(m);
+            double[][] dist = solver.GetApspMatrix();
+
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    Console.WriteLine($"This shortest path from node {i} to node {j} is {dist[i][j]}");
+            // Prints:
+            // This shortest path from node 0 to node 0 is 0.000
+            // This shortest path from node 0 to node 1 is 2.000
+            // This shortest path from node 0 to node 2 is 4.000
+            // This shortest path from node 0 to node 3 is Infinity
+            // This shortest path from node 0 to node 4 is -Infinity
+            // This shortest path from node 0 to node 5 is -Infinity
+            // This shortest path from node 0 to node 6 is 6.000
+            // This shortest path from node 1 to node 0 is Infinity
+            // This shortest path from node 1 to node 1 is 0.000
+            // This shortest path from node 1 to node 2 is 2.000
+            // This shortest path from node 1 to node 3 is Infinity
+            // ...
+            Console.WriteLine();
+
+            // Reconstructs the shortest paths from all nodes to every other nodes.
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    List<int> path = solver.ReconstructShortestPath(i, j);
+                    String str;
+                    if (path == null)
+                    {
+                        str = "HAS AN infinity NUMBER OF SOLUTIONS! (negative cycle case)";
+                    }
+                    else if (path.Capacity == 0)
+                    {
+                        str = $"DOES NOT EXIST (node {i} doesn't reach node {j})";
+                    }
+                    else
+                    {
+                        str = string.Join("->",path);
+                           
+                        str = "is: [" + str + "]";
+                    }
+
+                    Console.WriteLine($"The shortest path from node {i} to node {j} is {str}");
+                }
+            }
+            // Prints:
+            // The shortest path from node 0 to node 0 is: [0]
+            // The shortest path from node 0 to node 1 is: [0 -> 1]
+            // The shortest path from node 0 to node 2 is: [0 -> 1 -> 2]
+            // The shortest path from node 0 to node 3 DOES NOT EXIST (node 0 doesn't reach node 3)
+            // The shortest path from node 0 to node 4 HAS AN infinity NUMBER OF SOLUTIONS! (negative cycle case)
+            // The shortest path from node 0 to node 5 HAS AN infinity NUMBER OF SOLUTIONS! (negative cycle case)
+            // The shortest path from node 0 to node 6 is: [0 -> 1 -> 2 -> 6]
+            // The shortest path from node 1 to node 0 DOES NOT EXIST (node 1 doesn't reach node 0)
+            // The shortest path from node 1 to node 1 is: [1]
+            // The shortest path from node 1 to node 2 is: [1 -> 2]
+            // The shortest path from node 1 to node 3 DOES NOT EXIST (node 1 doesn't reach node 3)
+            // The shortest path from node 1 to node 4 HAS AN infinity NUMBER OF SOLUTIONS! (negative cycle case)
+            // The shortest path from node 1 to node 5 HAS AN infinity NUMBER OF SOLUTIONS! (negative cycle case)
+            // The shortest path from node 1 to node 6 is: [1 -> 2 -> 6]
+            // The shortest path from node 2 to node 0 DOES NOT EXIST (node 2 doesn't reach node 0)
+            //..
+
 
             Console.ReadKey();
         }

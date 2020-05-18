@@ -136,8 +136,8 @@ namespace Graphs.GeeksForGeeks
             ///* Let us create following graph 
             // 0 
             //|  \ 
-            //|    \ 
-            //1-----2 */
+           // |   \ 
+           //1-----2 */
             //int V = 3, E = 3;
             //UnionFind.Graph graph = new UnionFind.Graph(V,E);
             //// add edge 0-1 

@@ -29,7 +29,7 @@ namespace GraphTheoryAlgorithms.BellmanFord
             
             double[] dist = new double[V];
             //! Initialize the distance to all nodes to be infinity
-            dist = Enumerable.Repeat(double.MaxValue, V).ToArray();
+            dist = Enumerable.Repeat(double.PositiveInfinity, V).ToArray();
             // !except for the start node which is zero.
             dist[start] = 0;
 
@@ -57,7 +57,7 @@ namespace GraphTheoryAlgorithms.BellmanFord
                     {
                         if (dist[edge.from] + edge.cost < dist[edge.to])
                         {
-                            dist[edge.to] = double.MinValue;
+                            dist[edge.to] = double.NegativeInfinity;
                         }
                     }
                 }

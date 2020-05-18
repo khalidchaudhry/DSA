@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraphTheoryAlgorithms.BellmanFord
 {
-    //! not producing the correct output
+    
     class BellmanFordAdjacencyMatrix
     {
         private int n, start;
@@ -51,7 +51,7 @@ namespace GraphTheoryAlgorithms.BellmanFord
         {
             if (!solved) Solve();
             List<int> path = new List<int>();
-            if (dist[end] == double.MaxValue) return path;
+            if (dist[end] == double.PositiveInfinity) return path;
             for (int at = end; prev[at] != int.MaxValue; at = prev[at])
             {
                 // Return null since there are an infinite number of shortest paths.

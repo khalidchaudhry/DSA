@@ -12,10 +12,10 @@ namespace BinaryTree.Medium
 
         public bool IsValidBSTRecursive(TreeNode root)
         {
-            //!datatype must be long rather than int to satisfy below test case
+            //!datatype must be long rather than int to satisfy below test case> What about using double and then infinity froom it
             //[-2147483648,null,2147483647]
 
-            return Helper(root, long.MinValue, long.MaxValue);
+            return Helper(root, double.NegativeInfinity, double.PositiveInfinity);
         }
         /// <summary>
         /// Pre order traversal
@@ -24,13 +24,14 @@ namespace BinaryTree.Medium
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
-        private bool Helper(TreeNode node, long left, long right)
+        private bool Helper(TreeNode node, double left, double right)
         {
             if (node == null)
                 return true;
             if (node.Value > left && node.Value < right)
             {
-                return Helper(node.Left, left, node.Value) && Helper(node.Right, node.Value, right);
+                return Helper(node.Left, left, node.Value) &&
+                       Helper(node.Right, node.Value, right);
             }
             else
             {
@@ -51,16 +52,18 @@ namespace BinaryTree.Medium
             TreeNode curr = root;
             long minVal = long.MinValue;
             //!  || stk.Count>0 for [5,1,4,null,null,3,6]
-            while (curr != null || stk.Count>0)
+            while (curr != null || stk.Count > 0)
             {
+                //! Keep pushing the left side till it reaches bottom
                 while (curr != null)
                 {
                     stk.Push(curr);
                     curr = curr.Left;
                 }
-
-               curr = stk.Pop();
+                //! Pope item from stack as it will be last elment on left side of the tree
+                curr = stk.Pop();
                 //!<= for this test case [1,1]
+                //!If popped node is  less than or equal to the minValue return false else set minVal to the popped node value
                 if (curr.Value <= minVal)
                 {
                     return false;
