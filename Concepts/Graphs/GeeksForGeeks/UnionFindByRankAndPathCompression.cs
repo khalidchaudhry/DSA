@@ -22,7 +22,7 @@ namespace Graphs.GeeksForGeeks.UnionFindByRankAndPathCompression
                 Edges[i] = new Edge();
             }
         }
-
+        //https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/
         // The main function to check whether  
         // a given graph contains cycle or not  
         public bool IsCycle(Graph graph)
@@ -71,6 +71,8 @@ namespace Graphs.GeeksForGeeks.UnionFindByRankAndPathCompression
         {
             int xroot = Find(subsets, x);
             int yroot = Find(subsets, y);
+
+            //!attach the smaller rank tree to the higher rank tree
             // if xroot.rank is less than yroot.rank 
             if (subsets[xroot].rank < subsets[yroot].rank)
             {
@@ -83,12 +85,12 @@ namespace Graphs.GeeksForGeeks.UnionFindByRankAndPathCompression
                 // making xroot parent of yroot
                 subsets[yroot].parent = xroot;
             }
-            // of both x and y root ranks are equal
+            // !of both x and y root ranks are equal,make any tree child of other tree
             else
             {
                 // make yroot parent of xroot
                 subsets[xroot].parent = yroot;
-                // increment rank value of yroot
+                // !now increase the rank of x for the next time
                 subsets[yroot].rank++;
             }
         }

@@ -46,6 +46,7 @@
     <Compile Include="InsertLevelOrder.cs" />
     <Compile Include="Medium\KthSmallest.cs" />
     <Compile Include="Medium\BST.cs" />
+    <Compile Include="Medium\PreOrderTraversal.cs" />
     <Compile Include="Medium\TreeNode.cs" />
     <Compile Include="Medium\ValidBST.cs" />
     <Compile Include="Node.cs" />

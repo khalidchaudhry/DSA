@@ -36,13 +36,17 @@ namespace Strings
 
             //var result=All.FindAnagrams("cbaebabacd", "abc");
 
-            FindSubstring substring = new FindSubstring();
+            //FindSubstring substring = new FindSubstring();
 
-            string s = "barfoothefoobarman";
-            List<string> words = new List<string> { "foo", "bar" };
+            //string s = "barfoothefoobarman";
+            //List<string> words = new List<string> { "foo", "bar" };
 
-            var ans=substring.SubstringWithAllConcatenateWords(s,words);
+            //var ans=substring.SubstringWithAllConcatenateWords(s,words);
 
+            LongestSubstringwithAtMostTwoDistinctCharacters longest = new LongestSubstringwithAtMostTwoDistinctCharacters();
+
+
+            longest.LengthOfLongestSubstringTwoDistinct2("leeeeeeeetcooooooooode");
 
             Console.ReadLine();
         }

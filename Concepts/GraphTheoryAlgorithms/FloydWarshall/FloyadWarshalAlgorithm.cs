@@ -40,7 +40,11 @@ namespace GraphTheoryAlgorithms.FloydWarshall
             {
                 for (int j = 0; j < n; j++)
                 {
-                    if (matrix[i][j] != double.PositiveInfinity) next[i][j] = j;
+                    if (matrix[i][j] != double.PositiveInfinity)
+                    {
+                        //! next node you want to go to from i to j is j by default
+                        next[i][j] = j;
+                    }
                     dp[i][j] = matrix[i][j];
                 }
             }
@@ -98,13 +102,13 @@ namespace GraphTheoryAlgorithms.FloydWarshall
             solved = true;
         }
 
-          /**
-          * Reconstructs the shortest path (of nodes) from 'start' to 'end' inclusive.
-          *
-          * @return An array of nodes indexes of the shortest path from 'start' to 'end'. If 'start' and
-          *     'end' are not connected return an empty array. If the shortest path from 'start' to 'end'
-          *     are reachable by a negative cycle return -1.
-          */
+        /**
+        * Reconstructs the shortest path (of nodes) from 'start' to 'end' inclusive.
+        *
+        * @return An array of nodes indexes of the shortest path from 'start' to 'end'. If 'start' and
+        *     'end' are not connected return an empty array. If the shortest path from 'start' to 'end'
+        *     are reachable by a negative cycle return -1.
+        */
         public List<int> ReconstructShortestPath(int start, int end)
         {
             Solve();
@@ -134,10 +138,10 @@ namespace GraphTheoryAlgorithms.FloydWarshall
             for (int i = 0; i < n; i++)
             {
                 matrix[i] = new double[n];
-                matrix[i]=Enumerable.Repeat(double.PositiveInfinity,n).ToArray();
+                matrix[i] = Enumerable.Repeat(double.PositiveInfinity, n).ToArray();
                 matrix[i][i] = 0;
             }
-          
+
             return matrix;
         }
 

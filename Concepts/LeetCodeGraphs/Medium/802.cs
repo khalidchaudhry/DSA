@@ -88,29 +88,38 @@ namespace LeetCodeGraphs.Medium
             if (graph == null || graph.Length == 0) return res;
 
             int nodeCount = graph.Length;
+            //! initially all the nodes will be not visited. 
             int[] color = new int[nodeCount];
 
             for (int i = 0; i < nodeCount; i++)
             {
-                if (DFS(graph, i, color)) res.Add(i);
+                if (DFS(graph, i, color))
+                {
+                    res.Add(i);
+                }
             }
 
             return res;
         }
         private bool DFS(int[][] graph, int start, int[] color)
         {
-            if (color[start] != 0) return color[start] == 1;
+            if (color[start] != 0)
+            {
+                return color[start] == 1;
+            }
 
             color[start] = 2;
             foreach (int newNode in graph[start])
             {
-                if (!DFS(graph, newNode, color)) return false;
+                if (!DFS(graph, newNode, color))
+                    return false;
             }
             color[start] = 1;
 
             return true;
         }
 
+        //!Not giving correct result
         public IList<int> EventualSafeNodes(int[][] graph)
         {
             Degree[] degree = new Degree[graph.Length];

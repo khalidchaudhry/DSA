@@ -25,6 +25,7 @@ namespace LeetCodeArrays.Medium
                 }
                 else if (nums[iterator] == 2)
                 {
+                    //! we are not incrementing iterator when array element is 2
                     Swap(nums, iterator, back);
                     --back;
                 }

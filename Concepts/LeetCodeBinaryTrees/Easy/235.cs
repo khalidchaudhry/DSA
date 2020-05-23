@@ -16,6 +16,22 @@ namespace LeetCodeBinaryTrees.Easy
                  1  
          */
 
+        //! If tree is a BST 
+        public TreeNode LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q)
+        {
+            if (root.val > Math.Max(p.val, q.val))
+            {
+                return LowestCommonAncestor0(root.left, p, q);
+            }
+            else if (root.val < Math.Min(p.val, q.val))
+            {
+                return LowestCommonAncestor0(root.right, p, q);
+            }
+
+            else
+                return root;
+
+        }
 
         public TreeNode LowestCommonAncesstor(TreeNode root, TreeNode p, TreeNode q)
         {
@@ -103,25 +119,8 @@ namespace LeetCodeBinaryTrees.Easy
             * bottom to up...so we return what we hold...'root'
             */
             return root;
-
-
         }
 
-        // If tree is a BST 
-        public TreeNode LowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q)
-        {
-            if (root.val > Math.Max(p.val, q.val))
-            {
-                return LowestCommonAncestor3(root.left, p, q);
-            }
-            else if (root.val < Math.Min(p.val, q.val))
-            {
-                return LowestCommonAncestor3(root.right, p, q);
-            }
-
-            else
-                return root;
-
-        }
+       
     }
 }

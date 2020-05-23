@@ -771,12 +771,30 @@ namespace LeetCodeBinaryTrees
             //_894 FBT = new _894();
             //var result=FBT.allPossibleFBT(3);
 
-            _654 MaxBinaryTree = new _654();
+            //_654 MaxBinaryTree = new _654();
 
-            int[] nums = new int[]{};
+            //int[] nums = new int[]{};
 
-            var ans=MaxBinaryTree.ConstructMaximumBinaryTree(nums);
+            //var ans=MaxBinaryTree.ConstructMaximumBinaryTree(nums);
 
+            var t = new TreeNode(3);
+            var five = new TreeNode(5);
+            var one = new TreeNode(1);
+
+
+            t.left = five;
+            t.left.left = new TreeNode(6);
+            t.left.right = new TreeNode(2);
+            t.left.right.left = new TreeNode(7);
+            t.left.right.right = new TreeNode(4);
+            t.right= one;
+            t.right.left = new TreeNode(0);
+            t.right.right = new TreeNode(8);
+            ////t.left.right.left = new TreeNode(0);
+
+            _236 LCA = new _236();
+
+            LCA.LowestCommonAncestor2(t,five,one);
 
             Console.ReadLine();
         }

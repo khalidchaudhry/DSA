@@ -121,9 +121,26 @@ namespace LeetCodeStrings
             //var result=Multiplier.Multiply0(nums1,nums2);
 
 
-            _8 Atoi = new _8();
-            string str = "-5-";
-            var result=Atoi.MyAtoi1(str);
+            //_8 Atoi = new _8();
+            //string str = "-5-";
+            //var result=Atoi.MyAtoi1(str);
+
+            _609 Duplicate = new _609();
+            //string[] paths = new string[]
+            //{
+            //    "root/a 1.txt(abcd) 2.txt(efgh)",
+            //    "root/c 3.txt(abcd)",
+            //    "root/c/d 4.txt(efgh)",
+            //    "root 4.txt(efgh)"
+            //};
+            string[] paths = new string[]
+            {
+                "root/a 1.txt(abcd) 2.txt(efsfgh)",
+                "root/c 3.txt(abdfcd)",
+                "root/c/d 4.txt(efggdfh)"
+            };
+
+            Duplicate.FindDuplicate(paths);
 
 
             Console.ReadLine();

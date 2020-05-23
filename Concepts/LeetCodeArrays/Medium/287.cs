@@ -18,7 +18,9 @@ namespace LeetCodeArrays.Medium
             int hare = nums[0];
             do
             {
+                //!tortoise will take just one jump
                 tortise = nums[tortise];
+                //! hare with take two jumps
                 hare = nums[nums[hare]];
 
 
@@ -27,6 +29,7 @@ namespace LeetCodeArrays.Medium
             hare = nums[0];
             while (tortise != hare)
             {
+                //!Both hair and tortoise will take one jump
                 tortise = nums[tortise];
                 hare = nums[hare];
             }

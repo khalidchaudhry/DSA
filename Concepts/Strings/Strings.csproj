@@ -46,6 +46,7 @@
     <Compile Include="AllSubStrings.cs" />
     <Compile Include="FindAllAnagrams.cs" />
     <Compile Include="FindSubstring.cs" />
+    <Compile Include="LongestSubstringwithAtMostTwoDistinctCharacters.cs" />
     <Compile Include="MinimumWindowSubstring.cs" />
     <Compile Include="PrintSubsequencesString.cs" />
     <Compile Include="Program.cs" />
