@@ -48,6 +48,7 @@
     <Compile Include="FindSubstring.cs" />
     <Compile Include="LongestSubstringwithAtMostTwoDistinctCharacters.cs" />
     <Compile Include="MinimumWindowSubstring.cs" />
+    <Compile Include="PermutationsInString.cs" />
     <Compile Include="PrintSubsequencesString.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -43,10 +43,15 @@ namespace Strings
 
             //var ans=substring.SubstringWithAllConcatenateWords(s,words);
 
-            LongestSubstringwithAtMostTwoDistinctCharacters longest = new LongestSubstringwithAtMostTwoDistinctCharacters();
+            //LongestSubstringwithAtMostTwoDistinctCharacters longest = new LongestSubstringwithAtMostTwoDistinctCharacters();
+
+            //longest.LengthOfLongestSubstringTwoDistinct3("eceba");
+
+            PermutationsInString permutation = new PermutationsInString();
+
+            permutation.CheckInclusion("ab", "eidboaoo");
 
 
-            longest.LengthOfLongestSubstringTwoDistinct2("leeeeeeeetcooooooooode");
 
             Console.ReadLine();
         }

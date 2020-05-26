@@ -82,9 +82,10 @@ namespace Strings
                 // slidewindow contains 3 characters
                 if (hashmap.Count == 3)
                 {
-                    //!delete the leftmost character
+                   //!left most based on min value in hash map e.g {e=2,c=1,b=3} the last most is c and not e
                     int leftMostIndex = hashmap.Values.Min();
                     KeyValuePair<char, int> keyValuePair = hashmap.FirstOrDefault(x => x.Value == leftMostIndex);
+                    //!delete the leftmost character
                     hashmap.Remove(keyValuePair.Key);
                     //! move left pointer of the slidewindow
                     left = keyValuePair.Value + 1;
@@ -95,7 +96,8 @@ namespace Strings
             return max_len;
         }
 
-        //! One issue with below code. No gurantee that values in dictionary will be inserted in order
+        //!issue with below code. Does not work for eceba as it will delete e when count==3 for first time.
+        //! Rather then deleting c
         //! so below line is not correct 
         //!char del_Key = table.ElementAt(0).Key;
         public int LengthOfLongestSubstringTwoDistinct3(string s)

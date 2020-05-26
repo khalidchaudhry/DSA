@@ -3,6 +3,7 @@ using Graphs.BFSPaths;
 using Graphs.DFSPaths;
 using Graphs.GraphRepresentation;
 using Graphs.KoderDojo;
+using Graphs.Medium;
 using Graphs.Traversal;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Graphs
 {
     class Program
     {
-        static void Main2(string[] args)
+        static void Main(string[] args)
         {
             /***********************************************************************************/
             // Hermant Jain book
@@ -242,11 +243,25 @@ namespace Graphs
             ///////////////////////////////////////
 
             //////////////////////////////////////
-            Graph3 g = new Graph3(3);
-            g.AddUnDirectedEdge(0,1);
-            g.AddUnDirectedEdge(1, 2);
-            g.AddUnDirectedEdge(2, 0);
-            g.Print();
+            //Graph3 g = new Graph3(3);
+            //g.AddUnDirectedEdge(0,1);
+            //g.AddUnDirectedEdge(1, 2);
+            //g.AddUnDirectedEdge(2, 0);
+            //g.Print();
+
+            int n = 5;
+            int[][] edges = new int[][]
+                {
+                    new int[]{0,1},
+                    new int[]{1,2},
+                    new int[]{2,3},
+                     new int[]{3,4},
+                };
+            ConnectedComponents cc = new ConnectedComponents();
+
+            var result=cc.CountComponentsIterative(5,edges);
+
+
             Console.Read();
         }
     }

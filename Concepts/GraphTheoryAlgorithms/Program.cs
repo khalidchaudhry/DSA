@@ -1,5 +1,6 @@
 using GraphTheoryAlgorithms.BellmanFord;
 using GraphTheoryAlgorithms.BFS;
+using GraphTheoryAlgorithms.BridgesArticulationPoints;
 using GraphTheoryAlgorithms.CC;
 using GraphTheoryAlgorithms.DFS;
 using GraphTheoryAlgorithms.FloydWarshall;
@@ -409,66 +410,66 @@ namespace GraphTheoryAlgorithms
             // Floyd Warshall algorithm
             /*****************************************************************************/
             // Construct graph.
-            int n = 7;
-            double[][] m = FloyadWarshalAlgorithm.createGraph(n);
+            //int n = 7;
+            //double[][] m = FloyadWarshalAlgorithm.createGraph(n);
 
-            // Add some edge values.
-            m[0][1] = 2;
-            m[0][2] = 5;
-            m[0][6] = 10;
-            m[1][2] = 2;
-            m[1][4] = 11;
-            m[2][6] = 2;
-            m[6][5] = 11;
-            m[4][5] = 1;
-            m[5][4] = -2;
+            //// Add some edge values.
+            //m[0][1] = 2;
+            //m[0][2] = 5;
+            //m[0][6] = 10;
+            //m[1][2] = 2;
+            //m[1][4] = 11;
+            //m[2][6] = 2;
+            //m[6][5] = 11;
+            //m[4][5] = 1;
+            //m[5][4] = -2;
 
-            FloyadWarshalAlgorithm solver = new FloyadWarshalAlgorithm(m);
-            double[][] dist = solver.GetApspMatrix();
+            //FloyadWarshalAlgorithm solver = new FloyadWarshalAlgorithm(m);
+            //double[][] dist = solver.GetApspMatrix();
 
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < n; j++)
-                    Console.WriteLine($"This shortest path from node {i} to node {j} is {dist[i][j]}");
-            // Prints:
-            // This shortest path from node 0 to node 0 is 0.000
-            // This shortest path from node 0 to node 1 is 2.000
-            // This shortest path from node 0 to node 2 is 4.000
-            // This shortest path from node 0 to node 3 is Infinity
-            // This shortest path from node 0 to node 4 is -Infinity
-            // This shortest path from node 0 to node 5 is -Infinity
-            // This shortest path from node 0 to node 6 is 6.000
-            // This shortest path from node 1 to node 0 is Infinity
-            // This shortest path from node 1 to node 1 is 0.000
-            // This shortest path from node 1 to node 2 is 2.000
-            // This shortest path from node 1 to node 3 is Infinity
-            // ...
-            Console.WriteLine();
+            //for (int i = 0; i < n; i++)
+            //    for (int j = 0; j < n; j++)
+            //        Console.WriteLine($"This shortest path from node {i} to node {j} is {dist[i][j]}");
+            //// Prints:
+            //// This shortest path from node 0 to node 0 is 0.000
+            //// This shortest path from node 0 to node 1 is 2.000
+            //// This shortest path from node 0 to node 2 is 4.000
+            //// This shortest path from node 0 to node 3 is Infinity
+            //// This shortest path from node 0 to node 4 is -Infinity
+            //// This shortest path from node 0 to node 5 is -Infinity
+            //// This shortest path from node 0 to node 6 is 6.000
+            //// This shortest path from node 1 to node 0 is Infinity
+            //// This shortest path from node 1 to node 1 is 0.000
+            //// This shortest path from node 1 to node 2 is 2.000
+            //// This shortest path from node 1 to node 3 is Infinity
+            //// ...
+            //Console.WriteLine();
 
-            // Reconstructs the shortest paths from all nodes to every other nodes.
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    List<int> path = solver.ReconstructShortestPath(i, j);
-                    String str;
-                    if (path == null)
-                    {
-                        str = "HAS AN infinity NUMBER OF SOLUTIONS! (negative cycle case)";
-                    }
-                    else if (path.Capacity == 0)
-                    {
-                        str = $"DOES NOT EXIST (node {i} doesn't reach node {j})";
-                    }
-                    else
-                    {
-                        str = string.Join("->",path);
-                           
-                        str = "is: [" + str + "]";
-                    }
+            //// Reconstructs the shortest paths from all nodes to every other nodes.
+            //for (int i = 0; i < n; i++)
+            //{
+            //    for (int j = 0; j < n; j++)
+            //    {
+            //        List<int> path = solver.ReconstructShortestPath(i, j);
+            //        String str;
+            //        if (path == null)
+            //        {
+            //            str = "HAS AN infinity NUMBER OF SOLUTIONS! (negative cycle case)";
+            //        }
+            //        else if (path.Capacity == 0)
+            //        {
+            //            str = $"DOES NOT EXIST (node {i} doesn't reach node {j})";
+            //        }
+            //        else
+            //        {
+            //            str = string.Join("->",path);
 
-                    Console.WriteLine($"The shortest path from node {i} to node {j} is {str}");
-                }
-            }
+            //            str = "is: [" + str + "]";
+            //        }
+
+            //        Console.WriteLine($"The shortest path from node {i} to node {j} is {str}");
+            //    }
+            //}
             // Prints:
             // The shortest path from node 0 to node 0 is: [0]
             // The shortest path from node 0 to node 1 is: [0 -> 1]
@@ -486,6 +487,42 @@ namespace GraphTheoryAlgorithms
             // The shortest path from node 1 to node 6 is: [1 -> 2 -> 6]
             // The shortest path from node 2 to node 0 DOES NOT EXIST (node 2 doesn't reach node 0)
             //..
+
+            /*****************************************************************************/
+            // Find Bridges in graph
+            /*****************************************************************************/
+
+            int n = 4;
+            List<List<int>> graph = CreateGraph(n);
+
+            AddUnDirectedEdge(graph, 0, 1);
+            AddUnDirectedEdge(graph, 0, 2);
+            AddUnDirectedEdge(graph, 1, 2);
+            AddUnDirectedEdge(graph, 2, 3);
+            //AddUnDirectedEdge(graph, 3, 4);
+            //AddUnDirectedEdge(graph, 2, 5);
+            //AddUnDirectedEdge(graph, 5, 6);
+            //AddUnDirectedEdge(graph, 6, 7);
+            //AddUnDirectedEdge(graph, 7, 8);
+            //AddUnDirectedEdge(graph, 8, 5);
+
+            BridgesAdjacencyList solver = new BridgesAdjacencyList(graph, n);
+            List<int> bridges = solver.FindBridges();
+
+            // Prints:
+            // Bridge between nodes: 3 and 4
+            // Bridge between nodes: 2 and 3
+            // Bridge between nodes: 2 and 5
+            for (int i = 0; i < (bridges.Count / 2); i++)
+            {
+                int node1 = bridges[2 * i];
+                int node2 = bridges[2 * i + 1];
+
+                Console.WriteLine($"Bridge between nodes: {node1} and {node2}");
+            }
+
+
+
 
 
             Console.ReadKey();

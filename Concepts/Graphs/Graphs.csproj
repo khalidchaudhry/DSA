@@ -69,6 +69,7 @@
     <Compile Include="GraphRepresentation\Graph2.cs" />
     <Compile Include="KoderDojo\Algorithms.cs" />
     <Compile Include="KoderDojo\Graph.cs" />
+    <Compile Include="Medium\ConnectedComponents.cs" />
     <Compile Include="Practice\BFS.cs" />
     <Compile Include="Practice\DFS.cs" />
     <Compile Include="Practice\Graph2.cs" />

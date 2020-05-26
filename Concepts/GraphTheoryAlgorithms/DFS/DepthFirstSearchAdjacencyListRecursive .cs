@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GraphTheoryAlgorithms.DFS
 {
     /// <summary>
-    /// An implementation of a recursive approach to DFS Time Complexity: O(V + E)
+    //!An implementation of a recursive approach to DFS Time Complexity: O(V + E)
     /// </summary>
     public class DepthFirstSearchAdjacencyListRecursive
     {

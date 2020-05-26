@@ -13,9 +13,9 @@ namespace BinaryTree.Medium
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
-        // DFS magic : initialize stack and do the following 
-        // pop top, retrieve neighbours for top, push unvisited neighbours to stack | repeat while stack not empty 
-        // because this is a tree no need to keep track of visited as no cycles possible. 
+        //! DFS magic : initialize stack and do the following 
+        //! pop top, retrieve neighbours for top, push unvisited neighbours to stack | repeat while stack not empty 
+        //! because this is a tree no need to keep track of visited as no cycles possible. 
         public List<int> PreOrderTraversalIterative(TreeNode root)
         {
             Stack<TreeNode> stk = new Stack<TreeNode>();
@@ -24,13 +24,14 @@ namespace BinaryTree.Medium
 
             while (stk.Count != 0)
             {
-                // pop top 
+                //! pop top 
                 TreeNode curr = stk.Pop();
 
-                if (curr != null) //! Pushing left/Right irrespective  they are null or not hence check  
+                if (curr != null) //! Pushing left/Right to stack below irrespective  they are null or not hence the check  
                 {
-                    // push unvisited neighbours to stack | order matters here, if you reverse it 
-                    // it would still be a DFS but a symmetric one to preorder out of the 6 possible combinations. 
+                    // push unvisited neighbours to stack.
+                    // !Order matters here Right-->Left
+                    // ! if you reverse it would still be a DFS but a symmetric one to preorder out of the 6 possible combinations. 
                     stk.Push(curr.Right);
                     stk.Push(curr.Left);
 

@@ -9,7 +9,7 @@ namespace Graphs.GeeksForGeeks
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main10(string[] args)
         {
             //Graph3 g = new Graph3(5);
             //g.AddDirectedEdge(1, 0);

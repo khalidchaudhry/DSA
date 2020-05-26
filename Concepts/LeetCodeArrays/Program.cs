@@ -221,12 +221,17 @@ namespace LeetCodeArrays
 
             //   var result=Spiral.SpiralOrder0(matrix);
 
-            _442 Duplicates = new _442();
+            //_442 Duplicates = new _442();
 
-            int[] nums = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
+            //int[] nums = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
 
-            var result=Duplicates.FindDuplicates(nums);
+            //var result=Duplicates.FindDuplicates(nums);
 
+
+            _33 RotatedSortedArray = new _33();
+            int[] nums = new int[] {1,3};
+            int target = 3;
+            RotatedSortedArray.Search(nums,target);
 
             Console.ReadLine();
         }

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A918BCC3-8FD0-476A-B936-232C950F0903}</ProjectGuid>
+    <ProjectGuid>{BB601A3C-DA16-4469-B241-E771D48E0CAE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LeetCodeGraphs</RootNamespace>
-    <AssemblyName>LeetCodeGraphs</AssemblyName>
+    <RootNamespace>LeetCodeDivideAndConquer</RootNamespace>
+    <AssemblyName>LeetCodeDivideAndConquer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,9 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,27 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Medium\133.cs" />
-    <Compile Include="Easy\1042.cs" />
-    <Compile Include="Easy\997.cs" />
-    <Compile Include="Medium\207.cs" />
-    <Compile Include="Medium\210.cs" />
-    <Compile Include="Medium\261.cs" />
-    <Compile Include="Medium\310.cs" />
-    <Compile Include="Medium\332.cs" />
-    <Compile Include="Medium\399.cs" />
-    <Compile Include="Medium\684.cs" />
-    <Compile Include="Medium\743.cs" />
-    <Compile Include="Medium\785.cs" />
-    <Compile Include="Medium\802.cs" />
-    <Compile Include="Medium\841.cs" />
-    <Compile Include="Medium\959.cs" />
+    <Compile Include="Medium\215.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

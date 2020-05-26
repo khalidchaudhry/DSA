@@ -48,6 +48,7 @@
     <Compile Include="BellmanFord\BellmanFordAdjacencyList.cs" />
     <Compile Include="BellmanFord\BellmanFordAdjacencyMatrix.cs" />
     <Compile Include="BFS\BreadthFirstSearchAdjacencyListIterative.cs" />
+    <Compile Include="BridgesArticulationPoints\BridgesAdjacencyList.cs" />
     <Compile Include="CC\ConnectedComponents.cs" />
     <Compile Include="CC\ConnectedComponentsDfsSolverAdjacencyList.cs" />
     <Compile Include="DFS\DepthFirstSearchAdjacencyListRecursive .cs" />

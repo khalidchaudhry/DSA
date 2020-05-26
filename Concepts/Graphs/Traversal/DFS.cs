@@ -15,19 +15,20 @@ namespace Graphs.Traversal
             int count = graph.count;
             bool[] visited = new bool[count];
             Stack<int> stk = new Stack<int>();
-
-            visited[start] = true;
+            
             stk.Push(start);
+
             while (stk.Count != 0)
             {
                 var pop = stk.Pop();
+                visited[pop] = true;
+
                 Console.WriteLine($"{pop}");
                 List<Edge> neighbours = graph.adj[pop];
                 foreach (var neighbour in neighbours)
                 {
-                    if (visited[neighbour.dest] == false)
-                    {
-                        visited[neighbour.dest] = true;
+                    if (!visited[neighbour.dest])
+                    {                      
                         stk.Push(neighbour.dest);
                     }
                 }
@@ -35,15 +36,17 @@ namespace Graphs.Traversal
         }
 
         // Approach followed in Hermant Jain book
+        //!Try to visualize Recursion version as stack version. Think of implicit stack as equivalent of explicit stack 
         public static void DFSTraversalRecursive(Graph graph, int index, bool[] visited)
         {
+          
             visited[index] = true;
 
             Console.WriteLine($"{index}");
             List<Edge> neighbours = graph.adj[index];
             foreach (var neighbour in neighbours)
             {
-                if (visited[neighbour.dest] == false)
+                if (!visited[neighbour.dest])
                 {
                     DFSTraversalRecursive(graph, neighbour.dest, visited);
                 }

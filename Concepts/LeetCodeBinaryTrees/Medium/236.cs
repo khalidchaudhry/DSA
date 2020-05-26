@@ -6,6 +6,13 @@ namespace LeetCodeBinaryTrees.Medium
 {
     public class _236
     {
+        /// <summary>
+        /// https://www.youtube.com/watch?v=py3R23aAPCA
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="p"></param>
+        /// <param name="q"></param>
+        /// <returns></returns>
         public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
         {
 
@@ -42,7 +49,13 @@ namespace LeetCodeBinaryTrees.Medium
 
         }
 
-
+        /// <summary>
+        /// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="p"></param>
+        /// <param name="q"></param>
+        /// <returns></returns>
         public TreeNode LowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q)
         {
             //Stack for tree traversal
@@ -73,11 +86,12 @@ namespace LeetCodeBinaryTrees.Medium
             //! Process all ancestors for node p using parent pointers.
             while (p != null)
             {
+                //!Ancestors for p including p itself because p can be a parent of itself hence adding p
                 ancestors.Add(p);
                 p = parent[p];
             }
             // !The first ancestor of q which appears in
-            // p's ancestor set() is their lowest common ancestor.
+            // !p's ancestor set() is their lowest common ancestor.
             while (!ancestors.Contains(q))
             {
                 q = parent[q];
