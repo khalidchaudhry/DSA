@@ -211,14 +211,14 @@ namespace LeetCodeGraphs
 
             //var result = GraphValidTree.ValidTree1(5, edges);
 
-            _841 KeyAndRooms = new _841();
-            List<IList<int>> rooms = new List<IList<int>>()
-            {
-                new List<int>(){1},
-                new List<int>(){2},
-                new List<int>() { 3 },
-                new List<int>(){ }
-            };
+            //_841 KeyAndRooms = new _841();
+            //List<IList<int>> rooms = new List<IList<int>>()
+            //{
+            //    new List<int>(){1},
+            //    new List<int>(){2},
+            //    new List<int>() { 3 },
+            //    new List<int>(){ }
+            //};
             //List<IList<int>> rooms = new List<IList<int>>()
             //{
             //    new List<int>(){1,3},
@@ -227,10 +227,28 @@ namespace LeetCodeGraphs
             //    new List<int>(){0}
             //};
 
+            //var answer = KeyAndRooms.CanVisitAllRooms0(rooms);
 
-            var answer = KeyAndRooms.CanVisitAllRooms0(rooms);
+            //_200 ConnectedIslands = new _200();
+            //char[][] grid = new char[][]
+            //{
+            //  new char[]{'1','1','1','1','0' },
+            //  new char[]{'1','1','0','1','0' },
+            //  new char[]{'1','1','0','0','0' },
+            //  new char[]{'0','0','0','0','0' }
+            //};
 
+            //var ans = ConnectedIslands.NumIslands(grid);
 
+            _323 ConnectedComponents = new _323();
+            int n = 5;
+            int[][] edges = new int[][]
+            {
+                new int[]{0,1 },
+                new int[]{1,2 },
+                new int[]{3,4 }
+            };
+            var ans = ConnectedComponents.CountComponents2(n, edges);
 
             Console.ReadKey();
 

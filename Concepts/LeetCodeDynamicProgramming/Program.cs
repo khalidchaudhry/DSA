@@ -80,11 +80,15 @@ namespace LeetCodeDynamicProgramming
 
             //var ans=ProfitWithCoolDown.MaxProfit(prices);
 
-            _213 HouseRobber = new _213();
+            //_213 HouseRobber = new _213();
 
-            int[] nums = new int[4] {2,1,1,2 };
+            //int[] nums = new int[4] {2,1,1,2 };
 
-            HouseRobber.Rob(nums);
+            //HouseRobber.Rob(nums);
+
+            _338 CountBits = new _338();
+            var ans = CountBits.CountBits0(5);
+
             Console.ReadLine();
         }
     }

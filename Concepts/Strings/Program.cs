@@ -14,8 +14,8 @@ namespace Strings
 
             //RabinKarpSearch rks = new RabinKarpSearch();
             //Console.WriteLine(rks.PatternSearch("TusharRoy".ToCharArray(), "sharRoy".ToCharArray()));
-            //var stringPermutations = new StringPermutation();
-            //var result=stringPermutations.StringPermutations("abc");
+            var stringPermutations = new StringPermutation();
+            var result = stringPermutations.StringPermutations("ab");
             //foreach (var one in result)
             //{
             //    Console.WriteLine(one);            
@@ -47,9 +47,11 @@ namespace Strings
 
             //longest.LengthOfLongestSubstringTwoDistinct3("eceba");
 
-            PermutationsInString permutation = new PermutationsInString();
+            //PermutationsInString permutation = new PermutationsInString();
 
-            permutation.CheckInclusion("ab", "eidboaoo");
+            //permutation.CheckInclusion("ab", "eidboaoo");
+
+
 
 
 

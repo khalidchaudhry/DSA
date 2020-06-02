@@ -125,22 +125,27 @@ namespace LeetCodeStrings
             //string str = "-5-";
             //var result=Atoi.MyAtoi1(str);
 
-            _609 Duplicate = new _609();
+            //_609 Duplicate = new _609();
+            ////string[] paths = new string[]
+            ////{
+            ////    "root/a 1.txt(abcd) 2.txt(efgh)",
+            ////    "root/c 3.txt(abcd)",
+            ////    "root/c/d 4.txt(efgh)",
+            ////    "root 4.txt(efgh)"
+            ////};
             //string[] paths = new string[]
             //{
-            //    "root/a 1.txt(abcd) 2.txt(efgh)",
-            //    "root/c 3.txt(abcd)",
-            //    "root/c/d 4.txt(efgh)",
-            //    "root 4.txt(efgh)"
+            //    "root/a 1.txt(abcd) 2.txt(efsfgh)",
+            //    "root/c 3.txt(abdfcd)",
+            //    "root/c/d 4.txt(efggdfh)"
             //};
-            string[] paths = new string[]
-            {
-                "root/a 1.txt(abcd) 2.txt(efsfgh)",
-                "root/c 3.txt(abdfcd)",
-                "root/c/d 4.txt(efggdfh)"
-            };
 
-            Duplicate.FindDuplicate(paths);
+            //Duplicate.FindDuplicate(paths);
+
+            _91 DecodeWays = new _91();
+
+            DecodeWays.NumDecodings("226");
+
 
 
             Console.ReadLine();

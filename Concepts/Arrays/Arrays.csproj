@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayPermutation.cs" />
     <Compile Include="ArrayPermutations.cs" />
     <Compile Include="BFSOn2DArray.cs" />
     <Compile Include="MatrixRollOut.cs" />

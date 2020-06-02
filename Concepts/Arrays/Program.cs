@@ -79,16 +79,20 @@ namespace Arrays
             //};
 
 
-            char[][] matrix = new char[4][] {
-                new char[]{'S', '0', '1', 'D'},
-                new char[]{'1', '0', '1', '0'},
-                new char[]{'1', '0', '1', '0'},
-                new char[]{'1', '1', '1', '0'}
-            };
+            //char[][] matrix = new char[4][] {
+            //    new char[]{'S', '0', '1', 'D'},
+            //    new char[]{'1', '0', '1', '0'},
+            //    new char[]{'1', '0', '1', '0'},
+            //    new char[]{'1', '1', '1', '0'}
+            //};
 
 
-            var result = ShortestPathin2DArray.PathExists(matrix);
+            //var result = ShortestPathin2DArray.PathExists(matrix);
 
+
+            ArrayPermutation Premute = new ArrayPermutation();
+            int[] arr = new int[] {1,2,3 };
+            var result=Premute.ListPermutations(arr);
 
 
             Console.ReadLine();

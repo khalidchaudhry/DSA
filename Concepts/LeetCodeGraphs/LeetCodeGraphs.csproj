@@ -45,13 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Medium\1102.cs" />
     <Compile Include="Medium\133.cs" />
     <Compile Include="Easy\1042.cs" />
     <Compile Include="Easy\997.cs" />
+    <Compile Include="Medium\200.cs" />
     <Compile Include="Medium\207.cs" />
     <Compile Include="Medium\210.cs" />
     <Compile Include="Medium\261.cs" />
     <Compile Include="Medium\310.cs" />
+    <Compile Include="Medium\323.cs" />
     <Compile Include="Medium\332.cs" />
     <Compile Include="Medium\399.cs" />
     <Compile Include="Medium\684.cs" />

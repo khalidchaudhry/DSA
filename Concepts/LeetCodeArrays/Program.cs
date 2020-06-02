@@ -1,6 +1,7 @@
 ﻿using LeetCodeArrays.Easy;
 using LeetCodeArrays.Medium;
 using System;
+using System.Collections.Generic;
 
 namespace LeetCodeArrays
 {
@@ -228,10 +229,22 @@ namespace LeetCodeArrays
             //var result=Duplicates.FindDuplicates(nums);
 
 
-            _33 RotatedSortedArray = new _33();
-            int[] nums = new int[] {1,3};
-            int target = 3;
-            RotatedSortedArray.Search(nums,target);
+            //_33 RotatedSortedArray = new _33();
+            //int[] nums = new int[] { 4, 5, 6, 7, 0, 1, 2 };
+            //int target = 0;
+            //RotatedSortedArray.Search(nums,target);
+
+            List<IList<int>> arrays = new List<IList<int>>
+            {
+                new List<int>{1,2,3},
+                new List<int>{4,5 },
+                new List<int>{1,2,3 },
+                 new List<int>{0,1,2 }
+            };
+
+            _624 MaximumDistance = new _624();
+
+            var ans=MaximumDistance.MaxDistance2(arrays);
 
             Console.ReadLine();
         }

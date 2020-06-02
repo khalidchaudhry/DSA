@@ -28,7 +28,7 @@ namespace Arrays
                 {
                     //! Mark it as visited. 
                     matrix[dequeue.x][dequeue.y] = '0';
-
+                    //! Find neighbours not visited
                     List<Node> neighbours = FindNeighbours(dequeue, matrix);
 
                     neighbours.ForEach(x => queue.Enqueue(x));

@@ -25,6 +25,8 @@ namespace Strings
             {
                 for (int i = 0; i < suffix.Length; i++)
                 {
+                    //startIndex is less than zero or greater than the length of this instance.
+                   var test=suffix.Substring(i + 1);
                   StringPermutations(prefix + suffix[i], suffix.Substring(0, i) + suffix.Substring(i + 1),results);
                 }
             }
