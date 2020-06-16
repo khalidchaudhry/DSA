@@ -28,13 +28,15 @@ namespace LeetCodeStrings.Easy
 
             lettersLogs.Sort((a, b) =>
                 {
+                    //!letter logs
                     string a_SubStr = a.Substring(a.IndexOf(' ') + 1);
+                    //!letter logs
                     string b_SubStr = b.Substring(b.IndexOf(' ') + 1);
                     int result = a_SubStr.CompareTo(b_SubStr);
+                    //!If equal then use identifier to sort. 
                     if (result == 0)
                     {
                         result = a.Substring(0, a.IndexOf(' ') - 1).CompareTo(b.Substring(0, b.IndexOf(' ') - 1));
-
                     }
                     return result;
 

@@ -16,6 +16,7 @@ namespace LeetCodeStrings.Medium
             List<string> result = new List<string>();
             int n = s.Length;
             //!why start at 1 because we want to place dot after ATLEAST one digit
+            //!i<4 because we are using i as length of substring. Subpart length can't be greater than 3
             for (int i = 1; i < n && i < 4; i++)
             {
                 string first = s.Substring(0, i);
@@ -49,6 +50,7 @@ namespace LeetCodeStrings.Medium
 
         private bool IsValidPart(string s)
         {
+            //! needed for this input "0279245587303"
             if (s.Length > 3)
             {
                 return false;

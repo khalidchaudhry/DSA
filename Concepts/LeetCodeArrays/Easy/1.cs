@@ -40,5 +40,36 @@ namespace LeetCodeArrays.Easy
             return result;
         }
 
+        //! Below approach/template can help solve the 3Sum/4Sum problem 
+        //https://leetcode.com/problems/3sum/
+        //https://leetcode.com/problems/4sum/
+        public int[] TwoSum2(int[] nums, int target)
+        {
+            int[] result = new int[2];
+
+            Array.Sort(result);
+
+            int left = 0;
+            int right =nums.Length-1;
+            while (left < right)
+            {
+                int sum = nums[left] + nums[right];
+                if (sum < target)
+                {
+                    ++left;
+                }
+                else if (sum > target)
+                {
+                    --right;
+                }
+                else
+                {
+                    result[0] = nums[left];
+                    result[1] = nums[right];
+                }
+            }
+
+            return result;
+        }
     }
 }

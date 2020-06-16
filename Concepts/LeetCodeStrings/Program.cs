@@ -144,15 +144,15 @@ namespace LeetCodeStrings
 
             //DecodeWays.NumDecodings("226");
 
-            //_93 RestoreIpAddress = new _93();
+            _93 RestoreIpAddress = new _93();
 
-            //RestoreIpAddress.RestoreIpAddresses("25525511135");
+            RestoreIpAddress.RestoreIpAddresses("0279245587303");
 
-            string s = "/a//b////c/d//././/..";
+            //string s = "/a//b////c/d//././/..";
 
-            _71 SimplifyPath = new _71();
+            //_71 SimplifyPath = new _71();
 
-            var ans=SimplifyPath.SimplifyPath(s);
+            //var ans=SimplifyPath.SimplifyPath(s);
 
 
 

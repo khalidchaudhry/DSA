@@ -6,6 +6,106 @@ namespace LeetCodeArrays.Medium
 {
     public class _15
     {
+        //https://www.youtube.com/watch?v=bixvM1-28us
+        //https://www.youtube.com/watch?v=3u59zv-c7go
+        public IList<IList<int>> ThreeSum0(int[] nums)
+        {
+            List<IList<int>> res = new List<IList<int>>();
+
+            Array.Sort(nums);
+            for (int i = 0; i < nums.Length - 2; i++)
+            {
+                //! to avoid duplicates 
+                if (i != 0 && nums[i] == nums[i - 1])
+                {
+                    continue;
+                }
+
+                int left = i + 1;
+                int right = nums.Length - 1;
+
+                while (left < right)
+                {
+                    int sum = nums[i] + nums[left] + nums[right];
+
+                    if (sum < 0)
+                    {
+                        ++left;
+                    }
+                    else if (sum > 0)
+                    {
+                        --right;
+                    }
+                    else
+                    {
+                        List<int> triplet = new List<int>();
+                        triplet.Add(nums[i]);                        
+                        triplet.Add(nums[left]);
+                        triplet.Add(nums[right]);
+
+                        res.Add(triplet);
+
+                        ++left;
+                        --right;
+                        //! To skip duplicates
+                        while (left < right && nums[left] == nums[left - 1])
+                        {
+                            ++left;
+                        }
+                        //! To skip duplicates
+                        while (left < right && nums[right] == nums[right + 1])
+                        {
+                            --right;
+                        }
+                    }
+                }
+            }
+
+            return res;
+        }
+
+
+
+
+
+        //https://leetcode.com/problems/3sum/solution/
+        public IList<IList<int>> ThreeSum1(int[] nums)
+        {
+            Array.Sort(nums);
+            List<IList<int>> res = new List<IList<int>>();
+            //!If the current value is greater than zero, break from the loop.Remaining values cannot sum to zero as we have sorted an array
+            for (int i = 0; i < nums.Length && nums[i] <= 0; ++i)
+                //!nums[i - 1] != nums[i]=If the current value is the same as the one before, skip it as its duplicate
+                //e.g. {-1,-1,0,1,2}
+                if (i == 0 || nums[i - 1] != nums[i])
+                    TwoSumII(nums, i, res);
+            return res;
+        }
+        private void TwoSumII(int[] nums, int i, List<IList<int>> res)
+        {
+            int lo = i + 1, hi = nums.Length - 1;
+            while (lo < hi)
+            {
+                int sum = nums[i] + nums[lo] + nums[hi];
+                //! lo > i + 1 to avoid duplicates 
+                if (sum < 0 || (lo > i + 1 && nums[lo] == nums[lo - 1]))
+                    ++lo;
+                //! hi < nums.Length - 1 to avoid duplicates
+                else if (sum > 0 || (hi < nums.Length - 1 && nums[hi] == nums[hi + 1]))
+                    --hi;
+                else
+                {
+                    List<int> triplet = new List<int>();
+                    triplet.Add(nums[i]);
+                    triplet.Add(nums[lo++]);
+                    triplet.Add(nums[hi--]);
+
+                    res.Add(triplet);
+                }
+            }
+        }
+
+
         /*
         Three pointer approach 
         First  pointer =start from beginning
@@ -16,7 +116,7 @@ namespace LeetCodeArrays.Medium
         Time complexity=O(n^2)  
          https://www.youtube.com/watch?v=jeim_j8VdiM
         */
-        public IList<IList<int>> ThreeSum0(int[] nums)
+        public IList<IList<int>> ThreeSum2(int[] nums)
         {
             List<IList<int>> result = new List<IList<int>>();
 
@@ -25,13 +125,14 @@ namespace LeetCodeArrays.Medium
             // -2 because we are asked to find tripplet 
             for (int i = 0; i < nums.Length - 2; i++)
             {
+
+                //!To handle duplicate elements
                 /*
-                  To handle duplicate elements
-                  {-1,-1,0,1,2}
+                  { -1,-1,0,1,2}
                   {-1(index 0),0,1} willbe one triplet 
                    As answer cannot contain duplicate triplets processing below will create duplicate hence we can skip it
                   {-1(index 1),0,1}
-               */
+                  */
                 if (i > 0 && nums[i] == nums[i - 1])
                 {
                     continue;
@@ -50,6 +151,7 @@ namespace LeetCodeArrays.Medium
                         triplet.Add(nums[i]);
                         triplet.Add(nums[left]);
                         triplet.Add(nums[right]);
+
                         result.Add(triplet);
 
                         // To skip duplicates. 
@@ -81,7 +183,7 @@ namespace LeetCodeArrays.Medium
             }
             return result;
         }
-        public IList<IList<int>> ThreeSum(int[] nums)
+        public IList<IList<int>> ThreeSum3(int[] nums)
         {
             List<IList<int>> result = new List<IList<int>>();
             HashSet<string> hs = new HashSet<string>();
@@ -134,7 +236,7 @@ namespace LeetCodeArrays.Medium
             }
             return result;
         }
-        public IList<IList<int>> ThreeSum2(int[] nums)
+        public IList<IList<int>> ThreeSum4(int[] nums)
         {
             List<IList<int>> result = new List<IList<int>>();
             Array.Sort(nums); //nlog(n)
