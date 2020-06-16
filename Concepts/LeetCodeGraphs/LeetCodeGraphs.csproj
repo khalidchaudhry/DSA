@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Medium\1102.cs" />
+    <Compile Include="Medium\130.cs" />
     <Compile Include="Medium\133.cs" />
     <Compile Include="Easy\1042.cs" />
     <Compile Include="Easy\997.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Medium\323.cs" />
     <Compile Include="Medium\332.cs" />
     <Compile Include="Medium\399.cs" />
+    <Compile Include="Medium\547.cs" />
     <Compile Include="Medium\684.cs" />
     <Compile Include="Medium\743.cs" />
     <Compile Include="Medium\785.cs" />

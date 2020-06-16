@@ -240,15 +240,37 @@ namespace LeetCodeGraphs
 
             //var ans = ConnectedIslands.NumIslands(grid);
 
-            _323 ConnectedComponents = new _323();
-            int n = 5;
-            int[][] edges = new int[][]
+            //_323 ConnectedComponents = new _323();
+            //int n = 5;
+            //int[][] edges = new int[][]
+            //{
+            //    new int[]{0,1 },
+            //    new int[]{1,2 },
+            //    new int[]{3,4 }
+            //};
+            //var ans = ConnectedComponents.CountComponents2(n, edges);
+
+
+            //_547 CloseFriends = new _547();
+
+            //int[][] M = new int[][]
+            //{
+            //    new int[]{1,1,0},
+            //    new int[]{1,1,1 },
+            //    new int[]{0,1,1 }
+            //};
+            //var ans=CloseFriends.FindCircleNum(M);
+
+            _130 SurrondedRegions = new _130();
+            char[][] grid = new char[][]
             {
-                new int[]{0,1 },
-                new int[]{1,2 },
-                new int[]{3,4 }
+              new char[]{'X','X','X','X' },
+              new char[]{'X','O','O','X'},
+              new char[]{'X','X','O','X'},
+              new char[]{'X','O','X','X'}
             };
-            var ans = ConnectedComponents.CountComponents2(n, edges);
+            SurrondedRegions.Solve(grid);
+
 
             Console.ReadKey();
 

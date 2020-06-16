@@ -1,6 +1,4 @@
-﻿using LeetCodeStrings.Easy;
-using LeetCodeStrings.Easy2;
-using LeetCodeStrings.Medium;
+﻿using LeetCodeStrings.Medium;
 using System;
 
 namespace LeetCodeStrings
@@ -142,9 +140,19 @@ namespace LeetCodeStrings
 
             //Duplicate.FindDuplicate(paths);
 
-            _91 DecodeWays = new _91();
+            //_91 DecodeWays = new _91();
 
-            DecodeWays.NumDecodings("226");
+            //DecodeWays.NumDecodings("226");
+
+            //_93 RestoreIpAddress = new _93();
+
+            //RestoreIpAddress.RestoreIpAddresses("25525511135");
+
+            string s = "/a//b////c/d//././/..";
+
+            _71 SimplifyPath = new _71();
+
+            var ans=SimplifyPath.SimplifyPath(s);
 
 
 

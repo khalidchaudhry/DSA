@@ -8,7 +8,7 @@ namespace LeetCodeArrays.Easy
     class _1
     {
         //x+y=target;
-        //x=target-y;
+         //x=target-y;
         // Need to store target-y in dictionary to get indices. 
         // Otherwise need to look dictionary based on the value which is not efficient. 
         // However when we look up in dictionary  , we will look it up based on the array element. 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeetCodeHashTable.Medium;
+using System;
 
 namespace HashSet
 {
@@ -93,10 +94,39 @@ namespace HashSet
             //string[] A = new string[] { "bella", "label", "roller" };
             //CommonChar.CommonChars(A);
 
+            //_205 Isomorphic = new _205();
 
-            _205 Isomorphic = new _205();
+            //Console.WriteLine(Isomorphic.IsIsomorphic2("ab","ac"));
 
-            Console.WriteLine(Isomorphic.IsIsomorphic2("ab","ac"));
+
+            //_347 TopKElements = new _347();
+
+            //int[] nums = new int[] { 3,0,1,0 };
+            //int k = 1;
+            //var ans=TopKElements.TopKFrequent(nums, k);
+
+            //_692 TopKFrequentWords = new _692();
+            //string[] words = new string[] { "i", "love", "leetcode", "i", "love", "coding" };
+            //int k = 1;
+
+            //var res=TopKFrequentWords.TopKFrequent(words,k);
+
+            //_451 SortCharactersByFrequency = new _451();
+
+            //string s = "tree";
+            //var ans=SortCharactersByFrequency.FrequencySort(s);
+
+
+            RandomizedSet obj = new RandomizedSet();
+            //bool param_1 = obj.Insert(0);
+            //bool param_2 = obj.Insert(1);
+            bool param_3 = obj.Remove(0);
+            bool param_4 = obj.Remove(0);
+            bool param_5 = obj.Insert(0);
+            int param_6 = obj.GetRandom();
+            bool param_7 = obj.Remove(0);
+            bool param_8 = obj.Insert(0);
+
 
 
             Console.ReadLine();

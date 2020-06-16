@@ -37,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LeetCode", "LeetCode", "{9E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Greedy", "Greedy\Greedy.csproj", "{AA458708-259C-4D28-AE2A-A7D1524C4DB1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashSet", "HashSet\HashSet.csproj", "{753A5BBD-5170-4990-AB37-8D365C40998A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeHashTable", "HashSet\LeetCodeHashTable.csproj", "{753A5BBD-5170-4990-AB37-8D365C40998A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeGraphs", "LeetCodeGraphs\LeetCodeGraphs.csproj", "{A918BCC3-8FD0-476A-B936-232C950F0903}"
 EndProject

@@ -252,10 +252,18 @@ namespace BinaryTree
                 return;
             Node curr = n;
             Stack<Node> stk = new Stack<Node>();
-            while (curr != null)
+            //!stk.Count!=0 is important . Otherwise it will not be able work correctly 
+            //!e.g. for below input
+            //        1
+            //        \
+            //        2
+            //       /
+            //     3                  
+
+            while (curr != null || stk.Count != 0)
             {
                 /* Reach the left most Node of the curr Node */
-                while (curr != null)
+                while (curr != null || stk.Count != 0)
                 {
                     //place pointer to a tree node on  
                     //the stack before traversing

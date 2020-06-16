@@ -34,12 +34,12 @@ namespace LeetCodeGraphs.Medium
 
         private void DFS(char[][] grid, int x, int y)
         {
-            //! out of bound and not visited check
+            //! if out of bounds or at a cell with '0' or '*', simply stop and return | end the dfs
             if (x < 0 || x >= grid.Length || y < 0 || y >= grid[x].Length || grid[x][y] != '1')
             {
                 return;
             }
-
+            //! Using character to mark it as visited. 
             grid[x][y] = '*';
 
             DFS(grid, x, y + 1);// right

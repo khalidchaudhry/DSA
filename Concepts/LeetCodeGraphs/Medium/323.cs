@@ -8,6 +8,12 @@ namespace LeetCodeGraphs.Medium
 {
     class _323
     {
+        /// <summary>
+        // !Recursive version
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="edges"></param>
+        /// <returns></returns>
         public int CountComponents(int n, int[][] edges)
         {
             int ccCount = 0;
@@ -26,6 +32,12 @@ namespace LeetCodeGraphs.Medium
 
             return ccCount;
         }
+        /// <summary>
+        //! Iterative version
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="edges"></param>
+        /// <returns></returns>
 
         public int CountComponents2(int n, int[][] edges)
         {

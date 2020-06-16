@@ -7,7 +7,7 @@ namespace LeetCodeBinaryTrees.Easy
     class _687
     {
         int ans;
-        // Does not work for below input
+        //! Does not work for below input
         /*
                   1
                  / \
@@ -71,6 +71,12 @@ namespace LeetCodeBinaryTrees.Easy
             InOrderTraversal(node.right, lst);
         }
 
+        /// <summary>
+        //!Post Order Traversal
+        //https://medium.com/@rebeccahezhang/leetcode-687-longest-univalue-path-c7791a03c4a0
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
         public int LongestUnivaluePath2(TreeNode root)
         {
             ans = 0;
@@ -83,8 +89,12 @@ namespace LeetCodeBinaryTrees.Easy
         {
             if (root == null)
                 return 0;
+
             int left = Length(root.left);
+
             int right = Length(root.right);
+            // Variables to store maximum lengths 
+            // in two directions 
             int leftMax = 0, rightMax = 0;
             // Compare parent node with child node
             // If they are the same, extend the max length by one

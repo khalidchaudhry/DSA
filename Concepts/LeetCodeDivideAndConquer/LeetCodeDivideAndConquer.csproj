@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Medium\215.cs" />
     <Compile Include="Medium\240.cs" />
+    <Compile Include="Medium\973.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

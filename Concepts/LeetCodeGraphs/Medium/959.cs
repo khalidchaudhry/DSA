@@ -28,7 +28,7 @@ namespace LeetCodeGraphs.Medium
 
             int N = grid.Length;/*grid length is the cube's height*/
             //! 
-            DSU dsu = new DSU(4 * N * N); /*Here we cut the one single grid into 4 places two knives \ and / */
+            DSU dsu = new DSU(4 * N * N); /*Here we cut the one single grid cell into 4 places two knives \ and / */
 
             for (int r = 0; r < N; ++r) /*Tranverse the grid height(row)*/
                 for (int c = 0; c < N; ++c)  /*Tranverse the grid widht(row)*/
@@ -37,7 +37,7 @@ namespace LeetCodeGraphs.Medium
                     // !  Roots will be like 0 , 4, 8, 12.......
                     int root = 4 * (r * N + c); /*record the total number of root so far, at this moment */
                     char val = grid[r][c];  /*check this cube's input ---> "\" or "/" or " "*/
-                    // if val!=\\ than we can union 0 and 1, 2 and 3 regions since they are contiguous 
+                    // if val!=\\ than we can union 0 and 1, 2 and 3 regions since they are contiguous\connected 
                     if (val != '\\')
                     {
                         dsu.union(root + 0, root + 1);
@@ -55,7 +55,7 @@ namespace LeetCodeGraphs.Medium
                         dsu.union(root + 3, (root + 4 * N) + 0);
                     if (r - 1 >= 0)/*if previous  row exist----up*/
                         dsu.union(root + 0, (root - 4 * N) + 3);
-                    
+
                     //(right and left) east west
                     if (c + 1 < N) // if next column exist-----right 
                         dsu.union(root + 2, (root + 4) + 1);
@@ -86,7 +86,9 @@ namespace LeetCodeGraphs.Medium
         }
         public int find(int x)
         {
-            if (parent[x] != x) parent[x] = find(parent[x]);
+            if (parent[x] != x)
+                parent[x] = find(parent[x]);
+
             return parent[x];
         }
         public void union(int x, int y)

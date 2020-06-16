@@ -16,9 +16,11 @@ namespace LeetCodeDivideAndConquer.Medium
         /// <returns></returns>
         public int FindKthLargest0(int[] nums, int k)
         {
+            //! The index where final answer will reside
             int requiredIndex = nums.Length - k;
             int left = 0;
-            int right = nums.Length-1;
+
+            int right = nums.Length - 1;
             int pti = 0;
             while (left < right)
             {
@@ -43,9 +45,16 @@ namespace LeetCodeDivideAndConquer.Medium
             return nums[requiredIndex];
 
         }
-
+        /// <summary>
+        // ! The correct location of  the pivot(It is the element in the array that is at index left)
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         private int PivotIndex(int[] nums, int left, int right)
         {
+            // !pivot tail index
             int pti = left;
             for (int i = left; i < right; i++)
             {
@@ -83,7 +92,11 @@ namespace LeetCodeDivideAndConquer.Medium
         public int FindKthLargest(int[] nums, int k)
         {
 
+            //! we want to remove  the smallest element hence we are taking sorted dictionary 
             SortedDictionary<int, int> heap = new SortedDictionary<int, int>();
+            //! Count variable is use to track if elements in dictionary are greater than we will 
+            // !remove the smallest element from sorted dictionary 
+            // ! we are not using sorted dictionary count because  it will contain only distinct element counts 
             int count = 0;
             for (int i = 0; i < nums.Length; i++)
             {

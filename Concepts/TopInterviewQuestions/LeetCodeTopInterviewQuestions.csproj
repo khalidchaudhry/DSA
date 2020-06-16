@@ -63,7 +63,7 @@
     <Compile Include="Easy\189.RotateArray.cs" />
     <Compile Include="Easy\190.ReverseBits.cs" />
     <Compile Include="Easy\198.HouseRobber.cs" />
-    <Compile Include="Easy\20.ValidParentheses.cs" />
+    <Compile Include="Easy\20.cs" />
     <Compile Include="Easy\202.HappyNumber.cs" />
     <Compile Include="Easy\204.Count Primes.cs" />
     <Compile Include="Easy\206.ReverseLinkedList.cs" />

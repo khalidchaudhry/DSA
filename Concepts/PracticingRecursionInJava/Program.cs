@@ -1,8 +1,7 @@
 ﻿using PracticingRecursionInJava.Integers;
+using PracticingRecursionInJava.LinkedBinaryTree;
 using PracticingRecursionInJava.LinkedList;
 using System;
-using System.Collections.Generic;
-using _15 = PracticingRecursionInJava.LinkedList._15;
 
 namespace PracticingRecursionInJava
 {
@@ -177,9 +176,23 @@ namespace PracticingRecursionInJava
 
             //var result=MakeLinkedList.MakeLinkedList(nums,nums.Length);
 
-            LinkedList._22 MakeLinkedList = new LinkedList._22();
+            //LinkedList._22 MakeLinkedList = new LinkedList._22();
 
-            var ans=MakeLinkedList.MakeLinkedList(1,5,2);
+            //var ans=MakeLinkedList.MakeLinkedList(1,5,2);
+
+            //LinkedBinaryTree._1 CountNodes = new LinkedBinaryTree._1();            
+
+            //LinkedBinaryTree._2 CountZeroNodes = new LinkedBinaryTree._2();
+
+            //var result= CountZeroNodes.CountZeroNodes(Tree.CreateSimpleTree2().root);
+
+            //LinkedBinaryTree._3 CountLeaveNodes = new LinkedBinaryTree._3();
+
+            //int result=CountLeaveNodes.CountLeaves(Tree.CreateSimpleTree2().root);
+
+            LinkedBinaryTree._4 CountNonLeafNodes = new LinkedBinaryTree._4();
+
+            int result=CountNonLeafNodes.CountNonLeaves(Tree.CreateSimpleTree2().root);
 
 
             Console.ReadLine();

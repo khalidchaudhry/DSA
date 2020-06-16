@@ -234,17 +234,35 @@ namespace LeetCodeArrays
             //int target = 0;
             //RotatedSortedArray.Search(nums,target);
 
-            List<IList<int>> arrays = new List<IList<int>>
+            //List<IList<int>> arrays = new List<IList<int>>
+            //{
+            //    new List<int>{1,2,3},
+            //    new List<int>{4,5 },
+            //    new List<int>{1,2,3 },
+            //     new List<int>{0,1,2 }
+            //};
+
+            //_624 MaximumDistance = new _624();
+
+            //var ans=MaximumDistance.MaxDistance2(arrays);
+
+            //_724 EqilibriumIndex = new _724();
+            //int[] nums = new int[] { 1, 7, 3, 6, 5, 6 };
+            //int ans = EqilibriumIndex.PivotIndex0(nums);
+
+
+            _79 WordSearch = new _79();
+
+            char[][] board = new char[][]
             {
-                new List<int>{1,2,3},
-                new List<int>{4,5 },
-                new List<int>{1,2,3 },
-                 new List<int>{0,1,2 }
+                new char[]{'A','B','C','E' },
+                new char[]{'S','F','C','S' },
+                new char[]{'A','D','E','E' }
             };
 
-            _624 MaximumDistance = new _624();
 
-            var ans=MaximumDistance.MaxDistance2(arrays);
+            var result=WordSearch.Exist(board, "ABCCED");
+
 
             Console.ReadLine();
         }
