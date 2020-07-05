@@ -24,5 +24,7 @@ namespace LeetCodeArrays.Easy
             return global_max;
         }
 
+
+
     }
 }

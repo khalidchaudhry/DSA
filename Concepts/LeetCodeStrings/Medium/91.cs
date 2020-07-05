@@ -33,7 +33,7 @@ namespace LeetCodeStrings.Medium
 
                 if (first >= 1 && first <= 9)
                 {
-                    dp[i] += dp[i - 1];
+                    dp[i] = dp[i - 1];
                 }
 
                 if (second >= 10 && second <= 26)

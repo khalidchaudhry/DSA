@@ -8,6 +8,12 @@ namespace LeetCodeDynamicProgramming.Medium
 {
     public class _1043
     {
+        /// <summary>
+        /// https://leetcode.com/problems/partition-array-for-maximum-sum/discuss/485342/C-easy-to-understand-with-comments-(100-Time-and-100-space)
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="K"></param>
+        /// <returns></returns>
         public int MaxSumAfterPartitioning(int[] A, int K)
         {
             if (A.Length == 0) return 0;

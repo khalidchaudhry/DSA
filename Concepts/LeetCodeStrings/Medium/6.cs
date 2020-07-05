@@ -11,6 +11,13 @@ namespace LeetCodeStrings.Medium
         A P L S I I G
         Y   I   R
         */
+        /// <summary>
+        //! Time complexity=O(n)
+        //! Space complexity =O(n)
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="numRows"></param>
+        /// <returns></returns>
         public string Convert(string s, int numRows)
         {
             StringBuilder[] sbArray = new StringBuilder[numRows];

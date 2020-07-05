@@ -37,13 +37,14 @@ namespace LeetCodeBinaryTrees.Medium
             //       5       1        1
             //  --------------N = 7, res = 2 + 1 + 2 = 5----------
 
-            //4. in order to make full binary tree, the node number must increase by 2
+           
             List<TreeNode> res = new List<TreeNode>();
             if (N == 1)
             {
                 res.Add(new TreeNode(0));
                 return res;
             }
+            //4. in order to make full binary tree, the node number must increase by 2
             for (int i = 1; i < N; i += 2)
             {
                 IList<TreeNode> leftSubTrees = AllPossibleFBT(i);

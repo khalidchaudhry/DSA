@@ -190,10 +190,32 @@ namespace PracticingRecursionInJava
 
             //int result=CountLeaveNodes.CountLeaves(Tree.CreateSimpleTree2().root);
 
-            LinkedBinaryTree._4 CountNonLeafNodes = new LinkedBinaryTree._4();
+            //LinkedBinaryTree._4 CountNonLeafNodes = new LinkedBinaryTree._4();
 
-            int result=CountNonLeafNodes.CountNonLeaves(Tree.CreateSimpleTree2().root);
+            //int result=CountNonLeafNodes.CountNonLeaves(Tree.CreateSimpleTree2().root);
 
+            //LinkedBinaryTree._5 TreeNode = new LinkedBinaryTree._5();
+
+            //var result = TreeNode.PointToItem(Tree.CreateSimpleTree2().root, 3);
+
+
+            //LinkedBinaryTree._6 nodes = new LinkedBinaryTree._6();
+
+            //var result=nodes.SumData(Tree.CreateSimpleTree2().root);
+
+            //LinkedBinaryTree._7 nodes = new LinkedBinaryTree._7();
+
+            //var product = nodes.Product(Tree.CreateSimpleTree2().root);
+
+            //LinkedBinaryTree._11 IncrementByOne = new LinkedBinaryTree._11();
+            //Node n1= Tree.CreateSimpleTree2().root;
+            //Node n2 = Tree.CreateSimpleTree2().root;
+
+            //IncrementByOne.IncrementByOne(n2);
+
+            LinkedBinaryTree._12 Minimum = new LinkedBinaryTree._12();
+
+            var res=Minimum.Minimum(Tree.CreateSimpleTree2().root);
 
             Console.ReadLine();
         }

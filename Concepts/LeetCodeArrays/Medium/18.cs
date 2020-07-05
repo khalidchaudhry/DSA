@@ -5,6 +5,8 @@ using System.Text;
 namespace LeetCodeArrays.Medium
 {
     //https://www.youtube.com/watch?v=bixvM1-28us
+    //! Same pattern for 2 sum/3sum. 
+    //! Its just matter  of how many inner for loops we need 
     public class _18
     {
         public IList<IList<int>> FourSum(int[] nums, int target)
@@ -12,6 +14,8 @@ namespace LeetCodeArrays.Medium
             List<IList<int>> res = new List<IList<int>>();
 
             Array.Sort(nums);
+
+            //!nums.Lenght-3 because we need to add 4 numbers to become equal to target sum 
             for (int i = 0; i < nums.Length - 3; i++)
             {
                 //! to avoid duplicates 
@@ -19,9 +23,11 @@ namespace LeetCodeArrays.Medium
                 {
                     continue;
                 }
-                //! to avoid duplicates 
+
                 for (int j = i + 1; j < nums.Length - 2; j++)
                 {
+                    //! to avoid duplicates   
+                    //! j != i + 1=For input [0,0,0,0] without it , it will skip it but we need to add it in our result set. 
                     if (j != i + 1 && nums[j] == nums[j - 1])
                     {
                         continue;

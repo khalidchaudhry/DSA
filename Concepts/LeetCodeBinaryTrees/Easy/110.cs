@@ -6,6 +6,34 @@ namespace LeetCodeBinaryTrees.Easy
 {
     class _110
     {
+
+        // !Bottom up recursion 
+        public bool IsBalanced3(TreeNode root)
+        {
+            if (root == null)
+                return true;
+
+            return BalanceTreeHelper(root).IsBalanced;
+        }
+
+        // !Top down recursion 
+        public bool IsBalanced2(TreeNode root)
+        {
+            if (root == null)
+                return true;
+            // Check if subtrees have height within 1. If they do, check if the
+            // subtrees are balanced
+            return Math.Abs(Height(root.left) - Height(root.right)) < 2 &&
+                IsBalanced2(root.left) &&
+                IsBalanced2(root.right);
+        }
+        
+
+        /// <summary>
+        //! Not gives correct answer
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
         public bool IsBalanced(TreeNode root)
         {
             if (root == null)
@@ -26,25 +54,8 @@ namespace LeetCodeBinaryTrees.Easy
                 return true;
             }
         }
-        // Top down recursion 
-        public bool IsBalanced2(TreeNode root)
-        {
-            if (root == null)
-                return true;
-            // Check if subtrees have height within 1. If they do, check if the
-            // subtrees are balanced
-            return Math.Abs(Height(root.left) - Height(root.right)) < 2 &&
-                IsBalanced2(root.left) &&
-                IsBalanced2(root.right);
-        }
-        // Bottom up recursion 
-        public bool IsBalanced3(TreeNode root)
-        {
-            if (root == null)
-                return true;
-
-            return BalanceTreeHelper(root).IsBalanced;
-        }
+        
+      
 
         private static TreeInfo BalanceTreeHelper(TreeNode node)
         {
@@ -89,22 +100,6 @@ namespace LeetCodeBinaryTrees.Easy
             if (node == null)
             {
                 return 0;
-            }
-
-            int lHeight = Height(node.left);
-            int rHeight = Height(node.right);
-            return 1 + Math.Max(lHeight, rHeight);
-        }
-
-
-
-
-
-        public int Height2(TreeNode node)
-        {
-            if (node == null)
-            {
-                return -1; //if we want to consider edges for height than return -1
             }
 
             int lHeight = Height(node.left);

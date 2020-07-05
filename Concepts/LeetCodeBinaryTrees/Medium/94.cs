@@ -24,9 +24,10 @@ namespace LeetCodeBinaryTrees.Medium
 
         /// <summary>
         //! InOrder traversal Order (left,Root,Right)
+        //! In order traversal of BST produces sorted order
         //!https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
-       //! Intuition is that just follow In Order Traversal (Left,Root,Right)
-       //! Think about InOrder traversal recursive template
+        //! Intuition is that just follow In Order Traversal (Left,Root,Right)
+        //! Think about InOrder traversal recursive template
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
@@ -36,18 +37,20 @@ namespace LeetCodeBinaryTrees.Medium
             Stack<TreeNode> stk = new Stack<TreeNode>();
 
             TreeNode curr = root;
-            while (curr != null)
+
+            //!stk.Count!=0 is important . Otherwise it will not work correctly 
+            //!e.g. for below input
+            //        1
+            //        \
+            //        2
+            //       /
+            //     3   
+            while (curr != null || stk.Count != 0)
             {
                 //!reach to the left most node of the curr node
                 //!InOrder traversal Order (left)
-                //!stk.Count!=0 is important . Otherwise it will not work correctly 
-                //!e.g. for below input
-                //        1
-                //        \
-                //        2
-                //       /
-                //     3   
-                while (curr != null || stk.Count != 0)
+
+                while (curr != null)
                 {
                     stk.Push(curr);
                     curr = curr.left;

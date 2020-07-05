@@ -140,13 +140,13 @@ namespace LeetCodeStrings
 
             //Duplicate.FindDuplicate(paths);
 
-            //_91 DecodeWays = new _91();
+            _91 DecodeWays = new _91();
 
-            //DecodeWays.NumDecodings("226");
+            DecodeWays.NumDecodings("22624");
 
-            _93 RestoreIpAddress = new _93();
+            //_93 RestoreIpAddress = new _93();
 
-            RestoreIpAddress.RestoreIpAddresses("0279245587303");
+            //RestoreIpAddress.RestoreIpAddresses("0279245587303");
 
             //string s = "/a//b////c/d//././/..";
 
@@ -154,7 +154,12 @@ namespace LeetCodeStrings
 
             //var ans=SimplifyPath.SimplifyPath(s);
 
+            //string version1 = "0";
+            //string version2 = "1";
 
+            //_165 Version = new _165();
+
+            //var ans=Version.CompareVersion(version1,version2);
 
             Console.ReadLine();
         }

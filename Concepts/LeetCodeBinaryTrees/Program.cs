@@ -777,24 +777,35 @@ namespace LeetCodeBinaryTrees
 
             //var ans=MaxBinaryTree.ConstructMaximumBinaryTree(nums);
 
-            var t = new TreeNode(3);
-            var five = new TreeNode(5);
-            var one = new TreeNode(1);
+            //var t = new TreeNode(3);
+            //var five = new TreeNode(5);
+            //var one = new TreeNode(1);
 
 
-            t.left = five;
-            t.left.left = new TreeNode(6);
-            t.left.right = new TreeNode(2);
-            t.left.right.left = new TreeNode(7);
-            t.left.right.right = new TreeNode(4);
-            t.right= one;
-            t.right.left = new TreeNode(0);
-            t.right.right = new TreeNode(8);
-            ////t.left.right.left = new TreeNode(0);
+            //t.left = five;
+            //t.left.left = new TreeNode(6);
+            //t.left.right = new TreeNode(2);
+            //t.left.right.left = new TreeNode(7);
+            //t.left.right.right = new TreeNode(4);
+            //t.right= one;
+            //t.right.left = new TreeNode(0);
+            //t.right.right = new TreeNode(8);
+            //////t.left.right.left = new TreeNode(0);
 
-            _236 LCA = new _236();
+            //_236 LCA = new _236();
 
-            LCA.LowestCommonAncestor2(t,five,one);
+            //LCA.LowestCommonAncestor2(t,five,one);
+
+            var t = new TreeNode(1);
+
+            t.left = new TreeNode(2);
+            t.left.left = new TreeNode(3);
+            t.left.left.left = new TreeNode(5);
+            t.right = new TreeNode(3);
+            t.right.right = new TreeNode(4);
+            _199 BinaryTreeRightSideView = new _199();
+            BinaryTreeRightSideView.RightSideView(t);
+
 
             Console.ReadLine();
         }

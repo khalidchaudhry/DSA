@@ -8,6 +8,11 @@ namespace TopInterviewQuestions.Easy
 {
     class _198
     {
+        /// <summary>
+        /// https://www.programcreek.com/2014/03/leetcode-house-robber-java/
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public int Rob(int[] nums)
         {
 
@@ -33,6 +38,9 @@ namespace TopInterviewQuestions.Easy
 
             return Math.Max(even,odd);
         }
+
+
+
 
     }
 }

@@ -6,6 +6,10 @@ namespace LeetCodeArrays.Easy
 {
     class _283
     {
+        /// <summary>
+        //! Two pointer approach
+        /// </summary>
+        /// <param name="nums"></param>
         public void MoveZeroes(int[] nums)
         {
             for (int anchor = 0, explorer = 0; explorer < nums.Length;)

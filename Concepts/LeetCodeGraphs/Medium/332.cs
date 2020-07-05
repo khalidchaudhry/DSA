@@ -143,7 +143,7 @@ namespace LeetCodeGraphs.Medium
             return res.ToList();
         }
 
-        private void DFS(String origin)
+        private void DFS(string origin)
         {
             // Visit all the outgoing edges first.
             if (flightMap.ContainsKey(origin))

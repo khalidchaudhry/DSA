@@ -14,43 +14,18 @@ namespace LeetCodeGraphs.Easy
             int[] answer = new int[N];
             int[] flowerTypes = new int[4] { 1, 2, 3, 4 };
             // map will contain garden(garden id)  and its neighboring gardens
-            Dictionary<int, List<int>> map = new Dictionary<int, List<int>>();
-            for (int i = 0; i < paths.Length; i++)
-            {
-                // only two entries in the gardens array as one edge can connect at max 2 garden
-                int[] gardens = new int[2] { paths[i][0], paths[i][1] };
-
-                // One  edge can connect at max 2 garden hence loop iterates 2 times only
-                for (int k = 0; k < 2; k++)
-                {
-                    // garden does not exist in map. Adding garden and its neighbour(first one)
-                    if (!map.ContainsKey(gardens[0]))
-                    {
-                        List<int> lst = new List<int>();
-                        lst.Add(gardens[1]);
-                        map.Add(gardens[0], lst);
-                    }
-                    else
-                    {
-                        // garden already exists in map. Adding neighbour to it
-                        map[gardens[0]].Add(gardens[1]);
-                    }
-                    // swaping as its bidirectional graph and so that above code does not need to change.
-                    // edge between 1 and 2 means that there is also edge between 2 to 1 
-                    Swap(gardens);
-                }
-            }
+            Dictionary<int, List<int>> graph = BuildGraph(paths);
             // iterating entries in map and assign them flower types
-            foreach (var record in map)
+            foreach (var node in graph)
             {
                 HashSet<int> hs = new HashSet<int>();
                 // Adding flower type to hashset already assigned to neighbour(s)
                 // so that we assign garden different flower type than its neighbours 
-                foreach (var one in record.Value)
+                foreach (var neighbour in node.Value)
                 {
-                    if (answer[one - 1] != 0)
+                    if (answer[neighbour - 1] != 0)
                     {
-                        hs.Add(answer[one - 1]);
+                        hs.Add(answer[neighbour - 1]);
                     }
                 }
                 // Purpose of below loop is to assign flower type to garden that is not assign to any of its neighbours  
@@ -64,7 +39,7 @@ namespace LeetCodeGraphs.Easy
                     }
                 }
                 // assigning flower type to the garden
-                answer[record.Key - 1] = choosenFlowerType;
+                answer[node.Key - 1] = choosenFlowerType;
             }
 
             // If answer array entries still contains zero it means some gardens are not conencted by paths and 
@@ -82,11 +57,33 @@ namespace LeetCodeGraphs.Easy
             return answer;
         }
 
-        private void Swap(int[] gardens)
+        private Dictionary<int, List<int>> BuildGraph(int[][] paths)
         {
-            int temp = gardens[0];
-            gardens[0] = gardens[1];
-            gardens[1] = temp;
-        }
+            Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+
+            foreach (int[] path in paths)
+            {
+                // ! As the graph is bidirectional , we are adding  both the nodes 
+                if (graph.ContainsKey(path[0]))
+                {
+                    graph[path[0]].Add(path[1]);
+                }
+                else
+                {
+                    graph.Add(path[0], new List<int>() { path[1] });
+                }
+
+                if (graph.ContainsKey(path[1]))
+                {
+                    graph[path[1]].Add(path[0]);
+                }
+                else
+                {
+                    graph.Add(path[1], new List<int>() { path[0]});
+                }
+            }
+
+            return graph;
+        }      
     }
 }

@@ -15,8 +15,8 @@ namespace LeetCodeStrings.Medium
                  !For input: ["root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)", "root 4.txt(efgh)"]
                  
                  Key(FileContent)        Value(FilePath) 
-                 abcd                   {root/a/1.txt,root/c/3.txt}
-                 efgh                   {root/a/2.txt,root/c/d/4.txt,root/4.txt }
+                 (abcd)                   {root/a/1.txt,root/c/3.txt}
+                 (efgh)                   {root/a/2.txt,root/c/d/4.txt,root/4.txt }
              
              */
             if (paths.Length == 0)
@@ -30,7 +30,8 @@ namespace LeetCodeStrings.Medium
                 {
                     int indexOf = directoryInfo[i].IndexOf('(');
                     string fileName = directoryInfo[i].Substring(0, indexOf);
-                    string fileContent = directoryInfo[i].Substring(indexOf + 1, directoryInfo[i].Length - indexOf - 2);
+                    //string fileContent = directoryInfo[i].Substring(indexOf + 1, directoryInfo[i].Length - indexOf - 2);
+                    string fileContent = directoryInfo[i].Substring(indexOf);
 
                     StringBuilder sb = new StringBuilder();
                     // Appending directoryPath

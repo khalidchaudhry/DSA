@@ -9,6 +9,7 @@ namespace LeetCodeBinaryTrees.Medium
 
         /// <summary>
         //!https://leetcode.com/problems/flatten-binary-tree-to-linked-list/solution/
+        //! Post Order Traversal or pre order traversal
         /// </summary>
         /// <param name="root"></param>
         public void Flatten(TreeNode root)

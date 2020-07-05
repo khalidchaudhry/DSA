@@ -27,7 +27,7 @@ namespace LeetCodeArrays.Medium
             {
                 charMap[c - 'A']++;
             }
-            
+
             //!Why sorting?  because doing first the task that occurs most frequently will 
             //! give us optimum way to complete the tasks 
             //!sorting does not ruin time complexity as we are sorting 26 characters 
@@ -40,12 +40,17 @@ namespace LeetCodeArrays.Medium
             int max_val = charMap[25] - 1;
 
             //! Fill everything except the maximum accuring task with idle 
-            // For example for input AAABB there will be 4 idle tasks if we don't consider B
+            // For example for input AAABB with cool down period=2 there will be 4 idle tasks if we don't consider B
             int idleSlots = max_val * n;
 
             for (int i = 24; i >= 0; i--)
             {
-                idleSlots -= Math.Min(charMap[i],max_val);
+                //!AAABBB
+                //!AAABB
+                //If f_B == f_max, then it could take (f_max - 1) cooling idle slots, and one slot at the end, which is not an idle slot: AB -- AB -- AB.
+                //If f_B<f_max, then it could take f_B cooling idle slots: AB-- A--(cooling)-- A.
+                //To uniform these two cases, we take min(f_max - 1, f_B).
+                idleSlots -= Math.Min(charMap[i], max_val);
             }
 
             //if we could not fill up all the idle slots with the tasks. 

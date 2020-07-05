@@ -143,6 +143,14 @@ namespace BinaryTree
             }
         }
 
+        /// <summary>
+        //!Probelm sloving in Data structures and algorithms using C#
+        //!Intuition: We will use 2 queues to perform level order traversal 
+        //! We will process queues and put the children of the elements of the queue into another queue
+        //! so that when each order is processed , we can print the output in different line. 
+        //https://www.youtube.com/watch?v=7uG0gLDbhsI
+        /// </summary>
+        /// <param name="n"></param>
         public static void PrintLevelOrderLineByLine(Node n)
         {
             var q1 = new Queue<Node>();
@@ -151,8 +159,6 @@ namespace BinaryTree
                 q1.Enqueue(n);
             while (q1.Count != 0 || q2.Count != 0)
             {
-
-
                 while (q1.Count != 0)
                 {
                     var dequeue = q1.Dequeue();
@@ -166,6 +172,7 @@ namespace BinaryTree
                         q2.Enqueue(dequeue.right);
                     }
                 }
+
                 Console.WriteLine();
 
                 while (q2.Count != 0)
@@ -263,7 +270,7 @@ namespace BinaryTree
             while (curr != null || stk.Count != 0)
             {
                 /* Reach the left most Node of the curr Node */
-                while (curr != null || stk.Count != 0)
+                while (curr != null)
                 {
                     //place pointer to a tree node on  
                     //the stack before traversing
@@ -279,8 +286,32 @@ namespace BinaryTree
                 curr = curr.right;
             }
         }
-
-
+        /// <summary>
+        /// https://medium.com/leetcode-patterns/leetcode-pattern-1-bfs-dfs-25-of-the-problems-part-1-519450a84353
+        /// </summary>
+        /// <param name="n"></param>
+        public static void PreOrderTreeIterative(Node n)
+        {
+            Stack<Node> stk = new Stack<Node>();
+            //! 1. Initialize the stack
+            stk.Push(n);
+            while (stk.Count != 0)
+            {
+                //! 2. Pop top 
+                Node curr = stk.Pop();
+                Console.WriteLine(curr.data);
+                //!3. Fetch not null children (order is important)
+                //!4. Push them to the stack
+                if (curr.right != null)
+                {
+                    stk.Push(curr.right);
+                }
+                if (curr.left != null)
+                {
+                    stk.Push(curr.left);
+                }
+            }
+        }
         public static void PreOrderTreeTraversal(Node n)
         {
             if (n == null)

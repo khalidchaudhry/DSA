@@ -6,6 +6,12 @@ namespace LeetCodeArrays.Medium
 {
     public class _39
     {
+        /// <summary>
+        /// http://www.goodtecher.com/leetcode-39-combination-sum/
+        /// </summary>
+        /// <param name="candidates"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public IList<IList<int>> CombinationSum(int[] candidates, int target)
         {
             List<IList<int>> results = new List<IList<int>>();
@@ -29,6 +35,7 @@ namespace LeetCodeArrays.Medium
         {
             if (target == 0)
             {
+                //! Deep copy of the combinations List<int>
                 results.Add(new List<int>(combinations));
                 return;
             }
@@ -40,6 +47,7 @@ namespace LeetCodeArrays.Medium
                 }
                 combinations.Add(candidates[i]);
                 DFS(results, combinations, candidates, target - candidates[i], i);
+                //! Remove the last element from combintation as we are going to the next level 
                 combinations.RemoveAt(combinations.Count - 1);
             }
         }

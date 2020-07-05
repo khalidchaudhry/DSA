@@ -27,9 +27,9 @@ namespace PracticingRecursionInJava.LinkedBinaryTree
         {
             var t = new Tree();
             t.root = new Node(1);
-            t.root.left = new Node(0);
+            t.root.left = new Node(9);
             t.root.right = new Node(3);
-            t.root.right.left = new Node(0);
+            t.root.right.left = new Node(12);
             return t;
         }
     }
