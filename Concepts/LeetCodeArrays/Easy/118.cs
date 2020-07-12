@@ -48,5 +48,42 @@ namespace LeetCodeArrays.Easy
             return result;
         }
 
+        /// <summary>
+        /// Practice
+        /// </summary>
+        /// <param name="numRows"></param>
+        /// <returns></returns>
+        public IList<IList<int>> Generate2(int numRows)
+        {
+
+            List<IList<int>> result = new List<IList<int>>();
+
+            if (numRows == 0)
+                return result;
+
+            result.Add(new List<int>() { 1 });
+
+
+            for (int i = 1; i < numRows; i++)
+            {
+                List<int> row = new List<int>();
+
+                row.Add(1);
+
+                for (int j = 1; j < result[i - 1].Count; j++)
+                {
+                    row.Add(result[i - 1][j - 1] + result[i - 1][j]);
+                }
+
+                row.Add(1);
+
+                result.Add(row);
+            }
+
+            return result;
+
+
+        }
+
     }
 }

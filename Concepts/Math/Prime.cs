@@ -43,7 +43,7 @@ namespace Maths
         /// <returns></returns>
         public bool IsPrime(int n)
         {
-            if (n == 2)
+            if (n <= 2)
                 return true;
 
             int sqrt = (int)Math.Ceiling(Math.Sqrt(n));
@@ -53,6 +53,7 @@ namespace Maths
                 if (n % i == 0)
                 {
                     isPrime = false;
+                    break;
                 }
             }
 
@@ -61,6 +62,7 @@ namespace Maths
         /// <summary>
         /// https://www.youtube.com/watch?v=eKp56OLhoQs
         /// </summary>
+        //! Time complexity=O(nloglogn)        
         /// <param name="n"></param>
         /// <returns></returns>
         public int SieveOfEratosthenes(int n)

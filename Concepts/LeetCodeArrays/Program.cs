@@ -109,9 +109,9 @@ namespace LeetCodeArrays
             //int target = 7;
             //InsertionPoint.SearchInsert(nums,target);
 
-            ////118.Pascal's Triangle
+            //118.Pascal's Triangle
             //_118 PascalTriangle = new _118();
-            //PascalTriangle.Generate(5);
+            //PascalTriangle.Generate2(5);
 
 
             /***********************119.Pascal's Triangle II********************************/

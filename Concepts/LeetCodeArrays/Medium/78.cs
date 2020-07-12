@@ -6,6 +6,11 @@ namespace LeetCodeArrays.Medium
 {
     public class _78
     {
+        /// <summary>
+        /// https://www.youtube.com/watch?v=VdnvmfzA1pw
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public IList<IList<int>> Subsets(int[] nums)
         {
             List<IList<int>> results = new List<IList<int>>();

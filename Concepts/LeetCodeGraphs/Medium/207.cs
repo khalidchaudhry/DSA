@@ -106,7 +106,7 @@ namespace LeetCodeGraphs.Medium
                     indegree[neighbour]--;
                     if (indegree[neighbour] == 0)
                     {
-                        //! Push courses having no depedencies i.e. indegree==0 to queue
+                        //! Push courses having no depedencies i.e. indegree==0 to stack
                         stk.Push(neighbour);
                     }
                 }
@@ -136,8 +136,13 @@ namespace LeetCodeGraphs.Medium
                     {
                         nextCourses.Add(relation[0]);
                         indegree[relation[0]]++;
+                        adj.Add(relation[1], nextCourses);
                     }
-                    adj.Add(relation[1], nextCourses);
+                    else
+                    {
+                        adj.Add(relation[0], nextCourses);
+                    }
+                   
                 }
             }
         }

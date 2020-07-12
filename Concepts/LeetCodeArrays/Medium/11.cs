@@ -13,6 +13,7 @@ namespace LeetCodeArrays.Medium
 
             while (i < j)
             {
+                //! width is j-i not j-i+1. When including boundries we need to include start or end but not both 
                 int width = j - i;
                 int area = 0;
                 if (height[i] < height[j])

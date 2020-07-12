@@ -39,6 +39,7 @@ namespace TopInterviewQuestions.Easy
             return disappearedNumbers;
         }
 
+        //! In my opinion this is better as it does not require swapping. 
         public IList<int> FindDisappearedNumbers2(int[] nums)
         {
             IList<int> disappearedNumbers = new List<int>();

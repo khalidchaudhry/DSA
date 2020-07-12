@@ -13,6 +13,9 @@ namespace LeetCodeBinaryTrees.Easy
         /// <summary>
         /// https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/solution/
         /// https://www.youtube.com/watch?v=VVSnM5DGvjg
+        // https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/solution/
+        //! Time Complexity=0(n) where n is the number of elements in array. We have to go through all the array elements once 
+        //! Space complexity=O(n) to keep output + O(logn) for recursion stack 
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
