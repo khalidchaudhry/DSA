@@ -2,6 +2,7 @@
 using Recursion.ByteByByte.Module2;
 using Recursion.ByteByByte.Module3;
 using Recursion.ByteByByte.Module4;
+using Recursion.ByteByByte.Module5;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -90,12 +91,32 @@ namespace Recursion
             //string s2 = "cd";
             //var ans=interleave.Interleave2(s1,s2);       
 
-            TargetSum targetSum = new TargetSum();
+            //TargetSum targetSum = new TargetSum();
 
-            int[] nums = new int[]{1,2,3};
-            int target = 4;
-            var ans=targetSum.TagetSumPassedVariable(nums, target);
-            
+            //int[] nums = new int[]{1,2,3};
+            //int target = 4;
+            //var ans=targetSum.TagetSumPassedVariable(nums, target);
+
+            //var KnapsackBuiltUp = new ByteByByte.Module4.Homework();
+
+            //Item[] arr = new Item[4]
+            //    {
+            //        new Item(5,10),
+            //        new Item(4,40),
+            //        new Item(6,30),
+            //        new Item(3,50)
+            //    };
+
+            //var ans=KnapsackBuiltUp.KnapsackBuiltUp(arr,10);
+
+
+            var Permutation = new Permutations();
+            int[] nums = new int[] { 1, 2, 3 };
+
+            var result=Permutation.PermutationsSimple(nums);           
+
+
+
             Console.ReadLine();
         }
     }

@@ -111,6 +111,7 @@ namespace Recursion.ByteByByte.Module4
                 {
                     results[0] = new List<Item>(path);
                 }
+                return;
             }
 
             //exclude current item
@@ -170,6 +171,11 @@ namespace Recursion.ByteByByte.Module4
     {
         public int weight;
         public int value;
+        public Item(int weight,int value)
+        {
+            this.weight = weight;
+            this.value = value;
+        }
     }
     public class Result
     {

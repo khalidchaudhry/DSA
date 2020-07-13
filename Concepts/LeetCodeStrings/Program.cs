@@ -105,8 +105,8 @@ namespace LeetCodeStrings
 
             //var result=Reverse.ReverseWords(s);
 
-            ////_17 LetterCombinations = new _17();
-            //var result=LetterCombinations.LetterCombinations2("23");
+            _17 LetterCombinations = new _17();
+            var result=LetterCombinations.LetterCombinations0("23");
 
             //_49 GroupAnagrams = new _49();
             //string[] strs = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
@@ -140,9 +140,9 @@ namespace LeetCodeStrings
 
             //Duplicate.FindDuplicate(paths);
 
-            _91 DecodeWays = new _91();
+            //_91 DecodeWays = new _91();
 
-            DecodeWays.NumDecodings("22624");
+            //DecodeWays.NumDecodings("22624");
 
             //_93 RestoreIpAddress = new _93();
 
@@ -160,6 +160,8 @@ namespace LeetCodeStrings
             //_165 Version = new _165();
 
             //var ans=Version.CompareVersion(version1,version2);
+
+
 
             Console.ReadLine();
         }

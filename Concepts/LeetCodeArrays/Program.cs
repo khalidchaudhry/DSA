@@ -267,12 +267,17 @@ namespace LeetCodeArrays
             //int[] nums = new int[] { 1, 0, -1, 0, -2, 2 };
             //FourSum.FourSum(nums,0);
 
-            _78 Subset = new _78();
-            int[] nums = new int[] {1,2,3};
-            var ans=Subset.Subsets(nums);
+            //_78 Subset = new _78();
+            //int[] nums = new int[] {1,2,3};
+            //var ans=Subset.Subsets(nums);
+
+            _39 CombinationSum = new _39();
+            int[] candidates = new int[] {2,3,6,7};
+            int target = 7;
+            var ans=CombinationSum.CombinationSum0(candidates,target);
 
 
-            //Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }
