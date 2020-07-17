@@ -3,6 +3,7 @@ using Recursion.ByteByByte.Module2;
 using Recursion.ByteByByte.Module3;
 using Recursion.ByteByByte.Module4;
 using Recursion.ByteByByte.Module5;
+using Recursion.GeeksForGeeks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace Recursion
             //{
             //    Console.WriteLine($"{one} ");
             //}
-            //int[] arr = new int[] {1,2,3 };
+            //int[] arr = new int[] {1,2};
             //var result=Combinations.CombinationsGlobal(arr);
             //var result = Combinations.CombinationsBuiltUp(arr);
 
@@ -82,9 +83,9 @@ namespace Recursion
             //}
 
             //LengthCombinations lengthCombinations = new LengthCombinations();
-            //int[] n = new int[] { 0, 1, 2, 3 };
+            //int[] n = new int[] {1, 2, 3 };
             //int targetLen = 2;
-            //var result=lengthCombinations.CombinationOfLengthBuildUp(n, targetLen);
+            //var result = lengthCombinations.CombinationOfLengthPassedVariable(n, targetLen);
 
             //InterleaveStrings interleave = new InterleaveStrings();
             //string s1 = "ab";
@@ -110,12 +111,69 @@ namespace Recursion
             //var ans=KnapsackBuiltUp.KnapsackBuiltUp(arr,10);
 
 
-            var Permutation = new Permutations();
-            int[] nums = new int[] { 1, 2, 3 };
+            //var Permutation = new Permutations();
+            //int[] nums = new int[] { 1, 2, 3 };
 
-            var result=Permutation.PermutationsSimple(nums);           
+            //var result=Permutation.PermutationsSimple(nums);           
 
+            //var coinChange = new ByteByByte.Module4.Homework();
+            //int[] coins = new int[] { 1, 5, 10, 25 };
+            //var ans=coinChange.MakingChange2(coins, 49);
 
+            //StringPermutation stringPermutation = new StringPermutation();
+            //var result = stringPermutation.PermuteWithSwap("abc");
+
+            //Permutations permutations = new Permutations();
+            //int[] nums = new int[] { 1, 2, 3 };
+            //var ans=permutations.PermutationWithSwap(nums);
+
+            //PermutationLength permutationLength = new PermutationLength();
+
+            //HashSet<int> items = new HashSet<int>() { 1, 2, 3 };
+            //int[] items2 = new int[] { 1, 2, 3 };
+            //int length = 2;
+            //var result = permutationLength.PermutationOfSetLengthSwap(items2, length);
+
+            //PermutationWithDuplicates permutationWithDuplicates = new PermutationWithDuplicates();
+            //int[] items = new int[] { 1, 2,3,1 };
+            //var ans = permutationWithDuplicates.PermutationsWithoutHashMap(items);
+
+            //NDigitNumbers ndigitNumbers = new NDigitNumbers();
+
+            //var result = ndigitNumbers.NDigitNumberSum(9, 10);
+            //BSTArrays bstarrays = new BSTArrays();
+            //TreeNode node = new TreeNode(2);
+            //node.left = new TreeNode(1);
+            //node.right = new TreeNode(3);
+            //var result=bstarrays.AllBSTOrders(node);
+
+            //ByteByByte.Module5.Homework arrayOfArrays = new ByteByByte.Module5.Homework();
+
+            //int[][] arr = new int[3][] {
+            //    new int[] {1,2},
+            //    new int[]{3},
+            //    new int[]{4,5 }
+            //};
+            //var result=arrayOfArrays.ArrayOfArrays(arr);
+            //int[] arr = new int[3] { 3, 2, 1 };
+            //ByteByByte.Module5.Homework SortedPermuation = new ByteByByte.Module5.Homework();
+            //var result=SortedPermuation.SortedPermutations(arr);
+            //ByteByByte.Module5.Homework SeatingChart = new ByteByByte.Module5.Homework();
+            //Dictionary<int, int> map = new Dictionary<int, int>();
+            //map.Add(1, 3);
+            //map.Add(3, 1);
+            //var result=SeatingChart.Arrangements(3, map);                       
+
+            //StandfordCourse course = new StandfordCourse();
+            //course.PrintAllBinary(2);
+            int[][] arr = new int[3][] 
+            {
+                new int[] {1,2,3},
+                new int[] {4},
+                new int[] {5,6,7},
+            };
+
+            TraverseMatrix.TraverseMatrixWithRecursion(arr);
 
             Console.ReadLine();
         }

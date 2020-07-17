@@ -16,7 +16,7 @@ namespace Recursion.ByteByByte.Module3
 
             return GCD(b, a % b);
         }
-        //Question 2:Given a 2D boolean array, find the largest square subarray of true values.
+        //Question 3:Given a 2D boolean array, find the largest square subarray of true values.
         //The return value should be the side length of the largest square subarray subarray
         public int SquareSubmatrixIterative(bool[][] arr)
         {
@@ -72,30 +72,6 @@ namespace Recursion.ByteByByte.Module3
             return largestSquareSubArea;
         }
 
-        //Implement Towers of Hanoi to find the moves required to move N disks from the source to destination.
-        public List<Move> Moves(int n)
-        {
-            return Moves(n, Position.SRC, Position.DEST, Position.AUX);
-        }
-
-        private List<Move> Moves(int n, Position src, Position dest, Position aux)
-        {
-            List<Move> result = new List<Move>();
-            if (n == 1)
-            {
-                result.Add(new Move(n, src, dest));
-                return result;
-            }
-            //! Move n-1 disks from src to aux rods using dest rod as aux  
-            result.AddRange(Moves(n - 1, src, aux, dest));
-            //! Move the current disk from src to dest rod
-            result.Add(new Move(n, src, dest));
-            //! Move n-1 disks from aux to dest  rods using src rod as aux 
-            result.AddRange(Moves(n - 1, aux, dest, src));
-
-            return result;
-        }
-
         //! Sam version
         //Question 3:Given a 2D boolean array, find the largest square subarray of true values.
         //The return value should be the side length of the largest square subarray subarray
@@ -111,20 +87,6 @@ namespace Recursion.ByteByByte.Module3
             }
 
             return max;
-        }
-
-        private int SquareSubmatrix(bool[][] arr, int i, int j)
-        {
-            if (i == arr.Length || j == arr[0].Length)
-            {
-                return 0;
-            }
-
-            if (!arr[i][j])
-                return 0;
-
-            return 1 + Math.Min(Math.Min(SquareSubmatrix(arr, i + 1, j), SquareSubmatrix(arr, i + 1, j + 1)),
-                                SquareSubmatrix(arr, i, j - 1));
         }
 
         //Question 3:Given a 2D boolean array, find the largest square subarray of true values.
@@ -167,9 +129,45 @@ namespace Recursion.ByteByByte.Module3
             return largestSquareSubArea;
         }
 
-        //Question 3:Given a 2D boolean array, find the largest square subarray of true values.
-        //The return value should be the side length of the largest square subarray subarray
-        private static void SquareSubmatrixRecursive(bool[][] arr, int[][] aux, int row, int column, int rows, int columns)
+        //Implement Towers of Hanoi to find the moves required to move N disks from the source to destination.
+        public List<Move> Moves(int n)
+        {
+            return Moves(n, Position.SRC, Position.DEST, Position.AUX);
+        }
+
+        private List<Move> Moves(int n, Position src, Position dest, Position aux)
+        {
+            List<Move> result = new List<Move>();
+            if (n == 1)
+            {
+                result.Add(new Move(n, src, dest));
+                return result;
+            }
+            //! Move n-1 disks from src to aux rods using dest rod as aux  
+            result.AddRange(Moves(n - 1, src, aux, dest));
+            //! Move the current disk from src to dest rod
+            result.Add(new Move(n, src, dest));
+            //! Move n-1 disks from aux to dest  rods using src rod as aux 
+            result.AddRange(Moves(n - 1, aux, dest, src));
+
+            return result;
+        }
+
+        private int SquareSubmatrix(bool[][] arr, int i, int j)
+        {
+            if (i == arr.Length || j == arr[0].Length)
+            {
+                return 0;
+            }
+
+            if (!arr[i][j])
+                return 0;
+
+            return 1 + Math.Min(Math.Min(SquareSubmatrix(arr, i + 1, j), SquareSubmatrix(arr, i + 1, j + 1)),
+                                SquareSubmatrix(arr, i, j - 1));
+        }
+
+       private static void SquareSubmatrixRecursive(bool[][] arr, int[][] aux, int row, int column, int rows, int columns)
         {
             if (row == rows) // end of the recursion 
             {

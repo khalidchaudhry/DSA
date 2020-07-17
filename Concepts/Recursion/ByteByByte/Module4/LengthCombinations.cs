@@ -8,14 +8,46 @@ namespace Recursion.ByteByByte.Module4
     {
         public List<List<int>> CombinationOfLengthBuildUp(int[] n, int length)
         {
-            return CombinationOfLength(n, 0, length, 0);
+            return CombinationOfLengthBuildUp(n, 0, length, 0);
         }
 
-        private List<List<int>> CombinationOfLength(int[] n, int i, int targetLen, int currLen)
+        public List<List<int>> CombinationOfLengthPassedVariable(int[] n, int length)
+        {
+            List<List<int>> result = new List<List<int>>();
+            CombinationOfLengthPassedVariable(n, 0, length, 0, new List<int>(), result);
+
+            return result;
+        }
+
+        private void CombinationOfLengthPassedVariable(int[] n,
+                                                       int i,
+                                                       int targetLen,
+                                                       int currLen,
+                                                       List<int> path,
+                                                       List<List<int>> result
+                                                       )
+        {
+            if (currLen > targetLen) return;
+            if (i == n.Length && currLen != targetLen) return;
+            if (i == n.Length)
+            {
+                result.Add(new List<int>(path));
+                return;
+            }
+
+            List<int> pathWithCurrent = new List<int>(path);
+            pathWithCurrent.Add(n[i]);
+            //!include           
+            CombinationOfLengthPassedVariable(n, i + 1, targetLen, currLen + 1, pathWithCurrent, result);
+            //!Exclude
+            CombinationOfLengthPassedVariable(n, i + 1, targetLen, currLen, path, result);
+        }
+
+        private List<List<int>> CombinationOfLengthBuildUp(int[] n, int i, int targetLen, int currLen)
         {
             List<List<int>> toReturn = new List<List<int>>();
 
-            if (currLen > targetLen)
+            if (currLen > targetLen)//!Backtracking
             {
                 return toReturn;
             }
@@ -32,9 +64,9 @@ namespace Recursion.ByteByByte.Module4
             }
 
             // include current item 
-            List<List<int>> include = CombinationOfLength(n, i + 1, targetLen, currLen + 1);
+            List<List<int>> include = CombinationOfLengthBuildUp(n, i + 1, targetLen, currLen + 1);
             //exclude current item
-            List<List<int>> exclude = CombinationOfLength(n, i + 1, targetLen, currLen);
+            List<List<int>> exclude = CombinationOfLengthBuildUp(n, i + 1, targetLen, currLen);
 
             foreach (List<int> result in include)
             {

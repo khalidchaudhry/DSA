@@ -6,12 +6,37 @@ namespace LeetCodeArrays.Medium
 {
     public class _78
     {
+
+        //! Based on Sams byte by byte course
+        public IList<IList<int>> Subsets0(int[] nums)
+        {
+            List<IList<int>> result = new List<IList<int>>();
+            Subsets0(nums, 0, new List<int>(), result);
+
+            return result;
+        }
+
+        private void Subsets0(int[] nums, int i, List<int> path, List<IList<int>> result)
+        {
+            if (i == nums.Length)
+            {
+                result.Add(new List<int>(path));
+                return;
+            }
+            List<int> pathWithCurrent = new List<int>(path);
+            pathWithCurrent.Add(nums[i]);
+            //Include
+            Subsets0(nums, i + 1, pathWithCurrent, result);
+            //Exclude
+            Subsets0(nums, i + 1, path, result);
+        }
+
         /// <summary>
         /// https://www.youtube.com/watch?v=VdnvmfzA1pw
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
-        public IList<IList<int>> Subsets(int[] nums)
+        public IList<IList<int>> Subsets1(int[] nums)
         {
             List<IList<int>> results = new List<IList<int>>();
 
