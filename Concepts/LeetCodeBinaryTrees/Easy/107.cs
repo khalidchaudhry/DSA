@@ -6,6 +6,79 @@ namespace LeetCodeBinaryTrees.Easy
 {
     class _107
     {
+        public static void _107Main()
+        {
+            /*
+                      3
+                     / \
+                    9  20
+                      /  \
+                     15   7
+             */
+
+            var p = new TreeNode(3);
+            p.left = new TreeNode(9);
+            p.right = new TreeNode(20);
+
+            p.right.left = new TreeNode(15);
+            p.right.right = new TreeNode(7);
+
+            _107 levelOrderTraversal = new _107();
+
+            levelOrderTraversal.LevelOrderBottom0(p);
+        }
+
+        public IList<IList<int>> LevelOrderBottom0(TreeNode root)
+        {
+            List<IList<int>> result = new List<IList<int>>();
+
+            LevelOrderTopDown(root, result);
+            int i = 0;
+            int j = result.Count - 1;
+
+            while (i < j)
+            {
+                IList<int> temp = result[i];
+                result[i] = result[j];
+                result[j] = temp;
+                ++i;
+                --j;
+            }
+
+            return result;
+        }
+
+        private void LevelOrderTopDown(TreeNode root, List<IList<int>> result)
+        {
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+
+            if (root != null)
+                queue.Enqueue(root);
+
+            while (queue.Count != 0)
+            {
+                int count = queue.Count;
+                List<int> level = new List<int>();
+                while (count != 0)
+                {
+                    TreeNode dequeue = queue.Dequeue();
+                    level.Add(dequeue.val);
+
+                    if (dequeue.left != null)
+                    {
+                        queue.Enqueue(dequeue.left);
+                    }
+                    if (dequeue.right != null)
+                    {
+                        queue.Enqueue(dequeue.right);
+                    }
+                    --count;
+                }
+
+                result.Add(level);
+            }
+        }
+
         public IList<IList<int>> LevelOrderBottom(TreeNode root)
         {
             List<IList<int>> result = new List<IList<int>>();
@@ -53,15 +126,15 @@ namespace LeetCodeBinaryTrees.Easy
                 if (levelElements.Count > 0)
                     result.Add(new List<int>(levelElements));
             }
-             result.Reverse();
+            result.Reverse();
 
             return result;
 
 
 
         }
-        //https://leetcode.com/problems/binary-tree-level-order-traversal-ii/discuss/35089/Java-Solution.-Using-Queue
-        //
+
+        //https://leetcode.com/problems/binary-tree-level-order-traversal-ii/discuss/35089/Java-Solution.-Using-Queue       
         public IList<IList<int>> LevelOrderBottom2(TreeNode root)
         {
             List<IList<int>> result = new List<IList<int>>();

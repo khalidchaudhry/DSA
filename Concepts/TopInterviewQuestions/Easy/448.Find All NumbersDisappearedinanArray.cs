@@ -8,6 +8,36 @@ namespace TopInterviewQuestions.Easy
 {
     class _448
     {
+
+        //! In my opinion this is better as it does not require swapping. 
+        public IList<int> FindDisappearedNumbers2(int[] nums)
+        {
+            IList<int> disappearedNumbers = new List<int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                //Math.Abs needed . Otherwise it will not work
+                int index = Math.Abs(nums[i]) - 1;
+                //nums[index]=Math.Abs(nums[index]) * -1;
+
+                if (nums[index] > 0)
+                {
+                    nums[index] = -nums[index];
+
+                }
+            }
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] > 0)
+                {
+                    disappearedNumbers.Add(i + 1);
+                }
+            }
+
+            return disappearedNumbers;
+        }
+
+
+
         //https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/discuss/93007/Simple-Java-In-place-sort-solution
         public IList<int> FindDisappearedNumbers(int[] nums)
         {
@@ -38,36 +68,5 @@ namespace TopInterviewQuestions.Easy
 
             return disappearedNumbers;
         }
-
-        //! In my opinion this is better as it does not require swapping. 
-        public IList<int> FindDisappearedNumbers2(int[] nums)
-        {
-            IList<int> disappearedNumbers = new List<int>();
-            for (int i = 0; i < nums.Length; i++)
-            {
-                //Math.Abs needed . Otherwise it will not work
-                int index = Math.Abs(nums[i]) - 1;
-                //nums[index]=Math.Abs(nums[index]) * -1;
-
-                if (nums[index] > 0)
-                {
-                    nums[index] = -nums[index];
-
-                }   
-            }
-            for (int i = 0; i < nums.Length; i++)
-            {
-                if (nums[i] > 0)
-                {
-                    disappearedNumbers.Add(i + 1);
-                }
-            }
-
-            return disappearedNumbers;
-        }
-
-
-
-
     }
 }

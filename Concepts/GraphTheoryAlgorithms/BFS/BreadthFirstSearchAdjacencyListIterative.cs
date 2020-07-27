@@ -18,6 +18,41 @@ namespace GraphTheoryAlgorithms.BFS
         private int[] prev;
         private List<List<Edge>> graph;
 
+        public static void BreadthFirstSearchAdjacencyListIterativeMain()
+        {
+            /*****************************************************************************/
+            //Breadth First Search Adjacency List Iterative 
+            /*****************************************************************************/
+            // BFS example #1 from slides.
+            int n = 13;
+            List<List<Edge>> graph = CreateEmptyGraph(n);
+
+            AddUnWeightedUnDirectedEdge(graph, 0, 7);
+            AddUnWeightedUnDirectedEdge(graph, 0, 9);
+            AddUnWeightedUnDirectedEdge(graph, 0, 11);
+            AddUnWeightedUnDirectedEdge(graph, 7, 11);
+            AddUnWeightedUnDirectedEdge(graph, 7, 6);
+            AddUnWeightedUnDirectedEdge(graph, 7, 3);
+            AddUnWeightedUnDirectedEdge(graph, 6, 5);
+            AddUnWeightedUnDirectedEdge(graph, 3, 4);
+            AddUnWeightedUnDirectedEdge(graph, 2, 3);
+            AddUnWeightedUnDirectedEdge(graph, 2, 12);
+            AddUnWeightedUnDirectedEdge(graph, 12, 8);
+            AddUnWeightedUnDirectedEdge(graph, 8, 1);
+            AddUnWeightedUnDirectedEdge(graph, 1, 10);
+            AddUnWeightedUnDirectedEdge(graph, 10, 9);
+            AddUnWeightedUnDirectedEdge(graph, 9, 8);
+
+            BreadthFirstSearchAdjacencyListIterative solver;
+            solver = new BreadthFirstSearchAdjacencyListIterative(graph);
+
+            int start = 10, end = 5;
+            List<int> path = solver.ReconstructPath(start, end);
+            Console.WriteLine($"The shortest path from {start} to {end} is: {FormatPath(path)}");
+            // Prints:
+            // The shortest path from 10 to 5 is: [10 -> 9 -> 0 -> 7 -> 6 -> 5]
+
+        }
         public BreadthFirstSearchAdjacencyListIterative(List<List<Edge>> graph)
         {
             if (graph == null) throw new ArgumentNullException("Graph cannot be null");
@@ -76,6 +111,34 @@ namespace GraphTheoryAlgorithms.BFS
                     }
                 }
             }
+        }
+        public static List<List<Edge>> CreateEmptyGraph(int n)
+        {
+            List<List<Edge>> graph = new List<List<Edge>>(n);
+            for (int i = 0; i < n; i++)
+                graph.Add(new List<Edge>());
+
+            return graph;
+        }
+        private static void AddUnWeightedUnDirectedEdge(List<List<Edge>> graph, int u, int v)
+        {
+            AddUnDirectedEdge(graph, u, v, 1);
+        }
+
+        // Add an undirected edge between nodes 'u' and 'v'.
+        private static void AddUnDirectedEdge(List<List<Edge>> graph, int u, int v, int cost)
+        {
+            AddDirectedEdge(graph, u, v, cost);
+            AddDirectedEdge(graph, v, u, cost);
+        }
+        // Add a directed edge from node 'u' to node 'v' with cost 'cost'.
+        private static void AddDirectedEdge(List<List<Edge>> graph, int u, int v, int cost)
+        {
+            graph[u].Add(new Edge(u, v, cost));
+        }
+        private static string FormatPath(List<int> path)
+        {
+            return string.Join(" -> ", path);
         }
     }
 }

@@ -3,6 +3,8 @@ using Recursion.ByteByByte.Module2;
 using Recursion.ByteByByte.Module3;
 using Recursion.ByteByByte.Module4;
 using Recursion.ByteByByte.Module5;
+using Recursion.ByteByByte.Module6;
+using Recursion.ByteByByte.Module7;
 using Recursion.GeeksForGeeks;
 using System;
 using System.Collections;
@@ -145,7 +147,7 @@ namespace Recursion
             //TreeNode node = new TreeNode(2);
             //node.left = new TreeNode(1);
             //node.right = new TreeNode(3);
-            //var result=bstarrays.AllBSTOrders(node);
+            //var result = bstarrays.AllBSTOrders(node);
 
             //ByteByByte.Module5.Homework arrayOfArrays = new ByteByByte.Module5.Homework();
 
@@ -166,14 +168,42 @@ namespace Recursion
 
             //StandfordCourse course = new StandfordCourse();
             //course.PrintAllBinary(2);
-            int[][] arr = new int[3][] 
-            {
-                new int[] {1,2,3},
-                new int[] {4},
-                new int[] {5,6,7},
-            };
+            //int[][] arr = new int[3][] 
+            //{
+            //    new int[] {1,2,3},
+            //    new int[] {4},
+            //    new int[] {5,6,7},
+            //};
 
-            TraverseMatrix.TraverseMatrixWithRecursion(arr);
+            //TraverseMatrix.TraverseMatrixWithRecursion(arr);
+
+            //BinarySearch binarySearch = new BinarySearch();
+            //int[] arr = new int[] { 1, 2, 3, 4, 5 };
+            //binarySearch.Contains(arr, 5);
+
+
+            //int[] arr = new int[] { 8, 9, 10, 2, 5, 6 };
+            //ByteByByte.Module6.Homework homework = new ByteByByte.Module6.Homework();
+
+            //var ans = homework.RotatedArraySearch(arr);
+            //ByteByByte.Module6.Homework homework = new ByteByByte.Module6.Homework();
+
+            //Node root = new Node(1);
+            //root.left = new Node(2);
+            //root.right = new Node(3);
+
+            //root.left.left = new Node(4);
+            //root.left.right = new Node(5);
+            //var ans=homework.TreeToLinkedList(root);
+
+            PathToNode.PathToNodeMain();
+
+            //DFSGraphs.DFSGraphsMain();
+
+            //LongestIncrementingPath.LongestIncrementingPathMain();
+
+            //GreatestProductPath.GreatestProductPathMain();
+
 
             Console.ReadLine();
         }

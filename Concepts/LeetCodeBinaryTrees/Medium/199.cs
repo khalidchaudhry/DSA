@@ -6,6 +6,20 @@ namespace LeetCodeBinaryTrees.Medium
 {
     public class _199
     {
+
+        public static void _199Main()
+        {
+            var t = new TreeNode(1);
+
+            t.left = new TreeNode(2);
+            t.left.left = new TreeNode(3);
+            t.left.left.left = new TreeNode(5);
+            t.right = new TreeNode(3);
+            t.right.right = new TreeNode(4);
+            _199 BinaryTreeRightSideView = new _199();
+            BinaryTreeRightSideView.RightSideView0(t);
+        }  
+
         //! Similar to question 107
         //! Intuition is to do level by level traversal . And level by level  done by BFS        
         //!Time complexity:O(n) since one has to visit each node.
@@ -42,8 +56,8 @@ namespace LeetCodeBinaryTrees.Medium
                     {
                         queue.Enqueue(dequeue.right);
                     }
-                }               
-            }          
+                }
+            }
 
             return result;
         }
@@ -57,7 +71,7 @@ namespace LeetCodeBinaryTrees.Medium
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
-        public IList<int> RightSideView(TreeNode root)
+        public IList<int> RightSideView1(TreeNode root)
         {
             List<int> result = new List<int>();
 

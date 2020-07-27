@@ -90,10 +90,14 @@ namespace Arrays
             //var result = ShortestPathin2DArray.PathExists(matrix);
 
 
-            ArrayPermutation Premute = new ArrayPermutation();
-            int[] arr = new int[] {1,2,3 };
-            var result=Premute.ListPermutations(arr);
+            //ArrayPermutation Premute = new ArrayPermutation();
+            //int[] arr = new int[] {1,2,3 };
+            //var result=Premute.ListPermutations(arr);
 
+            int[] arr = new int[] { 1, 2, 5, 6 };
+            TwoMissingNumbers MissingNumbers = new TwoMissingNumbers();
+
+            var result=MissingNumbers.TwoMissing(arr);
 
             Console.ReadLine();
         }

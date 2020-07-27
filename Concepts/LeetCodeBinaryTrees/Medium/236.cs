@@ -6,6 +6,81 @@ namespace LeetCodeBinaryTrees.Medium
 {
     public class _236
     {
+
+        public static void _236Main()
+        {
+
+            /*
+                     3
+                    / \
+                   0   4
+                    \
+                     2
+                    /
+                    1  
+            */
+            TreeNode p = new TreeNode(2);
+            TreeNode q = new TreeNode(1);
+
+
+
+            var treeNode = new TreeNode(3);
+            treeNode.left = new TreeNode(0);
+            treeNode.right = new TreeNode(4);
+
+            treeNode.left.right = p;//new TreeNode(2);
+
+            treeNode.left.right.left = q;// new TreeNode(1);
+
+            _236 LCA = new _236();
+
+            var node = LCA.LowestCommonAncestor0(treeNode, p, q);
+        }
+
+        /// <summary>
+        //! Post order traversal 
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="p"></param>
+        /// <param name="q"></param>
+        /// <returns></returns>
+        public TreeNode LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q)
+        {
+
+            ResultWrapper wrapper = new ResultWrapper();
+
+            LowestCommonAncestor0(root, p, q, wrapper);
+
+            return wrapper.LCA;
+
+        }
+
+        private int LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q, ResultWrapper wrapper)
+        {
+            if (root == null)
+                return 0;
+
+            int left = LowestCommonAncestor0(root.left, p, q, wrapper);
+            int right = LowestCommonAncestor0(root.right, p, q, wrapper);
+
+            int sum = left + right;
+            if (sum == 2 || (sum == 1 && root == p || root == q))
+            {
+                wrapper.LCA = root;
+                return 1;
+            }
+
+            else if (root == p || root == q)
+            {
+                ++sum;
+            }
+
+            return sum;
+
+        }
+
+
+
         /// <summary>
         /// https://www.youtube.com/watch?v=py3R23aAPCA
         /// </summary>
@@ -20,19 +95,19 @@ namespace LeetCodeBinaryTrees.Medium
             //! 1.) If the node we are holding is null then we can't search...just return null 
             //! 2.) If we find either value return ourselves to the caller
             //Remember, we are "grabbing" / "holding" 'root' in this call.   
-            
+
             if (root == null)
                 return root;
-           
-           //'root' doesn't satisfy any of our base cases.            
-           //Search left and then search right.
-            
+
+            //'root' doesn't satisfy any of our base cases.            
+            //Search left and then search right.
+
             if (root == p || root == q)
             {
                 return root;
             }
-           
-                   
+
+
             TreeNode left = LowestCommonAncestor(root.left, p, q);
             TreeNode right = LowestCommonAncestor(root.right, p, q);
             //!If nothing turned up on the left, return whatever we got back on the right. 
@@ -41,7 +116,7 @@ namespace LeetCodeBinaryTrees.Medium
             //!If nothing turned up on the right, return whatever we got back on the left.
             if (right == null)
                 return left;
-            
+
             //!If we reach here that means we got something back on the left AND
             //!right...that means this node is the LCA...because our recursion returns from
             //!bottom to up...so we return what we hold...'root'
@@ -66,7 +141,7 @@ namespace LeetCodeBinaryTrees.Medium
             HashSet<TreeNode> ancestors = new HashSet<TreeNode>();
 
             stk.Push(root);
-            parent.Add(root,null);
+            parent.Add(root, null);
             //! Iterate until we find both the nodes p and q
             while (!parent.ContainsKey(p) || !parent.ContainsKey(q))
             {
@@ -98,6 +173,11 @@ namespace LeetCodeBinaryTrees.Medium
             }
 
             return q;
+        }
+
+        public class ResultWrapper
+        {
+            public TreeNode LCA { get; set; }
         }
 
 

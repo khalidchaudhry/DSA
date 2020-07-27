@@ -10,7 +10,7 @@ namespace Recursion.ByteByByte.Module5
         {
             List<List<int>> result = new List<List<int>>();
             HashSet<TreeNode> available = new HashSet<TreeNode>(new List<TreeNode>() { root });
-            AllBSTOrders(available,new List<int>(),result);
+            AllBSTOrders(available, new List<int>(), result);
             return result;
         }
 

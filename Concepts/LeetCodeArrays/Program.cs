@@ -230,9 +230,9 @@ namespace LeetCodeArrays
 
 
             //_33 RotatedSortedArray = new _33();
-            //int[] nums = new int[] { 3,4,5,6,1,2};
+            //int[] nums = new int[] { 2,3,1 };
             //int target = 2;
-            //var ans=RotatedSortedArray.Search2(nums, target);
+            //var ans = RotatedSortedArray.Search2(nums, target);
 
             //List<IList<int>> arrays = new List<IList<int>>
             //{
@@ -271,11 +271,12 @@ namespace LeetCodeArrays
             //int[] nums = new int[] {1,2,3};
             //var ans=Subset.Subsets(nums);
 
-            _39 CombinationSum = new _39();
-            int[] candidates = new int[] {2,3,6,7};
-            int target = 7;
-            var ans=CombinationSum.CombinationSum0(candidates,target);
+            //_39 CombinationSum = new _39();
+            //int[] candidates = new int[] {2,3,6,7};
+            //int target = 7;
+            //var ans=CombinationSum.CombinationSum0(candidates,target);
 
+            _59._59Main();
 
             Console.ReadLine();
         }

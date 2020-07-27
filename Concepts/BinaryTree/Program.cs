@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BinaryTree.GeekForGeeks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace BinaryTree
         public static void Main(String[] args)
         {
             //Tree t2 = new Tree();
-            int[] arr = {1,2,3 };
+            //int[] arr = {1,2,3 };
             //Tree t = Tree.CreateSimpleTree();
             //Console.WriteLine("Inorder traversal");
             //TreeTraversal.InOrderTreeTraversal(t.root);
@@ -34,7 +35,7 @@ namespace BinaryTree
             //TreeTraversal.PostOrderTreeTraversal(t.root);
             //t2.root = t2.insertLevelOrder(arr, t2.root, 0);
             //t2.inOrder(t2.root);
-            var node=new PreorderToTree().ConstructTree(arr);
+            //var node=new PreorderToTree().ConstructTree(arr);
 
             // Breadth First traversal
             //TreeTraversal.PrintBreadthFirst(node);
@@ -51,15 +52,34 @@ namespace BinaryTree
             //TreeTraversal.InOrderTreeTraversal(node);
 
             //Console.WriteLine($"PrintNthPreOrderElement");
-            var countArray = new int[1] { 0 };
-            TreeTraversal.PrintNthPreOrderElement(node,5, countArray);
+            //var countArray = new int[1] { 0 };
+            //TreeTraversal.PrintNthPreOrderElement(node,5, countArray);
             //var stk = new Stack<int>();
             //TreeTraversal.PrintAllLeafPathsInBinaryTree(node, stk);
 
             //Console.WriteLine($"PostOrderTraversalIteratively");
             //TreeTraversal.PostOrderTraversalIteratively(node);
-            int[] path = new int[1000];
-            TreeTraversal.PrintPathsRecur(node,path,0);
+            //int[] path = new int[1000];
+            //TreeTraversal.PrintPathsRecur(node,path,0);
+
+            //Node root = new Node(1);
+            //root.left = new Node(2);
+            //root.right = new Node(10);
+
+            //root.left.left = new Node(5);
+            //root.left.right = new Node(9);
+
+            //root.right.left = new Node(11);
+            //root.right.right = new Node(14);
+
+            //root.right.left.left = new Node(20);
+
+
+            //PathToNode pathToNode = new PathToNode();
+            //var ans=pathToNode.FindPath(root,1);
+
+            ExpressionTreeEvaluation.ExpressionTreeEvaluationMain();
+
             Console.ReadLine();
         }     
     }

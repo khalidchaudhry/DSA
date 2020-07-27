@@ -37,48 +37,7 @@ namespace LeetCodeBinaryTrees
 
             // Console.WriteLine(SameTree.IsSameTree(p,q));
 
-            /****************Balanced Binary Tree***********************************/
-
-            ///*
-            //        3
-            //       / \
-            //      9  20
-            //     / \
-            //    15  7                    
-
-            //*/
-
-            //var p = new TreeNode(3);
-            //p.left = new TreeNode(9);
-            //p.left.left = new TreeNode(15);
-            //p.left.right = new TreeNode(7);
-
-            //p.right = new TreeNode(20);
-
-            /*
-
-                1
-               / \
-              2   2
-             / \
-            3   3
-            / \
-            4   4
-
-            */
-            //var p = new TreeNode(1);
-
-            //p.left = new TreeNode(2);
-            //p.left.left = new TreeNode(3);
-            //p.left.right = new TreeNode(3);
-            //p.left.left.left = new TreeNode(4);
-            //p.left.left.right = new TreeNode(4);                              
-
-            //p.right = new TreeNode(2);
-
-            //_110 IsBalanced = new _110();
-
-            //Console.WriteLine(IsBalanced.IsBalanced(p));
+            //_110._110Main();
 
             /****************Trim a Binary Search Tree***********************************/
             /*
@@ -136,33 +95,8 @@ namespace LeetCodeBinaryTrees
             //_938 rangeSumBST = new _938();
             //Console.WriteLine(rangeSumBST.RangeSumBST(p, 1, 3));                       
 
-            /****************************************235. Lowest Common Ancestor of a Binary Search Tree**********************/
-            /*
-                     3
-                    / \
-                   0   4
-                    \
-                     2
-                    /
-                    1  
-            */
-            //TreeNode p = new TreeNode(2);
-            //TreeNode q = new TreeNode(1);
 
-
-
-            //var treeNode = new TreeNode(3);
-            //treeNode.left =new TreeNode(0);
-            //treeNode.right = new TreeNode(4);
-
-            //treeNode.left.right = p;//new TreeNode(2);
-
-            //treeNode.left.right.left = q;// new TreeNode(1);
-
-            //_235 LCA = new _235();
-
-            //var node=LCA.LowestCommonAncestor3(treeNode,p,q);
-
+            //_236._236Main();
 
             /****************************************Print all root to the leaf paths**********************/
             /*
@@ -231,29 +165,9 @@ namespace LeetCodeBinaryTrees
             // p.left.right.left = new TreeNode(1);
 
             // LevelOrderLineByLine levelOrderLineByLine = new LevelOrderLineByLine();
-            //levelOrderLineByLine.PrintLevelOrderLineByLine(p);
+            //levelOrderLineByLine.PrintLevelOrderLineByLine(p);          
 
-            /****************************************107. Binary Tree Level Order Traversal II**********************/
-            /*
-                        3
-                       / \
-                      9  20
-                        /  \
-                       15   7
-            */
-
-            //var p = new TreeNode(3);
-            //p.left = new TreeNode(9);
-            //p.right = new TreeNode(20);
-
-            //p.right.left = new TreeNode(15);
-
-            //p.right.right = new TreeNode(7);
-
-
-            //_107 levelOrderTraversal = new _107();
-
-            //levelOrderTraversal.LevelOrderBottom2(p);
+            //_107._107Main();
 
             /****************************************257. Binary Tree Paths**********************/
             /*
@@ -796,16 +710,19 @@ namespace LeetCodeBinaryTrees
 
             //LCA.LowestCommonAncestor2(t,five,one);
 
-            var t = new TreeNode(1);
+            //_199._199Main();
 
-            t.left = new TreeNode(2);
-            t.left.left = new TreeNode(3);
-            t.left.left.left = new TreeNode(5);
-            t.right = new TreeNode(3);
-            t.right.right = new TreeNode(4);
-            _199 BinaryTreeRightSideView = new _199();
-            BinaryTreeRightSideView.RightSideView(t);
 
+            //_250._250Main();
+
+            //_1522._1522Main();
+
+            // _545._545Main();
+
+            //_314._314Main();
+
+            _993._993Main();
+          
 
             Console.ReadLine();
         }
