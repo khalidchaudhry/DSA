@@ -13,6 +13,7 @@ namespace LeetCodeArrays.Medium
             List<IList<int>> res = new List<IList<int>>();
 
             Array.Sort(nums);
+            //! Run the loop till third last element
             for (int i = 0; i < nums.Length - 2; i++)
             {
                 //! to avoid duplicates 
@@ -64,58 +65,16 @@ namespace LeetCodeArrays.Medium
             return res;
         }
 
-
-
-
-
-        //https://leetcode.com/problems/3sum/solution/
-        public IList<IList<int>> ThreeSum1(int[] nums)
-        {
-            Array.Sort(nums);
-            List<IList<int>> res = new List<IList<int>>();
-            //!If the current value is greater than zero, break from the loop.Remaining values cannot sum to zero as we have sorted an array
-            for (int i = 0; i < nums.Length && nums[i] <= 0; ++i)
-                //!nums[i - 1] != nums[i]=If the current value is the same as the one before, skip it as its duplicate
-                //e.g. {-1,-1,0,1,2}
-                if (i == 0 || nums[i - 1] != nums[i])
-                    TwoSumII(nums, i, res);
-            return res;
-        }
-        private void TwoSumII(int[] nums, int i, List<IList<int>> res)
-        {
-            int lo = i + 1, hi = nums.Length - 1;
-            while (lo < hi)
-            {
-                int sum = nums[i] + nums[lo] + nums[hi];
-                //! lo > i + 1 to avoid duplicates 
-                if (sum < 0 || (lo > i + 1 && nums[lo] == nums[lo - 1]))
-                    ++lo;
-                //! hi < nums.Length - 1 to avoid duplicates
-                else if (sum > 0 || (hi < nums.Length - 1 && nums[hi] == nums[hi + 1]))
-                    --hi;
-                else
-                {
-                    List<int> triplet = new List<int>();
-                    triplet.Add(nums[i]);
-                    triplet.Add(nums[lo++]);
-                    triplet.Add(nums[hi--]);
-
-                    res.Add(triplet);
-                }
-            }
-        }
-
-
         /*
-        Three pointer approach 
-        First  pointer =start from beginning
-        second pointer=First Pointer+1
-        Third pointer=Start from right(end). why from right because we are working on array that is already sorted.
-                      The pointer will point to current largest element that can be the part of tripplet. 
-          
-        Time complexity=O(n^2)  
-         https://www.youtube.com/watch?v=jeim_j8VdiM
-        */
+       Three pointer approach 
+       First  pointer =start from beginning
+       second pointer=First Pointer+1
+       Third pointer=Start from right(end). why from right because we are working on array that is already sorted.
+                     The pointer will point to current largest element that can be the part of tripplet. 
+
+       Time complexity=O(n^2)  
+        https://www.youtube.com/watch?v=jeim_j8VdiM
+       */
         public IList<IList<int>> ThreeSum2(int[] nums)
         {
             List<IList<int>> result = new List<IList<int>>();
@@ -183,6 +142,44 @@ namespace LeetCodeArrays.Medium
             }
             return result;
         }
+        
+        //https://leetcode.com/problems/3sum/solution/
+        public IList<IList<int>> ThreeSum1(int[] nums)
+        {
+            Array.Sort(nums);
+            List<IList<int>> res = new List<IList<int>>();
+            //!If the current value is greater than zero, break from the loop.Remaining values cannot sum to zero as we have sorted an array
+            for (int i = 0; i < nums.Length && nums[i] <= 0; ++i)
+                //!nums[i - 1] != nums[i]=If the current value is the same as the one before, skip it as its duplicate
+                //e.g. {-1,-1,0,1,2}
+                if (i == 0 || nums[i - 1] != nums[i])
+                    TwoSumII(nums, i, res);
+            return res;
+        }
+        private void TwoSumII(int[] nums, int i, List<IList<int>> res)
+        {
+            int lo = i + 1, hi = nums.Length - 1;
+            while (lo < hi)
+            {
+                int sum = nums[i] + nums[lo] + nums[hi];
+                //! lo > i + 1 to avoid duplicates 
+                if (sum < 0 || (lo > i + 1 && nums[lo] == nums[lo - 1]))
+                    ++lo;
+                //! hi < nums.Length - 1 to avoid duplicates
+                else if (sum > 0 || (hi < nums.Length - 1 && nums[hi] == nums[hi + 1]))
+                    --hi;
+                else
+                {
+                    List<int> triplet = new List<int>();
+                    triplet.Add(nums[i]);
+                    triplet.Add(nums[lo++]);
+                    triplet.Add(nums[hi--]);
+
+                    res.Add(triplet);
+                }
+            }
+        }
+       
         public IList<IList<int>> ThreeSum3(int[] nums)
         {
             List<IList<int>> result = new List<IList<int>>();

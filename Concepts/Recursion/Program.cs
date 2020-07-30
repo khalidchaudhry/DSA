@@ -84,6 +84,7 @@ namespace Recursion
             //    Console.WriteLine(move);
             //}
 
+            //GenerateCombinations.GenerateCombinationsMain();
             //LengthCombinations lengthCombinations = new LengthCombinations();
             //int[] n = new int[] {1, 2, 3 };
             //int targetLen = 2;
@@ -196,7 +197,7 @@ namespace Recursion
             //root.left.right = new Node(5);
             //var ans=homework.TreeToLinkedList(root);
 
-            PathToNode.PathToNodeMain();
+            //PathToNode.PathToNodeMain();
 
             //DFSGraphs.DFSGraphsMain();
 

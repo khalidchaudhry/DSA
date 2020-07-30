@@ -6,6 +6,21 @@ namespace LeetCodeStrings.Medium
 {
     public class _93
     {
+        public static void _93Main()
+        {
+            _93 RestoreIpAddress = new _93();
+            RestoreIpAddress.RestoreIpAddresses0("25525511135");
+        }
+
+        //https://www.youtube.com/watch?v=KU7Ae2513h0
+        public IList<string> RestoreIpAddresses0(string s)
+        {
+            List<string> allIPAddresses = new List<string>();
+            RestoreIpAddresses0(s, 0, 0, new int[4], allIPAddresses);
+
+            return allIPAddresses;
+        }
+
         /// <summary>
         /// https://www.youtube.com/watch?v=JfB3BugMht8
         /// </summary>
@@ -46,6 +61,39 @@ namespace LeetCodeStrings.Medium
             }
 
             return result;
+        }
+
+        private void RestoreIpAddresses0(string rawIPString, int progressIndex, int currentSegment, int[] ipAddressSegments, List<string> allIpAddresses)
+        {
+            /*
+                 If we have filled 4 segments (0, 1, 2, 3) and we are on the 4th,
+                 we will only record an answer if the string was decomposed fully
+             */
+            if (currentSegment == 4 && progressIndex == rawIPString.Length)
+            {
+                string ipAddress = ipAddressSegments[0] + "." + ipAddressSegments[1] + "." + ipAddressSegments[2] + "." + ipAddressSegments[3];
+                allIpAddresses.Add(ipAddress);
+            }
+            else if (currentSegment == 4)
+            {
+                return;
+            }
+
+            for (int segLength = 1; segLength <= 3 && (progressIndex + segLength) <= rawIPString.Length; segLength++)
+            {
+                string segmentAsString = rawIPString.Substring(progressIndex, segLength);
+                int segmentValue = int.Parse(segmentAsString);
+                /// Check the "snapshot's" validity - if invalid break iteration
+                if (segmentValue > 255 || (segLength >= 2 && segmentAsString[0] == '0'))
+                {
+                    break;
+                }
+                // Add the extracted segment to the working segments
+                ipAddressSegments[currentSegment] = segmentValue;
+
+                // Recurse on the segment choice - when finished & we come back here, the next loop iteration will try another segment
+                RestoreIpAddresses0(rawIPString, progressIndex + segLength, currentSegment + 1, ipAddressSegments, allIpAddresses);
+            }
         }
 
         private bool IsValidPart(string s)

@@ -27,7 +27,8 @@ namespace LeetCodeBinarySearch.Medium
             if (lo > hi)
                 return -1;
             int mid = lo + ((hi - lo) / 2);
-
+            //! in case of mid=0 we don't need to compare on the left side as nothing exists on left side
+            //! in case of mid == nums.Length - 1 we don't need to compare right side as nothing exists on right side. 
             if (
                 (mid == 0 || nums[mid] > nums[mid - 1]) &&
                 (mid == nums.Length - 1 || nums[mid] > nums[mid + 1])

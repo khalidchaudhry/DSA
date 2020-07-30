@@ -19,13 +19,13 @@ namespace LeetCodeDynamicProgramming
             //};
             //var answer=WordBreak.WordBreak0("leetcode", wordDict);           
 
+            _322._322Main();
+
+
             //_256 MinCost = new _256();
 
             //int[][] cost = new int[][] { new int[] { 7, 6, 2 } };
-            //int minCost=MinCost.MinCost(cost);
-
-            // _322 CoinChange = new _322();
-            //var result=CoinChange.CoinChange2(new int[] { 1,2,5 }, 11);
+            //int minCost=MinCost.MinCost(cost);           
 
             // _64 MinPathSum = new _64();
             // int[][] grid = new int[2][]
@@ -86,8 +86,8 @@ namespace LeetCodeDynamicProgramming
 
             //HouseRobber.Rob(nums);
 
-            _338 CountBits = new _338();
-            var ans = CountBits.CountBits0(5);
+            //_338 CountBits = new _338();
+            //var ans = CountBits.CountBits0(5);
 
             Console.ReadLine();
         }

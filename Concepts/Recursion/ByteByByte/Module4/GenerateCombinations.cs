@@ -8,6 +8,15 @@ namespace Recursion.ByteByByte.Module4
     {
 
 
+
+        public static void GenerateCombinationsMain()
+        {
+            int[] n = new int[3] { 1, 2, 3 };
+            var combinations = new GenerateCombinations();
+            var result = combinations.CombinationsPassedVariable(n);
+        }
+
+
         /// <summary>
         //!Time Complexity
         //! Height=n;
@@ -28,13 +37,14 @@ namespace Recursion.ByteByByte.Module4
         public List<List<int>> CombinationsPassedVariable(int[] n)
         {
             List<List<int>> result = new List<List<int>>();
-            CombinationsPassedVariable(n, 0, result, new List<int>());
+             CombinationsPassedVariable(n, 0, result, new List<int>());
+            //CombinationsPassedVariableBackTracking(n, 0, result, new List<int>());
             return result;
         }
         /// <summary>
         //!Time Complexity
         //! Height=n;
-        //! Branching factor=1
+        //! Branching factor=2
         //! Work per schedule call 
         //!     iterate over and copy =O(2^n)    2^n are those many number of possible combinations 
         //!     lists of size O(n)
@@ -53,12 +63,30 @@ namespace Recursion.ByteByByte.Module4
                 return;
             }
             List<int> pathWithCurrent = new List<int>(path);
-            path.Insert(0, n[i]);
-
+            pathWithCurrent.Add(n[i]);
             //! exclude current item
-            CombinationsPassedVariable(n, 1, result, path);
+            CombinationsPassedVariable(n, i + 1, result, path);
             //! include current item
-            CombinationsPassedVariable(n, 1, result, pathWithCurrent);               
+            CombinationsPassedVariable(n, i + 1, result, pathWithCurrent);
+        }
+
+        private void CombinationsPassedVariableBackTracking(int[] n, int i, List<List<int>> result, List<int> path)
+        {
+            if (i == n.Length)
+            {
+                result.Add(path);
+                return;
+            }
+
+            path.Add(n[i]);
+
+            //! include current item
+            CombinationsPassedVariableBackTracking(n, i + 1, result, path);
+
+            //! exclude  current item
+            path.RemoveAt(path.Count - 1);
+
+            CombinationsPassedVariableBackTracking(n, i + 1, result, path);
         }
 
         private List<List<int>> CombinationsBuildUp(int[] n, int i)

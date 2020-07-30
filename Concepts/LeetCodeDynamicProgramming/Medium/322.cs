@@ -8,6 +8,13 @@ namespace LeetCodeDynamicProgramming.Medium
 {
     public class _322
     {
+
+        public static void _322Main()
+        {
+             _322 CoinChange = new _322();
+            var result=CoinChange.CoinChange1(new int[] { 27,40,244,168,383 }, 6989);
+
+        }
         // Brute force approach 
         public int CoinChange(int[] coins, int amount)
         {
@@ -45,6 +52,34 @@ namespace LeetCodeDynamicProgramming.Medium
             return result;
         }
 
+
+        // Recursion (selection pattern)
+        public int CoinChange1(int[] coins, int amount)
+        {
+            ResultWrapper resultWrapper = new ResultWrapper();
+            resultWrapper.Result = int.MaxValue;
+            MakingChange1(coins, 0, amount, new List<int>(), resultWrapper);
+            return resultWrapper.Result;
+
+        }
+
+
+        private void MakingChange1(int[] coins, int i, int amt, List<int> path, ResultWrapper resultWrapper)
+        {
+            if (amt < 0) return;
+            if (amt == 0)
+            {
+                resultWrapper.Result = Math.Min(resultWrapper.Result, path.Count);
+                return;
+            }
+            if (i == coins.Length) return;
+
+            path.Add(coins[i]);
+            MakingChange1(coins, i, amt - coins[i], path, resultWrapper);
+            path.RemoveAt(path.Count - 1);
+            MakingChange1(coins, i + 1, amt, path, resultWrapper);
+        }
+
         public int CoinChange2(int[] coins, int amount)
         {
            
@@ -76,4 +111,10 @@ namespace LeetCodeDynamicProgramming.Medium
         }
 
     }
+    public class ResultWrapper
+    {
+        public int Result { get; set; }
+    }
+
+
 }

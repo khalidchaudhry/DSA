@@ -1,4 +1,5 @@
-﻿using LeetCodeStrings.Medium;
+﻿using LeetCodeStrings.Easy;
+using LeetCodeStrings.Medium;
 using System;
 
 namespace LeetCodeStrings
@@ -105,8 +106,8 @@ namespace LeetCodeStrings
 
             //var result=Reverse.ReverseWords(s);
 
-            _17 LetterCombinations = new _17();
-            var result=LetterCombinations.LetterCombinations0("23");
+            //_17 LetterCombinations = new _17();
+            //var result=LetterCombinations.LetterCombinations0("23");
 
             //_49 GroupAnagrams = new _49();
             //string[] strs = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
@@ -142,11 +143,11 @@ namespace LeetCodeStrings
 
             //_91 DecodeWays = new _91();
 
-            //DecodeWays.NumDecodings("22624");
+            //_93._93Main();
 
-            //_93 RestoreIpAddress = new _93();
+            //DecodeWays.NumDecodings("22624");           
 
-            //RestoreIpAddress.RestoreIpAddresses("0279245587303");
+            //_93._93Main();          
 
             //string s = "/a//b////c/d//././/..";
 
@@ -161,7 +162,11 @@ namespace LeetCodeStrings
 
             //var ans=Version.CompareVersion(version1,version2);
 
+            //_38._38Main();
 
+            //_443._443Main(); 
+
+            _1313._1313Main();
 
             Console.ReadLine();
         }
