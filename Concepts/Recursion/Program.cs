@@ -85,10 +85,8 @@ namespace Recursion
             //}
 
             //GenerateCombinations.GenerateCombinationsMain();
-            //LengthCombinations lengthCombinations = new LengthCombinations();
-            //int[] n = new int[] {1, 2, 3 };
-            //int targetLen = 2;
-            //var result = lengthCombinations.CombinationOfLengthPassedVariable(n, targetLen);
+
+            LengthCombinations.LengthCombinationsMain();
 
             //InterleaveStrings interleave = new InterleaveStrings();
             //string s1 = "ab";

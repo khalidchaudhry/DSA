@@ -6,6 +6,12 @@ namespace Recursion.ByteByByte.Module5
 {
     public class PermutationLength
     {
+        /// <summary>
+        //! Passed variable with a set of all available items approach(less preferable)
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public List<List<int>> PermutationOfSetLength(HashSet<int> items, int length)
         {
             List<List<int>> result = new List<List<int>>();
@@ -13,6 +19,12 @@ namespace Recursion.ByteByByte.Module5
 
             return result;
         }
+        /// <summary>
+        //! Passed variable with swapping approach(more popular and preferable)
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public List<List<int>> PermutationOfSetLengthSwap(int[] items, int length)
         {
             List<List<int>> result = new List<List<int>>();
@@ -20,7 +32,7 @@ namespace Recursion.ByteByByte.Module5
 
             return result;
         }
-
+      
         private void PermutationOfSetLengthSwap(int[] items, int i, int length, List<int> path, List<List<int>> result)
         {
             if (length == 0)

@@ -72,6 +72,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeStack.cs", "LeetCod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeMath", "LeetCodeMath\LeetCodeMath.csproj", "{21C18083-1EF7-4A8E-BF1A-9CEF7B7445F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetcodeBackTracking", "LeetcodeBackTracking\LeetcodeBackTracking.csproj", "{0E4B409B-B6AF-4863-B020-710296EE5F02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -190,6 +192,10 @@ Global
 		{21C18083-1EF7-4A8E-BF1A-9CEF7B7445F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21C18083-1EF7-4A8E-BF1A-9CEF7B7445F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21C18083-1EF7-4A8E-BF1A-9CEF7B7445F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E4B409B-B6AF-4863-B020-710296EE5F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E4B409B-B6AF-4863-B020-710296EE5F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E4B409B-B6AF-4863-B020-710296EE5F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E4B409B-B6AF-4863-B020-710296EE5F02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -215,6 +221,7 @@ Global
 		{368622A4-3AE4-4B59-850D-6EEE2F983D7D} = {9E880A86-5C2A-4C81-98B1-034BC0A23342}
 		{26EEA366-ADCE-440E-BB5A-393B146667CE} = {9E880A86-5C2A-4C81-98B1-034BC0A23342}
 		{21C18083-1EF7-4A8E-BF1A-9CEF7B7445F8} = {9E880A86-5C2A-4C81-98B1-034BC0A23342}
+		{0E4B409B-B6AF-4863-B020-710296EE5F02} = {9E880A86-5C2A-4C81-98B1-034BC0A23342}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {827F52FF-EF11-4FEE-96D9-2D8DC87620FE}
