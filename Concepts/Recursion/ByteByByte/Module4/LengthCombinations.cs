@@ -16,24 +16,15 @@ namespace Recursion.ByteByByte.Module4
             Console.ReadLine();
 
         }
-        public List<List<int>> CombinationOfLengthBuildUp(int[] n, int length)
-        {
-            return CombinationOfLengthBuildUp(n, 0, length, 0);
-        }
 
-        /// <summary>
-        //! Combination Of Length Passed Variable with pathWithCurrent approach   
-        /// </summary>
-        /// <param name="n"></param>
-        /// <param name="length"></param>
-        /// <returns></returns>
-        public List<List<int>> CombinationOfLengthPassedVariable(int[] n, int length)
+        public List<List<int>> CombinationOfLengthPassedVariable0(int[] n, int length)
         {
             List<List<int>> result = new List<List<int>>();
-            CombinationOfLengthPassedVariable(n, 0, length, 0, new List<int>(), result);
+            CombinationOfLengthPassedVariable0(n, 0, length,new List<int>(), result);
 
             return result;
         }
+
         /// <summary>
         //! Combination Of Length PassedVariable with add/remove from path approach
         ///////////////////////////////////////////////////////////////////////
@@ -60,6 +51,68 @@ namespace Recursion.ByteByByte.Module4
             CombinationOfLengthPassedVariable2(n, 0, length, 0, new List<int>(), result);
 
             return result;
+        }    
+
+        /// <summary>
+        //! Combination Of Length Passed Variable with pathWithCurrent approach   
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public List<List<int>> CombinationOfLengthPassedVariable(int[] n, int length)
+        {
+            List<List<int>> result = new List<List<int>>();
+            CombinationOfLengthPassedVariable(n, 0, length, 0, new List<int>(), result);
+
+            return result;
+        }
+
+        public List<List<int>> CombinationOfLengthBuildUp(int[] n, int length)
+        {
+            return CombinationOfLengthBuildUp(n, 0, length, 0);
+        }
+
+        private void CombinationOfLengthPassedVariable0(int[] nums, int i, int targetLength, List<int> path, List<List<int>> result)
+        {
+            if (path.Count > targetLength) return;
+            if (i == nums.Length && path.Count != targetLength) return;
+            if (path.Count == targetLength)
+            {
+                result.Add(new List<int>(path));
+                return;
+            }
+            //include
+            path.Add(nums[i]);
+            CombinationOfLengthPassedVariable0(nums, i + 1, targetLength, path, result);
+            path.RemoveAt(path.Count - 1);
+            //exclude
+            CombinationOfLengthPassedVariable0(nums, i + 1, targetLength, path, result);
+        }
+
+        private void CombinationOfLengthPassedVariable2(int[] n,
+                                              int i,
+                                              int targetLen,
+                                              int currLen,
+                                              List<int> path,
+                                              List<List<int>> result
+                                              )
+        {
+            if (currLen > targetLen) return;
+            if (i == n.Length && currLen != targetLen) return;
+            //! because we checked above that curr length !=target length, below  condition does not require us to check that targetLength=currentLength
+            if (i == n.Length)
+            {
+                //! result.Add will have time complexity of O(1) but creating new List<int>(path) will have time complexity of O(n) since we have to copy n items to into new list in worse case 
+                result.Add(new List<int>(path));
+                return;
+            }
+
+            path.Add(n[i]);
+            //!include           
+            CombinationOfLengthPassedVariable(n, i + 1, targetLen, currLen + 1, path, result);
+            path.RemoveAt(path.Count - 1);
+            //!Exclude
+            CombinationOfLengthPassedVariable(n, i + 1, targetLen, currLen, path, result);
         }
 
         private void CombinationOfLengthPassedVariable(int[] n,
@@ -86,29 +139,7 @@ namespace Recursion.ByteByByte.Module4
             CombinationOfLengthPassedVariable(n, i + 1, targetLen, currLen, path, result);
         }
 
-        private void CombinationOfLengthPassedVariable2(int[] n,
-                                                      int i,
-                                                      int targetLen,
-                                                      int currLen,
-                                                      List<int> path,
-                                                      List<List<int>> result
-                                                      )
-        {
-            if (currLen > targetLen) return;
-            if (i == n.Length && currLen != targetLen) return;
-            if (i == n.Length)
-            {
-                result.Add(new List<int>(path));
-                return;
-            }
 
-             path.Add(n[i]);
-            //!include           
-            CombinationOfLengthPassedVariable(n, i + 1, targetLen, currLen + 1, path, result);
-            path.RemoveAt(path.Count-1);
-            //!Exclude
-            CombinationOfLengthPassedVariable(n, i + 1, targetLen, currLen, path, result);
-        }
 
         private List<List<int>> CombinationOfLengthBuildUp(int[] n, int i, int targetLen, int currLen)
         {

@@ -32,9 +32,12 @@ namespace Recursion.ByteByByte.Module4
 
             //! include 
             path.Add(arr[i]);
+            //! not incrementing i because we want to check if sums of alll current array elements equal to the target  
             TagetSumPassedVariable(arr, i, targetSum - arr[i], path, results);
-            path.RemoveAt(path.Count - 1);
             //!exclude
+            path.RemoveAt(path.Count - 1);                      
+            //! Not reducing target sum because we need to try current sum with next elements  in an array 
+            //e.g. [2,1,7] for target=7 we need to test [2,2,2,1] 
             TagetSumPassedVariable(arr, i + 1, targetSum, path, results);
         }       
     }

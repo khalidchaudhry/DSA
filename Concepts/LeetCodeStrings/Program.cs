@@ -166,7 +166,9 @@ namespace LeetCodeStrings
 
             //_443._443Main(); 
 
-            _1313._1313Main();
+            //_1313._1313Main();
+
+            Codec.CodecMain();
 
             Console.ReadLine();
         }

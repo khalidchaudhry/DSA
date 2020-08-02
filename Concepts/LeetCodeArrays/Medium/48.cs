@@ -8,7 +8,11 @@ namespace LeetCodeArrays.Medium
 {
     public class _48
     {
-        //https://afteracademy.com/blog/rotate-matrix 
+
+        // To  rotate anticlock wise or rotate by 180 see below link
+        //https://leetcode.com/problems/rotate-image/discuss/401356/Rotate-90-clockwise-anti-clockwise-and-rotate-180-degree
+        
+        //https://afteracademy.com/blog/rotate-matrix         
         public void Rotate(int[][] matrix)
         {
             // since its nXn grid , number of rows and columns are equal
@@ -16,6 +20,7 @@ namespace LeetCodeArrays.Medium
             int columns = matrix.Length;
 
             //! First step we are transposing matrix. Transposing means make rows as columns and columns as rows 
+            //! if grid is not n*n than below method of transposing the matrix will not work
             for (int r = 0; r < rows; r++)
             {
                 // ! initializing r with one more as swapping across the diagonal will transpose the matrix

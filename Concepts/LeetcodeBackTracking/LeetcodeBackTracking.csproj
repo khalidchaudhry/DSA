@@ -43,6 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Easy\784.cs" />
+    <Compile Include="Medium\216.cs" />
+    <Compile Include="Medium\39.cs" />
+    <Compile Include="Medium\40.cs" />
+    <Compile Include="Medium\46.cs" />
+    <Compile Include="Medium\77.cs" />
+    <Compile Include="Medium\78.cs" />
+    <Compile Include="Medium\90.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
