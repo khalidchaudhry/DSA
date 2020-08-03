@@ -17,7 +17,7 @@ namespace LeetCodeBinaryTrees.Medium
 
             _314 levelOrdder = new _314();
 
-            levelOrdder.LevelOrder(root);
+            levelOrdder.LevelOrder0(root);
         }
         /// <summary>
         /// ////////////////////////////////////////////
@@ -32,15 +32,15 @@ namespace LeetCodeBinaryTrees.Medium
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
-        public IList<IList<int>> LevelOrder(TreeNode root)
+        public IList<IList<int>> LevelOrder0(TreeNode root)
         {
 
             List<IList<int>> result = new List<IList<int>>();
             SortedDictionary<int, List<int>> map = new SortedDictionary<int, List<int>>();
-            LevelByLevel(root,map);
-            
-            
-            foreach(KeyValuePair<int,List<int>> item in map)
+            LevelByLevel0(root, map);
+
+
+            foreach (KeyValuePair<int, List<int>> item in map)
             {
                 result.Add(item.Value);
             }
@@ -49,9 +49,9 @@ namespace LeetCodeBinaryTrees.Medium
         /// <summary>
         //! Optimized version. Not sorting needed. 
         //https://leetcode.com/problems/binary-tree-vertical-order-traversal/solution/
-          /// </summary>
-          /// <param name="root"></param>
-          /// <returns></returns>
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
 
         public IList<IList<int>> LevelOrder1(TreeNode root)
         {
@@ -62,95 +62,83 @@ namespace LeetCodeBinaryTrees.Medium
                 return result;
 
             Dictionary<int, List<int>> map = new Dictionary<int, List<int>>();
-            (int min,int max)=LevelByLevel1(root, map);
+            (int min, int max) = LevelByLevel1(root, map);
 
             for (int i = min; i <= max; ++i)
             {
                 result.Add(map[i]);
             }
-            
+
             return result;
         }
-        private  void LevelByLevel(TreeNode root, SortedDictionary<int, List<int>> map)
+        private void LevelByLevel0(TreeNode root, SortedDictionary<int, List<int>> map)
         {
             if (root == null)
                 return;
-             
+
             Queue<(TreeNode, int)> queue = new Queue<(TreeNode, int)>();
 
             queue.Enqueue((root, 0));
 
             while (queue.Count != 0)
             {
-                int count = queue.Count;
+                (TreeNode node, int index) = queue.Dequeue();
 
-                while (count != 0)
+                if (map.ContainsKey(index))
                 {
-                    (TreeNode node, int index) = queue.Dequeue();
+                    map[index].Add(node.val);
+                }
+                else
+                {
+                    map.Add(index, new List<int>() { node.val });
+                }
 
-                    if (map.ContainsKey(index))
-                    {
-                        map[index].Add(node.val);
-                    }
-                    else
-                    {
-                        map.Add(index, new List<int>() {node.val});
-                    }
+                if (node.left != null)
+                {
+                    queue.Enqueue((node.left, index - 1));
+                }
 
-                    if (node.left != null)
-                    {
-                        queue.Enqueue((node.left, index - 1));
-                    }
-
-                    if (node.right != null)
-                    {
-                        queue.Enqueue((node.right, index + 1));
-                    }
-
-                    --count;
+                if (node.right != null)
+                {
+                    queue.Enqueue((node.right, index + 1));
                 }
             }
         }
 
-        private (int min,int max) LevelByLevel1(TreeNode root, Dictionary<int, List<int>> map)
-        {          
+        private (int min, int max) LevelByLevel1(TreeNode root, Dictionary<int, List<int>> map)
+        {
             Queue<(TreeNode, int)> queue = new Queue<(TreeNode, int)>();
             int min = 0;
-            int max = 0; 
+            int max = 0;
             queue.Enqueue((root, 0));
 
             while (queue.Count != 0)
             {
-                int count = queue.Count;
 
-                while (count != 0)
+                (TreeNode node, int index) = queue.Dequeue();
+
+                min = Math.Min(min, index);
+                max = Math.Max(max, index);
+
+                if (map.ContainsKey(index))
                 {
-                    (TreeNode node, int index) = queue.Dequeue();
-
-                    min = Math.Min(min, index);
-                    max = Math.Max(max, index);
-
-                    if (map.ContainsKey(index))
-                    {
-                        map[index].Add(node.val);
-                    }
-                    else
-                    {
-                        map.Add(index, new List<int>() { node.val });
-                    }
-
-                    if (node.left != null)
-                    {
-                        queue.Enqueue((node.left, index - 1));
-                    }
-
-                    if (node.right != null)
-                    {
-                        queue.Enqueue((node.right, index + 1));
-                    }
-
-                    --count;
+                    map[index].Add(node.val);
                 }
+                else
+                {
+                    map.Add(index, new List<int>() { node.val });
+                }
+
+                if (node.left != null)
+                {
+                    queue.Enqueue((node.left, index - 1));
+                }
+
+                if (node.right != null)
+                {
+                    queue.Enqueue((node.right, index + 1));
+                }
+
             }
 
             return (min, max);
