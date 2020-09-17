@@ -7,10 +7,10 @@ namespace LeetCodeBinaryTrees.Medium
 {
     public class _105
     {
-        private int[] preorder;
-        private int[] inorder;
-        private Dictionary<int, int> inordermap;
-        private int prestart;
+        private int[] PreOrder;
+        private int[] InOrder;
+        private Dictionary<int, int> InOrderMap;
+        private int PreStart;
 
 
 
@@ -25,13 +25,14 @@ namespace LeetCodeBinaryTrees.Medium
         /// <returns></returns>
         public TreeNode BuildTree0(int[] preorder, int[] inorder)
         {
-            this.preorder = preorder;
-            this.inorder = inorder;
+            this.PreStart = 0;
+            this.PreOrder = preorder;
+
             //! The reason for map is that we can lookup up root and then find left subtree and right subtree
-            inordermap = new Dictionary<int, int>();
-            prestart = -1;
+            InOrderMap = new Dictionary<int, int>();
+
             for (int i = 0; i < inorder.Length; i++)
-                inordermap.Add(inorder[i], i);
+                InOrderMap.Add(inorder[i], i);
 
             return ConstructTree(0, inorder.Length - 1);
         }
@@ -41,14 +42,13 @@ namespace LeetCodeBinaryTrees.Medium
             if (instart > inend)
                 return null;
 
-            ++prestart;
-
-            if (prestart >= preorder.Length)
+            if (this.PreStart >= this.PreOrder.Length)
                 return null;
-
-            int rootVal = preorder[prestart];
-            int rootIndex = inordermap[rootVal];
+            int rootVal = this.PreOrder[this.PreStart];
+            int rootIndex = InOrderMap[rootVal];
             TreeNode node = new TreeNode(rootVal);
+            //! Recursion . Setting for next iteration
+            ++this.PreStart;
             node.left = ConstructTree(instart, rootIndex - 1);
             node.right = ConstructTree(rootIndex + 1, inend);
             return node;
@@ -61,13 +61,13 @@ namespace LeetCodeBinaryTrees.Medium
         /// <returns></returns>
         public TreeNode BuildTree1(int[] preorder, int[] inorder)
         {
-            this.preorder = preorder;
-            this.inorder = inorder;
-            prestart = 0;
+            this.PreOrder = preorder;
+            this.InOrder = inorder;
+            PreStart = 0;
             // build a hashmap value -> its index            
 
             for (int i = 0; i < inorder.Length; i++)
-                inordermap.Add(inorder[i], i);
+                InOrderMap.Add(inorder[i], i);
             return Helper(0, inorder.Length);
         }
 
@@ -78,15 +78,15 @@ namespace LeetCodeBinaryTrees.Medium
                 return null;
 
             // pick up pre_idx element as a root
-            int root_val = preorder[prestart];
+            int root_val = PreOrder[PreStart];
             TreeNode root = new TreeNode(root_val);
 
             // root splits inorder list
             // into left and right subtrees
-            int rootIndex = inordermap[root_val];
+            int rootIndex = InOrderMap[root_val];
 
             // recursion 
-            prestart++;
+            PreStart++;
             // build left subtree
             root.left = Helper(in_left, rootIndex);
             // build right subtree

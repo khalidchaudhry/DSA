@@ -76,6 +76,7 @@ namespace GraphTheoryAlgorithms.BFS
             path.Reverse();
             if (path[0] == start)
                 return path;
+            //! incase path does not exist between nodes return empty path. 
             path.Clear();
             return path;
         }

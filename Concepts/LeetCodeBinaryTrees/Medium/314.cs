@@ -22,7 +22,7 @@ namespace LeetCodeBinaryTrees.Medium
         /// <summary>
         /// ////////////////////////////////////////////
         /// https://leetcode.com/problems/binary-tree-vertical-order-traversal/solution/
-        //! Do level order traversal and store the result in sorted dictionary with index and values         
+        //! Do BFS traversal and store the result in sorted dictionary with index and values         
         //! 0(n)= Number of nodes in the binary* Work perform per node(logn)....logn for inserting into dictionary
         //! Time complexity=O(nlogn) 
         ///////////////////////////////////////////////
@@ -47,7 +47,7 @@ namespace LeetCodeBinaryTrees.Medium
             return result;
         }
         /// <summary>
-        //! Optimized version. Not sorting needed. 
+        //! Optimized version. No sorting needed. 
         //https://leetcode.com/problems/binary-tree-vertical-order-traversal/solution/
         /// </summary>
         /// <param name="root"></param>
@@ -63,7 +63,7 @@ namespace LeetCodeBinaryTrees.Medium
 
             Dictionary<int, List<int>> map = new Dictionary<int, List<int>>();
             (int min, int max) = LevelByLevel1(root, map);
-
+            //! starting from min because this will give us order
             for (int i = min; i <= max; ++i)
             {
                 result.Add(map[i]);

@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Easy\784.cs" />
+    <Compile Include="Medium\47.cs" />
+    <Compile Include="Medium\784.cs" />
     <Compile Include="Medium\216.cs" />
     <Compile Include="Medium\39.cs" />
     <Compile Include="Medium\40.cs" />
@@ -56,5 +57,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

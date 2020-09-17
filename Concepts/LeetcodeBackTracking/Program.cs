@@ -1,4 +1,3 @@
-using LeetcodeBackTracking.Easy;
 using LeetcodeBackTracking.Medium;
 using System;
 using System.Collections.Generic;
@@ -22,8 +21,12 @@ namespace LeetcodeBackTracking
 
             //_39._39Main();
 
-            _216._216Main();
+            //_216._216Main();
 
+            // _266._266Main();
+
+            _47._47Main();
+        
         }
     }
 }

@@ -8,7 +8,12 @@ namespace LeetCodeDivideAndConquer.Medium
 {
     public class _240
     {
-
+        /// <summary>
+        //! We will start our search from lastRow and first colum . Then increase/decrease lastRow/firstColumn based on what we got from result. 
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public bool SearchMatrix0(int[,] matrix, int target)
         {
             int lastRow = matrix.GetLength(0)-1;
@@ -33,6 +38,8 @@ namespace LeetCodeDivideAndConquer.Medium
 
         }
 
+
+        //! Below will not work 
 
         public bool SearchMatrix1(int[,] matrix, int target)
         {

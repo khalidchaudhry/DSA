@@ -15,6 +15,23 @@ namespace LeetcodeBackTracking.Medium
             var ans = DistinctSubSet.SubsetsWithDup(nums);
             Console.ReadLine();
         }
+
+
+        /// <summary>
+        //https://leetcode.com/problems/subsets-ii/discuss/169226/Java-Two-Way-of-Recursive-thinking
+        //! Top down approach... Building up results as we go from top to botton
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+
+        public IList<IList<int>> SubsetsWithDup0(int[] nums)
+        {
+
+            Array.Sort(nums);
+            List<IList<int>> res = new List<IList<int>>();
+            SubsetsWithDup0(nums, 0, new List<int>(), res);
+            return res;
+        }
         /// <summary>
         //https://leetcode.com/problems/subsets-ii/discuss/169226/Java-Two-Way-of-Recursive-thinking
         /// </summary>
@@ -28,21 +45,7 @@ namespace LeetcodeBackTracking.Medium
             SubsetsWithDup(nums, 0, false, new List<int>(), res);
             return res;
         }
-        /// <summary>
-        //https://leetcode.com/problems/subsets-ii/discuss/169226/Java-Two-Way-of-Recursive-thinking
-        //! Top down approach... Building up results as we go from top to botton
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
-
-        public IList<IList<int>> SubsetsWithDup2(int[] nums)
-        {
-
-            Array.Sort(nums);
-            List<IList<int>> res = new List<IList<int>>();
-            SubsetsWithDup2(nums, 0, new List<int>(), res);
-            return res;
-        }
+        
 
         private void SubsetsWithDup(int[] nums, int i, bool choosePre, List<int> path, List<IList<int>> result)
         {
@@ -63,7 +66,7 @@ namespace LeetcodeBackTracking.Medium
             path.RemoveAt(path.Count - 1);
         }
 
-        private void SubsetsWithDup2(int[] nums, int i, List<int> path, List<IList<int>> res)
+        private void SubsetsWithDup0(int[] nums, int i, List<int> path, List<IList<int>> res)
         {
             res.Add(new List<int>(path));
 
@@ -71,7 +74,7 @@ namespace LeetcodeBackTracking.Medium
             {
                 if (j > i && nums[j - 1] == nums[j]) continue;
                 path.Add(nums[j]);
-                SubsetsWithDup2(nums, j + 1, path, res);
+                SubsetsWithDup0(nums, j + 1, path, res);
                 path.RemoveAt(path.Count - 1);
             }
         }

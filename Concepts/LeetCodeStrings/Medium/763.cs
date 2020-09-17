@@ -20,17 +20,17 @@ namespace LeetCodeStrings.Medium
             //! helps in finding the next partition. Also length of the substring
             int start = 0;
             //! To expand the sliding window from the right side. 
-            int j = 0;
+            int end = 0;
             for (int i = 0; i < S.Length; i++)
             {
 
-                j = Math.Max(j,charArray[S[i]-'a']);
+                end = Math.Max(end,charArray[S[i]-'a']);
                 //! When they meet it means we get one substring. 
-                if (i == j)
+                if (i == end)
                 {
-                    int length = i - start + 1;
+                    int length = end - start + 1;
                     result.Add(length);
-                    start = i + 1;
+                    start = end + 1;
                 }
             }
 

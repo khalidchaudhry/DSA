@@ -22,7 +22,7 @@ namespace GraphTheoryAlgorithms.TopSort
             int[] ordering = new int[numNodes];
             // Array below tracks wheather the node has been visited or not. 
             bool[] visited = new bool[numNodes];
-            //! Associated with ordering array. We insert elements backwords that is why i starts at nunNodes-1
+            //! Associated with ordering array. We insert elements backwords that is why i starts at numNodes-1
             int i = numNodes - 1;
             // !variable "at" below  tracks the node we are currently processing. 
             for (int at = 0; at < numNodes; at++)

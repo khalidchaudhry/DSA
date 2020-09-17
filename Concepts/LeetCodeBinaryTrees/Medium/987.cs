@@ -34,6 +34,7 @@ namespace LeetCodeBinaryTrees.Medium
                 List<int> level = new List<int>();
                 if (map[i].Count > 1)
                 {
+                    //!reason for sorting. If two nodes have the same position, then the value of the node that is reported first is the value that is smaller.
                     map[i].Sort();
                 }
                 foreach ((int x, int value) in map[i])
@@ -53,8 +54,8 @@ namespace LeetCodeBinaryTrees.Medium
 
 
             Queue<(TreeNode node, int x, int y)> queue = new Queue<(TreeNode node, int x, int y)>();
-            int min, max;
-            min = max = 0;
+            int yMin, yMax;
+            yMin = yMax = 0;
 
             queue.Enqueue((root, 0, 0));
 
@@ -63,9 +64,10 @@ namespace LeetCodeBinaryTrees.Medium
 
                 (TreeNode node, int x, int y) = queue.Dequeue();
 
-                if (y > max) max = y;
+                //! Keeping the minimum and maximum value for y
+                if (y > yMax) yMax = y;
 
-                if (y < min) min = y;
+                if (y < yMin) yMin = y;
 
                 if (map.ContainsKey(y))
                 {
@@ -91,7 +93,7 @@ namespace LeetCodeBinaryTrees.Medium
                 }
             }
 
-            return (min, max);
+            return (yMin, yMax);
         }
     }
 }

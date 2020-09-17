@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetcodeBackTracking.Easy
+namespace LeetcodeBackTracking.Medium
 {
     public class _784
     {

@@ -80,11 +80,11 @@ namespace LeetCodeArrays.Medium
             //! target is on the left side of the pivot index
             else if (target >= nums[0] && target < nums[pivotIndex])
             {
-                return BinarySearch(nums, 0, pivotIndex - 1, target);
+                return BinarySearch(nums, 0, pivotIndex, target);
             }
             else
             {
-                return BinarySearch(nums, pivotIndex + 1, nums.Length - 1, target);
+                return BinarySearch(nums, pivotIndex, nums.Length - 1, target);
             }
         }
         private int FindPivotIndex(int[] nums)
@@ -96,8 +96,7 @@ namespace LeetCodeArrays.Medium
             if (nums[low] < nums[high])
                 return 0;
 
-            //! <= in case if there is only one element in array
-            while (low <= high)
+            while (low < high)
             {
                 pivotIndex = low + ((high - low) / 2);
                 //! pivot element is one having left element  and right element  less than it.
@@ -111,23 +110,22 @@ namespace LeetCodeArrays.Medium
                 //! we need to search on  right side as its non uniformly increasing part
                 else if (nums[low] < nums[pivotIndex])
                 {
-                   
-                    low = pivotIndex+1;
+
+                    low = pivotIndex + 1;
                 }
                 else
-                { 
-                    //! why pivotIndex and why not pivotIndex-1 because element at pivot index will also be the part of the non uniformly increasing 
+                {
+                    //! why pivotIndex and why not pivotIndex-1 because element at pivot index can also be the part of the non uniformly increasing 
                     high = pivotIndex;
                 }
             }
             return pivotIndex;
 
-        }        
+        }
 
         private int BinarySearch(int[] nums, int low, int high, int target)
         {
-            //! <= in case if there is only one element in array
-            while (low <= high)
+            while (low < high)
             {
                 int mid = low + ((high - low) / 2);
                 if (nums[mid] == target)

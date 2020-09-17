@@ -19,31 +19,31 @@ namespace LeetCodeStrings.Easy
         /// <summary>
         //https://leetcode.com/problems/string-compression/discuss/92559/Simple-Easy-to-Understand-Java-solution
         //! idea is to have two pointers . We will move one pointer until consective pointers are same.
-        //! The moment they are different , we will copy current character to the array anchor index and increment the anchor index. 
+        //! The moment they are different , we will copy current character to the array writeHead index and increment the writeHead index. 
         /// </summary>
         /// <param name="chars"></param>
         /// <returns></returns>
         public int Compress(char[] chars)
         {
-            //! anchor will point to the place where we will put character and count 
-            //! anchor will be equal to the lenght we will return at the end. 
-            int anchor = 0;
+            //! writeHead will point to the place where we will write character and frquency 
+            //! readHead will use to scan the characters in the string. 
+            int writeHead = 0;
             //! explorer will be incremented in inside loop 
-            int explorer = 0;
+            int readHead = 0;
             //Time complexity=O(n)
-            while (explorer < chars.Length)
+            while (readHead < chars.Length)
             {
                 //! Store the currChar for comparison with characters of an array. 
-                char currChar = chars[explorer];
+                char currChar = chars[readHead];
                 int count = 0;
-                while (explorer < chars.Length && chars[explorer] == currChar)
+                while (readHead < chars.Length && chars[readHead] == currChar)
                 {
-                    ++explorer;
+                    ++readHead;
                     ++count;
                 }
 
-                //! copying the current character and increment anchor pointer 
-                chars[anchor++] = currChar;
+                //! copying the current character and increment writeHead pointer 
+                chars[writeHead++] = currChar;
 
                 //! As per the question we don't need to add  character count  with 1
                 if (count > 1)
@@ -53,13 +53,13 @@ namespace LeetCodeStrings.Easy
                       // O(4) for loop since maxiumum char length we can have is 1000 that contains 4 digits 
                     foreach (char digit in count.ToString())
                     {
-                        //! copy digit to array where anchor is pointing anc increment the pointer. 
-                        chars[anchor++] = digit;
+                        //! copy digit to array where writeHead is pointing and increment the pointer. 
+                        chars[writeHead++] = digit;
                     }
                 }
             }
 
-            return anchor;
+            return writeHead;
         }
         // Time complexity=O(n) + O(4)+)(4)=O(n) as constant gets drop 
     }

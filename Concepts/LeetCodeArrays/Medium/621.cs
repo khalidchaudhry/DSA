@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Linq;
 namespace LeetCodeArrays.Medium
 {
     public class _621
     {
 
+        public static void _621Main()
+        {
+
+            char[] tasks = new char[] { 'A', 'A', 'A', 'B', 'B', 'B' };
+            int n = 2;
+            _621 TotalSlots = new _621();
+            var ans=TotalSlots.LeastInterval1(tasks,n);
+            Console.ReadLine();
+        }
         /// <summary>
         /// https://www.youtube.com/watch?v=eGf-26OTI-A
         /// https://www.youtube.com/watch?v=I9Tq7R2Z2ys
@@ -18,7 +27,7 @@ namespace LeetCodeArrays.Medium
         /// <param name="tasks"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        public int LeastInterval(char[] tasks, int n)
+        public int LeastInterval0(char[] tasks, int n)
         {
 
             int[] charMap = new int[26];
@@ -58,6 +67,39 @@ namespace LeetCodeArrays.Medium
             return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;
         }
 
+        public int LeastInterval1(char[] tasks, int n)
+        {
+            Dictionary<int, int> frequencyCount = new Dictionary<int, int>();
+            GetFrequencyCount(tasks, frequencyCount);
 
+            frequencyCount.OrderByDescending(x => x.Value);
+
+            //! -1 because we don't need to wait after last task
+            int idleSlots = frequencyCount.ElementAt(0).Value - 1 * n;
+            //! why 1 and 0 becuase index 0 contains most frequent task. We caculated our idle slots based on it . 
+            //!Index 1 and onwards contain task that we want to fill idle slotes
+            for (int i = 1; i < frequencyCount.Count; ++i)
+            {
+                idleSlots -= frequencyCount.ElementAt(i).Value;
+            }
+
+            return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;
+
+        }
+
+        private void GetFrequencyCount(char[] tasks, Dictionary<int, int> frequencyCount)
+        {
+            for (int i = 0; i < tasks.Length; ++i)
+            {
+                if (frequencyCount.ContainsKey(tasks[i]))
+                {
+                    frequencyCount[tasks[i]]++;
+                }
+                else
+                {
+                    frequencyCount[tasks[i]] = 1;
+                }
+            }
+        }
     }
 }

@@ -276,7 +276,15 @@ namespace LeetCodeArrays
             //int target = 7;
             //var ans=CombinationSum.CombinationSum0(candidates,target);
 
-            _59._59Main();
+            //_59._59Main();
+
+            ////_766._766Main();
+
+            //_74._74Main();
+
+            //_532._532Main();
+
+            _560._560Main();
 
             Console.ReadLine();
         }

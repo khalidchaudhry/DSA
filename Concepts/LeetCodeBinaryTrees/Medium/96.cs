@@ -40,12 +40,12 @@ namespace LeetCodeBinaryTrees.Medium
                             When 1 is the root =T[3]*T[1] because there is 3 element on left and 1 elements on right side
                             When 1 is the root =T[4]      because there is 4 element on left and 0 elements on right side
                           
-                            For i=5,j=0
-                            T[5]=T[0]*T[4]+
-                                 T[1]*T[3]+
-                                 T[2]*T[2]+
-                                 T[3]*T[1]+
-                                 T[4]                                              
+                            For i=5
+                            T[5]=T[0]*T[4]+ //when j=0
+                                 T[1]*T[3]+ //when j=1
+                                 T[2]*T[2]+ //when j=2
+                                 T[3]*T[1]+ //when j=3
+                                 T[4]      // when j=4                                        
                       */
                     T[i] += T[j] * T[i - j - 1];
                 }

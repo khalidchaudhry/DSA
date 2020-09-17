@@ -46,6 +46,40 @@ namespace LeetCodeBinarySearch.Medium
             }
         }
 
+        private int FindPeekElement1(int[] nums)
+        {
+            int lo = 0;
+            int hi = nums.Length - 1;
+
+            while (lo <= hi)
+            {
+                int mid = lo + ((hi - lo) / 2);
+                //! in case of mid=0 we don't need to compare on the left side as nothing exists on left side
+                //! in case of mid == nums.Length - 1 we don't need to compare right side as nothing exists on right side. 
+                if (
+                    (mid == 0 || nums[mid] > nums[mid - 1]) &&
+                    (mid == nums.Length - 1 || nums[mid] > nums[mid + 1])
+                   )
+                {
+                    return mid;
+                }
+                else if (nums[mid + 1] > nums[mid])
+                {
+                    lo = mid + 1;
+                }
+                else
+                {
+                    hi = mid - 1;
+                }
+            }
+
+            return -1;
+        }
+        /// <summary>
+        //! Below is wrong for input : [1,2]
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public int FindPeakElement2(int[] nums)
         {
             int n = nums.Length;

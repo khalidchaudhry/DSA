@@ -28,18 +28,18 @@ namespace LeetCodeDynamicProgramming.Medium
             {
                 hs.Add(word);
             }
-            // We consider substrings of all possible lengths starting from the beginning by making use of index i. 
+            // We consider substrings of all possible lengths starting from the beginning by making use of index end. 
             //  For every such substring, we partition the string into two further substrings s1'  and s2' 
-            // in all possible ways using the index j
+            // in all possible ways using the index end
             // if the substring s1' fulfills the required criteria. If so, we further check if s2' is present in the dictionary. 
             // If both the strings fulfill the criteria, we make dp[i]  as true, otherwise as false.
-            for (int i = 1; i <= s.Length; i++)
+            for (int end = 1; end <= s.Length; end++)
             {
-                for (int j = 0; j < i; j++)
+                for (int start = 0; start < end; start++)
                 {
-                    if (dp[j] && hs.Contains(s.Substring(j, i - j)))
+                    if (dp[start] && hs.Contains(s.Substring(start, end - start)))
                     {
-                        dp[i] = true;
+                        dp[end] = true;
                     }
                 }
             }
@@ -105,8 +105,14 @@ namespace LeetCodeDynamicProgramming.Medium
             }
             for (int end = start + 1; end <= s.Length; end++)
             {
+                //! rather than end-start we can also use end only
+                //! second argument to Substring corresponds to length and we take length one less than where end pointer is
+                //! e.g. sands and assume end pointer is at s than 4 characters excluding s and hence the reason where we are specifying 
+                //! <= in for loop
+                //! Rather than passing s in word_break() we can also pass substring starting from end
+                //! e.gword_Break(s.Substring(end),0,hs) as it implies the same thing. 
                 if (wordDict.Contains(s.Substring(start, end - start)) && word_Break(s, wordDict, end))
-                {
+                {  
                     return true;
                 }
             }

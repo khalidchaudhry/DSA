@@ -38,13 +38,14 @@ namespace TopInterviewQuestions.Easy
         {
             if (nums.Length == 1 || k == 0)
                 return;
-
+            //! importan condition
             if (k > nums.Length)
             {
                 k = k - nums.Length;
             }
 
             ReverseArray(nums, 0, nums.Length - 1);
+            //! reversing first k elements. Why k-1 because array is zero based index and k-1 are actually k elements 
             ReverseArray(nums, 0, k - 1);
             ReverseArray(nums, k, nums.Length - 1);
         }

@@ -17,14 +17,20 @@ namespace LeetcodeBackTracking.Medium
         }
         public IList<IList<int>> Permute0(int[] nums)
         {
-            List<IList<int>> result = new List<IList<int>>();                       
-            Permute0(nums, new List<int>(), result);
+            List<IList<int>> result = new List<IList<int>>();
+            bool[] used = new bool[nums.Length];
+            Permute0(nums, used, new List<int>(), result);
             return result;
 
 
         }
-
-        private void Permute0(int[] nums, List<int> path, List<IList<int>> result)
+        /// <summary>
+        ///https://www.youtube.com/watch?v=idmgLLNIC2U
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="path"></param>
+        /// <param name="result"></param>
+        private void Permute0(int[] nums, bool[] used, List<int> path, List<IList<int>> result)
         {
             if (path.Count == nums.Length)
             {
@@ -34,16 +40,23 @@ namespace LeetcodeBackTracking.Medium
 
             for (int i = 0; i < nums.Length; ++i)
             {
-                if (path.Contains(nums[i])) continue;
+                if (used[i]) continue;
+                used[i] = true;
                 path.Add(nums[i]);
-                Permute0(nums, path, result);
+                Permute0(nums, used, path, result);
                 path.RemoveAt(path.Count - 1);
+                used[i] = false;
             }
         }
 
+        /// <summary>
+        //! Sams byte by byte
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public IList<IList<int>> Permute1(int[] nums)
         {
-            List<IList<int>> result = new List<IList<int>>();           
+            List<IList<int>> result = new List<IList<int>>();
             Permute1(nums, 0, new List<int>(), result);
 
             return result;
@@ -58,10 +71,10 @@ namespace LeetcodeBackTracking.Medium
 
             for (int j = i; j < nums.Length; ++j)
             {
-                Swap(nums,i,j);
+                Swap(nums, i, j);
                 path.Add(nums[i]);
                 Swap(nums, i, j);
-                path.RemoveAt(path.Count-1);
+                path.RemoveAt(path.Count - 1);
             }
         }
 
@@ -69,10 +82,10 @@ namespace LeetcodeBackTracking.Medium
         {
             int temp = nums[i];
 
-            nums[i] =nums[j];
+            nums[i] = nums[j];
             nums[j] = temp;
         }
 
-       
+
     }
 }

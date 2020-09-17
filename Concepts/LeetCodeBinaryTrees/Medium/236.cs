@@ -55,34 +55,10 @@ namespace LeetCodeBinaryTrees.Medium
 
         }
 
-        private int LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q, ResultWrapper wrapper)
-        {
-            if (root == null)
-                return 0;
-
-            int left = LowestCommonAncestor0(root.left, p, q, wrapper);
-            int right = LowestCommonAncestor0(root.right, p, q, wrapper);
-
-            int sum = left + right;
-            if (sum == 2 || (sum == 1 && root == p || root == q))
-            {
-                wrapper.LCA = root;
-                return 1;
-            }
-
-            else if (root == p || root == q)
-            {
-                ++sum;
-            }
-
-            return sum;
-
-        }
-
-
 
         /// <summary>
         /// https://www.youtube.com/watch?v=py3R23aAPCA
+        //! PreOrder traversal 
         /// </summary>
         /// <param name="root"></param>
         /// <param name="p"></param>
@@ -99,14 +75,13 @@ namespace LeetCodeBinaryTrees.Medium
             if (root == null)
                 return root;
 
-            //'root' doesn't satisfy any of our base cases.            
-            //Search left and then search right.
-
             if (root == p || root == q)
             {
                 return root;
             }
 
+            //'root' doesn't satisfy any of our base cases.            
+            //Search left and then search right.
 
             TreeNode left = LowestCommonAncestor(root.left, p, q);
             TreeNode right = LowestCommonAncestor(root.right, p, q);
@@ -125,6 +100,7 @@ namespace LeetCodeBinaryTrees.Medium
         }
 
         /// <summary>
+        // ! Iterative(Pre0rder traversal)
         /// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/
         /// </summary>
         /// <param name="root"></param>
@@ -174,6 +150,31 @@ namespace LeetCodeBinaryTrees.Medium
 
             return q;
         }
+        private int LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q, ResultWrapper wrapper)
+        {
+            if (root == null)
+                return 0;
+
+            int left = LowestCommonAncestor0(root.left, p, q, wrapper);
+            int right = LowestCommonAncestor0(root.right, p, q, wrapper);
+
+            int count = left + right;
+            if (count == 2 || (count == 1 && root == p || root == q))
+            {
+                wrapper.LCA = root;
+                return 1;
+            }
+
+            else if (root == p || root == q)
+            {
+                ++count;
+            }
+
+            return count;
+
+        }
+
+        
 
         public class ResultWrapper
         {

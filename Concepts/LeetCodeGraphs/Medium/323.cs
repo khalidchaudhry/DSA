@@ -71,7 +71,7 @@ namespace LeetCodeGraphs.Medium
 
                 //!3. Mark it as visited
                 visited[curr] = true;
-                
+
                 List<int> neighbours = graph[curr];
 
                 foreach (int neighbour in neighbours)
@@ -113,10 +113,8 @@ namespace LeetCodeGraphs.Medium
 
             foreach (int neighbor in neighbours)
             {
-                if (!visited[neighbor])
-                {
-                    DFS(neighbor, graph, visited);
-                }
+                DFS(neighbor, graph, visited);
+
             }
         }
     }

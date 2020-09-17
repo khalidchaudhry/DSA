@@ -45,6 +45,7 @@ namespace LeetCodeArrays.Medium
                 }
             }
             //! Last step we need to do is to fix suffix by reversing the elements 
+            //! change from  decreasing to increasing since that will be the first permuatation 
             Reverse(nums,k+1,nums.Length-1);
 
         }

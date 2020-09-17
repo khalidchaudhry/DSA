@@ -14,7 +14,11 @@ namespace LeetCodeArrays.Easy
        [1,4,6,4,1]                         
 
         */
-        public IList<int> GetRow(int rowIndex)
+
+
+
+
+        public IList<int> GetRow1(int rowIndex)
         {
             List<IList<int>> triangle = new List<IList<int>>();
             List<int> result = new List<int>();
@@ -64,7 +68,7 @@ namespace LeetCodeArrays.Easy
             return ret;
         }
         //https://leetcode.com/problems/pascals-triangle-ii/discuss/38473/Java-O(k)-solution-with-explanation
-        public List<int> getRow(int rowIndex)
+        public List<int> GetRow3(int rowIndex)
         {
             List<int> res = new List<int>();
             for (int i = 0; i <= rowIndex; i++)

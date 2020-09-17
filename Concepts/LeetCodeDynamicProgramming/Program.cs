@@ -19,7 +19,7 @@ namespace LeetCodeDynamicProgramming
             //};
             //var answer=WordBreak.WordBreak0("leetcode", wordDict);           
 
-            _322._322Main();
+            //_322._322Main();
 
 
             //_256 MinCost = new _256();
@@ -35,15 +35,7 @@ namespace LeetCodeDynamicProgramming
             //};
             // var ans = MinPathSum.MinPathSum(grid);
 
-            //_120 Triangle = new _120();
-            //List<IList<int>> triangle = new List<IList<int>>()
-            //{
-            //    new List<int>{2},
-            //    new List<int>{3,4 },
-            //    new List<int>{6,5,7},
-            //    new List<int>{4,1,8,3 }
-
-            //};
+            //_120._120Main();
 
             //var ans=Triangle.MinimumTotal2(triangle);
             //_221 MaximalSquare = new _221();
@@ -89,7 +81,20 @@ namespace LeetCodeDynamicProgramming
             //_338 CountBits = new _338();
             //var ans = CountBits.CountBits0(5);
 
-            Console.ReadLine();
+            //_918._918Main();
+
+            //_300._300Main();
+
+            //_264._264Main();
+            //_368._368Main();
+            //_532._532Main();
+
+            // _1027._1027Main();
+            //_279._279Main();
+            //_123._123Main();
+            //_1277._1277Main();
+            _304._304Main();
+            
         }
     }
 }

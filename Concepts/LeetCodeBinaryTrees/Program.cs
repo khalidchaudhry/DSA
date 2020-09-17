@@ -1,5 +1,6 @@
 ﻿using LeetCodeBinaryTrees.Easy;
 using LeetCodeBinaryTrees.Medium;
+using LeetCodeBinaryTrees.Medium._116;
 using System;
 using System.Collections.Generic;
 
@@ -727,8 +728,14 @@ namespace LeetCodeBinaryTrees
 
             //_701._701Main();
 
-            _987._987Main();
-            Console.ReadLine();
+            //_987._987Main();
+
+            //_116._116Main();
+            //Console.ReadLine();
+
+            _106._106Main();
+
+
         }
     }
 }
