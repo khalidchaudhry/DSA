@@ -15,7 +15,7 @@ namespace LeetCodeDynamicProgramming.Medium
             var result=CoinChange.CoinChange1(new int[] { 27,40,244,168,383 }, 6989);
 
         }
-        // Brute force approach 
+        //!Brute force approach 
         public int CoinChange(int[] coins, int amount)
         {
             if (coins.Length == 1 && coins[0] > amount)
@@ -53,7 +53,7 @@ namespace LeetCodeDynamicProgramming.Medium
         }
 
 
-        // Recursion (selection pattern)
+        //! Sam Recursion (selection pattern)
         public int CoinChange1(int[] coins, int amount)
         {
             ResultWrapper resultWrapper = new ResultWrapper();
