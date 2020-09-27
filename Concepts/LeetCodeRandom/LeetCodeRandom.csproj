@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66B86C09-497C-44EB-81DD-58A0BFD350D5}</ProjectGuid>
+    <ProjectGuid>{AAD725B8-309B-42CC-9D99-079E2E2ED374}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LeetCodeDynamicProgramming</RootNamespace>
-    <AssemblyName>LeetCodeDynamicProgramming</AssemblyName>
+    <RootNamespace>LeetCodeRandom</RootNamespace>
+    <AssemblyName>LeetCodeRandom</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,42 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Easy\119.cs" />
-    <Compile Include="Easy\53.cs" />
-    <Compile Include="Medium\1027.cs" />
-    <Compile Include="Medium\1048.cs" />
-    <Compile Include="Medium\123.cs" />
-    <Compile Include="Medium\1277.cs" />
-    <Compile Include="Medium\152.cs" />
-    <Compile Include="Medium\213.cs" />
-    <Compile Include="Medium\264.cs" />
-    <Compile Include="Medium\279.cs" />
-    <Compile Include="Medium\300.cs" />
-    <Compile Include="Medium\304.cs" />
-    <Compile Include="Medium\309.cs" />
-    <Compile Include="Medium\338.cs" />
-    <Compile Include="Medium\368.cs" />
-    <Compile Include="Medium\494.cs" />
-    <Compile Include="Medium\518.cs" />
-    <Compile Include="Medium\532.cs" />
-    <Compile Include="Medium\62.cs" />
-    <Compile Include="Medium\63.cs" />
-    <Compile Include="Medium\698.cs" />
-    <Compile Include="Medium\714.cs" />
-    <Compile Include="Easy\256.cs" />
-    <Compile Include="Easy\276.cs" />
-    <Compile Include="Easy\303.cs" />
-    <Compile Include="Medium\1043.cs" />
-    <Compile Include="Medium\1143.cs" />
-    <Compile Include="Medium\120.cs" />
-    <Compile Include="Medium\139.cs" />
-    <Compile Include="Medium\221.cs" />
-    <Compile Include="Medium\322.cs" />
-    <Compile Include="Medium\516.cs" />
-    <Compile Include="Medium\64.cs" />
-    <Compile Include="Medium\647.cs" />
-    <Compile Include="Medium\718.cs" />
-    <Compile Include="Medium\918.cs" />
+    <Compile Include="Medium\398.cs" />
+    <Compile Include="Medium\470.cs" />
+    <Compile Include="Medium\519.cs" />
+    <Compile Include="Medium\528.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

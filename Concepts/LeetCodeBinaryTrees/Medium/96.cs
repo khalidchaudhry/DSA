@@ -19,12 +19,12 @@ namespace LeetCodeBinaryTrees.Medium
         public int NumTrees(int input)
         {
             int[] T = new int[input + 1];
+            //! for tree with null node , there is one unique BST.  
             T[0] = 1;
             T[1] = 1;
             // strting n from 2 because we already know values at index 0 and index 1
             for (int i = 2; i <= input; i++)
-            {      // starting fron 1 because we need to go back to previous index.
-                   // 0 will casue out of bound exception 
+            {      
                 for (int j = 0; j < i; j++)
                 {
                     // G(n) = the summation from 1 to n of F(i, n)
@@ -47,6 +47,8 @@ namespace LeetCodeBinaryTrees.Medium
                                  T[3]*T[1]+ //when j=3
                                  T[4]      // when j=4                                        
                       */
+                    //! T[i] represents the total possiblities for i nodes e.g. i=2 we have two possibilities
+                    //! T[j] represents the total possiblities we have on left side of i and right side of i.    
                     T[i] += T[j] * T[i - j - 1];
                 }
             }

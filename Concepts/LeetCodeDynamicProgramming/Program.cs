@@ -1,5 +1,6 @@
 using LeetCodeDynamicProgramming.Easy;
 using LeetCodeDynamicProgramming.Medium;
+using LeetCodeDynamicProgramming.Medium._518;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,10 +54,9 @@ namespace LeetCodeDynamicProgramming
             //MaximalSquare.MaximalSquare(matrix);
 
 
-            //_1143 longest = new _1143();
-            //string s1 = "pmjghexybyrgzczy";
-            //string s2 = "hafcdqbgncrcbihkd";
-            //longest.LongestCommonSubsequence(s1, s2);
+
+            //_1143._1143Main();
+
             //_647 Count = new _647();
 
             //var result=Count.CountSubstrings("aaa");
@@ -82,10 +82,10 @@ namespace LeetCodeDynamicProgramming
             //var ans = CountBits.CountBits0(5);
 
             //_918._918Main();
-
+            //int[] nums = new int[] { 10, 9, 2, 5, 3, 7, 101, 18 };
             //_300._300Main();
 
-            //_264._264Main();
+            _264._264Main();
             //_368._368Main();
             //_532._532Main();
 
@@ -94,7 +94,17 @@ namespace LeetCodeDynamicProgramming
             //_123._123Main();
             //_1277._1277Main();
             //_304._304Main();
-            _62._62Main();
+            //_62._62Main();
+
+            //_518._518Main();
+
+            //_494._494Main();
+
+            //_718._718Main();
+
+            //_53._53Main();
+
+            //_152._152Main();
 
         }
     }

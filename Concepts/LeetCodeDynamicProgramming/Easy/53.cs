@@ -6,8 +6,18 @@ namespace LeetCodeDynamicProgramming.Easy
 {
     class _53
     {
+
+        public static void _53Main()
+        {
+            _53 MaxSubArraySum = new _53();
+            int[] nums = new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
+
+            var ans = MaxSubArraySum.MaxSubArray4(nums);
+            Console.ReadLine();
+        }
+
         //! Kadane's algorithm(dynamic programming)
-        public int MaxSubArray(int[] nums)
+        public int MaxSubArray0(int[] nums)
         {
             if (nums.Length == 0)
             {
@@ -24,9 +34,11 @@ namespace LeetCodeDynamicProgramming.Easy
 
             return global_max;
         }
+
+
         //https://www.codesdope.com/blog/article/maximum-subarray-sum-using-divide-and-conquer/
         //!Divide and conquer
-        public int MaxSubArray2(int[] nums)
+        public int MaxSubArray1(int[] nums)
         {
             int lo = 0;
             int hi = nums.Length - 1;
@@ -52,7 +64,32 @@ namespace LeetCodeDynamicProgramming.Easy
             return Math.Max(Math.Max(leftSubArraySum, rightSubArraySum), crossingSubArraySum);
 
         }
+        /// <summary>
+        //! Brute force
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
 
+        public int MaxSubArray4(int[] nums)
+        {
+            if (nums.Length == 0) return 0;
+            //! we can't initialize it with 0 as in case of nums={-20} result will be 0 whereas answer is -20 
+            int maxSum = nums[0];
+
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                int sum = 0;
+                for (int j = i; j < nums.Length; ++j)
+                {
+                    sum += nums[j];
+
+                    maxSum = Math.Max(sum, maxSum);
+                }
+            }
+
+            return maxSum;
+
+        }
         private int CrossingSubArraySum(int[] nums, int lo, int mid, int hi)
         {
             int leftSideSum = int.MinValue;

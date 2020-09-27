@@ -13,13 +13,15 @@ namespace LeetCodeDynamicProgramming.Medium
         {
             _264 NthUglyNumber = new _264();
 
-            var ans = NthUglyNumber.NthUglyNumber1(1407);
+            var ans = NthUglyNumber.NthUglyNumber0(1407);
 
             Console.ReadLine();
 
         }
         /// <summary>
         /// https://www.youtube.com/watch?v=IoqqgfZfiRA
+        ///   /// # <image url="https://miro.medium.com/max/700/1*uQl2uxnGSBNhLb79U1yvbQ.jpeg" scale="0.5" /> 
+
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
@@ -30,13 +32,13 @@ namespace LeetCodeDynamicProgramming.Medium
             int i2 = 0;
             int i3 = 0;
             int i5 = 0;
-            for (int i = 2; i <= n; ++i)
+            for (int i = 2; i <= n; ++i)  
             {
                 int multipleOf2 = 2 * uglyNumbers[i2];
                 int multipleOf3 = 3 * uglyNumbers[i3];
                 int multipleOf5 = 5 * uglyNumbers[i5];
 
-               int min=Math.Min(multipleOf2,Math.Min(multipleOf3,multipleOf3));
+                int min = Math.Min(multipleOf2, Math.Min(multipleOf3, multipleOf5));
 
                 uglyNumbers.Add(min);
 
@@ -52,11 +54,13 @@ namespace LeetCodeDynamicProgramming.Medium
             }
 
             return uglyNumbers[uglyNumbers.Count - 1];
-            
+
         }
 
         /// <summary>
         /// https://leetcode.com/problems/ugly-number-ii/solution/
+        //! Time complexity: O(nlogn)
+        //!Space : O(n)
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
@@ -74,25 +78,26 @@ namespace LeetCodeDynamicProgramming.Medium
                 uglyNumbers[i] = (int)min;
                 //! O(1) operation.
                 ss.Remove(min);
-                //! O(1)
-                ss.Add(min*2);
-                ss.Add(min*3);
-                ss.Add(min*5);
+                //! O(logn)
+                ss.Add(min * 2);
+                ss.Add(min * 3);
+                ss.Add(min * 5);
             }
 
             return uglyNumbers[n - 1];
 
         }
         /// <summary>
+        /// https://www.youtube.com/watch?v=IoqqgfZfiRA
         //!Brute force
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
         public int NthUglyNumber2(int n)
         {
-             List<int> uglyNumbers = new List<int>() { 1 };           
+            List<int> uglyNumbers = new List<int>() { 1 };
             //Top N ugly numbers for 2
-            InsertTopNUglyNumbers(2,n,uglyNumbers);
+            InsertTopNUglyNumbers(2, n, uglyNumbers);
             //Top N ugly numbers for 3
             InsertTopNUglyNumbers(3, n, uglyNumbers);
             //Top N ugly numbers for 5
@@ -103,7 +108,7 @@ namespace LeetCodeDynamicProgramming.Medium
             return distinctOrderedUglyNumbers[n - 1];
         }
 
-        private void InsertTopNUglyNumbers(int factor,int n,List<int> uglyNumbers)
+        private void InsertTopNUglyNumbers(int factor, int n, List<int> uglyNumbers)
         {
             int uglyNumbersCount = 0;
             int i = 1;
@@ -117,7 +122,13 @@ namespace LeetCodeDynamicProgramming.Medium
                 ++i;
             }
         }
-
+        /// <summary>
+        //! We will keep dividing number from choosen factor till we have 0 remainder 
+        //! Once we have zero remainder , we will try another factor.
+        //! If num is 1 then itsugly number , otherwise its not an ugly number
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         private bool IsUgly(int num)
         {
             int[] factors = new int[] { 2, 3, 5 };
@@ -134,37 +145,6 @@ namespace LeetCodeDynamicProgramming.Medium
                 return true;
             else
                 return false;
-        }
-
-        /// <summary>
-        //! Brute force approach 
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
-        public int NthUglyNumber3(int n)
-        {
-            List<int> nUglyNumbers = new List<int>();
-            //! first 10 ugly numbers :) 
-            nUglyNumbers.AddRange(new List<int> { 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 });
-            if (n <= 10)
-                return nUglyNumbers[n - 1];
-
-            int[] factors = new int[] { 2, 3, 5 };
-            for (int i = 13; i <= int.MaxValue; ++i)
-            {
-                int number = i;
-                for (int j = 0; j < factors.Length; ++j)
-                {
-                    while (number % factors[j] == 0)
-                    {
-                        number = number / factors[j];
-                    }
-                }
-                if (number == 1)
-                    nUglyNumbers.Add(i);
-            }
-
-            return nUglyNumbers[n - 1];
         }
     }
 }

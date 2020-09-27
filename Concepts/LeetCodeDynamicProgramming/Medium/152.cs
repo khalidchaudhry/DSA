@@ -6,7 +6,16 @@ namespace LeetCodeDynamicProgramming.Medium
 {
     public class _152
     {
+        public static void _152Main()
+        {
 
+            _152 Product = new _152();
+
+            int[] nums = new int[] { 2, 3, -2, 4 };
+            var ans=Product.MaxProduct2(nums);
+            Console.ReadLine();
+
+        }
         public int MaxProduct(int[] nums)
         {
             if (nums.Length < 1)
@@ -49,16 +58,14 @@ namespace LeetCodeDynamicProgramming.Medium
 
             for (int i = 0; i < nums.Length; i++)
             {
-                int maxProduct = nums[i];
-                int runningProduct = nums[i];
+                int runningProduct = 1;
 
-                for (int j = i + 1; j < nums.Length; ++j)
+                for (int j = i; j < nums.Length; ++j)
                 {
-                    runningProduct = runningProduct *nums[j];
-                    maxProduct =Math.Max(maxProduct,runningProduct);
+                    runningProduct = runningProduct * nums[j];
+                    globalMax = Math.Max(runningProduct, globalMax);
                 }
 
-                globalMax = Math.Max(globalMax,maxProduct);
             }
 
             return globalMax;

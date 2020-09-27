@@ -8,6 +8,12 @@ namespace LeetCodeTwoPointers.Medium
 {
     public class _209
     {
+        /// <summary>
+        /// // # <image url="http://img.blog.csdn.net/20150512122602070" scale="0.6" />  
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public int MinSubArrayLen(int s, int[] nums)
         {
 

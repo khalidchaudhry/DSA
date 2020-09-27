@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -40,29 +40,6 @@ namespace LeetCodeBackTracking.Medium
             return powerSet;
         }
 
-        /// <summary>
-        /// https://www.youtube.com/watch?v=VdnvmfzA1pw
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
-        public IList<IList<int>> Subsets2(int[] nums)
-        {
-            List<IList<int>> results = new List<IList<int>>();
-
-            if (nums == null || nums.Length == 0)
-            {
-                return results;
-            }
-
-            Array.Sort(nums);
-
-            List<int> subset = new List<int>();
-            ToFindAllSubsets(nums, results, subset, 0);
-
-            return results;
-        }
-
-
         private void Subset1(int[] nums, int i, List<int> path, List<IList<int>> powerSet)
         {
             if (i == nums.Length)
@@ -80,21 +57,5 @@ namespace LeetCodeBackTracking.Medium
             Subset1(nums, i + 1, path, powerSet);
 
         }
-
-        private void ToFindAllSubsets(int[] nums, List<IList<int>> results, List<int> subset, int startIndex)
-        {
-            results.Add(new List<int>(subset));
-
-            for (int i = startIndex; i < nums.Length; i++)
-            {
-                subset.Add(nums[i]);
-                ToFindAllSubsets(nums, results, subset, i + 1);
-                subset.RemoveAt(subset.Count - 1);
-            }
-        }
-
-
-
-
     }
 }

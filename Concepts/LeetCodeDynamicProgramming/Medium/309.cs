@@ -12,27 +12,27 @@ namespace LeetCodeDynamicProgramming.Medium
         //! Does not work for this input [1,2,4]
         public int MaxProfit(int[] prices)
         {
-            int totalProfit = 0;
-            int minValue = int.MaxValue;
-
-            for (int i = 0; i < prices.Length; i++)
+            int profit = 0;
+            int balance = -prices[0];
+            bool coolDown = false;
+            for (int i = 1; i < prices.Length; ++i)
             {
-                minValue = Math.Min(minValue,prices[i]);
-
-                int profit = prices[i] - minValue;
-
-                if (profit > 0)
+                if (balance + prices[i] > balance && !coolDown)
                 {
-                    totalProfit += profit;
-                    if (i + 1 < prices.Length)
-                    {
-                        minValue = prices[i + 1];
-                    }
-                    ++i;                   
+                    profit += balance + prices[i];
+                    coolDown = true;
+                }
+                else
+                {
+                    coolDown = false;
                 }
 
+
+                
+                balance = Math.Max(balance, profit - prices[i]);
+
             }
-            return totalProfit;
+            return profit;
         }
     }
 }
