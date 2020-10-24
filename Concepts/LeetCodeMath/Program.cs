@@ -1,3 +1,5 @@
+using LeetCodeMath.Easy;
+using LeetCodeMath.Medium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,14 @@ namespace LeetCodeMath
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
-
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            //_48._48Main();
+            //_311._311Main();
+            //_1175._1175Main();
+            //_43._43Main();
+            //_625._625Main();
+            //_7._7Main();
+            //_168._168Main();
+            _592._592Main();
         }
     }
 }

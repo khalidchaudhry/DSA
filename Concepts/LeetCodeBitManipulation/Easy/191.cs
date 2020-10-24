@@ -9,8 +9,6 @@ namespace LeetCodeBitManipulation.Easy
     class _191
     {
 
-
-
         public int HammingWeight0(uint n)
         {
 

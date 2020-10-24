@@ -30,7 +30,7 @@ namespace LeetCodeBitManipulation.Medium
 
             for (int i = 1; i < result.Length; ++i)
             {
-                //! Number of bits in number equals to number of bits  in number/2 with one exception. 
+                //! Number of 1-bits in number equals to number of 1-bits  in number/2 with one exception. 
                 //! If number is odd then will add one to it
                 result[i] = (result[i / 2] + (i % 2));
             }

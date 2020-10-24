@@ -8,6 +8,52 @@ namespace GraphTheoryAlgorithms.TopSort
 {
     public class TopologicalSortAdjacencyList
     {
+
+
+
+        public static void TopologicalSortAdjacencyListMain()
+        {
+
+            //Graph setup
+            int N = 7;
+            Dictionary<int, List<TopSort.Edge>> graph = new Dictionary<int, List<TopSort.Edge>>();
+            for (int i = 0; i < N; i++)
+                graph.Add(i, new List<TopSort.Edge>());
+
+
+            graph[0].Add(new TopSort.Edge(0, 1, 3));
+            graph[0].Add(new TopSort.Edge(0, 2, 2));
+            graph[0].Add(new TopSort.Edge(0, 5, 3));
+            graph[1].Add(new TopSort.Edge(1, 3, 1));
+            graph[1].Add(new TopSort.Edge(1, 2, 6));
+            graph[2].Add(new TopSort.Edge(2, 3, 1));
+            graph[2].Add(new TopSort.Edge(2, 4, 10));
+            graph[3].Add(new TopSort.Edge(3, 4, 5));
+            graph[5].Add(new TopSort.Edge(5, 4, 7));
+
+            TopologicalSortAdjacencyList topSort = new TopologicalSortAdjacencyList();
+
+
+            int[] ordering = topSort.TopologicalSort(graph, N);
+
+            // // Prints: [6, 0, 5, 1, 2, 3, 4]
+            Console.WriteLine(string.Join(",", ordering));
+
+            // Finds all the shortest paths starting at node 0
+            int[] dists = topSort.DagShortestPath(graph, 0, N);
+
+            // Find the shortest path from 0 to 4 which is 8.0
+            Console.WriteLine(dists[4]);
+
+            // Find the shortest path from 0 to 6 which
+            // is null since 6 is not reachable!
+            Console.WriteLine(dists[6]);
+
+
+
+
+        }
+
         // Finds a topological ordering of the nodes in a Directed Acyclic Graph (DAG)
         // The input to this function is an adjacency list for a graph and the number
         // of nodes in the graph.
@@ -47,8 +93,8 @@ namespace GraphTheoryAlgorithms.TopSort
         //We initialize distances to all vertices as -1  and distance to source as 0, then we find a topological sorting of the graph.
         //Once we have topological order (or linear representation), we one by one process all vertices in topological order. 
         //For every vertex being processed, we update distances of its adjacent using distance of current vertex.
-        
-            /// </summary>
+
+        /// </summary>
         /// <param name="graph">
         /// As adjacency list
         /// </param>

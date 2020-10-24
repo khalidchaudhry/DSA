@@ -19,16 +19,17 @@ namespace LeetCodeBitManipulation.Medium
             Console.ReadLine();
 
         }
-
-        public int IntegerReplacement0(int n)
-        {
-            return IntegerReplacement0((long)n);
-        }
         /// <summary>
         //! Optimzation rather then going both with n+1 and n-1 , we go with the one that turns out tobe even
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
+
+        public int IntegerReplacement0(int n)
+        {
+            return IntegerReplacement0((long)n);
+        }
+
         private int IntegerReplacement0(long n)
         {
             if (n <= 1)
@@ -58,7 +59,6 @@ namespace LeetCodeBitManipulation.Medium
             return min;
         }
 
-
         /// <summary>
         //!DP Memoization
         /// </summary>
@@ -69,7 +69,7 @@ namespace LeetCodeBitManipulation.Medium
             Dictionary<long, int> map = new Dictionary<long, int>();
             return IntegerReplacement1(n, map);
         }
-        public int IntegerReplacement1(long n, Dictionary<long, int> map)
+        private int IntegerReplacement1(long n, Dictionary<long, int> map)
         {
             if (n <= 1)
                 return 0;

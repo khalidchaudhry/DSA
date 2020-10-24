@@ -8,7 +8,21 @@ namespace LeetCodeRandom.Medium._519
 {
     public class _519
     {
+        public static void _519Main()
+        {
 
+
+            Solution sol = new Solution(5,5);
+
+            sol.Reset();
+            var ans=sol.Flip2();
+            sol.Reset();
+            var ans2=sol.Flip2();
+            sol.Reset();
+            var ans3 = sol.Flip2();
+
+            Console.ReadLine();
+        }
 
 
     }
@@ -57,6 +71,37 @@ namespace LeetCodeRandom.Medium._519
 
             return new int[] { x / columns, x % columns };
 
+        }
+
+        //! Implemented based on Kai's  class
+        //! Flatten 2d array into 1-d array
+        public int[] Flip2()
+        {
+            int random = rand.Next(total--);
+            int ans = 0;
+            if (map.ContainsKey(random))
+            {
+                int value = map[random];
+               
+                while (true)
+                {
+                    if (!map.ContainsKey(value))
+                    {
+                        break;
+                    }
+                    value = map[value];
+                }
+
+                map.Add(value, total);
+                ans = value;
+            }
+            else
+            {
+                map.Add(random, total);
+                ans = random;
+            }
+
+            return new int[] { ans / columns, ans % columns };
         }
 
         public void Reset()

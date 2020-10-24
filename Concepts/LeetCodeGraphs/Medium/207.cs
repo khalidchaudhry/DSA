@@ -63,14 +63,48 @@ namespace LeetCodeGraphs.Medium
 
             return count == n;
         }
+
+        //! DFS recursive solution
+        //! using basic cycle detection pattern. Used in question 802 as well
+        public bool CanFinish1(int numCourses, int[][] prerequisites)
+        {
+            Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+
+            for (int i = 0; i < numCourses; ++i)
+            {
+                graph[i] = new List<int>();
+            }
+
+            for (int i = 0; i < prerequisites.Length; ++i)
+            {
+                graph[prerequisites[i][1]].Add(prerequisites[i][0]);
+            }
+            //! color array holds there possible values 
+            //! White= Not processed
+            //! Grey= Currently processing
+            //! Black=Completely processed 
+            int[] color = new int[numCourses];
+
+            for (int i = 0; i < numCourses; ++i)
+            {
+                if (IsDFSContainsCycle(graph, i, color))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+        
         /// <summary>
-        //!Topological sort Depth first search 
+        //!Topological sort Depth first search iterative
         //https://www.youtube.com/watch?v=0LjVxtLnNOk
         /// </summary>
         /// <param name="numCourses"></param>
         /// <param name="prerequisites"></param>
         /// <returns></returns>
-        public bool CanFinish1(int numCourses, int[][] prerequisites)
+        public bool CanFinish3(int numCourses, int[][] prerequisites)
         {
             int n = numCourses;
             int[] indegree = new int[n];
@@ -146,80 +180,22 @@ namespace LeetCodeGraphs.Medium
                 }
             }
         }
-
-
-        /// <summary>
-        /// https://leetcode.com/problems/course-schedule/solution/
-        //! Backtracking
-        //! And the problem to determine if one could build a valid schedule of courses that satisfies all the 
-        //!dependencies (i.e. constraints) would be equivalent to determine if the corresponding graph is a DAG (Directed Acyclic Graph), 
-        // !i.e. there is no cycle existed in the graph.
-        public bool CanFinish2(int numCourses, int[][] prerequisites)
+    
+        public bool IsDFSContainsCycle(Dictionary<int, List<int>> graph, int at, int[] color)
         {
-            // course -> list of next courses
-            Dictionary<int, List<int>> courseDict = new Dictionary<int, List<int>>();
+            if (color[at] == 1) return true;
+            if (color[at] == 2) return false;
 
-            // build the graph first
-            foreach (int[] relation in prerequisites)
+            color[at] = 1; //! painting the node with grey color
+            foreach (int neighbor in graph[at])
             {
-                // relation[0] depends on relation[1]
-                if (courseDict.ContainsKey(relation[0]))
+                if (IsDFSContainsCycle(graph, neighbor, color))
                 {
-                    courseDict[relation[0]].Add(relation[1]);
-                }
-                else
-                {
-                    List<int> nextCourses = new List<int>();
-                    nextCourses.Add(relation[1]);
-                    courseDict.Add(relation[0], nextCourses);
+                    return true;
                 }
             }
-
-            bool[] path = new bool[numCourses];
-
-            for (int currCourse = 0; currCourse < numCourses; ++currCourse)
-            {
-                if (IsCyclic(currCourse, courseDict, path))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        /*
-   * backtracking method to check that no cycle would be formed starting from currCourse
-   */
-        private bool IsCyclic(
-            int currCourse,
-           Dictionary<int, List<int>> courseDict,
-            bool[] path)
-        {
-
-            if (path[currCourse])
-            {
-                // come across a previously visited node, i.e. detect the cycle
-                return true;
-            }
-
-            // no following courses, no loop.
-            if (!courseDict.ContainsKey(currCourse))
-                return false;
-
-            // before backtracking, mark the node in the path
-            path[currCourse] = true;
-
-            // backtracking
-            bool ret = false;
-            foreach (int nextCourse in courseDict[currCourse])
-            {
-                ret = IsCyclic(nextCourse, courseDict, path);
-                if (ret)
-                    break;
-            }
-            // after backtracking, remove the node from the path
-            path[currCourse] = false;
-            return ret;
+            color[at] = 2; //! painting the node with black color(completed)
+            return false;
         }
     }
 }

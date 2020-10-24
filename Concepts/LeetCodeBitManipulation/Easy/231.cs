@@ -18,8 +18,11 @@ namespace LeetCodeBitManipulation.Easy
             //! if taking & of n & n-1 results in 0 than its means its power of two
             //! e.g. 8(001000)
             //!      7(000111)
+            //6(110)
+            //5(011)
+
             //! n & n-1 will give zero for power of two else 
-            
+
             if ((nLong & nLong - 1) == 0) return true;
             else return false;
         }

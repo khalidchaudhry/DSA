@@ -47,6 +47,7 @@
     <Compile Include="Medium\1027.cs" />
     <Compile Include="Medium\1048.cs" />
     <Compile Include="Medium\123.cs" />
+    <Compile Include="Medium\1262.cs" />
     <Compile Include="Medium\1277.cs" />
     <Compile Include="Medium\152.cs" />
     <Compile Include="Medium\213.cs" />

@@ -50,6 +50,7 @@
     <Compile Include="Medium\46.cs" />
     <Compile Include="Medium\77.cs" />
     <Compile Include="Medium\78.cs" />
+    <Compile Include="Medium\79.cs" />
     <Compile Include="Medium\90.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

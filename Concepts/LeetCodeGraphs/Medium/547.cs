@@ -9,14 +9,13 @@ namespace LeetCodeGraphs.Medium
     public class _547
     {
         /// <summary>
+        //! DFS recursive
         ////https://leetcode.com/problems/friend-circles/solution/
         //! Idea is not build graph and do DFS on provided array as provided array is adjacency matrix of the graph
         //! Another approach(not preferred) is to build graph first(FindCircleNum2 function below) and then run DFS on it. 
         //! Time complexity O(n^2) The complete matrix of size n^2 is traversed.
         //! Space complexity O(n) creating visited array of size n
-        /// </summary>
-        /// <param name="M"></param>
-        /// <returns></returns>
+        /// </summary>   
         public int FindCircleNum0(int[][] M)
         {
             if (M.Length == 0) return 0;
@@ -38,14 +37,116 @@ namespace LeetCodeGraphs.Medium
             return friendCircles;
         }
         /// <summary>
+        //! Creating Adjacency list graph represntation based on given input. Not preferred
+        /// </summary>    
+        public int FindCircleNum2(int[][] M)
+        {
+            if (M.Length == 0) return 0;
+            int totalStudents = M.Length;
+            List<List<int>> graph = BuildGraph(M);
+
+            bool[] visited = new bool[totalStudents];
+            int friendCircles = 0;
+            for (int i = 0; i < totalStudents; i++)
+            {
+                if (!visited[i])
+                {
+                    ++friendCircles;
+                    DFS(i, graph, visited);
+                }
+            }
+
+            return friendCircles;
+        }
+
+        /// <summary>
+        //!BFS
+        /// </summary>    
+        public int FindCircleNum3(int[][] M)
+        {
+            if (M.Length == 0) return 0;
+            int totalStudents = M.Length;
+
+            bool[] visited = new bool[totalStudents];
+            int friendCircles = 0;
+            Queue<int> queue = new Queue<int>();
+            for (int i = 0; i < totalStudents; i++)
+            {
+                if (!visited[i])
+                {
+                    queue.Enqueue(i);
+                    while (queue.Count != 0)
+                    {
+                        int dequeue = queue.Dequeue();
+                        visited[dequeue] = true;
+                        for (int j = 0; i < M[dequeue].Length; ++j)
+                        {
+                            if (M[dequeue][j] == 1 && !visited[j])
+                            {
+                                queue.Enqueue(j);
+                            }
+                        }
+                    }
+                    ++friendCircles;
+                }
+            }
+
+            return friendCircles;
+        }
+
+        /// <summary>
+        //!Union Find
+        /// </summary>    
+        public int FindCircleNum4(int[][] M)
+        {
+            if (M.Length == 0) return 0;
+            int totalStudents = M.Length;
+            int[] parent = Enumerable.Repeat(-1, M.Length).ToArray();
+            int friendCircles = 0;
+            for (int i = 0; i < M.Length; ++i)
+            {
+                for (int j = 0; j < M.Length; ++j)
+                {
+                    if (i != j && M[i][j] == 1)
+                    {
+                        Union(i, j, parent);
+                    }
+                }
+            }
+            for (int i = 0; i < parent.Length; ++i)
+            {
+                if (parent[i] == -1)
+                    ++friendCircles;
+            }
+
+            return friendCircles;
+        }
+
+        private void Union(int i, int j, int[] parent)
+        {
+            int x = Find(parent, i);
+            int y = Find(parent, j);
+            if (x != y)
+                parent[x] = y;
+        }
+
+        private int Find(int[] parent, int i)
+        {
+            if (parent[i] == -1)
+                return i;
+
+            return Find(parent, parent[i]);
+        }
+
+
+        /// <summary>
+        //! DFS iterative
         //!https://medium.com/leetcode-patterns/leetcode-pattern-1-bfs-dfs-25-of-the-problems-part-1-519450a84353
         //! This ITERATIVE version without building the graph first. so definitely saving on Memory than FindCircleNum version below
         //! Intuition is to find the total number of connected components  using DFS
         // Time Complexity=O(n^2) as where we are traversing the complete matrix of size n*n
         // Space complexity=O(n) visited array of size n is used. 
         /// </summary>
-        /// <param name="M"></param>
-        /// <returns></returns>
         public int FindCircleNum1(int[][] M)
         {
             int nodesCount = M.Length; //! number of rows 
@@ -82,36 +183,9 @@ namespace LeetCodeGraphs.Medium
 
             return ccCount;
         }
-        /// <summary>
-        //! In this approach we are explicitly creating the graph and doing DFS on it. Not preferred
-        /// </summary>
-        /// <param name="M"></param>
-        /// <returns></returns>
-        public int FindCircleNum2(int[][] M)
-        {
-            if (M.Length == 0) return 0;
-            int totalStudents = M.Length;
-            List<List<int>> graph = BuildGraph(M);
 
-            bool[] visited = new bool[totalStudents];
-            int friendCircles = 0;
-            for (int i = 0; i < totalStudents; i++)
-            {
-                if (!visited[i])
-                {
-                    ++friendCircles;
-                    DFS(i, graph, visited);
-                }
-            }
 
-            return friendCircles;
-        }
-        /// <summary>
-        //! DFS on the array. 
-        /// </summary>
-        /// <param name="i"></param>
-        /// <param name="M"></param>
-        /// <param name="visited"></param>
+
         private void DFS(int i, int[][] M, bool[] visited)
         {
             for (int j = 0; j < M.Length; ++j) //! M.Length because given matrix N*N
@@ -119,17 +193,11 @@ namespace LeetCodeGraphs.Medium
                 if (M[i][j] == 1 && !visited[j])
                 {
                     visited[j] = true;
-                    DFS(j,M,visited);
+                    DFS(j, M, visited);
                 }
             }
         }
 
-       /// <summary>
-       //! DFS on the graph. 
-       /// </summary>
-       /// <param name="at"></param>
-       /// <param name="graph"></param>
-       /// <param name="visited"></param>
         private void DFS(int at, List<List<int>> graph, bool[] visited)
         {
             visited[at] = true;

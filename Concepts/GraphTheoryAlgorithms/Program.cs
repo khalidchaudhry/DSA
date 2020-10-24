@@ -20,13 +20,13 @@ namespace GraphTheoryAlgorithms
         static void Main(string[] args)
         {
 
-            //DepthFirstSearchAdjacencyListRecursive.DepthFirstSearchAdjacencyListRecursiveMain();
+            DepthFirstSearchAdjacencyListRecursive.DepthFirstSearchAdjacencyListRecursiveMain();
 
             //ConnectedComponents.ConnectedComponentsMain();
             //ConnectedComponentsDfsSolverAdjacencyList.ConnectedComponentsDfsSolverAdjacencyListMain();
             //ConnectedComponentsDfsSolverAdjacencyList.ConnectedComponentsDfsSolverAdjacencyListMain();
-            
-            
+
+
             //BreadthFirstSearchAdjacencyListIterative.BreadthFirstSearchAdjacencyListIterativeMain();
 
 
@@ -85,89 +85,8 @@ namespace GraphTheoryAlgorithms
             //var treeCenter=TreeCenter.TreeCenter.FindTreeCenters(graph);
             //Console.WriteLine(string.Join(",", $"[{string.Join(",", treeCenter)}]"));
 
-            /*****************************************************************/
-            // Finding toplological sort  adjacency list
-            /*****************************************************************/
-            // Graph setup
-            //int N = 7;
-            //Dictionary<int, List<TopSort.Edge>> graph = new Dictionary<int, List<TopSort.Edge>>();
-            //for (int i = 0; i < N; i++)
-            //    graph.Add(i, new List<TopSort.Edge>());
-
-
-            //graph[0].Add(new TopSort.Edge(0, 1, 3));
-            //graph[0].Add(new TopSort.Edge(0, 2, 2));
-            //graph[0].Add(new TopSort.Edge(0, 5, 3));
-            //graph[1].Add(new TopSort.Edge(1, 3, 1));
-            //graph[1].Add(new TopSort.Edge(1, 2, 6));
-            //graph[2].Add(new TopSort.Edge(2, 3, 1));
-            //graph[2].Add(new TopSort.Edge(2, 4, 10));
-            //graph[3].Add(new TopSort.Edge(3, 4, 5));
-            //graph[5].Add(new TopSort.Edge(5, 4, 7));
-
-            //TopologicalSortAdjacencyList topSort = new TopologicalSortAdjacencyList();
-
-
-            //int[] ordering = topSort.TopologicalSort(graph, N);
-
-            //// // Prints: [6, 0, 5, 1, 2, 3, 4]
-            //Console.WriteLine(string.Join(",", ordering));
-
-            //// Finds all the shortest paths starting at node 0
-            //int[] dists = topSort.DagShortestPath(graph, 0, N);
-
-            //// Find the shortest path from 0 to 4 which is 8.0
-            //Console.WriteLine(dists[4]);
-
-            //// Find the shortest path from 0 to 6 which
-            //// is null since 6 is not reachable!
-            //Console.WriteLine(dists[6]);
-
-
-            /*****************************************************************/
-            // Finding toplological sort  Matrix
-            /*****************************************************************/
-            //int N = 7;
-
-            //double[][] adjMatrix = new double[N][];
-            //// initiliaze every jagged array with an array and all its values as MaxValue
-            //for (int i = 0; i < N; i++)
-            //{
-            //    adjMatrix[i] = new double[N];
-            //    adjMatrix[i] = Enumerable.Repeat(double.MaxValue, N).ToArray();
-            //}
-
-            //adjMatrix[0][1] = 3.0;
-            //adjMatrix[0][2] = 2.0;
-            //adjMatrix[0][5] = 3.0;
-
-            //adjMatrix[1][3] = 1.0;
-            //adjMatrix[1][2] = 6.0;
-
-            //adjMatrix[2][3] = 1.0;
-            //adjMatrix[2][4] = 10.0;
-
-            //adjMatrix[3][4] = 5.0;
-
-            //adjMatrix[5][4] = 7.0;
-
-            //adjMatrix[1][3] = 1.0;
-
-
-            //int[] ordering = new TopologicalSortAdjacencyMatrix().TopologicalSort(adjMatrix);
-
-            //// Prints: [6, 0, 5, 1, 2, 3, 4]
-            //Console.WriteLine(string.Join(",", ordering));
-
-            //// Find the shortest path from 0 to all other nodes
-            //double[] dists = new TopologicalSortAdjacencyMatrix().DagShortestPath(adjMatrix, 0);
-
-            //// Find the distance from 0 to 4 which is 8.0
-            //Console.WriteLine(dists[4]);
-
-            //// Finds the shortest path from 0 to 6
-            //// prints Infinity (6 is not reachable!)
-            //Console.WriteLine(dists[6]);
+            TopologicalSortAdjacencyList.TopologicalSortAdjacencyListMain();
+            TopologicalSortAdjacencyMatrix.TopologicalSortAdjacencyMatrixMain();
 
             /*****************************************************************************/
             // Dijstra's algorithm
@@ -395,7 +314,7 @@ namespace GraphTheoryAlgorithms
 
 
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
 

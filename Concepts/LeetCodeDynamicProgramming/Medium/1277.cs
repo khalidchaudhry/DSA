@@ -25,6 +25,26 @@ namespace LeetCodeDynamicProgramming.Medium
             var ans = CountSquares.CountSquares0(matrix);
             Console.ReadLine();
         }
+
+        /*
+         Intuition for this problem is that we will calculate the square max length at every given matrix index(where matrix value is not equal to 0). 
+         Max square length at every matrix index will give us total number of squares at index i and j. Summing up all the values will give the desired result.
+         This problem is very similar to https://leetcode.com/problems/maximal-square/ 
+         The thing we need to pay attention is how many squares a nxn squares will contain?. 
+         For example a 3x3 square contains 3 squares
+         1 =1X1 square
+         1 =2 X2 square
+         1 =3 x3 square.
+         By drawing from top-left corner, it will give the above result.
+         For brute force , i am going from top-bottom and for DP solution i am going from bottom to top (kind of)
+         Let me know if any one has any question for the solutions
+        */
+
+        /// <summary>
+        //! DP Bottom up 
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
         public int CountSquares0(int[][] matrix)
         {
             int rows = matrix.Length;
@@ -62,7 +82,6 @@ namespace LeetCodeDynamicProgramming.Medium
 
         /// <summary>
         //! Brute force
-        //! 
         //! https://leetcode.com/problems/count-square-submatrices-with-all-ones/discuss/441414/C%2B%2B-Intuitive-Solution-Recursion-With-Memoization
         /// </summary>
         /// <param name="matrix"></param>

@@ -26,8 +26,8 @@ namespace LeetCodeBitManipulation.Medium
                 xy = xy ^ nums[i];
             }
 
-            //! Two missing numbers will have bit different as they are different numbers 
-            //! below line gives the first set bit from right side e.g. (000100010) will be (000000010) 
+            //! Two missing numbers will have atleast one bit different as they are different numbers 
+            //! below line gives the first set bit(least significant bit) from right side e.g. (000100010) will be (000000010) 
             //! or it will give the one bit differ between two numbers 
             int lowbit = xy & (-xy);
 

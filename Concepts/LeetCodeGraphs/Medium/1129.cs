@@ -30,37 +30,56 @@ namespace LeetCodeGraphs.Medium
                 steps[1][i] = int.MaxValue;
             }
 
-            Queue<int[]> queue = new Queue<int[]>();
+            // Build graphs for red and blue edges, respectively.
+            Dictionary<int, List<int>> red = new Dictionary<int, List<int>>();
+            foreach (int[] redEdge in red_edges)
+            {
+                if (!red.ContainsKey(redEdge[0]))
+                {
+                    red[redEdge[0]] = new List<int>();
+                }
+
+                red[redEdge[0]].Add(redEdge[1]);
+            }
+
+            Dictionary<int, List<int>> blue = new Dictionary<int, List<int>>();
+            foreach (int[] blueEdge in blue_edges)
+            {
+                if (!blue.ContainsKey(blueEdge[0]))
+                {
+                    blue[blueEdge[0]] = new List<int>();
+                }
+
+                blue[blueEdge[0]].Add(blueEdge[1]);
+            }
+
+
+            Queue<(int node, int color)> queue = new Queue<(int node, int color)>();
 
             //! 0 =Red edge
             //! 1=Blue edge
-            //! first dimension = node second dimension=color
+            //! first dimension = node,  second dimension=color
             //! Not sure which color edge the first node will take hence queue both
-            queue.Enqueue(new int[] { 0, 0 });
-            queue.Enqueue(new int[] { 0, 1 });
+            queue.Enqueue((0, 0));
+            queue.Enqueue((0, 1));
 
             while (queue.Count != 0)
             {
-                int[] dequeue = queue.Dequeue();
-                int node = dequeue[0];
-                int color = dequeue[1];
+                (int node, int color) = queue.Dequeue();
+                Dictionary<int, List<int>> map = color == 0 ? red : blue;
 
-                int[][] edges = color == 0 ? red_edges : blue_edges;
+                if (!map.ContainsKey(node)) { continue; }
 
-                foreach (int[] edge in edges)
+                foreach (int neighbor in map[node])
                 {
-                    if (node == edge[0])
-                    {
-                        if (steps[1 - color][edge[1]] == int.MaxValue)
-                        {    // 1 - color: the other color.
-                            steps[1 - color][edge[1]] = steps[color][node] + 1;
+                    int oppositeColor = 1 - color;
+                    if (steps[oppositeColor][neighbor] == int.MaxValue)
+                    {    // 1 - color: the other color.
+                        steps[oppositeColor][neighbor] = steps[color][node] + 1;
 
-                            queue.Enqueue(new int[] { edge[1], 1 - color });
-                        }
-                        
+                        queue.Enqueue((neighbor, oppositeColor));
                     }
                 }
-
             }
 
             for (int i = 1; i < n; ++i)
@@ -72,7 +91,7 @@ namespace LeetCodeGraphs.Medium
             return steps[0];
         }
 
-       
+
 
 
 
@@ -142,11 +161,11 @@ namespace LeetCodeGraphs.Medium
         /// <param name="blue_edges"></param>
         private void BuildGraph(int[][] graph, int n, int[][] red_edges, int[][] blue_edges)
         {
-            //! intialize it with -n 
-            foreach (int[] cell in graph)
+
+            //! Does not work need to iniliaze array variables with -1
+            for (int i = 0; i < n; ++i)
             {
-                cell[0] = -n;
-                cell[1] = -n;
+                graph[i] = new int[n];
             }
 
             foreach (int[] red_edge in red_edges)
@@ -160,6 +179,7 @@ namespace LeetCodeGraphs.Medium
             {
                 int from = blue_edge[0];
                 int to = blue_edge[1];
+                //! It means we have edges with both the colors
                 if (graph[from][to] == 1)
                 {
                     graph[from][to] = 0;

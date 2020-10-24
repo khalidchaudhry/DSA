@@ -8,6 +8,12 @@ namespace LeetCodeGraphs.Medium
 {
     public class _743
     {
+
+
+        public  static void _743Main()
+        {
+
+        }
         public void SortedSetTest()
         {
             var priorityQueue = new SortedSet<(int weight, int node)>();
@@ -25,41 +31,53 @@ namespace LeetCodeGraphs.Medium
         /// <returns></returns>
         public int NetworkDelayTime(int[][] times, int N, int K)
         {
-            var nodeMap = new Dictionary<int, GraphNode>();
+            var graph = new Dictionary<int, List<(int to, int weight)>>();
             foreach (var time in times)
             {
-                (int start, int end, int weight) connection = (time[0], time[1], time[2]);
-                if (!nodeMap.ContainsKey(connection.start))
-                    nodeMap[connection.start] = new GraphNode(connection.start);
-                if (!nodeMap.ContainsKey(connection.end))
-                    nodeMap[connection.end] = new GraphNode(connection.end);
+                (int from, int to, int weight) = (time[0], time[1], time[2]);
+                if (!graph.ContainsKey(from))
+                    graph[from] = new List<(int to, int weight)>();
+                if (!graph.ContainsKey(to))
+                    graph[to] = new List<(int to, int weight)>();
 
-                nodeMap[connection.start].AdjacentNodes.Add((connection.end, connection.weight));
+                graph[from].Add((to, weight));
             }
 
-            // BFS
+            //! Not typical BFS pattern.
+            //! Here we are not marking neighbors visited when adding them queue rather then 
+            //! we are marking them after dequeue. Reason is if we do it then it will make 
+            //! mark node as visited which might have  weighted length and we will not be able
+            //! to proces them later
+
             var priorityQueue = new SortedSet<(int weight, int node)>();
+
+
+            var visited = new HashSet<int>();
+            //! First weight then node 
             priorityQueue.Add((0, K));
 
-            var visited = new HashSet<int>(); // node id
             var maxWeight = 0;
             while (priorityQueue.Count > 0)
             {
-                var state = priorityQueue.First();
-                priorityQueue.Remove(state);
-
-                if (visited.Contains(state.node))
-                    continue;
-
-                visited.Add(state.node);
-                maxWeight = Math.Max(maxWeight, state.weight);
-
-                var graphNode = nodeMap[state.node];
-                foreach (var node in graphNode.AdjacentNodes)
+                (int weight, int node) curr = priorityQueue.First();
+                priorityQueue.Remove(curr);
+                //! Checking if node visited 
+                if (visited.Contains(curr.node))
                 {
-                    if (visited.Contains(node.id))
-                        continue;
-                    priorityQueue.Add((node.weight + state.weight, node.id));
+                    continue;
+                }
+                //! Adding to visited set here 
+                visited.Add(curr.node);
+
+                maxWeight = Math.Max(maxWeight, curr.weight);
+
+                foreach ((int neighbor, int neighborWeight) in graph[curr.node])
+                {
+                    if (!visited.Contains(neighbor))
+                    {
+                        //! not adding of neighbor to visited set
+                        priorityQueue.Add((neighborWeight + curr.weight, neighbor));
+                    }
                 }
             }
 
@@ -110,18 +128,6 @@ namespace LeetCodeGraphs.Medium
         }
 
 
-    }
-
-    public class GraphNode
-    {
-        public int NodeId { get; }
-        public List<(int id, int weight)> AdjacentNodes { get; }
-
-        public GraphNode(int id)
-        {
-            NodeId = id;
-            AdjacentNodes = new List<(int, int)>();
-        }
     }
 
 

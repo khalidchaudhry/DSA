@@ -115,7 +115,8 @@ namespace LeetCodeArrays.Medium
                 }
                 else
                 {
-                    //! why pivotIndex and why not pivotIndex-1 because element at pivot index can also be the part of the non uniformly increasing 
+                    //! why pivotIndex and why not pivotIndex-1? 
+                    //!because element at pivot index can also be the part of the non uniformly increasing 
                     high = pivotIndex;
                 }
             }

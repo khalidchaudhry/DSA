@@ -34,6 +34,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,15 +45,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Easy\1175.cs" />
+    <Compile Include="Easy\168.cs" />
+    <Compile Include="Easy\171.cs" />
+    <Compile Include="Easy\172.cs" />
+    <Compile Include="Easy\204.cs" />
     <Compile Include="Easy\263.cs" />
+    <Compile Include="Easy\453.cs" />
+    <Compile Include="Easy\7.cs" />
+    <Compile Include="Easy\9.cs" />
+    <Compile Include="Hard\660.cs" />
+    <Compile Include="Medium\1497.cs" />
     <Compile Include="Medium\264.cs" />
+    <Compile Include="Medium\31.cs" />
+    <Compile Include="Medium\311.cs" />
     <Compile Include="Medium\319.cs" />
+    <Compile Include="Medium\357.cs" />
+    <Compile Include="Medium\43.cs" />
+    <Compile Include="Medium\48.cs" />
+    <Compile Include="Medium\592.cs" />
+    <Compile Include="Medium\625.cs" />
     <Compile Include="Medium\672.cs" />
+    <Compile Include="Medium\754.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

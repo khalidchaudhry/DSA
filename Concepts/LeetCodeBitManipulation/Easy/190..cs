@@ -16,7 +16,7 @@ namespace LeetCodeBitManipulation.Easy
             uint result = 0;
             for (int i = 1; i <= 32; ++i)
             {
-                // left shift result to make space for new number 
+                //! left shift result as it will go to the 31st position. That's what the question asked
                 result = result << 1;
                 //! if last bit of number is 1 than add 1 to the result
                 if ((n & 1) == 1)

@@ -39,6 +39,27 @@ namespace TopInterviewQuestions.Easy
             return Math.Max(even,odd);
         }
 
+        public int Rob2(int[] nums)
+        {
+            int n = nums.Length;
+            if (n == 0)
+                return 0;
+            if (n == 1)
+                return nums[0];
+
+            int[] maxMoney = new int[n];
+
+            maxMoney[0] = nums[0];
+            maxMoney[1] = Math.Max(nums[0], nums[1]);
+
+            for (int i = 2; i < n; ++i)
+            {
+                maxMoney[i] = Math.Max(maxMoney[i - 1], nums[i] + maxMoney[i - 2]);
+            }
+
+            return maxMoney[maxMoney.Length - 1];
+
+        }
 
 
 

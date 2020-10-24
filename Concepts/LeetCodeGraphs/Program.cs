@@ -1,5 +1,6 @@
 using LeetCodeGraphs.Easy;
 using LeetCodeGraphs.Medium;
+using LeetCodeGraphs.Medium._802;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -103,19 +104,19 @@ namespace LeetCodeGraphs
             //};
 
 
-            //var result=Division.CalcEquation(equations,values,queries);
+            //var result = Division.CalcEquation(equations, values, queries);
 
-            _332 It = new _332();
-            IList<IList<string>> tickets = new List<IList<string>>
-            {
-                new List<string>{ "JFK", "SFO" },
-                new List<string>{ "JFK", "ATL" },
-                new List<string>{ "SFO", "ATL" },
-                new List<string>{ "ATL", "JFK" },
-                new List<string>{ "ATL", "SFO" },
-            };
+            //_332 It = new _332();
+            //IList<IList<string>> tickets = new List<IList<string>>
+            //{
+            //    new List<string>{ "JFK", "SFO" },
+            //    new List<string>{ "JFK", "ATL" },
+            //    new List<string>{ "SFO", "ATL" },
+            //    new List<string>{ "ATL", "JFK" },
+            //    new List<string>{ "ATL", "SFO" },
+            //};
 
-            var result = It.FindItinerary2(tickets);
+            //var result = It.FindItinerary2(tickets);
 
             //int numCourses = 2;
             //int[][] prerequisites = new int[][]
@@ -128,9 +129,7 @@ namespace LeetCodeGraphs
             //_207 CourseSchedule = new _207();
             //CourseSchedule.CanFinish2(numCourses, prerequisites);
 
-            //_743 SortedNodeTest = new _743();
-
-            //SortedNodeTest.SortedSetTest();
+            _743._743Main();
 
             //_210 CourseSchedule = new _210();
 
@@ -178,25 +177,9 @@ namespace LeetCodeGraphs
             //    new int[]{1,3 },
             //    new int[]{2,3 },
             //};
-
-
             //RedundantConnection.FindRedundantConnection(edges);
 
-
-            //_802 EventualSafe = new _802();
-
-            //int[][] graph = new int[5][]
-            //{
-            //    new int[]{0},
-            //    new int[]{2,3,4 },
-            //    new int[]{3,4},
-            //    new int[]{0,4},
-            //    new int[]{}
-            //};
-
-
-            //EventualSafe.EventualSafeNodes0(graph);
-
+            //_802._802Main();
 
             //_261 GraphValidTree = new _261();
             //int n = 5;
@@ -285,24 +268,34 @@ namespace LeetCodeGraphs
 
             //MaxLevel.MaxLevelSum(t);
 
-            int n = 3;
-            int[][] red_edges = new int[2][] {
-                                            new int[] { 0, 1 },
-                                            new int[]{ 0, 2 }
-                                              };
+            //int n = 3;
+            //int[][] red_edges = new int[2][] {
+            //                                new int[] { 0, 1 },
+            //                                new int[]{ 0, 2 }
+            //                                  };
 
 
-            int[][] blue_edges = new int[1][] {
-                                            new int[] { 1, 0 }
-            };
+            //int[][] blue_edges = new int[1][] {
+            //                                new int[] { 1, 0 }
+            //};
 
 
-            _1129 ShortestPath = new _1129();
+            //_1129 ShortestPath = new _1129();
 
-            ShortestPath.ShortestAlternatingPaths0(n,red_edges,blue_edges);
+            //ShortestPath.ShortestAlternatingPaths0(n,red_edges,blue_edges);
+            //_994._994Main();
 
+            //_1245._1245Main();
 
-            Console.ReadKey();
+            //_694._694Main();
+
+            //_1236._1236Main();
+
+            //_752._752Main(); 
+
+            //_1462._1462Main();
+            //_444._444Main();
+            //Console.ReadKey();
 
         }
     }

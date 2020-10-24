@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace GraphTheoryAlgorithms.TopSort
 {
+    
+    
     /// <summary>
     // This Topological sort takes an adjacency matrix of an acyclic graph and returns an array with the
     // indexes of the nodes in a(non unique) topological order which tells you how to process the nodes in the graph.
@@ -15,6 +17,56 @@ namespace GraphTheoryAlgorithms.TopSort
     /// </summary>
     public class TopologicalSortAdjacencyMatrix
     {
+
+        public static void TopologicalSortAdjacencyMatrixMain()
+        {
+
+            int N = 7;
+
+            double[][] adjMatrix = new double[N][];
+            // initiliaze every jagged array with an array and all its values as MaxValue
+            for (int i = 0; i < N; i++)
+            {
+                adjMatrix[i] = new double[N];
+                adjMatrix[i] = Enumerable.Repeat(double.MaxValue, N).ToArray();
+            }
+
+            adjMatrix[0][1] = 3.0;
+            adjMatrix[0][2] = 2.0;
+            adjMatrix[0][5] = 3.0;
+
+            adjMatrix[1][3] = 1.0;
+            adjMatrix[1][2] = 6.0;
+
+            adjMatrix[2][3] = 1.0;
+            adjMatrix[2][4] = 10.0;
+
+            adjMatrix[3][4] = 5.0;
+
+            adjMatrix[5][4] = 7.0;
+
+            adjMatrix[1][3] = 1.0;
+
+
+            int[] ordering = new TopologicalSortAdjacencyMatrix().TopologicalSort(adjMatrix);
+
+            // Prints: [6, 0, 5, 1, 2, 3, 4]
+            Console.WriteLine(string.Join(",", ordering));
+
+            // Find the shortest path from 0 to all other nodes
+            double[] dists = new TopologicalSortAdjacencyMatrix().DagShortestPath(adjMatrix, 0);
+
+            // Find the distance from 0 to 4 which is 8.0
+            Console.WriteLine(dists[4]);
+
+            // Finds the shortest path from 0 to 6
+            // prints Infinity (6 is not reachable!)
+            Console.WriteLine(dists[6]);
+
+        }
+
+
+
         // Performs the topological sort and returns the
         // indexes of the nodes in topological order
         public int[] TopologicalSort(double[][] adj)
