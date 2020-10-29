@@ -84,6 +84,7 @@
     <Compile Include="Medium\743.cs" />
     <Compile Include="Medium\752.cs" />
     <Compile Include="Medium\785.cs" />
+    <Compile Include="Medium\787.cs" />
     <Compile Include="Medium\802.cs" />
     <Compile Include="Medium\841.cs" />
     <Compile Include="Medium\886.cs" />

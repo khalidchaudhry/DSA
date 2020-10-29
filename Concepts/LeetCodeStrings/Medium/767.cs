@@ -17,7 +17,10 @@ namespace LeetCodeStrings.Medium
 
             Console.ReadLine();
         }
-        //Kai class
+        /// <summary>
+        //! Kuai's class
+        //! Doing the round robbin . Same as problem 1054
+        /// </summary>
         public string ReorganizeString0(string S)
         {
             Dictionary<char, int> frequencyCount = CreateFrequencyCountMap(S);

@@ -37,6 +37,37 @@ namespace LeetCodeArrays.Medium
             }
         }
 
+        /// <summary>
+        //! Two pass solution
+        //! https://www.youtube.com/watch?v=ER4ivZosqCg
+        /// </summary>
+        public void SortColors2(int[] nums)
+        {
+            if (nums.Length == 0)
+                return;
+            int n = nums.Length;
+            int pivot = 1;
+            //!Move all the values less then the pivot to the left side 
+            for (int anchor = 0, explorer = 0; explorer < n; ++explorer)
+            {
+                if (nums[explorer] < pivot)
+                {
+                    Swap(nums, anchor, explorer);
+                    ++anchor;
+                }
+            }
+            //!Move all the values greater then the pivot to the right side 
+            for (int anchor = n - 1, explorer = n - 1; explorer >= 0; --explorer)
+            {
+                if (nums[explorer] > pivot)
+                {
+                    Swap(nums, anchor, explorer);
+                    --anchor;
+                }
+            }
+        }
+
+
         private void Swap(int[] nums, int first, int second)
         {
             int temp = nums[first];

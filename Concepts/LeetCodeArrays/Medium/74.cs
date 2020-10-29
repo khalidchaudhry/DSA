@@ -23,6 +23,7 @@ namespace LeetCodeArrays.Medium
         }
         /// <summary>
         //! Key intuition here is to visualize it as 1D arrray
+        //! Excellent explanation https://www.youtube.com/watch?v=FOa55B9Ikfg
         /// </summary>
         /// <param name="matrix"></param>
         /// <param name="target"></param>
@@ -44,7 +45,7 @@ namespace LeetCodeArrays.Medium
             while (lo <= hi)
             {
                 int mid = lo + ((hi - lo) / 2);
-
+                //! translating 1D index into 2D array index 
                 int midElement = matrix[mid / columns][mid % columns];
 
                 if (midElement == target)

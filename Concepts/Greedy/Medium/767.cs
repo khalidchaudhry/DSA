@@ -25,7 +25,8 @@ namespace Greedy.Medium
             frequencyCount = frequencyCount.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
             int maxCount = frequencyCount.ElementAt(0).Value;
-
+            //! if maxCount > (stringLength+1)/2 then its not possible to rearrange so that they are not conecutive
+            //! e.g aab shouldbe good but if we use maxCount>s.Length/2 then it will give wrong result 
             if (maxCount > (S.Length + 1) / 2)
                 return string.Empty;
 

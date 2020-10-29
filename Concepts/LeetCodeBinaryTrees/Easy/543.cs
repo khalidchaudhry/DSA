@@ -17,7 +17,10 @@ namespace LeetCodeBinaryTrees.Easy
 
             return wrapper.Result;
         }
-
+        /// <summary>
+        //! Same pattern as used in problem 687
+        /// </summary>      
+        /// <returns></returns>
         private int DiameterOfBinaryTree2(TreeNode root, ResultWrapper wrapper)
         {
             if (root == null)
@@ -37,7 +40,7 @@ namespace LeetCodeBinaryTrees.Easy
             {
                 rightMax = 1 + right;
             }
-
+            //!Reason using Result is that it may or may not pass through the root.
             wrapper.Result = Math.Max(wrapper.Result, leftMax + rightMax);
 
             return Math.Max(leftMax, rightMax);

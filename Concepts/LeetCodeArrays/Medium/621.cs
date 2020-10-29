@@ -13,9 +13,38 @@ namespace LeetCodeArrays.Medium
             char[] tasks = new char[] { 'A', 'A', 'A', 'B', 'B', 'B' };
             int n = 2;
             _621 TotalSlots = new _621();
-            var ans=TotalSlots.LeastInterval1(tasks,n);
+            var ans = TotalSlots.LeastInterval1(tasks, n);
             Console.ReadLine();
         }
+
+
+        /// <summary>
+        //! Based on idea in Kuai class . 
+        //! similar to problem 1054,767
+        /// </summary>
+        /// <param name="tasks"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int LeastInterval1(char[] tasks, int n)
+        {
+            Dictionary<int, int> frequencyCount = new Dictionary<int, int>();
+            GetFrequencyCount(tasks, frequencyCount);
+
+            frequencyCount.OrderByDescending(x => x.Value);
+
+            //! -1 because we don't need to wait after last task
+            int idleSlots = (frequencyCount.ElementAt(0).Value - 1) * n;
+            //! why 1 and not 0 becuase index 0 contains most frequent task. We caculated our idle slots based on it . 
+            //!Index 1 and onwards contain task that we want to fill idle slotes
+            for (int i = 1; i < frequencyCount.Count; ++i)
+            {
+                idleSlots -= frequencyCount.ElementAt(i).Value;
+            }
+
+            return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;
+
+        }
+
         /// <summary>
         /// https://www.youtube.com/watch?v=eGf-26OTI-A
         /// https://www.youtube.com/watch?v=I9Tq7R2Z2ys
@@ -67,25 +96,7 @@ namespace LeetCodeArrays.Medium
             return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;
         }
 
-        public int LeastInterval1(char[] tasks, int n)
-        {
-            Dictionary<int, int> frequencyCount = new Dictionary<int, int>();
-            GetFrequencyCount(tasks, frequencyCount);
 
-            frequencyCount.OrderByDescending(x => x.Value);
-
-            //! -1 because we don't need to wait after last task
-            int idleSlots = frequencyCount.ElementAt(0).Value - 1 * n;
-            //! why 1 and 0 becuase index 0 contains most frequent task. We caculated our idle slots based on it . 
-            //!Index 1 and onwards contain task that we want to fill idle slotes
-            for (int i = 1; i < frequencyCount.Count; ++i)
-            {
-                idleSlots -= frequencyCount.ElementAt(i).Value;
-            }
-
-            return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;
-
-        }
 
         private void GetFrequencyCount(char[] tasks, Dictionary<int, int> frequencyCount)
         {

@@ -54,6 +54,7 @@ namespace TopInterviewQuestions.Easy
                 }
             }
             //!as the decimal digits are truncated and only the integer part of the result is returned.
+            //! hence we are are returning r
             return r;
         }
 
