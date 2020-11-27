@@ -8,11 +8,38 @@ namespace LeetCodeBinarySearch.Easy
 {
     public class _278
     {
-        public int FirstBadVersion(int n)
+        public class Solution : VersionControl
         {
-            return 0;
+
+            //FF'T'TTTT
+            public int FirstBadVersion(int n)
+            {
+                int lo = 0;
+                int hi = n;
+                while (lo + 1 < hi)
+                {
+                    int mid = lo + ((hi - lo) / 2);
+
+                    if (IsBadVersion(mid))
+                    {
+                        hi = mid;
+                    }
+                    else
+                    {
+                        lo = mid;
+                    }
+                }
+
+                return hi;
+            }
         }
+    }
 
-
+    public class VersionControl
+    {
+        public bool IsBadVersion(int version)
+        {
+            return true;
+        }
     }
 }

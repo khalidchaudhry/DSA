@@ -9,58 +9,97 @@ namespace LeetCodeHashTable.Medium
     {
         public int[] TopKFrequent(int[] nums, int k)
         {
-            int[] result = new int[k];
+            if (nums.Length == 0 || k == 0)
+                return new int[] { };
 
             Dictionary<int, int> map = new Dictionary<int, int>();
+            int totalBuckets = BuildFrequency(nums, map);
 
-            for (int i = 0; i < nums.Length; i++)
+            List<int>[] buckets = new List<int>[totalBuckets + 1];
+            PopulateBuckets(map, buckets);
+
+            return TopK(buckets, k);
+        }
+
+
+        //! Using sorted set 
+        //! Time comlexity=O(kn) where k are the top k items 
+        //! Space complexity=O(n+k)
+        public int[] TopKFrequent2(int[] nums, int k)
+        {
+
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; ++i)
             {
-                if (map.ContainsKey(nums[i]))
+                if (!map.ContainsKey(nums[i]))
                 {
-                    ++map[nums[i]];
+                    map.Add(nums[i], 0);
                 }
-                else
+                ++map[nums[i]];
+            }
+
+            SortedSet<(int freq, int val)> ss = new SortedSet<(int freq, int val)>();
+
+            foreach (var keyValue in map)
+            {
+                ss.Add((keyValue.Value, keyValue.Key));//! worst case O(n)
+                if (ss.Count > k)
                 {
-                    map.Add(nums[i], 1);
+                    ss.Remove(ss.Min); //! worst case O(n)
                 }
             }
 
-            //! size is nums.Length + 1 since we want to store the count at that index 
-            //! e.g. given array [1,1] then we will store its value at index 2 
-            List<int>[] bucket = new List<int>[nums.Length + 1];
-
-            for (int i = 0; i < bucket.Length; i++)
+            int[] result = new int[k];
+            foreach ((int freq, int val) in ss)
             {
-                bucket[i] = new List<int>();
-            }
-
-            foreach (KeyValuePair<int, int> keyValue in map)
-            {
-                bucket[keyValue.Value].Add(keyValue.Key);
-            }
-
-            int topK = 0;
-
-            for (int i = bucket.Length - 1; i >= 0 && topK < k; i--)
-            {
-                if (bucket[i].Count > 0)
-                {
-                    foreach (int value in bucket[i])
-                    {
-                        result[topK++] = value;
-                        //! safeguarding against corner case
-                        if (topK >= k)
-                        {
-                            break;
-                        }
-                    }
-                }
-
+                result[--k] = val;
             }
 
             return result;
         }
 
+        private int BuildFrequency(int[] nums, Dictionary<int, int> map)
+        {
+
+            int max = 0;
+            foreach (int num in nums)
+            {
+                if (map.ContainsKey(num))
+                    ++map[num];
+                else
+                    map.Add(num, 1);
+
+                max = Math.Max(map[num], max);
+            }
+            return max;
+        }
+        private void PopulateBuckets(Dictionary<int, int> map, List<int>[] buckets)
+        {
+            for (int i = 0; i < buckets.Length; ++i)
+            {
+                buckets[i] = new List<int>();
+            }
+
+            foreach (var keyValue in map)
+            {
+                buckets[keyValue.Value].Add(keyValue.Key);
+            }
+        }
+        private int[] TopK(List<int>[] buckets, int k)
+        {
+            List<int> topK = new List<int>();
+            for (int i = buckets.Length - 1; i >= 0; --i)
+            {
+                for (int j = 0; j < buckets[i].Count; ++j)
+                {
+                    topK.Add(buckets[i][j]);
+                    if (topK.Count == k)
+                        return topK.ToArray();
+                }
+            }
+
+            return topK.ToArray();
+        }
 
     }
 }

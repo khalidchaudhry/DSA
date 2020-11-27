@@ -56,7 +56,7 @@ namespace LeetCodeGraphs.Medium
                     queue.Enqueue(i);
                 }
             }
-
+            //! Key is the course and HashSet is the list of prerequisite for the course 
             Dictionary<int, HashSet<int>> map = new Dictionary<int, HashSet<int>>();
             for (int i = 0; i < n; ++i)
             {
@@ -68,11 +68,12 @@ namespace LeetCodeGraphs.Medium
                 int curr = queue.Dequeue();
                 foreach (int neighbor in graph[curr])
                 {
-
                     //! C# does not have AddAll for hashset
                     map[neighbor].Add(curr); //! Adding current node as prerequisite for its neighbor
                     //!adding all current node  prerequisites to its neighbor as well as current node
-                    map[neighbor].UnionWith(map[curr]); 
+                    //! Adding union will result in generating new hashset not modifying the original
+                    map[neighbor].UnionWith(map[curr]);
+
                     --inDegree[neighbor];
                     if (inDegree[neighbor] == 0)
                     {

@@ -18,8 +18,12 @@ namespace LeetCodeGraphs.Medium
 
         /// <summary>
         //! Using  Dijkstra alrgorithm
+        //! Find the minimum time to reach the farthest node. 
         //https://www.youtube.com/watch?v=YHx6r9pM5e0
-        ///
+        //! This question qives you the shortest distance to all the nodes in the graph 
+        //! For space & Time complexity analysis https://leetcode.com/problems/network-delay-time/solution/
+        //! Time complexity=O(N^2 +E) where N is the number of times given  and E is the length of the time
+        //! Space Complexity=O(N+E)
         /// </summary>
 
         public int NetworkDelayTime0(int[][] times, int N, int K)

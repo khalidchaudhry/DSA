@@ -53,6 +53,7 @@ namespace LeetCodeGraphs.Hard
 
         private Dictionary<char, List<char>> BuildGraph(int[] inDegree, string[] words)
         {
+            //! here in this problem , graph is build in different way. For every word , we will make entry in the graph
             Dictionary<char, List<char>> graph = new Dictionary<char, List<char>>();
             foreach (string word in words)
             {

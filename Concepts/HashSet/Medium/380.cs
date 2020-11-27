@@ -4,6 +4,14 @@ using System.Text;
 
 namespace LeetCodeHashTable.Medium
 {
+
+    /// <summary>
+    //! Gotcha for this quesiton is its not allowing duplicate. 
+    //! That reduces the problem scope because if they allow duplicate, then they also need to tell which occurance they need to delete
+    //! Good converstion to have with interviewer.
+    //! 1. In case of duplicates, what we need to do
+    //! 2. In case item does not exist and user wants us to delete it than what we need return?    
+    /// </summary>
     public class RandomizedSet
     {
 
@@ -49,25 +57,20 @@ namespace LeetCodeHashTable.Medium
 
                 //! Get the element index to remove
                 int index = map[val];
-                // !Get the last element index in list . We will set it to value that we are planning to remove
                 //! Why because we want to have Remove operation in O(1) time and list don't provide remove operation in O(1) time
                 // !List.RemoveAt is O(n) operation because the remaining items in the list are renumbered to replace the removed item.
                 //https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.removeat?view=netcore-3.1
                 //!By removing the last element there will not be any renumering for the remaining elements
-
-                int lastElementIndex = lst.Count - 1;
-              
-                lst[index] = lst[lastElementIndex];
-                //! As we have swapped the element we are removing with last element of list 
+                lst[index] = lst[lst.Count - 1];
                 //! After the swap we need to update the swapped elmenet index in dictionary
                 // !lst[index]=Last element in the list 
                 //! index=Index of the element we are removing. 
                 map[lst[index]] = index;
-                lst.RemoveAt(lastElementIndex);
 
+                lst.RemoveAt(lst.Count - 1);
                 //!Remove it from dictionary
                 map.Remove(val);
-       
+
                 return true;
             }
         }

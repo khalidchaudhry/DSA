@@ -13,13 +13,8 @@ namespace LeetCodeDynamicProgramming
     {
         static void Main(string[] args)
         {
-            //_139 WordBreak = new _139();
-            //List<string> wordDict = new List<string>()
-            //{
-            //   "leet", "code"
-            //};
-            //var answer=WordBreak.WordBreak0("leetcode", wordDict);           
 
+            _139._139Main();
             //_322._322Main();
 
 

@@ -25,8 +25,7 @@ namespace Arrays
 
             int pivot = (int)((totalSum - arrSum) / 2);
 
-            int arrLeftXor = 0;
-            int arrRightXor = 0;
+           
             int totalLeftXor = 0;
             int totalRightXor = 0;
 
@@ -41,6 +40,9 @@ namespace Arrays
                     totalRightXor ^= i;
                 }
             }
+
+            int arrLeftXor = 0;
+            int arrRightXor = 0;
 
             foreach (int item in arr)
             {

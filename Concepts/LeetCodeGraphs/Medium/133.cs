@@ -36,20 +36,20 @@ namespace LeetCodeGraphs.Medium
             while (queue.Count != 0)
             {
                 // Pop a node say "n" from the front of the queue.
-                Node n = queue.Dequeue();
-                IList<Node> neighbours = n.neighbors;
+                Node dequeue = queue.Dequeue();
+                IList<Node> neighbours = dequeue.neighbors;
                 // Iterate through all the neighbors of the node "n"
                 foreach (var neighbour in neighbours)
                 {
                     if (!visited.ContainsKey(neighbour))
-                    {  
+                    {
                         // Add the clone of the neighbor to the neighbors of the clone node "n".
                         visited.Add(neighbour, new Node(neighbour.val));
                         // Add the newly encountered node to the queue.
                         queue.Enqueue(neighbour);
                     }
-                    // Add the clone of the neighbor to the neighbors of the clone node "n".
-                    visited[n].neighbors.Add(visited[neighbour]);
+                    // !Add the clone of the neighbor to the neighbors of the clone node "n".
+                    visited[dequeue].neighbors.Add(visited[neighbour]);
                 }
             }
             // Return the clone of the node from visited.

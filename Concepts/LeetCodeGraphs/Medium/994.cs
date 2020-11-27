@@ -106,7 +106,7 @@ namespace LeetCodeGraphs.Medium
             {
                 for (int j = 0; j < grid[0].Length; ++j)
                 {
-                    //!Queue fresh oragnes as visited and mark oranges oranges as visted 
+                    //!Queue fresh oragnes as visited
                     if (grid[i][j] == 2)
                     {
                         visited[i][j] = true;

@@ -22,9 +22,9 @@ namespace LeetCodeGraphs.Medium
             return DFS(maze, start, destination);
         }
 
-        private bool DFS(int[][] maze, int[] start, int[] destination)
+        private bool DFS(int[][] maze, int[] position, int[] destination)
         {
-            int r = start[0], c = start[1];
+            int r = position[0], c = position[1];
 
             if (maze[r][c] == -1) return false;
 

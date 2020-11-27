@@ -9,7 +9,7 @@ namespace LeetCodeDivideAndConquer.Medium
     public class _215
     {
         /// <summary>
-        //! Quick select algorithm
+        //! Quick select algorithm. Same as in question 973
         /// </summary>
         /// <param name="nums"></param>
         /// <param name="k"></param>
@@ -21,10 +21,11 @@ namespace LeetCodeDivideAndConquer.Medium
             int left = 0;
 
             int right = nums.Length - 1;
-            int pti = 0;
+            
             while (left < right)
             {
-                pti = PivotIndex(nums, left, right);
+                //! Pivot tail Index
+                int pti = PivotIndex(nums, left, right);
 
                 if (pti == requiredIndex)
                 {
@@ -67,7 +68,6 @@ namespace LeetCodeDivideAndConquer.Medium
             }
 
             //!Swap 
-
             Swap(nums, pti, right);
 
             return pti;
@@ -136,10 +136,11 @@ namespace LeetCodeDivideAndConquer.Medium
 
             // Sort the arr from last to first. 
             // compare every element to each other 
-            Array.Sort<int>(nums, new Comparison<int>(
-                      (i1, i2) => i2.CompareTo(i1)));
 
-            return nums[k - 1];
+            int n = nums.Length;
+            Array.Sort(nums);
+            //! returning an index from the last
+            return nums[n-k];
 
         }
 

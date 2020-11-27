@@ -15,72 +15,8 @@ namespace LeetCodeGraphs.Medium
         {
             //!Painting one of the island to 2 
             Paint(A);
-            int rows = A.Length;
-            int columns = A[0].Length;
-
-            bool[][] visited = new bool[rows][];
-            for (int i = 0; i < rows; ++i)
-            {
-                visited[i] = new bool[columns];
-            }
-
-            Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
-
-            for (int i = 0; i < rows; ++i)
-            {
-                for (int j = 0; j < columns; ++j)
-                {
-                    //! we are queueing cells with value=2
-                    if (A[i][j] == 2)
-                    {
-                        queue.Enqueue((i, j));
-                        visited[i][j] = true;
-                    }
-                }
-            }
-            List<(int x, int y)> directions = new List<(int x, int y)>
-                                              {
-                                                (-1,0),//up
-                                                (1,0),//down
-                                                (0,-1),//left
-                                                (0,1)//right
-                                              };
-
-            int level = 0;
-            while (queue.Count != 0)
-            {
-                int count = queue.Count;
-                for (int i = 0; i < count; ++i)
-                {
-                    (int x, int y) = queue.Dequeue();
-
-                    if (A[x][y] == 1)
-                    {
-                        // smallest flips will not include the level we start from
-                        return level - 1;
-                                              
-                    }
-
-                    foreach ((int dx, int dy) in directions)
-                    {
-                        int nx = x + dx;
-                        int ny = y + dy;
-
-                        if (nx >= 0 && nx < rows && ny >= 0 && ny < columns && !visited[nx][ny])
-                        {
-                            visited[nx][ny] = true;
-                            queue.Enqueue((nx, ny));
-                        }
-                    }
-                }
-
-                ++level;
-            }
-
-            return level;
+            return ComputeMinimumFlips(A);
         }
-
-
         private void Paint(int[][] A)
         {
             int rows = A.Length;
@@ -93,12 +29,11 @@ namespace LeetCodeGraphs.Medium
                     if (A[i][j] == 1)
                     {
                         DFS(A, i, j);
-                        return;
+                        return; //! return it not break
                     }
                 }
             }
         }
-
         private void DFS(int[][] A, int i, int j)
         {
             if (i < 0 || i >= A.Length || j < 0 || j >= A[0].Length)
@@ -111,6 +46,86 @@ namespace LeetCodeGraphs.Medium
             DFS(A, i + 1, j);
             DFS(A, i, j - 1);
             DFS(A, i, j + 1);
+        }
+
+        private int ComputeMinimumFlips(int[][] A)
+        {
+            Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
+
+            bool[][] visited = new bool[A.Length][];
+            InitializeVisited(visited, A[0].Length);
+
+            InitilaizeQueue(queue, A, visited);
+            //! Level order traversal
+            int level = 0;
+            while (queue.Count != 0)
+            {
+                int count = queue.Count;
+                while (count != 0)
+                {
+                    (int x, int y) = queue.Dequeue();
+
+                    if (A[x][y] == 1)
+                    {
+                        // smallest flips will not include the level we start from
+                        return level - 1;
+                    }
+                    foreach ((int dx, int dy) in GetDirections())
+                    {
+                        int nx = x + dx;
+                        int ny = y + dy;
+
+                        if (nx < 0 && nx >= A.Length && ny < 0 && ny >= A[0].Length && visited[nx][ny])
+                        {
+                            continue;
+                        }
+                        visited[nx][ny] = true;
+                        queue.Enqueue((nx, ny));
+
+                    }
+                    --count;
+                }
+
+                ++level;
+            }
+
+            return level;
+        }
+
+        private void InitilaizeQueue(Queue<(int, int)> queue, int[][] A, bool[][] visited)
+        {
+            for (int i = 0; i < A.Length; ++i)
+            {
+                for (int j = 0; j < A[0].Length; ++j)
+                {
+                    //! we are queueing cells with value=2
+                    if (A[i][j] == 2)
+                    {
+                        queue.Enqueue((i, j));
+                        visited[i][j] = true;
+                    }
+                }
+            }
+        }
+
+        private void InitializeVisited(bool[][] visited, int columns)
+        {
+            for (int i = 0; i < visited.Length; ++i)
+            {
+                visited[i] = new bool[columns];
+            }
+        }
+
+        private List<(int x, int y)> GetDirections()
+        {
+            List<(int x, int y)> directions = new List<(int x, int y)>();
+            directions.Add((-1, 0));
+            directions.Add((1, 0));
+            directions.Add((0, 1));
+            directions.Add((0, -1));
+
+            return directions;
+
         }
     }
 }

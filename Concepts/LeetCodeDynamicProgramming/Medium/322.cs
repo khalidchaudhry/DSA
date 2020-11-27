@@ -44,37 +44,67 @@ namespace LeetCodeDynamicProgramming.Medium
             return dp[amount] > amount ? -1 : dp[amount];
 
         }
-        //! Brute Force ---Sam Recursion (selection pattern)
+
         public int CoinChange1(int[] coins, int amount)
         {
-            ResultWrapper resultWrapper = new ResultWrapper();
-            resultWrapper.Result = int.MaxValue;
-            MakingChange1(coins, 0, amount, new List<int>(), resultWrapper);
-            return resultWrapper.Result;
+            Dictionary<int, int> memo = new Dictionary<int, int>();
+            int result=MakingChange1(coins, amount, memo);
+            result=result == int.MaxValue ? -1 : result;
+            return result;
+        }
 
+        private int MakingChange1(int[] coins, int amount, Dictionary<int, int> memo)
+        {
+            if (amount == 0) return 0;
+
+            if (memo.ContainsKey(amount)) return memo[amount];
+
+            int min = int.MaxValue;
+            for (int i = 0; i < coins.Length; ++i)
+            {
+                if (coins[i] > amount) continue;
+                int minCoins = MakingChange1(coins, amount - coins[i], memo);
+                min = Math.Min(minCoins, min);
+            }
+            //memoize the minimum for current total/current amount.
+            memo[amount] = min == int.MaxValue ? min : min + 1;
+            return memo[amount];
         }
 
 
-        private void MakingChange1(int[] coins, int i, int amt, List<int> path, ResultWrapper resultWrapper)
+
+        /// <summary>
+        //! https://www.youtube.com/watch?v=Kf_M7RdHr1M 
+        /// </summary>
+        public int CoinChange2(int[] coins, int amount)
         {
-            if (amt < 0) return;
+            int result = MakingChange2(coins, amount);
+            return result == int.MaxValue ? -1 : result;
+        }
+        private int MakingChange2(int[] coins, int amt)
+        {
+            //! if amount is zero than we need 0 coins or no coins 
             if (amt == 0)
             {
-                resultWrapper.Result = Math.Min(resultWrapper.Result, path.Count);
-                return;
+                return 0;
             }
-            if (i == coins.Length) return;
 
-            path.Add(coins[i]);
-            MakingChange1(coins, i, amt - coins[i], path, resultWrapper);
-            path.RemoveAt(path.Count - 1);
-            MakingChange1(coins, i + 1, amt, path, resultWrapper);
-        }        
+            //! we need to find out which coins gives us best result so we are initializing min  with max
+            int min = int.MaxValue;
+
+            for (int i = 0; i < coins.Length; ++i)
+            {
+                //If coin is greater then amount, there is no point in continuing
+                if (coins[i] > amt) continue;
+                //recurse with total - coins[i] as new total
+                int coinsNeeded = MakingChange2(coins, amt - coins[i]);
+                //if val we get from picking coins[i] as first coin for current total is less
+                // than value found so far make it minimum.
+                min = Math.Min(min, coinsNeeded);
+            }
+            //if min is MAX_VAL dont change it. Just result it as is. 
+            //!Otherwise add 1 to it to include the current coin in it
+            return min == int.MaxValue ? min : min + 1;
+        }
     }
-    public class ResultWrapper
-    {
-        public int Result { get; set; }
-    }
-
-
 }

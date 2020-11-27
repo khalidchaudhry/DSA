@@ -10,6 +10,8 @@ namespace LeetCodeGraphs.Medium
     {
         /// <summary>
         /// https://medium.com/leetcode-patterns/leetcode-pattern-1-bfs-dfs-25-of-the-problems-part-1-519450a84353
+        /// Time complexity=O(m*n) where m are number of rows and c are number of columns
+        /// Space=O(1)
         /// </summary>
         /// <param name="grid"></param>
         /// <returns></returns>

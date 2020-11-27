@@ -17,9 +17,11 @@ namespace LeetCodeGraphs.Medium
             List<IList<int>> seqs = new List<IList<int>>();            seqs.Add(new List<int> { 5, 2, 6, 3 });            seqs.Add(new List<int> { 4, 1, 5, 2 });
 
 
-            Test.SequenceReconstruction(orgs, seqs);
+            var result = Test.SequenceReconstruction(orgs, seqs);
 
+            Console.ReadLine();
         }
+
         /// <summary>
         /// https://www.youtube.com/watch?v=Bqhf7zPMdaU
         /// </summary>
@@ -28,6 +30,8 @@ namespace LeetCodeGraphs.Medium
         /// <returns></returns>
         public bool SequenceReconstruction(int[] org, IList<IList<int>> seqs)
         {
+
+            //! there may be duplicate edges between nodes hence we using hashset rather than List<int>
             Dictionary<int, HashSet<int>> graph = new Dictionary<int, HashSet<int>>();
             Dictionary<int, int> inDegree = new Dictionary<int, int>();
 
@@ -41,11 +45,14 @@ namespace LeetCodeGraphs.Medium
                         inDegree[digit] = 0;
                 }
             }
+            
+            //[1]
+            //[[1],[2,3],[3,2]]
+            
+            if (org.Length != graph.Count) return false;
 
             foreach (List<int> seq in seqs)
             {
-                if (seq.Count == 0) continue;
-
                 for (int i = 0; i < seq.Count - 1; ++i)
                 {
                     int from = seq[i];
@@ -60,8 +67,6 @@ namespace LeetCodeGraphs.Medium
                 }
             }
 
-            if (org.Length != inDegree.Count) return false;
-
             Queue<int> queue = new Queue<int>();
             foreach (var keyValue in inDegree)
             {
@@ -71,6 +76,9 @@ namespace LeetCodeGraphs.Medium
             List<int> ans = new List<int>();
             while (queue.Count != 0)
             {
+                //! If initially queue count > zero i.e. two nodes have indegree of 0 we immediately returns   
+                //! If at any point queue count is greater then zero than it means we have 
+                //! multiple sequence exists and we can't create unique one
                 if (queue.Count > 1)
                 {
                     return false;

@@ -65,82 +65,68 @@ namespace LeetCodeArrays.BinarySearch
         /// <returns></returns>
         public int Search2(int[] nums, int target)
         {
+            int n = nums.Length - 1;
+
             if (nums.Length == 0)
                 return -1;
-            if (nums.Length == 1)
-                return nums[0] == target ? 0 : -1;
+
+            if (nums[0] <= nums[n]) //!array is already sorted
+                return BinarySearch(nums, 0, n, target);
 
             int pivotIndex = FindPivotIndex(nums);
-            //! We find the pivot element . 
-            //! On left hand side of pivot, array is increasing 
-            //! On right hand side of pivot, array is increasing 
             if (nums[pivotIndex] == target)
                 return pivotIndex;
-
-            //! target is on the left side of the pivot index
             else if (target >= nums[0] && target < nums[pivotIndex])
-            {
-                return BinarySearch(nums, 0, pivotIndex, target);
-            }
+                return BinarySearch(nums, 0, pivotIndex - 1, target);
             else
-            {
-                return BinarySearch(nums, pivotIndex, nums.Length - 1, target);
-            }
+                return BinarySearch(nums, pivotIndex + 1, n, target);
         }
         private int FindPivotIndex(int[] nums)
         {
             int low = 0;
-            int pivotIndex = 0;
+            int pivotIndex = -1;
             int high = nums.Length - 1;
-            //array is sorted already 
-            if (nums[low] < nums[high])
-                return 0;
 
-            while (low < high)
+            while (low <= high)
             {
-                pivotIndex = low + ((high - low) / 2);
+                int mid = low + ((high - low) / 2);
                 //! pivot element is one having left element  and right element  less than it.
+                //! pivot element is the largest element in an array
                 //! Comparing only on the right side is enough
                 if (nums[pivotIndex] > nums[pivotIndex + 1])
                 {
-                    return pivotIndex;
+                    return mid;
                 }
                 // !Pivot element always present in the non uniformly increasing part
                 //! if first element is less than pivot index element than it means its strictly increasing 
                 //! we need to search on  right side as its non uniformly increasing part
-                else if (nums[low] < nums[pivotIndex])
+                else if (nums[low] <= nums[mid])
                 {
-
-                    low = pivotIndex + 1;
+                    low = mid + 1;
                 }
                 else
                 {
-                    //! why pivotIndex and why not pivotIndex-1? 
+                    //! why mid and why not mid-1? 
                     //!because element at pivot index can also be the part of the non uniformly increasing 
-                    high = pivotIndex;
+                    high = mid;
                 }
             }
             return pivotIndex;
 
         }
 
-        private int BinarySearch(int[] nums, int low, int high, int target)
+        private int BinarySearch(int[] nums, int lo, int hi, int target)
         {
-            while (low < high)
+            while (lo <= hi)
             {
-                int mid = low + ((high - low) / 2);
+                int mid = lo + ((hi - lo) / 2);
+
                 if (nums[mid] == target)
-                {
                     return mid;
-                }
-                else if (nums[mid] < target)
-                {
-                    low = mid + 1;
-                }
+                else if (nums[mid] > target)
+                    hi = mid - 1;
                 else
-                {
-                    high = mid - 1;
-                }
+                    lo = mid + 1;
             }
 
             return -1;

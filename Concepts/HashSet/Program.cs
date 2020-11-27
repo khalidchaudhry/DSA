@@ -117,17 +117,20 @@ namespace HashSet
             //var ans=SortCharactersByFrequency.FrequencySort(s);
 
 
-            RandomizedSet obj = new RandomizedSet();
+            //RandomizedSet obj = new RandomizedSet();
             //bool param_1 = obj.Insert(0);
             //bool param_2 = obj.Insert(1);
-            bool param_3 = obj.Remove(0);
-            bool param_4 = obj.Remove(0);
-            bool param_5 = obj.Insert(0);
-            int param_6 = obj.GetRandom();
-            bool param_7 = obj.Remove(0);
-            bool param_8 = obj.Insert(0);
+            //bool param_3 = obj.Remove(0);
+            //bool param_4 = obj.Remove(0);
+            //bool param_5 = obj.Insert(0);
+            //int param_6 = obj.GetRandom();
+            //bool param_7 = obj.Remove(0);
+            //bool param_8 = obj.Insert(0);
 
+            //_974._974Main();
+            _166._166Main();
 
+            //_706._706Main();
 
             Console.ReadLine();
         }

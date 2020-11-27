@@ -12,19 +12,21 @@ namespace LeetCodeArrays.Medium
             int[] nums = new int[] { 1, 1, 1 };
 
             _560 subArraySum = new _560();
-            subArraySum.SubarraySum(nums, 2);
-
         }
 
 
         //https://www.youtube.com/watch?v=AmlVSNBHzJg
         //https://www.youtube.com/watch?v=HbbYPQc-Oo4
+        //! Same  pattern as in 930,1248,560
         public int SubarraySum0(int[] nums, int k)
         {
             int n = nums.Length;
             if (n == 0) return 0;
             int result = 0;
             int leftSum = 0;
+            //! /! Key is the sum and 
+            //! value is the number of subarrays that have that that sum
+            //! e.g. 3:1 means that there is one subarray having sum of 3 in it
             Dictionary<int, int> map = new Dictionary<int, int>();
             //! Reason we are adding  zero is because when we calculate subarray sum from i to j , 
             //! we take difference between i and j index and adding 0 really gives us convenience 
@@ -51,25 +53,5 @@ namespace LeetCodeArrays.Medium
 
             return result;
         }
-
-        public int SubarraySum(int[] nums, int k)
-        {
-            int n = nums.Length;
-            if (n == 0) return 0;
-            int result = 0;
-            for (int i = 0; i < nums.Length; ++i)
-            {
-                int sum = 0;
-                for (int j = i; j < nums.Length; ++j)
-                {
-                    sum += nums[i];
-                    if (sum == k) ++result;
-                }
-            }
-
-            return result;
-        }
-
-
     }
 }

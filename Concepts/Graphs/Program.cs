@@ -177,34 +177,9 @@ namespace Graphs
             //        Console.WriteLine($"{s} to {v}:  not connected");
             //    }
             //}
-
-            /*
-            int s = 0;
+                                
             
-            BreadthFirstPaths bfs = new BreadthFirstPaths(graph, s);
-
-            for (int v = 0; v < graph.count; v++)
-            {
-                if (bfs.hasPathTo(v))
-                {
-                    Console.Write($"{s} to {v}({bfs.DistTo(v)}) :");
-                    foreach (int x in bfs.PathTo(v))
-                    {
-                        if (x == s)
-                            Console.Write(x);
-                        else
-                            Console.Write("-" + x);
-                    }
-                    Console.WriteLine();
-                }
-
-                else
-                {
-                    Console.Write($"{s} to {v}:  not connected");
-                }
-            }
-            
-           */
+           
             /****
               0---------------->1
               |              ↗  |
@@ -249,17 +224,17 @@ namespace Graphs
             //g.AddUnDirectedEdge(2, 0);
             //g.Print();
 
-            int n = 5;
-            int[][] edges = new int[][]
-                {
-                    new int[]{0,1},
-                    new int[]{1,2},
-                    new int[]{2,3},
-                     new int[]{3,4},
-                };
-            ConnectedComponents cc = new ConnectedComponents();
+            //int n = 5;
+            //int[][] edges = new int[][]
+            //    {
+            //        new int[]{0,1},
+            //        new int[]{1,2},
+            //        new int[]{2,3},
+            //         new int[]{3,4},
+            //    };
+            //ConnectedComponents cc = new ConnectedComponents();
 
-            var result=cc.CountComponentsIterative(5,edges);
+            //var result=cc.CountComponentsIterative(5,edges);
 
 
             Console.Read();

@@ -7,6 +7,47 @@ using System.Threading.Tasks;
 
 namespace Graphs.BFSPaths
 {
+    public class BFSRunningClass
+    {
+        public static  void RunningClassMain()
+        {
+            int s = 0;
+
+            Graph graph = new Graph(5);
+            graph.AddDirectedEdge(0, 1, 3);
+            graph.AddDirectedEdge(0, 4, 2);
+            graph.AddDirectedEdge(1, 2, 1);
+            graph.AddDirectedEdge(2, 3, 1);
+            graph.AddDirectedEdge(3, 2, 1);
+            graph.AddDirectedEdge(4, 1, -2);
+            graph.AddDirectedEdge(4, 3, -1);            
+
+            BreadthFirstPaths bfs = new BreadthFirstPaths(graph, s);
+
+            for (int v = 0; v < graph.count; v++)
+            {
+                if (bfs.hasPathTo(v))
+                {
+                    Console.Write($"{s} to {v}({bfs.DistTo(v)}) :");
+                    foreach (int x in bfs.PathTo(v))
+                    {
+                        if (x == s)
+                            Console.Write(x);
+                        else
+                            Console.Write("-" + x);
+                    }
+                    Console.WriteLine();
+                }
+
+                else
+                {
+                    Console.Write($"{s} to {v}:  not connected");
+                }
+            }
+        }
+
+    }
+
     public class BreadthFirstPaths
     {
         private static int INFINITY = int.MaxValue;

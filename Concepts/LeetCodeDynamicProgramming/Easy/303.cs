@@ -6,6 +6,36 @@ using System.Threading.Tasks;
 
 namespace LeetCodeDynamicProgramming.Easy
 {
+
+    public class NumArray2
+    {
+
+        int[] sum;
+        public NumArray2(int[] nums)
+        {
+
+            sum = new int[nums.Length];
+
+            if (nums.Length != 0)
+                sum[0] = nums[0];
+
+            for (int i = 1; i < sum.Length; ++i)
+            {
+                sum[i] += sum[i - 1] + nums[i];
+            }
+        }
+
+        public int SumRange(int i, int j)
+        {
+
+            if (sum.Length == 0) return 0;
+
+            if (i == 0) return sum[j];
+
+            return sum[j] - sum[i - 1];
+        }
+    }
+
     public class NumArray
     {
 
@@ -28,7 +58,7 @@ namespace LeetCodeDynamicProgramming.Easy
 
         }
     }
-
+    
     /**
      * Your NumArray object will be instantiated and called as such:
      * NumArray obj = new NumArray(nums);

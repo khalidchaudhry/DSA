@@ -8,34 +8,52 @@ namespace LeetCodeBinarySearch.Easy
 {
     public class _852
     {
-        public int PeakIndexInMountainArray(int[] A)
+
+        /// <summary>
+        //! compare with neighbours to determine either we go on left side or right.  
+        /// </summary>
+        public int PeakIndexInMountainArray(int[] arr)
         {
             int lo = 0;
-            int hi = A.Length - 1;
-
-            while (lo < hi)
+            int hi = arr.Length - 1;
+            while (lo <= hi)
             {
-                //! comparing element with its neighbours 
-                int mid = lo + ((hi - lo) / 2);
+                int mid = lo + (hi - lo) / 2;
 
-                if (A[mid] > A[mid + 1] && A[mid] < A[mid - 1])
+                if (arr[mid] > arr[mid + 1] && arr[mid] > arr[mid - 1])
                 {
                     return mid;
                 }
-                else if (A[mid] < A[mid - 1])
+
+                else if (arr[mid + 1] > arr[mid])
                 {
-                    //! because mid can contribute in determining the peak hence no mid-1
-                    hi = mid;
+                    lo = mid + 1;
                 }
                 else
                 {
-                    //! because mid can contribute in determining the peak hence no mid-1
-                    lo = mid;
+                    hi = mid - 1;
                 }
             }
-
             return -1;
 
+        }
+        /// <summary>
+        //! Brute force. You find maximum and then return its index 
+        /// </summary>
+        public int PeakIndexInMountainArray2(int[] arr)
+        {
+
+            int max = int.MinValue;
+            int maxIndex = -1;
+            for (int i = 0; i < arr.Length; ++i)
+            {
+                if (arr[i] > max)
+                {
+                    max = arr[i];
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
         }
 
 

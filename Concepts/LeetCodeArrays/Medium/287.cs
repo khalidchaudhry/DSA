@@ -16,6 +16,7 @@ namespace LeetCodeArrays.Medium
 
             int tortise = nums[0];
             int hare = nums[0];
+            //! pay attention about using do rather than while
             do
             {
                 //!tortoise will take just one jump
@@ -23,7 +24,7 @@ namespace LeetCodeArrays.Medium
                 //! hare with take two jumps
                 hare = nums[nums[hare]];
 
-
+                    
             } while (tortise != hare);
 
             hare = nums[0];

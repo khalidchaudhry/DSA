@@ -22,6 +22,10 @@ namespace LeetCodeGraphs.Medium
             Islands.NumDistinctIslands(grid);
 
         }
+        /// <summary>
+        //!Time complexity=O(r*c) r =Number of rows c=NumberOf Columns??
+        //! Space Complexity=O(r*c)
+        /// </summary>     
         public int NumDistinctIslands(int[][] grid)
         {
             HashSet<string> paths = new HashSet<string>();
@@ -57,6 +61,6 @@ namespace LeetCodeGraphs.Medium
             DFS(grid, i + 1, j, path.Append('D'));
             DFS(grid, i, j - 1, path.Append('L'));
             DFS(grid, i, j + 1, path.Append('R'));
-        }
+        }       
     }
 }

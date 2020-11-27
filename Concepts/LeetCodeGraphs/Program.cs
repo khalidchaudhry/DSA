@@ -129,7 +129,7 @@ namespace LeetCodeGraphs
             //_207 CourseSchedule = new _207();
             //CourseSchedule.CanFinish2(numCourses, prerequisites);
 
-            _743._743Main();
+            //_743._743Main();
 
             //_210 CourseSchedule = new _210();
 
@@ -294,7 +294,7 @@ namespace LeetCodeGraphs
             //_752._752Main(); 
 
             //_1462._1462Main();
-            //_444._444Main();
+            _444._444Main();
             //Console.ReadKey();
 
         }

@@ -17,14 +17,18 @@ namespace LeetCodeGraphs.Medium
         }
 
 
+        /// <summary>
+        //! Follow-up is more important for this question. Please take a look here 
+        //https://leetcode.com/problems/web-crawler-multithreaded/discuss/890950/C-Using-ConcurrentDictionary-vs-Dictionary-%2B-lock
+        /// </summary>
         public IList<string> Crawl(string startUrl, HtmlParser htmlParser)
         {
 
-            // Extract domain name from startUrl
-            string domainName = $"http://{new Uri(startUrl).Host}";
+            //! Extract host name name from startUrl
+            string hostName = $"http://{new Uri(startUrl).Host}";
             List<string> result = new List<string>();
             HashSet<string> seen = new HashSet<string>();
-            DFS(startUrl, domainName, seen, result, htmlParser);
+            DFS(startUrl, hostName, seen, result, htmlParser);
             return result;
         }
         private void DFS(string url, string domainName, HashSet<string> seen, List<string> result, HtmlParser htmlParser)

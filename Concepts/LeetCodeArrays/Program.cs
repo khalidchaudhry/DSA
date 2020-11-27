@@ -286,7 +286,9 @@ namespace LeetCodeArrays
 
             //_560._560Main();
 
-            _1498._1498Main();
+            //_1498._1498Main();
+            //_1228._1228Main();
+            _1248._1248Main();
 
             Console.ReadLine();
         }

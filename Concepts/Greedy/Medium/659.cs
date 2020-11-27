@@ -16,6 +16,10 @@ namespace Greedy.Medium
             Console.ReadLine();
 
         }
+
+        /// <summary>
+        /// https://leetcode.com/problems/split-array-into-consecutive-subsequences/discuss/106496/Java-O(n)-Time-O(n)-Space
+        /// </summary>       
         public bool IsPossible(int[] nums)
         {
 

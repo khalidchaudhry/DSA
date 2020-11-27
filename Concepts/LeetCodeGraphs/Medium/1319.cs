@@ -20,7 +20,7 @@ namespace LeetCodeGraphs.Medium
         /// <returns></returns>
         public int MakeConnected(int n, int[][] connections)
         {
-            //! If given computers are greater then 1+ connections , then its not possible to connect them 
+            //! If given computers are greater then 1+ connections , then its impossible to connect them 
             if (n > connections.Length + 1)
                 return -1;
 

@@ -13,10 +13,10 @@ namespace LeetCodeDynamicProgramming.Medium._518
 
 
             _518 Change = new _518();
-            int[] coins = new int[] {5,2,1 };
+            int[] coins = new int[] { 5, 2, 1 };
             int amount = 5;
-       
-            var ans=Change.Change1(coins,amount);
+
+            var ans = Change.Change1(coins, amount);
         }
 
         /// <summary>
@@ -67,14 +67,14 @@ namespace LeetCodeDynamicProgramming.Medium._518
         public int Change1(int[] coins, int amount)
         {
 
-            Dictionary<string, int> cache = new Dictionary<string, int>();
+            Dictionary<(int amount, int coins), int> memo = new Dictionary<(int amount, int coins), int>();
 
-            return Change1(coins, 0, amount, cache);
+            return Change1(coins, 0, amount, memo);
 
 
         }
 
-        private int Change1(int[] coins, int i, int amount, Dictionary<string, int> cache)
+        private int Change1(int[] coins, int i, int amount, Dictionary<(int amount, int coins), int> memo)
         {
             if (amount < 0)
                 return 0;
@@ -83,18 +83,18 @@ namespace LeetCodeDynamicProgramming.Medium._518
             if (i == coins.Length)
                 return 0;
 
-            string key = $"{amount}${coins[i]}";
-            if (cache.ContainsKey(key))
+            if (memo.ContainsKey((amount, coins[i])))
             {
-                return cache[key];
+                return memo[(amount, coins[i])];
             }
-            else
-            {
-                cache[key] = Change1(coins, i, amount - coins[i], cache) + 
-                             Change1(coins, i + 1, amount, cache);
+            int include = Change1(coins, i, amount - coins[i], memo);
 
-                return cache[key];
-            }
+            int exclude = Change1(coins, i + 1, amount, memo);
+
+            memo[(amount, coins[i])] = include + exclude;
+
+            return memo[(amount, coins[i])];
+
         }
 
 
@@ -108,39 +108,24 @@ namespace LeetCodeDynamicProgramming.Medium._518
         /// <returns></returns>
         public int Change2(int[] coins, int amount)
         {
-            ResultWrapper resultWrapper = new ResultWrapper();
-
-            Change2(coins, 0, amount, resultWrapper);
-
-            return resultWrapper.Result;
+            return Change2(coins, 0, amount);
         }
 
-        private void Change2(int[] coins, int i, int amount, ResultWrapper resultWrapper)
+        private int Change2(int[] coins, int i, int amount)
         {
-            if (amount < 0)
-            {
-                return;
-            }
 
-            if (amount == 0)
-            {
-                ++resultWrapper.Result;
-                return;
-            }
-            if (i == coins.Length)
-            {
-                return;
-            }
+            if (amount == 0) return 1;
 
-            Change2(coins, i, amount - coins[i], resultWrapper);
-            Change2(coins, i + 1, amount, resultWrapper);
+            if (amount < 0 || i >= coins.Length) return 0;
+
+            int include = Change2(coins, i, amount - coins[i]);
+
+            int exclude = Change2(coins, i + 1, amount);
+
+            return include + exclude;
         }
     }
 
-    public class ResultWrapper
-    {
-        public int Result { get; set; }
 
-    }
 
 }

@@ -28,7 +28,7 @@ namespace LeetCodeStrings.Medium
                 {
                     num = num * 10 + (s[i]-'0');
                 }
-
+                //! In case its operator
                 if ((!isDigit && s[i] != ' ') ||
                      i == n - 1)
                 {
