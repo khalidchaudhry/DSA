@@ -20,6 +20,45 @@ namespace LeetCodeBinarySearch.Medium
 
 
         }
+        /// <summary>
+        //! Based on template from Roger 
+        /// </summary>
+        public int SmallestDivisor0(int[] nums, int threshold)
+        {
+            int lo = 0;
+            int hi = Max(nums);
+            while (lo + 1 < hi)
+            {
+                int mid = lo + (hi - lo) / 2;
+
+                if (OK(nums, mid, threshold))
+                {
+                    hi = mid;
+                }
+                else
+                {
+                    lo = mid;
+                }
+            }
+
+            return hi;
+        }
+
+
+        /// <summary>
+        //! FFFFF'T'TTTTTT 
+        //! Is sum of each 'num' <= threshold?
+        /// </summary>       
+        public bool OK(int[] nums, int divisor, int threshold)
+        {
+            int sum = 0;
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                sum += (int)Math.Ceiling((decimal)nums[i] / divisor);
+            }
+
+            return sum <= threshold;
+        }
         public int SmallestDivisor(int[] nums, int threshold)
         {
             int left = 1;
@@ -45,9 +84,9 @@ namespace LeetCodeBinarySearch.Medium
         {
             int sum = 0;
             for (int i = 0; i < nums.Length; ++i)
-            {   
+            {
                 //! Casting to decimal is necessary , else the result will be 0 for some cases like 1/3
-                sum += (int)Math.Ceiling((decimal)nums[i] /mid);
+                sum += (int)Math.Ceiling((decimal)nums[i] / mid);
             }
 
             return sum > threshold;

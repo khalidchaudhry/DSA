@@ -42,11 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Easy\1228.cs" />
     <Compile Include="Easy\278.cs" />
+    <Compile Include="Easy\35.cs" />
+    <Compile Include="Easy\69.cs" />
     <Compile Include="Easy\852.cs" />
     <Compile Include="Medium\1011.cs" />
     <Compile Include="Medium\1060.cs" />
     <Compile Include="Medium\1283.cs" />
+    <Compile Include="Medium\1482.cs" />
     <Compile Include="Medium\153.cs" />
     <Compile Include="Medium\162.cs" />
     <Compile Include="Medium\29.cs" />
@@ -54,6 +58,8 @@
     <Compile Include="Medium\34.cs" />
     <Compile Include="Medium\540.cs" />
     <Compile Include="Medium\658.cs" />
+    <Compile Include="Medium\74.cs" />
+    <Compile Include="Medium\875.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

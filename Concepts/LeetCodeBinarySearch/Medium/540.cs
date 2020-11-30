@@ -18,19 +18,22 @@ namespace LeetCodeBinarySearch.Medium
         public int SingleNonDuplicate(int[] nums)
         {
 
-            int lo = -1;
-            int hi = nums.Length - 1;
+            int lo = 0;
+            int hi = nums.Length;
+            //! Boundary cases
+            if (nums.Length == 1) return nums[0];
+            if (nums[0] != nums[1]) return nums[0];
+            if (nums[nums.Length - 1] != nums[nums.Length - 2]) return nums[nums.Length - 1];
+
             while (lo + 1 < hi)
             {
                 int mid = lo + (hi - lo) / 2;
                 if (OK(nums, mid))
-                    //! When we want pattern like TTT'F' we need to invert. 
-                    //! Usually we set one in OK  who is the potiential candidate (among lo and hi . One that is having valid value) 
-                    lo = mid;  
+                    lo = mid;
                 else
                     hi = mid;
             }
-
+            //! we are interested in returning first invalid candidade
             return nums[hi];
         }
 

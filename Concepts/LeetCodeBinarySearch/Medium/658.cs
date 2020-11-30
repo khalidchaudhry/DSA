@@ -106,63 +106,7 @@ namespace LeetCodeBinarySearch.Medium
             return result;
 
         }
-        /// <summary>
-        //! not working
-        /// </summary>
-        /// <param name="arr"></param>
-        /// <param name="k"></param>
-        /// <param name="x"></param>
-        /// <returns></returns>
-        public IList<int> FindClosestElements3(int[] arr, int k, int x)
-        {
-            List<int> result = new List<int>();
-            int n = arr.Length;
-            if (k > n)
-                return result;
-            //First find the index of k closet element 
-            int closestDiff = Math.Abs(x - arr[0]);
-            int closetDiffIndex = 0;
-
-            for (int i = 1; i < n; ++i)
-            {
-                int diff = Math.Abs(x - arr[i]);
-                if (diff < closestDiff)
-                {
-                    closestDiff = diff;
-                    closetDiffIndex = i;
-                }
-            }
-
-            int s, e;
-            s = e = closetDiffIndex;
-            while (e - s + 1 != k)
-            {
-
-                int leftSideDiff = s - 1 < 0 ? int.MaxValue : Math.Abs(arr[closetDiffIndex] - arr[s - 1]);
-
-                int rightSideDiff = s + 1 >= n ? int.MaxValue : Math.Abs(arr[closetDiffIndex] - arr[s + 1]);
-
-                if (rightSideDiff < leftSideDiff)
-                {
-                    ++e;
-                }
-                else
-                    --s;
-            }
-            while (s <= e)
-            {
-                result.Add(arr[s++]);
-            }
-
-            //int startIndex = (closetDiffIndex + 1 - k) < 0 ? 0 : (closetDiffIndex + 1 - k);
-
-            //while (result.Count != k && startIndex < n)
-            //{
-            //    result.Add(arr[startIndex++]);
-            //}
-
-            return result;
-        }
+        
     }
 
 }

@@ -10,6 +10,33 @@ namespace LeetCodeBinarySearch.Easy
     {
 
         /// <summary>
+        //!Based on Roger template 
+        /// </summary>
+        public int PeakIndexInMountainArray0(int[] arr)
+        {
+            int lo = 0;
+            int hi = arr.Length;
+
+            while (lo + 1 < hi)
+            {
+                int mid = lo + (hi - lo) / 2;
+                if (OK(arr, mid))
+                {
+                    lo = mid;
+                }
+                else
+                {
+                    hi = mid;
+                }
+            }
+            return lo;
+        }
+
+        private bool OK(int[] arr, int index)
+        {
+            return arr[index] > arr[index - 1];
+        }
+        /// <summary>
         //! compare with neighbours to determine either we go on left side or right.  
         /// </summary>
         public int PeakIndexInMountainArray(int[] arr)

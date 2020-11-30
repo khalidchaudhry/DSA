@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopInterviewQuestions.Easy
+namespace LeetCodeBinarySearch.Easy
 {
     class _69
     {
@@ -17,13 +17,76 @@ namespace TopInterviewQuestions.Easy
             SquareRoot.MySqrt0(2147395599);
 
         }
-        
+
+        /// <summary>
+        //! Based on the template  from Roger 
+        /// </summary>
+        public int MySqrt0(int x)
+        {
+            if (x == 0)
+                return 0;
+
+            long lo = 1; //! valid candidate 
+            long hi = x / 2 + 1; //! invalid candidate 
+            while (lo + 1 < hi)
+            {
+                long mid = lo + (hi - lo) / 2;
+                if (OK(mid, x))
+                {
+                    lo = mid;
+                }
+                else
+                {
+                    hi = mid;
+                }
+            }
+
+            return (int)lo;
+        }
+        //! incase we need to run it on doubles 
+        public double Sqrt2(int x)
+        {
+            if (x == 0)
+                return 0;
+            double lo = 1;
+            double hi = x / 2 + 1;
+            for (int i = 0; i < 80; i++)
+            {
+                double mid = lo + (hi - lo) / 2;
+                if (OK(mid,x))
+                {
+                    lo = mid;
+                }
+                else
+                {
+                    hi = mid;
+                }
+            }
+            return lo;
+        }
+
+        /// <summary>
+        //!TTT'T'FFFFF 
+        /// </summary>
+        private bool OK(long number, int x)
+        {
+            return number * number <= x;
+        }
+
+        /// <summary>
+        //!TTT'T'FFFFF 
+        /// </summary>
+        private bool OK(double number, int x)
+        {
+            return number * number <= x;
+        }
+
         /// <summary>
         /// https://leetcode.com/problems/sqrtx/
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public int MySqrt0(int x)
+        public int MySqrt1(int x)
         {
             if (x < 2) return x;
 
@@ -56,40 +119,6 @@ namespace TopInterviewQuestions.Easy
             //!as the decimal digits are truncated and only the integer part of the result is returned.
             //! hence we are are returning r
             return r;
-        }
-
-
-
-
-        public int MySqrt(int x)
-        {
-            long start = 0;
-
-            long end = x;
-
-            while (start < end)
-            {
-                long mid = (start + end) / 2;
-
-                if (mid * mid == x)
-                    return (int)mid;
-                else if ((mid * mid) < x)
-                {
-                    start = mid;
-                }
-                else
-                {
-                    end = mid;
-                }
-            }
-
-            if (end * end == x)
-            {
-                return (int)end;
-            }
-            return (int)start;
-
-
         }
 
     }

@@ -15,7 +15,7 @@ namespace LeetCodeSlidingWindow.Medium
         
         public int CharacterReplacement(string s, int k)
         {
-            //! Key is character and value is there occurances. 
+            //! Key is character and value is their occurances. 
             Dictionary<char, int> FreqCount = new Dictionary<char, int>();
 
             int longest = 0;
@@ -28,8 +28,9 @@ namespace LeetCodeSlidingWindow.Medium
                 }
                 ++FreqCount[s[j]];
 
-                //!how many letters in current string  needs replacement.                
-                //j - i + 1 - MaxCharacterCount(FreqCount)
+                //!how many letters in current window  needs replacement.                
+                //!j - i + 1=length of of string
+                //! subtracting max count gives the characters that needs replacement as we don't need to replace most frequent ones
                 while (j - i + 1 - MaxCharacterCount(FreqCount) > k)
                 {
                     --FreqCount[s[i]];

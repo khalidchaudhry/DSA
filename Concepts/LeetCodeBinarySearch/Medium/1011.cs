@@ -14,15 +14,57 @@ namespace LeetCodeBinarySearch.Medium
             int[] weights = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             int D = 5;
             _1011 MinCapacity = new _1011();
-            var ans=MinCapacity.ShipWithinDays(weights,D);
+            var ans = MinCapacity.ShipWithinDays0(weights, D);
 
             Console.ReadLine();
+        }
+        /// <summary>
+        //! Based on the template from Roger 
+        /// </summary>
+        public int ShipWithinDays0(int[] weights, int D)
+        {
+            int lo = Max(weights) - 1;//making it invalid 
+            int hi = Sum(weights);
+            while (lo + 1 < hi)
+            {
+                int mid = lo + (hi - lo) / 2;
+                if (OK(weights, mid, D))
+                {
+                    hi = mid;
+                }
+                else
+                    lo = mid;
+            }
+
+            return hi;
+        }
+        //!FFFF'T'TTTTT
+        //! Can we ship within D days using the provided capacity? 
+        private bool OK(int[] weights, int capacity, int D)
+        {
+            int days = 1;
+            int sum = 0;
+            //!calculating the number of days for the given capacity
+            for (int i = 0; i < weights.Length; ++i)
+            {
+                sum += weights[i];
+                if (sum > capacity)
+                {
+                    ++days;
+                    //! reseting sum to current weight
+                    //! We can't break the weights hence we are assigning current weight to sum
+                    //! if we are allowed to break the weights than we could have less weights 
+                    sum = weights[i];
+                }
+            }
+
+            return days <= D;
         }
 
         public int ShipWithinDays(int[] weights, int D)
         {
-            int left = GetMaxWeight(weights);
-            int right = GetSum(weights);
+            int left = Max(weights);
+            int right = Sum(weights);
             while (left < right)
             {
                 int mid = left + ((right - left) / 2);
@@ -70,25 +112,26 @@ namespace LeetCodeBinarySearch.Medium
             return false;
         }
 
-        private int GetSum(int[] weights)
+        private int Max(int[] weight)
+        {
+            int max = weight[0];
+            for (int i = 0; i < weight.Length; ++i)
+            {
+                max = Math.Max(max, weight[i]);
+            }
+            return max;
+        }
+
+        private int Sum(int[] weight)
         {
             int sum = 0;
-            for (int i = 0; i < weights.Length; ++i)
+            for (int i = 0; i < weight.Length; ++i)
             {
-                sum += weights[i];
+                sum += weight[i];
             }
+
             return sum;
         }
 
-        private int GetMaxWeight(int[] weights)
-        {
-            int maxWeight = weights[0];
-            for (int i = 1; i < weights.Length; ++i)
-            {
-                maxWeight = Math.Max(maxWeight,weights[i]);
-            }
-
-            return maxWeight;
-        }
     }
 }

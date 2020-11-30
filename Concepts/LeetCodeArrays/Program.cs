@@ -1,9 +1,9 @@
-﻿using LeetCodeArrays.Easy;
-using LeetCodeArrays.Medium;
+﻿using LeetCodeBinarySearch.Easy;
+using LeetCodeBinarySearch.Medium;
 using System;
 using System.Collections.Generic;
 
-namespace LeetCodeArrays
+namespace LeetCodeBinarySearch
 {
     class Program
     {
@@ -197,30 +197,7 @@ namespace LeetCodeArrays
             //int[] nums = new int[] {1,2,3 };
             //_31 NextPermutation = new _31();
 
-            //NextPermutation.NextPermutation(nums);
-
-
-            /////////////////////////////
-            ///
-            //   int[][] matrix = new int[3][]
-            //{
-            //      new int[]{1, 2, 3, 4 },
-            //      new int[]{5, 6, 7, 8 },
-            //      new int[]{9, 10, 11, 12}
-            //      //new int[]{1, 2, 3 },
-            //      //new int[]{4, 5, 6 },
-            //      //new int[]{7, 8, 9 }
-            //      //new int[]{7},
-            //      //new int[]{9},
-            //      //new int[]{6}
-            //      // new int[]{2,5,8},
-            //      //new int[]{4,0,-1},
-
-            //};
-
-            //   _54 Spiral = new _54();
-
-            //   var result=Spiral.SpiralOrder0(matrix);
+            //NextPermutation.NextPermutation(nums);          
 
             //_442 Duplicates = new _442();
 
@@ -288,9 +265,9 @@ namespace LeetCodeArrays
 
             //_1498._1498Main();
             //_1228._1228Main();
-            _1248._1248Main();
-
-            Console.ReadLine();
+            //_1248._1248Main();
+            _54._54Main();           
+            
         }
     }
 }

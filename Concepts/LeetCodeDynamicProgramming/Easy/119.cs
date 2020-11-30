@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LeetCodeArrays.Easy
+namespace LeetCodeBinarySearch.Easy
 {
     class _119
     {

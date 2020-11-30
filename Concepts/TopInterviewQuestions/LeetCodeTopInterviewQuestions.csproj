@@ -89,7 +89,6 @@
     <Compile Include="Easy\581.ShortestUnsortedContinuousSubarray.cs" />
     <Compile Include="Easy\617.MergeTwoBinaryTrees.cs" />
     <Compile Include="Easy\66.PlusOne.cs" />
-    <Compile Include="Easy\69.Sqrt%28x%29.cs" />
     <Compile Include="Easy\7.ReverseInteger.cs" />
     <Compile Include="Easy\70.ClimbingStairs.cs" />
     <Compile Include="Easy\88.MergeSortedArray.cs" />

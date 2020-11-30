@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LeetCodeArrays.BinarySearch
+namespace LeetCodeBinarySearch.BinarySearch
 {
     public class _33
     {

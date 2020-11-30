@@ -11,7 +11,7 @@ namespace LeetCodeBinarySearch.Easy
         public class Solution : VersionControl
         {
 
-            //FF'T'TTTT
+            //!FF'T'TTTT
             public int FirstBadVersion(int n)
             {
                 int lo = 0;

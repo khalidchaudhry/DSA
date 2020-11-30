@@ -1,3 +1,4 @@
+using LeetCodeBinarySearch.Easy;
 using LeetCodeBinarySearch.Medium;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,12 @@ namespace LeetCodeBinarySearch
 
             //_1283._1283Main();
 
-            //_1011._1011Main();
+            _1011._1011Main();
 
-            _29._29Main();
+            // _29._29Main();
+            //_1228._1228Main();
+           // _162._162Main();
+
         }
     }
 }

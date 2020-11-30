@@ -11,23 +11,23 @@ namespace LeetCodeSlidingWindow.Medium
         public int NumSubarrayProductLessThanK(int[] nums, int k)
         {
 
-            int count = 0;
-            int product = 1;
+            int runningProduct = 1;
+            int total = 0;
+
             int i = 0;
             for (int j = 0; j < nums.Length; ++j)
             {
-                product = product * nums[j];
-                //Once window invalid shrink it to make valid
-                while (product >= k)
+                runningProduct = runningProduct * nums[j];
+                while (i < nums.Length && runningProduct >= k)
                 {
-                    product = product / nums[i];
+                    runningProduct = runningProduct / nums[i];
                     ++i;
                 }
 
-                count += j - i + 1;
+                total += j - i + 1;
             }
 
-            return count;
+            return total < 0 ? 0 : total;
         }
 
 
