@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LeetCodeArrays.Easy
@@ -36,6 +37,37 @@ namespace LeetCodeArrays.Easy
 
             return ans;
 
+        }
+
+        /// <summary>
+        //! Using hashset but requries extra space
+        /// </summary>
+        public int[] FindErrorNums2(int[] nums)
+        {
+
+            HashSet<int> hs = new HashSet<int>();
+            for (int i = 1; i <= nums.Length; ++i)
+            {
+                hs.Add(i);
+            }
+
+            int[] result = new int[2];
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                if (hs.Contains(nums[i]))
+                {
+                    hs.Remove(nums[i]);
+                }
+                else
+                {
+                    result[0] = nums[i];
+                }
+            }
+
+
+            result[1] = hs.First();
+
+            return result;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace LeetCodeArrays.Medium
         /// </summary>
         public int NumberOfSubarrays(int[] nums, int k)
         {
-            int cur = 0, ans = 0;
+            int oddNumbersCount = 0, ans = 0;
 
             //! Key is the odd number count(or odd numbers we have seen so far) and 
             //! value is the number of subarrays that has that many number of odd numbers in them
@@ -40,15 +40,15 @@ namespace LeetCodeArrays.Medium
             map.Add(0, 1);
             for (int i = 0; i < nums.Length; i++)
             {
-                cur += nums[i] % 2 == 1 ? 1 : 0;
+                oddNumbersCount += nums[i] % 2 == 1 ? 1 : 0;
 
-                if (map.ContainsKey(cur - k))
-                    ans += map[cur - k];
+                if (map.ContainsKey(oddNumbersCount - k))
+                    ans += map[oddNumbersCount - k];
 
-                if (!map.ContainsKey(cur))
-                    map.Add(cur, 1);
+                if (!map.ContainsKey(oddNumbersCount))
+                    map.Add(oddNumbersCount, 1);
                 else
-                    ++map[cur];
+                    ++map[oddNumbersCount];
      
             }
 

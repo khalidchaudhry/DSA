@@ -7,6 +7,17 @@ namespace LeetCodeArrays.Medium
     public class _930
     {
 
+
+
+        public static void _930Main()
+        {
+            int[] arr = new int[5] { 0,0,0,0,0 };
+
+            _930 Test = new _930();
+            var result=Test.NumSubarraysWithSum(arr,0);
+            Console.ReadLine();
+        }
+        
         /// <summary>
         //! Same  pattern as in 930,1248,560
         /// </summary>

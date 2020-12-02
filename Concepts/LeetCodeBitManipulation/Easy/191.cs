@@ -38,15 +38,6 @@ namespace LeetCodeBitManipulation.Easy
                 n = n / 2;
             }
             return count;
-
-            //     while (stk.Count != 0)
-            //     {
-            //         if (stk.Pop() == 1)
-            //         {
-            //             ++count;
-            //}
-
-            //     }
         }
 
     }

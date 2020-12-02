@@ -13,7 +13,6 @@ namespace LeetCodeArrays.Medium
         //!There can be at most 3 majority elements which are more than n/4 times.
         public IList<int> MajorityElement(int[] nums)
         {
-
             int c1 = 0;
             int c1Count = 0;
             int c2 = 1;
@@ -42,21 +41,19 @@ namespace LeetCodeArrays.Medium
                     --c2Count;
                 }
             }
-
+            List<int> result = new List<int>();
             int count1 = 0;
             int count2 = 0;
             for (int i = 0; i < n; ++i)
             {
                 if (nums[i] == c1) ++count1;
-                if (nums[i] == c2) ++count2;
+                else if (nums[i] == c2) ++count2;
             }
-
-            List<int> result = new List<int>();
-            if (count1 > n / 3) result.Add(c1);
-            if (count2 > n / 3) result.Add(c2);
 
             return result;
         }
+
+       
 
 
     }

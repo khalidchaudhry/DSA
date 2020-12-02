@@ -25,14 +25,15 @@ namespace LeetCodeBinarySearch.Easy
             int n = arr.Length;
             // https://www.techiedelight.com/find-missing-term-sequence-ologn-time/
             //(last element in sequence - first element in sequence)/ total elements in sequence
-            int diff = Math.Abs(arr[0] - arr[n - 1]) / n;
+            int diff = (arr[n-1] - arr[0]) / n;
 
             int nextNumber = arr[0];
 
-            foreach (int number in arr)
+           for (int i=0;i<arr.Length;++i)
             {
-                if (nextNumber != number)
+                if (nextNumber != arr[i])
                     break;
+
                 nextNumber += diff;
             }
 

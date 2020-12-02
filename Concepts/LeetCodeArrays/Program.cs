@@ -1,9 +1,8 @@
-﻿using LeetCodeBinarySearch.Easy;
-using LeetCodeBinarySearch.Medium;
+﻿using LeetCodeArrays.Medium;
 using System;
 using System.Collections.Generic;
 
-namespace LeetCodeBinarySearch
+namespace LeetCodeArrays
 {
     class Program
     {
@@ -266,7 +265,9 @@ namespace LeetCodeBinarySearch
             //_1498._1498Main();
             //_1228._1228Main();
             //_1248._1248Main();
-            _54._54Main();           
+            //_54._54Main();   
+            _930._930Main();
+
             
         }
     }
