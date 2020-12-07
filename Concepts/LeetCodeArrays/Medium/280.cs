@@ -7,7 +7,10 @@ namespace LeetCodeArrays.Medium
     public class _280
     {
         /// <summary>
-        //! Covered in Kuai's class 
+        //! Covered in Kuai's class
+        //! Intuition 
+        //! Put smaller elements on even indices and 
+        //! Put bigger elements on odd indices
         /// </summary>
         /// <param name="nums"></param>
         public void WiggleSort(int[] nums)

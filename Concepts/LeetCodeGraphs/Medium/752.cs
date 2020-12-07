@@ -101,25 +101,6 @@ namespace LeetCodeGraphs.Medium
 
             return allStates;
 
-        }
-
-        private List<(int w1, int w2, int w3, int w4)> GetNextStates2((int w1, int w2, int w3, int w4) currLock)
-        {
-            List<(int w1, int w2, int w3, int w4)> allStates = new List<(int w1, int w2, int w3, int w4)>();
-            List<int> currenState = new List<int>() { currLock.w1, currLock.w2, currLock.w3, currLock.w4 };
-
-            for (int i = 0; i < currenState.Count; ++i)
-            {
-                int temp = currenState[i];
-                int wheelBackword = (10 + currenState[i] - 1) % 10;
-                int wheelForward = (10 + currenState[i] + 1) % 10;
-                currenState[i] = wheelBackword;
-                allStates.Add((currenState[0], currenState[1], currenState[2], currenState[3]));
-                currenState[i] = wheelForward;
-                allStates.Add((currenState[0], currenState[1], currenState[2], currenState[3]));
-                currenState[i] = temp;
-            }
-            return allStates;
-        }
+        }       
     }
 }

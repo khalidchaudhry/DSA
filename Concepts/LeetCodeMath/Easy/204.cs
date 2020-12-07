@@ -8,8 +8,13 @@ namespace LeetCodeMath.Easy
 {
     public class _204
     {
+        public static void _204Main()
+        {
 
-
+            _204 Test = new _204();
+            var test = Test.IsPrimeNumber(10);
+            Console.ReadLine();
+        }
 
         /// <summary>
         //! Sieve of erithothenis algorithms 
@@ -23,15 +28,12 @@ namespace LeetCodeMath.Easy
         {
             bool[] primeNumbers = new bool[n];
 
-            //! Assume all the numbers are the prime numbers 
-            for (int i = 0; i < primeNumbers.Length; ++i)
-            {
-                primeNumbers[i] = true;
-            }
+            Initialize(primeNumbers);
+
             //! Take multiple 
-            for (int i = 2; i * i < primeNumbers.Length; ++i)
+            for (int i = 2; i * i < primeNumbers.Length; ++i) //!optimization i * i 
             {
-                if (primeNumbers[i])
+                if (primeNumbers[i])  //! Optimization
                 {
                     for (int j = 2; i * j < primeNumbers.Length; ++j)
                     {
@@ -39,6 +41,12 @@ namespace LeetCodeMath.Easy
                     }
                 }
             }
+
+            return Prepare(primeNumbers);
+        }
+
+        private int Prepare(bool[] primeNumbers)
+        {
             int primeNumbersCount = 0;
             for (int i = 2; i < primeNumbers.Length; ++i)
             {
@@ -47,43 +55,52 @@ namespace LeetCodeMath.Easy
                     ++primeNumbersCount;
                 }
             }
+            return primeNumbersCount;
+        }
+
+        private void Initialize(bool[] primeNumbers)
+        {
+            //! Assume all the numbers are the prime numbers 
+            for (int i = 0; i < primeNumbers.Length; ++i)
+            {
+                primeNumbers[i] = true;
+            }
+        }
+
+        /// <summary>
+        //! Using trial division method
+        //! Divide number by <= √ of it starting from 2. If divisble, then its not prime number
+        //! e.g. 100 try divide it by 2,3,4,5,6...till  10(√100) 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int CountPrimes(int n)
+        {
+            int primeNumbersCount = 0;
+            for (int i = 2; i < n; ++i)
+            {
+                if (IsPrimeNumber(i))
+                {
+                    ++primeNumbersCount;
+                }
+            }
 
             return primeNumbersCount;
         }
 
+        private bool IsPrimeNumber(int n)
+        {
+            int sqrt = (int)Math.Sqrt(n);
 
-        /// <summary>
-        //! Using trial division method
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
-            public int CountPrimes(int n)
+            for (int i = 2; i <= sqrt; ++i)
             {
-                int primeNumbersCount = 0;
-                for (int i = 2; i < n; ++i)
+                if (n % i == 0)
                 {
-                    if (IsPrimeNumber(i))
-                    {
-                        ++primeNumbersCount;
-                    }
+                    return false;
                 }
-
-                return primeNumbersCount;
             }
 
-            private bool IsPrimeNumber(int n)
-            {
-                int sqrt = (int)Math.Sqrt(n);
-
-                for (int i = 2; i <= sqrt; ++i)
-                {
-                    if (n % i == 0)
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
+            return true;
+        }
     }
 }

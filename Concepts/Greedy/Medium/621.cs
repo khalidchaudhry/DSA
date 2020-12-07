@@ -19,14 +19,37 @@ namespace Greedy.Medium
         /// <summary>
         /// https://www.youtube.com/watch?v=eGf-26OTI-A
         /// https://www.youtube.com/watch?v=I9Tq7R2Z2ys
+        //! Same idea as used in leetcode question 621
         //!intuition 
         /***************************************/
         //!Solve the task with largest repitition first than solve other task and come back to the largest task again
         /***************************************/
         /// </summary>
-        /// <param name="tasks"></param>
-        /// <param name="n"></param>
-        /// <returns></returns>
+        public int LeastInterval1(char[] tasks, int n)
+        {
+            Dictionary<char, int> frequencyCount = new Dictionary<char, int>();
+            GetFrequencyCount(tasks, frequencyCount);
+
+            var sortedFrequencyCount = frequencyCount.OrderByDescending(x => x.Value);
+
+            //! -1 because we don't need to wait after last task in context of  calculating for the idle slots
+            int maxValue = sortedFrequencyCount.ElementAt(0).Value - 1;
+            int idleSlots = maxValue * n;
+
+            //! why starting at 1 and not 0 becuase index 0 contains most frequent task. We caculated our idle slots based on it . 
+            //! Rest of the tasks will work reducing the idle slots 
+            //!Index 1 and onwards contain task that we want to fill idle slotes
+            for (int i = 1; i < sortedFrequencyCount.Count(); ++i)
+            {
+                //! Math.Min because what if we have more than 1 most frequency tasks. 
+                //! That task count will not take all available idle slots as we have not calculated idle slots based on most frequent task count but mostFrequenctTaskCount-1
+                //! We calculated our idle slots based on maxOccuringTask-1 hence 
+                idleSlots -= Math.Min(maxValue, sortedFrequencyCount.ElementAt(i).Value);
+            }
+
+            return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;
+        }
+
         public int LeastInterval0(char[] tasks, int n)
         {
 
@@ -66,33 +89,6 @@ namespace Greedy.Medium
             //idleSlots > 0 we still have idle slots then least interval will be idleSlot+tasks else just tasks
             return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;
         }
-
-        public int LeastInterval1(char[] tasks, int n)
-        {
-            Dictionary<char, int> frequencyCount = new Dictionary<char, int>();
-            GetFrequencyCount(tasks, frequencyCount);
-
-            var sortedFrequencyCount = frequencyCount.OrderByDescending(x => x.Value);
-
-            //! -1 because we don't need to wait after last task in context of  calculating for the idle slots
-            int maxValue = sortedFrequencyCount.ElementAt(0).Value - 1;
-            int idleSlots = maxValue * n;
-
-            //! why starting at 1 and not 0 becuase index 0 contains most frequent task. We caculated our idle slots based on it . 
-            //! Rest of the tasks will work reducing the idle slots 
-            //!Index 1 and onwards contain task that we want to fill idle slotes
-            for (int i = 1; i < sortedFrequencyCount.Count(); ++i)
-            {
-                //! Math.Min because what if we have more than 1 most frequency tasks. 
-                //! That task count will not take all available idle slots as we have not calculated idle slots based on most frequent task count but mostFrequenctTaskCount-1
-                //! We calculated our idle slots based on maxOccuringTask-1 hence 
-                idleSlots -= Math.Min(maxValue, sortedFrequencyCount.ElementAt(i).Value);
-            }
-
-            return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;
-
-        }
-
         private void GetFrequencyCount(char[] tasks, Dictionary<char, int> frequencyCount)
         {
             for (int i = 0; i < tasks.Length; ++i)

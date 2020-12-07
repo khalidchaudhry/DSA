@@ -106,7 +106,9 @@ namespace LeetCodeMath.Medium
 
 
         /// <summary>
+        ///  # <image url="https://i2.wp.com/www.mathbootcamps.com/wp-content/uploads/matrix-product-is-defined.jpg?resize=558%2C349" scale="0.5" />
         /// https://www.java67.com/2016/10/how-to-multiply-two-matrices-in-java.html
+        /// https://www.youtube.com/watch?v=kuixY2bCc_0
         //! The number of columns of the first matrix must be equal to the number of rows of the second matrix.  
         //! The product matrix will have the same number of rows as the first matrix, and the same number of columns as the second matrix.
         //! Below  method does not consider that matrix is sparse 
@@ -119,31 +121,27 @@ namespace LeetCodeMath.Medium
             //!Product of A.B matrix must have same number of rows as the first matrix and same number of columns as the second matrix
             int[][] AB = new int[A.Length][];
 
-            int r1 = A.Length;
-            int c1 = A[0].Length;
-            int r2 = B.Length;
-            int c2 = B[0].Length;
+            int rA = A.Length;
+            int cA = A[0].Length;
+            int rB = B.Length;
+            int cB = B[0].Length;
 
             for (int i = 0; i < AB.Length; ++i)
             {
-                AB[i] = new int[c2];
+                AB[i] = new int[cB];
             }
 
-
-            for (int i = 0; i < r1; ++i)
+            for (int i = 0; i < rA; ++i)
             {
-                for (int j = 0; j < c2; ++j)
+                for (int j = 0; j < cB; ++j)
                 {
-
                     int result = 0;
-                    for (int k = 0; k < c1; ++k)
+                    for (int k = 0; k < cA; ++k)  //! i can also put rB and it will yield the same result
                     {
                         result += A[i][k] * B[k][j];
                     }
 
                     AB[i][j] = result;
-
-
                 }
             }
 

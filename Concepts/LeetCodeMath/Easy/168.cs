@@ -18,7 +18,12 @@ namespace LeetCodeMath.Easy
 
         }
 
-        public string ConvertToTitle(int n)
+        /// <summary>
+        //! Take aways:
+        //! Take away 1 Given integer , how to get its corresponding character 
+        //! How to deal with base systems easily
+        /// </summary>
+         public string ConvertToTitle(int n)
         {
             string result = string.Empty;
             while (n != 0)

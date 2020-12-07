@@ -193,10 +193,7 @@ namespace LeetCodeArrays
 
             //RotateImage.Rotate(matrix);
 
-            //int[] nums = new int[] {1,2,3 };
-            //_31 NextPermutation = new _31();
-
-            //NextPermutation.NextPermutation(nums);          
+            _31._31Main(); 
 
             //_442 Duplicates = new _442();
 
@@ -266,8 +263,8 @@ namespace LeetCodeArrays
             //_1228._1228Main();
             //_1248._1248Main();
             //_54._54Main();   
-            _930._930Main();
-
+            //_930._930Main();
+            //_1428._1428Main();
             
         }
     }

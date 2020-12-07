@@ -11,29 +11,23 @@ namespace Greedy.Medium
         }
         public int MinAddToMakeValid(string S)
         {
-            int result = 0;
             Stack<char> stk = new Stack<char>();
+
             for (int i = 0; i < S.Length; ++i)
             {
-                if (S[i].Equals('('))
+                if (S[i] == ')')
                 {
-                    stk.Push('(');
-
+                    if (stk.Count != 0 && stk.Peek() == '(')
+                        stk.Pop();
+                    else
+                        stk.Push(')');
                 }
                 else
                 {
-                    if (stk.Count != 0)
-                    {
-                        stk.Pop();
-                    }
-                    else
-                    {
-                        ++result;
-                    }
-                }                
+                    stk.Push('(');
+                }
             }
-
-            return result+stk.Count;
+            return stk.Count;
         }
 
 

@@ -34,6 +34,9 @@ namespace LeetCodeTrie.Medium
     }
 
     /// <summary>
+    //! Take aways:
+    //! Take away 1: How to represent TrieNode. We need nested structure that go from one level to the next 
+    //! Take away 2: How we iterate from one level to the next level
     /// https://leetcode.com/problems/implement-trie-prefix-tree/discuss/347038/HasMap-base-java-solution-fo-Trie
     /// # <image url="https://64.media.tumblr.com/0115640d31399f8d00c17e785782b495/tumblr_inline_ovxxwnY5dO1u8bvyd_1280.png" scale="0.5" /> 
 
@@ -52,28 +55,28 @@ namespace LeetCodeTrie.Medium
         }
 
         /** Inserts a word into the trie. */
-        //! Time complexity=O(M*N) where M is the maximum word length and N is the total words
-       
+        //! Time complexity=O(M*N) where M are total words and N is the maximum length of the word among given words
+
         public void Insert(string word)
         {
             //! We will always starts with the root. 
             Node curr = root;
 
-            for (int i = 0; i < word.Length; ++i)
+            foreach (char c in word)
             {
-                if (!curr.Children.ContainsKey(word[i]))
+                if (!curr.Children.ContainsKey(c))
                 {
-                    curr.Children.Add(word[i], new Node());
+                    curr.Children.Add(c, new Node());
                 }
 
-                curr = curr.Children[word[i]];
+                curr = curr.Children[c];
             }
             //! Marks the current node is the word 
             curr.IsWord = true;
         }
 
         /// <summary>
-        //! Time Complexity:O(M) where M is the length of the word
+        //! Time Complexity:O(N) where N is the length of the word
         /// </summary>
         /// <param name="word"></param>
         /// <returns></returns>
@@ -81,14 +84,14 @@ namespace LeetCodeTrie.Medium
         {
             //! We will always starts with the root. 
             Node curr = root;
-            for (int i = 0; i < word.Length; ++i)
+            foreach (char c in word)
             {
-                if (!curr.Children.ContainsKey(word[i]))
+                if (!curr.Children.ContainsKey(c))
                 {
                     return false;
                 }
 
-                curr = curr.Children[word[i]];
+                curr = curr.Children[c];
             }
 
             //! Returns true if and only if reached node returns true
@@ -96,7 +99,7 @@ namespace LeetCodeTrie.Medium
         }
 
         /// <summary>
-        //! Time Complexity:O(M) where M is the length of the prefix
+        //! Time Complexity:O(N) where N is the length of the prefix
         /// </summary>
         /// <param name="prefix"></param>
         /// <returns></returns>

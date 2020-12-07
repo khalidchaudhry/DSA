@@ -11,31 +11,92 @@ namespace Greedy.Medium
         {
             _767 Reorganize = new _767();
 
-            string s = "aaab";
+            string s = "aab";
 
-            var result=Reorganize.ReorganizeString0(s);
+            var result=Reorganize.ReorganizeString2(s);
 
             Console.ReadLine();
         }
+
+        public string ReorganizeString2(string S)
+        {
+            Dictionary<char, int> map = new Dictionary<char, int>();
+            BuildFrequency(S, map);
+            map = map.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            int totalBuckets = map.First().Value;
+
+            List<StringBuilder> buckets = new List<StringBuilder>();
+            InitializeBuckets(buckets, totalBuckets);
+
+            int i = 0;
+            foreach (var keyValue in map)
+            {
+                for (int j = 0; i < keyValue.Value; ++j)
+                {
+                    buckets[i % totalBuckets].Append(keyValue.Key);
+                    ++i;
+                }
+            }
+            return PrepareResult(buckets);
+        }
+
+        private void BuildFrequency(string s, Dictionary<char, int> map)
+        {
+            for (int i = 0; i < s.Length; ++i)
+            {
+                if (!map.ContainsKey(s[i]))
+                {
+                    map.Add(s[i], 0);
+                }
+                ++map[s[i]];
+            }
+        }
+
+        private void InitializeBuckets(List<StringBuilder> buckets, int totalBuckets)
+        {
+            for (int i = 0; i < totalBuckets; ++i)
+            {
+                buckets.Add(new StringBuilder());
+            }
+        }
+
+        private string PrepareResult(List<StringBuilder> buckets)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (StringBuilder bucket in buckets)
+            {
+                sb.Append(bucket);
+            }
+
+            for (int i = 0; i < sb.Length - 1; ++i)
+            {
+                if (sb[i] == sb[i + 1])
+                {
+                    return string.Empty;
+                }
+            }
+
+            return sb.ToString();
+        }
+
+
         //Kai class
+        //! Same concept as in 621,767
         public string ReorganizeString0(string S)
         {
-            Dictionary<char, int> frequencyCount = CreateFrequencyCountMap(S);
+            Dictionary<char, int> frequencyCount = BuildFrequencyMap(S);
 
             frequencyCount = frequencyCount.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
             int maxCount = frequencyCount.ElementAt(0).Value;
             //! if maxCount > (stringLength+1)/2 then its not possible to rearrange so that they are not conecutive
-            //! e.g aab shouldbe good but if we use maxCount>s.Length/2 then it will give wrong result 
+            //! e.g "aab" should be good but if we use maxCount>s.Length/2 then it will give wrong result 
+            //! Same as below line (int)Math.Ceiling((double)S.Length / 2))
             if (maxCount > (S.Length + 1) / 2)
                 return string.Empty;
 
             StringBuilder[] buckets = new StringBuilder[maxCount];
-            //!initiazliing buckets 
-            for (int b = 0; b < buckets.Length; ++b)
-            {
-                buckets[b] = new StringBuilder();
-            }
+            InitializeBuckets(buckets);
 
             //! round robin 
             int i = 0;
@@ -57,20 +118,8 @@ namespace Greedy.Medium
             return ValidateResult(result.ToString());
         }
 
-        private string ValidateResult(string result)
+        private Dictionary<char, int> BuildFrequencyMap(string s)
         {
-            for (int i = 0; i < result.Length - 1; ++i)
-            {
-                if (result[i] == result[i + 1])
-                    return string.Empty;
-            }
-
-            return result;
-        }
-
-        private Dictionary<char, int> CreateFrequencyCountMap(string s)
-        {
-
             Dictionary<char, int> frequencyCount = new Dictionary<char, int>();
 
             for (int i = 0; i < s.Length; ++i)
@@ -88,6 +137,30 @@ namespace Greedy.Medium
 
         }
 
+        private void  InitializeBuckets(StringBuilder[] buckets)
+        {
+            //!initiazliing buckets 
+            for (int b = 0; b < buckets.Length; ++b)
+            {
+                buckets[b] = new StringBuilder();
+            }
+
+        }
+
+        private string ValidateResult(string result)
+        {
+            for (int i = 0; i < result.Length - 1; ++i)
+            {
+                if (result[i] == result[i + 1])
+                    return string.Empty;
+            }
+
+            return result;
+        }
+       
+        
+        
+        
         /// <summary>
         /// https://leetcode.com/problems/reorganize-string/discuss/232469/Java-No-Sort-O(N)-0ms-beat-100
         /// </summary>

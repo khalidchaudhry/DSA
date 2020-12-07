@@ -39,6 +39,7 @@ namespace LeetCodeTrie.Hard
             char c = board[row][column]; // get the current character from the board at i, j
             if (c == '*' || !root.Children.ContainsKey(c))
                 return;
+
             root = root.Children[c];
             if (root.word != null)
             {   // found one words add in the result list
@@ -47,11 +48,19 @@ namespace LeetCodeTrie.Hard
             }
 
             board[row][column] = '*'; // update the character of at i , j no need for visited array
-            if (row > 0) DFS(board, row - 1, column, root, result); // up
-            if (column > 0) DFS(board, row, column - 1, root, result); // left
-            if (row < board.Length - 1) DFS(board, row + 1, column, root, result); // down
-            if (column < board[0].Length - 1) DFS(board, row, column + 1, root, result); // right
-            board[row][column] = c; // backtrack the character
+
+            foreach ((int x, int y) in GetNeighbors(board, row, column))
+            {
+                DFS(board, x, y, root, result);               
+            }
+
+            board[row][column] = c; //! backtrack the character
+
+            //if (row > 0) DFS(board, row - 1, column, root, result); // up
+            //if (column > 0) DFS(board, row, column - 1, root, result); // left
+            //if (row < board.Length - 1) DFS(board, row + 1, column, root, result); // down
+            //if (column < board[0].Length - 1) DFS(board, row, column + 1, root, result); // right
+            //board[row][column] = c; // backtrack the character
         }
 
         private void ConstructTrie(string[] words, TrieNode root)
@@ -73,6 +82,15 @@ namespace LeetCodeTrie.Hard
                     }
                 }
                 node.word = word;
+            }
+        }
+
+        private IEnumerable<(int x, int y)> GetNeighbors(char[][] board, int i, int j)
+        {
+            foreach ((int x, int y) in new List<(int, int)> { (i - 1, j), (i + 1, j), (i, j + 1), (i, j - 1) })
+            {
+                if (x >= 0 && x < board.Length && y >= 0 && y < board[0].Length)
+                    yield return (x, y);
             }
         }
     }

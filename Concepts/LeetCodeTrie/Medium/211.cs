@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 namespace LeetCodeTrie.Medium
 {
     public class _211
-    {
-
-
-
+    { 
 
     }
     /// <summary>
@@ -18,12 +15,11 @@ namespace LeetCodeTrie.Medium
     /// </summary>
     public class WordDictionary
     {
-        Dictionary<int, HashSet<string>> map;
+        Dictionary<int, List<string>> map;
         /** Initialize your data structure here. */
         public WordDictionary()
         {
-            map = new Dictionary<int, HashSet<string>>();
-
+            map = new Dictionary<int, List<string>>();
         }
 
         /** Adds a word into the data structure. */
@@ -37,7 +33,7 @@ namespace LeetCodeTrie.Medium
             }
             else
             {
-                map.Add(length, new HashSet<string>() { word });
+                map.Add(length, new List<string>() { word });
             }
 
         }

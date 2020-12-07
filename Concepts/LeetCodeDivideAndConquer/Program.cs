@@ -31,15 +31,16 @@ namespace LeetCodeDivideAndConquer
 
             //Search.SearchMatrix0(matrix, 5);
 
-            _973 KClosestPoint = new _973();
-            int[][] points = new int[3][]
-            {
-                new int[]{3,3},
-                new int[]{5,-1},
-                new int[]{-2,4 }
-            };
-            KClosestPoint.KClosest0(points,2);
+            //_973 KClosestPoint = new _973();
+            //int[][] points = new int[3][]
+            //{
+            //    new int[]{3,3},
+            //    new int[]{5,-1},
+            //    new int[]{-2,4 }
+            //};
+            //KClosestPoint.KClosest0(points,2);
 
+            _240._240Main();
 
             Console.ReadLine();
         }

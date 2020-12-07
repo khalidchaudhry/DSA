@@ -24,27 +24,27 @@ namespace LeetCodeBitManipulation.Medium
         /// <returns></returns>
         public int FindMaximumXOR(int[] nums)
         {
-            int maxXOR = int.MinValue;
-            TreeNode root = new TreeNode();
+            Trie trie = new Trie();
             for (int i = 0; i < nums.Length; ++i)
             {
-                InsertNode(nums[i], root);
+                trie.Insert(nums[i]);
             }
 
+            int maxXOR = 0;
             for (int i = 0; i < nums.Length; ++i)
             {
-                int xor = FindMaxXORPair(nums[i], root);
-                maxXOR = Math.Max(maxXOR, xor);
+                int xor = trie.Search(nums[i]);
+                maxXOR = Math.Max(xor, maxXOR);
             }
 
             return maxXOR;
         }
 
         /// <summary>
+        //! Prefix Sum approach
         /// https://www.youtube.com/watch?v=PTvFn17ZDRg
         /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
+
         public int FindMaximumXOR1(int[] nums)
         {
             int maxXOR = 0;
@@ -63,7 +63,7 @@ namespace LeetCodeBitManipulation.Medium
                 //!Think of tempMax as the target we want to find 
 
                 int tempMax = maxXOR | (1 << i);
-                foreach (int prefix in hs)   
+                foreach (int prefix in hs)
                 {
                     if (hs.Contains(prefix ^ tempMax))
                     {
@@ -98,78 +98,83 @@ namespace LeetCodeBitManipulation.Medium
 
             return maxXOR;
         }
-        private int FindMaxXORPair(int num, TreeNode curr)
-        {
-            int currXOR = 0;
-
-            for (int i = 31; i >= 0; --i)
-            {
-                //! bit from left side. Most significant bit
-                int bit = (num >> i) & 1;
-                //! current bit can be 0 or 1 
-                if (bit == 0)
-                {
-                    //! if bit is zero and curr.right is not null(it means we have 1) then we will take it as it will give maximum XOR
-                    if (curr.right != null)
-                    {
-                        currXOR = currXOR + (int)Math.Pow(2, i);
-                        curr = curr.right;
-                    }
-                    else
-                    {
-                        curr = curr.left;
-                    }
-                }
-                else
-                {
-                    if (curr.left != null)
-                    {
-                        currXOR = currXOR + (int)Math.Pow(2, i);
-                        curr = curr.left;
-                    }
-                    else
-                    {
-                        curr = curr.right;
-                    }
-                }
-            }
-            return currXOR;
-        }
-        /// <summary>
-        //! Insert 0 on the left side and and insert 1 on the right side. 
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <param name="curr"></param>
-        private void InsertNode(int nums, TreeNode curr)
-        {
-            for (int i = 31; i >= 0; --i)
-            {
-                int leftMostBit = (nums >> i) & 1;
-                if (leftMostBit == 0)
-                {
-                    if (curr.left == null)
-                    {
-                        curr.left = new TreeNode();
-                    }
-                    curr = curr.left;
-                }
-                else
-                {
-                    if (curr.right == null)
-                    {
-                        curr.right = new TreeNode();
-                    }
-                    curr = curr.right;
-                }
-            }
-        }
 
     }
-
-    public class TreeNode
+    public class Trie
     {
-        public TreeNode left;
+        TrieNode root;
+        public Trie()
+        {
+            root = new TrieNode();
+        }
+        /// <summary>
+        //! Insert 0 on the left side and and insert 1 on the right side.  
+        /// </summary>
+        public void Insert(int number)
+        {
 
-        public TreeNode right;
+            TrieNode curr = root;
+            for (int i = 31; i >= 0; --i)
+            {
+                int leftMostBit = (number >> i) & 1;
+                if (leftMostBit == 0)
+                {
+                    if (curr.Left == null)
+                    {
+                        curr.Left = new TrieNode();
+                    }
+                    curr = curr.Left;
+                }
+                else
+                {
+                    if (curr.Right == null)
+                    {
+                        curr.Right = new TrieNode();
+                    }
+                    curr = curr.Right;
+                }
+            }
+        }
+        public int Search(int number)
+        {
+            int maxXOR = 0;
+
+            TrieNode curr = root;
+            for (int i = 31; i >= 0; --i)
+            {
+                //! current bit can be 0 or 1 
+                int leftMostBit = (number >> i) & 1;
+                if (leftMostBit == 0)
+                {
+                    //!curr.right is not null(it means we have 1) then we will take it as it will give maximum XOR
+                    if (curr.Right != null)
+                    {
+                        maxXOR = maxXOR + (int)Math.Pow(2, i);
+                        curr = curr.Right;
+                    }
+                    else
+                        curr = curr.Left;
+                }
+                else
+                {
+                    if (curr.Left != null)
+                    {
+                        maxXOR = maxXOR + (int)Math.Pow(2, i);
+                        curr = curr.Left;
+                    }
+                    else
+                        curr = curr.Right;
+                }
+            }
+
+            return maxXOR;
+        }
+    }
+
+
+    public class TrieNode
+    {
+        public TrieNode Left { get; set; }
+        public TrieNode Right { get; set; }
     }
 }

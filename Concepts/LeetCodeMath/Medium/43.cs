@@ -13,55 +13,61 @@ namespace LeetCodeMath.Medium
         {
 
             _43 Multiply = new _43();
-            var ans = Multiply.Multiply("2", "3");
+            var ans = Multiply.Multiply0("123", "456");
             Console.ReadLine();
         }
-
-
         /// <summary>
-        /// https://www.youtube.com/watch?v=CnEFY5Y3Z68
-        /// // # <image url="https://pic1.zhimg.com/80/v2-88b017bb468f3e397d4e6823eb6d4820_720w.jpg" scale="0.4" />  
+        //! Take aways
+        //! Take away 1: we can convert string to number using s[i]-'0'
+        //! Take away 2: Pay attention to edge cases where  we need to skip leading zeros but don't skip in between 0's e.g. (0039089)
+        //! https://www.acwing.com/solution/LeetCode/content/11159/
+        //# <image url="https://cdn.acwing.com/media/article/image/2020/04/07/10285_afd7522f78-IMG_0002.PNG" scale="0.4" />  
         /// </summary>
-        /// <param name="num1"></param>
-        /// <param name="num2"></param>
-        /// <returns></returns>
-        public string Multiply(string num1, string num2)
+
+        public string Multiply0(string num1, string num2)
         {
-
-            int num1Length = num1.Length;
-            int num2Length = num2.Length;
             //! multiplication of two numbers can have m+n digits e.g. 3*9=27 
-            int[] result = new int[num1Length + num2Length];
+            int[] result = new int[num1.Length + num2.Length];
+            Product(result, num1, num2);
+            return PrepareResult(result);
+        }
 
+        private void Product(int[] result, string num1, string num2)
+        {
             //!Think of multiplying b*a rather than multiplying by a*b
             for (int i = num1.Length - 1; i >= 0; --i)
             {
                 for (int j = num2.Length - 1; j >= 0; --j)
                 {
-                    int multiply = (num1[i] - '0') * (num2[j] - '0');
-                    //! incase if there is any number from previous multiplication, we need to add it. 
-                    multiply += result[i + j + 1];
-
-                    result[i + j + 1] = multiply % 10;
-                    //! need to add it here in case there was something previous already
-                    result[i + j] += multiply / 10;
+                    int a = num1[i] - '0';
+                    int b = num2[j] - '0';
+                    result[i + j + 1] += a * b;
                 }
             }
-
+            int carry = 0;
+            for (int i = result.Length - 1; i >= 0; --i)
+            {
+                int temp = result[i] + carry;
+                result[i] = temp % 10;
+                carry = temp / 10;
+            }
+        }
+        private string PrepareResult(int[] result)
+        {
             StringBuilder sb = new StringBuilder();
-            foreach (int digit in result)
+            for (int i = 0; i < result.Length; ++i)
             {
                 //! in case of leading  zeros, just skip them 
-                if (sb.Length == 0 && digit == 0)
+                if (sb.Length == 0 && result[i] == 0)
                 {
                     continue;
                 }
 
-                sb.Append(digit);
+                sb.Append(result[i]);
             }
+
             //! incase length is 0 we need to return 0
             return sb.Length == 0 ? "0" : sb.ToString();
         }
-
     }
 }

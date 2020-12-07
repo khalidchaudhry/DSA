@@ -21,11 +21,13 @@ namespace LeetCodeArrays.Medium
                 {
                     Swap(nums, iterator, front);
                     ++front;
+                    //! We are starting from left and hence we are incrementing it for let side only 
                     ++iterator;
                 }
                 else if (nums[iterator] == 2)
                 {
-                    //! we are not incrementing iterator when array element is 2
+                   //! Not incrementing iterator because we may swapped with 0
+                    //!incrementing iterator here  will fail for this test case [1 2 0]
                     Swap(nums, iterator, back);
                     --back;
                 }
@@ -39,7 +41,9 @@ namespace LeetCodeArrays.Medium
 
         /// <summary>
         //! Two pass solution
+        //! Quick Sort
         //! https://www.youtube.com/watch?v=ER4ivZosqCg
+        //! Very similar approach followed in https://leetcode.com/problems/move-zeroes/
         /// </summary>
         public void SortColors2(int[] nums)
         {

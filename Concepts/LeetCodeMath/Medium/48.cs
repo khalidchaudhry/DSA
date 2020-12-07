@@ -28,26 +28,34 @@ namespace LeetCodeMath.Medium
         //https://afteracademy.com/blog/rotate-matrix       
         public void Rotate90ByClockWise(int[][] matrix)
         {
+            TransposeMatrix(matrix);
+            ReverseRows(matrix);
+        }
+        public void Rotate90ByAntiClockWise(int[][] matrix)
+        {
+            TransposeMatrix(matrix);
+            ReverseColumns(matrix);
+        }
+        private void TransposeMatrix(int[][] matrix)
+        {
 
-            int rows = matrix.Length;
-            int columns = matrix[0].Length;
-
-            //Transpose the matrix
-            for (int row = 0; row < rows; ++row)
+            for (int r = 0; r < matrix.Length; ++r)
             {
-                for (int column = row + 1; column < columns; ++column)
+                for (int c = r + 1; c < matrix[0].Length; ++c)
                 {
-                    int temp = matrix[row][column];
-                    matrix[row][column] = matrix[column][row];
-                    matrix[column][row] = temp;
+                    int temp = matrix[r][c];
+                    matrix[r][c] = matrix[c][r];
+                    matrix[c][r] = temp;
                 }
             }
+        }
+        private void ReverseRows(int[][] matrix)
+        {
 
-            // Reverse all  the rows
-            for (int row = 0; row < rows; ++row)
+            for (int row = 0; row < matrix.Length; ++row)
             {
                 int i = 0;
-                int j = columns - 1;
+                int j = matrix[row].Length - 1;
                 while (i < j)
                 {
                     int temp = matrix[row][i];
@@ -58,29 +66,13 @@ namespace LeetCodeMath.Medium
                 }
             }
         }
-
-        public void Rotate90ByAntiClockWise(int[][] matrix)
+        private void ReverseColumns(int[][] matrix)
         {
-
-            int rows = matrix.Length;
-            int columns = matrix[0].Length;
-
-            //Transpose the matrix
-            for (int row = 0; row < rows; ++row)
-            {
-                for (int column = row + 1; column < columns; ++column)
-                {
-                    int temp = matrix[row][column];
-                    matrix[row][column] = matrix[column][row];
-                    matrix[column][row] = temp;
-                }
-            }
-
-            // Reverse all  the columns
-            for (int column = 0; column < columns; ++column)
+            for (int column = 0; column < matrix[0].Length; ++column)
             {
                 int i = 0;
-                int j = rows - 1;
+                int j = matrix[0].Length;
+
                 while (i < j)
                 {
                     int temp = matrix[i][column];
@@ -90,6 +82,7 @@ namespace LeetCodeMath.Medium
                     --j;
                 }
             }
+
         }
 
 
