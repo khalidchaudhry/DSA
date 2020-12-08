@@ -23,50 +23,42 @@ namespace Greedy.Medium
 
         }
         /// <summary>
-        /// https://leetcode.com/problems/meeting-rooms-ii/solution/
+        /// https://leetcode.com/problems/meeting-rooms-ii/discuss/67855/Explanation-of-%22Super-Easy-Java-Solution-Beats-98.8%22-from-%40pinkfloyda
         /// </summary>
         /// <param name="intervals"></param>
         /// <returns></returns>
         public int MinMeetingRooms0(int[][] intervals)
         {
-            if (intervals.Length == 0)
-                return 0;
-
-            int usedRooms = 0;
-
-            int[] startTime = new int[intervals.Length];
-            int[] endTime = new int[intervals.Length];
-
-            for (int i = 0; i < intervals.Length; ++i)
+            if (intervals == null || intervals.Length == 0) return 0;
+            int n = intervals.Length, index = 0;
+            int[] begins = new int[n];
+            int[] ends = new int[n];
+            foreach (int[] interval in intervals)
             {
-                startTime[i] = intervals[i][0];
-                endTime[i] = intervals[i][1];
+                begins[index] = interval[0];
+                ends[index] = interval[1];
+                index++;
             }
-
-            Array.Sort(startTime);
-            Array.Sort(endTime);
-
-            int startTimePointer = 0;
-            int endTimePointer = 0;
-
-            while (startTimePointer < intervals.Length)
+            Array.Sort(begins);
+            Array.Sort(ends);
+            int rooms = 0, pre = 0;
+            for (int i = 0; i < n; i++)
             {
-                // If there is a meeting that has ended by the time the meeting at `start_pointer` starts
-                if (startTime[startTimePointer] >= endTime[endTimePointer])
+                //!whenever there is a start meeting, we need to add one room
+                rooms++;
+                //! check to see if any previous meeting ends, which is why we check start with the first end. 
+                //! When the start is bigger than end, it means at this time one of the previous meeting ends,
+                //! and it can take and reuse that room.
+                if (begins[i] >= ends[pre])
                 {
-                    --usedRooms;
-                    ++endTimePointer;
+                    rooms--;
+                    pre++;
                 }
-                // We do this irrespective of whether a room frees up or not.
-                // If a room got free, then this used_rooms += 1 wouldn't have any effect. used_rooms would
-                // remain the same in that case. If no room was free, then this would increase used_rooms
-                ++startTimePointer;
-                ++usedRooms;
             }
-
-            return usedRooms;
+            return rooms;
         }
         /// <summary>
+        /// https://www.youtube.com/watch?v=DFEf8_fjb_0
         /// https://leetcode.com/problems/meeting-rooms-ii/solution/
         /// </summary>
         /// <param name="intervals"></param>
@@ -75,7 +67,7 @@ namespace Greedy.Medium
         {
             if (intervals.Length == 0)
                 return 0;
-            
+
             int[][] sortedIntervals = intervals.OrderBy(x => x[0]).ToArray();
 
             SortedSet<int> ss = new SortedSet<int>();
@@ -96,7 +88,7 @@ namespace Greedy.Medium
                 ss.Add(sortedIntervals[i][1]);
             }
 
-            return ss.Count+result;
+            return ss.Count + result;
         }
 
     }

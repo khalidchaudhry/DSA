@@ -19,8 +19,7 @@ namespace LeetCodeTrie.Hard
         }
 
         /// <summary>
-        /// https://www.youtube.com/watch?v=9G0Tme4w04s
-        /// /// # <image url="https://i.ytimg.com/vi/9G0Tme4w04s/maxresdefault.jpg" scale="0.3" />
+        /// https://www.youtube.com/watch?v=9G0Tme4w04s       
         /// </summary>
         /// <param name="words"></param>
         /// <returns></returns>

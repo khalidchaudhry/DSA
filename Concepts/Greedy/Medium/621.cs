@@ -33,8 +33,8 @@ namespace Greedy.Medium
             var sortedFrequencyCount = frequencyCount.OrderByDescending(x => x.Value);
 
             //! -1 because we don't need to wait after last task in context of  calculating for the idle slots
-            int maxValue = sortedFrequencyCount.ElementAt(0).Value - 1;
-            int idleSlots = maxValue * n;
+            int highestFreq = sortedFrequencyCount.ElementAt(0).Value - 1;
+            int idleSlots = highestFreq * n;
 
             //! why starting at 1 and not 0 becuase index 0 contains most frequent task. We caculated our idle slots based on it . 
             //! Rest of the tasks will work reducing the idle slots 
@@ -42,9 +42,10 @@ namespace Greedy.Medium
             for (int i = 1; i < sortedFrequencyCount.Count(); ++i)
             {
                 //! Math.Min because what if we have more than 1 most frequency tasks. 
-                //! That task count will not take all available idle slots as we have not calculated idle slots based on most frequent task count but mostFrequenctTaskCount-1
+                //! That task count will not take all available idle slots as 
+                //!we have not calculated idle slots based on most frequent task count but mostFrequenctTaskCount-1
                 //! We calculated our idle slots based on maxOccuringTask-1 hence 
-                idleSlots -= Math.Min(maxValue, sortedFrequencyCount.ElementAt(i).Value);
+                idleSlots -= Math.Min(highestFreq, sortedFrequencyCount.ElementAt(i).Value);
             }
 
             return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;

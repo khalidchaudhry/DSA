@@ -15,7 +15,12 @@ namespace Greedy.Medium
             var ans = Partitions.IsPossibleDivide(nums, k);
             Console.ReadLine();
         }
+
         //https://www.youtube.com/watch?v=r4VZCwHs4Zo
+        /// <summary>
+        //! Take Aways:
+        //! Take away 1: Only reason we are building map is because we have duplicates in the input        
+        /// </summary>
         public bool IsPossibleDivide(int[] nums, int k)
         {
             int n = nums.Length;
@@ -23,45 +28,37 @@ namespace Greedy.Medium
             if (n % k != 0)
                 return false;
 
-            Dictionary<int, int> frequencyMap = new Dictionary<int, int>();
-            CreateFrequencyMap(nums, frequencyMap);
-
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            BuildMap(nums, map);
             Array.Sort(nums);
 
-            for (int i = 0; i < n; ++i)
+            for (int i = 0; i < nums.Length; ++i)
             {
-                int smallestNumber = nums[i];
-                if (frequencyMap[smallestNumber] > 0)
+                int number = nums[i];
+                //! as we have processed the input in inside loop
+                if (map[number] > 0)
                 {
-                    for (int j = smallestNumber; j < smallestNumber + k; ++j)
+                    while (number < nums[i] + k)
                     {
-                        if (frequencyMap.ContainsKey(j) && frequencyMap[j] > 0)
-                        {
-                            --frequencyMap[j];
-                        }
-                        else
-                        {
+                        if (!map.ContainsKey(number) || map[number] == 0)
                             return false;
-                        }
+
+                        --map[number];
+
+                        ++number;
                     }
                 }
             }
 
             return true;
         }
-
-        private void CreateFrequencyMap(int[] nums, Dictionary<int, int> frequencyMap)
+        private void BuildMap(int[] nums, Dictionary<int, int> map)
         {
             for (int i = 0; i < nums.Length; ++i)
             {
-                if (frequencyMap.ContainsKey(nums[i]))
-                {
-                    ++frequencyMap[nums[i]];
-                }
-                else
-                {
-                    frequencyMap[nums[i]] = 1;
-                }
+                if (!map.ContainsKey(nums[i]))
+                    map.Add(nums[i], 0);
+                ++map[nums[i]];
             }
         }
     }
