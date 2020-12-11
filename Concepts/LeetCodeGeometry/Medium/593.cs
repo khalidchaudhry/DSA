@@ -28,7 +28,9 @@ namespace LeetCodeGeometry.Medium
                 Distance(p2,p4),
                 Distance(p3,p4)
             };
-
+            //For any square, lenght of all sides should be the same a and the length of two diagonals 
+            //should be the same b and a != b.So out of the 6 lengths, there should be 2 unique lengths(also a!= 0 and b!= 0).
+            //!hs.Contains(0) because if distance is zero among the points than they can't be line
             return !hs.Contains(0) && hs.Count == 2; 
         }
 

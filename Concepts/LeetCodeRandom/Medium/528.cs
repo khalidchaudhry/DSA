@@ -13,53 +13,60 @@ namespace LeetCodeRandom.Medium
     }
 
     /// <summary>
+    ///  /// # <image url="$(SolutionDir)\Images\528.png"  scale="0.4"/>A
     /// https://www.youtube.com/watch?v=v-_aEMtgnkIs
+    //! Take aways: 
+    //! Take away 1: Always pay attention to range for generating random number
     /// </summary>
     public class Solution
     {
-        int[] sum;
+        int[] prefixSum;
         Random random;
         public Solution(int[] w)
         {
-            sum = new int[w.Length];
             random = new Random();
-            int runningSum = 0;
+            prefixSum = new int[w.Length];
+            int sum = 0;
             for (int i = 0; i < w.Length; ++i)
             {
-                runningSum += w[i];
-                sum[i] = runningSum;
+                sum += w[i];
+                prefixSum[i] = sum;
             }
 
         }
 
         public int PickIndex()
         {
-            //
-            var nextNumber = random.Next(1, sum[sum.Length - 1] + 1);
-            return BinarySearch(nextNumber);
+            int lastValue = prefixSum[prefixSum.Length - 1];
+            //! Random number range is from 1 to sum +1 Why ?
+            //! Starting from 1 because we will not have number 0 as given in question constraint
+            //! 1 <= w[i] <= 10^5
+            //! Logically speaking , if number probability is 0 then it should not be given even 
+            int target = random.Next(1, lastValue + 1);
+            int lo = -1;
+            int hi = prefixSum.Length - 1;
 
-        }
-
-        private int BinarySearch(int target)
-        {
-            int lo = 0;
-            int hi = sum.Length - 1;
-
-            while (lo <= hi)
+            while (lo + 1 < hi)
             {
-                int mid = lo + (hi - lo) / 2;
-
-                if (sum[mid] == target)
-                    return mid;
-                else if (sum[mid] > target)
-                    hi = mid - 1;
+                int mid = lo + ((hi - lo) / 2);
+                if (OK(mid, target))
+                    hi = mid;
                 else
-                    lo = mid + 1;
+                    lo = mid;
             }
 
-            return lo;
+            return hi;
 
         }
+
+        //! First  number >= equal to the target
+        //!FFFFF'T'TTTTTTT
+        private bool OK(int mid, int target)
+        {
+            return prefixSum[mid] >= target;
+        }
+
+
     }
 
 

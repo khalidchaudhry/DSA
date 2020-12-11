@@ -19,7 +19,47 @@ namespace LeetCodeRandom.Medium._398
 
 
     }
+    /// <summary>   
+    //! Build map based on value and curent index + list of all possible indexes
+    //! Increment current index after returning current index value. 
+    //! 
+    /// </summary>
+    public class Solution2
+    {
 
+        Dictionary<int, Node2> map;
+        public Solution2(int[] nums)
+        {
+            map = new Dictionary<int, Node2>();
+            BuildMap(map, nums);
+        }
+
+        public int Pick(int target)
+        {
+
+            Node2 curr = map[target];
+            if (curr.CurrentIndex == curr.Indexes.Count)
+            {
+                curr.CurrentIndex = 0;
+            }
+            int toReturn = curr.Indexes[curr.CurrentIndex];
+            ++curr.CurrentIndex;
+
+            return toReturn;
+        }
+        private void BuildMap(Dictionary<int, Node2> map, int[] nums)
+        {
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                if (!map.ContainsKey(nums[i]))
+                {
+                    map.Add(nums[i], new Node2());
+                }
+                map[nums[i]].Indexes.Add(i);
+            }
+        }
+    }
+   
     /// <summary>
     // https://www.youtube.com/watch?v=oyewBKxHYGU
     /// </summary>
@@ -59,6 +99,18 @@ namespace LeetCodeRandom.Medium._398
         }
     }
 
+    public class Node2
+    {
+        public int CurrentIndex { get; set; }
+        public List<int> Indexes { get; set; }
+        public Node2()
+        {
+            CurrentIndex = 0;
+            Indexes = new List<int>();
+        }
+
+    }
+
     public class Node
     {
         public List<int> Indexes { set; get; }
@@ -96,4 +148,6 @@ namespace LeetCodeRandom.Medium._398
             return ret;
         }
     }
+
+
 }

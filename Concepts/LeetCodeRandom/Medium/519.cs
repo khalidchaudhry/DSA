@@ -53,8 +53,10 @@ namespace LeetCodeRandom.Medium._519
 
             int r = rand.Next(total--);
             int x = r;
+            //! check if we have already put something at this index
             if (map.ContainsKey(r))
             {
+                //! swap - put total at index that we generated
                 x = map[r];
                 if (map.ContainsKey(total))
                     map[r] = map[total];
@@ -108,6 +110,44 @@ namespace LeetCodeRandom.Medium._519
         {
             map = new Dictionary<int, int>();
             total = rows * columns;
+        }
+    }
+    /// <summary>
+    //!Not optimized for space 
+    //! As we are filling the values in hashset , then we will increase our calls to random function
+    /// </summary>
+    public class Solution2
+    {
+
+        int rows;
+        int columns;
+        int total;
+        Random random;
+        HashSet<int> hs;
+        public Solution2(int n_rows, int n_cols)
+        {
+            rows = n_rows;
+            columns = n_cols;
+            total = rows * columns;
+            random = new Random();
+            hs = new HashSet<int>();
+        }
+        public int[] Flip()
+        {
+            while (true)
+            {
+                int value = random.Next(0, total);
+                if (!hs.Contains(value))
+                {
+                    hs.Add(value);
+                    return new int[] { value / columns, value % columns };
+                }
+            }
+        }
+
+        public void Reset()
+        {
+            hs = new HashSet<int>();
         }
     }
 }
