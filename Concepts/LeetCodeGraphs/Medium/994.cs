@@ -28,103 +28,78 @@ namespace LeetCodeGraphs.Medium
         /// <summary>
         /// https://www.youtube.com/watch?v=CxrnOTUlNJE
         /// </summary>
-        
+
         public int OrangesRotting(int[][] grid)
         {
-            bool[][] visited = new bool[grid.Length][];
-            for (int i = 0; i < visited.Length; ++i)
-            {
-                visited[i] = new bool[grid[0].Length];
-            }
-            Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
-            //! Queue rotten oranges. Mark rotten and 0 as visited as visited and count freshOranges
-            int freshOranges = SetUp(grid, visited, queue);
-
+            HashSet<(int, int)> visited = new HashSet<(int, int)>();
+            Queue<(int, int)> queue = new Queue<(int, int)>();
+            //! important to keep track of fresh oranges. 
+            int freshOranges = SetUp(queue, visited, grid);
+            //!If no fresh oranges then we can immediately return 0 as it will take 0 minutes to rotten all the oranges  
             if (freshOranges == 0) return 0;
 
-            int time = 0;
-            //! We are doing level order traversal because multiple oranges at different cell location can rotten their neighbour
+            int minutes = 0;
             while (queue.Count != 0)
             {
                 int count = queue.Count;
-                bool rotten = false;
+                bool isRotten = false;
                 while (count != 0)
                 {
-                    (int x, int y) = queue.Dequeue();
-
-                    int rowAbove = x - 1;
-                    int rowBelow = x + 1;
-                    int columnRight = y + 1;
-                    int columnLeft = y - 1;
-
-                    if (rowAbove >= 0 && !visited[rowAbove][y])//!up 
-                    {                        
-                        visited[rowAbove][y] = true;
-                        queue.Enqueue((rowAbove, y));
-                        --freshOranges;
-                        rotten = true;
-                    }
-
-                    if (rowBelow < grid.Length && !visited[rowBelow][y])//!down
+                    (int row, int column) = queue.Dequeue();
+                    foreach ((int x, int y) in GetNeighbors(grid, row, column))
                     {
-                        visited[rowBelow][y] = true;
-                        queue.Enqueue((rowBelow, y));
-                        --freshOranges;
-                        rotten = true;
+                        if (!visited.Contains((x, y)))
+                        {
+                            //! rather than decremeting , we can also check later on by iterating 2d matrix again.
+                            //! since we already have count of fresh oranges , ite good idea to keep track of it
+                            --freshOranges;
+                            isRotten = true;
+                            grid[x][y] = 2;
+                            visited.Add((x, y));
+                            queue.Enqueue((x, y));
+                        }
                     }
-                    if (columnRight < grid[0].Length && !visited[x][columnRight])//!right
-                    {
-                        visited[x][columnRight] = true;
-                        queue.Enqueue((x, columnRight));
-                        --freshOranges;
-                        rotten = true;
-                    }
-                    if (columnLeft >= 0 && !visited[x][columnLeft])//!left
-                    {                        
-                        visited[x][columnLeft] = true;
-                        queue.Enqueue((x, columnLeft));
-                        --freshOranges;
-                        rotten = true;
-                    }
-
                     --count;
                 }
-                //! increment time if any orange rotten. 
-                if (rotten)
+                if (isRotten)
+                    ++minutes;
+            }
+            return freshOranges == 0 ? minutes : -1;
+        }
+        private IEnumerable<(int, int)> GetNeighbors(int[][] grid, int row, int column)
+        {
+            foreach ((int i, int j) in new List<(int, int)>() { (row + 1, column), (row - 1, column), (row, column + 1), (row, column - 1) })
+            {
+                if (i >= 0 && i < grid.Length && j >= 0 && j < grid[0].Length)
                 {
-                    ++time;
+                    yield return (i, j);
                 }
             }
-
-            return freshOranges == 0 ? time : -1;
         }
 
-        private int SetUp(int[][] grid, bool[][] visited, Queue<(int x, int y)> queue)
+        private int SetUp(Queue<(int, int)> queue, HashSet<(int, int)> visited, int[][] grid)
         {
             int freshOranges = 0;
             for (int i = 0; i < grid.Length; ++i)
             {
                 for (int j = 0; j < grid[0].Length; ++j)
                 {
-                    //!Queue fresh oragnes as visited
-                    if (grid[i][j] == 2)
-                    {
-                        visited[i][j] = true;
-                        queue.Enqueue((i, j));
-                    }
-                    //!Mark walls as visited as we will never be able to reach to them
                     if (grid[i][j] == 0)
                     {
-                        visited[i][j] = true;
+                        visited.Add((i, j));
                     }
-                    //! counting freshing oranges as we need it later. 
                     if (grid[i][j] == 1)
-                    {
                         ++freshOranges;
+
+                    if (grid[i][j] == 2)
+                    {
+                        visited.Add((i, j));
+                        queue.Enqueue((i, j));
                     }
                 }
             }
             return freshOranges;
         }
+
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace LeetCodeBinaryTrees.Easy
+namespace LeetCodeRecursion.Easy
 {
     // same problem as 530
     class _783

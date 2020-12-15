@@ -10,88 +10,59 @@ namespace LeetCodeGraphs.Medium
     {
 
         /// <summary>
+        ///  // # <image url="$(SolutionDir)\Images\542.png"  scale="0.5"/>
         /// https://www.youtube.com/watch?v=UWykmfK7ta4
+        //! Same pattern in question 286
         /// </summary>        
         public int[][] UpdateMatrix(int[][] matrix)
         {
-
-            Queue<(int, int)> queue = new Queue<(int, int)>();
-
-            bool[][] visited = new bool[matrix.Length][];            
-            for (int i = 0; i < visited.Length; ++i)
+            HashSet<(int x, int y)> visited = new HashSet<(int x, int y)>();
+            Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
+            InitializeQueue(matrix, queue, visited);
+            while (queue.Count != 0)
             {
-                visited[i] = new bool[matrix[0].Length];
-            }
+                (int row, int column) = queue.Dequeue();
 
-            //!Push all matrix cell with zero value to the queue
+                foreach ((int x, int y) in GetNeighbors(matrix, row, column))
+                {
+                    if (!visited.Contains((x, y)) && matrix[x][y] != 0)
+                    {
+                        visited.Add((x, y));
+                        matrix[x][y] = matrix[row][column] + 1;
+                        queue.Enqueue((x, y));
+                    }
+                }
+            }
+            return matrix;
+
+        }
+        private void InitializeQueue(int[][] matrix,
+                                Queue<(int x, int y)> queue,
+                                HashSet<(int x, int y)> visited)
+        {
             for (int i = 0; i < matrix.Length; ++i)
             {
                 for (int j = 0; j < matrix[0].Length; ++j)
                 {
                     if (matrix[i][j] == 0)
                     {
-                        visited[i][j] = true;
                         queue.Enqueue((i, j));
+                        visited.Add((i, j));
                     }
                 }
             }
-            //! Queue not visisted neighbours and assign them new value by incrementing 1 to existing cell value. 
-            while (queue.Count != 0)
+        }
+        private IEnumerable<(int, int)> GetNeighbors(int[][] matrix, int row, int column)
+        {
+            foreach ((int x, int y) in new List<(int, int)>(){
+                                                        (row-1,column),(row+1,column),
+                                                        (row,column+1),(row,column-1)
+                                                       }
+                                                           )
             {
-                (int x, int y) = queue.Dequeue();
-
-                int rowAbove = x - 1;
-                int rowBelow = x + 1;
-                int columnRight = y + 1;
-                int columnLeft = y - 1;
-                
-                //!Push top neighbour 
-                if (
-                    rowAbove >= 0 &&                    
-                    !visited[rowAbove][y]
-                    )
-                {
-                    visited[rowAbove][y] = true;
-                    matrix[rowAbove][y] = matrix[x][y] + 1;
-                    queue.Enqueue((rowAbove, y));
-                }
-
-                //!Push below neighbour 
-                if (                    
-                    rowBelow < matrix.Length &&
-                    !visited[rowBelow][y]
-                    )
-                {
-                    visited[rowBelow][y] = true;
-                    matrix[rowBelow][y] = matrix[x][y] + 1;
-                    queue.Enqueue((rowBelow, y));
-                }
-
-                //!Push left neighbour 
-                if (
-                    columnLeft >= 0 &&
-                    !visited[x][columnLeft]
-                    )
-                {
-                    visited[x][columnLeft] = true;
-                    matrix[x][columnLeft] = matrix[x][y] + 1;
-                    queue.Enqueue((x, columnLeft));
-                }
-
-                //!Push right neihgbour 
-                if (
-                    columnRight < matrix[0].Length &&
-                    !visited[x][columnRight]
-                    )
-                {
-                    visited[x][columnRight] = true;
-                    matrix[x][columnRight] = matrix[x][y] + 1;
-                    queue.Enqueue((x, columnRight));
-                }
-
+                if (x >= 0 && x < matrix.Length && y >= 0 && y < matrix[0].Length)
+                    yield return (x, y);
             }
-
-            return matrix;
         }
     }
 }

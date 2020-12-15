@@ -18,29 +18,20 @@ namespace LeetCodeGraphs.Hard
         //https://www.youtube.com/watch?v=LA0X_N-dEsg
         public string AlienOrder(string[] words)
         {
-            int[] inDegree = new int[26];
-            Dictionary<char, List<char>> graph = BuildGraph(inDegree, words);
+            int[] indegree = new int[26];
+            Dictionary<char, List<char>> graph = BuildGraph(indegree, words);
             Queue<char> queue = new Queue<char>();
             StringBuilder sb = new StringBuilder();
-
-            foreach (var keyValue in graph)
-            {
-                char c = keyValue.Key;
-                if (inDegree[c - 'a'] == 0)
-                {
-                    sb.Append(c);
-                    queue.Enqueue(keyValue.Key);
-                }
-            }
+            InitializeQueue(graph,queue,indegree,sb);
 
             while (queue.Count != 0)
             {
                 char curr = queue.Dequeue();
                 foreach (char neighbor in graph[curr])
                 {
-                    --inDegree[neighbor - 'a'];
+                    --indegree[neighbor - 'a'];
 
-                    if (inDegree[neighbor - 'a'] == 0)
+                    if (indegree[neighbor - 'a'] == 0)
                     {
                         sb.Append(neighbor);
                         queue.Enqueue(neighbor);
@@ -53,7 +44,7 @@ namespace LeetCodeGraphs.Hard
 
         private Dictionary<char, List<char>> BuildGraph(int[] inDegree, string[] words)
         {
-            //! here in this problem , graph is build in different way. For every word , we will make entry in the graph
+            //! here in this problem , graph is build in different way. For every character in word , we will make entry in the graph
             Dictionary<char, List<char>> graph = new Dictionary<char, List<char>>();
             foreach (string word in words)
             {
@@ -75,8 +66,8 @@ namespace LeetCodeGraphs.Hard
                 if (word1.Length > word2.Length && word1.StartsWith(word2))
                 {
                     return new Dictionary<char, List<char>>();
-
                 }
+
                 int len = Math.Min(word1.Length, word2.Length);
                 int j = 0;
                 while (j < len)
@@ -95,6 +86,20 @@ namespace LeetCodeGraphs.Hard
             }
 
             return graph;
+        }
+
+        private void InitializeQueue(Dictionary<char, List<char>> graph, Queue<char> queue, int[] indegree, StringBuilder sb)
+        {
+            foreach (var keyValue in graph)
+            {
+                char c = keyValue.Key;
+                if (indegree[c - 'a'] == 0)
+                {
+                    sb.Append(c);
+                    queue.Enqueue(keyValue.Key);
+                }
+            }
+
         }
     }
 }

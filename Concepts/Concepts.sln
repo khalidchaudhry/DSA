@@ -106,6 +106,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeLinkedList", "LeetC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeCommon", "LeetCodeCommon\LeetCodeCommon.csproj", "{19D4E053-396F-494A-96AD-D914FFA52372}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bala", "Bala\Bala.csproj", "{D950ABFF-8539-46F0-A31D-8C1BEAD21843}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -288,6 +290,10 @@ Global
 		{19D4E053-396F-494A-96AD-D914FFA52372}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19D4E053-396F-494A-96AD-D914FFA52372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19D4E053-396F-494A-96AD-D914FFA52372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D950ABFF-8539-46F0-A31D-8C1BEAD21843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D950ABFF-8539-46F0-A31D-8C1BEAD21843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D950ABFF-8539-46F0-A31D-8C1BEAD21843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D950ABFF-8539-46F0-A31D-8C1BEAD21843}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -329,6 +335,7 @@ Global
 		{B3FF1454-6A52-41C0-886C-68B00AE4B4A2} = {9E880A86-5C2A-4C81-98B1-034BC0A23342}
 		{89751DDE-6321-4A0A-B070-F29F0C85EF37} = {9E880A86-5C2A-4C81-98B1-034BC0A23342}
 		{19D4E053-396F-494A-96AD-D914FFA52372} = {9E880A86-5C2A-4C81-98B1-034BC0A23342}
+		{D950ABFF-8539-46F0-A31D-8C1BEAD21843} = {11BC0A5C-50F2-4581-B829-E5C901917B70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {827F52FF-EF11-4FEE-96D9-2D8DC87620FE}

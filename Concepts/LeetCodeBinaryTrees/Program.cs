@@ -728,12 +728,12 @@ namespace LeetCodeBinaryTrees
 
             //_701._701Main();
 
-            //_987._987Main();
+            _987._987Main();
 
             //_116._116Main();
             //Console.ReadLine();
 
-            _106._106Main();
+            //_106._106Main();
 
 
         }

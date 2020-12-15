@@ -48,36 +48,19 @@ namespace LeetCodeGraphs.Medium
             List<int> result = new List<int>();
             Dictionary<int, List<int>> adjList = new Dictionary<int, List<int>>();
             int[] indegree = new int[numCourses];
-            // Build Graph
+            //! Build Graph
             BuildGraph(prerequisites, adjList, indegree);
             Queue<int> queue = new Queue<int>();
-
-            // Queue courses that don't have prerequisite 
-            for (int i = 0; i < indegree.Length; i++)
-            {
-                if (indegree[i] == 0)
-                {
-                    queue.Enqueue(i);
-                }
-            }
-
-            // BFS 
-            int cleared = 0;
+            //! Queue courses that don't have prerequisite 
+            InitializeQueue(queue, indegree);
+            //! BFS           
             while (queue.Count != 0)
             {
                 int curr = queue.Dequeue();
-
                 if (indegree[curr] == 0)
                 {
                     result.Add(curr);
-                    ++cleared;
                 }
-
-                if (!adjList.ContainsKey(curr))
-                {
-                    continue;
-                }
-
                 foreach (int neighbour in adjList[curr])
                 {
                     --indegree[neighbour];
@@ -88,13 +71,12 @@ namespace LeetCodeGraphs.Medium
                 }
             }
 
-            if (cleared != numCourses)
+            if (result.Count != numCourses)
             {
                 result.Clear();
             }
 
             return result.ToArray();
-
         }
 
         private void BuildGraph(int[][] prerequisites, Dictionary<int, List<int>> adjList, int[] indegree)
@@ -111,7 +93,17 @@ namespace LeetCodeGraphs.Medium
             }
         }
 
-        public bool IsDFSContainsCycle(Dictionary<int, List<int>> graph, int at, int[] color, List<int> ans)
+        private void InitializeQueue(Queue<int> queue, int[] indegree)
+        {
+            for (int i = 0; i < indegree.Length; i++)
+            {
+                if (indegree[i] == 0)
+                {
+                    queue.Enqueue(i);
+                }
+            }
+        }
+        private bool IsDFSContainsCycle(Dictionary<int, List<int>> graph, int at, int[] color, List<int> ans)
         {
             if (color[at] == 1) return true;
             if (color[at] == 2) return false;

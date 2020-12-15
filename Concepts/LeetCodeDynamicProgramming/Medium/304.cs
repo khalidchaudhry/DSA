@@ -32,7 +32,7 @@ namespace LeetCodeDynamicProgramming.Medium
 
         int[][] dp;
         /// <summary>
-        /// # <image url="$(SolutionDir)\Images\304.jpg"  scale="0.1"/>
+        /// # <image url="$(SolutionDir)\Images\304.jpg"  scale="0.2"/>
         /// </summary>
         /// <param name="matrix"></param>
         public NumMatrix(int[][] matrix)

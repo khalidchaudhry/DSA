@@ -24,6 +24,7 @@ namespace LeetCodeGraphs.Medium
         //! For space & Time complexity analysis https://leetcode.com/problems/network-delay-time/solution/
         //! Time complexity=O(N^2 +E) where N is the number of times given  and E is the length of the time
         //! Space Complexity=O(N+E)
+        // # <image url="$(SolutionDir)\Images\743.png"  scale="0.4"/>
         /// </summary>
 
         public int NetworkDelayTime0(int[][] times, int N, int K)
@@ -68,7 +69,7 @@ namespace LeetCodeGraphs.Medium
                     if (newWeight < distance[neighborNode])
                     {
                         distance[neighborNode] = newWeight;
-                        queue.Enqueue((neighborNode,newWeight));
+                        queue.Enqueue((neighborNode, newWeight));
                     }
                 }
             }

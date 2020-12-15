@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{29D6F87F-FB3B-4129-B131-09C189212EEE}</ProjectGuid>
+    <ProjectGuid>{D950ABFF-8539-46F0-A31D-8C1BEAD21843}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LeetCodeRecursion</RootNamespace>
-    <AssemblyName>LeetCodeRecursion</AssemblyName>
+    <RootNamespace>Bala</RootNamespace>
+    <AssemblyName>Bala</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,17 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Easy\339.cs" />
-    <Compile Include="Easy\690.cs" />
-    <Compile Include="Easy\783.cs" />
-    <Compile Include="Medium\17.cs" />
-    <Compile Include="Medium\364.cs" />
-    <Compile Include="Medium\50.cs" />
-    <Compile Include="Medium\687.cs" />
-    <Compile Include="Medium\779.cs" />
+    <Compile Include="12102020.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

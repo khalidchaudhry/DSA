@@ -18,7 +18,7 @@ namespace LeetCodeBinaryTrees.Medium
             t.right.right = new TreeNode(4);
             _199 BinaryTreeRightSideView = new _199();
             BinaryTreeRightSideView.RightSideView0(t);
-        }  
+        }
 
         //! Similar to question 107
         //! Intuition is to do level by level traversal . And level by level  done by BFS        
@@ -29,36 +29,25 @@ namespace LeetCodeBinaryTrees.Medium
         public IList<int> RightSideView0(TreeNode root)
         {
             List<int> result = new List<int>();
-
             if (root == null)
-            {
                 return result;
-            }
             Queue<TreeNode> queue = new Queue<TreeNode>();
             queue.Enqueue(root);
-
             while (queue.Count != 0)
             {
                 int count = queue.Count;
-                for (int i = 0; i < count; i++)
+                while (count != 0)
                 {
                     TreeNode dequeue = queue.Dequeue();
-                    //! To  add last node into the result. 
-                    if (i == count - 1)
-                    {
+                    if (count == 1)
                         result.Add(dequeue.val);
-                    }
                     if (dequeue.left != null)
-                    {
                         queue.Enqueue(dequeue.left);
-                    }
                     if (dequeue.right != null)
-                    {
                         queue.Enqueue(dequeue.right);
-                    }
+                    --count;
                 }
             }
-
             return result;
         }
 

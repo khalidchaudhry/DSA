@@ -62,10 +62,8 @@ namespace LeetCodeGraphs.Medium
                     foreach ((int neighbor, int neighborCost) in graph[node])
                     {
                         //! Controlling the size of the queue. Otherwise , it will grow exponentially 
-                        if (neighborCost + cost > cheapestPrice)
-                            continue;
-
-                        queue.Enqueue((neighbor, neighborCost + cost));
+                        if (neighborCost + cost < cheapestPrice)
+                            queue.Enqueue((neighbor, neighborCost + cost));
                     }
 
                     --count;

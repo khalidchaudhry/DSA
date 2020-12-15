@@ -24,44 +24,34 @@ namespace LeetCodeGraphs.Medium
         /// <returns></returns>
         public bool CanFinish0(int numCourses, int[][] prerequisites)
         {
-            int n = numCourses;
-            int[] indegree = new int[n];
-            Dictionary<int, List<int>> adj = new Dictionary<int, List<int>>();
 
-            //! build the graph and indegree(how many prerequisitie needed for  courses)
-            BuildGraph(prerequisites, indegree, adj);
+            if (numCourses == 1 && prerequisites.Length == 0) return true;
 
-            Queue<int> q = new Queue<int>();
-            int count = 0;
-            //! Push courses having no depedencies i.e. indegree==0 to queue
-            for (int i = 0; i < indegree.Length; i++)
+            Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+            int[] indegree = new int[numCourses];
+
+            BuildGraph(prerequisites, indegree, graph);
+
+            Queue<int> queue = new Queue<int>();
+            InitializeQueue(queue, indegree);
+
+            int count = queue.Count;
+
+            while (queue.Count != 0)
             {
-                if (indegree[i] == 0)
-                    q.Enqueue(i);
-            }
-            //! doing BFS Kahn algorithm 
-            while (q.Count() != 0)
-            {
-                int cur = q.Dequeue();
-
-                if (indegree[cur] == 0)
-                    count++;
-                // To avoid adj lookup failure
-                if (!adj.ContainsKey(cur))
-                    continue;
-
-                foreach (int neighbour in adj[cur])
+                int dequeue = queue.Dequeue();
+                foreach (int neighbor in graph[dequeue])
                 {
-                    indegree[neighbour]--;
-                    if (indegree[neighbour] == 0)
+                    --indegree[neighbor];
+                    if (indegree[neighbor] == 0)
                     {
-                        //! Push courses having no depedencies i.e. indegree==0 to queue
-                        q.Enqueue(neighbour);
+                        queue.Enqueue(neighbor);
+                        ++count;
                     }
                 }
             }
 
-            return count == n;
+            return count == numCourses ? true : false;
         }
 
         //! DFS recursive solution
@@ -96,7 +86,7 @@ namespace LeetCodeGraphs.Medium
             return true;
 
         }
-        
+
         /// <summary>
         //!Topological sort Depth first search iterative
         //https://www.youtube.com/watch?v=0LjVxtLnNOk
@@ -114,7 +104,7 @@ namespace LeetCodeGraphs.Medium
             BuildGraph(prerequisites, indegree, adj);
 
             Stack<int> stk = new Stack<int>();
-            int count = 0;          
+            int count = 0;
 
             //! Push courses having no depedencies i.e. indegree==0 to stack
             for (int i = 0; i < indegree.Length; i++)
@@ -149,7 +139,24 @@ namespace LeetCodeGraphs.Medium
             return count == n;
         }
 
-        private static void BuildGraph(int[][] prerequisites, int[] indegree, Dictionary<int, List<int>> adj)
+        public bool IsDFSContainsCycle(Dictionary<int, List<int>> graph, int at, int[] color)
+        {
+            if (color[at] == 1) return true;
+            if (color[at] == 2) return false;
+
+            color[at] = 1; //! painting the node with grey color
+            foreach (int neighbor in graph[at])
+            {
+                if (IsDFSContainsCycle(graph, neighbor, color))
+                {
+                    return true;
+                }
+            }
+            color[at] = 2; //! painting the node with black color(completed)
+            return false;
+        }
+
+        private void BuildGraph(int[][] prerequisites, int[] indegree, Dictionary<int, List<int>> adj)
         {
             foreach (int[] relation in prerequisites)
             {
@@ -176,26 +183,22 @@ namespace LeetCodeGraphs.Medium
                     {
                         adj.Add(relation[0], nextCourses);
                     }
-                   
-                }
-            }
-        }
-    
-        public bool IsDFSContainsCycle(Dictionary<int, List<int>> graph, int at, int[] color)
-        {
-            if (color[at] == 1) return true;
-            if (color[at] == 2) return false;
 
-            color[at] = 1; //! painting the node with grey color
-            foreach (int neighbor in graph[at])
-            {
-                if (IsDFSContainsCycle(graph, neighbor, color))
-                {
-                    return true;
                 }
             }
-            color[at] = 2; //! painting the node with black color(completed)
-            return false;
         }
+
+        private void InitializeQueue(Queue<int> queue, int[] indegree)
+        {
+            for (int i = 0; i < indegree.Length; ++i)
+            {
+                if (indegree[i] == 0)
+                {
+                    queue.Enqueue(i);
+                }
+            }
+
+        }
+
     }
 }

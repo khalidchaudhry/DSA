@@ -6,25 +6,45 @@ namespace LeetCodeBinaryTrees.Medium
 {
     public class _98
     {
+
+
+        /// <summary>
+        //! Using inorder traversal
+        //! using lower bound and upper bound concept
+        /// </summary>
+        public bool IsValidBST0(TreeNode root)
+        {
+
+            return IsValidBST0(root, long.MinValue, long.MaxValue);
+        }
+
+        private bool IsValidBST0(TreeNode root, long lowerBound, long upperBound)
+        {
+            if (root == null)
+                return true;
+
+            bool left = IsValidBST0(root.left, lowerBound, root.val);
+            bool isTrue = root.val > lowerBound && root.val < upperBound;
+            bool right = IsValidBST0(root.right, root.val, upperBound);
+
+            return left && isTrue && right;
+        }
+
         /// <summary>
         //!Recursion
+        //! using preorder traversal
         // https://www.youtube.com/watch?v=MILxfAbIhrE
-        /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
+        /// </summary>       
         public bool IsValidBST(TreeNode root)
         {
             //!//!datatype must be long rather than int to satisfy below test case. Depends upon which type is of node.val
             //![-2147483648,null,2147483647]
             return Helper(root, long.MinValue, long.MaxValue);
         }
-
         /// <summary>
         //!Use InOrder travseral 
         /// !https://medium.com/leetcode-patterns/leetcode-pattern-0-iterative-traversals-on-trees-d373568eb0ec
-        /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
+        /// </summary>       
         public bool IsValidBST2(TreeNode root)
         {
             if (root == null)

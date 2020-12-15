@@ -47,7 +47,7 @@ namespace LeetCodeBinaryTrees.Medium
             {
                 foreach (Node child in root.children)
                 {
-                    //! +1 because the node we are on is connected with the its leaf. If its connected(not children) than it will never come inside the loop
+                    //! +1 because the node we are on is connected with the its leaf. If its leaf node than it will never come inside the loop
                     int length = Diameter(child, wrapper) + 1;
 
                     if (length > firstMaxLength)

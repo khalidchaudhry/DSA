@@ -25,6 +25,7 @@ namespace LeetCodeGraphs.Medium
         /// <summary>
         //!Time complexity=O(r*c) r =Number of rows c=NumberOf Columns??
         //! Space Complexity=O(r*c)
+        ///  // # <image url="$(SolutionDir)\Images\694.png"  scale="0.4"/>
         /// </summary>     
         public int NumDistinctIslands(int[][] grid)
         {

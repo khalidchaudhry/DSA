@@ -24,6 +24,26 @@ namespace LeetCodeGraphs.Medium
             Console.ReadLine();
 
         }
+        /// <summary>
+        //! Same as question 1522 
+        /// </summary>
+        public int TreeDiameter0(int[][] edges)
+        {
+
+            Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+            BuildGraph(graph, edges);
+
+            bool[] visited = new bool[graph.Count];
+            ResultWrapper result = new ResultWrapper();
+            DFS(graph, visited, 0, result);
+
+            return result.Diameter;
+        }
+
+        /// <summary>
+        //!Takeaways:
+        //! Takeaway 1: Run DFS twice. First to  farthest node and then run DFS from that node to find the distance
+        /// </summary>
         public int TreeDiameter(int[][] edges)
         {
 
@@ -32,19 +52,53 @@ namespace LeetCodeGraphs.Medium
 
             bool[] visited = new bool[graph.Count];
 
-            (int root, int distance) = FindFurthest(graph, visited, 0);
+            (int node, int distance) = FindFurthest(graph, visited, 0);
 
             //! incase of one node , the diameter is 0
 
             visited = new bool[graph.Count];
 
-            (int furthestNode, int maxDistance) = FindFurthest(graph, visited, root);
+            (int furthestNode, int maxDistance) = FindFurthest(graph, visited, node);
 
             return maxDistance;
         }
 
+        private int DFS(Dictionary<int, List<int>> map, bool[] visited, int at, ResultWrapper result)
+        {
+            if (visited[at])
+                return 0;
+
+            visited[at] = true;
+            int firstMaxLength = 0;
+            int secondMaxLength = 0;
+
+            foreach (int neighbor in map[at])
+            {
+                if (!visited[neighbor])
+                {
+                    int length = DFS(map, visited, neighbor, result) + 1;
+
+                    if (length > firstMaxLength)
+                    {
+                        secondMaxLength = firstMaxLength;
+                        firstMaxLength = length;
+                    }
+                    else if (length > secondMaxLength)
+                    {
+                        secondMaxLength = length;
+                    }
+                }
+            }
+            result.Diameter = Math.Max(result.Diameter, firstMaxLength + secondMaxLength);
+
+            return Math.Max(firstMaxLength, secondMaxLength);
+        }
+
         private (int node, int distance) FindFurthest(Dictionary<int, List<int>> map, bool[] visited, int at)
         {
+            if (visited[at])
+                return (at, 0);
+
             visited[at] = true;
 
             int maxDistance = 0;
@@ -53,14 +107,11 @@ namespace LeetCodeGraphs.Medium
             List<int> neighbours = map[at];
             foreach (int neighbour in neighbours)
             {
-                if (!visited[neighbour])
+                (int node, int distance) = FindFurthest(map, visited, neighbour);
+                if (maxDistance < distance + 1)
                 {
-                    (int node, int distance) = FindFurthest(map, visited, neighbour);
-                    if (maxDistance < distance + 1)
-                    {
-                        maxDistance = distance+1;
-                        furthestNode = node;
-                    }
+                    maxDistance = distance + 1;
+                    furthestNode = node;
                 }
             }
 
@@ -80,5 +131,10 @@ namespace LeetCodeGraphs.Medium
                 graph[edge[1]].Add(edge[0]);
             }
         }
+    }
+
+    class ResultWrapper
+    {
+        public int Diameter { get; set; }
     }
 }

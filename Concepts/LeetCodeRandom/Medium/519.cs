@@ -12,12 +12,12 @@ namespace LeetCodeRandom.Medium._519
         {
 
 
-            Solution sol = new Solution(5,5);
+            Solution sol = new Solution(5, 5);
 
             sol.Reset();
-            var ans=sol.Flip2();
+            var ans = sol.Flip2();
             sol.Reset();
-            var ans2=sol.Flip2();
+            var ans2 = sol.Flip2();
             sol.Reset();
             var ans3 = sol.Flip2();
 
@@ -48,33 +48,6 @@ namespace LeetCodeRandom.Medium._519
             rand = new Random();
         }
 
-        public int[] Flip()
-        {
-
-            int r = rand.Next(total--);
-            int x = r;
-            //! check if we have already put something at this index
-            if (map.ContainsKey(r))
-            {
-                //! swap - put total at index that we generated
-                x = map[r];
-                if (map.ContainsKey(total))
-                    map[r] = map[total];
-                else
-                    map[r] = total;
-            }
-            else
-            {
-                if (map.ContainsKey(total))
-                    map[r] = map[total];
-                else
-                    map[r] = total;
-            }
-
-            return new int[] { x / columns, x % columns };
-
-        }
-
         //! Implemented based on Kai's  class
         //! Flatten 2d array into 1-d array
         public int[] Flip2()
@@ -84,7 +57,7 @@ namespace LeetCodeRandom.Medium._519
             if (map.ContainsKey(random))
             {
                 int value = map[random];
-               
+
                 while (true)
                 {
                     if (!map.ContainsKey(value))
@@ -105,7 +78,7 @@ namespace LeetCodeRandom.Medium._519
 
             return new int[] { ans / columns, ans % columns };
         }
-
+         
         public void Reset()
         {
             map = new Dictionary<int, int>();

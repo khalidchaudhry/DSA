@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LeetCodeBinaryTrees.Medium
@@ -18,7 +19,66 @@ namespace LeetCodeBinaryTrees.Medium
 
             _987 VerticalTraversal = new _987();
 
-            var ans = VerticalTraversal.VerticalTraversal(root);
+            var ans = VerticalTraversal.VerticalTraversal0(root);
+        }
+
+        /// <summary>
+        /// # <image url="$(SolutionDir)\Images\987.png"  scale="0.4"/>
+        /// </summary>
+
+        public IList<IList<int>> VerticalTraversal0(TreeNode root)
+        {
+            List<IList<int>> result = new List<IList<int>>();
+
+            if (root == null)
+                return result;
+
+            List<(int column, int row, int value)> nodes = new List<(int column, int row, int value)>();
+            Queue<(TreeNode node, int x, int y)> queue = new Queue<(TreeNode node, int x, int y)>();
+            queue.Enqueue((root, 0, 0));
+            while (queue.Count != 0)
+            {
+                (TreeNode node, int x, int y) = queue.Dequeue();
+                //! we are pushing y then x simply to make sorting easier for us 
+                nodes.Add((y, x, node.val));
+
+                //!Question says that For each node at position (X, Y), its left and right children respectively will be at positions (X-1, Y-1) and (X+1, Y-1).
+                //! Note that, we assign a higher row index value to a node's child node. 
+                //!This convention is at odds with the denotation given in the problem description. 
+                //! This is done intentionally, in order to keep the ordering of all coordinates consistent, i.e. a lower value in any specific coordinate represents a higher order. 
+                //! As a result, a sorting operation in ascending order would work for each coordinate consistently. 
+                if (node.left != null)
+
+                    queue.Enqueue((node.left, x + 1, y - 1));
+                if (node.right != null)
+                    queue.Enqueue((node.right, x + 1, y + 1));
+            }
+
+            PrepareResult(nodes, result);
+            return result;
+        }
+
+        private void PrepareResult(List<(int column, int row, int value)> nodes, List<IList<int>> result)
+        {
+            nodes = nodes.OrderBy(x => x.column).ThenBy(x => x.row).ThenBy(x => x.value).ToList();
+            List<int> currColumn = new List<int>();
+            int currColumnIndex = nodes[0].column;
+            foreach ((int column, int row, int value) in nodes)
+            {
+                if (column == currColumnIndex)
+                {
+                    currColumn.Add(value);
+                }
+                else
+                {
+                    result.Add(currColumn);
+                    currColumnIndex = column;
+                    currColumn = new List<int>();
+                    currColumn.Add(value);
+                }
+            }
+            //! adding the last entry 
+            result.Add(currColumn);
         }
 
         public IList<IList<int>> VerticalTraversal(TreeNode root)
