@@ -16,7 +16,7 @@ namespace LeetCodeDesign.Medium
             History.Visit("google.com");
             History.Visit("facebook.com");
             History.Visit("youtube.com");
-            var test=History.Back(1);
+            var test = History.Back(1);
             Console.ReadLine();
         }
 
@@ -24,16 +24,16 @@ namespace LeetCodeDesign.Medium
     }
 
     /// <summary>
-    //! using doubly linked list 
+    //! Takeaways
+    //!Takeaway1: Whenever we need to go forward and backword in constant time, doubly linked list is a way to go
+    //! 
     /// </summary>
     public class BrowserHistory
     {
-        Node _history;
         Node _curr;
         public BrowserHistory(string homepage)
         {
-            _history = new Node(homepage);
-            _curr = _history;
+            _curr = new Node(homepage);
         }
 
         public void Visit(string url)
@@ -42,7 +42,6 @@ namespace LeetCodeDesign.Medium
             _curr.Next = new Node(url);
             _curr.Next.Previous = _curr;
             _curr = _curr.Next;
-
         }
 
         public string Back(int steps)

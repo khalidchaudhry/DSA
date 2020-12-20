@@ -62,13 +62,13 @@ namespace LeetCodeDesign.Medium
 
             while (pq.Count != 0 && ans.Count < 10)
             {
-                Tweet t = pq.First(); //! based on comparer First is actually maximum value now
+                Tweet maxTweetId = pq.First(); //! based on comparer First is actually having maximum tweet id now
                 pq.Remove(pq.First());
 
-                ans.Add(t.TweetId);
+                ans.Add(maxTweetId.TweetId);
                 
-                if (t.Next != null)
-                    pq.Add(t.Next);
+                if (maxTweetId.Next != null)
+                    pq.Add(maxTweetId.Next);
             }
 
             return ans;
@@ -105,7 +105,10 @@ namespace LeetCodeDesign.Medium
         public class User
         {
             public int UserId { get; set; }
+            //! reason for using hashset is because we need to remove the follower in constant time
             public HashSet<int> Follows { get; set; }  //! User follows who
+
+            //! TweetHead because we can get top 10 tweets from user or other users that this user is following. 
             public Tweet TweetHead { get; set; }
 
             public User(int userId)
@@ -128,6 +131,7 @@ namespace LeetCodeDesign.Medium
             {
                 Tweet t = new Tweet(tweetId, ++_timeStamp);
                 //! adding the node at the very beggining
+                //! The latest tweet will be pointed by the TweetHead
                 t.Next = TweetHead;
                 TweetHead = t;
             }

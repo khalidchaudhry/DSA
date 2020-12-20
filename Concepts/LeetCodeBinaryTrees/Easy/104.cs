@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TopInterviewQuestions.Easy
+namespace LeetCodeBinaryTrees.Easy
 {
     class _104
     {
-
+        //! Similar to 559 and 364 
         public int MaxDepth(TreeNode root)
         {
             if (root == null)

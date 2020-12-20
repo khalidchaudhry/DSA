@@ -14,80 +14,96 @@ namespace LeetCodeDesign.Medium_1429
 
     /// <summary>
     //! Based on idea in Kua's class
-    //! using doubly linked list
+    //! using doubly linked list where it keep track of all the unique number in order
+    //! HashMap to keep track of value and corresponding node. I
     /// </summary>
     public class FirstUnique
     {
-        Dictionary<int, DoublyLinkedList> _map;
-        DoublyLinkedList _head;
-        DoublyLinkedList _tail;
+
+        Dictionary<int, Node> map;
+        DLL dll;
         public FirstUnique(int[] nums)
         {
-            _head = new DoublyLinkedList(int.MaxValue);
-            _tail = new DoublyLinkedList(int.MaxValue);
-            _head.Next = _tail;
-            _tail.Previous = _head;
+            map = new Dictionary<int, Node>();
+            dll = new DLL();
 
-            foreach (int num in nums)
+            for (int i = 0; i < nums.Length; ++i)
             {
-                Insert(num);
+                Add(nums[i]);
             }
         }
-
         public int ShowFirstUnique()
         {
-            if (_head.Next.Next != null) //!  this is the case when linked list contains more than 3 nodes. 
-            {
-                return _head.Next.Value;
-            }
-            return -1;
+            if (dll.IsEmpty())
+                return -1;
+            else
+                return dll.Head.Next.Data;
         }
-
         public void Add(int value)
         {
-            Insert(value);
-        }
 
-        private void Insert(int num)
-        {
-            if (_map.ContainsKey(num)) 
+            if (map.ContainsKey(value))
             {
-                if (_map[num] != null)//! if the key has already been deleted. No need to delete it insert. Its duplicate anyway
+                if (map[value] != null)
                 {
-                    DoublyLinkedList nodeToDelete = _map[num];
-                    nodeToDelete.Previous.Next = nodeToDelete.Next;
-                    nodeToDelete.Next.Previous = nodeToDelete.Previous;
-                    _map[num] = null;
+                    dll.Remove(map[value]);
+                    map[value] = null;
                 }
             }
             else
             {
-                DoublyLinkedList nodeToAdd = new DoublyLinkedList(num);
-                _tail.Previous.Next = nodeToAdd;
-                nodeToAdd.Previous = _tail.Previous;
-
-                nodeToAdd.Next = _tail;
-                _tail.Previous = nodeToAdd;
-
-                _map.Add(num, nodeToAdd);
+                Node newNode = new Node(value);
+                map.Add(value, newNode);
+                dll.Add(newNode);
             }
         }
     }
 
-    public class DoublyLinkedList
+    public class DLL
     {
-        public int Value { get; set; }
-        public DoublyLinkedList Next { get; set; }
-        public DoublyLinkedList Previous { get; set; }
-        public DoublyLinkedList(int value)
+        public Node Head { get; set; }
+        public Node Tail { get; set; }
+        public DLL()
         {
-            Value = value;
-            Previous = null;
-            Next = null;
+            Head = new Node(0);
+            Tail = new Node(0);
+
+            Head.Next = Tail;
+            Tail.Previous = Head;
+
+        }
+        public void Add(Node node)
+        {
+            node.Previous = Tail.Previous;
+            node.Next = Tail;
+
+            Tail.Previous.Next = node;
+            Tail.Previous = node;
+        }
+
+        public void Remove(Node node)
+        {
+            node.Previous.Next = node.Next;
+            node.Next.Previous = node.Previous;
+        }
+        public bool IsEmpty()
+        {
+            return Head.Next.Next == null ? true : false;
         }
     }
 
-
+    public class Node
+    {
+        public Node Next { get; set; }
+        public Node Previous { get; set; }
+        public int Data { get; set; }
+        public Node(int value)
+        {
+            Data = value;
+            Next = null;
+            Previous = null;
+        }
+    }
 }
 
 

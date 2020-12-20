@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LeetCodeRecursion.Easy
 {
+
+    //! Mistake1: First started using Dictionary with Key as id and subordinates as value
+    //! I was not clear that about do we really need base case in the recursion 
     public class _690
     {
         int importance = 0;

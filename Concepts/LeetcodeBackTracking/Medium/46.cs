@@ -25,11 +25,11 @@ namespace LeetcodeBackTracking.Medium
 
         }
         /// <summary>
+        //! Takeaways
+        //! Takeaway1: Chooose --> explore ---> unchoose
         ///https://www.youtube.com/watch?v=idmgLLNIC2U
         /// </summary>
-        /// <param name="nums"></param>
-        /// <param name="path"></param>
-        /// <param name="result"></param>
+       
         private void Permute0(int[] nums, bool[] used, List<int> path, List<IList<int>> result)
         {
             if (path.Count == nums.Length)
@@ -40,12 +40,12 @@ namespace LeetcodeBackTracking.Medium
 
             for (int i = 0; i < nums.Length; ++i)
             {
-                if (used[i]) continue;
+                if (used[i]) continue;//choose
                 used[i] = true;
                 path.Add(nums[i]);
-                Permute0(nums, used, path, result);
+                Permute0(nums, used, path, result);//Explore
                 path.RemoveAt(path.Count - 1);
-                used[i] = false;
+                used[i] = false;//unchoose
             }
         }
 

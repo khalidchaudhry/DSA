@@ -12,6 +12,7 @@ namespace LeetCodeDesign.Medium
 
     /// <summary>
     /// https://www.youtube.com/watch?v=vMB0XjFpt_s
+    ///  /// # <image url="$(SolutionDir)\Images\362(2).png"  scale="0.5"/>A
     // </summary>
     public class HitCounter
     {
@@ -49,7 +50,7 @@ namespace LeetCodeDesign.Medium
             int value = 0;
             for (int i = 0; i < 300; ++i)
             {
-                if (timestamp - _time[i] < 300)
+                if (_time[i] > timestamp - 300)
                 {
                     value += _counter[i];
                 }
@@ -58,6 +59,8 @@ namespace LeetCodeDesign.Medium
             return value;
         }
     }
+
+    ///  /// # <image url="$(SolutionDir)\Images\362.png"  scale="0.4"/>A
 
     public class HitCounter2
     {
@@ -81,15 +84,16 @@ namespace LeetCodeDesign.Medium
             @param timestamp - The current timestamp (in seconds granularity). */
         public int GetHits(int timestamp)
         {
-            //! Why >= 300 and not 300 
-            //!Example: timestamp = 301 and t = 1.
-            //!Valid Range: [1 to 300], [2 to 301], [3,303]. So 301-1 >= 300. 
-            //!Hence 1 should be popped since it doesnt belong to range 2 to 301.
-            while (queue.Count != 0 && timestamp - queue.Peek() >= 300)
-            {
-                queue.Dequeue();
-            }
 
+            int time = timestamp - 300;
+            while (queue.Count != 0)
+            {
+                int diff = timestamp - queue.Peek();
+                if (diff >= 300)
+                    queue.Dequeue();
+                else
+                    break;
+            }
             return queue.Count;
         }
     }

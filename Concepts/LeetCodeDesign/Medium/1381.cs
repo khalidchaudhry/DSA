@@ -12,135 +12,111 @@ namespace LeetCodeDesign.Medium
 
 
     }
+
     /// <summary>
-    //! Based on idea discussed in Kua's class
+    //!Key idea: Visualize stack as list. It will give push and pop operation in O(1)  time. 
+    //! Take aways
+    //! Take away: Not to over think the problem initially.
     /// </summary>
     public class CustomStack
     {
-        List<int> _nums;
-        List<int> _adjustments;
-        int _count;
-        int _maxSize;
+
+        List<int> list;
+        int size;
         public CustomStack(int maxSize)
         {
-            _nums = new List<int>();
-
-            _adjustments = new List<int>();
-
-            _count = 0;
-            _maxSize = maxSize;
-
+            list = new List<int>();
+            size = maxSize;
         }
-
         public void Push(int x)
         {
-            if (_count == _maxSize)
+            if (list.Count == size)
                 return;
-
-            _nums.Add(x);
-            _adjustments.Add(0);
-            ++_count;
+            //! Amortized 0(1)
+            list.Add(x);
         }
 
         public int Pop()
         {
-            if (_count == 0) return -1;
-            int numsLastIndex = _nums.Count - 1;
-            int adjustmentsLastIndex = _adjustments.Count - 1;
-            int toReturn = _nums[numsLastIndex];
-            toReturn += _adjustments[adjustmentsLastIndex];
+            if (list.Count == 0)
+                return -1;
 
-            if (adjustmentsLastIndex != 0)
+            int toReturn = list.ElementAt(list.Count - 1);
+            //!0(1)
+            list.RemoveAt(list.Count - 1);
+            return toReturn;
+        }
+
+        public void Increment(int k, int val)
+        {
+
+            for (int i = 0; i < list.Count && k > 0; ++i)
             {
-                _adjustments[adjustmentsLastIndex - 1] += _adjustments[adjustmentsLastIndex];
+                list[i] = list[i] + val;
+                --k;
+            }
+        }
+    }
+
+    /// <summary>    
+    //! Based on idea discussed in Kua's class
+    //! O(1) for all the operations
+    //! Idea: Only  do increment  whenever someone pops it. 
+    //!1  Whenever push, always  append 0 to Adjustments array
+    //!2. When Increment go to the adjustment array corresponding index(K-1) and add increment value to it.
+    //!3. When pops , if adjustment array!=0 then add the element to be return and add it previous adjustment element
+    /// </summary>
+    public class CustomStack1
+    {
+        List<int> list;
+        List<int> adj;
+        int size;
+        public CustomStack1(int maxSize)
+        {
+            list = new List<int>();
+            adj = new List<int>();
+            size = maxSize;
+        }
+        public void Push(int x)
+        {
+            if (list.Count == size)
+                return;
+
+            list.Add(x);
+            adj.Add(0);
+        }
+
+        public int Pop()
+        {
+            if (list.Count == 0)
+                return -1;
+
+            int toReturn = list[list.Count - 1];
+            toReturn += adj[adj.Count - 1];
+            //!When adjustment element count are more then 1 only then we will be able to add it
+            if (adj.Count > 1)
+            {
+                adj[adj.Count - 2] += adj[adj.Count - 1];
             }
 
-            _nums.RemoveAt(numsLastIndex);
-            _adjustments.RemoveAt(numsLastIndex);
-            --_count;
+            list.RemoveAt(list.Count - 1);
+            adj.RemoveAt(adj.Count - 1);
 
             return toReturn;
         }
 
         public void Increment(int k, int val)
         {
-            if (_count == 0) return;
-
-            if (k > _count)
+            if (adj.Count == 0) return;
+            //! incase k is greater than number of elements in list , simply  set last element and returns the result
+            if (k > adj.Count)
             {
-                int index = _adjustments.Count - 1;
-                _adjustments[index] += val;
-                return;
-            }
-            _adjustments[k - 1] += val;
-
-        }
-    }
-
-
-
-
-    
-
-    public class CustomStack3
-    {
-        Stack<int> _stk;
-        int _count;
-        int _capacity;
-
-        public CustomStack3(int maxSize)
-        {
-            _stk = new Stack<int>();
-            _count = 0;
-            _capacity = maxSize;
-        }
-
-        public void Push(int x)
-        {
-            if (_stk.Count == _capacity)
-            {
+                adj[adj.Count - 1] += val;
                 return;
             }
 
-            _stk.Push(x);
-            ++_count;
-
+            adj[k - 1] += val;
         }
 
-        public int Pop()
-        {
-            if (_stk.Count == 0)
-            {
-                return -1;
-            }
-
-            --_count;
-
-            return _stk.Pop();
-
-
-        }
-
-        public void Increment(int k, int val)
-        {
-            Stack<int> temp = new Stack<int>();
-
-            while (_stk.Count != 0)
-            {
-                temp.Push(_stk.Pop());
-            }
-
-            while (temp.Count != 0 && k >= 0)
-            {
-                _stk.Push(temp.Pop() + val);
-                --k;
-            }
-            //! need to push rest of the elements into stack as well
-            while (temp.Count != 0)
-            {
-                _stk.Push(temp.Pop());
-            }
-
-        }
-    }
+    }   
 }

@@ -9,7 +9,10 @@ namespace LeetCodeRecursion.Easy
     public class _339
     {
 
-        //! BFS approach
+        /// <summary>
+        //! BFS approach(Level order traversal). 
+        //! Also achievable with BFS without level order traversal but needed to pass level into the queue along with NestedInteger       
+        /// </summary>
         public int DepthSum(IList<NestedInteger> nestedList)
         {
             Queue<NestedInteger> queue = new Queue<NestedInteger>();
@@ -19,21 +22,20 @@ namespace LeetCodeRecursion.Easy
                 queue.Enqueue(nestedInteger);
             }
 
-
             int depth = 1;
             int totalSum = 0;
 
             while (queue.Count != 0)
-            {
-                int depthSum = 0;
+            {                
                 int size = queue.Count;
                 for (int i = 0; i < size; ++i)
                 {
                     NestedInteger dequeue = queue.Dequeue();
-                    
+                    //! Careful about using method  GetList() rather than IsInteger().
+                    //! It returns empty list with count of 0 rather than returning null
                     if (dequeue.IsInteger())
                     {
-                        depthSum += dequeue.GetInteger();                     
+                        totalSum += dequeue.GetInteger() * depth;
                     }
                     else
                     {
@@ -43,8 +45,6 @@ namespace LeetCodeRecursion.Easy
                         }
                     }
                 }
-
-                totalSum += (depth * depthSum);
                 ++depth;
             }
 

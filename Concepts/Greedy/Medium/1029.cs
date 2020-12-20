@@ -59,7 +59,12 @@ namespace Greedy
         public int TwoCitySchedCost1(int[][] costs)
         {
 
-            Array.Sort(costs, new CompareClass());
+            var comparer = Comparer<int[]>.Create((x, y) =>
+            {
+                return (x[0] - x[1]) - (y[0] - y[1]);
+            });
+
+            Array.Sort(costs, comparer);
             var n = costs.Length / 2;
 
             var totalCost = 0;
@@ -67,70 +72,6 @@ namespace Greedy
                 totalCost += costs[i][0] + costs[i + n][1];
             return totalCost;
         }
-
-        /// <summary>
-        //! not correct  
-        /// </summary>
-        /// <param name="costs"></param>
-        /// <returns></returns>
-        public int TwoCitySchedCost2(int[][] costs)
-        {
-            int minCost = 0;
-            int cityACount = 0;
-            int cityBCount = 0;
-            int totalCandidates = costs.Length;
-
-            for (int i = 0; i < costs.Length; i++)
-            {
-                // if cost of city A is less 
-                if (costs[i][0] <= costs[i][1])
-                {
-                    if (cityACount < totalCandidates / 2)
-                    {
-                        minCost += costs[i][0];
-                        ++cityACount;
-                    }
-                    else
-                    {
-                        minCost += costs[i][1];
-                        ++cityBCount;
-                    }
-                }
-                // if city B cost is less
-                else
-                {
-                    if (cityBCount < totalCandidates / 2)
-                    {
-                        minCost += costs[i][1];
-                        ++cityBCount;
-                    }
-                    else
-                    {
-                        minCost += costs[i][0];
-                        ++cityACount;
-
-                    }
-                }
-            }
-
-            return minCost;
-
-        }
-        public class CompareClass : IComparer
-        {
-            // A signed integer that indicates the relative values of x and y
-            //Value Meaning Less than zero x is less than y. 
-            //Zero x equals y. 
-            //Greater than zero x is greater than y.
-
-            int IComparer.Compare(object a, object b)
-            {
-                var x = (int[])a;
-                var y = (int[])b;
-
-                var test = (x[0] - x[1]) - (y[0] - y[1]);
-                return (x[0] - x[1]) - (y[0] - y[1]);
-            }
-        }
+        
     }
 }

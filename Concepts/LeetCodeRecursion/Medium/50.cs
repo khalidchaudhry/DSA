@@ -8,27 +8,47 @@ namespace LeetCodeRecursion.Medium
 {
     public class _50
     {
-
-
-        //https://www.youtube.com/watch?v=GyL7FJn0gso
-        public double MyPow(double x, int n)
+        public static void _50Main()
         {
-            //! Using long is becuase n is in range -2^31 <= n <= 2^31-1
-            //! if n is int.MinValue then taking negative will still keep it as min
+            _50 Test = new _50();
 
-            long pow = n;
+            double x = 0.00001;
+            int n = 2147483647;
+
+            var result = Test.MyPow2(x, n);
+
+            Console.ReadLine();
+        }
+        /// <summary>
+        //https://www.youtube.com/watch?v=GyL7FJn0gso
+        //! Take away1: Look for stack overflow exception when input is large and you need to go to very base case which is very small
+        //! Think about recurence relationship when n is even vs when not
+        /// </summary>
+        public double MyPow(double x, int n)
+        {           
             if (n < 0)
             {
                 x = 1 / x;
-                pow = -pow;
+                n = -n;
             }
             //! recurrence relationship    
-            //! For even: x^n=x^(n/2) * x^(n/2)= (x*x)^n/2     e.g. 2^10=(2^10/2) * (2^10/2)= 2^5 * 2^5=(2*2)^5 
-            //! For odd: x^n=x*x^(n/2) * x^(n/2)= x*(x*x)^n/2     e.g. 2^11=2 * (2^10/2) * (2^10/2)= 2(2^5 * 2^5)= 2 * (2*2)^5 
-            return Helper(x, pow);
-        }      
+            //! F(x,n)=F(x*x,n/2) for even n      e.g. 2^10=(2^10/2) * (2^10/2)= 2^5 * 2^5=(2*2)^5 
+            //! F(x,n)=x*F(x*x,n/2) for odd n     e.g. 2^11=2 * (2^10/2) * (2^10/2)= 2(2^5 * 2^5)= 2 * (2*2)^5 
+            return Helper(x, n);
+        }
 
-        private double Helper(double x, long n)
+        //! Will throw out of stack exception 
+        public double MyPow2(double x, int n)
+        {
+            if (n < 0)
+            {
+                x = 1 / x;
+                n = -n;
+            }
+            return Helper2(x, n);
+        }
+
+        private double Helper(double x, int n)
         {
             if (n == 0)
                 return 1;
@@ -37,11 +57,23 @@ namespace LeetCodeRecursion.Medium
 
             if (n % 2 == 0)//! if number is even 
                 return Helper(x * x, n / 2);
-            //! why halfing by 2 becuase 
 
             else //!if number is odd  e.g. 2^5 can be represented as 2^4 * 2^1
                 return x * Helper(x * x, n / 2);
         }
+        private double Helper2(double x, int n)
+        {
+            if (n == 0)
+                return 1;
+            if (n == 1)
+                return x;
+            //! Recurence relationship is F(x,n)=x*F(x,n-1)
+            double result = x * Helper2(x, n - 1);
+            return result;
+        }
+
+
+       
 
     }
 }

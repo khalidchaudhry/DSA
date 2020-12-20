@@ -8,8 +8,14 @@ namespace LeetCodeRecursion.Medium
 {
     public class _364
     {
+        /// <summary>
+        //! Very similar to question 104 and 559
+        //! Calculating MaxDepth using BFS and again doing BFS for answer 
+        /// </summary>
         public int DepthSumInverse(IList<NestedInteger> nestedList)
         {
+            int depth = MaxDepth(nestedList);
+
             Queue<NestedInteger> queue = new Queue<NestedInteger>();
 
             foreach (NestedInteger nestedInteger in nestedList)
@@ -17,31 +23,7 @@ namespace LeetCodeRecursion.Medium
                 queue.Enqueue(nestedInteger);
             }
 
-            int depth = 1;           
-            while (queue.Count != 0)
-            {
-                int size = queue.Count;
-                for (int i = 0; i < size; ++i)
-                {
-                    NestedInteger dequeue = queue.Dequeue();
-                    if (!dequeue.IsInteger())
-                    {
-                        foreach (NestedInteger ni in dequeue.GetList())
-                        {
-                            queue.Enqueue(ni);
-                        }
-                    }                 
-                }                
-                ++depth;
-            }
-
-            foreach (NestedInteger nestedInteger in nestedList)
-            {
-                queue.Enqueue(nestedInteger);
-            }
-            
             int totalSum = 0;
-            --depth; //! becuase above queue will contain one more depth as it will increase it before exiting while loop
             while (queue.Count != 0)
             {
                 int depthSum = 0;
@@ -58,20 +40,108 @@ namespace LeetCodeRecursion.Medium
                     }
                     else
                     {
-                        depthSum += dequeue.GetInteger();
+                        totalSum += dequeue.GetInteger() * depthSum;
                     }
                 }
-
-                totalSum += (depth * depthSum);
                 --depth;
             }
 
             return totalSum;
+        }
+        /// <summary>
+        //! //! Very similar to question 104 and 559
+        //! Calculating Depth using DFS and then doing BFS for answer 
+        /// </summary>
+        public int DepthSumInverse2(IList<NestedInteger> nestedList)
+        {
 
+            int maxDepth = CalculateDepth(nestedList);
 
+            Queue<NestedInteger> queue = new Queue<NestedInteger>();
+            foreach (NestedInteger nestedInteger in nestedList)
+            {
+                queue.Enqueue(nestedInteger);
+            }
+
+            int depthSumInverse = 0;
+            while (queue.Count != 0)
+            {
+                int count = queue.Count;
+                while (count != 0)
+                {
+                    NestedInteger dequeue = queue.Dequeue();
+                    if (dequeue.IsInteger())
+                    {
+                        depthSumInverse += dequeue.GetInteger() * maxDepth;
+                    }
+                    else
+                    {
+                        foreach (NestedInteger nestedInteger in dequeue.GetList())
+                        {
+                            queue.Enqueue(nestedInteger);
+                        }
+                    }
+                    --count;
+                }
+                --maxDepth;
+
+            }
+            return depthSumInverse;
         }
 
+        /// <summary>
+        //! Calculating Depth using DFS 
+        /// </summary>
+        private int CalculateDepth(IList<NestedInteger> nestedList)
+        {
+            //!incase empty or 0 count , returns 0.
+            //! Always think about the base case and what will happen in case empty list been passed
+            if (nestedList == null || nestedList.Count == 0)
+                return 0;
 
+            int maxDepth = 0;
+            foreach (NestedInteger item in nestedList)
+            {
+                if (!item.IsInteger())
+                {
+                    maxDepth = Math.Max(maxDepth, CalculateDepth(item.GetList()));
+                }
+            }
+            return maxDepth + 1;
+        }
+
+        /// <summary>
+        //! Calculating Depth using BFS 
+        /// </summary>
+        private int MaxDepth(IList<NestedInteger> nestedList)
+        {
+            Queue<NestedInteger> queue = new Queue<NestedInteger>();
+
+            foreach (NestedInteger nestedInteger in nestedList)
+            {
+                queue.Enqueue(nestedInteger);
+            }
+
+            int depth = 0;
+            while (queue.Count != 0)
+            {
+                int size = queue.Count;
+                for (int i = 0; i < size; ++i)
+                {
+                    NestedInteger dequeue = queue.Dequeue();
+                    if (!dequeue.IsInteger())
+                    {
+                        foreach (NestedInteger ni in dequeue.GetList())
+                        {
+                            queue.Enqueue(ni);
+                        }
+                    }
+                }
+                ++depth;
+            }
+
+            return depth;
+        }
     }
 
     public interface NestedInteger

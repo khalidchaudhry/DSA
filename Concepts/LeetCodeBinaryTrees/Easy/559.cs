@@ -4,25 +4,11 @@ using System.Text;
 
 namespace LeetCodeBinaryTrees.Easy
 {
+
     class _559
     {
-        //! Not correct solution below 
-        public int MaxDepth(Node root)
-        {
-            if (root == null)
-                return 0;
-
-            int maxDepth = 0;
-            foreach (var item in root.children)
-            {
-                if (item == null)
-                {
-                    ++maxDepth;
-                }
-            }
-            return maxDepth + 1;
-        }
         //! Recursive solution 
+        //! Very similar to 364 and 104
         public int MaxDepth2(Node root)
         {
             if (root == null) { return 0; }
