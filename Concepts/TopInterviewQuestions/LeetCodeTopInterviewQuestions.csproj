@@ -44,13 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Easy\1.TwoSum.cs" />
-    <Compile Include="Easy\101.SymmetricTree.cs" />
-    <Compile Include="Easy\104.MaximumDepthofBinaryTree.cs" />
     <Compile Include="Easy\108.ConvertSortedArraytoBinarySearchTree.cs" />
     <Compile Include="Easy\118.Pascal%27sTriangle.cs" />
     <Compile Include="Easy\121.BestTimetoBuyandSellStock.cs" />
     <Compile Include="Easy\122.BestTimetoBuyandSellStockII.cs" />
-    <Compile Include="Easy\125.ValidPalindrome.cs" />
     <Compile Include="Easy\13.RomantoInteger.cs" />
     <Compile Include="Easy\136.SingleNumber.cs" />
     <Compile Include="Easy\14.LongestCommonPrefix.cs" />

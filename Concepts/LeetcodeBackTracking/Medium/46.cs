@@ -27,9 +27,12 @@ namespace LeetcodeBackTracking.Medium
         /// <summary>
         //! Takeaways
         //! Takeaway1: Chooose --> explore ---> unchoose
-        ///https://www.youtube.com/watch?v=idmgLLNIC2U
+        ///https://www.youtube.com/watch?v=8t7bIHIr9JY
+        // # <image url="$(SolutionDir)\Images\46(0).jpg"  scale="0.4"/>
+
+        //  # <image url="$(SolutionDir)\Images\46.jpg"  scale="0.5"/>
         /// </summary>
-       
+
         private void Permute0(int[] nums, bool[] used, List<int> path, List<IList<int>> result)
         {
             if (path.Count == nums.Length)

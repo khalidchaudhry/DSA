@@ -10,6 +10,8 @@ namespace LeetCodeBinarySearch.Easy
     {
 
         /// <summary>
+        //! Intuition: Is the current element greater than the element to the left of it ?
+        //! Same as question 162. Exact copy paste code. 
         //!Based on Roger template 
         /// </summary>
         public int PeakIndexInMountainArray0(int[] arr)

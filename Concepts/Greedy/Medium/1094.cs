@@ -7,9 +7,14 @@ namespace Greedy.Medium
 {
     public class _1094
     {
-
+        /// <summary>
+        //!1. Calculate inflow and outflow  in car at every location. 
+        //!2. Sort  based on the key(location) in the map 
+        //!3. check at every location , if you are over capacity. if yes than return false 
+        /// </summary>      
         public bool CarPooling(int[][] trips, int capacity)
         {
+            //!! Key is the location and value is the flow at that location
             Dictionary<int, int> map = new Dictionary<int, int>();
             ComputeFlow(map, trips);
             //! Sorting because we are  traveling from location 1 ,2,3..... n 

@@ -52,21 +52,21 @@ namespace LeetCodeArrays.Medium
             int n = nums.Length;
             int pivot = 1;
             //!Move all the values less then the pivot to the left side 
-            for (int anchor = 0, explorer = 0; explorer < n; ++explorer)
+            for (int placementIndex = 0, explorer = 0; explorer < n; ++explorer)
             {
                 if (nums[explorer] < pivot)
                 {
-                    Swap(nums, anchor, explorer);
-                    ++anchor;
+                    Swap(nums, placementIndex, explorer);
+                    ++placementIndex;
                 }
             }
             //!Move all the values greater then the pivot to the right side 
-            for (int anchor = n - 1, explorer = n - 1; explorer >= 0; --explorer)
+            for (int placementIndex = n - 1, explorer = n - 1; explorer >= 0; --explorer)
             {
                 if (nums[explorer] > pivot)
                 {
-                    Swap(nums, anchor, explorer);
-                    --anchor;
+                    Swap(nums, placementIndex, explorer);
+                    --placementIndex;
                 }
             }
         }

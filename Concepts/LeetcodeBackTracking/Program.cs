@@ -25,7 +25,7 @@ namespace LeetcodeBackTracking
 
             // _266._266Main();
 
-            _47._47Main();
+            //_47._47Main();
         
         }
     }

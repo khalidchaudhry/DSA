@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,10 +8,13 @@ namespace LeetCodeBackTracking.Medium
     {
 
         /// <summary>
+        //  # <image url="$(SolutionDir)\Images\78(0).png"  scale="0.5"/>
+        //  https://www.youtube.com/watch?v=MsHFNGltIxw
         /// https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
+        //! Takeaway1: In subset , every node is having  the result,in permutation, the leaf nodes are having the result 
+        //! Takeaway2: We can only choose number after it as subset can't have duplicates
         /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
+
         public IList<IList<int>> Subsets0(int[] nums)
         {
 
@@ -20,18 +23,21 @@ namespace LeetCodeBackTracking.Medium
             return powerSet;
         }
 
-        private void Subset0(int[] nums, int i, List<int> path, List<IList<int>> powerSet)
+        private void Subset0(int[] nums, int indx, List<int> path, List<IList<int>> powerSet)
         {
             powerSet.Add(new List<int>(path));
 
-            for (int j = i; j < nums.Length; ++j)
+            for (int i = indx; i < nums.Length; ++i)
             {
-                path.Add(nums[j]);
-                Subset0(nums, j + 1, path, powerSet);
-                path.RemoveAt(path.Count - 1);
+                path.Add(nums[i]); //choose
+                //! i + 1=> we can only start the call afterwords. 
+                Subset0(nums, i + 1, path, powerSet);//explore 
+                path.RemoveAt(path.Count - 1);//unchoose 
             }
         }
         //! Based on Sams byte by byte course
+        //! https://youtu.be/MsHFNGltIxw?t=374
+        // # <image url="$(SolutionDir)\Images\78.png"  scale="0.5"/>
         public IList<IList<int>> Subsets1(int[] nums)
         {
 
@@ -49,12 +55,13 @@ namespace LeetCodeBackTracking.Medium
                 return;
             }
 
+            //! not  choose the current number
+            Subset1(nums, i + 1, path, powerSet);
+            //! choose the current number
             path.Add(nums[i]);
-            //include the current item
             Subset1(nums, i + 1, path, powerSet);
-            //exclude the current item
+            //! unchoose the current number
             path.RemoveAt(path.Count - 1);
-            Subset1(nums, i + 1, path, powerSet);
 
         }
     }

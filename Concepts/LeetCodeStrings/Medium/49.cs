@@ -49,46 +49,7 @@ namespace LeetCodeStrings.Medium
             return new List<IList<string>>(hashTable.Values);
 
         }
-        /// <summary>
-        //! Does not work for the input ["cab","tin","pew","duh","may","ill","buy","bar","max","doc"]
-        /// </summary>
-        /// <param name="strs"></param>
-        /// <returns></returns>
-        public IList<IList<string>> GroupAnagrams2(string[] strs)
-        {
-            List<IList<string>> results = new List<IList<string>>();
-            if (strs.Length == 0)
-                return results;
-
-            Dictionary<int, List<string>> hashTable = new Dictionary<int, List<string>>();
-            for (int i = 0; i < strs.Length; i++)
-            {
-                int intValue = 0;
-                for (int j = 0; j < strs[i].Length; j++)
-                {
-                    intValue += strs[i][j];
-                }
-
-                if (hashTable.ContainsKey(intValue))
-                {
-                    hashTable[intValue].Add(strs[i]);
-                }
-                else
-                {
-                    List<string> value = new List<string>();
-                    value.Add(strs[i]);
-                    hashTable.Add(intValue, value);
-                }
-            }
-
-            foreach (List<string> values in hashTable.Values)
-            {
-
-                results.Add(values);
-
-            }
-            return results;
-        }
+        
         /// <summary>
         //!N is length of strs array and K is the maximum length of a string in str
         //!Time Complexity: O(NK)

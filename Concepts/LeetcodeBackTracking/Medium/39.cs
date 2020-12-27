@@ -17,43 +17,40 @@ namespace LeetcodeBackTracking.Medium
             var result=CombinationSum.CombinationSum0(candidates,target);
 
             Console.ReadLine();
-        }       
-        
+        }
+
         /// <summary>
+        /// # <image url="https://raw.githubusercontent.com/aomine-sama/px/master/common/19022301.jpg"  scale="0.6"/>
+        //   # <image url="$(SolutionDir)\Images\39.jpg"  scale="0.5"/>
         /// https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
-        /// </summary>
-        /// <param name="candidates"></param>
-        /// <param name="target"></param>
-        /// <returns></returns>
+       //! Unbounded Knapsack. We have unlimited supplies of numbers  
+       /// </summary>
+      
         public IList<IList<int>> CombinationSum0(int[] candidates, int target)
         {
             List<IList<int>> result = new List<IList<int>>();
-            //! No sorting needed since no duplicates in the input. 
-            //Array.Sort(candidates);
+            
             CombinationSum0(candidates, 0, target, new List<int>(), result);
 
             return result;
         }
 
-        private void CombinationSum0(int[] candidates, int i, int target, List<int> path, List<IList<int>> result)
+        private void CombinationSum0(int[] candidates, int index, int target, List<int> path, List<IList<int>> result)
         {
-            if (target < 0) return;
-            //! Below not needed
-            //if (path.Count == candidates.Length && target != 0) return;
+            if (target < 0) return;         
             if (target == 0)
             {
                 result.Add(new List<int>(path));
                 return;
             }
 
-            for (int j = i; j < candidates.Length; ++j)
+            for (int i = index; i < candidates.Length; ++i)
             {
-                path.Add(candidates[j]);
-                //! not  j+1  because we can reuse the same element 
-                CombinationSum0(candidates, j, target - candidates[j], path, result);
+                path.Add(candidates[i]);
+                //! not  i+1  because we can reuse the same element(unbounded Knapsack. Unlimited supply) 
+                CombinationSum0(candidates, i, target - candidates[i], path, result);
                 path.RemoveAt(path.Count - 1);
             }
-
         }
 
         //! From byte by byte
@@ -100,55 +97,6 @@ namespace LeetcodeBackTracking.Medium
             CombinationSum1(candidates, i, target - candidates[i], path, result);
             path.RemoveAt(path.Count - 1);
             CombinationSum1(candidates, i + 1, target, path, result);
-        }
-
-
-
-
-        /// <summary>
-        /// http://www.goodtecher.com/leetcode-39-combination-sum/
-        /// </summary>
-        /// <param name="candidates"></param>
-        /// <param name="target"></param>
-        /// <returns></returns>
-        public IList<IList<int>> CombinationSum2(int[] candidates, int target)
-        {
-            List<IList<int>> results = new List<IList<int>>();
-
-            if (candidates.Length == 0)
-            {
-                return results;
-            }
-
-            Array.Sort(candidates);
-
-            List<int> combinations = new List<int>();
-
-            DFS(results, combinations, candidates, target, 0);
-
-            return results;
-
-        }
-
-        private void DFS(List<IList<int>> results, List<int> combinations, int[] candidates, int target, int startIndex)
-        {
-            if (target == 0)
-            {
-                //! Deep copy of the combinations List<int>
-                results.Add(new List<int>(combinations));
-                return;
-            }
-            for (int i = startIndex; i < candidates.Length; i++)
-            {
-                if (candidates[i] > target)
-                {
-                    break;
-                }
-                combinations.Add(candidates[i]);
-                DFS(results, combinations, candidates, target - candidates[i], i);
-                //! Remove the last element from combintation as we are going to the next level 
-                combinations.RemoveAt(combinations.Count - 1);
-            }
-        }
+        }       
     }
 }

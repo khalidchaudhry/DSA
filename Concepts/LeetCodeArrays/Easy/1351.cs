@@ -7,24 +7,34 @@ namespace LeetCodeArrays.Easy
     public class _1351
     {
         /// <summary>
+        //! Same approach as in question 1428,240
         //! Time Complexity= O(m+n) 
+        //   # <image url="$(SolutionDir)\Images\1351.jpg"  scale="0.3"/>
+
         /// </summary>
-       public int CountNegatives(int[][] grid)
+        public int CountNegatives(int[][] grid)
         {
             int rows = grid.Length;
             int columns = grid[0].Length;
-            int negativesCount = 0;
-            for (int row = 0; row < rows; ++row)
+
+            int count = 0;
+            int row = 0;
+            int column = columns - 1;
+
+            while (row < rows && column >= 0)
             {
-                for (int column = columns - 1; column >= 0; --column)
+                if (grid[row][column] < 0)
                 {
-                    if (grid[row][column] >= 0)
-                        break;
-                    ++negativesCount;
+                    count += rows - row;  //! Count all the negatives in current column. Matrix is sorted in non-increasing order both row-wise and column-wise. 
+                    --column;
+                }
+                else
+                {
+                    ++row;
                 }
             }
 
-            return negativesCount;
+            return count;
         }
 
         /// <summary>

@@ -21,6 +21,8 @@ namespace LeetCodeBinarySearch.Medium
         }
 
         /// <summary>
+        //! Question: Is the current element greater than the element to the left of it?
+        //! Same as problem 852. Copy paste 
         //! Based on Roger binary search template 
         /// </summary>
         public int FindPeakElement0(int[] nums)
@@ -52,7 +54,8 @@ namespace LeetCodeBinarySearch.Medium
         {
             return nums[index] > nums[index - 1];
         }
-        private int FindPeekElement1(int[] nums)
+
+        public int FindPeekElement1(int[] nums)
         {
             int lo = 0;
             int hi = nums.Length - 1;

@@ -95,7 +95,7 @@ namespace LeetCodeRecursion.Medium
         private int CalculateDepth(IList<NestedInteger> nestedList)
         {
             //!incase empty or 0 count , returns 0.
-            //! Always think about the base case and what will happen in case empty list been passed
+            //! Always think about the base case and what will happen if its not there 
             if (nestedList == null || nestedList.Count == 0)
                 return 0;
 

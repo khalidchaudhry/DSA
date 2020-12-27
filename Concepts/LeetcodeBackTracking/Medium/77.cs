@@ -24,18 +24,11 @@ namespace LeetcodeBackTracking.Medium
         public IList<IList<int>> Combine0(int n, int k)
         {
             List<IList<int>> result = new List<IList<int>>();
-
-            if (k > n || n == 0)
-                return result;
-
             int[] nums = new int[n];
             for (int i = 0; i < n; ++i)
-            {
                 nums[i] = i + 1;
-            }
 
-            Combine0(nums, 0, k, new List<int>(), result);
-
+            Helper(nums, 0, k, new List<int>(), result);
             return result;
         }
         /// <summary>
@@ -62,20 +55,22 @@ namespace LeetcodeBackTracking.Medium
             return result;
         }
 
-        private void Combine0(int[] nums, int i, int k, List<int> path, List<IList<int>> result)
+        private void Helper(int[] nums, int index, int k, List<int> path, IList<IList<int>> result)
         {
-            if (path.Count > k) return;
-            if (path.Count == nums.Length && path.Count != k) return;
             if (path.Count == k)
             {
                 result.Add(new List<int>(path));
                 return;
             }
-
-            for (int j = i; j < nums.Length; ++j)
+            if (path.Count > k)
             {
-                path.Add(nums[j]);
-                Combine0(nums, j + 1, k, path, result);
+                return;
+            }
+
+            for (int i = index; i < nums.Length; ++i)
+            {
+                path.Add(nums[i]);
+                Helper(nums, i + 1, k, path, result);
                 path.RemoveAt(path.Count - 1);
             }
         }

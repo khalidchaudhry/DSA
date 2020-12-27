@@ -32,6 +32,14 @@ namespace LeetCodeLinkedList.Easy
         }
 
         /// <summary>
+        //! Using recursion to reverse  
+        /// </summary>
+        public ListNode ReverseList1(ListNode head)
+        {
+            return Helper(null, head);
+        }
+
+        /// <summary>
         //! Using stack to reverse it 
         /// </summary>
         /// <param name="head"></param>
@@ -63,6 +71,21 @@ namespace LeetCodeLinkedList.Easy
 
         }
 
+        private ListNode Helper(ListNode prev, ListNode curr)
+        {
+            if (curr == null)
+                return null;
 
+            if (curr.next == null)
+            {
+                curr.next = prev;
+                return curr;
+            }
+
+            //! Below line return the last node which will be the new head
+            ListNode res = Helper(curr, curr.next);
+            curr.next = prev;
+            return res;
+        }
     }
 }

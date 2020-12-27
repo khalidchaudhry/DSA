@@ -12,14 +12,19 @@ namespace LeetcodeBackTracking.Medium
         {
             _90 DistinctSubSet = new _90();
             int[] nums = new int[] { 1, 2, 2 };
-            var ans = DistinctSubSet.SubsetsWithDup(nums);
+            var ans = DistinctSubSet.SubsetsWithDup0(nums);
             Console.ReadLine();
         }
 
 
         /// <summary>
         //https://leetcode.com/problems/subsets-ii/discuss/169226/Java-Two-Way-of-Recursive-thinking
-        //! Top down approach... Building up results as we go from top to botton
+        //https://youtu.be/0ElTC4XiDvc?t=150
+        //! Top down approach... Building up results as we go from top to bottom
+        // //  # <image url="$(SolutionDir)\Images\90.png"  scale="0.5"/>
+
+
+        //   # <image url="$(SolutionDir)\Images\90.jpg"  scale="0.5"/>   
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
@@ -66,15 +71,16 @@ namespace LeetcodeBackTracking.Medium
             path.RemoveAt(path.Count - 1);
         }
 
-        private void SubsetsWithDup0(int[] nums, int i, List<int> path, List<IList<int>> res)
+        private void SubsetsWithDup0(int[] nums, int index, List<int> path, List<IList<int>> res)
         {
             res.Add(new List<int>(path));
 
-            for (int j = i; j < nums.Length; ++j)
+            for (int i = index; i < nums.Length; ++i)
             {
-                if (j > i && nums[j - 1] == nums[j]) continue;
-                path.Add(nums[j]);
-                SubsetsWithDup0(nums, j + 1, path, res);
+                //! Skip the same number at a certain depth
+                if (i > index && nums[i - 1] == nums[i]) continue; 
+                path.Add(nums[i]);
+                SubsetsWithDup0(nums, i + 1, path, res);
                 path.RemoveAt(path.Count - 1);
             }
         }

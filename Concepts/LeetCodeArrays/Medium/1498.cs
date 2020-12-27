@@ -19,6 +19,9 @@ namespace LeetCodeArrays.Medium
 
         /// <summary>
         //! Discuss in Kuai's class 
+        //! The formula for subsequences in an array of size n is 2^n
+        //https://www.youtube.com/watch?v=xCsIkPLS4Ls
+        //  # <image url="$(SolutionDir)\Images\1498.png"  scale="0.5"/>
         /// </summary>
         public int NumSubseq(int[] nums, int target)
         {

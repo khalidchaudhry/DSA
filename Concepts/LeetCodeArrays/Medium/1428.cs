@@ -20,33 +20,43 @@ namespace LeetCodeArrays.Medium
         
         
         /// <summary>
-        //! Approach is very similar to what followed in leetcode 240 
+        //! Approach is very similar to what followed in leetcode 240,1351 
+        //! Time complexity=O(n+m)
         /// </summary>
         public int LeftMostColumnWithOne(BinaryMatrix binaryMatrix)
         {
             IList<int> dimensions = binaryMatrix.Dimensions();
             int rows = dimensions[0];
             int columns = dimensions[1];
-            int minColumn = columns;
-            int column = columns - 1;
+
+            int leftMostColumn = -1;
             int row = 0;
+            int column = columns - 1;
+
             while (row < rows && column >= 0)
             {
-                if (binaryMatrix.Get(row, column) == 0)
-                    ++row;
+                int val = binaryMatrix.Get(row, column);
+
+                if (val == 1)
+                {
+                    leftMostColumn = column;
+                    --column;
+                }
+
                 else
                 {
-                    minColumn = Math.Min(minColumn, column);
-                    --column;
+                    ++row;
                 }
             }
 
-            return minColumn == columns ? -1 : minColumn;
+            return leftMostColumn;
         }
 
 
-        /// <summary>
+        /// <summary>        
+        //! Binary search on every row to find the first column having value==1
         //! Based on template from Roger
+        //! Time complexity=mlog(n)  where m number of rows and n number of columns
         /// </summary>      
         public int LeftMostColumnWithOne2(BinaryMatrix binaryMatrix)
         {
