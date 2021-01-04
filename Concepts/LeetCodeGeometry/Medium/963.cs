@@ -86,10 +86,7 @@ namespace LeetCodeGeometry.Medium
                         //double area = len1 * len2;
                         minAreaRectangle = Math.Min(minAreaRectangle, area);
                     }
-
                 }
-
-
             }
 
             return minAreaRectangle == double.MaxValue ? 0.0 : minAreaRectangle;

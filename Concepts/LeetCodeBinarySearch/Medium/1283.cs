@@ -25,8 +25,8 @@ namespace LeetCodeBinarySearch.Medium
         /// </summary>
         public int SmallestDivisor0(int[] nums, int threshold)
         {
-            int lo = 0;
-            int hi = Max(nums);
+            int lo = 0;//!invalid. 0 will never be possible divisor 
+            int hi = Max(nums); //!valid 
             while (lo + 1 < hi)
             {
                 int mid = lo + (hi - lo) / 2;

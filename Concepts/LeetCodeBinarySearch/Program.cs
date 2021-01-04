@@ -13,7 +13,7 @@ namespace LeetCodeBinarySearch
         static void Main(string[] args)
         {
 
-            //_658._658Main();
+            _658._658Main();
 
             //_1283._1283Main();
 

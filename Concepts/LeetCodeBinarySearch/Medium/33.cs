@@ -69,8 +69,9 @@ namespace LeetCodeBinarySearch.BinarySearch
 
             if (nums.Length == 0)
                 return -1;
-
-            if (nums[0] <= nums[n]) //!array is already sorted
+            //!array is already sorted
+            //!<= because in case there is only 1 element in an array 
+            if (nums[0] <= nums[n]) 
                 return BinarySearch(nums, 0, n, target);
 
             int pivotIndex = FindPivotIndex(nums);
@@ -100,7 +101,7 @@ namespace LeetCodeBinarySearch.BinarySearch
                 // !Pivot element always present in the non uniformly increasing part
                 //! if first element is less than pivot index element than it means its strictly increasing 
                 //! we need to search on  right side as its non uniformly increasing part
-                else if (nums[low] <= nums[mid])
+                else if (nums[low] < nums[mid])
                 {
                     low = mid + 1;
                 }

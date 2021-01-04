@@ -21,7 +21,9 @@ namespace LeetCodeHeap.Medium
             {
                 for (int j = 0; j < n; ++j)
                 {
-                    ss.Add((matrix[i][j], i, j)); //!O(n)
+                    //! Adding to sorted set takes Amortized log(n) time as sorted set uses red black binary search tree
+                    //https://docs.microsoft.com/en-us/dotnet/standard/collections/
+                    ss.Add((matrix[i][j], i, j)); 
                 }
             }
 
@@ -52,6 +54,8 @@ namespace LeetCodeHeap.Medium
 
             for (int r = 0; r < columns; r++)
             {
+                //! Adding to sorted set takes Amortized log(n) time as sorted set uses red black binary search tree
+                //https://docs.microsoft.com/en-us/dotnet/standard/collections/
                 s.Add((matrix[r][0], r, 0));
             }
 

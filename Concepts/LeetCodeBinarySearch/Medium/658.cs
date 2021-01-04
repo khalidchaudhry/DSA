@@ -13,25 +13,25 @@ namespace LeetCodeBinarySearch.Medium
         {
 
             //int[] arr = new int[] { 0, 0, 0, 1, 3, 5, 6, 7, 8, 8 };
-            int[] arr = new int[] {1,1,1,10,10,10 };
+            int[] arr = new int[] { 1, 1, 1, 10, 10, 10 };
             int k = 1;
             int x = 9;
             _658 Closest = new _658();
 
-            var ans = Closest.FindClosestElements0(arr, k, x);
+            var ans = Closest.FindClosestElements1(arr, k, x);
 
             Console.ReadLine();
 
         }
+      
+
+
 
         /// <summary>
+        //! Two pointer approach . Not binary search
         /// https://leetcode.com/problems/find-k-closest-elements/discuss/202785/Very-simple-Java-O(n)-solution-using-two-pointers
         /// </summary>
-        /// <param name="arr"></param>
-        /// <param name="k"></param>
-        /// <param name="x"></param>
-        /// <returns></returns>
-        public IList<int> FindClosestElements0(int[] arr, int k, int x)
+        public IList<int> FindClosestElements1(int[] arr, int k, int x)
         {
             int lo = 0;
             int hi = arr.Length - 1;
@@ -55,7 +55,7 @@ namespace LeetCodeBinarySearch.Medium
             return result;
         }
 
-        public IList<int> FindClosestElements1(int[] arr, int k, int x)
+        public IList<int> FindClosestElements2(int[] arr, int k, int x)
         {
             Dictionary<int, int> map = new Dictionary<int, int>();
             List<int> result = new List<int>();
@@ -63,13 +63,13 @@ namespace LeetCodeBinarySearch.Medium
             for (int i = 0; i < arr.Length; ++i)
                 map[i] = Math.Abs(arr[i] - x);
 
-            var sortedMap = map.OrderBy(e => e.Value).ThenBy(e=>e.Key);
+            var sortedMap = map.OrderBy(e => e.Value).ThenBy(e => e.Key);
 
             foreach (KeyValuePair<int, int> keyValuePair in sortedMap)
             {
                 result.Add(arr[keyValuePair.Key]);
                 if (result.Count == k)
-                    break;            
+                    break;
             }
             result.Sort();
 
@@ -78,7 +78,7 @@ namespace LeetCodeBinarySearch.Medium
 
 
 
-        public IList<int> FindClosestElements2(int[] arr, int k, int x)
+        public IList<int> FindClosestElements3(int[] arr, int k, int x)
         {
             List<int> result = new List<int>();
 
@@ -106,7 +106,7 @@ namespace LeetCodeBinarySearch.Medium
             return result;
 
         }
-        
+
     }
 
 }

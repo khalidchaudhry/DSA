@@ -72,93 +72,50 @@ namespace LeetCodeBinaryTrees.Medium._116
         }
 
         /// <summary>
-        //! Level order traversal but not using any additional space for storing levels. Assigning next pointer as we tarverse the level
+        //! Level order traversal. Using extra space for queue. 
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
         public Node Connect1(Node root)
         {
-            List<List<Node>> allLevelNodes = new List<List<Node>>();
-            LevelOrderTraversal0(root);
+            if (root == null)
+                return root;
 
-            return root;
-        }
-        /// <summary>
-        //! Using extra memory to store levels in List and later on establish the connections  
-        /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
-
-        public Node Connect2(Node root)
-        {
-            List<List<Node>> allLevelNodes = new List<List<Node>>();
-            LevelOrderTraversal(root, allLevelNodes);
-            for (int i = 1; i < allLevelNodes.Count; ++i)
-            {
-                for (int j = 0; j < allLevelNodes[i].Count - 1; ++j)
-                {
-                    allLevelNodes[i][j].next = allLevelNodes[i][j + 1];
-                }
-            }
-            return root;
-        }
-
-        private void LevelOrderTraversal0(Node root)
-        {
             Queue<Node> queue = new Queue<Node>();
-            if (root != null)
-            {
-                queue.Enqueue(root);
-            }
+            queue.Enqueue(root);
+
             while (queue.Count != 0)
             {
+                Node prev = null;
                 int count = queue.Count;
                 while (count != 0)
                 {
                     Node dequeue = queue.Dequeue();
-
-                    if (count != 1)
+                    if (prev != null)
                     {
-                        dequeue.next = queue.Peek();
+                        prev.next = dequeue;
                     }
 
                     if (dequeue.left != null)
+                    {
                         queue.Enqueue(dequeue.left);
+                    }
+
                     if (dequeue.right != null)
+                    {
                         queue.Enqueue(dequeue.right);
+                    }
+
+                    prev = dequeue;
                     --count;
                 }
             }
+
+            return root;           
         }
+       
 
-        private void LevelOrderTraversal(Node root, List<List<Node>> allLevelNodes)
-        {
-            Queue<Node> queue = new Queue<Node>();
-            if (root != null)
-            {
-                queue.Enqueue(root);
-            }
-
-            while (queue.Count != 0)
-            {
-                int count = queue.Count;
-                List<Node> levelNodes = new List<Node>();
-                while (count != 0)
-                {
-                    Node dequeue = queue.Dequeue();
-                    levelNodes.Add(dequeue);
-
-                    if (dequeue.left != null)
-                        queue.Enqueue(dequeue.left);
-                    if (dequeue.right != null)
-                        queue.Enqueue(dequeue.right);
-
-                    --count;
-                }
-
-                allLevelNodes.Add(levelNodes);
-            }
-        }
+       
     }
 
 

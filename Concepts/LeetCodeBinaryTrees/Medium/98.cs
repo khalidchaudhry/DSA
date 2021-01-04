@@ -30,20 +30,11 @@ namespace LeetCodeBinaryTrees.Medium
             return left && isTrue && right;
         }
 
+
         /// <summary>
-        //!Recursion
-        //! using preorder traversal
-        // https://www.youtube.com/watch?v=MILxfAbIhrE
-        /// </summary>       
-        public bool IsValidBST(TreeNode root)
-        {
-            //!//!datatype must be long rather than int to satisfy below test case. Depends upon which type is of node.val
-            //![-2147483648,null,2147483647]
-            return Helper(root, long.MinValue, long.MaxValue);
-        }
-        /// <summary>
-        //!Use InOrder travseral 
-        /// !https://medium.com/leetcode-patterns/leetcode-pattern-0-iterative-traversals-on-trees-d373568eb0ec
+        //! Iterative version
+        //!Use InOrder travseral ()
+        //https://medium.com/leetcode-patterns/leetcode-pattern-0-iterative-traversals-on-trees-d373568eb0ec
         /// </summary>       
         public bool IsValidBST2(TreeNode root)
         {

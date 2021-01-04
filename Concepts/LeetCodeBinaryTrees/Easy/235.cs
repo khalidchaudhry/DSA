@@ -78,6 +78,10 @@ namespace LeetCodeBinaryTrees.Easy
             }
 
         }
+
+        /// <summary>
+        //!  This method is more suitable if tree is not BST and regular binary tree.  
+        /// </summary>
         public TreeNode LowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q)
         {
 

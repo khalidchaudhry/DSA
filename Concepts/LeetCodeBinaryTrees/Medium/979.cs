@@ -7,12 +7,16 @@ namespace LeetCodeBinaryTrees.Medium
     public class _979
     {
         int steps = 0;
+
+        /// <summary>
+        //! Intuition:  Every node needs to tell to its parent that either its  going to take the coin or give the coin
+        //! 
+        /// </summary>
         public int DistributeCoins(TreeNode root)
         {
             Helper(root);
             return steps;
         }
-
         private int Helper(TreeNode node)
         {
             if (node == null)

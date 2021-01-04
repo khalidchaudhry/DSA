@@ -51,24 +51,5 @@ namespace LeetCodeBinaryTrees.Easy
 
             return root;
         }
-
-        public TreeNode TrimBST(TreeNode root, int L, int R)
-        {
-                if (root == null)
-                return null;
-
-            TreeNode newNode = new TreeNode(root.val);
-            newNode.left = TrimBST(root.left, L, R);
-            newNode.right = TrimBST(root.right, L, R);
-
-            if (root.val < L || root.val > R)
-            {
-                return null;
-            }
-
-            return newNode;
-        } 
-
-
     }
 }

@@ -15,69 +15,29 @@ namespace LeetCodeBinaryTrees.Easy
            */
     class _112
     {
+        /// <summary>
+        //! Similar to question 257 in which we need to add paths from root to leaf
+        //! Code template is same . We need to do something before going into recursion. 
+        /// </summary>
         public bool HasPathSum(TreeNode root, int sum)
-        {
-            List<TreeNode> path = new List<TreeNode>();
-            bool hasPath = HasPathSumHelper(root, sum, path);
-            if (hasPath)
-            {
-                foreach (var item in path)
-                {
-                    Console.Write($"{item.val} ");
-                }
-            }
-
-            return hasPath;
-
-
-        }
-        private bool HasPathSumHelper(TreeNode node, int sum, List<TreeNode> path)
-        {
-            if (node == null)
-                return false;
-            if (node.left == null && node.right == null)
-            {
-                if (node.val == sum)
-                {
-                    path.Add(node);
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            if (HasPathSumHelper(node.left, sum - node.val, path) || HasPathSumHelper(node.right, sum - node.val, path))
-            {
-                path.Add(node);
-
-                return true;
-            }
-
-            return false;
-        }
-        public bool HasPathSum2(TreeNode root, int sum)
         {
             if (root == null)
                 return false;
+
             if (root.left == null && root.right == null)
             {
-                if (root.val == sum)
-                {
+                sum = sum - root.val;
+                if (sum == 0)
                     return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
 
-            if (HasPathSum2(root.left, sum - root.val) || HasPathSum2(root.right, sum - root.val))
-            {
+            sum -= root.val;
+            bool left = HasPathSum(root.left, sum);
+            bool right = HasPathSum(root.right, sum);
+            if (left || right)
                 return true;
-            }
+
             return false;
         }
     }

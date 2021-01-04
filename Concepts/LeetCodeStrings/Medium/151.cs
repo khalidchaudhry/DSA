@@ -6,55 +6,40 @@ namespace LeetCodeStrings.Medium
 {
     public class _151
     {
-        /* Two pointer approach 
-         Keep moving end pointer till u encounter  space. If enconter than take take substring from start till end
-         Keep incrementing end till it is space         
-         */
-        public string ReverseWords(string s)
+
+        
+        
+        
+        
+        
+        
+        
+        
+        /// <summary>
+        //! This approach uses stack to reverse order of the words  
+        /// </summary>
+        public string ReverseWords2(string s)
         {
-            if (string.IsNullOrEmpty(s))
-                return s;
-            // Trim string to remove trailing spaces from string. 
-            s = s.Trim();
-            
-            int start = 0;
-            int end = 0;
+            string[] words = s.Split(' ');
             Stack<string> stk = new Stack<string>();
-            while (end < s.Length)
+            for (int i = 0; i < words.Length; ++i)
             {
-
-                if (s[end].Equals(' '))
+                if (!string.IsNullOrEmpty(words[i]))
                 {
-                    string word=s.Substring(start,(end-1)-start+1);
-                    // ! Push the whole word into stack rather than character
-                    stk.Push(word);
-                    // Keep incrementing end till it is space
-                    while (s[end].Equals(' '))
-                    {
-                        ++end;
-                    }
-                    start = end;
+                    stk.Push(words[i]);
                 }
-                ++end;
             }
-            // ! Push the last word into the stack
-            string lastWord = s.Substring(start,(end-1)-start+1);
-            stk.Push(lastWord);
-
-            StringBuilder sb = new StringBuilder();
-
+            string result = string.Empty;
             while (stk.Count != 0)
             {
-                sb.Append(stk.Pop());
-                // ! If stack count is zero than it means last word and we don't need to append 
-                if (stk.Count > 0)
-                {
-                    sb.Append(' ');
-                }
+                result = result + stk.Pop() + (stk.Count == 0 ? "" : " ");
+
             }
 
-            return sb.ToString();
-
+            return result;
         }
+        
+
+
     }
 }

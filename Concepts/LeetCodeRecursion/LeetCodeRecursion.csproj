@@ -34,6 +34,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,9 +50,12 @@
     <Compile Include="Easy\690.cs" />
     <Compile Include="Easy\783.cs" />
     <Compile Include="Medium\17.cs" />
+    <Compile Include="Medium\24.cs" />
+    <Compile Include="Medium\247.cs" />
     <Compile Include="Medium\364.cs" />
     <Compile Include="Medium\50.cs" />
     <Compile Include="Medium\687.cs" />
+    <Compile Include="Medium\698.cs" />
     <Compile Include="Medium\779.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

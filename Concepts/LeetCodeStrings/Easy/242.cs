@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopInterviewQuestions.Easy
+namespace LeetCodeStrings.Easy
 {
     public class _242
     {

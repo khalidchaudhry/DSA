@@ -8,30 +8,46 @@ namespace LeetCodeBinaryTrees.Easy
     {
         double minDiff;
         int ans;
-        public int ClosestValue(TreeNode root, double target)
+
+        /// <summary>
+        //! O(h) where h is the tree height . Worst case is still O(n) in case its unbalanced tree 
+        /// </summary>
+        public int ClosestValue0(TreeNode root, double target)
         {
-            int  valueToSearch = (int)Math.Round(target, MidpointRounding.AwayFromZero);
 
-            return Helper(root,valueToSearch);
+            TreeNode curr = root;
+            int closestNodeValue = root.val;
+            while (curr != null)
+            {
+                int currNodeValue = curr.val;
+
+                if (Math.Abs(currNodeValue - target) < Math.Abs(closestNodeValue - target))
+                {
+                    closestNodeValue = currNodeValue;
+                }
+                //! If node value is > then there is no point going to the right
+                //! as difference will be more the right side and current node gives us the best result.
+                if (currNodeValue > target)
+                    curr = curr.left;
+                //!If node value is <= target then there is no point going on left
+                //! as difference will be more on the right side
+                else
+                    curr = curr.right;
+            }
+
+            return closestNodeValue;
         }
-
+        
+        /// <summary>
+        //! Time complexity=O(N)  
+        /// </summary>
         public int ClosestValue2(TreeNode root, double target)
         {
             minDiff = double.MaxValue;
             Helper2(root,target);
             return ans;
         }
-
-        private int Helper(TreeNode node, int target)
-        {
-            
-                if (node.val > target)
-                    return Helper(node.left, target);
-                else if (node.val < target)
-                    return Helper(node.right, target);
-                else
-                    return node.val;                
-        }
+             
         private void  Helper2(TreeNode node, double target)
         {
             if (node == null)

@@ -78,6 +78,7 @@ namespace LeetCodeDivideAndConquer.Medium
 
         /// <summary>
         //! heap sort brings down complexity from O(nlog(n)) for sorting to O(nlogK) 
+        //! n total elements and k heap size
         /// </summary>
         /// <param name="nums"></param>
         /// <param name="k"></param>

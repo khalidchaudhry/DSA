@@ -8,29 +8,32 @@ namespace LeetCodeTwoPointers.Medium
 {
     public class _986
     {
+
+        /// <summary>
+        // ///  // # <image url="$(SolutionDir)\Images\986.png"  scale="0.5"/> 
+        /// </summary>
         public int[][] IntervalIntersection(int[][] A, int[][] B)
         {
 
             List<int[]> result = new List<int[]>();
-
             int i = 0;
             int j = 0;
 
             while (i < A.Length && j < B.Length)
             {
-                //! Taking Max for lower bound we are taking intersection 
-                int lowerBound = Math.Max(A[i][0], B[j][0]);
-                //! Taking Min for Upper bound we are taking intersection 
-                int upperBound = Math.Min(A[i][1], B[j][1]);
-                //! if lower bound <=upper bound we have valid range to add
-                if (lowerBound <= upperBound)
+                int[] e1 = A[i];
+                int[] e2 = B[j];
+                //! If Intervals overlapping, take intersection of them. 
+                //! Interval will only overlap if e2.Start<=e1.End  && e1.Start<=e2.End
+                if (e2[0] <= e1[1] && e1[0] <= e2[1])
                 {
-                    result.Add(new int[] { lowerBound, upperBound });
+                    
+                    int start = Math.Max(e1[0], e2[0]);
+                    int end = Math.Min(e1[1], e2[1]);
+                    result.Add(new int[] { start, end });
                 }
-
-                //! increment value which is less
-                //!Remove the interval with the smallest endpoint
-                if (A[i][1] < B[j][1])
+                //! Drop the event that finishes earlier. 
+                if (e1[1] < e2[1])
                 {
                     ++i;
                 }
@@ -38,6 +41,7 @@ namespace LeetCodeTwoPointers.Medium
                 {
                     ++j;
                 }
+
             }
 
             return result.ToArray();

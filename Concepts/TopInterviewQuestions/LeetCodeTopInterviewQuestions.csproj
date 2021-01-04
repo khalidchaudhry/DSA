@@ -68,7 +68,6 @@
     <Compile Include="Easy\217.ContainsDuplicate.cs" />
     <Compile Include="Easy\226.InvertBinaryTree.cs" />
     <Compile Include="Easy\234.PalindromeLinkedList.cs" />
-    <Compile Include="Easy\242.cs" />
     <Compile Include="Easy\26.RemoveDuplicatesfromSortedArray.cs" />
     <Compile Include="Easy\28.ImplementstrStr%28%29.cs" />
     <Compile Include="Easy\286.MissingNumber.cs" />

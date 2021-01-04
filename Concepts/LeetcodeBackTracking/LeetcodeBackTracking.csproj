@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Medium\22.cs" />
     <Compile Include="Medium\47.cs" />
     <Compile Include="Medium\784.cs" />
     <Compile Include="Medium\216.cs" />

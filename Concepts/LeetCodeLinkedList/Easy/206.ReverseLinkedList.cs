@@ -83,9 +83,9 @@ namespace LeetCodeLinkedList.Easy
             }
 
             //! Below line return the last node which will be the new head
-            ListNode res = Helper(curr, curr.next);
+            ListNode toReturn = Helper(curr, curr.next);
             curr.next = prev;
-            return res;
+            return toReturn;
         }
     }
 }

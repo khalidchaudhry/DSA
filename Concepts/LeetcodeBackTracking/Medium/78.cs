@@ -1,11 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LeetCodeBackTracking.Medium
 {
     public class _78
     {
+
+
+        public static void _78Main()
+        {
+            int[] nums = new int[] { 1, 2, 3 };
+
+            int target = 3;
+
+            var test = new _78();
+            List<IList<int>> result = new List<IList<int>>();
+
+            test.Subset3(nums, 0, target, new List<int>(), result);
+
+            Console.ReadLine();
+
+        }
+
+
 
         /// <summary>
         //  # <image url="$(SolutionDir)\Images\78(0).png"  scale="0.5"/>
@@ -55,14 +74,60 @@ namespace LeetCodeBackTracking.Medium
                 return;
             }
 
-            //! not  choose the current number
+            //! not  choose the current number(we are not adding the number to path)
             Subset1(nums, i + 1, path, powerSet);
-            //! choose the current number
+            //! choose the current number(we are adding the number to the path)
             path.Add(nums[i]);
             Subset1(nums, i + 1, path, powerSet);
             //! unchoose the current number
             path.RemoveAt(path.Count - 1);
 
+        }
+
+   
+        /// <summary>
+        //! Below code can be potiential followup for subset problem when they ask for the subsets equal to the target.  
+        /// </summary>
+        private void Subset2(int[] nums, int i, int target, List<int> path, List<IList<int>> powerSet)
+        {
+            if (target == 0)
+            {
+                powerSet.Add(new List<int>(path));
+                return;
+            }
+
+            if (target < 0 || i == nums.Length)
+                return;
+
+            //! not choose the current number(we are not adding the number to path)
+            Subset2(nums, i + 1, target, path, powerSet);
+            //! choose the current number(we are adding the number to the path)
+            path.Add(nums[i]);
+            Subset2(nums, i + 1, target - nums[i], path, powerSet);
+            //! unchoose the current number
+            path.RemoveAt(path.Count - 1);
+
+        }
+        /// <summary>
+        //! Below code can be potiential followup for subset problem when they ask for the subsets equal to the target.  
+        /// </summary>
+        private void Subset3(int[] nums, int index, int target, List<int> path, List<IList<int>> powerSet)
+        {
+            if (target == 0)
+            {
+                powerSet.Add(new List<int>(path));
+                return;
+            }
+
+            if (target < 0 || index == nums.Length)
+                return;
+
+            for (int i = index; i < nums.Length; ++i)
+            {
+                path.Add(nums[i]);
+                Subset3(nums, i + 1, target - nums[i], path, powerSet);
+                path.RemoveAt(path.Count - 1);
+            }
         }
     }
 }

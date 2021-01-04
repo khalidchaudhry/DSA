@@ -43,8 +43,8 @@ namespace LeetcodeBackTracking.Medium
 
             for (int i = 0; i < nums.Length; ++i)
             {
-                if (used[i]) continue;//choose
-                used[i] = true;
+                if (used[i]) continue;
+                used[i] = true;//choose
                 path.Add(nums[i]);
                 Permute0(nums, used, path, result);//Explore
                 path.RemoveAt(path.Count - 1);

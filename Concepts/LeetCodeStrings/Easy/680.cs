@@ -44,6 +44,33 @@ namespace LeetCodeStrings.Easy
             return true;
         }
 
+        /// <summary>
+        //! Using recursion 
+        /// </summary>
+        public bool ValidPalindrome1(string s)
+        {
+            return Helper(s, 0, s.Length - 1, 0);
+        }
+
+        private bool Helper(string str, int s, int e, int deleteCount)
+        {
+
+            if (deleteCount > 1)
+                return false;
+
+            if (s > e)
+                return true;
+
+            if (str[s] == str[e])
+            {
+                return Helper(str, s + 1, e - 1, deleteCount);
+            }
+            else
+            {
+                return Helper(str, s + 1, e, deleteCount + 1) || Helper(str, s, e - 1, deleteCount + 1);
+            }
+        }
+
         private bool Helper(string s, int i, int j)
         {
             while (i < j)

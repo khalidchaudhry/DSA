@@ -22,98 +22,50 @@ namespace LeetCodeStrings.Easy
         /// </summary>
         public bool IsPalindrome0(string s)
         {
-            string str = Normalize(s);
-            return Helper(str, 0, str.Length - 1);
+            int start = 0;
+            int end = s.Length - 1;
+            return Helper(s, start, end);
         }
 
+        //! using iterative approach
         public bool IsPalindrome(string s)
         {
-            if (string.IsNullOrEmpty(s) || s.Length == 1)
-                return true;
-
-            string upperCaseString = s.ToUpper();
-            Stack<Char> stk = new Stack<char>();
-            int i = 0;
-            while (i < upperCaseString.Length)
+            int start = 0;
+            int end = s.Length - 1;
+            while (start < end)
             {
-                if ((upperCaseString[i] >= 65 && upperCaseString[i] <= 90) || (upperCaseString[i] >= 48 && upperCaseString[i] <= 57))
-                {
-                    stk.Push(upperCaseString[i]);
-                }
-                ++i;
-            }
-            i = 0;
-            while (i < upperCaseString.Length)
-            {
-                if ((upperCaseString[i] >= 65 && upperCaseString[i] <= 90) || (upperCaseString[i] >= 48 && upperCaseString[i] <= 57))
-                {
-                    if (upperCaseString[i] != stk.Pop())
-                    {
-                        return false;
-                    }
-                }
-                ++i;
-            }
-            return true;
-        }
-        public bool IsPalindrome2(string s)
-        {
-            if (string.IsNullOrEmpty(s) || s.Length == 1)
-            {
-                return true;
-            }
-
-            int head = 0, tail = s.Length - 1;
-            char cHead, cTail;
-            while (head <= tail)
-            {
-                cHead = s[head];
-                cTail = s[tail];
-                if (!char.IsLetterOrDigit(cHead))
-                {
-                    head++;
-                }
-                else if (!char.IsLetterOrDigit(cTail))
-                {
-                    tail--;
-                }
+                if (!Char.IsLetterOrDigit(s[start]))
+                    ++start;
+                else if (!Char.IsLetterOrDigit(s[end]))
+                    --end;
                 else
                 {
-                    if (char.ToLower(cHead) != char.ToLower(cTail))
-                    {
+                    if (char.ToLower(s[start]) != char.ToLower(s[end]))
                         return false;
-                    }
-                    head++;
-                    tail--;
+                    ++start;
+                    --end;
                 }
             }
-
             return true;
         }
-        private bool Helper(string s, int start, int end)
+       
+        private bool Helper(string str, int s, int e)
         {
-            if (start > end)
-                return true;
-            if (start == end)
-                return true;
-
-            return s[start] == s[end] && Helper(s, start + 1, end - 1);
-        }
-        private string Normalize(string s)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            foreach (char c in s)
+            if (s > e)
             {
-                if (char.IsLetterOrDigit(c))
-                {
-                    sb.Append(c);
-                }
+                return true;
             }
 
-            return sb.ToString();
+            if (!char.IsLetterOrDigit(str[s]))
+                return Helper(str, s + 1, e);
+
+            if (!char.IsLetterOrDigit(str[e]))
+                return Helper(str, s, e - 1);
+
+            if (char.ToLower(str[s]) != char.ToLower(str[e]))
+                return false;
+
+            return Helper(str, s + 1, e - 1);
         }
-
-
     }
 }

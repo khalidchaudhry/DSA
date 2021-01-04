@@ -18,43 +18,51 @@ namespace LeetCodeRecursion.Medium
 
 
         }
+
+        Dictionary<char, List<char>> map;
         public IList<string> LetterCombinations(string digits)
         {
 
+            List<string> result = new List<string>();
 
-            IList<string> result = new List<string>();
-            Dictionary<char, List<string>> map = new Dictionary<char, List<string>>();
+            if (digits.Length == 0)
+                return result;
 
-            map.Add('2', new List<string> { "a", "b", "c" });
-            map.Add('3', new List<string> { "d", "e", "f" });
+            map = new Dictionary<char, List<char>>();
+            InitMap();
 
-            Helper(digits, 0, map, new StringBuilder(), result);
+            Helper(digits.ToCharArray(), 0, new StringBuilder(), result);
 
             return result;
         }
 
-
-        private void Helper(string digits, int i, Dictionary<char, List<string>> map, StringBuilder path, IList<string> result)
+        private void Helper(char[] charArray, int idx, StringBuilder path, List<string> result)
         {
-            if (i >= digits.Length)
-                return;
-
-            if (path.Length == digits.Length)
+            if (charArray.Length == path.Length)
             {
-                Console.WriteLine(path.ToString());
                 result.Add(path.ToString());
+                return;
             }
-
-            else
+            foreach (char c in map[charArray[idx]])
             {
-                for (int j = 0; j < 3; ++j)
-                {
-                    string str = map[digits[i]][j];
-                    path.Append(str);
-                    Helper(digits, i + 1, map, path, result);
-                }
+                path.Append(c);
+                Helper(charArray, idx + 1, path, result);
+                --path.Length;
             }
         }
+
+        private void InitMap()
+        {
+            map.Add('2', new List<char>() { 'a', 'b', 'c' });
+            map.Add('3', new List<char>() { 'd', 'e', 'f' });
+            map.Add('4', new List<char>() { 'g', 'h', 'i' });
+            map.Add('5', new List<char>() { 'j', 'k', 'l' });
+            map.Add('6', new List<char>() { 'm', 'n', 'o' });
+            map.Add('7', new List<char>() { 'p', 'q', 'r', 's' });
+            map.Add('8', new List<char>() { 't', 'u', 'v' });
+            map.Add('9', new List<char>() { 'w', 'x', 'y', 'z' });
+        }
+
 
 
     }

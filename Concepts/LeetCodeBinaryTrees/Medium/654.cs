@@ -15,28 +15,17 @@ namespace LeetCodeBinaryTrees.Medium
 
         //!Space Complexity: O(n)
         //! Worst case:O(n) The size of the set can grow upto n in the worst case
-        //! Average case: nlog(n) The size will be nlogn for n elements in nums
-
-        public TreeNode ConstructMaximumBinaryTree0(int[] nums)
-        {
-            //! we are passing nums.Length and not nums.Length-1 because in calculating Max in Construct function we are using i < end
-            TreeNode root = Construct(nums, 0, nums.Length);
-            return root;
-        }
+        //! Average case: nlog(n) The size will be nlogn for n elements in nums       
 
         public TreeNode ConstructMaximumBinaryTree(int[] nums)
         {
-
-            TreeNode root = Helper(nums, 0, nums.Length - 1);
-            return root;
-
+            return Helper(nums, 0, nums.Length - 1);
         }
         /// <summary>
+        //! Using explicit stack . Without recursion. 
         /// https://leetcode.com/problems/maximum-binary-tree/discuss/106156/Java-worst-case-O(N)-solution
         /// https://leetcode.com/problems/maximum-binary-tree/discuss/106147/c-8-lines-on-log-n-map-plus-stack-with-binary-search
         /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
         public TreeNode ConstructMaximumBinaryTree2(int[] nums)
         {
             var stack = new Stack<TreeNode>();
@@ -63,70 +52,33 @@ namespace LeetCodeBinaryTrees.Medium
             return result;
         }
 
-        private TreeNode Construct(int[] nums, int start, int end)
+        private TreeNode Helper(int[] nums, int s, int e)
         {
-            //base condition
-            if (start == end)
-            {
+            if (s > e)
                 return null;
-            }
+            if (s == e)
+                return new TreeNode(nums[s]);
 
-            int maxNumIndex = Max(nums, start, end);
+            int maxValueIndex = MaxNumberIndex(nums, s, e);
 
-            TreeNode node = new TreeNode(nums[maxNumIndex]);
-            //! not passing maxNumIndex-1 because in Max function above we are using i<end 
-            node.left = Helper(nums, start, maxNumIndex);
-
-            node.right = Helper(nums, maxNumIndex + 1, end);
-
-            return node;
+            TreeNode toReturn = new TreeNode(nums[maxValueIndex]);
+            toReturn.left = Helper(nums, s, maxValueIndex - 1);
+            toReturn.right = Helper(nums, maxValueIndex + 1, e);
+            return toReturn;
         }
-
-        private int Max(int[] nums, int start, int end)
+        private int MaxNumberIndex(int[] nums, int s, int e)
         {
-            int max_i = start;
-            for (int i = start; i < end; i++)
+            int maxIndex = s;
+            int maxValue = nums[s];
+            for (int i = s; i <= e; ++i)
             {
-                if (nums[max_i] < nums[i])
-                    max_i = i;
-            }
-            return max_i;
-        }
-
-        private TreeNode Helper(int[] nums, int start, int end)
-        {
-            if (start > end)
-            {
-                return null;
-            }
-            if (start < 0)
-                return null;
-
-            int maxNumIndex = MaxNumberIndex(nums, start, end);
-
-            TreeNode node = new TreeNode(nums[maxNumIndex]);
-
-            node.left = Helper(nums, start, maxNumIndex - 1);
-
-            node.right = Helper(nums, maxNumIndex + 1, end);
-
-            return node;
-        }
-
-        private int MaxNumberIndex(int[] nums, int start, int end)
-        {
-            int max = int.MinValue;
-            int maxValueIndex = -1;
-            while (start <= end)
-            {
-                if (nums[start] > max)
+                if (nums[i] > maxValue)
                 {
-                    max = Math.Max(max, nums[start]);
-                    maxValueIndex = start;
+                    maxValue = nums[i];
+                    maxIndex = i;
                 }
-                ++start;
             }
-            return maxValueIndex;
+            return maxIndex;
         }
     }
 }

@@ -21,18 +21,7 @@ namespace LeetcodeHasTable.Easy
         {
             Dictionary<char, int> map = new Dictionary<char, int>();
 
-            foreach (char c in s)
-            {
-                if (map.ContainsKey(c))
-                {
-                    map[c]++;
-
-                }
-                else
-                {
-                    map[c] = 1;
-                }
-            }
+            FrequencyMap(s, map);
 
             int oddCount = 0;
 
@@ -49,6 +38,18 @@ namespace LeetcodeHasTable.Easy
             }
 
             return true;
+        }
+
+        private void FrequencyMap(string s, Dictionary<char, int> map)
+        {
+            foreach (char c in s)
+            {
+                if (!map.ContainsKey(c))
+                {
+                    map.Add(c, 0);
+                }
+                ++map[c];
+            }
         }
     }
 }

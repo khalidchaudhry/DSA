@@ -38,32 +38,11 @@ namespace LeetCodeBinaryTrees.Medium
         }
 
         /// <summary>
-        //! Post order traversal 
-        /// </summary>
-        /// <param name="root"></param>
-        /// <param name="p"></param>
-        /// <param name="q"></param>
-        /// <returns></returns>
-        public TreeNode LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q)
-        {
-
-            ResultWrapper wrapper = new ResultWrapper();
-
-            LowestCommonAncestor0(root, p, q, wrapper);
-
-            return wrapper.LCA;
-
-        }
-
-
-        /// <summary>
+        //! Similar pattern used in 669. 
         /// https://www.youtube.com/watch?v=py3R23aAPCA
-        //! PreOrder traversal 
+        //! Post-Order traversal 
         /// </summary>
-        /// <param name="root"></param>
-        /// <param name="p"></param>
-        /// <param name="q"></param>
-        /// <returns></returns>
+
         public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
         {
 
@@ -96,6 +75,20 @@ namespace LeetCodeBinaryTrees.Medium
             //!right...that means this node is the LCA...because our recursion returns from
             //!bottom to up...so we return what we hold...'root'
             return root;
+
+        }
+
+        /// <summary>
+        //! Post order traversal       
+        /// </summary>        
+        public TreeNode LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q)
+        {
+
+            ResultWrapper wrapper = new ResultWrapper();
+
+            LowestCommonAncestor0(root, p, q, wrapper);
+
+            return wrapper.LCA;
 
         }
 
@@ -173,8 +166,6 @@ namespace LeetCodeBinaryTrees.Medium
             return count;
 
         }
-
-        
 
         public class ResultWrapper
         {

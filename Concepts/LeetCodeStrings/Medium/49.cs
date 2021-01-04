@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LeetCodeStrings.Medium
@@ -8,17 +9,15 @@ namespace LeetCodeStrings.Medium
     {
 
         /// <summary>
-        //!N is length of strs array and K is the maximum length of a string in str
+        //!N is length of strs array and K is the maximum length of a string in strs
         //!Time complexity=O(N*KlogK) 
         //!Outerloop that iterates elements in string array of size N=O(N)
         //! Array.Sort time complexity KlogK where K is the length of a string
         //!The outer loop has complexity O(N) as we iterate through each string.
         //! Then, we sort each string in O(K \log K)O(KlogK) time.
         //!Space complexity=O(NK) 
-
         /// </summary>
-        /// <param name="strs"></param>
-        /// <returns></returns>
+
         public IList<IList<string>> GroupAnagrams(string[] strs)
         {
             List<IList<string>> result = new List<IList<string>>();
@@ -49,15 +48,42 @@ namespace LeetCodeStrings.Medium
             return new List<IList<string>>(hashTable.Values);
 
         }
-        
+
         /// <summary>
+        //! Below function uses Dictionary explicitly 
         //!N is length of strs array and K is the maximum length of a string in str
         //!Time Complexity: O(NK)
         //!Counting each string is linear in the size of the string, and we count every string.
         //!Space Complexity: O(NK), the total information content stored in ans
         /// </summary>
-        /// <param name="strs"></param>
-        /// <returns></returns>
+
+        public IList<IList<string>> GroupAnagrams2(string[] strs)
+        {
+            Dictionary<string, List<string>> result = new Dictionary<string, List<string>>();
+            for (int i = 0; i < strs.Length; ++i)
+            {
+                Dictionary<char, int> map = new Dictionary<char, int>();
+                CreateMap(strs[i], map);
+                string key = CreateKey(map);
+                if (!result.ContainsKey(key))
+                {
+                    result.Add(key, new List<string>());
+                }
+                result[key].Add(strs[i]);
+            }
+
+            return new List<IList<string>>(result.Values);
+        }
+
+
+
+        /// <summary>
+        //! Below function uses int char array
+        //!N is length of strs array and K is the maximum length of a string in str
+        //!Time Complexity: O(NK)
+        //!Counting each string is linear in the size of the string, and we count every string.
+        //!Space Complexity: O(NK), the total information content stored in ans
+        /// </summary>
 
         public IList<IList<string>> groupAnagrams3(string[] strs)
         {
@@ -94,6 +120,29 @@ namespace LeetCodeStrings.Medium
             return new List<IList<string>>(ans.Values);
         }
 
+        private void CreateMap(string s, Dictionary<char, int> map)
+        {
+            foreach (char c in s)
+            {
+                if (!map.ContainsKey(c))
+                    map.Add(c, 0);
+                ++map[c];
+            }
+        }
+        private string CreateKey(Dictionary<char, int> map)
+        {
+            StringBuilder sb = new StringBuilder();
+            //! Constant time operation because  map consists of lower-case English letters only
+            map = map.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+            foreach (var keyValue in map)
+            {
+                sb.Append('#');
+                sb.Append(keyValue.Key);
+                sb.Append(keyValue.Value);
+            }
+
+            return sb.ToString();
+        }
 
     }
 }
