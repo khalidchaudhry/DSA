@@ -18,18 +18,36 @@ namespace LeetCodeRecursion.Medium
         }
         public bool CanPartitionKSubsets(int[] nums, int k)
         {
-            List<int> buckets = new List<int>();
+            int[] buckets = new int[k];
             int sum = nums.Sum();
             nums = nums.OrderByDescending(x => x).ToArray();
             if (sum % k != 0) return false;
 
             int target = sum / k;
 
-            for (int i = 0; i < k; ++i)
+           
+            return CanPartitionKSubsets(nums, 0, k, target, buckets);
+        }
+       
+        private bool CanPartitionKSubsets(int[] nums, int numsIdx, int totalBuckets, int target, int[] buckets)
+        {
+            if (numsIdx == nums.Length)
             {
-                buckets.Add(0);
+                return true;
             }
-            return Helper(nums, 0, k, target, buckets);
+
+            for (int bucket = 0; bucket < totalBuckets; ++bucket)   // Choices 
+            {
+                //!Short circut .If bucket size + current item > target don't go in recursion. 
+                if (buckets[bucket] + nums[numsIdx] > target) continue;
+                
+                buckets[bucket] = buckets[bucket] + nums[numsIdx];
+                if (CanPartitionKSubsets(nums, numsIdx + 1, totalBuckets, target, buckets))
+                    return true;
+                buckets[bucket] = buckets[bucket] - nums[numsIdx];
+            }
+
+            return false;
         }
 
         public bool CanPartitionKSubsets0(int[] nums, int k)
@@ -37,27 +55,6 @@ namespace LeetCodeRecursion.Medium
             int[] buckets = new int[k];
             return Helper(nums, buckets, 0);
         }
-        private bool Helper(int[] nums, int idx, int k, int target, List<int> buckets)
-        {
-            if (idx == nums.Length)
-            {
-                return true;
-            }
-
-            for (int i = 0; i < k; ++i)   // Choices 
-            {
-                //!Short circut .If bucket size + current item greater than target don't go in recursion. 
-                if (buckets[i] + nums[idx] > target) continue;
-                
-                buckets[i] = buckets[i] + nums[idx];
-                if (Helper(nums, idx + 1, k, target, buckets))
-                    return true;
-                buckets[i] = buckets[i] - nums[idx];
-            }
-
-            return false;
-        }
-
         private bool Helper(int[] nums, int[] buckets, int idx)
         {
             if (idx == nums.Length)

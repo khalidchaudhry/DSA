@@ -10,34 +10,28 @@ namespace LeetCodeDynamicProgramming.Medium
     {
         public int CountSubstrings(string s)
         {
-            if (s.Length == 0)
-            {
-                return 0;
-            }
 
-            int row=s.Length ,column =s.Length;
-            bool[,] dp = new bool[row, column];
+            bool[,] isPalindrome = new bool[s.Length, s.Length];
             int count = 0;
-
-            for (int i = 0; i < row; i++)
+            for (int l = 1; l <= s.Length; ++l)
             {
-                dp[i, i] = true;
-                ++count;
-            }
-
-            for (int j = 1; j < column; j++)
-            {
-
-                for (int i = 0; i < j; i++)
+                for (int start = 0; start <= s.Length - l; ++start)
                 {
-                  if(s[i] == s[j] && (dp[i+1,j-1]|| j-i<=2))
-                    {
-                        dp[i, j] = true;
+                    int end = start + l - 1;
+                    if (start == end)
+                        isPalindrome[start, end] = true;
+                    else if (l == 2)
+                        isPalindrome[start, end] = s[start] == s[end];
+                    else
+                        isPalindrome[start, end] = s[start] == s[end] && isPalindrome[start + 1, end - 1];
+
+                    if (isPalindrome[start, end])
                         ++count;
-                    }
                 }
             }
+
             return count;
+
         }
 
 
