@@ -37,11 +37,24 @@ namespace LeetcodeBackTracking.Medium
             SubsetsWithDup0(nums, 0, new List<int>(), res);
             return res;
         }
+
+        private void SubsetsWithDup0(int[] nums, int start, List<int> path, List<IList<int>> res)
+        {
+            res.Add(new List<int>(path));
+
+            for (int i = start; i < nums.Length; ++i)
+            {
+                //! Skip the same number at a certain depth
+                if (i > start && nums[i - 1] == nums[i]) continue;
+                path.Add(nums[i]);
+                SubsetsWithDup0(nums, i + 1, path, res);
+                path.RemoveAt(path.Count - 1);
+            }
+        }
+
         /// <summary>
         //https://leetcode.com/problems/subsets-ii/discuss/169226/Java-Two-Way-of-Recursive-thinking
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
+        /// </summary>        
         public IList<IList<int>> SubsetsWithDup(int[] nums)
         {
 
@@ -50,7 +63,6 @@ namespace LeetcodeBackTracking.Medium
             SubsetsWithDup(nums, 0, false, new List<int>(), res);
             return res;
         }
-        
 
         private void SubsetsWithDup(int[] nums, int i, bool choosePre, List<int> path, List<IList<int>> result)
         {
@@ -59,7 +71,6 @@ namespace LeetcodeBackTracking.Medium
                 result.Add(new List<int>(path));
                 return;
             }
-
             //!exclude           
             SubsetsWithDup(nums, i + 1, false, path, result);
 
@@ -69,20 +80,6 @@ namespace LeetcodeBackTracking.Medium
             path.Add(nums[i]);
             SubsetsWithDup(nums, i + 1, true, path, result);
             path.RemoveAt(path.Count - 1);
-        }
-
-        private void SubsetsWithDup0(int[] nums, int index, List<int> path, List<IList<int>> res)
-        {
-            res.Add(new List<int>(path));
-
-            for (int i = index; i < nums.Length; ++i)
-            {
-                //! Skip the same number at a certain depth
-                if (i > index && nums[i - 1] == nums[i]) continue; 
-                path.Add(nums[i]);
-                SubsetsWithDup0(nums, i + 1, path, res);
-                path.RemoveAt(path.Count - 1);
-            }
-        }
+        }       
     }
 }

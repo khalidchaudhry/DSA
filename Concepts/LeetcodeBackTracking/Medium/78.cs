@@ -42,14 +42,15 @@ namespace LeetCodeBackTracking.Medium
             return powerSet;
         }
 
-        private void Subset0(int[] nums, int indx, List<int> path, List<IList<int>> powerSet)
+        private void Subset0(int[] nums, int start, List<int> path, List<IList<int>> powerSet)
         {
             powerSet.Add(new List<int>(path));
 
-            for (int i = indx; i < nums.Length; ++i)
+            //!i+1 => Once we choose postion, we will not choose the position again. 
+            for (int i = start; i < nums.Length; ++i)
             {
                 path.Add(nums[i]); //choose
-                //! i + 1=> we can only start the call afterwords. 
+                //! i + 1=> we can only start the call afterwords.                 
                 Subset0(nums, i + 1, path, powerSet);//explore 
                 path.RemoveAt(path.Count - 1);//unchoose 
             }

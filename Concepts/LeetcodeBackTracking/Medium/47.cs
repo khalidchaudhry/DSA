@@ -45,18 +45,20 @@ namespace LeetcodeBackTracking.Medium
 
             for (int i = 0; i < nums.Length; ++i)
             {
-                if (used[i]) continue;
+                //! If item choose continue. 
+                //! If previous item not choose and current element=previous element than continue
+                //! If previous item not choosen ,it means we used it before and then unused it. so we can continue and don't consider it.
+                if (used[i] ||
+                     (i > 0 &&
+                      !used[i - 1] &&
+                       nums[i] == nums[i - 1]))
+                    continue;
 
                 used[i] = true;
                 path.Add(nums[i]);
-                PermuteUnique(nums, used, path, result);               
+                PermuteUnique(nums, used, path, result);
                 path.RemoveAt(path.Count - 1);
                 used[i] = false;
-
-                while (i + 1 < nums.Length && nums[i] == nums[i + 1])
-                {
-                    ++i;
-                }
             }
         }
     }

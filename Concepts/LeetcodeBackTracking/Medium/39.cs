@@ -35,7 +35,7 @@ namespace LeetcodeBackTracking.Medium
             return result;
         }
 
-        private void CombinationSum0(int[] candidates, int index, int target, List<int> path, List<IList<int>> result)
+        private void CombinationSum0(int[] candidates, int start, int target, List<int> path, List<IList<int>> result)
         {
             if (target < 0) return;         
             if (target == 0)
@@ -44,7 +44,7 @@ namespace LeetcodeBackTracking.Medium
                 return;
             }
 
-            for (int i = index; i < candidates.Length; ++i)
+            for (int i = start; i < candidates.Length; ++i)
             {
                 path.Add(candidates[i]);
                 //! not  i+1  because we can reuse the same element(unbounded Knapsack. Unlimited supply) 
@@ -78,7 +78,7 @@ namespace LeetcodeBackTracking.Medium
 
         }
 
-        private void CombinationSum1(int[] candidates, int i, int target, List<int> path, List<IList<int>> result)
+        private void CombinationSum1(int[] candidates, int start, int target, List<int> path, List<IList<int>> result)
         {
             //! Combination sum has exceeded the target sum  
             if (target < 0) return;
@@ -89,14 +89,14 @@ namespace LeetcodeBackTracking.Medium
                 return;
             }
             //! if we reach end of array return as we don't find the combination that is equal to the target sum 
-            if (i == candidates.Length) return;
+            if (start == candidates.Length) return;
 
-            path.Add(candidates[i]);
+            path.Add(candidates[start]);
             //! Key here is that when we include the item it does not prevent us from including it again. 
             //! by not incrementing i, we are staying at  same point in array so that we can include the item again
-            CombinationSum1(candidates, i, target - candidates[i], path, result);
+            CombinationSum1(candidates, start, target - candidates[start], path, result);
             path.RemoveAt(path.Count - 1);
-            CombinationSum1(candidates, i + 1, target, path, result);
+            CombinationSum1(candidates, start + 1, target, path, result);
         }       
     }
 }

@@ -15,6 +15,9 @@ namespace LeetcodeBackTracking.Medium
 
         }
         //https://leetcode.com/problems/letter-case-permutation/discuss/255071/Java-detailed-explanation-of-DFSBacktracking-solution
+        //! Same as leetcode question 22, there we have two choices(opening bracket & closing bracket) 
+        //! Here we have two choices too. Either we make character upper case or lower case. 
+         
         public IList<string> LetterCasePermutation(string S)
         {
 

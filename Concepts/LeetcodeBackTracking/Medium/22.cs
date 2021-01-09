@@ -8,15 +8,16 @@ namespace LeetcodeBackTracking.Medium
     {
 
 
-
+        //! Same as leetcode question 784, there we have two choices(opening bracket & closing bracket) 
+        //! Here we have two choices too. Either we can have opening bracket or closing bracket. 
         public IList<string> GenerateParenthesis0(int n)
         {
             IList<string> result = new List<string>();
-            Helper(n, 0, 0, new StringBuilder(), result);
+            GenerateParenthesis0(n, 0, 0, new StringBuilder(), result);
             return result;
         }
 
-        private void Helper(int n,
+        private void GenerateParenthesis0(int n,
                        int openingBracketsCount,
                        int closingBracketsCount,
                        StringBuilder path,
@@ -32,12 +33,12 @@ namespace LeetcodeBackTracking.Medium
                 return;
             }
             path.Append('('); //! choose
-            Helper(n, openingBracketsCount + 1, closingBracketsCount, path, result);
+            GenerateParenthesis0(n, openingBracketsCount + 1, closingBracketsCount, path, result);
             --path.Length; //! unchoose 
 
 
             path.Append(')');  //! choose
-            Helper(n, openingBracketsCount, closingBracketsCount + 1, path, result);
+            GenerateParenthesis0(n, openingBracketsCount, closingBracketsCount + 1, path, result);
             --path.Length;//! unchoose
 
         }

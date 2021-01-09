@@ -22,7 +22,7 @@ namespace LeetcodeBackTracking.Medium
 
         /// <summary>
         //! Bounded Knapsack
-        //! This problem uses combines the  technique used in problem 90 to handle with duplicates & 
+        //! This problem  combines the  technique used in problem 90 to handle with duplicates & 
         //! problem 39 to reach the target
         /// https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
         /// </summary>
@@ -39,7 +39,7 @@ namespace LeetcodeBackTracking.Medium
 
         }
 
-        private void CombinationSum(int[] candidates, int index, int target, List<int> path, List<IList<int>> result)
+        private void CombinationSum(int[] candidates, int start, int target, List<int> path, List<IList<int>> result)
         {
             if (target < 0)
                 return;
@@ -50,19 +50,19 @@ namespace LeetcodeBackTracking.Medium
                 return;
             }
 
-            if (index == candidates.Length)
+            if (start == candidates.Length)
             {
                 return;
             }
 
-            for (int i = index; i < candidates.Length; ++i)
+            for (int i = start; i < candidates.Length; ++i)
             {
                 //! Bounded knapsack because we can use item only once
                 //! j>i not j>0 because we want to include duplicate once in path
                 //! e.g. [1,2,2,2,5]  with j>0  it will skip [1,2,2] path with j>i it will include [1,2,2]
-                if (i > index && candidates[i - 1] == candidates[i]) continue;
+                if (i > start && candidates[i - 1] == candidates[i]) continue;
                 path.Add(candidates[i]);
-                //! Bounded knapsack because we can use item only once hence we are incrementing i+1
+                //! Bounded knapsack because we can use item only once hence we are incrementing i(i+1)
                 CombinationSum(candidates, i + 1, target - candidates[i], path, result);
                 path.RemoveAt(path.Count - 1);
             }

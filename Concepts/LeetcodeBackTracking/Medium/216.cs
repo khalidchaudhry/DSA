@@ -36,7 +36,7 @@ namespace LeetcodeBackTracking.Medium
             return result;
         }
 
-        private void CombinationSum3(int[] nums, int i, int targetLen, int targetSum, List<int> path, List<IList<int>> result)
+        private void CombinationSum3(int[] nums, int start, int targetLen, int targetSum, List<int> path, List<IList<int>> result)
         {
             if (targetSum < 0) return;
             if (targetSum == 0 && path.Count != targetLen) return;
@@ -45,7 +45,7 @@ namespace LeetcodeBackTracking.Medium
                 result.Add(new List<int>(path));
             }
 
-            for (int j = i; j < nums.Length; ++j)
+            for (int j = start; j < nums.Length; ++j)
             {
                 path.Add(nums[j]);
                 CombinationSum3(nums, j + 1, targetLen, targetSum - nums[j], path, result);

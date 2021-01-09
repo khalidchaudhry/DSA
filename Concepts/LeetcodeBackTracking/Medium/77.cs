@@ -28,9 +28,29 @@ namespace LeetcodeBackTracking.Medium
             for (int i = 0; i < n; ++i)
                 nums[i] = i + 1;
 
-            Helper(nums, 0, k, new List<int>(), result);
+            Combine0(nums, 0, k, new List<int>(), result);
             return result;
         }
+        private void Combine0(int[] nums, int start, int k, List<int> path, IList<IList<int>> result)
+        {
+            if (path.Count == k)
+            {
+                result.Add(new List<int>(path));
+                return;
+            }
+            if (path.Count > k)
+            {
+                return;
+            }
+
+            for (int i = start; i < nums.Length; ++i)
+            {
+                path.Add(nums[i]);
+                Combine0(nums, i + 1, k, path, result);
+                path.RemoveAt(path.Count - 1);
+            }
+        }
+
         /// <summary>
         //! Approach followed in sam byte by byte course. 
         /// </summary>
@@ -53,27 +73,7 @@ namespace LeetcodeBackTracking.Medium
             Combine(nums, 0, k, new List<int>(), result);
 
             return result;
-        }
-
-        private void Helper(int[] nums, int index, int k, List<int> path, IList<IList<int>> result)
-        {
-            if (path.Count == k)
-            {
-                result.Add(new List<int>(path));
-                return;
-            }
-            if (path.Count > k)
-            {
-                return;
-            }
-
-            for (int i = index; i < nums.Length; ++i)
-            {
-                path.Add(nums[i]);
-                Helper(nums, i + 1, k, path, result);
-                path.RemoveAt(path.Count - 1);
-            }
-        }
+        }       
 
         private void Combine(int[] nums, int i, int k, List<int> path, List<IList<int>> result)
         {
