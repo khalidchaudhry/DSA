@@ -7,6 +7,39 @@ namespace LeetCodeStrings.Medium
     public class _5
     {
 
+
+        /// <summary>
+        //!Same approach as used in problem 132  
+        /// </summary>
+        public string LongestPalindrome0(string s)
+        {
+
+            int fs = 0;
+            int fe = 0;
+            bool[,] isPalindromes = new bool[s.Length, s.Length];
+            for (int l = 1; l <= s.Length; ++l)
+            {
+                for (int start = 0; start <= s.Length - l; ++start)
+                {
+                    int end = start + l - 1;
+                    if (start == end)
+                        isPalindromes[start, end] = true;
+                    else if (l == 2)
+                        isPalindromes[start, end] = s[start] == s[end];
+                    else
+                        isPalindromes[start, end] = isPalindromes[start + 1, end - 1] && s[start] == s[end];
+
+                    if (isPalindromes[start, end] && end - start > fe - fs)
+                    {
+                        fe = end;
+                        fs = start;
+                    }
+                }
+            }
+
+            return s.Substring(fs, fe - fs + 1);
+        }
+
         /*
           http://www.goodtecher.com/leetcode-5-longest-palindromic-substring/
         basic idea is to use dynamic programming to determine whether 
@@ -23,7 +56,7 @@ namespace LeetCodeStrings.Medium
          Space complexity=O(n^2)
          We are creating 2-dimensional array as per input string of size n
          */
-        public string LongestPalindrome0(string s)
+        public string LongestPalindrome1(string s)
         {
             int length = s.Length;
             if (string.IsNullOrEmpty(s) || s.Length < 2)
