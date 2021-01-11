@@ -14,14 +14,81 @@ namespace LeetCodeSlidingWindow.Medium
             string s1 = "ab";
             string s2 = "eidbaooo";
             _567 test = new _567();
-            var ans = test.CheckInclusion(s1, s2);
+            var ans = test.CheckInclusion0(s1, s2);
             Console.ReadLine();
         }
 
 
+        /// <summary>
+        //! Fixed size window pattern 
+        //! Using dictionary
+        //! Same pattern used in 1343 and many other fixed size window
+        /// </summary>
+        public bool CheckInclusion0(string s1, string s2)
+        {
+            if (s1.Length > s2.Length) return false;
 
+            Dictionary<char, int> s1Map = new Dictionary<char, int>();
+            Dictionary<char, int> s2Map = new Dictionary<char, int>();
+            int k = s1.Length;
+            //! Calculating for first window
+            BuildFrequencyMap(s1, k, s1Map);
+            BuildFrequencyMap(s2, k, s2Map);
+            //! check if first window satisifies the check
+            if (AreEqual(s1Map, s2Map))
+                return true;
 
+            for (int i = k; i < s2.Length; ++i)
+            {
+                //! removing the first element from window
+                Remove(s2Map, s2[i - k]);
+                //! Adding the next element to the window
+                Add(s2Map, s2[i]);
+                if (AreEqual(s1Map, s2Map))
+                    return true;
+            }
+            return false;
+        }
 
+        private void BuildFrequencyMap(string s, int k, Dictionary<char, int> map)
+        {
+            for (int i = 0; i < k; ++i)
+            {
+                char c = s[i];
+                if (!map.ContainsKey(c))
+                    map.Add(c, 0);
+
+                ++map[c];
+            }
+        }
+
+        private bool AreEqual(Dictionary<char, int> map1, Dictionary<char, int> map2)
+        {
+            foreach (var keyValue in map1)
+            {
+                if (!map2.ContainsKey(keyValue.Key) || map2[keyValue.Key] != keyValue.Value)
+                    return false;
+            }
+
+            return true;
+        }
+        private void Remove(Dictionary<char, int> map, char c)
+        {
+            --map[c];
+            if (map[c] == 0)
+                map.Remove(c);
+        }
+        private void Add(Dictionary<char, int> map, char c)
+        {
+            if (!map.ContainsKey(c))
+                map.Add(c, 0);
+
+            ++map[c];
+        }
+
+        //! Fixed size window pattern 
+        //! Using int array to map characters to them
+        //! Same pattern used in 1343 and many other fixed size window        
         public bool CheckInclusion(string s1, string s2)
         {
 
@@ -29,50 +96,49 @@ namespace LeetCodeSlidingWindow.Medium
 
             int[] s1Map = new int[26];
             int[] s2Map = new int[26];
-            BuildMap(s1, s1.Length, s1Map);
-            // ! calculating the first window of s2 
-            BuildMap(s2, s1.Length, s2Map);
-            //!s2Length - s1Length because we already calculated the first window 
-            for (int i = 0; i < s2.Length - s1.Length; ++i)
+            int k = s1.Length;
+            BuildFrequencyMap(s1, k, s1Map);
+            BuildFrequencyMap(s2, k, s2Map);
+            if (AreEqual(s1Map, s2Map))
+                return true;
+
+            for (int i = k; i < s2.Length; ++i)
             {
-               
+                Remove(s2Map, s2[i - k]);
+                Add(s2Map, s2[i]);
                 if (AreEqual(s1Map, s2Map))
                     return true;
-                //! left most character in the sliding window
-                char leftChar = s2[i];
-                //! right most character in sliding window
-                char rightChar = s2[s1.Length + i];
-                //! decreasing the window from  the left side. 
-                --s2Map[leftChar - 'a'];
-                //! increasing the window from  the right side. 
-                ++s2Map[rightChar - 'a'];
             }
-
-            //! in case both the strings are of equal length 
-            return AreEqual(s1Map,s2Map);
-
+            return false;
         }
 
-        private bool AreEqual(int[] s1Map, int[] s2Map)
+        private void BuildFrequencyMap(string s, int k, int[] map)
         {
-            for (int i = 0; i < 26; ++i)
+            for (int i = 0; i < k; ++i)
             {
-                if (s1Map[i] != s2Map[i])
+                char c = s[i];
+
+                ++map[c - 'a'];
+            }
+        }
+        private bool AreEqual(int[] map1, int[] map2)
+        {
+            for (int i = 0; i < map1.Length; ++i)
+            {
+
+                if (map1[i] != map2[i])
                     return false;
             }
-
             return true;
         }
-        private void BuildMap(string str, int end, int[] sMap)
+        private void Remove(int[] map, char c)
         {
-            for (int i = 0; i < end; ++i)
-            {
-                ++sMap[str[i] - 'a'];
-            }
+            --map[c - 'a'];
         }
-
-
-
+        private void Add(int[] map, char c)
+        {
+            ++map[c - 'a'];
+        }
 
         /// <summary>
         //! Brute Force 

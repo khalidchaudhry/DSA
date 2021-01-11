@@ -8,61 +8,43 @@ namespace LeetCodeDynamicProgramming.Medium
 {
     public class _63
     {
-        /// <summary>
-        //! Prerequisite for this problem is problem 64
-        /// </summary>
-        /// <param name="obstacleGrid"></param>
-        /// <returns></returns>
         public int UniquePathsWithObstacles(int[][] obstacleGrid)
         {
 
-            int rows = obstacleGrid.Length;
-            int columns = obstacleGrid[0].Length;
+            //! if first position itself is obstacle, then we can't have any path at all
+            if (obstacleGrid[0][0] == 1) return 0;
+            Dictionary<(int, int), int> cache = new Dictionary<(int, int), int>();
+            return UniquePathsWithObstacles(obstacleGrid, 0, 0, cache);
 
-            int[][] dp = new int[obstacleGrid.Length][];
-
-            for (int i = 0; i < dp.Length; ++i)
+        }
+        private int UniquePathsWithObstacles(int[][] obstacleGrid, int row, int column, Dictionary<(int, int), int> cache)
+        {
+            if (row == obstacleGrid.Length - 1 && column == obstacleGrid[0].Length - 1)
             {
-                dp[i] =new int[columns];
+                return 1;
             }
 
-            //!intializing first row
-            for (int i = 0; i < columns; ++i)
-            {
-                //! if we encounter obstacle there is no path after that 
-                if (obstacleGrid[0][i] == 1)
-                {
-                    break;
-                }
-                dp[0][i] = 1;
-            }
-            //!intializing first column
-            for (int i = 0; i < rows; ++i)
-            {
-                //! if we encounter obstacle there is no path after that 
-                if (obstacleGrid[i][0] == 1)
-                {
-                    break;
-                }
+            if (cache.ContainsKey((row, column)))
+                return cache[(row, column)];
 
-                dp[i][0] = 1;
+            int count = 0;
+            foreach ((int nx, int ny) in GetNeighbors(obstacleGrid, row, column))
+            {
+                count += UniquePathsWithObstacles(obstacleGrid, nx, ny, cache);
             }
 
-            for (int i = 1; i < rows; ++i)
+            cache[(row, column)] = count;
+
+            return cache[(row, column)];
+        }
+
+        private IEnumerable<(int, int)> GetNeighbors(int[][] matrix, int row, int column)
+        {
+            foreach ((int x, int y) in new List<(int, int)>() { (row + 1, column), (row, column + 1) })
             {
-                for (int j = 1; j < columns; ++j)
-                {
-                    if (obstacleGrid[i][j] == 1)
-                        continue;
-
-                    dp[i][j] = dp[i - 1][j] + //! cell above
-                             dp[i][j - 1];    //! cell on left side
-
-                }
+                if (x < matrix.Length && y < matrix[0].Length && matrix[x][y] != 1)
+                    yield return (x, y);
             }
-
-            return dp[rows-1][columns-1];
-
         }
 
 

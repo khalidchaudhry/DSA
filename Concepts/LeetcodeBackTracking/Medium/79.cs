@@ -6,6 +6,71 @@ namespace LeetcodeBackTracking.Medium
 {
     public class _79
     {
+        //! M =number of rows,N=No of columns
+        //! Time complexity=m*n*4^L(wordLength)
+        //! Space complexity=O(L)+O(m*n)  //O(L) recursion depth and O(mn) for visited array
+        public bool Exist0(char[][] board, string word)
+        {
+            bool[,] visited = new bool[board.Length, board[0].Length];
+            for (int i = 0; i < board.Length; ++i)
+            {
+                for (int j = 0; j < board[0].Length; ++j)
+                {
+                    if (IsExist(board, i, j, visited, word, 0))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsExist(char[][] board, int i, int j, bool[,] visited, string word, int wordIndex)
+        {
+
+            if (word.Length == wordIndex)  //! recursion depth=word length(L)
+                return true;
+
+            if (
+                 !IsInBound(board, i, j) || 
+                  visited[i, j] || 
+                  word[wordIndex] != board[i][j]
+                )
+                return false;
+
+            visited[i, j] = true;
+
+            foreach ((int nr, int nc) in GetNeighbors(board, i, j))  //! branching factor=4 ^ word Length
+            {
+                if (IsExist(board, nr, nc, visited, word, wordIndex + 1))
+                    return true;
+            }
+
+            visited[i, j] = false;
+
+            return false;
+        }
+
+        private IEnumerable<(int, int)> GetNeighbors(char[][] board, int row, int column)
+        {
+            foreach ((int nr, int nc) in new List<(int, int)> {  (row + 1, column),
+                                                                 (row - 1, column),
+                                                                 (row, column + 1),
+                                                                 (row, column - 1) })
+            {
+                yield return (nr, nc);
+            }
+        }
+
+        private bool IsInBound(char[][] board, int row, int column)
+        {
+            if (row >= 0 && row < board.Length && column >= 0 && column < board[0].Length)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         //! Similar to Problem 200,130
         //! Depth first search

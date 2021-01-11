@@ -18,7 +18,7 @@ namespace LeetCodeSlidingWindow.Medium
             var result = points.MaxScore(cardPoints, 3);
 
             Console.ReadLine();
-
+            
 
         }
 

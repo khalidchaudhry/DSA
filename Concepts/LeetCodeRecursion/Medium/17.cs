@@ -35,15 +35,19 @@ namespace LeetCodeRecursion.Medium
 
             return result;
         }
-
+        //! Time Complexity=O(4 ^ n * n)
+        //! Space Complexity=O(n) for recursion + 
+        //!                 O(n) for path + 
+        //!                 n*4 ^n for result=
+        //!Total: O(n) + O(n) +O(n*4 ^ n)= O(2n) + O(n*4^n)=O(n)+O(n* 4^n)
         private void Helper(char[] charArray, int idx, StringBuilder path, List<string> result)
         {
-            if (charArray.Length == path.Length)
+            if (charArray.Length == path.Length)  //!recursion depth=n where n is the length of digits string/path length  
             {
-                result.Add(path.ToString());
+                result.Add(path.ToString());     //! Time Complexity=O(n) 
                 return;
             }
-            foreach (char c in map[charArray[idx]])
+            foreach (char c in map[charArray[idx]])  //! Branching factor=4  
             {
                 path.Append(c);
                 Helper(charArray, idx + 1, path, result);

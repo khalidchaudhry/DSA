@@ -9,9 +9,17 @@ namespace LeetCodeSlidingWindow.Medium
     public class _1358
     {
 
-
+        public static void _1358Main()
+        {
+            _1358 Test = new _1358();
+            string s = "aaacb";
+            var ans=Test.NumberOfSubstrings(s);
+            Console.ReadLine();
+        }
+        
+        
         /// <summary>
-        //! Variable size sliding window 
+        //! Window size is of 3.We keep expanding and then shrink 
         /// </summary>
         public int NumberOfSubstrings(string s)
         {

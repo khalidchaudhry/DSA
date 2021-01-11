@@ -50,11 +50,13 @@
     <Compile Include="Medium\1004.cs" />
     <Compile Include="Medium\1151.cs" />
     <Compile Include="Medium\1234.cs" />
+    <Compile Include="Medium\1343.cs" />
     <Compile Include="Medium\1358.cs" />
     <Compile Include="Medium\1423.cs" />
     <Compile Include="Medium\1438.cs" />
     <Compile Include="Medium\209.cs" />
     <Compile Include="Medium\3.cs" />
+    <Compile Include="Medium\340.cs" />
     <Compile Include="Medium\424.cs" />
     <Compile Include="Medium\487.cs" />
     <Compile Include="Medium\567.cs" />

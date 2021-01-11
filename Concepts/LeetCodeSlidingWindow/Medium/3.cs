@@ -6,6 +6,38 @@ namespace LeetCodeStrings.Medium
 {
     public class _3
     {
+
+        /// <summary>
+        //! HashSet approach  
+        /// </summary>
+        public int LengthOfLongestSubstring(string s)
+        {
+            HashSet<char> hs = new HashSet<char>();
+            int ans = 0;
+
+            int i = 0;
+            int j = 0;
+            //! Different template for variable size sliding window
+            //! Here we need to either increment i or j because for some test cases like "aab" it will fail
+            while (j < s.Length)
+            {
+                if (!hs.Contains(s[j]))
+                {
+                    hs.Add(s[j]);
+                    ++j;
+                    ans = Math.Max(ans, hs.Count);
+
+                }
+                else
+                {
+                    hs.Remove(s[i]);
+                    ++i;
+                }
+            }
+            return ans;
+        }
+
+
         /*!
          Sliding window problem having start and end.
          We slide start forward as soon as we encounter the repeating character in string
@@ -43,5 +75,7 @@ namespace LeetCodeStrings.Medium
             }
             return longestSubstring;
         }
+
+
     }
 }

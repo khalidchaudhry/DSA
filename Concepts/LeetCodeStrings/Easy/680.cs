@@ -46,6 +46,8 @@ namespace LeetCodeStrings.Easy
 
         /// <summary>
         //! Using recursion 
+        //! Time Complexity=2 ^ n
+        //! space Complexity=O(n)
         /// </summary>
         public bool ValidPalindrome1(string s)
         {

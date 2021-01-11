@@ -70,10 +70,12 @@ namespace LeetCodeSlidingWindow.Medium
 
         private void ToBeChanged(Dictionary<char, int> map, Dictionary<char, int> needToChange, int n)
         {
+            int requiredCount = n / 4;
             foreach (var keyValue in map)
             {
-                if (keyValue.Value > n / 4)
-                    needToChange.Add(keyValue.Key, map[keyValue.Key] - n / 4);
+                if (keyValue.Value >requiredCount)
+                    //!map[keyValue.Key] - n / 4 will give the characters that are in surplus
+                    needToChange.Add(keyValue.Key, map[keyValue.Key] - requiredCount);
             }
         }
 

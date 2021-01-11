@@ -29,9 +29,9 @@ namespace LeetCodeSlidingWindow.Medium
                 ++FreqCount[s[j]];
 
                 //!how many letters in current window  needs replacement.                
-                //!j - i + 1=length of of string
+                //!j - i + 1=length of of string/lenfth of our window
                 //! subtracting max count gives the characters that needs replacement as we don't need to replace most frequent ones
-                while (j - i + 1 - MaxCharacterCount(FreqCount) > k)
+                while (j - i + 1 - MostCommonCount(FreqCount) > k)
                 {
                     --FreqCount[s[i]];
                     ++i;
@@ -43,7 +43,7 @@ namespace LeetCodeSlidingWindow.Medium
             return longest;
 
         }
-        public int MaxCharacterCount(Dictionary<char, int> freqCount)
+        public int MostCommonCount(Dictionary<char, int> freqCount)
         {
             int count = 0;
             foreach (var keyValue in freqCount)
