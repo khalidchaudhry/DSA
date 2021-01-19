@@ -50,7 +50,7 @@ namespace LeetCodeBinarySearch.Medium
                 else
                     hi = mid;
             }
-            //! If lo pointing to value which is greater then given timestamp than returns emoty string.  
+            //! If lo pointing to value which is greater then given timestamp than returns empty string.  
             if (timemap[key][lo].timestamp > timestamp)
                 return string.Empty;
             else

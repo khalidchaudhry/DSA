@@ -105,43 +105,5 @@ namespace LeetCodeDynamicProgramming.Medium
 
             return lis;
         }
-
-
-        /// <summary>
-        //! wrong implementation . Does not work for below input
-        //[10,9,2,5,3,4]
-        //! because at element 3 its not considering element 2 which contributes to longest increasing sequence
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
-
-        public int LengthOfLIS2(int[] nums)
-        {
-            if (nums.Length == 0)
-                return 0;
-
-            int lisGlobal = 1;
-
-            for (int i = 0; i < nums.Length - 1; ++i)
-            {
-                int lisLocal = 1;
-                int max = nums[i];
-
-                for (int j = i + 1; j < nums.Length; ++j)
-                {
-                    if (nums[j] > max)
-                    {
-                        ++lisLocal;
-                        max = nums[j];
-                    }
-                }
-
-                lisGlobal = Math.Max(lisLocal, lisGlobal);
-            }
-
-            return lisGlobal;
-        }
-
-
     }
 }

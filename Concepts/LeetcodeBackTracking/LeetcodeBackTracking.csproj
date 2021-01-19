@@ -45,8 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hard\10.cs" />
+    <Compile Include="Hard\37.cs" />
+    <Compile Include="Hard\44.cs" />
+    <Compile Include="Hard\51.cs" />
     <Compile Include="Medium\131.cs" />
     <Compile Include="Medium\22.cs" />
+    <Compile Include="Medium\267.cs" />
     <Compile Include="Medium\47.cs" />
     <Compile Include="Medium\784.cs" />
     <Compile Include="Medium\216.cs" />

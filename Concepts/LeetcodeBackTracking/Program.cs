@@ -1,3 +1,4 @@
+using LeetcodeBackTracking.Hard;
 using LeetcodeBackTracking.Medium;
 using LeetCodeBackTracking.Medium;
 using System;
@@ -28,8 +29,14 @@ namespace LeetcodeBackTracking
 
             //_47._47Main();
 
-            _78._78Main();
+            // _78._78Main();
+            //_37._37Main();
 
+            //_51._51Main();
+
+            //_267._267Main();
+
+            _44._44Main();
 
         }
     }

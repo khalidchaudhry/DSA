@@ -56,14 +56,15 @@ namespace LeetCodeBinarySearch.Medium
 
         /// <summary>
         //! TTT'T'F
+        //! Are the missing number are less then k 
         /// </summary>
         private bool OK(int[] nums, int index, int k)
         {
-            return nums[index] - nums[0] - index < k;
+            return MissingNumbers(nums, index) < k;
         }
         /// <summary>
-        ///                 [1,2,4]
-        //! Missing numbers [0,0,1]   To  find missing numbers here is the formula nums[i]-nums[0] -i 
+        //! If no missing number then nums[i]=nums[0]+i;
+        //! for k missing numbers=nums[i]=nums[0]+i+k;
         /// </summary>
         private int MissingNumbers(int[] nums, int index)
         {
@@ -104,7 +105,7 @@ namespace LeetCodeBinarySearch.Medium
             return num;
 
         }
-       
+
 
 
     }

@@ -23,10 +23,11 @@ namespace LeetCodeBinarySearch.Easy
         /// </summary>
         public int MySqrt0(int x)
         {
-            if (x == 0)
-                return 0;
+            //! Corner case
+            if (x == 1)
+                return 1;
 
-            long lo = 1; //! valid candidate 
+            long lo = 0; //! valid candidate 
             long hi = x / 2 + 1; //! invalid candidate 
             while (lo + 1 < hi)
             {
@@ -43,7 +44,7 @@ namespace LeetCodeBinarySearch.Easy
 
             return (int)lo;
         }
-        //! incase we need to run it on doubles 
+        //! incase we need to return  doubles 
         public double Sqrt2(int x)
         {
             if (x == 0)
