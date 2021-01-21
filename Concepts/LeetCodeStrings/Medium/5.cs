@@ -103,7 +103,11 @@ namespace LeetCodeStrings.Medium
         }
 
         private Dictionary<string, string> map = new Dictionary<string, string>();
-        // Brute force solution 
+        
+        /// <summary>
+        //! Brute force approach
+        //! Time complexity=O(n^3)
+        /// </summary>
         public string LongestPalindrome(string s)
         {
 

@@ -20,32 +20,28 @@ namespace LeetCodeStrings.Medium
 
         public IList<IList<string>> GroupAnagrams(string[] strs)
         {
-            List<IList<string>> result = new List<IList<string>>();
             if (strs.Length == 0)
-                return result;
-
-            Dictionary<string, List<string>> hashTable = new Dictionary<string, List<string>>();
-
-            for (int i = 0; i < strs.Length; i++)
             {
-                //! no sort function in string. Need to convert it into char array to sort
-                char[] charArray = strs[i].ToCharArray();
-                Array.Sort(charArray);
-                string str = new string(charArray);
-
-                if (hashTable.ContainsKey(str))
-                {
-                    hashTable[str].Add(strs[i]);
-                }
-                else
-                {
-                    List<string> value = new List<string>();
-                    value.Add(strs[i]);
-                    hashTable.Add(str, value);
-                }
+                return new List<IList<string>>();
             }
-            //! nice shortcut to avoid using loop
-            return new List<IList<string>>(hashTable.Values);
+
+            Dictionary<string, List<string>> map = new Dictionary<string, List<string>>();
+
+            foreach (string str in strs)
+            {
+                char[] charArray = str.ToCharArray();
+                //! No sort function in string. Need to convert it into char array to sort
+                Array.Sort(charArray);
+                string sortedString = new string(charArray);
+                if (!map.ContainsKey(sortedString))
+                {
+                    map.Add(sortedString, new List<string>());
+                }
+                
+                map[sortedString].Add(str);
+            }
+            //! nice shortcut to avoid using loops
+            return new List<IList<string>>(map.Values);
 
         }
 
