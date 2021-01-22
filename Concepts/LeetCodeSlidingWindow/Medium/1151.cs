@@ -40,7 +40,7 @@ namespace LeetCodeSlidingWindow.Medium
 
         /// <summary>
         //!Kuai's idea
-        //! minimizing number of zeros in window= maximizing the number of 1's = maximum sum in window of size k
+        //! minimum number of swaps=minimizing number of zeros in window= maximizing the number of 1's = maximum sum in window of size k
         /// </summary>
         public int MinSwaps2(int[] data)
         {
