@@ -45,7 +45,6 @@
     <Compile Include="ListNode.cs" />
     <Compile Include="Medium\209.cs" />
     <Compile Include="Medium\86.cs" />
-    <Compile Include="Medium\904.cs" />
     <Compile Include="Medium\986.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

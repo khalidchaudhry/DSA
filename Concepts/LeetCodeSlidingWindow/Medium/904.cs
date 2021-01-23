@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCodeTwoPointers.Medium
+namespace LeetCodeSlidingWindow.Medium
 {
     class _904
     {

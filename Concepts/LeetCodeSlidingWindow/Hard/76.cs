@@ -18,7 +18,9 @@ namespace LeetCodeSlidingWindow.Hard
 
             var ans=Main.MinWindow(s,t);
         }
-
+        /// <summary>
+        //! Very simimilar to leetcode 567,904
+        /// </summary>
         public string MinWindow(string s, string t)
         {
             if (t.Length > s.Length)
