@@ -1,3 +1,4 @@
+using LeetCodeSlidingWindow.Hard;
 using LeetCodeSlidingWindow.Medium;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ namespace LeetCodeSlidingWindow
 
             //_1234._1234Main();
             // _1438._1438Main();
-            _1358._1358Main();
-
+            // _1358._1358Main();
+            _76._76Main();
             //Console.ReadKey();
 
         }

@@ -9,74 +9,47 @@ namespace LeetCodeTwoPointers.Medium
     class _904
     {
 
+        /// <summary>
+        //! Kuai's 
+        //! Our goal is to find longest subarray with at most 2 distinct chracters
+        /// </summary>
         public int TotalFruit(int[] tree)
         {
-            if (tree.Length == 0)
-                return 0;
 
             Dictionary<int, int> map = new Dictionary<int, int>();
-            int len = int.MinValue;
-            int start = 0;
-            for (int i = 0; i < tree.Length; i++)
+            int longest = 0;
+            int i = 0;
+            for (int j = 0; j < tree.Length; ++j)
             {
-                if (map.ContainsKey(tree[i]))
+                Add(tree[j], map);
+                while (map.Count > 2)
                 {
-                    map[tree[i]] = i;
+                    Update(tree[i], map);
+                    ++i;
                 }
-                else
-                {
-                    map.Add(tree[i], i);
 
-                    if (map.Count > 2)
-                    {
-                        int minValue = map.Values.Min();
-                        int key = map.First(x => x.Value == minValue).Key;
-                        map.Remove(key);
-                        start = minValue + 1;
-                    }
-                }
-                len = Math.Max(len, i - start + 1);
+                longest = Math.Max(longest, j - i + 1);
             }
-
-            return len;
+            return longest;
         }
 
-
-        public int TotalFruit0(int[] tree)
+        private void Add(int item, Dictionary<int, int> map)
         {
-            if (tree.Length == 0)
-                return 0;
-
-            int len = 1;
-            int start = 0;
-            int new_start = 0;
-            int type1 = tree[0];
-            int type2 = -1;
-
-            for (int i = 1; i < tree.Length; i++)
+            if (!map.ContainsKey(item))
             {
-                if (tree[i] != type1 && type2 == -1)
-                {
-                    type2 = tree[i];
-                }
-                else if (type1 != tree[i] && type2 != tree[i])
-                {
-                    type1 = tree[i - 1];
-                    type2 = tree[i];
-                    start = new_start;
-                }
-
-                len = Math.Max(len, i - start + 1);
-
-                if (tree[i - 1] != tree[i])
-                {
-                    new_start = i;
-                }
-
+                map.Add(item, 0);
             }
 
+            ++map[item];
+        }
 
-            return len;
+        private void Update(int item, Dictionary<int, int> map)
+        {
+            --map[item];
+            if (map[item] == 0)
+            {
+                map.Remove(item);
+            }
         }
     }
 }
