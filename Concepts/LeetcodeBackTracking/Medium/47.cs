@@ -18,6 +18,51 @@ namespace LeetcodeBackTracking.Medium
 
         }
 
+        public IList<IList<int>> PermuteUnique0(int[] nums)
+        {
+            Dictionary<int, int> freqMap = new Dictionary<int, int>();
+            PopulateFrequencyMap(nums, freqMap);
+            List<IList<int>> result = new List<IList<int>>();
+            PermuteUnique(freqMap, nums.Length, new List<int>(), result);
+            return result;
+        }
+
+        private void PermuteUnique(Dictionary<int, int> freqMap, int n, List<int> path, List<IList<int>> result)
+        {
+            if (path.Count == n)
+            {
+                result.Add(new List<int>(path));
+                return;
+            }
+
+            for (int i = 0; i < freqMap.Count; ++i)
+            {
+                var item = freqMap.ElementAt(i);
+                int key = item.Key;
+                int value = item.Value;
+                if (value > 0)
+                {
+                    --freqMap[key];
+                    path.Add(key);
+                    PermuteUnique(freqMap, n, path, result);
+                    path.RemoveAt(path.Count - 1);
+                    ++freqMap[key];
+                }
+            }
+        }
+
+        private void PopulateFrequencyMap(int[] nums, Dictionary<int, int> freqMap)
+        {
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                if (!freqMap.ContainsKey(nums[i]))
+                {
+                    freqMap.Add(nums[i], 0);
+                }
+                freqMap[nums[i]]++;
+            }
+        }
+
 
         /// <summary>
         /// https://www.youtube.com/watch?v=A3ge2mdQi4g
@@ -33,7 +78,6 @@ namespace LeetcodeBackTracking.Medium
 
             return result;
         }
-
 
         private void PermuteUnique(int[] nums, bool[] used, List<int> path, List<IList<int>> result)
         {
@@ -61,5 +105,9 @@ namespace LeetcodeBackTracking.Medium
                 used[i] = false;
             }
         }
+
+
+
+
     }
 }

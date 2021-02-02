@@ -52,6 +52,54 @@ namespace LeetcodeBackTracking.Medium
                 used[i] = false;//unchoose
             }
         }
+        /// <summary>
+        //! Using frequency map 
+        /// </summary>
+        public IList<IList<int>> Permute(int[] nums)
+        {
+
+            Dictionary<int, int> freqMap = new Dictionary<int, int>();
+            PopulateFrequencyMap(nums, freqMap);
+            List<IList<int>> result = new List<IList<int>>();
+            Permute(freqMap, nums.Length, new List<int>(), result);
+            return result;
+        }
+
+        private void Permute(Dictionary<int, int> freqMap, int n, List<int> path, List<IList<int>> result)
+        {
+            if (path.Count == n)
+            {
+                result.Add(new List<int>(path));
+                return;
+            }
+
+            for (int i = 0; i < freqMap.Count; ++i)
+            {
+                var item = freqMap.ElementAt(i);
+                int key = item.Key;
+                int value = item.Value;
+                if (value > 0)
+                {
+                    --freqMap[key];
+                    path.Add(key);
+                    Permute(freqMap, n, path, result);
+                    path.RemoveAt(path.Count - 1);
+                    ++freqMap[key];
+                }
+            }
+
+        }
+
+        private void PopulateFrequencyMap(int[] nums, Dictionary<int, int> freqMap)
+        {
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                if (!freqMap.ContainsKey(nums[i]))
+                {
+                    freqMap.Add(nums[i], 1);
+                }
+            }
+        }
 
         /// <summary>
         //! Sams byte by byte
