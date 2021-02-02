@@ -4,11 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCodeDynamicProgramming.Easy
+namespace TopInterviewQuestions.Easy
 {
     class _70
     {
+
+
+        //!Recursion with memo
+        //! Time =O(N) 
+        //! Space=O(N)
         public int ClimbStairs(int n)
+        {
+
+            Dictionary<int, int> memo = new Dictionary<int, int>();
+            return ClimbStairs(n, memo);
+        }
+
+        private int ClimbStairs(int n, Dictionary<int, int> memo)  //!Function states n
+        {
+            if (n <= 1)
+            {
+                return 1;
+            }
+
+            if (memo.ContainsKey(n))
+            {
+                return memo[n];
+            }
+
+            int count = 0;
+            count += ClimbStairs(n - 1, memo);
+            count += ClimbStairs(n - 2, memo);
+
+            memo[n] = count;
+
+            return memo[n];
+        }
+
+        public int ClimbStairs1(int n)
         {
             if (n == 1)
             {

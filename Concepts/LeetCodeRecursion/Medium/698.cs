@@ -57,6 +57,8 @@ namespace LeetCodeRecursion.Medium
         }
         private bool Helper(int[] nums, int[] buckets, int idx)
         {
+            //!explicitly checking that sum of all the elements in buckets are equal
+            //! Optimized version does not do it. Before assigning value to the bucket we check if adding item to the bucket excceds our targer
             if (idx == nums.Length)
             {
                 for (int i = 1; i < buckets.Length; ++i)

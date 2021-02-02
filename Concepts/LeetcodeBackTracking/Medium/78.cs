@@ -27,6 +27,9 @@ namespace LeetCodeBackTracking.Medium
 
 
         /// <summary>
+        //  # <image url="$(SolutionDir)\Images\78.jpg" scale="0.4"/>
+
+
         //  # <image url="$(SolutionDir)\Images\78(0).png"  scale="0.5"/>
         //  https://www.youtube.com/watch?v=MsHFNGltIxw
         /// https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
@@ -46,7 +49,8 @@ namespace LeetCodeBackTracking.Medium
         {
             powerSet.Add(new List<int>(path));
 
-            //!i+1 => Once we choose postion, we will not choose the position again. 
+            //!i+1 => Once we choose number on a postion, we will not choose the same number for that position again. 
+            //! 
             for (int i = start; i < nums.Length; ++i)
             {
                 path.Add(nums[i]); //choose

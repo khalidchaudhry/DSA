@@ -25,10 +25,7 @@ namespace LeetcodeBackTracking.Medium
         //! This problem  combines the  technique used in problem 90 to handle with duplicates & 
         //! problem 39 to reach the target
         /// https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
-        /// </summary>
-        /// <param name="candidates"></param>
-        /// <param name="target"></param>
-        /// <returns></returns>
+        /// </summary>       
         public IList<IList<int>> CombinationSum(int[] candidates, int target)
         {
             List<IList<int>> result = new List<IList<int>>();

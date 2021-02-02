@@ -16,7 +16,9 @@ namespace LeetCodeDynamicProgramming.Easy
             Console.ReadLine();
         }
 
-        //! Kadane's algorithm(dynamic programming)
+        /// <summary>
+        //! We will store max sum of subarray ending at each location 
+        /// </summary>
         public int MaxSubArray0(int[] nums)
         {
             if (nums.Length == 0)
@@ -27,6 +29,7 @@ namespace LeetCodeDynamicProgramming.Easy
 
             for (int i = 1; i < nums.Length; i++)
             {
+                //! Max sum of subarray ending at each location
                 curr_max = Math.Max(nums[i], nums[i] + curr_max);
 
                 global_max = Math.Max(curr_max, global_max);
@@ -35,6 +38,34 @@ namespace LeetCodeDynamicProgramming.Easy
             return global_max;
         }
 
+
+       
+        /// <summary>
+        //! Brute force
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+
+        public int MaxSubArray4(int[] nums)
+        {
+            if (nums.Length == 0) return 0;
+            //! we can't initialize it with 0 as in case of nums={-20} result will be 0 whereas answer is -20 
+            int maxSum = nums[0];
+
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                int sum = 0;
+                for (int j = i; j < nums.Length; ++j)
+                {
+                    sum += nums[j];
+
+                    maxSum = Math.Max(sum, maxSum);
+                }
+            }
+
+            return maxSum;
+
+        }
 
         //https://www.codesdope.com/blog/article/maximum-subarray-sum-using-divide-and-conquer/
         //!Divide and conquer
@@ -62,32 +93,6 @@ namespace LeetCodeDynamicProgramming.Easy
             int crossingSubArraySum = CrossingSubArraySum(nums, lo, mid, hi);
 
             return Math.Max(Math.Max(leftSubArraySum, rightSubArraySum), crossingSubArraySum);
-
-        }
-        /// <summary>
-        //! Brute force
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
-
-        public int MaxSubArray4(int[] nums)
-        {
-            if (nums.Length == 0) return 0;
-            //! we can't initialize it with 0 as in case of nums={-20} result will be 0 whereas answer is -20 
-            int maxSum = nums[0];
-
-            for (int i = 0; i < nums.Length; ++i)
-            {
-                int sum = 0;
-                for (int j = i; j < nums.Length; ++j)
-                {
-                    sum += nums[j];
-
-                    maxSum = Math.Max(sum, maxSum);
-                }
-            }
-
-            return maxSum;
 
         }
         private int CrossingSubArraySum(int[] nums, int lo, int mid, int hi)

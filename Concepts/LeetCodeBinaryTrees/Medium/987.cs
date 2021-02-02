@@ -60,6 +60,26 @@ namespace LeetCodeBinaryTrees.Medium
 
         private void PrepareResult(List<(int column, int row, int value)> nodes, List<IList<int>> result)
         {
+            //! Custom comparer
+            /*
+                var comparer=Comparer<(int y,int x,int nodeValue)>.Create((a,b)=>{
+
+                int res = a.y.CompareTo(b.y);
+                if (res != 0)
+                {
+                    return res;
+                }
+                res= a.x.CompareTo(b.x);
+                if (res != 0)
+                {
+                    return res;
+                }
+                return a.nodeValue.CompareTo(b.nodeValue);
+            });
+
+            nodes.Sort(comparer);
+            */
+
             nodes = nodes.OrderBy(x => x.column).ThenBy(x => x.row).ThenBy(x => x.value).ToList();
             List<int> currColumn = new List<int>();
             int currColumnIndex = nodes[0].column;

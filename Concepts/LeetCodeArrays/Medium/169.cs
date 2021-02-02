@@ -31,30 +31,6 @@ namespace LeetCodeArrays.Medium
             return c1;
         }
 
-
-        // Boyer–Moore majority vote algorithm
-        public int MajorityElement2(int[] nums)
-        {
-
-            int maj_index = 0, count = 1;
-            int i;
-            for (i = 1; i < nums.Length; i++)
-            {
-                if (nums[maj_index] == nums[i])
-                    count++;
-                else
-                    count--;
-
-                if (count == 0)
-                {
-                    maj_index = i;
-                    count = 1;
-                }
-            }
-
-            return nums[maj_index];
-        }
-
         public int MajorityElement(int[] nums)
         {
 

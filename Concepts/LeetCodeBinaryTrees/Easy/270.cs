@@ -16,18 +16,18 @@ namespace LeetCodeBinaryTrees.Easy
         {
 
             TreeNode curr = root;
-            int closestNodeValue = root.val;
+            int closestValueSoFar = root.val;
             while (curr != null)
             {
-                int currNodeValue = curr.val;
+                int currValue = curr.val;
 
-                if (Math.Abs(currNodeValue - target) < Math.Abs(closestNodeValue - target))
+                if (Math.Abs(currValue - target) < Math.Abs(closestValueSoFar - target))
                 {
-                    closestNodeValue = currNodeValue;
+                    closestValueSoFar = currValue;
                 }
                 //! If node value is > then there is no point going to the right
                 //! as difference will be more the right side and current node gives us the best result.
-                if (currNodeValue > target)
+                if (currValue > target)
                     curr = curr.left;
                 //!If node value is <= target then there is no point going on left
                 //! as difference will be more on the right side
@@ -35,7 +35,7 @@ namespace LeetCodeBinaryTrees.Easy
                     curr = curr.right;
             }
 
-            return closestNodeValue;
+            return closestValueSoFar;
         }
         
         /// <summary>

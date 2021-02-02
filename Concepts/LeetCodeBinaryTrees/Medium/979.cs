@@ -20,24 +20,15 @@ namespace LeetCodeBinaryTrees.Medium
         private int Helper(TreeNode node)
         {
             if (node == null)
+            {
                 return 0;
-            int count = Helper(node.left) + Helper(node.right);
-
-            //! if current node does not have any coins then -1 as it will use it
-            if (node.val == 0)
-            {
-                count += -1;
             }
-            //! if current node have coins than take 1 coin for it and return the rest to the parent node
-            else
-            {
-                count += node.val - 1;
-            }
+            int left = Helper(node.left);
+            int right = Helper(node.right);
 
-            //! taking absolute to determine number of steps needed 
-            steps += Math.Abs(count);
+            steps += Math.Abs(left) + Math.Abs(right);
 
-            return count;
+            return left + right + node.val - 1;
         }
     }
 }

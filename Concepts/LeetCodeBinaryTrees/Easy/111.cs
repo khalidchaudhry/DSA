@@ -10,24 +10,18 @@ namespace LeetCodeBinaryTrees.Easy
         public int MinDepth(TreeNode root)
         {
             if (root == null)
+            {
                 return 0;
+            }
 
-            int left = MinDepth(root.left);
-            int right = MinDepth(root.right);
-            int length = 0;
-            if (left == 0)
-            {
-                length = right;
-            }
-            else if (right == 0)
-            {
-                length = left;
-            }
-            else
-            {
-                length = Math.Min(left, right);
-            }
-            return 1 + length;
+            int leftNodesCount = MinDepth(root.left);
+            int rightNodesCount = MinDepth(root.right);
+
+            leftNodesCount = leftNodesCount == 0 ? rightNodesCount : leftNodesCount;
+            rightNodesCount = rightNodesCount == 0 ? leftNodesCount : rightNodesCount;
+
+
+            return 1 + Math.Min(leftNodesCount, rightNodesCount);
         }
 
 

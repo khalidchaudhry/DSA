@@ -41,10 +41,8 @@ namespace LeetCodeBinaryTrees.Medium
             //!stk.Count!=0 is important . Otherwise it will not work correctly 
             //!e.g. for below input
             //        1
-            //        \
-            //        2
-            //       /
-            //     3   
+           //       / 
+           //     3  
             while (curr != null || stk.Count != 0)
             {
                 //!reach to the left most node of the curr node

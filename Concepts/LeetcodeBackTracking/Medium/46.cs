@@ -30,6 +30,7 @@ namespace LeetcodeBackTracking.Medium
         ///https://www.youtube.com/watch?v=8t7bIHIr9JY
         // # <image url="$(SolutionDir)\Images\46(0).jpg"  scale="0.4"/>
 
+
         //  # <image url="$(SolutionDir)\Images\46.jpg"  scale="0.5"/>
         /// </summary>
 
@@ -76,6 +77,7 @@ namespace LeetcodeBackTracking.Medium
             {
                 Swap(nums, i, j);
                 path.Add(nums[i]);
+                Permute1(nums, j, path, result);
                 Swap(nums, i, j);
                 path.RemoveAt(path.Count - 1);
             }

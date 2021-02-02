@@ -33,12 +33,12 @@ namespace LeetcodeBackTracking.Medium
                 return;
             }
             path.Append('('); //! choose
-            GenerateParenthesis0(n, openingBracketsCount + 1, closingBracketsCount, path, result);
+            GenerateParenthesis0(n, openingBracketsCount + 1, closingBracketsCount, path, result);//! Explore 
             --path.Length; //! unchoose 
 
 
             path.Append(')');  //! choose
-            GenerateParenthesis0(n, openingBracketsCount, closingBracketsCount + 1, path, result);
+            GenerateParenthesis0(n, openingBracketsCount, closingBracketsCount + 1, path, result);//!Explore
             --path.Length;//! unchoose
 
         }

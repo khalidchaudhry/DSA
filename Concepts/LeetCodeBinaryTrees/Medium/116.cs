@@ -38,34 +38,42 @@ namespace LeetCodeBinaryTrees.Medium._116
         /// <returns></returns>
         public Node Connect0(Node root)
         {
-            Node curr = root;
-            Node head = null; // points to the first node of the next level
-
-            while (curr != null)   //! for current level
+            if (root == null)
             {
-                while (curr != null) //! for next level
+                return root;
+            }
+
+            // Start with the root node. There are no next pointers
+            // that need to be set up on the first level
+            Node leftmost = root;
+
+            // Once we reach the final level, we are done
+            while (leftmost.left != null)
+            {
+
+                // Iterate the "linked list" starting from the head
+                // node and using the next pointers, establish the 
+                // corresponding links for the next level
+                Node head = leftmost;
+
+                while (head != null)
                 {
-                    if (curr.left != null)
-                    {
-                        if (head == null) 
-                        {
-                            head = curr.left; //! setting only for left node(curr.left!=null)  because tree is perfectly balanced. Left most ndoe will always be present. 
-                        }
 
-                        curr.left.next = curr.right;  // !when nodes have same parent
-                    }
-                    //! Case When nodes have  different parents
-                    //! head!=null for leaf nodes 
-                    if (curr.next != null && head != null)
+                    // CONNECTION 1
+                    head.left.next = head.right;
+
+                    // CONNECTION 2
+                    if (head.next != null)
                     {
-                        curr.right.next = curr.next.left;
+                        head.right.next = head.next.left;
                     }
 
-                    curr = curr.next;
+                    // Progress along the list (nodes on the current level)
+                    head = head.next;
                 }
 
-                curr = head;
-                head = null;
+                // Move onto the next level
+                leftmost = leftmost.left;
             }
 
             return root;
@@ -79,43 +87,34 @@ namespace LeetCodeBinaryTrees.Medium._116
         public Node Connect1(Node root)
         {
             if (root == null)
-                return root;
-
+                return null;
             Queue<Node> queue = new Queue<Node>();
             queue.Enqueue(root);
-
             while (queue.Count != 0)
             {
-                Node prev = null;
                 int count = queue.Count;
                 while (count != 0)
                 {
                     Node dequeue = queue.Dequeue();
-                    if (prev != null)
-                    {
-                        prev.next = dequeue;
-                    }
+
+                    if (count != 1)
+                        dequeue.next = queue.Peek();
 
                     if (dequeue.left != null)
-                    {
                         queue.Enqueue(dequeue.left);
-                    }
 
                     if (dequeue.right != null)
-                    {
                         queue.Enqueue(dequeue.right);
-                    }
 
-                    prev = dequeue;
                     --count;
                 }
             }
 
-            return root;           
+            return root;
         }
-       
 
-       
+
+
     }
 
 

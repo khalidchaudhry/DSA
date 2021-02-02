@@ -28,24 +28,24 @@ namespace LeetCodeBinaryTrees.Easy
 
 
 
-        private TreeNode SortedArrayToBSTRecursive(int[] nums, int startIndex, int endIndex)
+        private TreeNode SortedArrayToBSTRecursive(int[] nums, int s, int e)
         {
 
-            if (startIndex > endIndex)
+            if (s > e)
             {
                 return null;
             }
           
             //! For very height balanced binary search tree, we have to choose as middle as possible
-            int middleIndex = startIndex + ((endIndex - startIndex) / 2);
+            int m = s + ((e - s) / 2);
 
             //! preorder traversal: node -> left -> right
-            TreeNode node = new TreeNode(nums[middleIndex]);
+            TreeNode node = new TreeNode(nums[m]);
 
            
-            node.left = SortedArrayToBSTRecursive(nums, startIndex, middleIndex - 1);
+            node.left = SortedArrayToBSTRecursive(nums, s, m - 1);
 
-            node.right = SortedArrayToBSTRecursive(nums, middleIndex + 1, endIndex);
+            node.right = SortedArrayToBSTRecursive(nums, m + 1, e);
 
             return node;
         }

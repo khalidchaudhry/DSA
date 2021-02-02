@@ -6,6 +6,61 @@ namespace LeetCodeBinaryTrees.Medium
 {
     public class _96
     {
+
+
+        /// <summary>
+        //! Recursion with memoization
+        //!Time Complexity: O(n^2)==> Our possible recursive function states are n and we are performing n units of work in each recursive call hence total time complexity=O(n^2)
+        /// </summary>
+        public int NumTrees0(int n)
+        {
+            Dictionary<int, int> memo = new Dictionary<int, int>();
+            return NumTrees(n, memo);
+        }
+
+        private int NumTrees(int n, Dictionary<int, int> memo)
+        {
+            if (n == 0)
+                return 1;
+            if (n == 1 || n == 2)
+                return n;
+
+            if (memo.ContainsKey(n))
+            {
+                return memo[n];
+            }
+
+            int numTrees = 0;
+            for (int i = 1; i <= n; ++i)
+            {
+                int left = NumTrees(i - 1, memo);
+                int right = NumTrees(n - i, memo);
+                numTrees += left * right;
+            }
+            memo[n] = numTrees;
+            return memo[n];
+        }
+        /// <summary>
+        //! Recursion brute force 
+        //! O(2^n)
+        /// </summary>
+        public int NumTrees1(int n)
+        {
+            if (n == 0)
+                return 1;
+            if (n == 1 || n == 2)
+                return n;
+
+            int numTrees = 0;
+            for (int i = 1; i <= n; ++i)
+            {
+                int left = NumTrees1(i - 1);
+                int right = NumTrees1(n - i);
+                numTrees += left * right;
+            }
+            return numTrees;
+        }
+
         /*
         Timecomplexity : O(n^2)
         Spece complexity: O(n^2)

@@ -81,7 +81,6 @@
     <Compile Include="Easy\437.PathSumIII.cs" />
     <Compile Include="Easy\448.Find All NumbersDisappearedinanArray.cs" />
     <Compile Include="Easy\53.MaximumSubarray.cs" />
-    <Compile Include="Easy\543.DiameterofBinaryTree.cs" />
     <Compile Include="Easy\581.ShortestUnsortedContinuousSubarray.cs" />
     <Compile Include="Easy\617.MergeTwoBinaryTrees.cs" />
     <Compile Include="Easy\66.PlusOne.cs" />

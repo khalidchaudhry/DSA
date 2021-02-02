@@ -8,95 +8,63 @@ namespace LeetCodeBinaryTrees.Easy
 {
     class _543
     {
-
+        int diameter;
         public int DiameterOfBinaryTree2(TreeNode root)
         {
-            ResultWrapper wrapper = new ResultWrapper();
+            
+            diameter = 0;
+            Solve(root);
 
-            DiameterOfBinaryTree2(root, wrapper);
-
-            return wrapper.Result;
+            return diameter;
         }
-        /// <summary>
         //! Same pattern as used in problem 687
-        /// </summary>      
-        /// <returns></returns>
-        private int DiameterOfBinaryTree2(TreeNode root, ResultWrapper wrapper)
+       /// </summary>      
+        private int Solve(TreeNode root)
         {
             if (root == null)
                 return 0;
 
-            int left = DiameterOfBinaryTree2(root.left, wrapper);
-            int right = DiameterOfBinaryTree2(root.right, wrapper);
+
+            int left = Solve(root.left);
+            int right = Solve(root.right);
 
             int leftMax = 0;
             int rightMax = 0;
 
+            //Parent is checking that either it has left child or not
             if (root.left != null)
             {
                 leftMax = 1 + left;
             }
+            //Parent is checking that either it has right child or not
             if (root.right != null)
             {
                 rightMax = 1 + right;
             }
             //!Reason using Result is that it may or may not pass through the root.
-            wrapper.Result = Math.Max(wrapper.Result, leftMax + rightMax);
+            diameter = Math.Max(diameter, leftMax + rightMax);
 
             return Math.Max(leftMax, rightMax);
         }
-
-        public int DiameterOfBinaryTree0(TreeNode root)
+        int longest = 0;
+        /// <summary>
+        //! Child is doind work and letting its parent know  the height 
+        /// </summary>
+        public int DiameterOfBinaryTree3(TreeNode root)
         {
-
-            if (root == null)
-                return 0;
-
-            int lHeight = Height(root.left);
-            int rHeight = Height(root.right);
-
-            int lDiameter = DiameterOfBinaryTree(root.left);
-            int rDiameter = DiameterOfBinaryTree(root.right);
-
-            return Math.Max((lHeight + rHeight), Math.Max(lDiameter, rDiameter));
-
+            Solve3(root);
+            return longest;
         }
 
-        public int DiameterOfBinaryTree(TreeNode root)
-        {
-
-            if (root == null)
-                return 0;
-
-            int lHeight = Height(root.left);
-            int rHeight = Height(root.right);
-
-            int lDiameter = DiameterOfBinaryTree(root.left);
-            int rDiameter = DiameterOfBinaryTree(root.right);
-
-            return Math.Max((lHeight + rHeight), Math.Max(lDiameter, rDiameter));
-
-        }
-
-        private int Height(TreeNode node)
+        private int Solve3(TreeNode node)
         {
             if (node == null)
-            {
                 return 0;
-            }
 
-            int leftTreeHeight = Height(node.left);
-            int rightTreeHeight = Height(node.right);
-
-            return 1 + Math.Max(leftTreeHeight, rightTreeHeight);
-
+            int left = Solve3(node.left);
+            int right = Solve3(node.right);
+            longest = Math.Max(longest, left + right);
+            return 1 + Math.Max(left, right);
         }
-
-    }
-
-    class ResultWrapper
-    {
-        public int Result { get; set; }
-
-    }
+    }   
 }

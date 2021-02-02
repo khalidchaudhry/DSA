@@ -13,8 +13,19 @@ namespace LeetCodeBinaryTrees.Easy
         /// </summary>
         public int RangeSumBST0(TreeNode root, int low, int high)
         {
-            Helper(root, low, high);
-            return sum;
+            if (root == null)
+                return 0;
+            //! if node value greater then low it means there may be more nodes on the left side, that falls in the range 
+            if (root.val > high)
+                return RangeSumBST0(root.left, low, high);
+            //! if node value less then high it means there may be more nodes on the right side, that falls in the range 
+            else if (root.val < low)
+                return RangeSumBST0(root.right, low, high);
+            else
+            {
+                int sum = root.val+RangeSumBST0(root.left,low,high)+ RangeSumBST0(root.right, low, high);
+                return sum;
+            }
         }
         private void Helper(TreeNode node, int low, int high)
         {

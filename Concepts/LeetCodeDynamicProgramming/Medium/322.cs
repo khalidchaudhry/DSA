@@ -15,96 +15,86 @@ namespace LeetCodeDynamicProgramming.Medium
             var result = CoinChange.CoinChange1(new int[] { 27, 40, 244, 168, 383 }, 6989);
 
         }
-        public int CoinChange0(int[] coins, int amount)
-        {
-
-            // Initiliazing dp array with maximum value because we want to find the minimum coints required to generate an amount
-            int[] dp = Enumerable.Repeat(amount + 1, amount + 1).ToArray();
-            // Base condition for amount 0 there is zero coins required 
-
-            dp[0] = 0;
-            // Loop for amount
-            for (int i = 1; i <= amount; i++)
-                // loop for accessing coin arrray 
-                for (int j = 0; j < coins.Length; j++)
-                {
-                    // amount must be greater than  or equal to the current coin(coins[j])
-                    if (i >= coins[j])
-                    {
-                        //! fill the current index of the dp array with minimum of current dp value or previous dp values 
-                        //! previous dp value is the remaining amount index.
-                        // ! +1 is becuase we are taking current coin for this amount. 
-                        dp[i] = Math.Min(dp[i], 1 + dp[i - coins[j]]);
-                    }
-                }
-
-            // Final answer would be aviable at the final index that is dp[amount]
-            // if dp[amount]==MaxValue it means that we were not able to make combinations for given amount with provided coins hence we return -1 
-            // else we retun the number of coins used to make the amount 
-            return dp[amount] > amount ? -1 : dp[amount];
-
-        }
-
-        public int CoinChange1(int[] coins, int amount)
-        {
-            Dictionary<int, int> memo = new Dictionary<int, int>();
-            int result=MakingChange1(coins, amount, memo);
-            result=result == int.MaxValue ? -1 : result;
-            return result;
-        }
-
-        private int MakingChange1(int[] coins, int amount, Dictionary<int, int> memo)
-        {
-            if (amount == 0) return 0;
-
-            if (memo.ContainsKey(amount)) return memo[amount];
-
-            int min = int.MaxValue;
-            for (int i = 0; i < coins.Length; ++i)
-            {
-                if (coins[i] > amount) continue;
-                int minCoins = MakingChange1(coins, amount - coins[i], memo);
-                min = Math.Min(minCoins, min);
-            }
-            //memoize the minimum for current total/current amount.
-            memo[amount] = min == int.MaxValue ? min : min + 1;
-            return memo[amount];
-        }
-
 
 
         /// <summary>
-        //! https://www.youtube.com/watch?v=Kf_M7RdHr1M 
+        //! Time Complexity=O(amount)[states] * O(n)[recursion depth]=O(n * states)  
         /// </summary>
-        public int CoinChange2(int[] coins, int amount)
+        public int CoinChange1(int[] coins, int amount)
         {
-            int result = MakingChange2(coins, amount);
-            return result == int.MaxValue ? -1 : result;
+            Dictionary<int, int> memo = new Dictionary<int, int>();
+            return MakingChange1(coins, amount, memo);
+
         }
-        private int MakingChange2(int[] coins, int amt)
+
+        private int MakingChange1(int[] coins, int target, Dictionary<int, int> memo)
         {
-            //! if amount is zero than we need 0 coins or no coins 
-            if (amt == 0)
+            if (target == 0)
             {
                 return 0;
             }
 
-            //! we need to find out which coins gives us best result so we are initializing min  with max
-            int min = int.MaxValue;
+            if (memo.ContainsKey(target))
+            {
+                return memo[target];
+            }
 
+            int minCoins = -1;
             for (int i = 0; i < coins.Length; ++i)
             {
-                //If coin is greater then amount, there is no point in continuing
-                if (coins[i] > amt) continue;
-                //recurse with total - coins[i] as new total
-                int coinsNeeded = MakingChange2(coins, amt - coins[i]);
-                //if val we get from picking coins[i] as first coin for current total is less
-                // than value found so far make it minimum.
-                min = Math.Min(min, coinsNeeded);
+                if (coins[i] > target)
+                {
+                    continue;
+                }
+                int count = MakingChange1(coins, target - coins[i], memo);
+                if (count != -1)
+                {
+                    minCoins = minCoins == -1 ? 1 + count : Math.Min(minCoins, 1 + count);
+                }
             }
-            //if min is MAX_VAL dont change it. Just result it as is. 
-            //!Otherwise add 1 to it to include the current coin in it
-            return min == int.MaxValue ? min : min + 1;
+            return memo[target] = minCoins;
         }
+        /// <summary>
+        //! Time Complexity=O(n*amount)[states] * O(n)[recursion depth]=O(n ^ 2 * target)  
+        /// </summary>
+        public int CoinChange(int[] coins, int amount)
+        {
+            Dictionary<(int, int), int> memo = new Dictionary<(int, int), int>();
+            return CoinChange(coins, 0, amount, memo);
+
+        }
+        private int CoinChange(int[] coins, int start, int target, Dictionary<(int, int), int> memo)
+        {
+
+            if (target == 0)
+            {
+                return 0;
+            }
+
+            if (target < 0)
+            {
+                return -1; //invalid answer
+            }
+
+            if (memo.ContainsKey((start, target)))
+            {
+                return memo[(start, target)];
+            }
+
+            int minCoins = -1;
+            for (int i = start; i < coins.Length; ++i)
+            {
+                int count = CoinChange(coins, i, target - coins[i], memo);
+                if (count != -1)
+                {
+                    //! 
+                    minCoins = minCoins == -1 ? 1 + count : Math.Min(minCoins, 1 + count);
+                }
+            }
+            return memo[(start, target)] = minCoins;
+        }
+
+
+
     }
 }

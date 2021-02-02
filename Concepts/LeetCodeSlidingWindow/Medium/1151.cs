@@ -8,7 +8,36 @@ namespace LeetCodeSlidingWindow.Medium
 {
     public class _1151
     {
+        /// <summary>
+        //!Kuai's idea
+        //! minimum number of swaps=minimizing number of zeros in window= maximizing the number of 1's = maximum sum in window of size k
+        /// </summary>
+        public int MinSwaps2(int[] data)
+        {
+            int totalOnes = Sum(data);
 
+            return totalOnes - MaxOnesInWindow(data, totalOnes);
+
+        }
+
+        private int MaxOnesInWindow(int[] data, int k)
+        {
+            int ones = 0;
+            for (int i = 0; i < k; ++i)
+            {
+                ones += data[i];
+            }
+            //! max ones representing window having maximum number of one's that will give minimum swaps 
+            int maxOnes = ones;
+
+            for (int i = k; i < data.Length; ++i)
+            {
+                ones = ones - data[i - k] + data[i];
+                maxOnes = Math.Max(maxOnes, ones);
+            }
+
+            return maxOnes;
+        }
         /// <summary>
         //! This is kind of problem where window size is not given. Based on the data , need to determine what is the window size
         //! Fixed size window
@@ -16,7 +45,7 @@ namespace LeetCodeSlidingWindow.Medium
         //! ! Based on number of 1's determine window size 
         //! Determine k based on number of zero's in first window. Slide and adjust zeros count based on number of zeros 
         /// </summary>
-      
+
         public int MinSwaps(int[] data)
         {
             int k = WindowSize(data);
@@ -38,36 +67,7 @@ namespace LeetCodeSlidingWindow.Medium
 
         }
 
-        /// <summary>
-        //!Kuai's idea
-        //! minimum number of swaps=minimizing number of zeros in window= maximizing the number of 1's = maximum sum in window of size k
-        /// </summary>
-        public int MinSwaps2(int[] data)
-        {
-            int total = Sum(data);
-
-            return total - MaxSum(data,total);
-            
-        }
-
-        private int MaxSum(int[] data, int k)
-        {
-            int sum = 0;
-            for (int i = 0; i < k; ++i)
-            {
-                sum += data[i];
-            }
-
-            int maxSum = sum;
-
-            for (int i = k; i < data.Length; ++i)
-            {
-                sum = sum - data[i - k] + data[i];
-                maxSum = Math.Max(maxSum,sum);
-            }
-
-            return maxSum;
-        }
+        
 
         private int WindowSize(int[] data)
         {

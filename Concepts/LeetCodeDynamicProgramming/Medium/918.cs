@@ -18,11 +18,20 @@ namespace LeetCodeDynamicProgramming.Medium
             Console.ReadLine();
 
         }
+
+
+
+//      # <image url="$(SolutionDir)\Images\918.png"  scale="0.8"/>
         /// <summary>
-        /// https://leetcode.com/problems/maximum-sum-circular-subarray/discuss/633401/Kadane-Algorithm-Trick-beats-100-Java-Explained
+        //! Apply Kadane's algorithm for getting max sum for non-circular case &  max subarray sum for circular 
+        //! Answer=Max(maxSubArray sum non-circular ,maxSubArray sum circular)
+        //! How to calculate "maxSubArray sum circular"=(sum - min sub array sum)
+        //! min sub array sum
+        //! 1. Negate all sub array elements  
+        //! 2. Apply Kandanes algorithm to calculate max sub array sum
+        //! 3. Negate maxsub array sum to get min sub array sum
         /// </summary>
-        /// <param name="A"></param>
-        /// <returns></returns>
+
         public int MaxSubarraySumCircular(int[] A)
         {
             int maxSumSoFarCircular = -A[0];
@@ -43,9 +52,14 @@ namespace LeetCodeDynamicProgramming.Medium
                 maxSumSoFarNonCircular = Math.Max(A[i], A[i] + maxSumSoFarNonCircular);
                 maxSumNonCircular = Math.Max(maxSumSoFarNonCircular, maxSumNonCircular);
             }
-            int circularSum = totalSum - (-maxSumCircular);
+            maxSumCircular = totalSum - (-maxSumCircular);
             //! circularSum == 0 is for boundary case where all the numbers are negative 
-            return circularSum == 0? maxSumNonCircular : Math.Max(maxSumNonCircular, circularSum);
+            if (maxSumCircular == 0)
+            {
+                return maxSumNonCircular;
+            }
+            
+            return Math.Max(maxSumNonCircular, maxSumCircular);
         }
 
     }

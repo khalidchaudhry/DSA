@@ -26,26 +26,23 @@ namespace LeetCodeBinarySearch.Easy
 
         public IList<int> GetRow1(int rowIndex)
         {
-            List<int> previousRow = new List<int>();
-            previousRow.Add(1);
-
+            List<int> prevRow = new List<int>();
+            prevRow.Add(1);
             for (int i = 1; i <= rowIndex; ++i)
             {
-                int len = previousRow.Count;
-                List<int> currentRow = new List<int>();
+                List<int> currRow = new List<int>();
 
-                currentRow.Add(1);
-                for (int j = 1; j < len; ++j)
+                currRow.Add(1);
+                for (int j = 0; j < prevRow.Count - 1; ++j)
                 {
-                    currentRow.Add(previousRow[j - 1] + previousRow[j]);
+                    currRow.Add(prevRow[j] + prevRow[j + 1]);
                 }
-                currentRow.Add(1);
+                currRow.Add(1);
 
-                previousRow = currentRow;
-
+                prevRow = currRow;
             }
 
-            return previousRow;
+            return prevRow;
         }
 
 
