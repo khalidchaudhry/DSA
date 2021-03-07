@@ -28,7 +28,8 @@ namespace LeetCodeRandom.Medium._470
         {
             int x, y, m = 7, num = 40;
             //!how we come up with 40?using formula (7^2/10)*10
-            //! start from 7 ^1 ,7^2,7^3.......till its less than 10. Moment its greater then 10 we stop and that is our number 
+            //! start from 7^1 ,7^2,7^3.......till its less than 10. 
+            //! Moment its greater then 10 we stop and that is our number 
             //! 7^1>10 --reject
             //! 7^2>10 ---accept 
             //! (49/10)*10=40

@@ -11,12 +11,11 @@ namespace LeetCodeBinarySearch.Medium
 
         public int MinEatingSpeed(int[] piles, int H)
         {
-            long lo = 0;
-            long hi;
-            hi = Sum(piles);
+            int lo = 0;  //! invalid candidate
+            int hi = piles.Max();  //!  with Max values in piles kuko can definitely eat all bananas // Valid candidate
             while (lo + 1 < hi)
             {
-                long mid = lo + (hi - lo) / 2;
+                int mid = lo + (hi - lo) / 2;
                 if (OK(piles, mid, H))
                 {
                     hi = mid;
@@ -27,7 +26,7 @@ namespace LeetCodeBinarySearch.Medium
                 }
 
             }
-            return (int)hi;
+            return hi;
         }
 
 
@@ -47,17 +46,5 @@ namespace LeetCodeBinarySearch.Medium
 
             return timeTaken <= H;
         }
-        private long Sum(int[] piles)
-        {
-            long sum = 0;
-            for (int i = 0; i < piles.Length; ++i)
-            {
-                sum += piles[i];
-            }
-
-            return sum;
-        }
-
-
     }
 }

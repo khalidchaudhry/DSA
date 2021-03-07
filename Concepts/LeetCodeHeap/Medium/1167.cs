@@ -8,43 +8,36 @@ namespace LeetCodeHeap.Medium
 {
     class _1167
     {
+        public static void _1167Main()
+        {
+            _1167 test = new _1167();
+            int[] nums = new int[] { 1, 8, 3, 5 };
+            var ans = test.ConnectSticks(nums);
+            Console.WriteLine();
+        }
+
         public int ConnectSticks(int[] sticks)
         {
-            
-
-            SortedSet<(int length, int index)> ss = new SortedSet<(int length, int index)>();
-            Populate(sticks, ss);
-            return CalculateMinCost(ss);
-
-        }
-
-
-        private void Populate(int[] sticks, SortedSet<(int length, int index)> ss)
-        {
-            for (int i = 0; i < sticks.Length; ++i)
+            int n = sticks.Length;
+            PQ<(int val, int index)> pq = new PQ<(int val, int index)>();
+            for (int i = 0; i < n; ++i)
             {
-                ss.Add((sticks[i], i));
+                pq.Add((sticks[i], i));
             }
-        }
-
-        private int CalculateMinCost(SortedSet<(int length, int index)> ss)
-        {
 
             int minCost = 0;
-            int allSticks = ss.Count;
-            while (ss.Count != 1)
+            while (pq.Size != 1)
             {
-                (int length1, int index1) = ss.Min;
-                ss.Remove(ss.Min);
-                (int length2, int index2) = ss.Min;
-                ss.Remove(ss.Min);
-                int cost = length1 + length2;
-                minCost += cost;
-                //! Very important allSticks++. We need to push new calculation at very end
-                ss.Add((cost, allSticks++));
+                (int val1, int index1) = pq.Poll();
+                (int val2, int index2) = pq.Poll();
+                minCost += val1 + val2;
+                pq.Add((minCost, index1 + index2));
             }
-
             return minCost;
         }
+        
+
+
+      
     }
 }

@@ -50,10 +50,35 @@ namespace LeetCodeHeap.Medium
 
                 --k;
             }
+            return result;
+        }
+
+        public IList<IList<int>> KSmallestPairs2(int[] nums1, int[] nums2, int k)
+        {
+            PQ<(int sum, int nums1Idx, int nums2Idx)> pq = new PQ<(int sum, int nums1Idx, int nums2Idx)>();
+            List<IList<int>> result = new List<IList<int>>();
+            if (nums1.Length == 0 || nums2.Length == 0)
+                return result;
+
+            pq.Add((nums1[0] + nums2[0], 0, 0));
+            while (k > 0 && pq.Size != 0)
+            {
+                (int sum, int idx1, int idx2) = pq.Poll();
+                result.Add(new List<int> { nums1[idx1], nums2[idx2] });
+
+                if (idx1 + 1 < nums1.Length)
+                {
+                    pq.AddForDups((nums1[idx1 + 1] + nums2[idx2], idx1 + 1, idx2));
+                }
+                if (idx2 + 1 < nums2.Length)
+                {
+                    pq.AddForDups((nums1[idx1] + nums2[idx2 + 1], idx1, idx2 + 1));
+                }
+
+                --k;
+            }
 
             return result;
-
-            
         }
 
 

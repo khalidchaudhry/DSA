@@ -16,14 +16,40 @@ namespace LeetCodeDynamicProgramming.Medium
             Console.ReadLine();
         }
 
+        /// <summary>
+        //! DP with memoization 
+        /// </summary>
+        public int UniquePaths(int m, int n)
+        {
+            Dictionary<(int, int), int> memo = new Dictionary<(int, int), int>();
+            return UniquePaths(m, n, 0, 0, memo);
+        }
+        
 
+        private int UniquePaths(int rows, int columns, int row, int column, Dictionary<(int, int), int> memo)
+        {
+            if (row == rows || column == columns)
+            {
+                return 0;
+            }
+
+            if (row == rows - 1 && column == columns - 1)
+            {
+                return 1;
+            }
+
+            if (memo.ContainsKey((row, column)))
+            {
+                return memo[(row, column)];
+            }
+
+            return memo[(row, column)] = UniquePaths(rows, columns, row + 1, column, memo) + UniquePaths(rows, columns, row, column + 1, memo);
+        }
+        
         /// <summary>
         /// https://leetcode.com/problems/unique-paths/discuss/22953/Java-DP-solution-with-complexity-O(n*m)
         // # <image url="https://leetcode.com/problems/unique-paths/Figures/62/inner_cell2.png" scale="0.4" />
-        /// </summary>
-        /// <param name="m"></param>
-        /// <param name="n"></param>
-        /// <returns></returns>
+        /// </summary>     
         public int UniquePaths1(int m, int n)
         {
             if (m == 0)

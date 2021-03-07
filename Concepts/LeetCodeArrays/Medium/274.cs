@@ -8,7 +8,7 @@ namespace LeetCodeArrays.Medium
     {
 
         /// <summary>
-        //! Using bucket sort here  
+        //! Using bucket sort  
         /// </summary>
         public int HIndex0(int[] citations)
         {

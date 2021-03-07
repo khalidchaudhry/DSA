@@ -38,7 +38,27 @@ namespace LeetCodeStrings.Medium
 
             return result;
         }
-        
+        public string ReverseWords1(string s)
+        {
+            s = s.Trim();
+            string[] tokens = s.Split(' ');
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = tokens.Length - 1; i >= 0; --i)
+            {
+                if (tokens[i] != String.Empty)
+                {
+                    sb.Append(tokens[i]);
+                    if (i != 0)
+                    {
+                        sb.Append(' ');
+                    }
+                }
+            }
+
+            return sb.ToString();
+        }
+
 
 
     }

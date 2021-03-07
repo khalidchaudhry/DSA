@@ -10,91 +10,34 @@ namespace LeetCodeDynamicProgramming.Medium
     {
 
 
-
-        public int MinPathSum0(int[][] grid)
+        /// <summary>
+        //! Top down with memoization  
+        /// </summary>
+        public int MinPathSum(int[][] grid)
         {
-            if (grid.Length == 0)
-                return 0;
-
-            int rows = grid.Length;
-            int columns = grid[0].Length;
-
-            int[][] dp = new int[rows][];
-            for (var i = 0; i < rows; i++)
-            {
-                dp[i] = new int[columns];
-            }
-
-            for (int r = 0; r < rows; r++)
-            {
-                for (int c = 0; c < columns; c++)
-                {
-                    if (r == 0 && c == 0)
-                    {
-                        dp[r][c] = grid[r][c];
-                    }
-                    else if (r == 0)
-                        dp[r][c] = grid[r][c] + dp[r][c - 1];
-                    else if (c == 0)
-                        dp[r][c] = grid[r][c] + dp[r - 1][c];
-                    else
-                        dp[r][c] = grid[r][c] + Math.Min(dp[r - 1][c], dp[r][c - 1]);
-                }
-            }
-
-            return dp[rows - 1][columns - 1];
+            Dictionary<(int, int), int> memo = new Dictionary<(int, int), int>();
+            return MinPathSum(grid, 0, 0, memo);
         }
 
-
-        /// <summary>
-        //! DP solution build on the brute force solution idea
-        /// </summary>
-        /// <param name="grid"></param>
-        /// <returns></returns>
-        public int MinPathSum1(int[][] grid)
+        private int MinPathSum(int[][] grid, int r, int c, Dictionary<(int, int), int> memo)
         {
-            int rows = grid.Length;
-            if (rows == 0)
-                return 0;
-            int columns = grid[0].Length;
-
-            int[][] dp = new int[rows + 1][];
-
-            for (int i = 0; i < dp.Length; ++i)
+            if (r >= grid.Length || c >= grid[0].Length)
             {
-                dp[i] = new int[columns + 1];
+                return int.MaxValue;
             }
 
-            //!initializing first row with Int.MaxValue
-            for (int i = 0; i <= columns; ++i)
+            if (r == grid.Length - 1 && c == grid[0].Length - 1)
             {
-                dp[0][i] = int.MaxValue;
-            }
-            //!initializing first column with Int.MaxValue
-            for (int i = 0; i <= rows; ++i)
-            {
-                dp[i][0] = int.MaxValue;
+                return grid[r][c];
             }
 
-            for (int i = 0; i < rows; ++i)
+            if (memo.ContainsKey((r, c)))
             {
-                for (int j = 0; j < columns; ++j)
-                {
-                    //! without this condition we will have max from up and left for 0,0
-                    if (i == 0 && j == 0)
-                    {
-                        dp[i + 1][j + 1] = grid[i][j];
-                    }
-                    else
-                    {
-                        dp[i + 1][j + 1] = grid[i][j] +
-                                   Math.Min(dp[i][j + 1],  //!Up
-                                              dp[i + 1][j]); //!left
-                    }
-                }
+                return memo[(r, c)];
+
             }
-            //! last column and last row will contain the minpath sum
-            return dp[rows][columns];
+
+            return memo[(r, c)] = grid[r][c] + Math.Min(MinPathSum(grid, r, c + 1, memo), MinPathSum(grid, r + 1, c, memo));
         }
 
         /// <summary>

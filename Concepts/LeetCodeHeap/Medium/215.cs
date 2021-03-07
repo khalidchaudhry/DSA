@@ -4,68 +4,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCodeDivideAndConquer.Medium
+namespace LeetCodeHeap.Medium
 {
     public class _215
     {
         /// <summary>
         //! Quick select algorithm. Same as in question 973
         /// </summary>
-        /// <param name="nums"></param>
-        /// <param name="k"></param>
-        /// <returns></returns>
         public int FindKthLargest0(int[] nums, int k)
         {
             //! The index where final answer will reside
             int requiredIndex = nums.Length - k;
-            PlacePivot(nums,requiredIndex);           
-            return nums[requiredIndex];
-
+            return Find(nums, requiredIndex);
         }
 
-        private void PlacePivot(int[] nums, int requiredIndex)
+        private int Find(int[] nums, int requiredIndex)
         {
             int left = 0;
             int right = nums.Length - 1;
+            Random random = new Random();
             while (left <= right)
             {
-                int pti = PivotIndex(nums, left, right);
-                if (pti == requiredIndex)
+                //! We are randomly picking an index &  
+                //! place element at that index to its correct position
+                int pivotIndex = random.Next(left, right + 1);
+                //! Below function returns the index of the element that is at its correct position
+                int index = Partition(nums, left, right, pivotIndex);
+                if (index == requiredIndex)
                     break;
-                else if (pti > requiredIndex)
-                    right = pti - 1;
+                else if (index > requiredIndex)
+                    right = index - 1;
                 else
-                    left = pti + 1;
+                    left = index + 1;
             }
+            return nums[requiredIndex];
         }
-
-
-        /// <summary>
-        // ! The correct location of  the pivot(It is the element in the array that is at index left)
-        /// </summary>
-        private int PivotIndex(int[] nums, int left, int right)
-        {
+               
+        private int Partition(int[] nums, int left, int right, int pivotIndex)
+        {            
+            int pivotElemenet = nums[pivotIndex];
+            //! swap the 
+            Swap(nums, right, pivotIndex);
+            
             // !pivot tail index
             int pti = left;
-            //! our pivot sits at right
-            int pivot = nums[right];
-
             for (int i = left; i < right; i++)
             {
                 //!<= for duplicate condition
-                if (nums[i] <= pivot)
+                if (nums[i] <= pivotElemenet)
                 {
                     Swap(nums, i, pti);
                     ++pti;
                 }
             }
-
             //!Swap 
             Swap(nums, pti, right);
 
             return pti;
         }
-
         private void Swap(int[] arr, int i, int j)
         {
             int temp = arr[i];
@@ -85,43 +81,20 @@ namespace LeetCodeDivideAndConquer.Medium
         /// <returns></returns>
         public int FindKthLargest(int[] nums, int k)
         {
+            PQ<(int val, int idx)> pq = new PQ<(int val, int idx)>();
 
-            //! we want to remove  the smallest element hence we are taking sorted dictionary 
-            SortedDictionary<int, int> heap = new SortedDictionary<int, int>();
-            //! Count variable is use to track if elements in dictionary are greater than we will 
-            // !remove the smallest element from sorted dictionary 
-            // ! we are not using sorted dictionary count because  it will contain only distinct element counts 
-            int count = 0;
-            for (int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; ++i)
             {
-                if (heap.ContainsKey(nums[i]))
-                {
-                    heap[nums[i]]++;
+                pq.Add((nums[i], i));
 
-                }
-                else
+                if (pq.Size > k)
                 {
-                    heap.Add(nums[i], 1);
-                }
-
-                ++count;
-                if (count > k)
-                {
-                    int minKey = heap.First().Key;
-                    if (heap[minKey] == 1)
-                    {
-                        heap.Remove(minKey);
-                    }
-                    else
-                    {
-                        --heap[minKey];
-                    }
-                    --count;
-
+                    pq.Poll();
                 }
             }
 
-            return heap.First().Key;
+            return pq.Poll().val;
+
 
         }
 
@@ -133,7 +106,7 @@ namespace LeetCodeDivideAndConquer.Medium
 
             int n = nums.Length;
             Array.Sort(nums);
-            return nums[n-k];
+            return nums[n - k];
 
         }
 

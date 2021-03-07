@@ -6,12 +6,11 @@ namespace LeetCodeBinaryTrees.Medium
 {
     public class _96
     {
-
-
         /// <summary>
         //! Recursion with memoization
         //!Time Complexity: O(n^2)==> Our possible recursive function states are n and we are performing n units of work in each recursive call hence total time complexity=O(n^2)
-        /// </summary>
+       //! Space=O(n)+O(n)=O(2n)=O(n) --> O(n)--Reursion depth O(n)--Memo space  
+       /// </summary>
         public int NumTrees0(int n)
         {
             Dictionary<int, int> memo = new Dictionary<int, int>();

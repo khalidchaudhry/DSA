@@ -35,21 +35,28 @@ namespace LeetCodeDivideAndConquer.Medium
         }
 
         /// <summary>
-        // ! We need to implement Max heap as quesiton is asking for closest distance to the origin 
-        //! Incomplete implementation. If gets time, i will work on it
+        //! Using Priority queue 
         /// </summary>
+        
         public int[][] KClosest2(int[][] points, int K)
         {
-            var descendingComparer = Comparer<(int length,int x,int y)>.Create((x, y) =>
+            PQ<(int dis, int x, int y)> pq = new PQ<(int dis, int x, int y)>();
+            foreach (int[] point in points)
             {
-                return y.length.CompareTo(x.length);
-            }            
-            );
+                int x = point[0];
+                int y = point[1];
+                int distance = x * x + y * y;
+                pq.Add((distance, x, y));
+            }
+            int[][] result = new int[K][];
 
-            SortedSet<(int length,int x,int y)> descSortedSet = new SortedSet<(int length, int x, int y)>(descendingComparer);
-
-            return new int[K][];
-
+            while (K != 0)
+            {
+                (int distance, int x, int y) = pq.Poll();
+                result[K - 1] = new int[] { x, y };
+                --K;
+            }
+            return result;
         }
         /// <summary>
         /// https://www.youtube.com/watch?v=hGK_5n81drs&t=731s

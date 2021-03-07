@@ -14,10 +14,12 @@ namespace LeetCodeDivideAndConquer.Medium
             return DiffWaysToCompute(input, 0, input.Length - 1);
 
         }
-
-        //! With memoization 
-        //! Time Complexity=O(n^5)   n^2 states  work per recursive call n^3
+        /// <summary>
+        //! Same as 95
+        //! Recursion With memoization 
+        //! Time Complexity=O(n^5) = (n^2 states) * work per recursive call(n^3)
         //! Space Complexity=O(n)(recursion depth) + 2^n(storing result) +O(n^2) for memo
+        /// <summary>
         public IList<int> DiffWaysToCompute0(string input)
         {
             Dictionary<(int, int), List<int>> memo = new Dictionary<(int, int), List<int>>();
@@ -54,6 +56,7 @@ namespace LeetCodeDivideAndConquer.Medium
 
 
 
+        //! Recursion(brute force)
         //! Time Complexity= 2^n (catalan split) * n^3
         //! Space Complexity=O(n)+2^n ==0(n) for recursion depth and 2^n for storing result
         private List<int> DiffWaysToCompute(string input, int s, int e)

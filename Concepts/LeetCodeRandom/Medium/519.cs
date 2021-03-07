@@ -91,36 +91,35 @@ namespace LeetCodeRandom.Medium._519
     /// </summary>
     public class Solution2
     {
-
-        int rows;
-        int columns;
-        int total;
-        Random random;
-        HashSet<int> hs;
+        Random _random;
+        HashSet<int> _hs;
+        int _total;
+        int _rows;
+        int _columns;
         public Solution2(int n_rows, int n_cols)
         {
-            rows = n_rows;
-            columns = n_cols;
-            total = rows * columns;
-            random = new Random();
-            hs = new HashSet<int>();
+            _random = new Random();
+            _hs = new HashSet<int>();
+            _rows = n_rows;
+            _columns = n_cols;
+            _total = _rows * _columns;
         }
         public int[] Flip()
         {
-            while (true)
+
+            int random = _random.Next(_total);
+            while (_hs.Contains(random))
             {
-                int value = random.Next(0, total);
-                if (!hs.Contains(value))
-                {
-                    hs.Add(value);
-                    return new int[] { value / columns, value % columns };
-                }
+                random = _random.Next(_total);
             }
+            _hs.Add(random);
+
+            return new int[] { random / _columns, random % _columns };
         }
 
         public void Reset()
         {
-            hs = new HashSet<int>();
+            _hs = new HashSet<int>();
         }
     }
 }

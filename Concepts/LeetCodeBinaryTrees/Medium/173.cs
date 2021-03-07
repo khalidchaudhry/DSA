@@ -73,8 +73,8 @@ namespace LeetCodeBinaryTrees.Medium
         {
             // Node at the top of the stack is the next smallest element
             TreeNode topMostNode = stk.Pop();
-            // Need to maintain the invariant. If the node has a right child, call the 
-            // helper function for the right child
+            //! Need to maintain the invariant.The stack top always contains the element to be returned for the next() function call 
+            //! If the node has a right child, call the helper function for the right child
             if (topMostNode.right != null)
             {
                 LeftNodeInOrderTraversal(topMostNode.right);

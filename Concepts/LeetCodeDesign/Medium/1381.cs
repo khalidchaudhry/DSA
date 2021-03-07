@@ -13,6 +13,7 @@ namespace LeetCodeDesign.Medium
 
     }
 
+
     /// <summary>
     //!Key idea: Visualize stack as list. It will give push and pop operation in O(1)  time. 
     //! Take aways
@@ -21,40 +22,55 @@ namespace LeetCodeDesign.Medium
     public class CustomStack
     {
 
-        List<int> list;
-        int size;
+        List<int> _list;
+        int _capacity;
+        int _size;
         public CustomStack(int maxSize)
         {
-            list = new List<int>();
-            size = maxSize;
+            _list = new List<int>();
+            _capacity = maxSize;
+            _size = 0;
         }
+
         public void Push(int x)
         {
-            if (list.Count == size)
+
+            if (IsFull())
+            {
                 return;
-            //! Amortized 0(1)
-            list.Add(x);
+            }
+            _list.Add(x);
+            ++_size;
         }
 
         public int Pop()
         {
-            if (list.Count == 0)
-                return -1;
 
-            int toReturn = list.ElementAt(list.Count - 1);
-            //!0(1)
-            list.RemoveAt(list.Count - 1);
+            if (IsEmpty())
+            {
+                return -1;
+            }
+            int toReturn = _list[_size - 1];
+            _list.RemoveAt(_size - 1);
+            --_size;
             return toReturn;
         }
 
         public void Increment(int k, int val)
         {
-
-            for (int i = 0; i < list.Count && k > 0; ++i)
+            for (int i = 0; i < k && i < _size; ++i)
             {
-                list[i] = list[i] + val;
-                --k;
+                _list[i] = _list[i] + val;
             }
+
+        }
+        private bool IsEmpty()
+        {
+            return _size == 0;
+        }
+        private bool IsFull()
+        {
+            return _size == _capacity;
         }
     }
 
@@ -68,55 +84,72 @@ namespace LeetCodeDesign.Medium
     /// </summary>
     public class CustomStack1
     {
-        List<int> list;
-        List<int> adj;
-        int size;
+        List<int> _list;
+        List<int> _adj;
+        int _capacity;
+        int _size;
         public CustomStack1(int maxSize)
         {
-            list = new List<int>();
-            adj = new List<int>();
-            size = maxSize;
+            _list = new List<int>();
+            _adj = new List<int>();
+            _capacity = maxSize;
+            _size = 0;
         }
+
         public void Push(int x)
         {
-            if (list.Count == size)
-                return;
 
-            list.Add(x);
-            adj.Add(0);
+            if (IsFull())
+            {
+                return;
+            }
+            _list.Add(x);
+            _adj.Add(0);
+            ++_size;
         }
 
         public int Pop()
         {
-            if (list.Count == 0)
-                return -1;
-
-            int toReturn = list[list.Count - 1];
-            toReturn += adj[adj.Count - 1];
-            //!When adjustment element count are more then 1 only then we will be able to add it
-            if (adj.Count > 1)
+            if (IsEmpty())
             {
-                adj[adj.Count - 2] += adj[adj.Count - 1];
+                return -1;
+            }
+            int toReturn = _list[_size - 1] + _adj[_size - 1];
+            if (_size > 1)
+            {
+                _adj[_size - 2] += _adj[_size - 1];
             }
 
-            list.RemoveAt(list.Count - 1);
-            adj.RemoveAt(adj.Count - 1);
+            _list.RemoveAt(_size - 1);
+            _adj.RemoveAt(_size - 1);
 
+            --_size;
             return toReturn;
         }
 
         public void Increment(int k, int val)
         {
-            if (adj.Count == 0) return;
-            //! incase k is greater than number of elements in list , simply  set last element and returns the result
-            if (k > adj.Count)
+            if (IsEmpty())
             {
-                adj[adj.Count - 1] += val;
                 return;
             }
 
-            adj[k - 1] += val;
+            if (k > _size)
+            {
+                _adj[_size - 1] += val;
+            }
+            else
+            {
+                _adj[k - 1] += val;
+            }
         }
-
+        private bool IsEmpty()
+        {
+            return _size == 0;
+        }
+        private bool IsFull()
+        {
+            return _size == _capacity;
+        }
     }   
 }

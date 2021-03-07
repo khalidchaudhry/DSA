@@ -8,6 +8,10 @@ namespace LeetCodeDivideAndConquer.Hard
 {
     class _23
     {
+        /// <summary>
+        //!Time=K*L*logK where K*L are total elements in the all K lists and logK are the total levels
+        //!Space=
+        /// </summary>
         public ListNode MergeKLists(ListNode[] lists)
         {
 

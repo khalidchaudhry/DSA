@@ -23,7 +23,7 @@ namespace LeetCodeBinarySearch.Medium
             {
                 int mid = lo + (hi - lo) / 2;
 
-                int missingNumbersSoFar = MissingNumbers(nums, mid);
+                int missingNumbersSoFar = MissingNumbersCount(nums, mid);
 
                 if (missingNumbersSoFar >= k)
                     hi = mid - 1;
@@ -32,7 +32,7 @@ namespace LeetCodeBinarySearch.Medium
             }
             //! Why hi because we are looking for right most element(hi is in charge of right most element ) that satisfies the condition
             //! subtract missing numbers. Otherwise , it will be calculated twice
-            return nums[hi] + k - MissingNumbers(nums, hi);
+            return nums[hi] + k - MissingNumbersCount(nums, hi);
         }
         /// <summary>
         //! Based on Roger's template 
@@ -50,23 +50,24 @@ namespace LeetCodeBinarySearch.Medium
                     hi = mid;
             }
 
-            return nums[lo] + k - MissingNumbers(nums, lo);
+            return nums[lo] + k - MissingNumbersCount(nums, lo);
         }
 
 
         /// <summary>
         //! TTT'T'F
-        //! Are the missing number are less then k 
+        //! Are the missing number at the index are less then k 
+        //! We are looking for largest number that is less than k
         /// </summary>
         private bool OK(int[] nums, int index, int k)
         {
-            return MissingNumbers(nums, index) < k;
+            return MissingNumbersCount(nums, index) < k;
         }
         /// <summary>
         //! If no missing number then nums[i]=nums[0]+i;
         //! for k missing numbers=nums[i]=nums[0]+i+k;
         /// </summary>
-        private int MissingNumbers(int[] nums, int index)
+        private int MissingNumbersCount(int[] nums, int index)
         {
             return nums[index] - nums[0] - index;
         }

@@ -25,12 +25,14 @@ namespace LeetCodeDynamicProgramming.Medium
 
         private long KnightDialer(int start, int jumps, Dictionary<(int, int), long> memo)
         {
+
+            
             if (jumps == 0)
             {
                 return 1;
             }
 
-            if (start == 5 && jumps != 0)
+            if (start == 5)
             {
                 return 0;
             }

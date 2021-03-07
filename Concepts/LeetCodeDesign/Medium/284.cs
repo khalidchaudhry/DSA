@@ -38,7 +38,7 @@ namespace LeetCodeDesign.Medium
 
             // Returns the next element in the iteration and advances the iterator.
             public int Next()
-            {
+            {   
                 int previous = _next;
 
                 if (_iterator.MoveNext())

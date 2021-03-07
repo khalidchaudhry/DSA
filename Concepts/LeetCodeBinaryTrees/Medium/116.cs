@@ -24,19 +24,42 @@ namespace LeetCodeBinaryTrees.Medium._116
             Connect.Connect1(root);
 
         }
+        // ! Intuition here is to set next level from the current level.
+        //! Exact same code as in 117
+        public Node Connect0(Node root)
+        {
+
+            Node head = root;
+            while (head != null)
+            {
+                //!using dummy node to move to the next level
+                Node dummy = new Node(0);
+                Node temp = dummy;
+                while (head != null)
+                {
+                    if (head.left != null)
+                    {
+                        temp.next = head.left;
+                        temp = temp.next;
+                    }
+                    if (head.right != null)
+                    {
+                        temp.next = head.right;
+                        temp = temp.next;
+                    }
+
+                    head = head.next;
+                }
+                head = dummy.next;
+            }
+            return root;
+        }
 
         /// <summary>
-        // ! Intuition here is to set next level from the current level.
-        //! Pay attention when  nodes don't have same parent 
-
+         //! Pay attention when  nodes don't have same parent 
         //https://leetcode.com/problems/populating-next-right-pointers-in-each-node/solution/
-        //! Below solution  is for second part of the problem but i used the simiary idea here 
-        //https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/37828/O(1)-space-O(n)-complexity-Iterative-Solution
-        //! 
-        /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
-        public Node Connect0(Node root)
+        /// <summary>
+        public Node Connect1(Node root)
         {
             if (root == null)
             {
@@ -84,7 +107,7 @@ namespace LeetCodeBinaryTrees.Medium._116
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
-        public Node Connect1(Node root)
+        public Node Connect2(Node root)
         {
             if (root == null)
                 return null;
@@ -112,9 +135,6 @@ namespace LeetCodeBinaryTrees.Medium._116
 
             return root;
         }
-
-
-
     }
 
 

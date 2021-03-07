@@ -109,5 +109,29 @@ namespace LeetCodeDynamicProgramming.Medium
 
             return triangle[0][0];
         }
+
+        //! DP with memoization
+        public int MinimumTotal(IList<IList<int>> triangle)
+        {
+            Dictionary<(int, int), int> memo = new Dictionary<(int, int), int>();
+            return MinimumTotal(triangle, 0, 0, memo);
+        }
+
+        private int MinimumTotal(IList<IList<int>> triangle, int row, int col, Dictionary<(int, int), int> memo)
+        {
+            if (row == triangle.Count)
+            {
+                return 0;
+            }
+
+            if (memo.ContainsKey((row, col)))
+            {
+                return memo[(row, col)];
+            }
+
+            int minTotal = triangle[row][col] + Math.Min(MinimumTotal(triangle, row + 1, col, memo), MinimumTotal(triangle, row + 1, col + 1, memo));
+
+            return memo[(row, col)] = minTotal;
+        }
     }
 }

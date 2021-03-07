@@ -7,6 +7,16 @@ namespace LeetCodeHeap.Medium
 {
     public class _347
     {
+        public static void _347Main()
+        {
+            _347 test = new _347();
+            int[] nums = new int[] {1, 1, 1, 2, 2, 3 };
+            int k = 2;
+            var result=test.TopKFrequent1(nums,k);
+            Console.ReadLine();
+
+        }
+
         public int[] TopKFrequent(int[] nums, int k)
         {
             int[] result = new int[k];
@@ -62,12 +72,8 @@ namespace LeetCodeHeap.Medium
         }
 
 
-        //! Using sorted set 
-        //! Time comlexity=O(kn) where k are the top k items 
-        //! Space complexity=O(n+k)
-        public int[] TopKFrequent2(int[] nums, int k)
+        public int[] TopKFrequent1(int[] nums, int k)
         {
-
             Dictionary<int, int> map = new Dictionary<int, int>();
             for (int i = 0; i < nums.Length; ++i)
             {
@@ -78,24 +84,24 @@ namespace LeetCodeHeap.Medium
                 ++map[nums[i]];
             }
 
-            SortedSet<(int freq, int val)> ss = new SortedSet<(int freq, int val)>();
+            PQ<(int freq,int val)> pq = new PQ<(int freq,int val)>();
 
             foreach (var keyValue in map)
             {
-                ss.Add((keyValue.Value, keyValue.Key));//! worst case O(n)
-                if (ss.Count > k)
+                pq.Add((keyValue.Value,keyValue.Key));
+                if (pq.Size > k)
                 {
-                    ss.Remove(ss.Min); //! worst case O(n)
+                    pq.Poll();
                 }
             }
 
             int[] result = new int[k];
-            foreach ((int freq, int val) in ss)
+            for (int i = 0; i < k; ++i)
             {
-                result[--k] = val;
+                result[k - i - 1] = pq.Poll().val;
             }
 
             return result;
-        }
+        }        
     }
 }

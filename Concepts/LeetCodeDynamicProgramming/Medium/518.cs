@@ -20,7 +20,8 @@ namespace LeetCodeDynamicProgramming.Medium._518
         }
 
         /// <summary>
-        //! DP Top down(Memoization)       
+        //! DP Top down(Memoization) 
+        //! Using loop inside recursive function
         /// </summary>
         
         public int Change0(int amount, int[] coins)
@@ -57,36 +58,38 @@ namespace LeetCodeDynamicProgramming.Medium._518
         
         
         /// <summary>
-        //! DP Top down(Memoization)       
+        //! DP Top down(Memoization)  
+        //! Using include/exclude pattern to avoid loop inside recursive function. 
         /// </summary>
         public int Change1(int[] coins, int amount)
         {
 
-            Dictionary<(int amount, int coins), int> memo = new Dictionary<(int amount, int coins), int>();
-
+            Dictionary<(int s, int target), int> memo = new Dictionary<(int s, int target), int>();
             return Change1(coins, 0, amount, memo);
         }
 
-        private int Change1(int[] coins, int i, int amount, Dictionary<(int amount, int coins), int> memo)
+        private int Change1(int[] coins, int s, int target, Dictionary<(int s, int target), int> memo)
         {
-            if (amount < 0)
-                return 0;
-            if (amount == 0)
-                return 1;
-            if (i == coins.Length)
-                return 0;
-
-            if (memo.ContainsKey((amount, coins[i])))
+            if (target == 0)
             {
-                return memo[(amount, coins[i])];
+                return 1;
             }
-            int include = Change1(coins, i, amount - coins[i], memo);
 
-            int exclude = Change1(coins, i + 1, amount, memo);
+            if (target < 0 || s == coins.Length)
+            {
+                return 0;
+            }
 
-            memo[(amount, coins[i])] = include + exclude;
+            if (memo.ContainsKey((s, target)))
+            {
+                return memo[(s, target)];
+            }
 
-            return memo[(amount, coins[i])];
+            int exclude = Change1(coins, s + 1, target, memo);
+            int include = Change1(coins, s, target - coins[s], memo);
+
+
+            return memo[(s, target)] = include + exclude;
         }
 
         /// <summary>

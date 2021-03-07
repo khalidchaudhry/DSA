@@ -12,11 +12,7 @@ namespace LeetCodeBinaryTrees.Medium
         }
         /// <summary>
         /// https://leetcode.com/problems/smallest-common-region/discuss/430500/JavaPython-3-Lowest-common-ancestor-w-brief-explanation-and-analysis.
-        /// </summary>
-        /// <param name="regions"></param>
-        /// <param name="region1"></param>
-        /// <param name="region2"></param>
-        /// <returns></returns>
+        /// </summary>      
         public string FindSmallestRegion(IList<IList<string>> regions, string region1, string region2)
         {
             //! First create the map with CHILD PARENT relation
@@ -32,15 +28,19 @@ namespace LeetCodeBinaryTrees.Medium
             }
             //!Build the ancesstory for region 1
             HashSet<string> ancesstory = new HashSet<string>();
-            while (!string.IsNullOrEmpty(region1))
+            while (parents.ContainsKey(region1))
             {
                 ancesstory.Add(region1);
-                parents.TryGetValue(region1, out region1);
+                region1 = parents[region1];
             }
             //! start searching region 2 in ancesstory list we build . The first match will be the first 
-            while (!ancesstory.Contains(region2))
+            while (parents.ContainsKey(region2))
             {
-                region2 = parents[region2];                
+                if (ancesstory.Contains(region2))
+                {
+                    return region2;
+                }
+                region2 = parents[region2];
             }
             return region2;
         }

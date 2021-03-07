@@ -68,10 +68,16 @@ namespace LeetCodeBinarySearch.Easy
 
         /// <summary>
         //!TTT'T'FFFFF 
+        //! Is number^2 <= to given number?
+        //! ans=sqrt(x)
+        //! ans^2=x
+        //! ans=x/2
         /// </summary>
         private bool OK(long number, int x)
         {
+            //!or we can write it like that as well and can avoid  using int.... number<=x/number;
             return number * number <= x;
+            //return number = x / number;
         }
 
         /// <summary>

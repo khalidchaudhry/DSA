@@ -7,6 +7,54 @@ namespace LeetCodeStrings.Medium
 {
     public class _49
     {
+        /// <summary>
+        //! Below function uses Dictionary explicitly 
+        //!N is length of strs array and K is the maximum length of a string in str
+        //!Time Complexity: O(NK)
+        //!Counting each string is linear in the size of the string, and we count every string.
+        //!Space Complexity: O(NK), the total information content stored in ans
+        /// </summary>
+
+        public IList<IList<string>> GroupAnagrams2(string[] strs)
+        {
+            Dictionary<string, List<string>> result = new Dictionary<string, List<string>>();
+            for (int i = 0; i < strs.Length; ++i)
+            {
+                Dictionary<char, int> map = new Dictionary<char, int>();
+                CreateMap(strs[i], map);
+                string key = CreateKey(map);
+                if (!result.ContainsKey(key))
+                {
+                    result.Add(key, new List<string>());
+                }
+                result[key].Add(strs[i]);
+            }
+
+            return new List<IList<string>>(result.Values);
+        }
+        private void CreateMap(string s, Dictionary<char, int> map)
+        {
+            foreach (char c in s)
+            {
+                if (!map.ContainsKey(c))
+                    map.Add(c, 0);
+                ++map[c];
+            }
+        }
+        private string CreateKey(Dictionary<char, int> map)
+        {
+            StringBuilder sb = new StringBuilder();
+            //! Constant time operation because  map consists of lower-case English letters only
+            map = map.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+            foreach (var keyValue in map)
+            {
+                sb.Append('#');
+                sb.Append(keyValue.Key);
+                sb.Append(keyValue.Value);
+            }
+
+            return sb.ToString();
+        }
 
         /// <summary>
         //!N is length of strs array and K is the maximum length of a string in strs
@@ -45,31 +93,7 @@ namespace LeetCodeStrings.Medium
 
         }
 
-        /// <summary>
-        //! Below function uses Dictionary explicitly 
-        //!N is length of strs array and K is the maximum length of a string in str
-        //!Time Complexity: O(NK)
-        //!Counting each string is linear in the size of the string, and we count every string.
-        //!Space Complexity: O(NK), the total information content stored in ans
-        /// </summary>
-
-        public IList<IList<string>> GroupAnagrams2(string[] strs)
-        {
-            Dictionary<string, List<string>> result = new Dictionary<string, List<string>>();
-            for (int i = 0; i < strs.Length; ++i)
-            {
-                Dictionary<char, int> map = new Dictionary<char, int>();
-                CreateMap(strs[i], map);
-                string key = CreateKey(map);
-                if (!result.ContainsKey(key))
-                {
-                    result.Add(key, new List<string>());
-                }
-                result[key].Add(strs[i]);
-            }
-
-            return new List<IList<string>>(result.Values);
-        }
+       
 
 
 
@@ -115,30 +139,5 @@ namespace LeetCodeStrings.Medium
             }
             return new List<IList<string>>(ans.Values);
         }
-
-        private void CreateMap(string s, Dictionary<char, int> map)
-        {
-            foreach (char c in s)
-            {
-                if (!map.ContainsKey(c))
-                    map.Add(c, 0);
-                ++map[c];
-            }
-        }
-        private string CreateKey(Dictionary<char, int> map)
-        {
-            StringBuilder sb = new StringBuilder();
-            //! Constant time operation because  map consists of lower-case English letters only
-            map = map.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
-            foreach (var keyValue in map)
-            {
-                sb.Append('#');
-                sb.Append(keyValue.Key);
-                sb.Append(keyValue.Value);
-            }
-
-            return sb.ToString();
-        }
-
     }
 }

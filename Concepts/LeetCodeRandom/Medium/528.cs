@@ -21,7 +21,7 @@ namespace LeetCodeRandom.Medium
     public class Solution
     {
         int[] prefixSum;
-        Random random;
+        Random random;        
         public Solution(int[] w)
         {
             random = new Random();
@@ -67,6 +67,36 @@ namespace LeetCodeRandom.Medium
         }
 
 
+    }
+    /// <summary>
+    //! Brute force approach
+    //! uses too much space
+    //! Constructor too heavy
+    //! Space Complexity=O(sum(w))
+    //! Time Complexity=O(sum(w))
+    /// </summary>
+    public class Solution2
+    {
+        List<int> _lst;
+        Random _random;
+        public Solution2(int[] w)
+        {
+            _random = new Random();
+            _lst = new List<int>();
+            for (int i = 0; i < w.Length; ++i)
+            {
+                for (int j = 0; j < w[i]; ++j)
+                {
+                    _lst.Add(i);
+                }
+            }
+        }
+
+        public int PickIndex()
+        {
+            int index = _random.Next(_lst.Count);
+            return _lst[index];
+        }
     }
 
 

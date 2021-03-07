@@ -13,18 +13,25 @@ namespace LeetCodeStrings.Medium
         /// </summary>
         public string LongestPalindrome0(string s)
         {
+            int n = s.Length;
 
             int fs = 0;
             int fe = 0;
-            bool[,] isPalindromes = new bool[s.Length, s.Length];
-            for (int l = 1; l <= s.Length; ++l)
+            bool[,] isPalindromes = new bool[n,n];
+            for (int len = 1; len <= n; ++len)
             {
-                for (int start = 0; start <= s.Length - l; ++start)
+                //! n - len
+                //! Start of the window=i-k+1
+                //! i=n-1
+                //! Start of the window=n-1-k+1
+                //! Start of the window=n-k
+                for (int start = 0; start <= n - len; ++start)
                 {
-                    int end = start + l - 1;
+                    //!End of a window of size k starting at i : i + k - 1
+                    int end = start + len - 1;
                     if (start == end)
                         isPalindromes[start, end] = true;
-                    else if (l == 2)
+                    else if (len == 2)
                         isPalindromes[start, end] = s[start] == s[end];
                     else
                         isPalindromes[start, end] = isPalindromes[start + 1, end - 1] && s[start] == s[end];

@@ -17,7 +17,7 @@ namespace LeetCodeBinarySearch.Medium
                 return -1;
 
             int lo = 0;
-            int hi = Max(bloomDay);
+            int hi = bloomDay.Max();
 
             while (lo + 1 < hi)
             {
@@ -41,7 +41,7 @@ namespace LeetCodeBinarySearch.Medium
             for (int i = 0; i < bloomDay.Length; ++i)
             {
                 if (bloomDay[i] <= day)
-                    ++flowers;
+                    ++flowers; //!index of bloomDay array represents the flower number hence incrementing flowers count
                 else //! incase bloom day > provided day, reset flowers as we need to pick up adjacent flowers
                     flowers = 0;
 
@@ -49,22 +49,10 @@ namespace LeetCodeBinarySearch.Medium
                 {
                     ++boquets;
                     flowers = 0;
-                }
-                if (boquets >= m)
-                    return true;
+                }                
             }
-
-            return false;
-        }
-
-        private int Max(int[] bloomDay)
-        {
-            int max = bloomDay[0];
-            for (int i = 0; i < bloomDay.Length; ++i)
-            {
-                max = Math.Max(bloomDay[i], max);
-            }
-            return max;
-        }
+            //! We need to make atleast m . If we make more we are still good hence >=m
+            return boquets>=m;
+        }       
     }
 }

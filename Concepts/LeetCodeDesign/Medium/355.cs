@@ -152,7 +152,8 @@ namespace LeetCodeDesign.Medium
                 TimeStamp = timeStamp;
                 Next = null;
             }
-
         }
+
+        
     }
 }

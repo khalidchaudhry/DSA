@@ -21,7 +21,10 @@ namespace LeetCodeArrays.Medium
             int n = nums.Length;
             for (int i = 0; i < n; ++i)
             {
-                if (nums[i] == c1)
+
+                //conditions (nums[i] == c1) && (nums[i] == c2) needs to come first.Think of below test case
+                //! [1,1].. in that case , c1 and c2 both will set to 1 which is wrong 
+                    if (nums[i] == c1)
                     ++c1Count;
                 else if (nums[i] == c2)
                     ++c2Count;
@@ -49,6 +52,11 @@ namespace LeetCodeArrays.Medium
                 if (nums[i] == c1) ++count1;
                 else if (nums[i] == c2) ++count2;
             }
+
+            if (count1 > nums.Length / 3)
+                result.Add(c1);
+            if (count2 > nums.Length / 3)
+                result.Add(c2);
 
             return result;
         }

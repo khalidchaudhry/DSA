@@ -10,6 +10,7 @@ namespace LeetCodeDynamicProgramming.Medium
     {
 
         /// <summary>
+        //! Question is very similar to 1227
         //! Intuition here is to check  matrix in opposite direction like
         //           ^       ^
         //            \     |
@@ -21,36 +22,20 @@ namespace LeetCodeDynamicProgramming.Medium
         /// <returns></returns>      
         public int MaximalSquare0(char[][] matrix)
         {
-            if (matrix.Length == 0)
-                return 0;
-            int rows = matrix.Length;
-            int columns = matrix[0].Length;
-
-            //! creating dp array of one size bigger both for columns and rows so that we don't have to 
-            //! explictly handle boundary cases.  
-            int[][] dp = new int[rows + 1][];
-            int maximalLength = 0;
-            for (int i = 0; i < dp.Length; ++i)
+            int[,] dp = new int[matrix.Length + 1, matrix[0].Length + 1];
+            int maxLength = 0;
+            for (int i = 1; i < dp.GetLength(0); ++i)
             {
-                dp[i] = new int[columns + 1];
-            }
-
-            for (int i = 0; i < rows; ++i)
-            {
-                for (int j = 0; j < columns; ++j)
+                for (int j = 1; j < dp.GetLength(1); ++j)
                 {
-                    if (matrix[i][j] == '0')
+                    if (matrix[i - 1][j - 1] == '1')
                     {
-                        continue;
+                        dp[i, j] = 1 + (Math.Min(Math.Min(dp[i - 1, j], dp[i, j - 1]), dp[i - 1, j - 1]));
+                        maxLength = Math.Max(maxLength, dp[i, j]);
                     }
-                    dp[i + 1][j + 1] = 1 + Math.Min(dp[i][j + 1],//up 
-                                           Math.Min(dp[i][j],//diagonal
-                                                   dp[i + 1][j]));//left
-                    maximalLength = Math.Max(maximalLength, dp[i + 1][j + 1]);
                 }
             }
-
-            return maximalLength * maximalLength;
+            return maxLength * maxLength;
         }
 
       

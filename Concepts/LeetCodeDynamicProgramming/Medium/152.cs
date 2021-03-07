@@ -16,6 +16,9 @@ namespace LeetCodeDynamicProgramming.Medium
             Console.ReadLine();
 
         }
+        /// <summary>
+        //! Store max Product\min product ending at each location
+        /// </summary>
         public int MaxProduct(int[] nums)
         {
             if (nums.Length < 1)
@@ -34,7 +37,7 @@ namespace LeetCodeDynamicProgramming.Medium
                 maxSoFar = Math.Max(nums[i], Math.Max(nums[i] * maxSoFar, nums[i] * minSoFar));
 
                 minSoFar = Math.Min(nums[i], Math.Min(nums[i] * temp, nums[i] * minSoFar));
-
+                
                 if (maxSoFar > max)
                 {
                     max = maxSoFar;

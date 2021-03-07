@@ -47,10 +47,13 @@
   <ItemGroup>
     <Compile Include="Easy\359.cs" />
     <Compile Include="Hard\381.cs" />
+    <Compile Include="Hard\588.cs" />
     <Compile Include="Medium\1381.cs" />
+    <Compile Include="Medium\1396.cs" />
     <Compile Include="Medium\1429.cs" />
     <Compile Include="Medium\146.cs" />
     <Compile Include="Medium\1472.cs" />
+    <Compile Include="Medium\244.cs" />
     <Compile Include="Medium\284.cs" />
     <Compile Include="Medium\348.cs" />
     <Compile Include="Medium\355.cs" />

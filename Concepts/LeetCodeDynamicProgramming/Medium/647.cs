@@ -8,6 +8,11 @@ namespace LeetCodeDynamicProgramming.Medium
 {
     public class _647
     {
+
+        /// <summary>
+        //! We are iterating over the length of substring to caculate the palindromic permutation
+        //! Sliding window of size 1......n
+        /// </summary>
         public int CountSubstrings(string s)
         {
 

@@ -8,6 +8,37 @@ namespace LeetCodeDynamicProgramming.Medium
 {
     public class _63
     {
+
+
+        public int UniquePathsWithObstacles2(int[][] obstacleGrid)
+        {
+            Dictionary<(int, int), int> memo = new Dictionary<(int, int), int>();
+            return UniquePathsWithObstacles2(obstacleGrid, 0, 0, memo);
+        }
+
+        private int UniquePathsWithObstacles2(int[][] obstacleGrid, int r, int c, Dictionary<(int, int), int> memo)
+        {
+            if (r >= obstacleGrid.Length || c >= obstacleGrid[0].Length || obstacleGrid[r][c] == 1)
+            {
+                return 0;
+            }
+
+            if (r == obstacleGrid.Length - 1 && c == obstacleGrid[0].Length - 1)
+            {
+                return 1;
+            }
+
+            if (memo.ContainsKey((r, c)))
+            {
+                return memo[(r, c)];
+            }
+
+            return memo[(r, c)] = UniquePathsWithObstacles2(obstacleGrid, r, c + 1, memo) +
+                               UniquePathsWithObstacles2(obstacleGrid, r + 1, c, memo);
+        }
+
+
+
         public int UniquePathsWithObstacles(int[][] obstacleGrid)
         {
 

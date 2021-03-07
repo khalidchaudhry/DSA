@@ -35,6 +35,8 @@ namespace LeetCodeDynamicProgramming.Medium
         }
         private bool WordBreak(string s, int start, HashSet<string> hs, Dictionary<int, bool> cache)
         {
+            //!We will only reach here if we have valid case for previous substring in string. 
+            //! Otherwise we will never reach here because of the condition  if (!hs.Contains(pre)) continue;
             if (start == s.Length)
             {
                 return true;

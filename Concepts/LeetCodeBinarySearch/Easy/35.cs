@@ -38,12 +38,12 @@ namespace LeetCodeBinarySearch.Easy
         public int SearchInsert0(int[] nums, int target)
         {
             int lo = -1;
-            int hi = nums.Length;
+            int hi = nums.Length - 1;
             while (lo + 1 < hi)
             {
                 int mid = lo + (hi - lo) / 2;
 
-                if (nums[mid] >= target)
+                if (OK(nums, mid, target))
                 {
                     hi = mid;
                 }
@@ -52,11 +52,12 @@ namespace LeetCodeBinarySearch.Easy
                     lo = mid;
                 }
             }
-            return hi;
+
+            return target > nums[hi] ? nums.Length : hi;
         }
 
         /// <summary>
-        //! is the number at current index greater than or equal to target
+        //! is the number at i index greater than or equal to target
         //! FFFF'T'TTTTT
         /// </summary>
         private bool OK(int[] nums, int index, int target)

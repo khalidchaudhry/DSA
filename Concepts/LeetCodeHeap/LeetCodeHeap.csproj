@@ -45,13 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hard\239.cs" />
+    <Compile Include="Hard\871.cs" />
     <Compile Include="Medium\1167.cs" />
     <Compile Include="Medium\215.cs" />
     <Compile Include="Medium\347.cs" />
     <Compile Include="Medium\373.cs" />
     <Compile Include="Medium\378.cs" />
+    <Compile Include="Medium\692.cs" />
     <Compile Include="Medium\973.cs" />
-    <Compile Include="PriorityQueue.cs" />
+    <Compile Include="PQ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

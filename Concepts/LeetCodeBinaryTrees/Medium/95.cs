@@ -7,9 +7,11 @@ namespace LeetCodeBinaryTrees.Medium
     public class _95
     {
         /// <summary>
+        //! Same as 241
         //! With memoization 
-        //! Time complexity=n^5 ==> Our possible recursive function states are n^2 and we are performing n^3 units of work in each recursive call hence total time complexity=O(n^5)
-        //! Space Complexity 
+        //! Time complexity=n^5 
+        //!==> Our possible recursive function states are n^2 and we are performing n^3 units of work in each recursive call hence total time complexity=O(n^5)
+        //! Space Complexity =O(n) for recusrion depth & O(2^n) for result
         /// </summary>
         public IList<TreeNode> GenerateTrees0(int n)
         {

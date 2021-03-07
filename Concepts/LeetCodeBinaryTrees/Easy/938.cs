@@ -27,6 +27,13 @@ namespace LeetCodeBinaryTrees.Easy
                 return sum;
             }
         }
+
+        public int RangeSumBST(TreeNode root, int low, int high)
+        {
+            sum = 0;
+            Helper(root, low, high);
+            return sum;
+        }
         private void Helper(TreeNode node, int low, int high)
         {
             if (node == null)

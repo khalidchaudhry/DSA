@@ -42,7 +42,10 @@ namespace LeetCodeDynamicProgramming.Hard
 
             return cache[start];
         }
-
+        /// <summary>
+        //! We are iterating over the length of substring to caculate the palindromic permutation
+        //! Sliding window of size 1......n 
+        /// </summary>
         private void PreComputePalindromes(string s, bool[,] isPalindromes)
         {
             for (int l = 1; l <= s.Length; ++l)

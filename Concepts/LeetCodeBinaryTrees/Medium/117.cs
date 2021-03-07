@@ -13,58 +13,35 @@ namespace LeetCodeBinaryTrees.Medium._117
 
         }
         /// <summary>
-        /// https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/37828/O(1)-space-O(n)-complexity-Iterative-Solution
-        //! Three pointers . One pointer(curr) is for current level . Two pointers(last and head) is for next levels
-        /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
+        ///https://www.youtube.com/watch?v=yl-fdkyQD8A 
+        // # <image url="$(SolutionDir)\Images\117.png"  scale="0.5"/>
+        /// </summary>      
         public Node Connect0(Node root)
         {
 
-            Node curr = root;
-            Node last = null;//! points to the leading node(last node) of next level
-            Node head = null; //! points to the first node of the next level
-
-            while (curr != null)
+            Node head = root;
+            while (head != null)
             {
-                while (curr != null)
+                //!using dummy node to move to the next level
+                Node dummy = new Node(0);
+                Node temp = dummy;
+                while (head != null)
                 {
-
-                    if (curr.left != null)
+                    if (head.left != null)
                     {
-                        if (last != null)
-                        {
-                            last.next = curr.left;
-                        }
-                        else
-                        {
-                            head = curr.left;
-                        }
-                        last = curr.left;
+                        temp.next = head.left;
+                        temp = temp.next;
+                    }
+                    if (head.right != null)
+                    {
+                        temp.next = head.right;
+                        temp = temp.next;
                     }
 
-                    if (curr.right != null)
-                    {
-                        if (last != null)
-                        {
-                            last.next = curr.right;
-                        }
-                        else
-                        {
-                            head = curr.right;
-                        }
-
-                        last = curr.right;
-                    }
-
-                    curr = curr.next; //! Move to the next node in the level
+                    head = head.next;
                 }
-                //! reseting pointers for the next level. Setting head of next level to the curr
-                curr = head;
-                head = null;
-                last = null;
+                head = dummy.next;
             }
-
             return root;
         }
 
