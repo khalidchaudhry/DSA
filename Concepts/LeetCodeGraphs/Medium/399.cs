@@ -23,10 +23,7 @@ namespace LeetCodeGraphs.Medium
         //visited set: O(|V|)
         //!total space: O(2*|E| + 3*|V|)
         /// </summary>
-        /// <param name="equations"></param>
-        /// <param name="values"></param>
-        /// <param name="queries"></param>
-        /// <returns></returns>
+
         //https://leetcode.com/problems/evaluate-division/discuss/171649/1ms-DFS-with-Explanations
         public double[] CalcEquation(
             IList<IList<string>> equations,
@@ -63,8 +60,7 @@ namespace LeetCodeGraphs.Medium
             }
 
             visited.Add(start);
-            //! pay attention not using dictionary below. Rather than using KeyVaulePair
-            foreach (KeyValuePair<string, double> neighbour in graph[start])
+            foreach (var neighbour in graph[start])
             {
                 if (!visited.Contains(neighbour.Key))
                 {

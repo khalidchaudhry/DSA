@@ -8,52 +8,68 @@ namespace LeetCodeUnionFind.Medium
 {
     public class _721
     {
-        public IList<IList<string>> AccountsMerge(IList<IList<string>> accounts)
-        {
-            Dictionary<string, string> owner = new Dictionary<string, string>();
-            Dictionary<string, string> parents = new Dictionary<string, string>();
-            Dictionary<string, SortedSet<string>> unions = new Dictionary<string, SortedSet<string>>();
-            foreach (List<string> a in accounts)
-            {
-                for (int i = 1; i < a.Count; i++)
-                {
-                    parents[a[i]]= a[i];
-                    owner[a[i]]= a[0];
-                }
-            }
-            foreach (List<string> a in accounts)
-            {
-                string p = Find(a[1], parents);
-                for (int i = 2; i < a.Count; i++)
-                {
-                    string key = Find(a[i], parents);
-                    parents[key]= p;
-                }
-            }
-            foreach (List<string> a in accounts)
-            {
-                string p = Find(a[1], parents);
-                if (!unions.ContainsKey(p)) unions.Add(p, new SortedSet<string>());
-                for (int i = 1; i < a.Count; i++)
-                    unions[p].Add(a[i]);
-            }
 
-            List<IList<string>> res = new List<IList<string>>();
-            foreach (string p in unions.Keys)
-            {
-                List<string> emails = new List<string>(unions[p]);
-                
-                emails.AddRange(unions[p]);
-                emails.Insert(0, owner[p]);
-                res.Add(emails);
-            }
-            return res;
-        }
-        private string Find(string s, Dictionary<string, string> p)
+        public static void _721Main()
         {
-            return p[s] == s ? s : Find(p[s], p);
+            _721 Main = new _721();
+            List<IList<string>> accounts = new List<IList<string>>();
+            accounts.Add(new List<string>() { "John", "johnsmith@mail.com", "john00@mail.com" });
+            accounts.Add(new List<string>() { "John", "johnnybravo@mail.com" });
+            accounts.Add(new List<string>() { "John", "johnsmith@mail.com", "john_newyork@mail.com" });
+            accounts.Add(new List<string>() { "Mary", "mary@mail.com"});
+
+            var ans=Main.AccountsMerge0(accounts);
+            Console.ReadLine();
         }
 
+        public IList<IList<string>> AccountsMerge0(IList<IList<string>> accounts)
+        {
 
+            Dictionary<string, string> emailUserName = new Dictionary<string, string>();
+            Dictionary<string, int> emailComponentId = new Dictionary<string, int>();
+
+            UF uf = new UF(10000);
+            int idx = 0;
+            foreach (List<string> account in accounts)
+            {
+                string name = account[0];
+                for (int i = 1; i < account.Count; ++i)
+                {
+                    emailUserName[account[i]] = name;
+
+                    if (!emailComponentId.ContainsKey(account[i]))
+                    {
+                        emailComponentId.Add(account[i], idx++);
+                    }
+
+                    uf.Union(emailComponentId[account[1]], emailComponentId[account[i]]);
+                }
+            }
+            //! Component Id and emails that belong to that component. 
+            Dictionary<int, List<string>> idEmails = new Dictionary<int, List<string>>();
+
+            foreach (var keyValue in emailUserName)
+            {
+                int u = emailComponentId[keyValue.Key];
+                int pu = uf.FindSet(u);
+                if (!idEmails.ContainsKey(pu))
+                {
+                    idEmails.Add(pu, new List<string>());
+                }
+                idEmails[pu].Add(keyValue.Key);
+            }
+            List<IList<string>> result = new List<IList<string>>();
+            foreach (var keyValue in idEmails)
+            {
+                string email = keyValue.Value[0];
+                string userName = emailUserName[email];
+                keyValue.Value.Sort(string.CompareOrdinal);
+                keyValue.Value.Insert(0, userName);
+                result.Add(keyValue.Value);
+            }
+
+            return result;
+        }
     }
 }
+

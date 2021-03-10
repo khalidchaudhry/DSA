@@ -36,6 +36,17 @@ namespace LeetCodeGraphs.Medium
 
             return friendCircles;
         }
+        private void DFS(int i, int[][] M, bool[] visited)
+        {
+            for (int j = 0; j < M.Length; ++j) //! M.Length because given matrix N*N
+            {
+                if (M[i][j] == 1 && !visited[j])
+                {
+                    visited[j] = true;
+                    DFS(j, M, visited);
+                }
+            }
+        }
         /// <summary>
         //! Creating Adjacency list graph represntation based on given input. Not preferred
         /// </summary>    
@@ -57,6 +68,43 @@ namespace LeetCodeGraphs.Medium
             }
 
             return friendCircles;
+        }
+        private List<List<int>> BuildGraph(int[][] M)
+        {
+
+            int rows, columns;
+            rows = columns = M.Length; //because given matrix is N*N matrix
+            List<List<int>> graph = new List<List<int>>();
+
+            for (int i = 0; i < rows; i++)
+            {
+                graph.Add(new List<int>());
+            }
+
+            for (int row = 0; row < rows; row++)
+            {
+                for (int column = 0; column < columns; ++column)
+                {
+                    if (M[row][column] == 1)
+                    {
+                        graph[row].Add(column);
+                    }
+                }
+            }
+
+            return graph;
+        }
+        private void DFS(int at, List<List<int>> graph, bool[] visited)
+        {
+            visited[at] = true;
+
+            List<int> neighbours = graph[at];
+
+            foreach (int neighbor in neighbours)
+            {
+                if (!visited[neighbor])
+                    DFS(neighbor, graph, visited);
+            }
         }
 
         /// <summary>
@@ -99,45 +147,27 @@ namespace LeetCodeGraphs.Medium
         /// </summary>    
         public int FindCircleNum4(int[][] M)
         {
-            if (M.Length == 0) return 0;
-            int totalStudents = M.Length;
-            int[] parent = Enumerable.Repeat(-1, M.Length).ToArray();
-            int friendCircles = 0;
-            for (int i = 0; i < M.Length; ++i)
+            int n = M.Length;
+            int count = n;
+            UF uf = new UF(n);
+            for (int i = 0; i < n; ++i)
             {
-                for (int j = 0; j < M.Length; ++j)
+                for (int j = 0; j < n; ++j)
                 {
-                    if (i != j && M[i][j] == 1)
+                    if (M[i][j] == 1)
                     {
-                        Union(i, j, parent);
+                        int u = uf.FindSet(i);
+                        int v = uf.FindSet(j);
+                        if (u != v)
+                        {
+                            --count;
+                            uf.Union(u, v);
+                        }
                     }
                 }
             }
-            for (int i = 0; i < parent.Length; ++i)
-            {
-                if (parent[i] == -1)
-                    ++friendCircles;
-            }
-
-            return friendCircles;
+            return count;
         }
-
-        private void Union(int i, int j, int[] parent)
-        {
-            int x = Find(parent, i);
-            int y = Find(parent, j);
-            if (x != y)
-                parent[x] = y;
-        }
-
-        private int Find(int[] parent, int i)
-        {
-            if (parent[i] == -1)
-                return i;
-
-            return Find(parent, parent[i]);
-        }
-
 
         /// <summary>
         //! DFS iterative
@@ -186,55 +216,6 @@ namespace LeetCodeGraphs.Medium
 
 
 
-        private void DFS(int i, int[][] M, bool[] visited)
-        {
-            for (int j = 0; j < M.Length; ++j) //! M.Length because given matrix N*N
-            {
-                if (M[i][j] == 1 && !visited[j])
-                {
-                    visited[j] = true;
-                    DFS(j, M, visited);
-                }
-            }
-        }
-
-        private void DFS(int at, List<List<int>> graph, bool[] visited)
-        {
-            visited[at] = true;
-
-            List<int> neighbours = graph[at];
-
-            foreach (int neighbor in neighbours)
-            {
-                if (!visited[neighbor])
-                    DFS(neighbor, graph, visited);
-            }
-        }
-
-        private List<List<int>> BuildGraph(int[][] M)
-        {
-
-            int rows, columns;
-            rows = columns = M.Length; //because given matrix is N*N matrix
-            List<List<int>> graph = new List<List<int>>();
-
-            for (int i = 0; i < rows; i++)
-            {
-                graph.Add(new List<int>());
-            }
-
-            for (int row = 0; row < rows; row++)
-            {
-                for (int column = 0; column < columns; ++column)
-                {
-                    if (M[row][column] == 1)
-                    {
-                        graph[row].Add(column);
-                    }
-                }
-            }
-
-            return graph;
-        }
+               
     }
 }

@@ -13,11 +13,7 @@ namespace LeetCodeGraphs.Medium
         // ! Count connected components in the graph.
         //! Minimum connections needed equal to total connected components-1
         //!Time: O(n+m), m is the total connections given and n is the total nodes given
-        //!Space: O(n)
-        /// </summary>
-        /// <param name="n"></param>
-        /// <param name="connections"></param>
-        /// <returns></returns>
+        //!Space: O(n) 
         public int MakeConnected(int n, int[][] connections)
         {
             //! If given computers are greater then 1+ connections , then its impossible to connect them 

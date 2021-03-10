@@ -8,52 +8,54 @@ namespace LeetCodeUnionFind.Medium
 {
     public class _737
     {
-        /// <summary>
-        /// https://leetcode.com/problems/sentence-similarity-ii/discuss/109752/JavaC%2B%2B-Clean-Code-with-Explanation
-        /// </summary>        
         public bool AreSentencesSimilarTwo(string[] words1, string[] words2, IList<IList<string>> pairs)
         {
-            if (words1.Length != words2.Length)
-            {
-                return false;
-            }
 
-            Dictionary<string, string> parent = new Dictionary<string, string>();
+            int n1 = words1.Length;
+            int n2 = words2.Length;
+            if (n1 != n2) return false;
 
+            UF uf = new UF(pairs.Count * 2);
+
+            Dictionary<string, int> map = new Dictionary<string, int>();
+
+            int idx = 0;
             foreach (List<string> pair in pairs)
             {
-                string x = FindParent(parent, pair[0]);
-                string y = FindParent(parent, pair[1]);
-                if (x != y)
+                foreach (string word in pair)
                 {
-                    parent.Add(x, y);
+                    if (!map.ContainsKey(word))
+                    {
+                        map.Add(word, idx++);
+                    }
                 }
+                uf.Union(map[pair[0]], map[pair[1]]);
             }
 
-            for (int i = 0; i < words1.Length; ++i)
+            for (int i = 0; i < n1; ++i)
             {
-                if (!words1[i].Equals(words2[i]) &&
-                     !FindParent(parent, words1[i]).Equals(FindParent(parent, words2[i]))
-                   )
+                string w1 = words1[i];
+                string w2 = words2[i];
+                if (w1 == w2)
+                {
+                    continue;
+                }
+
+                if (!map.ContainsKey(w1) || !map.ContainsKey(w2))
+                {
+                    return false;
+                }
+                int w1Index = map[w1];
+                int w2Index = map[w2];
+                int u = uf.FindSet(w1Index);
+                int v = uf.FindSet(w2Index);
+                if (u != v)
                 {
                     return false;
                 }
             }
 
             return true;
-        }
-
-        private string FindParent(Dictionary<string, string> map, string word)
-        {
-            if (map.ContainsKey(word))
-            {
-                string parent = map[word].Equals(word) ? word : FindParent(map, map[word]);
-                return parent;
-            }
-            else
-            {
-                return word;
-            }
         }
     }
 }
