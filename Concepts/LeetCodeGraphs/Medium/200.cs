@@ -9,46 +9,55 @@ namespace LeetCodeGraphs.Medium
     public class _200
     {
         /// <summary>
-        /// https://medium.com/leetcode-patterns/leetcode-pattern-1-bfs-dfs-25-of-the-problems-part-1-519450a84353
-        /// Time complexity=O(m*n) where m are number of rows and c are number of columns
-        /// Space=O(1)
+        //! Time complexity=O(m*n) where m are number of rows and c are number of columns
+        //! Space=O(1)
         /// </summary>
-        /// <param name="grid"></param>
-        /// <returns></returns>
         public int NumIslands(char[][] grid)
         {
-            int result = 0;
+            int r = grid.Length;
+            int c = grid[0].Length;
 
-            for (int x = 0; x < grid.Length; x++)
+            int islandsCount = 0;
+            for (int i = 0; i < r; ++i)
             {
-                for (int y = 0; y < grid[x].Length; y++)
+                for (int j = 0; j < c; ++j)
                 {
-                    if (grid[x][y] == '1')
+                    if (grid[i][j] == '1')
                     {
-                        ++result;
-                        DFS(grid, x, y);
+                        ++islandsCount;
+                        DFS(i, j, grid);
                     }
                 }
             }
-
-            return result;
+            return islandsCount;
         }
 
-        private void DFS(char[][] grid, int x, int y)
+        private void DFS(int i, int j, char[][] grid)
         {
-            //! if out of bounds or at a cell with '0' or '*', simply stop and return | end the dfs
-            if (x < 0 || x >= grid.Length || y < 0 || y >= grid[x].Length || grid[x][y] != '1')
-            {
+            if (IsOutOfBound(i, j, grid) || grid[i][j] == '0')
                 return;
+
+            grid[i][j] = '0';
+
+            foreach ((int nr, int nc) in GetNeighbors(i, j))
+            {
+                DFS(nr, nc, grid);
             }
-            //! Using character to mark it as visited. 
-            grid[x][y] = '*';
+        }
+        private bool IsOutOfBound(int i, int j, char[][] grid)
+        {
+            return i >= grid.Length || i < 0 || j >= grid[0].Length || j < 0;
+        }
 
-            DFS(grid, x, y + 1);// right
-            DFS(grid, x, y - 1);//left
-            DFS(grid, x + 1, y);//up
-            DFS(grid, x - 1, y);//down
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
+        {
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int nr, int nc)>() { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
+            {
+                neighbors.Add((nr, nc));
+            }
 
+            return neighbors;
         }
     }
 }

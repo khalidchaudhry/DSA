@@ -8,6 +8,58 @@ namespace LeetCodeGraphs.Medium
 {
     public class _785
     {
+
+        /// <summary>
+        //! DFS recursive . Similar to pattern used in question 207,802 except here we are using 2 colors and alternating them
+        //! Same as 886
+        //  # <image url="https://leetcode.com/problems/is-graph-bipartite/Figures/785/color.png"  scale="0.4"/>
+        /// </summary>       
+        public bool IsBipartite2(int[][] graph)
+        {
+
+            Dictionary<int, int> colors = new Dictionary<int, int>();
+            for (int i = 0; i < graph.Length; ++i)
+            {
+                colors.Add(i, 0);
+            }
+
+            for (int i = 0; i < graph.Length; ++i)
+            {
+                if (colors[i] == 0)
+                {
+                    if (!IsValidColor(graph, colors, 1, i))
+                        return false;
+                }
+            }
+            return true;
+
+        }
+
+        private bool IsValidColor(int[][] graph, Dictionary<int, int> colors, int color, int at)
+        {
+        
+            colors[at] = color;
+            int nextColor = -color;
+
+            foreach (int neighbor in graph[at])
+            {
+                //! If we have already marked the node then its value will not be 0
+                if (colors[neighbor] != 0)
+                {
+                    //! Check if color is compatible
+                    if (colors[neighbor] == color)
+                        return false;
+                }
+                else
+                {
+                    if (!IsValidColor(graph, colors, nextColor, neighbor))
+                        return false;
+                }
+            }
+
+            return true;
+        }
+        
         /// <summary>
         ///https://www.youtube.com/watch?v=FofydiwP5YQ 
         /// </summary>
@@ -27,7 +79,7 @@ namespace LeetCodeGraphs.Medium
             {
                 if (color[i] == -1)
                 {
-                    bool result = IsValidColor(i, g,color);
+                    bool result = IsValidColor(i, g, color);
                     if (!result)
                     {
                         return false;
@@ -38,49 +90,6 @@ namespace LeetCodeGraphs.Medium
             return true;
         }
 
-        /// <summary>
-        //! DFS recursive . Similar to pattern used in question 207,802 except here we are using 2 colors and alternating them
-        /// </summary>       
-        /// <returns></returns>
-        public bool IsBipartite2(int[][] graph)
-        {
-
-            Dictionary<int, int> colors = new Dictionary<int, int>();
-            for (int i = 0; i < graph.Length; ++i)
-            {
-                colors.Add(i, 0);
-            }
-
-
-            for (int i = 0; i < graph.Length; ++i)
-            {
-                if (colors[i] == 0)
-                {
-                    if (!IsValidColor(graph, colors, 1, i))
-                        return false;
-                }
-            }
-            return true;
-
-        }
-
-        private bool IsValidColor(int[][] graph, Dictionary<int, int> colors, int color, int at)
-        {
-            if (colors[at] != 0)
-            {
-                return colors[at] == color;
-            }
-            colors[at] = color;
-            foreach (int neighbor in graph[at])
-            {
-                if (!IsValidColor(graph, colors, -color, neighbor))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
         private bool IsValidColor(int i, List<List<int>> g, Dictionary<int, int> color)
         {
             Queue<int> queue = new Queue<int>();
@@ -158,7 +167,7 @@ namespace LeetCodeGraphs.Medium
             for (int i = 0; i < graph.Length; i++)
             {
 
-                g[i].AddRange(graph[i]);                
+                g[i].AddRange(graph[i]);
             }
 
             return g;

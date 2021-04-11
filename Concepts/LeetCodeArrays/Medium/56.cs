@@ -7,6 +7,37 @@ namespace LeetCodeArrays.Medium
     public class _56
     {
 
+
+        public int[][] Merge0(int[][] intervals)
+        {
+
+            int n = intervals.Length;
+            var comparer = Comparer<int[]>.Create((x, y) => {
+               return x[0].CompareTo(y[0]);
+            });
+
+            Array.Sort(intervals, comparer);
+
+            List<int[]> merged = new List<int[]>();
+
+            foreach (int[] interval in intervals)
+            {
+                int n2 = merged.Count;
+                if (merged.Count == 0 || interval[0] > merged[n2 - 1][1])
+                {
+                    merged.Add(interval);
+                }
+                else
+                {
+                    merged[n2 - 1][1] = Math.Max(interval[1], merged[n2 - 1][1]);
+                }
+            }
+
+            return merged.ToArray();
+        }
+
+
+
         /// <summary>
         //https://www.youtube.com/watch?v=dI2FGXiL4Js 
         /// </summary>
@@ -48,9 +79,8 @@ namespace LeetCodeArrays.Medium
                 //! if intervals are overlapping, merge((union) them
                 if (e2[0] <= e1[1])
                 {
-                    int start = Math.Min(e1[0], e2[0]);
-                    int end = Math.Max(e1[1], e2[1]);
-                    result[result.Count - 1] = new int[] { start, end };
+                    //! We need to select end from two intervals that ends last
+                    result[result.Count - 1][1] = Math.Max(e1[1], e2[1]);
                 }
                 else
                 {

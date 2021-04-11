@@ -18,21 +18,24 @@ namespace LeetCodeHeap.Medium
 
         public int ConnectSticks(int[] sticks)
         {
+
             int n = sticks.Length;
-            PQ<(int val, int index)> pq = new PQ<(int val, int index)>();
+
+            PQ<int> pq = new PQ<int>();
             for (int i = 0; i < n; ++i)
             {
-                pq.Add((sticks[i], i));
+                pq.Add(sticks[i]);
             }
 
             int minCost = 0;
             while (pq.Size != 1)
             {
-                (int val1, int index1) = pq.Poll();
-                (int val2, int index2) = pq.Poll();
-                minCost += val1 + val2;
-                pq.Add((minCost, index1 + index2));
+                int stk1Len = pq.Poll();
+                int stk2Len = pq.Poll();
+                minCost += stk1Len + stk2Len;
+                pq.Add(stk1Len + stk2Len);
             }
+
             return minCost;
         }
         

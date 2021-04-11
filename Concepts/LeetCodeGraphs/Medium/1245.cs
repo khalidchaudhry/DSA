@@ -25,7 +25,8 @@ namespace LeetCodeGraphs.Medium
 
         }
         /// <summary>
-        //! Same as question 1522 
+        //! Same as question 1522
+        //! Calculate first maximum and second maximum length. Sum of them will give the diameter
         /// </summary>
         public int TreeDiameter0(int[][] edges)
         {
@@ -38,29 +39,6 @@ namespace LeetCodeGraphs.Medium
             DFS(graph, visited, 0, result);
 
             return result.Diameter;
-        }
-
-        /// <summary>
-        //!Takeaways:
-        //! Takeaway 1: Run DFS twice. First to  farthest node and then run DFS from that node to find the distance
-        /// </summary>
-        public int TreeDiameter(int[][] edges)
-        {
-
-            Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
-            BuildGraph(graph, edges);
-
-            bool[] visited = new bool[graph.Count];
-
-            (int node, int distance) = FindFurthest(graph, visited, 0);
-
-            //! incase of one node , the diameter is 0
-
-            visited = new bool[graph.Count];
-
-            (int furthestNode, int maxDistance) = FindFurthest(graph, visited, node);
-
-            return maxDistance;
         }
 
         private int DFS(Dictionary<int, List<int>> map, bool[] visited, int at, ResultWrapper result)
@@ -93,6 +71,31 @@ namespace LeetCodeGraphs.Medium
 
             return Math.Max(firstMaxLength, secondMaxLength);
         }
+
+        /// <summary>
+        //!Takeaways:
+        //! Takeaway 1: Run DFS twice. First to  farthest node and then run DFS from that node to find the distance
+        /// </summary>
+        public int TreeDiameter(int[][] edges)
+        {
+
+            Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+            BuildGraph(graph, edges);
+
+            bool[] visited = new bool[graph.Count];
+
+            (int node, int distance) = FindFurthest(graph, visited, 0);
+
+            //! incase of one node , the diameter is 0
+
+            visited = new bool[graph.Count];
+
+            (int furthestNode, int maxDistance) = FindFurthest(graph, visited, node);
+
+            return maxDistance;
+        }
+
+       
 
         private (int node, int distance) FindFurthest(Dictionary<int, List<int>> map, bool[] visited, int at)
         {

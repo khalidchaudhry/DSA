@@ -18,26 +18,54 @@ namespace LeetCodeBreadthFirstSearch.Medium
         /// </summary>
         public void WallsAndGates(int[][] rooms)
         {
-            Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
-            HashSet<(int, int)> visited = new HashSet<(int, int)>();
-            InitializeQueue(rooms, queue, visited);
+            int rows = rooms.Length;
+            int columns = rooms[0].Length;
 
-            while (queue.Count != 0)
+            Queue<(int r, int c)> queue = new Queue<(int r, int c)>();
+            HashSet<(int r, int c)> visited = new HashSet<(int r, int c)>();
+            for (int i = 0; i < rows; ++i)
             {
-                (int row, int column) = queue.Dequeue();
-
-                foreach ((int r, int c) in GetNeighbors(rooms, row, column))
+                for (int j = 0; j < columns; ++j)
                 {
-                    if (!visited.Contains((r, c)))
+                    if (rooms[i][j] == 0)
                     {
-                        rooms[r][c] = rooms[row][column] + 1;
-                        visited.Add((r, c));
-                        queue.Enqueue((r, c));
+                        queue.Enqueue((i, j));
+                        visited.Add((i, j));
                     }
                 }
             }
+
+            while (queue.Count != 0)
+            {
+                (int r, int c) = queue.Dequeue();
+
+                foreach ((int nr, int nc) in GetNeighbors(r, c))
+                {
+                    if (IsOutOfBound(rooms, nr, nc) || visited.Contains((nr, nc)) || rooms[nr][nc] == -1)
+                    {
+                        continue;
+                    }
+
+                    rooms[nr][nc] = 1 + rooms[r][c];
+
+                    queue.Enqueue((nr, nc));
+                    visited.Add((nr, nc));
+                }
+            }
         }
-        
+        private bool IsOutOfBound(int[][] rooms, int r, int c)
+        {
+            return r < 0 || r >= rooms.Length || c < 0 || c >= rooms[0].Length;
+        }
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
+        {
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int nr, int nc)>() { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
+            {
+                neighbors.Add((nr, nc));
+            }
+            return neighbors;
+        }
 
         /// <summary>
         //!https://www.youtube.com/watch?v=wCTbLn6QgTE
@@ -58,25 +86,6 @@ namespace LeetCodeBreadthFirstSearch.Medium
                     if (rooms[row][column] == 0)
                     {
                         DFS(rooms, row, column, 0);
-                    }
-                }
-            }
-        }
-
-        private void InitializeQueue(int[][] rooms, Queue<(int x, int y)> queue, HashSet<(int, int)> visited)
-        {
-            for (int i = 0; i < rooms.Length; ++i)
-            {
-                for (int j = 0; j < rooms[0].Length; ++j)
-                {
-                    if (rooms[i][j] == 0)
-                    {
-                        queue.Enqueue((i, j));
-                        visited.Add((i, j));
-                    }
-                    if (rooms[i][j] == -1)
-                    {
-                        visited.Add((i, j));
                     }
                 }
             }

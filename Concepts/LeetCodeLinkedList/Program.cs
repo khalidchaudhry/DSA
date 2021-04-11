@@ -1,3 +1,4 @@
+using LeetCodeLinkedList.Easy;
 using LeetCodeLinkedList.Medium;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace LeetCodeLinkedList
     {
         static void Main(string[] args)
         {
-            _142._142Main();
+            _141._141Main();
 
           
         }

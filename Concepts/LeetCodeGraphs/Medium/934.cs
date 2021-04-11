@@ -34,98 +34,79 @@ namespace LeetCodeGraphs.Medium
                 }
             }
         }
-        private void DFS(int[][] A, int i, int j)
-        {
-            if (i < 0 || i >= A.Length || j < 0 || j >= A[0].Length)
-            {
-                return;
-            }
-            A[i][j] = 2;
-
-            DFS(A, i - 1, j);
-            DFS(A, i + 1, j);
-            DFS(A, i, j - 1);
-            DFS(A, i, j + 1);
-        }
-
         private int ComputeMinimumFlips(int[][] A)
         {
-            Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
+            int rows = A.Length;
+            int columns = A[0].Length;
 
-            bool[][] visited = new bool[A.Length][];
-            InitializeVisited(visited, A[0].Length);
+            HashSet<(int r, int c)> visited = new HashSet<(int r, int c)>();
+            Queue<(int r, int c)> queue = new Queue<(int r, int c)>();
 
-            InitilaizeQueue(queue, A, visited);
-            //! Level order traversal
+            for (int i = 0; i < rows; ++i)
+            {
+                for (int j = 0; j < columns; ++j)
+                {
+                    if (A[i][j] == 2)
+                    {
+                        queue.Enqueue((i, j));
+                        visited.Add((i, j));
+                    }
+                }
+            }
+
             int level = 0;
             while (queue.Count != 0)
             {
                 int count = queue.Count;
                 while (count != 0)
                 {
-                    (int x, int y) = queue.Dequeue();
-
-                    if (A[x][y] == 1)
+                    (int r, int c) = queue.Dequeue();
+                    if (A[r][c] == 1)
                     {
-                        // smallest flips will not include the level we start from
+                        //! smallest flips will not include the level we start from
                         return level - 1;
                     }
-                    foreach ((int dx, int dy) in GetDirections())
+                    foreach ((int nr, int nc) in GetNeighbors(r, c))
                     {
-                        int nx = x + dx;
-                        int ny = y + dy;
-
-                        if (nx < 0 && nx >= A.Length && ny < 0 && ny >= A[0].Length && visited[nx][ny])
-                        {
+                        if (IsOutOfBound(A, nr, nc) || visited.Contains((nr, nc)))
                             continue;
-                        }
-                        visited[nx][ny] = true;
-                        queue.Enqueue((nx, ny));
+
+                        visited.Add((nr, nc));
+                        queue.Enqueue((nr, nc));
 
                     }
                     --count;
                 }
-
                 ++level;
             }
-
             return level;
         }
-
-        private void InitilaizeQueue(Queue<(int, int)> queue, int[][] A, bool[][] visited)
+        private void DFS(int[][] A, int r, int c)
         {
-            for (int i = 0; i < A.Length; ++i)
+            if (IsOutOfBound(A, r, c) || A[r][c] != 1)
+                return;
+
+            A[r][c] = 2;
+            foreach ((int nr, int nc) in GetNeighbors(r, c))
             {
-                for (int j = 0; j < A[0].Length; ++j)
-                {
-                    //! we are queueing cells with value=2
-                    if (A[i][j] == 2)
-                    {
-                        queue.Enqueue((i, j));
-                        visited[i][j] = true;
-                    }
-                }
+                DFS(A, nr, nc);
             }
         }
 
-        private void InitializeVisited(bool[][] visited, int columns)
+        private bool IsOutOfBound(int[][] A, int r, int c)
         {
-            for (int i = 0; i < visited.Length; ++i)
-            {
-                visited[i] = new bool[columns];
-            }
+            return r < 0 || r >= A.Length || c < 0 || c >= A[0].Length;
         }
 
-        private List<(int x, int y)> GetDirections()
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
         {
-            List<(int x, int y)> directions = new List<(int x, int y)>();
-            directions.Add((-1, 0));
-            directions.Add((1, 0));
-            directions.Add((0, 1));
-            directions.Add((0, -1));
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int nr, int nc)>() { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
+            {
+                neighbors.Add((nr, nc));
+            }
 
-            return directions;
-
+            return neighbors;
         }
     }
 }

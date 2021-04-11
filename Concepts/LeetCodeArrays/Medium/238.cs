@@ -39,24 +39,27 @@ namespace LeetCodeArrays.Medium
 
         public int[] ProductExceptSelf2(int[] nums)
         {
-            int[] result = new int[nums.Length];
+            int n = nums.Length;
 
-            //!Initially stores the left side product in result array
-            result[0] = 1;
-            for (int i = 1; i < nums.Length; ++i)
+            int[] right = new int[n];
+
+
+            int prod = 1;
+            for (int i = n - 1; i >= 0; --i)
             {
-                result[i] = result[i - 1] * nums[i - 1];
+                prod *= nums[i];
+                right[i] = prod;
             }
-            int R = 1;
-            for (int i = nums.Length - 1; i >= 0; --i)
+            int[] ans = new int[n];
+            int prev = 1;
+            for (int i = 0; i < n; ++i)
             {
-                // For the index 'i', R would contain the 
-                // product of all elements to the right. We update R accordingly
-                result[i] = result[i] * R;
-                R = R * nums[i];
+                int next = i == n - 1 ? 1 : right[i + 1];
+                ans[i] = prev * next;
+                prev *= nums[i];
             }
 
-            return result;
+            return ans;
         }
 
     }

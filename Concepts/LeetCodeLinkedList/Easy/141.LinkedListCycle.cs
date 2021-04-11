@@ -8,12 +8,19 @@ namespace LeetCodeLinkedList.Easy
 {
     class _141
     {
+        public static void _141Main()
+        {
+            ListNode node = new ListNode(1);
+            var test = new _141();
+            test.HasCycle(node);
+            
+
+        }
+
         /// <summary>
         //! Similar to below problem. In below problem we are detecting cycle in array. Here its linked list
         /// https://leetcode.com/problems/find-the-duplicate-number/
         /// </summary>
-        /// <param name="head"></param>
-        /// <returns></returns>
         public bool HasCycle(ListNode head)
         {
             if (head == null)
@@ -22,7 +29,7 @@ namespace LeetCodeLinkedList.Easy
             ListNode sp = head;
             ListNode fp = head;
 
-            while (fp != null || fp.next != null)
+            while (fp.next != null &&  fp.next.next != null)
             {
                 sp = sp.next;
                 fp = fp.next.next;
@@ -33,8 +40,6 @@ namespace LeetCodeLinkedList.Easy
 
             return false;
         }
-
-
     }
 
 

@@ -24,19 +24,19 @@ namespace LeetCodeArrays.Medium
 
                 //conditions (nums[i] == c1) && (nums[i] == c2) needs to come first.Think of below test case
                 //! [1,1].. in that case , c1 and c2 both will set to 1 which is wrong 
-                    if (nums[i] == c1)
+                if (nums[i] == c1)
                     ++c1Count;
                 else if (nums[i] == c2)
                     ++c2Count;
                 else if (c1Count == 0)
                 {
                     c1 = nums[i];
-                    ++c1Count;
+                    c1Count = 1;
                 }
                 else if (c2Count == 0)
                 {
                     c2 = nums[i];
-                    ++c2Count;
+                    c2Count = 1;
                 }
                 else
                 {
@@ -44,6 +44,8 @@ namespace LeetCodeArrays.Medium
                     --c2Count;
                 }
             }
+            //!Above code will tell us the candidate but not the actual majority elements. 
+            //!To get actual majority elemenents, we need to check their count 
             List<int> result = new List<int>();
             int count1 = 0;
             int count2 = 0;
@@ -61,7 +63,7 @@ namespace LeetCodeArrays.Medium
             return result;
         }
 
-       
+
 
 
     }

@@ -8,8 +8,70 @@ namespace LeetCodeUnionFind.Hard
 {
     public class _128
     {
+
+
+        public int LongestConsecutive(int[] nums)
+        {
+            int n = nums.Length;
+            if (n == 0) return 0;
+
+            HashSet<int> hs = new HashSet<int>();
+            for (int i = 0; i < n; ++i)
+            {
+                hs.Add(nums[i]);
+            }
+
+            int longest = 0;
+
+            for (int i = 0; i < n; ++i)
+            {
+                int curr = 1;
+                //! If element is not the first element in the sequence e.g. [1,2,3,4] for 2,3,4 it will continue
+                if (hs.Contains(nums[i] - 1))
+                    continue;
+                //! If we are here , it means that this the first element in the sequence. We need to check how much longer we can go. 
+                int temp = nums[i] + 1;
+                while (hs.Contains(temp))
+                {
+                    ++temp;
+                    ++curr;
+                }
+
+                longest = Math.Max(longest, curr);
+            }
+            return longest;
+        }
+
+        public int LongestConsecutive2(int[] nums)
+        {
+
+            int n = nums.Length;
+            if (n == 0) return 0;
+            Array.Sort(nums);
+
+            int currLongest = 1;
+            int maxLongest = 1;
+            for (int i = 0; i < n - 1; ++i)
+            {
+                if (nums[i] == nums[i + 1]) continue;
+                if (nums[i] + 1 == nums[i + 1])
+                {
+                    ++currLongest;
+                }
+                else
+                {
+                    maxLongest = Math.Max(maxLongest, currLongest);
+                    currLongest = 1;
+                }
+            }
+            return Math.Max(maxLongest, currLongest);
+        }
+
+
+
+
         //https://leetcode.com/problems/longest-consecutive-sequence/
-        public int longestConsecutive(int[] nums)
+        public int LongestConsecutive3(int[] nums)
         {
             UF uf = new UF(nums.Length);
             // Map val to index in nums

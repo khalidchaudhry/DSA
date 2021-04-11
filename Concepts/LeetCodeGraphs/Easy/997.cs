@@ -47,30 +47,29 @@ namespace LeetCodeGraphs.Easy
         */
         public int FindJudge(int N, int[][] trust)
         {
-            int answer = -1;
-            Degree[] degrees = new Degree[N];
-
-            for (int i = 0; i < N; i++)
+            Dictionary<int, (int indegree, int outdegree)> degree = new Dictionary<int, (int indegree, int outdegree)>();
+            for (int i = 1; i <= N; ++i)
             {
-                degrees[i] = new Degree();
+                degree[i] = (0, 0);
             }
 
-            for (int i = 0; i < trust.Length; i++)
+            foreach (int[] t in trust)
             {
-                ++degrees[trust[i][0] - 1].OutDegree;
-                ++degrees[trust[i][1] - 1].InDegree;
+                int from = t[0];
+                int to = t[1];
+                (int fIndegree, int fOutdegree) = degree[from];
+                (int tIndegree, int tOutdegree) = degree[to];
+
+                degree[from] = (fIndegree, ++fOutdegree);
+                degree[to] = (++tIndegree, tOutdegree);
             }
 
-            for (int i = 0; i < N; i++)
+            foreach (var keyValue in degree)
             {
-                if (degrees[i].InDegree == N - 1 && degrees[i].OutDegree == 0)
-                {
-                    answer = i + 1;
-                    break;
-                }
+                if (keyValue.Value.indegree == N - 1 && keyValue.Value.outdegree == 0)
+                    return keyValue.Key;
             }
-
-            return answer;
+            return -1;
         }
 
     }

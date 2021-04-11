@@ -8,9 +8,15 @@ namespace LeetCodeDivideAndConquer.Hard
 {
     class _23
     {
+        
+        //!K^2L=>Time complexity for merging two lists at a time solution
+        //!2L+3L+4L+KL=K((K+1)/2)=(K^2)/2+K/2=K^2        
         /// <summary>
-        //!Time=K*L*logK where K*L are total elements in the all K lists and logK are the total levels
-        //!Space=
+        //! L = Number of nodes in one linked list 
+        //! K*L = Total elements in the all K linked lists
+        //! LogK=total levels
+        //!Time=K*L*logK
+        //!Space=logK
         /// </summary>
         public ListNode MergeKLists(ListNode[] lists)
         {

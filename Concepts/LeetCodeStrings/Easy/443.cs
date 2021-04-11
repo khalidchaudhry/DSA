@@ -20,9 +20,7 @@ namespace LeetCodeStrings.Easy
         //https://leetcode.com/problems/string-compression/discuss/92559/Simple-Easy-to-Understand-Java-solution
         //! idea is to have two pointers . We will move one pointer until consective pointers are same.
         //! The moment they are different , we will copy current character to the array writeHead index and increment the writeHead index. 
-        /// </summary>
-        /// <param name="chars"></param>
-        /// <returns></returns>
+        /// </summary>   
         public int Compress(char[] chars)
         {
             //! writeHead will point to the place where we will write character and frquency 

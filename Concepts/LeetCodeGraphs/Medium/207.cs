@@ -19,9 +19,7 @@ namespace LeetCodeGraphs.Medium
         //E =prerequisites.Length
         //! Time complexity=O(V+E)
         /// </summary>
-        /// <param name="numCourses"></param>
-        /// <param name="prerequisites"></param>
-        /// <returns></returns>
+       
         public bool CanFinish0(int numCourses, int[][] prerequisites)
         {
 
@@ -67,7 +65,9 @@ namespace LeetCodeGraphs.Medium
 
             for (int i = 0; i < prerequisites.Length; ++i)
             {
-                graph[prerequisites[i][1]].Add(prerequisites[i][0]);
+                int from = prerequisites[i][1];
+                int to = prerequisites[i][0];
+                graph[from].Add(to);
             }
             //! color array holds there possible values 
             //! White= Not processed
@@ -160,14 +160,18 @@ namespace LeetCodeGraphs.Medium
         {
             foreach (int[] relation in prerequisites)
             {
+                // !index 1---> index0
+                int from = relation[1];
+                int to = relation[0];               
+                
                 // relation[0] depends on relation[1]. It means course at index 0 depends upon course at index 1
                 // In order to take course at index 0 , you must first take course at index 1.
                 // index 1---> index0
                 // !Course at index 1 is prerequisitie for course at index 0
-                if (adj.ContainsKey(relation[1]))
+                if (adj.ContainsKey(from))
                 {
-                    adj[relation[1]].Add(relation[0]);
-                    indegree[relation[0]]++;
+                    adj[from].Add(to);
+                    indegree[from]++;
                 }
                 else
                 {
@@ -175,13 +179,13 @@ namespace LeetCodeGraphs.Medium
                     //! if course does not have any prerequisite than relation[1] element will not be there
                     if (relation.Length == 2)
                     {
-                        nextCourses.Add(relation[0]);
-                        indegree[relation[0]]++;
-                        adj.Add(relation[1], nextCourses);
+                        nextCourses.Add(to);
+                        indegree[to]++;
+                        adj.Add(from, nextCourses);
                     }
                     else
                     {
-                        adj.Add(relation[0], nextCourses);
+                        adj.Add(to, nextCourses);
                     }
 
                 }

@@ -16,33 +16,13 @@ namespace LeetCodeGraphs.Medium
         /// </summary>        
         public int[][] UpdateMatrix(int[][] matrix)
         {
-            HashSet<(int x, int y)> visited = new HashSet<(int x, int y)>();
-            Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
-            InitializeQueue(matrix, queue, visited);
-            while (queue.Count != 0)
+            int rows = matrix.Length;
+            int columns = matrix[0].Length;
+            HashSet<(int r, int c)> visited = new HashSet<(int r, int c)>();
+            Queue<(int r, int c)> queue = new Queue<(int r, int c)>();
+            for (int i = 0; i < rows; ++i)
             {
-                (int row, int column) = queue.Dequeue();
-
-                foreach ((int x, int y) in GetNeighbors(matrix, row, column))
-                {
-                    if (!visited.Contains((x, y)) && matrix[x][y] != 0)
-                    {
-                        visited.Add((x, y));
-                        matrix[x][y] = matrix[row][column] + 1;
-                        queue.Enqueue((x, y));
-                    }
-                }
-            }
-            return matrix;
-
-        }
-        private void InitializeQueue(int[][] matrix,
-                                Queue<(int x, int y)> queue,
-                                HashSet<(int x, int y)> visited)
-        {
-            for (int i = 0; i < matrix.Length; ++i)
-            {
-                for (int j = 0; j < matrix[0].Length; ++j)
+                for (int j = 0; j < columns; ++j)
                 {
                     if (matrix[i][j] == 0)
                     {
@@ -51,18 +31,41 @@ namespace LeetCodeGraphs.Medium
                     }
                 }
             }
-        }
-        private IEnumerable<(int, int)> GetNeighbors(int[][] matrix, int row, int column)
-        {
-            foreach ((int x, int y) in new List<(int, int)>(){
-                                                        (row-1,column),(row+1,column),
-                                                        (row,column+1),(row,column-1)
-                                                       }
-                                                           )
+
+
+            while (queue.Count != 0)
             {
-                if (x >= 0 && x < matrix.Length && y >= 0 && y < matrix[0].Length)
-                    yield return (x, y);
+                (int r, int c) = queue.Dequeue();
+
+                foreach ((int nr, int nc) in GetNeighbors(r, c))
+                {
+                    if (IsOutOfBound(matrix, nr, nc) || visited.Contains((nr, nc)))
+                    {
+                        continue;
+                    }
+                    matrix[nr][nc] = matrix[r][c] + 1;
+                    visited.Add((nr, nc));
+                    queue.Enqueue((nr, nc));
+                }
             }
+
+            return matrix;
+
         }
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
+        {
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int nr, int nc)>() { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
+            {
+                neighbors.Add((nr, nc));
+            }
+            return neighbors;
+        }
+        private bool IsOutOfBound(int[][] matrix, int r, int c)
+        {
+            return r < 0 || r >= matrix.Length || c < 0 || c >= matrix[0].Length;
+        }
+
+
     }
 }

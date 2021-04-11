@@ -7,11 +7,13 @@ namespace LeetCodeRecursion.Medium
 {
     class _687
     {
-
         /// <summary>
         //!Post Order Traversal
         //! Same pattern as used in problem 543
         //https://medium.com/@rebeccahezhang/leetcode-687-longest-univalue-path-c7791a03c4a0
+        //!As long as we get the longest path length from the left child and right child, 
+        //!we check if the parent node value = left child value  or right child value.
+        //!If equal, means the longest path extended by 1.
         /// </summary>       
         int ans;
         public int LongestUnivaluePath2(TreeNode root)

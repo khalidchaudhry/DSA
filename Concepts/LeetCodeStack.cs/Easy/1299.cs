@@ -26,7 +26,7 @@ namespace LeetCodeStack.cs.Easy
             {
                 result[i] = stk.Peek();
 
-                if (stk.Peek() < arr[i])
+                if (arr[i] > stk.Peek())
                 {
                     stk.Push(arr[i]);
                 }

@@ -10,10 +10,49 @@ namespace LeetCodeGraphs.Medium
     {
 
         /// <summary>
-        /// https://leetcode.com/problems/clone-graph/solution/
+        //! Same approach as in 138(Copy list with random nodes)
+        //! Two pass solution but much easy to follow
+        //! 1. First copy all the nodes using BFS
+        //! 2. Iterate copied map and then set neighbors for  the nodes
         /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
+        public Node CloneGraph0(Node node)
+        {
+            if (node == null) return null;
+            Dictionary<Node, Node> visited = new Dictionary<Node, Node>();
+            Node cloned = new Node(node.val);
+            visited.Add(node, cloned);
+
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(node);
+            while (queue.Count != 0)
+            {
+                Node dequeue = queue.Dequeue();
+                IList<Node> neighbors = dequeue.neighbors;
+                foreach (Node neighbor in neighbors)
+                {
+                    if (!visited.ContainsKey(neighbor))
+                    {
+                        visited.Add(neighbor, new Node(neighbor.val));
+                        queue.Enqueue(neighbor);
+                    }
+                }
+            }
+
+            foreach (var keyValue in visited)
+            {
+                foreach (Node neighbor in keyValue.Key.neighbors)
+                {
+                    Node clonnedNode = visited[neighbor];
+                    keyValue.Value.neighbors.Add(clonnedNode);
+                }
+            }
+            return visited[node];
+        }
+
+
+        /// <summary>
+        /// https://leetcode.com/problems/clone-graph/solution/
+        /// </summary>      
         public Node CloneGraph(Node node)
         {
 

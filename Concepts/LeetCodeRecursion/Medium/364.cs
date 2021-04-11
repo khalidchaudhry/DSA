@@ -49,6 +49,39 @@ namespace LeetCodeRecursion.Medium
             return totalSum;
         }
         /// <summary>
+        //! Calculating Depth using BFS 
+        /// </summary>
+        private int MaxDepth(IList<NestedInteger> nestedList)
+        {
+            Queue<NestedInteger> queue = new Queue<NestedInteger>();
+
+            foreach (NestedInteger nestedInteger in nestedList)
+            {
+                queue.Enqueue(nestedInteger);
+            }
+
+            int depth = 0;
+            while (queue.Count != 0)
+            {
+                int size = queue.Count;
+                for (int i = 0; i < size; ++i)
+                {
+                    NestedInteger dequeue = queue.Dequeue();
+                    if (!dequeue.IsInteger())
+                    {
+                        foreach (NestedInteger ni in dequeue.GetList())
+                        {
+                            queue.Enqueue(ni);
+                        }
+                    }
+                }
+                ++depth;
+            }
+
+            return depth;
+        }
+
+        /// <summary>
         //! //! Very similar to question 104 and 559
         //! Calculating Depth using DFS and then doing BFS for answer 
         /// </summary>
@@ -110,38 +143,7 @@ namespace LeetCodeRecursion.Medium
             return maxDepth + 1;
         }
 
-        /// <summary>
-        //! Calculating Depth using BFS 
-        /// </summary>
-        private int MaxDepth(IList<NestedInteger> nestedList)
-        {
-            Queue<NestedInteger> queue = new Queue<NestedInteger>();
-
-            foreach (NestedInteger nestedInteger in nestedList)
-            {
-                queue.Enqueue(nestedInteger);
-            }
-
-            int depth = 0;
-            while (queue.Count != 0)
-            {
-                int size = queue.Count;
-                for (int i = 0; i < size; ++i)
-                {
-                    NestedInteger dequeue = queue.Dequeue();
-                    if (!dequeue.IsInteger())
-                    {
-                        foreach (NestedInteger ni in dequeue.GetList())
-                        {
-                            queue.Enqueue(ni);
-                        }
-                    }
-                }
-                ++depth;
-            }
-
-            return depth;
-        }
+        
     }
 
     public interface NestedInteger

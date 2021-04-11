@@ -22,6 +22,7 @@ namespace LeetCodeDesign.Medium_146
     /// <summary>
     /// https://leetcode.com/problems/lru-cache/discuss/45911/Java-Hashtable-%2B-Double-linked-list-(with-a-touch-of-pseudo-nodes)
     /// https://leetcode.com/problems/lru-cache/discuss/600088/3-Java-Solutions-Clean-Code
+    ///  // # <image url="$(SolutionDir)\Images\146.png"  scale="0.7"/>
     /// </summary>
 
     public class LRUCache

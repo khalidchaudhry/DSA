@@ -52,28 +52,24 @@ namespace LeetCodeGraphs.Medium
         //! Recursive version 
         public bool CanVisitAllRooms(IList<IList<int>> rooms)
         {
-            if (rooms.Count == 0)
-                return false;
-            HashSet<int> seen = new HashSet<int>();
-
-           //! how to cast IList to list
-            DFS(0, rooms.Cast<List<int>>().ToList() , seen);
-
-            return seen.Count == rooms.Count;
+            HashSet<int> visited = new HashSet<int>();
+            int count = DFS(rooms, visited, 0);
+            return count == rooms.Count;
         }
 
-        private void DFS(int at, List<List<int>> rooms, HashSet<int> seen)
+        private int DFS(IList<IList<int>> rooms, HashSet<int> visited, int at)
         {
-            seen.Add(at);
+            if (visited.Contains(at))
+                return 0;
 
-            List<int> neighbours = rooms[at];
-            foreach (int neighbour in neighbours)
+            int count = 1;
+            visited.Add(at);
+            foreach (int neighbor in rooms[at])
             {
-                if (!seen.Contains(neighbour))
-                {
-                    DFS(neighbour, rooms, seen);
-                }
+                count += DFS(rooms, visited, neighbor);
             }
+
+            return count;
         }
 
     }

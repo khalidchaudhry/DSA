@@ -36,18 +36,6 @@ namespace LeetCodeRecursion.Medium
             //! F(x,n)=x*F(x*x,n/2) for odd n     e.g. 2^11=2 * (2^10/2) * (2^10/2)= 2(2^5 * 2^5)= 2 * (2*2)^5 
             return Helper(x, n);
         }
-
-        //! Will throw out of stack exception 
-        public double MyPow2(double x, int n)
-        {
-            if (n < 0)
-            {
-                x = 1 / x;
-                n = -n;
-            }
-            return Helper2(x, n);
-        }
-
         private double Helper(double x, int n)
         {
             if (n == 0)
@@ -61,6 +49,18 @@ namespace LeetCodeRecursion.Medium
             else //!if number is odd  e.g. 2^5 can be represented as 2^4 * 2^1
                 return x * Helper(x * x, n / 2);
         }
+        //! Will throw out of stack exception 
+        public double MyPow2(double x, int n)
+        {
+            if (n < 0)
+            {
+                x = 1 / x;
+                n = -n;
+            }
+            return Helper2(x, n);
+        }
+
+       
         private double Helper2(double x, int n)
         {
             if (n == 0)

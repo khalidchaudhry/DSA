@@ -24,28 +24,25 @@ namespace LeetCodeGraphs.Medium
         public IList<string> Crawl(string startUrl, HtmlParser htmlParser)
         {
 
-            //! Extract host name name from startUrl
-            string hostName = $"http://{new Uri(startUrl).Host}";
-            List<string> result = new List<string>();
-            HashSet<string> seen = new HashSet<string>();
-            DFS(startUrl, hostName, seen, result, htmlParser);
-            return result;
+            if (startUrl == string.Empty)
+                return new List<string>();
+            string allowedDomain = new Uri(startUrl).Authority;
+            HashSet<string> visited = new HashSet<string>();
+            DFS(startUrl, allowedDomain, htmlParser, visited);
+            return visited.ToList();
         }
-        private void DFS(string url, string domainName, HashSet<string> seen, List<string> result, HtmlParser htmlParser)
+        private void DFS(string url, string allowedDomain, HtmlParser htmlParser, HashSet<string> visited)
         {
-            seen.Add(url);
-            result.Add(url);
-
-            IList<string> neighbours = htmlParser.GetUrls(url);
-
-            foreach (string neighbour in neighbours)
+            string domain = new Uri(url).Authority;
+            if (domain != allowedDomain || visited.Contains(url))
             {
-                if (!seen.Contains(neighbour) &&
-                    neighbour.StartsWith(domainName)
-                  )
-                {
-                    DFS(neighbour, domainName, seen, result, htmlParser);
-                }
+                return;
+            }
+            visited.Add(url);
+            IList<string> neighbors = htmlParser.GetUrls(url);
+            foreach (string neighbor in neighbors)
+            {
+                DFS(neighbor, allowedDomain, htmlParser, visited);
             }
         }
     }

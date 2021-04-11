@@ -10,57 +10,53 @@ namespace LeetCodeGraphs.Easy
     {
         public int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
         {
-            bool[][] visited = new bool[image.Length][];
 
-            for (int i = 0; i < visited.Length; ++i)
+            int rows = image.Length;
+            int columns = image[0].Length;
+            HashSet<(int r, int c)> hs = new HashSet<(int r, int c)>();
+            for (int i = 0; i < rows; ++i)
             {
-                visited[i] = new bool[image[0].Length];
+                for (int j = 0; j < columns; ++j)
+                {
+                    //if(i==sr && j==sc)
+                    //{
+                    DFS(image, sr, sc, image[sr][sc], newColor, hs);
+
+                    //}                            
+                }
             }
-
-            DFS(image,visited, sr, sc, newColor);
-
             return image;
         }
-
-        private void DFS(int[][] image,
-                        bool[][] visited,
-                        int sr, int sc,
-                        int newColor)
+        private void DFS(int[][] image, int r, int c, int srcColor, int newColor, HashSet<(int r, int c)> hs)
         {
-            if (sr < 0 || sr >= image.Length ||
-                sc < 0 || sc >= image[0].Length)
+            if (IsOutOfBound(image, r, c) || image[r][c] != srcColor || hs.Contains((r, c)))
             {
                 return;
             }
 
-            visited[sr][sc] = true;
-
-            List<(int x, int y)> directions = new List<(int x, int y)>
+            image[r][c] = newColor;
+            hs.Add((r, c));
+            foreach ((int nr, int nc) in GetNeighbors(image, r, c))
             {
-                (-1,0),  // above row
-                (1,0),   // below row
-                (0,1),  // right column
-                (0,-1)  // left column
-            };
-
-            foreach ((int x, int y) in directions)
-            {
-                int nx = sr + x;
-                int ny = sc + y;
-
-                if (nx >= 0 &&
-                    nx < image.Length &&
-                    ny >= 0 &&
-                    ny < image[0].Length &&
-                    image[nx][ny]==image[sr][sc] &&//!node color same color as the starting pixel
-                    !visited[nx][ny]
-                    )
-                {
-                    DFS(image, visited, nx, ny, newColor);
-                }
+                DFS(image, nr, nc, srcColor, newColor, hs);
             }
+        }
 
-            image[sr][sc] = newColor;            
+        private bool IsOutOfBound(int[][] image, int nr, int nc)
+        {
+            return nr < 0 || nr >= image.Length || nc < 0 || nc >= image[0].Length;
+        }
+
+        private List<(int nr, int nc)> GetNeighbors(int[][] images, int r, int c)
+        {
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int nr, int nc)>() { (r + 1, c), (r - 1, c),
+                                                                         (r, c + 1), (r, c - 1)
+                                                                      })
+            {
+                neighbors.Add((nr, nc));
+            }
+            return neighbors;
         }
     }
 }

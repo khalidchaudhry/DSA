@@ -8,7 +8,56 @@ namespace LeetCodeGraphs.Medium
 {
     public class _787
     {
+        public int FindCheapestPrice(int n, int[][] flights, int src, int dst, int K)
+        {
 
+            Dictionary<int, List<(int dst, int cost)>> graph = new Dictionary<int, List<(int dst, int cost)>>();
+            for (int i = 0; i < n; ++i)
+            {
+                graph.Add(i, new List<(int dst, int cost)>());
+            }
+
+            foreach (int[] flight in flights)
+            {
+                int from = flight[0];
+                int to = flight[1];
+                int cost = flight[2];
+
+                graph[from].Add((to, cost));
+            }
+
+            int cheapestPrice = int.MaxValue;
+            Queue<(int src, int cost, int stops)> queue = new Queue<(int src, int cost, int stops)>();
+            queue.Enqueue((src, 0, 0));
+
+
+            while (queue.Count != 0)
+            {
+                if (queue.Peek().stops > K + 1)
+                    break;
+
+                int count = queue.Count;
+                while (count != 0)
+                {
+                    (int source, int cost, int stops) = queue.Dequeue();
+
+                    if (source == dst)
+                    {
+                        cheapestPrice = Math.Min(cheapestPrice, cost);
+                    }
+                    foreach ((int neighbor, int nc) in graph[source])
+                    {
+                        int newCost = nc + cost;
+                        if (newCost < cheapestPrice)
+                        {
+                            queue.Enqueue((neighbor, newCost, stops + 1));
+                        }
+                    }
+                    --count;
+                }
+            }
+            return cheapestPrice == int.MaxValue ? -1 : cheapestPrice;
+        }
 
         /// <summary>
         ///https://www.youtube.com/watch?v=o6dUXOk-GWQ 
@@ -76,62 +125,6 @@ namespace LeetCodeGraphs.Medium
             }
 
             return cheapestPrice == int.MaxValue ? -1 : cheapestPrice;
-        }
-
-        /// <summary>
-        /// https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/623375/JAVA-DFSBFSBFS%2BPriorityQueue
-
-        public int FindCheapestPrice(int n, int[][] flights, int src, int dst, int K)
-        {
-            Dictionary<int, List<(int to, int cost)>> graph = new Dictionary<int, List<(int to, int cost)>>();
-
-            foreach (int[] flight in flights)
-            {
-                int from = flight[0];
-                int to = flight[1];
-                int cost = flight[2];
-                if (!graph.ContainsKey(from))
-                {
-                    graph[from] = new List<(int to, int cost)>();
-                }
-
-                graph[from].Add((to, cost));
-            }
-
-            Queue<(int node, int cost, int stops)> queue = new Queue<(int node, int cost, int stops)>();
-            queue.Enqueue((src, 0, 0));
-            int minCost = int.MaxValue;
-
-            while (queue.Count != 0)
-            {
-                (int node, int cost, int stops) = queue.Dequeue();
-
-                if (node == dst)
-                {
-                    minCost = Math.Min(cost, minCost);
-                    continue;
-                }
-                //Imp check --- checking currentCost is not greater than what we already achieved 
-                //when we reached //destination + if we already pass K stop , there is no point movin forward
-                if (cost > minCost || stops > K)
-                    continue;
-                if (graph.ContainsKey(node))
-                {
-                    foreach (var neighbor in graph[node])
-                    {
-                        queue.Enqueue((neighbor.to, cost + neighbor.cost, stops + 1));
-                    }
-                }
-            }
-
-            if (minCost != int.MaxValue)
-            {
-                return minCost;
-            }
-            else
-            {
-                return -1;
-            }
         }
     }
 }

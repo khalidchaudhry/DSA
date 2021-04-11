@@ -48,6 +48,9 @@ namespace Greedy.Medium
                 idleSlots -= Math.Min(highestFreq, sortedFrequencyCount.ElementAt(i).Value);
             }
 
+            //! if we don't need to wait then idle slots will be negative which results in wrong answer 
+            //! Tasks=["A","A","A","B","B","B"]
+            //! n=0
             return idleSlots > 0 ? idleSlots + tasks.Length : tasks.Length;
         }
 

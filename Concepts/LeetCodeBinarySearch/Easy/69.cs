@@ -20,14 +20,19 @@ namespace LeetCodeBinarySearch.Easy
 
         /// <summary>
         //! Based on the template  from Roger 
+        //! Binary search will be performed from 0 till number/2 since Sqrt(number) can't be greater than number/2
+        //! At every index , we will check if number*number<=target or number<=target/number
+        // n=8;   8/2
+        //!1,2,3,4,5,6,7,8
+       //! ^     ^--Binary search space     
         /// </summary>
         public int MySqrt0(int x)
         {
             //! Corner case
-            if (x == 1)
-                return 1;
+            if (x == 0)
+                return 0;
 
-            long lo = 0; //! valid candidate 
+            long lo = 1; //! valid candidate 
             long hi = x / 2 + 1; //! invalid candidate 
             while (lo + 1 < hi)
             {
@@ -76,8 +81,7 @@ namespace LeetCodeBinarySearch.Easy
         private bool OK(long number, int x)
         {
             //!or we can write it like that as well and can avoid  using int.... number<=x/number;
-            return number * number <= x;
-            //return number = x / number;
+            return number <= x / number;
         }
 
         /// <summary>

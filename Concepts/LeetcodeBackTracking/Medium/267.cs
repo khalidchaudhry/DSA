@@ -38,12 +38,13 @@ namespace LeetcodeBackTracking.Medium
         }
         private void GeneratePalindromes(Dictionary<char, int> map, char[] path, int start, int end, char oddChar, List<string> result)
         {
+            //! incase the length is even , start will pass end and we can add char array to result
             if (start > end)
             {
                 result.Add(new string(path));
                 return;
             }
-
+            //! in case length is odd, we need to add  characters in middle position 
             if (start == end)
             {
                 path[start] = oddChar;

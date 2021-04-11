@@ -11,75 +11,42 @@ namespace LeetCodeHeap.Medium
 
         //! implemented on idea based on Kuai's class
         //! We are using MinHeap here 
-        
+        //! Same as problem 378
         public IList<IList<int>> KSmallestPairs(int[] nums1, int[] nums2, int k)
         {
+            int n1 = nums1.Length;
+            int n2 = nums2.Length;
 
-            SortedSet<(int, int, int)> ss = new SortedSet<(int, int, int)>();
-            //! we need visited set because when we are pushing element into the set , we need to ensure that we don't push duplicates 
-            //! 1 1 2
-            //! 1 2 3
+            List<IList<int>> kSmallestPairs = new List<IList<int>>();
 
-            List<IList<int>> result = new List<IList<int>>();
-            if (nums1.Length == 0 || nums2.Length == 0) return result;
-
-            //! Not needed for sorted set but needed for priority queue
-            HashSet<(int, int)> visited = new HashSet<(int, int)>();
-            ss.Add((nums1[0] + nums1[0], 0, 0));
-
-            //visited.Add((0, 0));
-
-            while (k > 0 && ss.Count != 0)
-            {
-                (int sum, int nums1Index, int nums2Index) = ss.Min;
-
-                ss.Remove(ss.Min);
-
-                result.Add(new List<int> { nums1[nums1Index], nums2[nums2Index] });
-
-                if (nums1Index + 1 < nums1.Length)// && !visited.Contains((nums1Index + 1, nums2Index)))
-                {
-                    visited.Add((nums1Index + 1, nums2Index));
-                    ss.Add((nums1[nums1Index + 1] + nums2[nums2Index], nums1Index + 1, nums2Index));
-                }
-                if (nums2Index + 1 < nums2.Length)// && !visited.Contains((nums1Index, nums2Index + 1)))
-                {
-                    visited.Add((nums1Index, nums2Index + 1));
-                    ss.Add((nums1[nums1Index] + nums2[nums2Index + 1], nums1Index, nums2Index + 1));
-                }
-
-                --k;
-            }
-            return result;
-        }
-
-        public IList<IList<int>> KSmallestPairs2(int[] nums1, int[] nums2, int k)
-        {
-            PQ<(int sum, int nums1Idx, int nums2Idx)> pq = new PQ<(int sum, int nums1Idx, int nums2Idx)>();
-            List<IList<int>> result = new List<IList<int>>();
-            if (nums1.Length == 0 || nums2.Length == 0)
-                return result;
-
+            PQ<(int sum, int x, int y)> pq = new PQ<(int sum, int x, int y)>();
+            //! visited to ensure that we don't push same set twice
+            HashSet<(int i, int j)> visited = new HashSet<(int i, int j)>();
             pq.Add((nums1[0] + nums2[0], 0, 0));
-            while (k > 0 && pq.Size != 0)
+            visited.Add((0, 0));
+            while (pq.Size != 0 && k != 0)
             {
-                (int sum, int idx1, int idx2) = pq.Poll();
-                result.Add(new List<int> { nums1[idx1], nums2[idx2] });
-
-                if (idx1 + 1 < nums1.Length)
-                {
-                    pq.AddForDups((nums1[idx1 + 1] + nums2[idx2], idx1 + 1, idx2));
-                }
-                if (idx2 + 1 < nums2.Length)
-                {
-                    pq.AddForDups((nums1[idx1] + nums2[idx2 + 1], idx1, idx2 + 1));
-                }
-
+                (int sum, int i, int j) = pq.Poll();
+                List<int> lst = new List<int>() { nums1[i], nums2[j] };
+                kSmallestPairs.Add(lst);
                 --k;
+                if (i + 1 < n1 && !visited.Contains((i + 1, j)))
+                {
+                    pq.Add((nums1[i + 1] + nums2[j], i + 1, j));
+                    visited.Add((i + 1, j));
+                }
+                if (j + 1 < n2 && !visited.Contains((i, j + 1)))
+                {
+                    pq.Add((nums1[i] + nums2[j + 1], i, j + 1));
+                    visited.Add((i, j + 1));
+                }
             }
 
-            return result;
+            return kSmallestPairs;
+
         }
+
+       
 
 
     }

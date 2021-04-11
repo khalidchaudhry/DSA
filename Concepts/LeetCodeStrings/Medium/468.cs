@@ -9,75 +9,64 @@ namespace LeetCodeStrings.Medium
         public static void _468Main()
         {
             _468 IP = new _468();
-            string ipAddress = "20EE:FGb8:85a3:0:0:8A2E:0370:7334";
-            var ans=IP.ValidIPAddress(ipAddress);
+            string ipAddress = "2001:0db8:85a3:0:0:8A2E:0370:7334";
+            var ans = IP.ValidIPAddress(ipAddress);
             Console.ReadLine();
         }
 
         public string ValidIPAddress(string IP)
         {
-
             string[] ipAddress = IP.Split('.');
             if (ipAddress.Length == 4)
             {
-                if (IsValidIPv4Address(ipAddress))
-                    return "IPv4";
+                return ValidIPv4Address(ipAddress);
             }
-            ipAddress= IP.Split(':');
+            ipAddress = IP.Split(':');
             if (ipAddress.Length == 8)
             {
-                if (IsValidIPv6Address(ipAddress))
-                    return "IPv6";
+                return ValidIPv6Address(ipAddress);
             }
 
             return "Neither";
         }
 
-        private bool IsValidIPv6Address(string[] ipAddress)
+        private string ValidIPv6Address(string[] ipAddress)
         {
-            for (int i = 0; i < ipAddress.Length; ++i)
+            string hexdigits = "0123456789abcdefABCDEF";
+            foreach (string token in ipAddress)
             {
-                if (ipAddress[i].Length==0 || ipAddress[i].Length > 4)
-                    return false;
-                for (int j = 0; j < ipAddress[i].Length; ++j)
+                // Validate hexadecimal in range (0, 2**16):
+                // 1. at least one and not more than 4 hexdigits in one chunk
+                if (token.Length == 0 || token.Length > 4)
+                    return "Neither";
+                // 2. only hexdigits are allowed: 0-9, a-f, A-F
+                foreach (char c in token)
                 {
-                    if (
-                        (ipAddress[i][j] >= 48 && ipAddress[i][j] <= 57) ||
-                        (ipAddress[i][j] >= 65 && ipAddress[i][j] <= 70) ||
-                        (ipAddress[i][j] >= 97 && ipAddress[i][j] <= 102)
-                        )
-                    {
-                        continue;
-                    }
-
-                    return false;
+                    if (hexdigits.IndexOf(c) == -1)
+                        return "Neither";
                 }
             }
-
-            return true;
+            return "IPv6";
         }
 
-        private bool IsValidIPv4Address(string[] ipAddress)
+        private string ValidIPv4Address(string[] ipAddress)
         {
-
-            for (int i = 0; i < ipAddress.Length; ++i)
+            foreach (string token in ipAddress)
             {
-                if (ipAddress[i].Length==0 || (ipAddress[i][0] == '0' && ipAddress[i].Length>1))
-                    return false;
-                if (Int64.TryParse(ipAddress[i], out long result))
+                // 1. length of chunk is between 1 and 3
+                if (token.Length == 0 || token.Length > 3) return "Neither";
+                // 2. no extra leading zeros
+                if (token[0] == '0' && token.Length != 1) return "Neither";
+                // 3. only digits are allowed
+                foreach (char ch in token)
                 {
-                    if (result > 255)
-                    {
-                        return false;
-                    }
+                    if (!char.IsDigit(ch))
+                        return "Neither";
                 }
-                else
-                {
-                    return false;
-                }
+                // 4. less than 255
+                if (Int32.Parse(token) > 255) return "Neither";
             }
-
-            return true;
+            return "IPV4";
         }
     }
 }

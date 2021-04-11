@@ -51,7 +51,6 @@
     <Compile Include="Easy\13.RomantoInteger.cs" />
     <Compile Include="Easy\136.SingleNumber.cs" />
     <Compile Include="Easy\14.LongestCommonPrefix.cs" />
-    <Compile Include="Easy\141.LinkedListCycle.cs" />
     <Compile Include="Easy\155.MinStack.cs" />
     <Compile Include="Easy\160.IntersectionofTwoLinkedLists.cs" />
     <Compile Include="Easy\169.MajorityElement.cs" />

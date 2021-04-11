@@ -11,62 +11,78 @@ namespace LeetCodeArrays.Medium
         {
 
             _59 Generate = new _59();
-
             var result=Generate.GenerateMatrix(1);
 
         }
+
+
+        /// <summary>
+        //! Same idea as used in 54 
+        /// </summary>
         public int[][] GenerateMatrix(int n)
         {
 
-            int[][] matrix = new int[n][];
-
-            for (int i = 0; i < n; i++)
+            int[][] result = new int[n][];
+            for (int i = 0; i < n; ++i)
             {
-                matrix[i] = new int[n];
+                result[i] = new int[n];
             }
 
-            int firstRow = 0;
-            int lastRow = n - 1;
-            int firstColumn = 0;
-            int lastColumn = n - 1;
+            int rows = result.Length;
+            int columns = result[0].Length;
+            int top = 0;
+            int bottom = rows - 1;
+            int left = 0;
+            int right = columns - 1;
+            int direction = 0;
+
             int number = 1;
-
-            while (firstRow <= lastRow && firstColumn <= lastColumn)
+            while (top <= bottom && left <= right)
             {
-                //! copying the first row 
-                for (int row = firstColumn; row <= lastColumn; ++row)
+                if (direction == 0)
                 {
-                    matrix[firstRow][row] = number++;
-                }
-
-                //! Copying the last column
-                for (int column = firstRow + 1; column <= lastRow; ++column)
-                {
-                    matrix[column][lastColumn] = number++;
-                }
-
-                if (firstRow < lastRow && firstColumn < lastColumn)
-                {
-                    //! Copy the last row 
-                    for (int row = lastColumn - 1; row > firstColumn; --row)
+                    for (int k = left; k <= right; ++k)
                     {
-                        matrix[lastRow][row] = number++;
+                        result[top][k] = number;
+                        ++number;
                     }
-                    //! Copy the first column 
-                    for (int column = lastRow; column > firstRow; --column)
+                    ++top;
+                }
+                if (direction == 1)
+                {
+                    for (int k = top; k <= bottom; ++k)
                     {
-                        matrix[column][firstColumn] = number++;
+                        result[k][right] = number;
+                        ++number;
                     }
+                    --right;
+                }
+                if (direction == 2)
+                {
+                    for (int k = right; k >= left; --k)
+                    {
+                        result[bottom][k] = number;
+                        ++number;
+                    }
+                    --bottom;
                 }
 
-                ++firstRow;
-                --lastRow;
-                ++firstColumn;
-                --lastColumn;
+                if (direction == 3)
+                {
+                    for (int k = bottom; k >= top; --k)
+                    {
+                        result[k][left] = number;
+                        ++number;
+                    }
+                    ++left;
+                }
 
+                direction = (direction + 1) % 4;
             }
 
-            return matrix;
+            return result;
         }
+
+
     }
 }

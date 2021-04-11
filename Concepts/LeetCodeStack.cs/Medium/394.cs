@@ -32,17 +32,17 @@ namespace LeetCodeStack.cs.Medium
             {
                 if (Char.IsDigit(s[index]))
                 {
-                    int number = 0;
+                    int k = 0;
                     while (s[index] != '[')
                     {
                         //! Convert.ToInt32() will give wrong result.
                         //! Either use line below or (int)char.GetNumericValue() to get corresponding digit. 
                         int digit = s[index] - '0';
-                        number = number * 10 + digit;
+                        k = k * 10 + digit;
                         ++index;
                     }
 
-                    intStk.Push(number);
+                    intStk.Push(k);
                 }
                 else if (s[index] == ']')
                 {
@@ -68,8 +68,8 @@ namespace LeetCodeStack.cs.Medium
 
             stk.Pop();
 
-            int times = intStk.Pop();
-            for (int i = 0; i < times; ++i)
+            int k = intStk.Pop();
+            for (int i = 0; i < k; ++i)
             {
                 //! We need to push in reverse order to maintain the order of the enclosed string. 
                 for (int j = sb.Length - 1; j >= 0; --j)

@@ -26,9 +26,7 @@ namespace LeetCodeBinaryTrees.Medium
         //! 1. Add left boundary
         //! 2. Add leaves 
         //! 3. Add right boundary
-        /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
+        /// </summary>  
         public IList<int> BoundaryOfBinaryTree0(TreeNode root)
         {
             List<int> result = new List<int>();
@@ -55,8 +53,10 @@ namespace LeetCodeBinaryTrees.Medium
             if (root == null || (root.left == null && root.right == null))
                 return;
             result.Add(root.val);
-            if (root.left != null) LeftBoundary(root.left, result);
-            else LeftBoundary(root.right, result);
+            if (root.left != null)
+                LeftBoundary(root.left, result);
+            else
+                LeftBoundary(root.right, result);
         }
         private void AddLeaves(TreeNode root, List<int> result)
         {

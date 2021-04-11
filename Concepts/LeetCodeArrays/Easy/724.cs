@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LeetCodeArrays.Easy
@@ -22,28 +23,17 @@ namespace LeetCodeArrays.Easy
         public int PivotIndex0(int[] nums)
         {
             int n = nums.Length;
-
-            int totalSum = 0;
-            for (int i = 0; i < n; i++)
+            int sumRight = nums.Sum();
+            int sumLeft = 0;
+            for (int i = 0; i < n; ++i)
             {
-                totalSum += nums[i];
-
-            }
-            int leftSideSum = 0;
-            int rightSideSum = totalSum;
-
-            for (int i = 0; i < n; i++)
-            {
-                //leftSideSum += i == 0 ? 0 : nums[i - 1];
-                rightSideSum -= nums[i];
-                if (leftSideSum == rightSideSum)
+                sumRight = sumRight - nums[i];
+                if (sumRight == sumLeft)
                 {
                     return i;
                 }
 
-                //! Setting leftSideSum for the next iteration. 
-                //! It will avoid the line commented above leftSideSum += i == 0 ? 0 : nums[i - 1];
-                leftSideSum += nums[i];
+                sumLeft += nums[i];
             }
 
             return -1;
@@ -56,23 +46,23 @@ namespace LeetCodeArrays.Easy
         public int PivotIndex1(int[] nums)
         {
             int n = nums.Length;
+            int[] sumRight = new int[n];
 
-            int[] prefix = new int[n];
-            int totalSum = 0;
-            for (int i = 0; i < n; i++)
+            int sum = 0;
+            for (int i = n - 1; i >= 0; --i)
             {
-                totalSum += nums[i];
-                prefix[i] = totalSum;
+                sumRight[i] = sum;
+                sum += nums[i];
             }
 
-            for (int i = 0; i < n; i++)
+            sum = 0;
+            for (int i = 0; i < n; ++i)
             {
-                int leftSideSum = i == 0 ? 0 : prefix[i - 1];
-                int rightSideSum = totalSum - prefix[i];
-                if (leftSideSum == rightSideSum)
+                if (sum == sumRight[i])
                 {
                     return i;
                 }
+                sum += nums[i];
             }
 
             return -1;

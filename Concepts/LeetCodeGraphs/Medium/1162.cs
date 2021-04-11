@@ -11,14 +11,11 @@ namespace LeetCodeGraphs.Medium
         public int MaxDistance(int[][] grid)
         {
             int rows = grid.Length;
-            int columns = grid[0].Length;
-            bool[][] visited = new bool[rows][];
-            for (int i = 0; i < rows; ++i)
-            {
-                visited[i] = new bool[columns];
-            }
+            int columns = rows;
 
-            Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
+            Queue<(int r, int c)> queue = new Queue<(int r, int c)>();
+            HashSet<(int r, int c)> visited = new HashSet<(int r, int c)>();
+
             for (int i = 0; i < rows; ++i)
             {
                 for (int j = 0; j < columns; ++j)
@@ -26,39 +23,30 @@ namespace LeetCodeGraphs.Medium
                     if (grid[i][j] == 1)
                     {
                         queue.Enqueue((i, j));
-                        visited[i][j] = true;
+                        visited.Add((i, j));
                     }
                 }
             }
-
             //! when all the cells are zero or 1 then we cant have distance at all.
-            if (queue.Count() == 0 || queue.Count == rows * columns) return -1;
+            if (queue.Count == 0 || queue.Count == rows * columns)
+                return -1;
 
-            List<(int x, int y)> directions = new List<(int x, int y)>()
-            {
-                (-1,0),
-                (1,0),
-                (0,-1),
-                (0,1)
-            };
             int level = 0;
             while (queue.Count != 0)
             {
-                int size = queue.Count;
-                for (int i = 0; i < size; ++i)
+                int count = queue.Count;
+                while (count != 0)
                 {
-                    (int x, int y) = queue.Dequeue();
-
-                    foreach ((int dx, int dy) in directions)
+                    (int r, int c) = queue.Dequeue();
+                    foreach ((int nr, int nc) in GetNeighbors(r, c))
                     {
-                        int nx = x + dx;
-                        int ny = y + dy;
-                        if (nx >= 0 && nx < rows && ny >= 0 && ny < columns && grid[nx][ny] == 0 && !visited[nx][ny])
-                        {
-                            visited[nx][ny] = true;
-                            queue.Enqueue((nx, ny));
-                        }
+                        if (IsOutOfBound(grid, nr, nc) || visited.Contains((nr, nc)))
+                            continue;
+
+                        queue.Enqueue((nr, nc));
+                        visited.Add((nr, nc));
                     }
+                    --count;
                 }
                 //!As Manhattan distance is defined, we can get the distance of two node 0 and node 1 if we do BFS from
                 //!node 1 and count level number as we go to node 0.Manhattan distance is nothing but the level
@@ -67,6 +55,20 @@ namespace LeetCodeGraphs.Medium
             }
 
             return level - 1;
+        }
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
+        {
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int nr, int nc)>() { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
+            {
+                neighbors.Add((nr, nc));
+            }
+            return neighbors;
+        }
+
+        private bool IsOutOfBound(int[][] grid, int r, int c)
+        {
+            return r < 0 || r >= grid.Length || c < 0 || c >= grid[0].Length;
         }
     }
 }

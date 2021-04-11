@@ -19,89 +19,86 @@ namespace LeetCodeHeap.Medium
 
         public int[] TopKFrequent(int[] nums, int k)
         {
-            int[] result = new int[k];
-
-            Dictionary<int, int> map = new Dictionary<int, int>();
-
-            for (int i = 0; i < nums.Length; i++)
+            Dictionary<int, int> freqMap = new Dictionary<int, int>();
+            foreach (int num in nums)
             {
-                if (map.ContainsKey(nums[i]))
+                if (!freqMap.ContainsKey(num))
                 {
-                    ++map[nums[i]];
+                    freqMap.Add(num, 0);
                 }
-                else
-                {
-                    map.Add(nums[i], 1);
-                }
+                ++freqMap[num];
             }
 
             //! size is nums.Length + 1 since we want to store the count at that index 
             //! e.g. given array [1,1] then we will store its value at index 2 
-            List<int>[] bucket = new List<int>[nums.Length + 1];
 
-            for (int i = 0; i < bucket.Length; i++)
+            int n = nums.Length + 1;
+            List<int>[] buckets = new List<int>[n];
+            for (int i = 0; i < n; ++i)
             {
-                bucket[i] = new List<int>();
+                buckets[i] = new List<int>();
             }
 
-            foreach (KeyValuePair<int, int> keyValue in map)
+            foreach (var keyValue in freqMap)
             {
-                bucket[keyValue.Value].Add(keyValue.Key);
+                buckets[keyValue.Value].Add(keyValue.Key);
             }
 
-            int topK = 0;
-
-            for (int i = bucket.Length - 1; i >= 0 && topK < k; i--)
+            int[] topK = new int[k];
+            for (int i = n - 1; i >= 0; --i)
             {
-                if (bucket[i].Count > 0)
+                foreach (int item in buckets[i])
                 {
-                    foreach (int value in bucket[i])
+                    if (k != 0)
                     {
-                        result[topK++] = value;
-                        //! safeguarding against corner case
-                        if (topK >= k)
-                        {
-                            break;
-                        }
+                        topK[--k] = item;
                     }
                 }
-
             }
 
-            return result;
+            return topK;
         }
 
 
         public int[] TopKFrequent1(int[] nums, int k)
         {
-            Dictionary<int, int> map = new Dictionary<int, int>();
-            for (int i = 0; i < nums.Length; ++i)
+            Dictionary<int, int> freqMap = new Dictionary<int, int>();
+            foreach (int num in nums)
             {
-                if (!map.ContainsKey(nums[i]))
+                if (!freqMap.ContainsKey(num))
                 {
-                    map.Add(nums[i], 0);
+                    freqMap.Add(num, 0);
                 }
-                ++map[nums[i]];
+                ++freqMap[num];
             }
+            var comparer = Comparer<int>.Create((x, y) => {
 
-            PQ<(int freq,int val)> pq = new PQ<(int freq,int val)>();
+                if (freqMap[x] == freqMap[y])
+                {
+                    return x.CompareTo(y);
+                }
 
-            foreach (var keyValue in map)
+                return freqMap[x].CompareTo(freqMap[y]);
+            });
+
+            PQ<int> pq = new PQ<int>(comparer);
+
+            foreach (var keyValue in freqMap)
             {
-                pq.Add((keyValue.Value,keyValue.Key));
+                pq.Add(keyValue.Key);
                 if (pq.Size > k)
                 {
                     pq.Poll();
                 }
             }
 
-            int[] result = new int[k];
-            for (int i = 0; i < k; ++i)
+            int[] topK = new int[k];
+            int index = 0;
+            while (pq.Size != 0)
             {
-                result[k - i - 1] = pq.Poll().val;
+                topK[index++] = pq.Poll();
             }
-
-            return result;
+            return topK;
         }        
     }
 }

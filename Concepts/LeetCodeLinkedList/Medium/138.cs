@@ -28,27 +28,24 @@ namespace LeetCodeLinkedList.Medium
                 ptr = ptr.next;
             }
 
-            ptr = head;
-            while (ptr != null)
+            foreach (var keyValue in map)
             {
-                Node clonedNode = map[ptr];
-                if (ptr.next == null)
-                    clonedNode.next = null;
-                else
-                {
-                    clonedNode.next = map[ptr.next];
-                }
-                if (ptr.random == null)
-                    clonedNode.random = null;
-                else
-                {
-                    clonedNode.random = map[ptr.random];
-                }
+                Node node = keyValue.Key;
+                Node cloneNode = keyValue.Value;
 
-                ptr = ptr.next;
+                if (node.next != null)
+                {
+                    cloneNode.next = map[node.next];
+                }
+                if (node.random != null)
+                {
+                    cloneNode.random = map[node.random];
+                }
             }
 
             return map[head];
+
+
         }
     }
 

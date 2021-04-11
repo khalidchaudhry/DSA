@@ -8,6 +8,10 @@ namespace LeetCodeGraphs.Easy
 {
     public class _690
     {
+
+        /// <summary>
+        //! BFS 
+        /// </summary>
         public int getImportance(List<Employee> employees, int id)
         {
             Dictionary<int, Employee> map = new Dictionary<int, Employee>();
@@ -29,6 +33,32 @@ namespace LeetCodeGraphs.Easy
                 }
             }
 
+            return importance;
+        }
+
+        /// <summary>
+        //! DFS 
+        /// </summary>
+        public int GetImportance2(IList<Employee> employees, int id)
+        {
+            Dictionary<int, Employee> adjList = new Dictionary<int, Employee>();
+            foreach (Employee employee in employees)
+            {
+                adjList.Add(employee.id, employee);
+            }
+
+            return DFS(adjList, id);
+        }
+        private int DFS(Dictionary<int, Employee> adjList, int id)
+        {
+            if (!adjList.ContainsKey(id))
+                return 0;
+
+            int importance = adjList[id].importance;
+            foreach (int neighbor in adjList[id].subordinates)
+            {
+                importance += DFS(adjList, neighbor);
+            }
             return importance;
         }
     }

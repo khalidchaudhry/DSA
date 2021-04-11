@@ -70,80 +70,74 @@ namespace LeetCodeDivideAndConquer.Medium
         public int[][] KClosest0(int[][] points, int K)
         {
 
-            int[][] result = new int[K][];
-            //! The index where Kth closest point will be
             int requiredIndex = K - 1;
-                       
-            int pti = CalculatePivotIndex(points,requiredIndex);            
-
-            for (int i = 0; i < K; i++)
-            {
-                result[i] = points[i];
-            }
-
-            return result;
+            return Find(points, requiredIndex);
         }
-
-        private int CalculatePivotIndex(int[][] points,int requiredIndex)
+        private int[][] Find(int[][] points, int requiredIndex)
         {
+
             int left = 0;
             int right = points.Length - 1;
-            //!Pivot tail index
-            int pti = 0;
-            while (left < right)
+            Random random = new Random();
+            while (left <= right)
             {
-                pti = PivotIndex(points, left, right);
+                int pivotIndex = random.Next(left, right + 1);
+                int index = Partition(points, left, right, pivotIndex);
 
-                if (pti == requiredIndex)
+                if (index == requiredIndex)
                 {
                     break;
                 }
-                else if (pti > requiredIndex)
+                else if (index > requiredIndex)
                 {
-                    right = pti - 1;
+                    right = index - 1;
                 }
                 else
                 {
-                    left = pti + 1;
+                    left = index + 1;
                 }
             }
-            return requiredIndex;
-        }
-        private int PivotIndex(int[][] points, int left, int right)
-        {
-            // !pivot tail index
-            int pti = left;
-            //!rightElement is a pivot 
-            double rightElementDistance = CalculateDistance(points[right][0], points[right][1]);
 
-            for (int i = left; i < right; i++)
+            int k = requiredIndex + 1;
+            int[][] result = new int[k][];
+            for (int i = 0; i < k; ++i)
             {
-                double currentElementDistance = CalculateDistance(points[i][0], points[i][1]);
-                //!<= for duplicate condition
-                if (currentElementDistance <= rightElementDistance)
+                result[i] = new int[] { points[i][0], points[i][1] };
+            }
+            return result;
+        }
+        private int Partition(int[][] points, int left, int right, int pivotIndex)
+        {
+            int[] pivotElement = points[pivotIndex];
+            int dist2 = pivotElement[0] * pivotElement[0] + pivotElement[1] * pivotElement[1];
+            Swap(points, right, pivotIndex);
+
+            int pti = left;
+            for (int i = left; i < right; ++i)
+            {
+                int[] curr = points[i];
+
+                int dist1 = curr[0] * curr[0] + curr[1] * curr[1];
+
+                if (dist1 < dist2)
                 {
-                    Swap(points, i, pti);
+                    Swap(points, pti, i);
                     ++pti;
                 }
             }
 
-            //!Swap to ensure that pivot is at its correct position in an array?
             Swap(points, pti, right);
-            //! all the elements before pti index are smaller than or equal to the element at pti index 
             return pti;
         }
 
-        private void Swap(int[][] arr, int i, int j)
+        private void Swap(int[][] points, int i, int j)
         {
-            int[] temp = arr[i];
-
-            arr[i] = arr[j];
-
-            arr[j] = temp;
+            int[] temp = points[i];
+            points[i] = points[j];
+            points[j] = temp;
         }
-        private int CalculateDistance(int x, int y)
-        {
-            return ((x * x) + (y * y));
-        }
+
+
+
     }
 }

@@ -32,7 +32,7 @@ namespace LeetCodeMath.Medium
             return PrepareResult(result);
         }
 
-        private void Product(int[] result, string num1, string num2)
+        private void Product(int[] multiply, string num1, string num2)
         {
             //!Think of multiplying b*a rather than multiplying by a*b
             for (int i = num1.Length - 1; i >= 0; --i)
@@ -41,15 +41,17 @@ namespace LeetCodeMath.Medium
                 {
                     int a = num1[i] - '0';
                     int b = num2[j] - '0';
-                    result[i + j + 1] += a * b;
+                    multiply[i + j + 1] += a * b;
                 }
             }
-            int carry = 0;
-            for (int i = result.Length - 1; i >= 0; --i)
+
+            int m = multiply.Length;
+            for (int j = m - 1; j > 0; --j)
             {
-                int temp = result[i] + carry;
-                result[i] = temp % 10;
-                carry = temp / 10;
+                int remainder = multiply[j] % 10;
+                int quotient = multiply[j] / 10;
+                multiply[j - 1] += quotient;
+                multiply[j] = remainder;
             }
         }
         private string PrepareResult(int[] result)

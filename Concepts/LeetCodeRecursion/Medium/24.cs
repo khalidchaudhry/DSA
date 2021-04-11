@@ -25,6 +25,22 @@ namespace LeetCodeRecursion.Medium
             var ans=Main.SwapPairs(Head);
 
         }
+
+        public ListNode SwapPairs1(ListNode head)
+        {
+            if (head == null || head.next == null)
+                return head;
+
+            ListNode first = head;
+            ListNode second = head.next;
+
+            first.next = SwapPairs1(second.next);
+            second.next = first;
+
+            return second;
+
+        }
+
         public ListNode SwapPairs(ListNode head)
         {
             return Helper(head, head.next);
