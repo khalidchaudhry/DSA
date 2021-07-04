@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SplitWise.Repos.Interfaces;
 
 namespace SplitWise.Services
 {
     public class BalanceViewer
     {
-
-
+        private readonly IUserBalanceRepo _userBalanceRepo;
+        public BalanceViewer(IUserBalanceRepo userBalanceRepo)
+        {
+            _userBalanceRepo = userBalanceRepo;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SplitWise.Services.Interfaces;
+﻿using SplitWise.Repos.Interfaces;
+using SplitWise.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,12 @@ namespace SplitWise.Services
 {
     public class ExpenseManager: IExpenseManager
     {
+        private readonly IUserBalanceRepo _userBalanceRepo;
+        public ExpenseManager(IUserBalanceRepo userBalanceRepo)
+        {
+            _userBalanceRepo = userBalanceRepo;
 
+        }
         public void HandleExpense()
         {
 
