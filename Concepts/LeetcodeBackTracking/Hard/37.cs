@@ -69,22 +69,30 @@ namespace LeetcodeBackTracking.Hard
 
         private bool CanPlace(char[][] board, int r, int c, char digit)
         {
-
+            //! Check the row to ensure that we don't have same digit on it 
             for (int column = 0; column < board[0].Length; ++column)
             {
                 if (board[r][column] == digit)
                     return false;
             }
-
+            //! Check the column to ensure that we don't have digit on it 
             for (int row = 0; row < board.Length; ++row)
             {
                 if (board[row][c] == digit)
                     return false;
             }
 
+            
             int boxsize = (int)Math.Sqrt(board.Length);
+            //! r/boxSize   gives us the box rank horizontally 
+            //! r/boxSize   gives us the box rank vertically 
+            
+            //! Box start row            
             int startRow = boxsize * (r / boxsize);
+            //! Box start col
             int startColumn = boxsize * (c / boxsize);
+
+            //! Checking the baksa
             for (int row = 0; row < boxsize; ++row)
             {
                 for (int column = 0; column < boxsize; ++column)

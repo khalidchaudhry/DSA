@@ -34,7 +34,7 @@ namespace LeetCodeBinaryTrees.Medium
 
             _236 LCA = new _236();
 
-            var node = LCA.LowestCommonAncestor0(treeNode, p, q);
+            var node = LCA.LowestCommonAncestor(treeNode, p, q);
         }
 
         /// <summary>
@@ -76,30 +76,12 @@ namespace LeetCodeBinaryTrees.Medium
             //!bottom to up...so we return what we hold...'root'
             return root;
 
-        }
-
-        /// <summary>
-        //! Post order traversal       
-        /// </summary>        
-        public TreeNode LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q)
-        {
-
-            ResultWrapper wrapper = new ResultWrapper();
-
-            LowestCommonAncestor0(root, p, q, wrapper);
-
-            return wrapper.LCA;
-
-        }
+        }      
 
         /// <summary>
         // ! Iterative(Pre0rder traversal)
         /// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/
         /// </summary>
-        /// <param name="root"></param>
-        /// <param name="p"></param>
-        /// <param name="q"></param>
-        /// <returns></returns>
         public TreeNode LowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q)
         {
             //Stack for tree traversal
@@ -143,34 +125,7 @@ namespace LeetCodeBinaryTrees.Medium
 
             return q;
         }
-        private int LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q, ResultWrapper wrapper)
-        {
-            if (root == null)
-                return 0;
-
-            int left = LowestCommonAncestor0(root.left, p, q, wrapper);
-            int right = LowestCommonAncestor0(root.right, p, q, wrapper);
-
-            int count = left + right;
-            if (count == 2 || (count == 1 && root == p || root == q))
-            {
-                wrapper.LCA = root;
-                return 1;
-            }
-
-            else if (root == p || root == q)
-            {
-                ++count;
-            }
-
-            return count;
-
-        }
-
-        public class ResultWrapper
-        {
-            public TreeNode LCA { get; set; }
-        }
+        
 
 
     }

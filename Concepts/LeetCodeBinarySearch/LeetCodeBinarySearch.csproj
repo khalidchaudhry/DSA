@@ -52,13 +52,17 @@
     <Compile Include="Easy\852.cs" />
     <Compile Include="Medium\1011.cs" />
     <Compile Include="Medium\1060.cs" />
+    <Compile Include="Medium\1102.cs" />
+    <Compile Include="Medium\1235.cs" />
     <Compile Include="Medium\1283.cs" />
     <Compile Include="Medium\1482.cs" />
     <Compile Include="Medium\153.cs" />
     <Compile Include="Medium\162.cs" />
+    <Compile Include="Medium\1631.cs" />
     <Compile Include="Medium\29.cs" />
     <Compile Include="Medium\33.cs" />
     <Compile Include="Medium\34.cs" />
+    <Compile Include="Medium\436.cs" />
     <Compile Include="Medium\540.cs" />
     <Compile Include="Medium\658.cs" />
     <Compile Include="Medium\74.cs" />

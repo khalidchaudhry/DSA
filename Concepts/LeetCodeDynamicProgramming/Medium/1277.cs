@@ -27,12 +27,12 @@ namespace LeetCodeDynamicProgramming.Medium
         }
 
         /*
-         Intuition for this problem is that we will calculate the square max length at every given matrix index(where matrix value is not equal to 0). 
+         Intuition for this problem is that we will calculate the square max length at every given matrix index(where matrix value is 1). 
          Max square length at every matrix index will give us total number of squares at index i and j. Summing up all the values will give the desired result.
          This problem is very similar to https://leetcode.com/problems/maximal-square/ 
          The thing we need to pay attention is how many squares a nxn squares will contain?. 
          For example a 3x3 square contains 3 squares
-         1 =1X1 square
+         1 =1 X1 square
          1 =2 X2 square
          1 =3 x3 square.
          By drawing from top-left corner, it will give the above result.
@@ -76,12 +76,33 @@ namespace LeetCodeDynamicProgramming.Medium
             }
 
             return memo[(i, j)] = 1 + Math.Min(Math.Min(CountSquares(matrix, i, j + 1, memo),
-                                       CountSquares(matrix, i + 1, j, memo)),
-                                       CountSquares(matrix, i + 1, j + 1, memo));
+                                                        CountSquares(matrix, i + 1, j, memo)
+                                                       ),
+                                              CountSquares(matrix, i + 1, j + 1, memo));
 
         }
 
-
+        /// <summary>
+        //! DP Bottom up 
+        //! Time complexity=O(n^2) where n is the number of rows/columns in 2D grid
+        /// </summary>       
+        public int CountSquares0(int[][] matrix)
+        {
+            int[,] dp = new int[matrix.Length + 1, matrix[0].Length + 1];
+            int totalSquares = 0;
+            for (int i = 1; i < dp.GetLength(0); ++i)
+            {
+                for (int j = 1; j < dp.GetLength(1); ++j)
+                {
+                    if (matrix[i - 1][j - 1] == 1)
+                    {
+                        dp[i, j] = 1 + (Math.Min(Math.Min(dp[i - 1, j], dp[i, j - 1]), dp[i - 1, j - 1]));
+                        totalSquares += dp[i, j];
+                    }
+                }
+            }
+            return totalSquares;
+        }
 
         /// <summary>
         //! Brute force
@@ -113,29 +134,10 @@ namespace LeetCodeDynamicProgramming.Medium
                 return 0;
             return 1 + Math.Min(CountSquares2(matrix, i, j + 1), //! right
                        Math.Min(CountSquares2(matrix, i + 1, j), //!down
-                                CountSquares2(matrix, i + 1, j + 1))); //! diagonal
+                       CountSquares2(matrix, i + 1, j + 1))//! diagonal
+                       ); 
         }
 
-        /// <summary>
-        //! DP Bottom up 
-        //! Time complexity=O(n^2) where n is the number of rows/columns in 2D grid
-        /// </summary>       
-        public int CountSquares0(int[][] matrix)
-        {
-            int[,] dp = new int[matrix.Length + 1, matrix[0].Length + 1];
-            int totalSquares = 0;
-            for (int i = 1; i < dp.GetLength(0); ++i)
-            {
-                for (int j = 1; j < dp.GetLength(1); ++j)
-                {
-                    if (matrix[i - 1][j - 1] == 1)
-                    {
-                        dp[i, j] = 1 + (Math.Min(Math.Min(dp[i - 1, j], dp[i, j - 1]), dp[i - 1, j - 1]));
-                        totalSquares += dp[i, j];
-                    }
-                }
-            }
-            return totalSquares;
-        }
+        
     }
 }

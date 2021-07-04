@@ -12,22 +12,27 @@ namespace LeetCodeArrays.Medium
         //!Similar apprach followed in question 229
         public int MajorityElement0(int[] nums)
         {
+            int n = nums.Length;
             int c1 = 0;
             int c1Count = 0;
-            for (int i = 0; i < nums.Length; i++)
+
+            for (int i = 0; i < n; ++i)
             {
-                if (c1Count == 0)
+
+                if (c1 == nums[i])
+                {
+                    ++c1Count;
+                }
+                else if (c1Count == 0)
                 {
                     c1 = nums[i];
-                    c1Count = 1;
-                }
-                else if (nums[i] == c1)
                     ++c1Count;
+                }
                 else
+                {
                     --c1Count;
-
+                }
             }
-
             return c1;
         }
 

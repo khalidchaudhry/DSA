@@ -23,7 +23,7 @@ namespace LeetCodeBinarySearch.Medium
             Console.ReadLine();
 
         }
-      
+
 
 
 
@@ -36,7 +36,7 @@ namespace LeetCodeBinarySearch.Medium
             int lo = 0;
             int hi = arr.Length - 1;
             List<int> result = new List<int>();
-            while (hi - lo >= k)
+            while (hi - lo + 1 > k)
             {
                 if (Math.Abs(arr[lo] - x) > Math.Abs(arr[hi] - x))
                 {

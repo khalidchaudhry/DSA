@@ -15,13 +15,17 @@ namespace LeetCodeDynamicProgramming.Medium
         /// </summary>
         public int CountSubstrings(string s)
         {
-
-            bool[,] isPalindrome = new bool[s.Length, s.Length];
+            int n = s.Length;
+            bool[,] isPalindrome = new bool[n, n];
             int count = 0;
-            for (int l = 1; l <= s.Length; ++l)
+            for (int l = 1; l <= n; ++l)
             {
-                for (int start = 0; start <= s.Length - l; ++start)
+
+                //!Start of window of size k ending at i : i - k + 1
+               //! Start of window o size l ending at n-1=n-1-l+1=n-l
+                for (int start = 0; start <= n - l; ++start)
                 {
+                    //!end of window starting at start=start+k-1
                     int end = start + l - 1;
                     if (start == end)
                         isPalindrome[start, end] = true;

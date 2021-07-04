@@ -20,6 +20,9 @@ namespace LeetCodeRecursion.Medium
             Console.ReadLine();
         }
         /// <summary>
+        // # <image url="$(SolutionDir)\Images\50.png"  scale="1.0"/>
+
+        //http://www.platinumgmat.com/gmat_study_guide/exponential_powers
         //https://www.youtube.com/watch?v=GyL7FJn0gso
         //! Take away1: Look for stack overflow exception when input is large and you need to go to very base case which is very small
         //! Think about recurence relationship when n is even vs when not

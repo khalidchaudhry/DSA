@@ -8,6 +8,28 @@ namespace TopInterviewQuestions.Easy
 {
     class _198
     {
+
+        /// <summary>
+        //! Recursion with memoization 
+        /// </summary>
+        public int Rob0(int[] nums)
+        {
+            Dictionary<int, int> memo = new Dictionary<int, int>();
+            return Rob0(nums, 0, memo);
+        }
+
+        private int Rob0(int[] nums, int idx, Dictionary<int, int> memo)
+        {
+            if (idx >= nums.Length)
+                return 0;
+            if (memo.ContainsKey(idx))
+                return memo[idx];
+
+            int rob = nums[idx] + Rob0(nums, idx + 2, memo);
+            int notRob = Rob0(nums, idx + 1, memo);
+            return memo[idx] = Math.Max(rob, notRob);
+        }
+
         /// <summary>
         /// https://www.programcreek.com/2014/03/leetcode-house-robber-java/
         /// </summary>

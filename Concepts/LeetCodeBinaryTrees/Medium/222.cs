@@ -36,7 +36,7 @@ namespace LeetCodeBinaryTrees.Medium
             {
                 return (int)Math.Pow(2, leftLevel) - 1;
             }
-
+            //! Adding 1 because we need to include the current node 
             return 1 + CountNodes0(root.left) + CountNodes0(root.right);
         }
 

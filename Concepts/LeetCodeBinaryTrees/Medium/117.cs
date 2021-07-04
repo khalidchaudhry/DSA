@@ -23,8 +23,8 @@ namespace LeetCodeBinaryTrees.Medium._117
             while (head != null)
             {
                 //!using dummy node to move to the next level
-                Node dummy = new Node(0);
-                Node temp = dummy;
+                Node next = new Node(0);
+                Node temp = next;
                 while (head != null)
                 {
                     if (head.left != null)
@@ -40,7 +40,7 @@ namespace LeetCodeBinaryTrees.Medium._117
 
                     head = head.next;
                 }
-                head = dummy.next;
+                head = next.next;
             }
             return root;
         }

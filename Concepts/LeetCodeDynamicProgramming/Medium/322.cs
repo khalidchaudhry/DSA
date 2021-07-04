@@ -12,48 +12,44 @@ namespace LeetCodeDynamicProgramming.Medium
         public static void _322Main()
         {
             _322 CoinChange = new _322();
-            var result = CoinChange.CoinChange1(new int[] { 27, 40, 244, 168, 383 }, 6989);
+            var result = CoinChange.CoinChange0(new int[] { 27, 40, 244, 168, 383 }, 6989);
 
         }
-
-
         /// <summary>
-        //! Time Complexity=O(amount)[states] * O(n)[recursion depth]=O(n * states)  
+        //! Include/exclude pattern 
+        //! similar approach followed in 45
         /// </summary>
-        public int CoinChange1(int[] coins, int amount)
+        public int CoinChange0(int[] coins, int amount)
         {
-            Dictionary<int, int> memo = new Dictionary<int, int>();
-            return MakingChange1(coins, amount, memo);
+
+            Dictionary<(int idx, int target), int> memo = new Dictionary<(int idx, int target), int>();
+            int minCoins = CoinChange0(coins, 0, amount, memo);
+
+            return minCoins == int.MaxValue ? -1 : minCoins;
 
         }
 
-        private int MakingChange1(int[] coins, int target, Dictionary<int, int> memo)
+        private int CoinChange0(int[] coins, int idx, int target, Dictionary<(int idx, int target), int> memo)
         {
             if (target == 0)
-            {
                 return 0;
-            }
+            if (target < 0 || idx == coins.Length)
+                return int.MaxValue;
 
-            if (memo.ContainsKey(target))
-            {
-                return memo[target];
-            }
+            if (memo.ContainsKey((idx, target)))
+                return memo[(idx, target)];
 
-            int minCoins = -1;
-            for (int i = 0; i < coins.Length; ++i)
-            {
-                if (coins[i] > target)
-                {
-                    continue;
-                }
-                int count = MakingChange1(coins, target - coins[i], memo);
-                if (count != -1)
-                {
-                    minCoins = minCoins == -1 ? 1 + count : Math.Min(minCoins, 1 + count);
-                }
-            }
-            return memo[target] = minCoins;
+            int exclude = CoinChange0(coins, idx + 1, target, memo);
+            int include = CoinChange0(coins, idx, target - coins[idx], memo);
+
+            if (include != int.MaxValue)
+                include += 1;
+
+            return memo[(idx, target)] = Math.Min(include, exclude);
+
         }
+
+
         /// <summary>
         //! Time Complexity=O(n*amount)[states] * O(n)[recursion depth]=O(n ^ 2 * target)  
         /// </summary>

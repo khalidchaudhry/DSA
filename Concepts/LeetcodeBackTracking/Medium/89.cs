@@ -34,9 +34,9 @@ namespace LeetcodeBackTracking.Medium
             }
         }
 
-        private int Flip(int path, int bitpos)
+        private int Flip(int number, int bitpos)
         {
-            return path ^ (1 << bitpos);
+            return number ^ (1 << bitpos);
         }
 
 

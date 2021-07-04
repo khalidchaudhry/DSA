@@ -12,7 +12,7 @@ namespace LeetCodeDynamicProgramming.Medium
         public static void _300Main()
         {
             _300 LongestIncreasingSequence = new _300();
-            int[] nums = new int[] { 10, 9, 2, 5, 3, 7, 101, 18 };
+            int[] nums = new int[] { 0, 10, 0, 10, 2, 3 };
 
             var ans = LongestIncreasingSequence.LengthOfLIS0(nums);
 
@@ -55,6 +55,7 @@ namespace LeetCodeDynamicProgramming.Medium
 
         /// <summary>
         //! Approach discussed in Kai's class
+        //! Same as 368
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>

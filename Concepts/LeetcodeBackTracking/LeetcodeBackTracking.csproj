@@ -50,6 +50,7 @@
     <Compile Include="Hard\44.cs" />
     <Compile Include="Hard\51.cs" />
     <Compile Include="Hard\980.cs" />
+    <Compile Include="Medium\1219.cs" />
     <Compile Include="Medium\131.cs" />
     <Compile Include="Medium\22.cs" />
     <Compile Include="Medium\267.cs" />

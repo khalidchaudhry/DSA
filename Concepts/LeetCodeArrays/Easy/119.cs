@@ -47,6 +47,30 @@ namespace LeetCodeArrays.Easy
 
             return previousRow;
         }
+        /// <summary>
+        //! Recursive solution 
+        /// </summary>
+        public IList<int> GetRow(int rowIndex)
+        {
+
+            return GetRow(new List<int>() { 1 }, 0, rowIndex);
+        }
+
+        private IList<int> GetRow(List<int> currRow, int currIdx, int rowIndex)
+        {
+            if (currIdx == rowIndex)
+                return currRow;
+
+            List<int> nextRow = new List<int>();
+            nextRow.Add(1);
+            for (int i = 0; i < currRow.Count - 1; ++i)
+            {
+                nextRow.Add(currRow[i] + currRow[i + 1]);
+            }
+            nextRow.Add(1);
+
+            return GetRow(nextRow, currIdx + 1, rowIndex);
+        }
 
 
         //https://leetcode.com/problems/pascals-triangle-ii/discuss/38420/Here-is-my-brief-O(k)-solution

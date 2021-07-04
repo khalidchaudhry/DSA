@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,8 +66,12 @@ namespace LeetCodeBinarySearch.Medium
             return MissingNumbersCount(nums, index) < k;
         }
         /// <summary>
-        //! If no missing number then nums[i]=nums[0]+i;
-        //! for k missing numbers=nums[i]=nums[0]+i+k;
+        //! Mising Numbers=TotalNumbersCount-actualNumbersCount
+        //! TotalNumbersCount=R-L+1=num[i]-nums[0]+1
+        //! ActualNumbersCount=i+1
+        //! Missing Numbers=nums[i]-nums[0]+1-(i+1);
+        //! Missing Numbers=nums[i]-nums[0]+1-i-1
+        //! Missing Numbers=nums[i]-nums[0]-i
         /// </summary>
         private int MissingNumbersCount(int[] nums, int index)
         {

@@ -16,10 +16,54 @@ namespace Greedy.Medium
 
             _670 MaximumSwaps = new _670();
 
-            var ans = MaximumSwaps.MaximumSwap0(2736);
+            var ans = MaximumSwaps.MaximumSwap3(98368);
 
             Console.ReadLine();
 
+        }
+
+        public int MaximumSwap3(int num)
+        {
+
+            List<int> digits = new List<int>();
+            while (num != 0)
+            {
+                digits.Add(num % 10);
+                num = num / 10;
+            }
+            digits.Reverse();
+            int n = digits.Count;
+            int[] suffix = new int[n];
+            for (int i = n - 1; i >= 0; --i)
+            {
+                if (i == n - 1 || digits[i] > digits[suffix[i + 1]])
+                    suffix[i] = i;
+                else
+                    suffix[i] = suffix[i + 1];
+            }
+
+            foreach (int digit in suffix)
+            {
+                Console.WriteLine(digit);
+            }
+
+            for (int i = 0; i < n; ++i)
+            {
+                if (digits[suffix[i]] > digits[i])
+                {
+                    int temp = digits[i];
+                    digits[i] = digits[suffix[i]];
+                    digits[suffix[i]] = temp;
+                    break;
+                }
+            }
+            int result = 0;
+            foreach (int digit in digits)
+            {
+
+                result = result * 10 + digit;
+            }
+            return result;
         }
         /// <summary>
         /// https://www.youtube.com/watch?v=pDyh9VOMWgI

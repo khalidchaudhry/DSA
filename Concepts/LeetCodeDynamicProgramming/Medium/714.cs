@@ -9,6 +9,36 @@ namespace LeetCodeDynamicProgramming.Medium
 {
     public class _714
     {
+        /// <summary>
+        //! DP with memoization  
+        /// </summary>
+        public int MaxProfit0(int[] prices, int fee)
+        {
+
+            Dictionary<(int idx, int fee, bool bought), int> memo = new Dictionary<(int idx, int fee, bool bought), int>();
+            return MaxProfit0(prices, 0, fee, false, memo);
+        }
+        private int MaxProfit0(int[] prices, int idx, int fee, bool bought, Dictionary<(int idx, int fee, bool bought), int> memo)
+        {
+            if (idx == prices.Length)
+                return 0;
+            if (memo.ContainsKey((idx, fee, bought)))
+                return memo[(idx, fee, bought)];
+
+            int skip = MaxProfit0(prices, idx + 1, fee, bought, memo);
+
+            if (bought)
+            {
+                int sell = prices[idx] - fee + MaxProfit0(prices, idx + 1, fee, false, memo);
+                return memo[(idx, fee, bought)] = Math.Max(sell, skip);
+            }
+            else
+            {
+                int buy = -prices[idx] + MaxProfit0(prices, idx + 1, fee, true, memo);
+                return memo[(idx, fee, bought)] = Math.Max(buy, skip);
+            }
+        }
+
         public int MaxProfit(int[] prices, int fee)
         {
             // we have a bought the stock on day 0

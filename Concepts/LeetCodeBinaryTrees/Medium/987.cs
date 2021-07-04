@@ -80,25 +80,26 @@ namespace LeetCodeBinaryTrees.Medium
             nodes.Sort(comparer);
             */
 
-            nodes = nodes.OrderBy(x => x.column).ThenBy(x => x.row).ThenBy(x => x.value).ToList();
-            List<int> currColumn = new List<int>();
-            int currColumnIndex = nodes[0].column;
-            foreach ((int column, int row, int value) in nodes)
+            List<int> level = new List<int>();           
+            for (int i = 0; i < nodes.Count; ++i)
             {
-                if (column == currColumnIndex)
+                (int y, int x, int val) = nodes[i];
+                //! if current node is same as previous simply add it to the existing level else create new level
+                if (i == 0 || y == nodes[i - 1].column)
                 {
-                    currColumn.Add(value);
+                    level.Add(val);
                 }
                 else
                 {
-                    result.Add(currColumn);
-                    currColumnIndex = column;
-                    currColumn = new List<int>();
-                    currColumn.Add(value);
+                    result.Add(level);
+                    level = new List<int>();
+                    level.Add(val);
                 }
+                //! This condiciton is for the last level since above if/else will not add it to the result
+                if (i == nodes.Count - 1)
+                    result.Add(level);
             }
-            //! adding the last entry 
-            result.Add(currColumn);
+            
         }
 
         public IList<IList<int>> VerticalTraversal(TreeNode root)

@@ -32,34 +32,24 @@ namespace LeetCodeDynamicProgramming.Medium
         //! 3. Negate maxsub array sum to get min sub array sum
         /// </summary>
 
-        public int MaxSubarraySumCircular(int[] A)
+        public int MaxSubarraySumCircular(int[] nums)
         {
-            int maxSumSoFarCircular = -A[0];
-            int maxSumCircular = -A[0];
-            int maxSumSoFarNonCircular = A[0];
-            int maxSumNonCircular = A[0];
-
-            int totalSum = A[0];
-
-            for (int i = 1; i < A.Length; ++i)
+            int sum = nums.Sum();
+            int maxSum = nums[0];
+            int minSum = nums[0];
+            int maxSumSoFar = nums[0];
+            int minSumSoFar = nums[0];
+            for (int i = 1; i < nums.Length; ++i)
             {
-                totalSum += A[i];
-                int negate = -A[i];
+                int curr = nums[i];
+                maxSumSoFar = Math.Max(curr, maxSumSoFar + curr);
+                maxSum = Math.Max(maxSum, maxSumSoFar);
 
-                maxSumSoFarCircular = Math.Max(negate, negate + maxSumSoFarCircular);
-                maxSumCircular = Math.Max(maxSumCircular, maxSumSoFarCircular);
-
-                maxSumSoFarNonCircular = Math.Max(A[i], A[i] + maxSumSoFarNonCircular);
-                maxSumNonCircular = Math.Max(maxSumSoFarNonCircular, maxSumNonCircular);
+                minSumSoFar = Math.Min(curr, minSumSoFar + curr);
+                minSum = Math.Min(minSum, minSumSoFar);
             }
-            maxSumCircular = totalSum - (-maxSumCircular);
-            //! circularSum == 0 is for boundary case where all the numbers are negative 
-            if (maxSumCircular == 0)
-            {
-                return maxSumNonCircular;
-            }
-            
-            return Math.Max(maxSumNonCircular, maxSumCircular);
+            //! in case array contains all negative numbers 
+            return maxSum > 0 ? Math.Max(maxSum, sum - minSum) : maxSum;
         }
 
     }

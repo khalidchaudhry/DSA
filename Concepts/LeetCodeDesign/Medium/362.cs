@@ -84,15 +84,12 @@ namespace LeetCodeDesign.Medium
             @param timestamp - The current timestamp (in seconds granularity). */
         public int GetHits(int timestamp)
         {
-
-            int time = timestamp - 300;
-            while (queue.Count != 0)
+            //! start of the window ending at i
+            //! i-k+1
+            //! timestamp-windowSize+1=Any elenent before this window will be removed from queue. 
+            while (queue.Count != 0 && queue.Peek() < timestamp - 300 + 1)
             {
-                int diff = timestamp - queue.Peek();
-                if (diff >= 300)
-                    queue.Dequeue();
-                else
-                    break;
+                queue.Dequeue();
             }
             return queue.Count;
         }

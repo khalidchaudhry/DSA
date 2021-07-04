@@ -42,8 +42,8 @@ namespace LeetCodeDivideAndConquer
             //KClosestPoint.KClosest0(points,2);
 
             //_240._240Main();
-            //_493._493Main();
-            _315._315Main();
+            _493._493Main();
+            //_315._315Main();
 
             Console.ReadLine();
         }

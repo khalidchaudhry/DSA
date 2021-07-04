@@ -9,37 +9,39 @@ namespace LeetCodeDynamicProgramming.Hard
     class _45
     {
 
-        public int Jump(int[] nums)
+        /// <summary>
+        //! Sanme pattern followed in problem 322
+        /// </summary>
+        public int Jump0(int[] nums)
         {
 
-            return Jump(nums, 0);
+            Dictionary<int, int> memo = new Dictionary<int, int>();
+            return Jump0(nums, 0, memo);
         }
 
-        private int Jump(int[] nums, int s)
+        private int Jump0(int[] nums, int idx, Dictionary<int, int> memo)
         {
-            if (s >= nums.Length)
-            {
-                return -1;
-            }
-            if (s == nums.Length - 1)
-            {
+            if (idx >= nums.Length)
+                return int.MaxValue;
+            if (idx == nums.Length - 1)
                 return 0;
-            }
 
-            int minJumps = -1;
-            for (int i = nums[s]; i > 0; --i)
+            if (memo.ContainsKey(idx))
+                return memo[idx];
+
+            int minJumps = int.MaxValue;
+            for (int i = nums[idx]; i > 0; --i)
             {
-                int forwardJumps = Jump(nums, s + i);
-                if (forwardJumps != -1)
+                int jumps = Jump0(nums, idx + i, memo);
+                //! if value is max , we can't increment as it will cause stack over flow
+                if (jumps != int.MaxValue)
                 {
-                    //! minJumps will be -1 for the first answer
-                    //Otherwise minimum of minJumps & forwardsJumps+1  
-                    minJumps = minJumps == -1 ? 1 + forwardJumps : Math.Min(minJumps, 1 + forwardJumps);
+                    ++jumps;
                 }
+                minJumps = Math.Min(minJumps, jumps);
             }
 
-            return minJumps;
+            return memo[idx] = minJumps;
         }
-
     }
 }

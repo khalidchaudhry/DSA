@@ -18,27 +18,27 @@ namespace LeetcodeBackTracking.Medium
         }
 
         private void GenerateParenthesis0(int n,
-                       int openingBracketsCount,
-                       int closingBracketsCount,
+                       int openCount,
+                       int closeCount,
                        StringBuilder path,
                        IList<string> result)
         {
 
-            if (openingBracketsCount > n || closingBracketsCount > openingBracketsCount)
+            if (openCount > n || closeCount > openCount)
                 return;
             //!2*n are the total number of positions we have. Once we reach to the positions , we can add them to the result. 
-            if (path.Length == 2 * n)
+            if (openCount+closeCount == 2 * n)  //! or we can specify like path.Length==2*n
             {
                 result.Add(path.ToString());
                 return;
             }
             path.Append('('); //! choose
-            GenerateParenthesis0(n, openingBracketsCount + 1, closingBracketsCount, path, result);//! Explore 
+            GenerateParenthesis0(n, openCount + 1, closeCount, path, result);//! Explore 
             --path.Length; //! unchoose 
 
 
             path.Append(')');  //! choose
-            GenerateParenthesis0(n, openingBracketsCount, closingBracketsCount + 1, path, result);//!Explore
+            GenerateParenthesis0(n, openCount, closeCount + 1, path, result);//!Explore
             --path.Length;//! unchoose
 
         }

@@ -19,6 +19,9 @@ namespace LeetCodeDynamicProgramming.Medium
             Console.ReadLine();
         }
 
+        /// <summary>
+        //! Same as 300 
+        /// </summary>
         public IList<int> LargestDivisibleSubset1(int[] nums)
         {
             if (nums.Length == 0)
@@ -26,15 +29,15 @@ namespace LeetCodeDynamicProgramming.Medium
             Array.Sort(nums);
             List<int> result = new List<int>();
 
-            Dictionary<int, int> map = new Dictionary<int, int>();
+            Dictionary<int, int> numSubsetLen = new Dictionary<int, int>();
 
-            map.Add(nums[0], 1);
+            numSubsetLen.Add(nums[0], 1);
 
             for (int i = 1; i < nums.Length; ++i)
             {
                 int maxValue = 0;
 
-                foreach (KeyValuePair<int, int> keyValue in map)
+                foreach (KeyValuePair<int, int> keyValue in numSubsetLen)
                 {
                     if (nums[i] % keyValue.Key == 0)
                     {
@@ -42,23 +45,23 @@ namespace LeetCodeDynamicProgramming.Medium
                     }
                 }
 
-                map[nums[i]] = maxValue + 1;
+                numSubsetLen[nums[i]] = maxValue + 1;
             }
 
-            int previous = -1;
+            int previous = 0;
 
-            IOrderedEnumerable<KeyValuePair<int, int>> sortedByValue = map.OrderByDescending(x => x.Value);
-            int ldsLen = sortedByValue.ElementAt(0).Value;
+            numSubsetLen = numSubsetLen.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            int maxLen = numSubsetLen.ElementAt(0).Value;
 
-            foreach (KeyValuePair<int, int> keyValuePair in sortedByValue)
+            foreach (var keyValue in numSubsetLen)
             {
 
-                if (keyValuePair.Value == ldsLen &&
-                    previous % keyValuePair.Key == 0 || previous == -1)
+                if (keyValue.Value == maxLen &&
+                    previous % keyValue.Key == 0)
                 {
-                    result.Add(keyValuePair.Key);
-                    --ldsLen;
-                    previous = keyValuePair.Key;
+                    result.Add(keyValue.Key);
+                    --maxLen;
+                    previous = keyValue.Key;
                 }
             }
 
@@ -110,46 +113,5 @@ namespace LeetCodeDynamicProgramming.Medium
 
             return map[largestSubSetKey];
         }
-
-
-        /// <summary>
-        //! does not work
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
-        public IList<int> LargestDivisibleSubset3(int[] nums)
-        {
-            if (nums.Length == 0)
-                return new List<int>();
-
-            List<int> result = new List<int>();
-            Array.Sort(nums);
-
-            result.Add(nums[0]);
-
-            for (int i = 1; i < nums.Length; ++i)
-            {
-                bool isAdd = true;
-                foreach (int item in result)
-                {
-                    if (nums[i] % item != 0 && item % nums[i] != 0)
-                    {
-                        isAdd = false;
-                        break;
-                    }
-                }
-                if (isAdd)
-                {
-                    result.Add(nums[i]);
-                }
-            }
-
-            return result;
-
-        }
-
-
-
-
     }
 }

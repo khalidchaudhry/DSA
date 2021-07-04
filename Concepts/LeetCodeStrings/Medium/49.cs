@@ -48,7 +48,8 @@ namespace LeetCodeStrings.Medium
             map = map.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
             foreach (var keyValue in map)
             {
-                sb.Append('#');
+                //! Not needed
+                //sb.Append('#');
                 sb.Append(keyValue.Key);
                 sb.Append(keyValue.Value);
             }

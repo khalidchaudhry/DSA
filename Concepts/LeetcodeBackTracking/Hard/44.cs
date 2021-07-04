@@ -12,11 +12,11 @@ namespace LeetcodeBackTracking.Hard
 
         public static void _44Main()
         {
-            string s = "acdcb";
-            string p = "a*c?b";
+            string s = "adceb";
+            string p = "*a*b";
 
             var test = new _44();
-            var result=test.IsMatch(s,p);
+            var result = test.IsMatch(s, p);
 
             Console.ReadLine();
 
@@ -24,42 +24,44 @@ namespace LeetcodeBackTracking.Hard
 
         public bool IsMatch(string s, string p)
         {
-
-            Dictionary<(int, int), bool> memo = new Dictionary<(int, int), bool>();
-            return IsMatch(s, p, 0, 0, memo);
-
+            Dictionary<(int sIdx, int pIdx), bool> memo = new Dictionary<(int sIdx, int pIdx), bool>();
+            return IsMatch(s, 0, p, 0, memo);
         }
-
-        private bool IsMatch(string s, string p, int sIndex, int pIndex, Dictionary<(int, int), bool> memo)
+        private bool IsMatch(string s, int i, string p, int j, Dictionary<(int sIdx, int pIdx), bool> memo)
         {
-            if (memo.ContainsKey((pIndex, sIndex)))
-                return memo[(pIndex, sIndex)];
 
-            if (pIndex == p.Length)
+            //! if pattern exhaust, we need to ensure that string exhaust too
+            //! s=a  p=a* returns true
+            //! s=a  p=a*b returns false
+
+            if (j == p.Length)
             {
-                memo[(pIndex, sIndex)] = sIndex == s.Length;
-                return memo[(pIndex, sIndex)];
+               return i == s.Length;
             }
 
-            if (sIndex > s.Length)
+            if (i > s.Length)
             {
-                memo[(pIndex, sIndex)] = false;
-                return memo[(pIndex, sIndex)];
-            }
-            if (p[pIndex] == '?' || (sIndex < s.Length && s[sIndex] == p[pIndex]))
-            {
-                memo[(pIndex, sIndex)] = IsMatch(s, p, sIndex + 1, pIndex + 1, memo);
-                return memo[(pIndex, sIndex)];
-            }
-            if (p[pIndex] == '*')
-            {
-                memo[(pIndex, sIndex)] = IsMatch(s, p, sIndex, pIndex + 1, memo) || IsMatch(s, p, sIndex + 1, pIndex, memo);
-                return memo[(pIndex, sIndex)];
+                return false;
             }
 
-            memo[(pIndex, sIndex)] = false;
+            if (memo.ContainsKey((i, j)))
+                return memo[(i, j)];
 
-            return memo[(pIndex, sIndex)];
+            if (p[j] == '?' || (i < s.Length && s[i] == p[j]))
+            {
+                return memo[(i, j)] = IsMatch(s, i + 1, p, j + 1, memo);
+            }
+
+            //! if we have * in pattern then we have 2 possibilities 
+            //! 1. We don't match anything  we will increment pattern(j) to skip *
+            //! 2. We match * with characer in string and increment string(i) to skip character in string
+
+            if (p[j] == '*')
+            {
+                return memo[(i, j)] = IsMatch(s, i + 1, p, j, memo) ||  
+                                      IsMatch(s, i, p, j + 1, memo); 
+            }
+            return memo[(i, j)] = false;
         }
     }
 }

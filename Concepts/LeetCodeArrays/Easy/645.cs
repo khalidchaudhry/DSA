@@ -12,30 +12,29 @@ namespace LeetCodeArrays.Easy
         /// </summary>
         public int[] FindErrorNums(int[] nums)
         {
-            int[] ans = new int[2];
-            for (int i = 0; i < nums.Length; ++i)
+            int n = nums.Length;
+            int[] result = new int[2];
+            for (int i = 0; i < n; ++i)
             {
-                int index = Math.Abs(nums[i]) - 1;
-                if (nums[index] < 0)
+                int idx = Math.Abs(nums[i]) - 1;
+                if (nums[idx] < 0)
                 {
-                    ans[0] = Math.Abs(nums[i]);
+                    result[0] = idx + 1;
                 }
                 else
                 {
-                    nums[index] = -nums[index];
+                    nums[idx] = -nums[idx];
                 }
             }
 
-            for (int i = 0; i < nums.Length; ++i)
+            for (int i = 0; i < n; ++i)
             {
                 if (nums[i] > 0)
                 {
-                    ans[1] = i + 1;
-                    break;
+                    result[1] = i + 1;
                 }
             }
-
-            return ans;
+            return result;
 
         }
 

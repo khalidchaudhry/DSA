@@ -6,6 +6,10 @@ namespace HashSet
 {
     class _299
     {
+
+        /// <summary>
+        //https://www.youtube.com/watch?v=gbLfuCGUh4A 
+        /// </summary>
         public string GetHint(string secret, string guess)
         {
 
@@ -72,7 +76,8 @@ namespace HashSet
             int cows = 0;
             for (int i = 0; i < 10; i++)
             {
-                // Math.Min because common element is which appears least 
+                // Math.Min because common element is which appears least
+                //! minimum because we are looking for intersection here. 
                 cows += Math.Min(nums1[i], nums2[i]);
             }
             String res = bulls + "A" + cows + "B";

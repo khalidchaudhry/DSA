@@ -26,18 +26,13 @@ namespace LeetCodeBinaryTrees.Easy
             if (left == null && right == null)
                 return true;
 
-            if (left == null && right != null)
+            if (left == null || right == null)
                 return false;
-            if (right == null && left != null)
-                return false;
+       
+         return left.val==right.val && 
+                Helper(left.left, right.right) && 
+                Helper(left.right, right.left);
 
-            if (left.val != right.val)
-                return false;
-
-            bool l = Helper(left.left, right.right);
-            bool r = Helper(left.right, right.left);
-
-            return l && r;
         }
 
 

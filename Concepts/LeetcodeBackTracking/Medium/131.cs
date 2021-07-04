@@ -10,7 +10,7 @@ namespace LeetcodeBackTracking.Medium
     {
 
 
-
+        
         //  # <image url="$(SolutionDir)\Images\131.jpg"  scale="0.4"/>
 
         /// <summary>

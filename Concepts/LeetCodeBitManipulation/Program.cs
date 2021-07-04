@@ -15,7 +15,8 @@ namespace LeetCodeBitManipulation
             //_338._338Main(); 
             //_397._397Main();
             //_461._461Main();
-            _1442._1442Main();
+            //_1442._1442Main();
+            _421._421Main();
 
         }
     }

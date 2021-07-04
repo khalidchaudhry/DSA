@@ -11,41 +11,44 @@ namespace LeetCodeTwoPointers.Medium
 
         /// <summary>
         // ///  // # <image url="$(SolutionDir)\Images\986.png"  scale="0.5"/> 
-        /// </summary>
+
+             //https://www.youtube.com/watch?v=dI2FGXiL4Js&t=343s
+            /// </summary>
         public int[][] IntervalIntersection(int[][] A, int[][] B)
         {
 
-            List<int[]> result = new List<int[]>();
-            int i = 0;
-            int j = 0;
+            List<int[]> intersection = new List<int[]>();
+            int fIdx = 0;
+            int sIdx = 0;
 
-            while (i < A.Length && j < B.Length)
+            while (fIdx < A.Length && sIdx < B.Length)
             {
-                int[] e1 = A[i];
-                int[] e2 = B[j];
+                int[] e1 = A[fIdx];
+                int[] e2 = B[sIdx];
+                int e1Start = e1[0];
+                int e1End = e1[1];
+                int e2Start = e2[0];
+                int e2End = e2[1];
+
+                int start = Math.Max(e1Start, e2Start);
+                int end = Math.Max(e1End, e2End);
                 //! If Intervals overlapping, take intersection of them. 
                 //! Interval will only overlap if e2.Start<=e1.End  && e1.Start<=e2.End
-                if (e2[0] <= e1[1] && e1[0] <= e2[1])
-                {
-                    
-                    int start = Math.Max(e1[0], e2[0]);
-                    int end = Math.Min(e1[1], e2[1]);
-                    result.Add(new int[] { start, end });
+                if (start<=end)
+                {                    
+                    intersection.Add(new int[] { start, end });
                 }
-                //! Drop the event that finishes earlier. 
-                if (e1[1] < e2[1])
+                //! Drop the event that finishes earlier because that interval is not going to overlap with others
+                if (e1End < e2End)
                 {
-                    ++i;
+                    ++fIdx;
                 }
                 else
                 {
-                    ++j;
+                    ++sIdx;
                 }
-
             }
-
-            return result.ToArray();
-
+            return intersection.ToArray();
         }
 
 

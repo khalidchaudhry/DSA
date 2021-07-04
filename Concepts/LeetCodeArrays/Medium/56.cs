@@ -7,7 +7,9 @@ namespace LeetCodeArrays.Medium
     public class _56
     {
 
-
+        /// <summary>
+        //! Merge(Union) 
+        /// </summary>
         public int[][] Merge0(int[][] intervals)
         {
 
@@ -20,16 +22,16 @@ namespace LeetCodeArrays.Medium
 
             List<int[]> merged = new List<int[]>();
 
-            foreach (int[] interval in intervals)
+            foreach (int[] e2 in intervals)
             {
                 int n2 = merged.Count;
-                if (merged.Count == 0 || interval[0] > merged[n2 - 1][1])
+                if (merged.Count == 0 || e2[0] > merged[n2 - 1][1])
                 {
-                    merged.Add(interval);
+                    merged.Add(e2);
                 }
                 else
                 {
-                    merged[n2 - 1][1] = Math.Max(interval[1], merged[n2 - 1][1]);
+                    merged[n2 - 1][1] = Math.Max(e2[1], merged[n2 - 1][1]);
                 }
             }
 

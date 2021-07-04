@@ -6,6 +6,45 @@ namespace LeetCodeBinaryTrees.Medium
 {
     public class _337
     {
+
+        /// <summary>
+        //! At every house we have 2 choices
+        //! 1. If parent is not Robbed
+        //!    1. House robbed 
+        //!    2. Skip    
+        //! 3. If parent is robbed
+        //!    1. Skip
+        /// </summary>
+         public int Rob0(TreeNode root)
+        {
+            Dictionary<(TreeNode node, bool isParentRob), int> memo = new Dictionary<(TreeNode node, bool isParentRob), int>();
+            return Rob0(root, false, memo);
+        }
+
+        private int Rob0(TreeNode node, bool isParentRob, Dictionary<(TreeNode node, bool isParentRob), int> memo)
+        {
+            if (node == null)
+                return 0;
+
+            if (memo.ContainsKey((node, isParentRob)))
+                return memo[(node, isParentRob)];
+
+            //! If parent rob , we can't rob this node and we have to skip it
+            if (isParentRob)
+            {
+                return memo[(node, isParentRob)] = Rob0(node.left, false, memo) + Rob0(node.right, false, memo);
+            }
+
+            //! If parent not rob then we have 2 choices either rob this node or skip it
+            else
+            {
+                int robNode = node.val + Rob0(node.left, true, memo) + Rob0(node.right, true, memo);
+                int notRobNode = Rob0(node.left, false, memo) + Rob0(node.right, false, memo);
+                return memo[(node, isParentRob)] = Math.Max(robNode, notRobNode);
+            }
+        }
+
+
         public int Rob(TreeNode root)
         {
 
@@ -13,7 +52,6 @@ namespace LeetCodeBinaryTrees.Medium
             return Math.Max(choices[0],choices[1]);
 
         }
-
         public int[] Helper(TreeNode node)
         {
             if (node == null)
@@ -28,6 +66,9 @@ namespace LeetCodeBinaryTrees.Medium
 
             return new int[] { parentRobbed, parentNotRobbed };
         }
+
+
+
 
     }
 }

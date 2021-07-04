@@ -14,7 +14,8 @@ namespace LeetCodeDynamicProgramming.Hard
             Dictionary<int, int> cache = new Dictionary<int, int>();
             bool[,] isPalindromes = new bool[s.Length, s.Length];
             PreComputePalindromes(s, isPalindromes);
-            return MinCut(s, 0, cache, isPalindromes);
+            //! cuts=partitions -1
+            return MinCut(s, 0, cache,isPalindromes) - 1; 
 
         }
 
@@ -29,18 +30,18 @@ namespace LeetCodeDynamicProgramming.Hard
             if (cache.ContainsKey(start))
                 return cache[start];
 
-            cache[start] = int.MaxValue;
+            int minCuts = int.MaxValue;
 
             for (int i = start; i < s.Length; ++i)
             {
-                if (!isPalindromes[start, i])
-                    continue;
-
-                int currCuts = i == s.Length - 1 ? 0 : 1;
-                cache[start] = Math.Min(cache[start], currCuts + MinCut(s, i + 1, cache, isPalindromes));
+                if (isPalindromes[start, i])
+                {
+                    //! 1+ because we are making 1 cut 
+                    minCuts = Math.Min(minCuts, 1 + MinCut(s, i + 1, cache, isPalindromes));
+                }
             }
 
-            return cache[start];
+            return cache[start] = minCuts;
         }
         /// <summary>
         //! We are iterating over the length of substring to caculate the palindromic permutation

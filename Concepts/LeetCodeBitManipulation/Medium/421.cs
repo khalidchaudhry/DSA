@@ -8,6 +8,16 @@ namespace LeetCodeBitManipulation.Medium
 {
     public class _421
     {
+
+        public static void _421Main()
+        {
+            _421 test = new _421();
+
+            int[] arr = new int[] { 3, 10, 5, 25, 2, 8 };
+            var ans=test.FindMaximumXOR3(arr);
+            Console.WriteLine(ans);
+
+        }       
         /// <summary>
         /// https://www.youtube.com/watch?v=jCu-Pd0IjIA
         //! Using Trie
@@ -17,7 +27,6 @@ namespace LeetCodeBitManipulation.Medium
         //! O(32*n)+O(32*n)=O(n)
         //! Space Complexity: space complexity is O(m*n), where m  is the length of the longest key and and n is the total number of keys
         //! O(32*n)
-
         //// # <image url="https://bloggg-1254259681.cos.na-siliconvalley.myqcloud.com/5dhef.jpg" scale="0.3" />  
         /// </summary>
         /// <param name="nums"></param>
@@ -39,43 +48,37 @@ namespace LeetCodeBitManipulation.Medium
 
             return maxXOR;
         }
-
-        /// <summary>
-        //! Prefix Sum approach
-        /// https://www.youtube.com/watch?v=PTvFn17ZDRg
-        /// </summary>
-
-        public int FindMaximumXOR1(int[] nums)
+        
+        public int FindMaximumXOR3(int[] nums)
         {
-            int maxXOR = 0;
-            int mask = 0;
 
-            for (int i = 32; i >= 0; --i)
+            int maxXor = 0;
+            for (int b = 31; b >= 0; --b)
             {
-                //! we are using the mask to find the most significant bit set for all array element
-                mask = mask | (1 << i);
-                HashSet<int> hs = new HashSet<int>();
-                //! Checking if any element in the nums array s has the bit i set  
-                foreach (int num in nums)
+                int test = b;
+                HashSet<int> numsPrefix = new HashSet<int>();
+                maxXor = maxXor << 1;
+                int target = maxXor | 1;
+                for (int i = 0; i < nums.Length; ++i)
                 {
-                    hs.Add(num & mask);
+                    int numPrefix = nums[i] >> b;
+                    numsPrefix.Add(numPrefix);
                 }
-                //!Think of tempMax as the target we want to find 
 
-                int tempMax = maxXOR | (1 << i);
-                foreach (int prefix in hs)
+                foreach (int p in numsPrefix)
                 {
-                    if (hs.Contains(prefix ^ tempMax))
+                    if (numsPrefix.Contains(target ^ p))
                     {
-                        maxXOR = tempMax;
+                        maxXor = target;
                         break;
                     }
                 }
-
             }
 
-            return maxXOR;
+            return maxXor;
         }
+
+
 
         /// <summary>
         // !Brute Force

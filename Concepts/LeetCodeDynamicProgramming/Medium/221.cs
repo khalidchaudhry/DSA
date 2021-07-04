@@ -28,6 +28,9 @@ namespace LeetCodeDynamicProgramming.Medium
             {
                 for (int j = 1; j < dp.GetLength(1); ++j)
                 {
+                    //! The matrix value needs to be 1 , otherwise we can't make square e.g.
+                    //! 1   1
+                    //! 1   0 
                     if (matrix[i - 1][j - 1] == '1')
                     {
                         dp[i, j] = 1 + (Math.Min(Math.Min(dp[i - 1, j], dp[i, j - 1]), dp[i - 1, j - 1]));

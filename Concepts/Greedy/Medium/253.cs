@@ -22,74 +22,74 @@ namespace Greedy.Medium
             Console.ReadLine();
 
         }
-        /// <summary>
-        /// https://leetcode.com/problems/meeting-rooms-ii/discuss/67855/Explanation-of-%22Super-Easy-Java-Solution-Beats-98.8%22-from-%40pinkfloyda
-        /// </summary>
-        /// <param name="intervals"></param>
-        /// <returns></returns>
+
+
+
         public int MinMeetingRooms0(int[][] intervals)
         {
-            if (intervals == null || intervals.Length == 0) return 0;
-            int n = intervals.Length, index = 0;
-            int[] begins = new int[n];
-            int[] ends = new int[n];
+
+            SortedDictionary<int, int> timeStampCount = new SortedDictionary<int, int>();
             foreach (int[] interval in intervals)
             {
-                begins[index] = interval[0];
-                ends[index] = interval[1];
-                index++;
-            }
-            Array.Sort(begins);
-            Array.Sort(ends);
-            int rooms = 0, pre = 0;
-            for (int i = 0; i < n; i++)
-            {
-                //!whenever there is a start meeting, we need to add one room
-                rooms++;
-                //! check to see if any previous meeting ends, which is why we check start with the first end. 
-                //! When the start is bigger than end, it means at this time one of the previous meeting ends,
-                //! and it can take and reuse that room.
-                if (begins[i] >= ends[pre])
+                int start = interval[0];
+                int end = interval[1];
+
+                if (!timeStampCount.ContainsKey(start))
                 {
-                    rooms--;
-                    pre++;
+                    timeStampCount.Add(start, 0);
                 }
+                ++timeStampCount[start];
+
+                if (!timeStampCount.ContainsKey(end))
+                {
+                    timeStampCount.Add(end, 0);
+                }
+                --timeStampCount[end];
             }
-            return rooms;
+
+            int maxRooms = 0;
+            int sum = 0;
+            foreach (var keyValue in timeStampCount)
+            {
+                sum += keyValue.Value;
+                maxRooms = Math.Max(maxRooms, sum);
+            }
+            return maxRooms;
         }
-        /// <summary>
-        /// https://www.youtube.com/watch?v=DFEf8_fjb_0
-        /// https://leetcode.com/problems/meeting-rooms-ii/solution/
-        /// </summary>
-        /// <param name="intervals"></param>
-        /// <returns></returns>
+
         public int MinMeetingRooms1(int[][] intervals)
         {
-            if (intervals.Length == 0)
-                return 0;
+            var comparer = Comparer<int[]>.Create((x, y) => {
+                return x[0].CompareTo(y[0]);
+            });
 
-            int[][] sortedIntervals = intervals.OrderBy(x => x[0]).ToArray();
-
-            SortedSet<int> ss = new SortedSet<int>();
-            ss.Add(sortedIntervals[0][1]);
-            int result = 0;
-
-            for (int i = 1; i < sortedIntervals.Length; ++i)
+            Array.Sort(intervals, comparer);
+            int meetingRooms = 1;
+            PQ<int> pq = new PQ<int>();
+            foreach (var interval in intervals)
             {
-                // If the room due to free up the earliest is free, assign that room to this meeting.
-                if (sortedIntervals[i][0] >= ss.Min)
+                int start = interval[0];
+                int end = interval[1];
+                if (pq.Size > 0 && start < pq.Peek())
                 {
-                    ss.Remove(ss.Min);
+                    ++meetingRooms;
                 }
-                // If a new room is to be assigned, then also we add to the heap,
-                // If an old room is allocated, then also we have to add to the heap with updated end time
-                //! if (ss.Contains(sortedIntervals[i][1])) ++result;  is to just case when endTime already exists in sortedSet
-                if (ss.Contains(sortedIntervals[i][1])) ++result;
-                ss.Add(sortedIntervals[i][1]);
-            }
+                else
+                {
+                    if (pq.Size > 0)
+                    {
+                        pq.Poll();
+                    }
 
-            return ss.Count + result;
+                }
+                pq.Add(end);
+
+            }
+            return meetingRooms;
         }
+
+
+
 
     }
 }

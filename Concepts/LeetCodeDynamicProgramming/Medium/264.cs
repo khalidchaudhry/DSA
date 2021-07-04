@@ -28,33 +28,31 @@ namespace LeetCodeDynamicProgramming.Medium
 
         public int NthUglyNumber0(int n)
         {
-            List<int> uglyNumbers = new List<int>() { 1 };
-            int i2 = 0;
-            int i3 = 0;
-            int i5 = 0;
-            for (int i = 2; i <= n; ++i)  
+            int[] uglyNumbers = new int[n];
+            uglyNumbers[0] = 1;
+            int p1, p2, p3;
+            p1 = p2 = p3 = 0;
+            for (int idx = 1; idx < n; ++idx)
             {
-                int multipleOf2 = 2 * uglyNumbers[i2];
-                int multipleOf3 = 3 * uglyNumbers[i3];
-                int multipleOf5 = 5 * uglyNumbers[i5];
-
-                int min = Math.Min(multipleOf2, Math.Min(multipleOf3, multipleOf5));
-
-                uglyNumbers.Add(min);
-
-                if (min == multipleOf2)
-                    ++i2;
-
-                if (min == multipleOf3)
-                    ++i3;
-
-                if (min == multipleOf5)
-                    ++i5;
-
+                int r1 = uglyNumbers[p1] * 2;
+                int r2 = uglyNumbers[p2] * 3;
+                int r3 = uglyNumbers[p3] * 5;
+                int min = Math.Min(r3, Math.Min(r1, r2));
+                uglyNumbers[idx] = min;
+                if (r1 == min)
+                {
+                    ++p1;
+                }
+                if (r2 == min)
+                {
+                    ++p2;
+                }
+                if (r3 == min)
+                {
+                    ++p3;
+                }
             }
-
-            return uglyNumbers[uglyNumbers.Count - 1];
-
+            return uglyNumbers[n - 1];
         }
 
         /// <summary>
@@ -66,25 +64,20 @@ namespace LeetCodeDynamicProgramming.Medium
         /// <returns></returns>
         public int NthUglyNumber1(int n)
         {
-            int[] uglyNumbers = new int[1690];
-            //! reason for long because large inout like (1407)  hashSet<long> will overflow
-            SortedSet<long> ss = new SortedSet<long>();
-            ss.Add(1);
+            long nthUglyNumber = 1;
+            SortedSet<long> uglyNumbers = new SortedSet<long>();
+            uglyNumbers.Add(1);
             for (int i = 0; i < n; ++i)
             {
-                //! O(1)
-                long min = ss.Min;
+                nthUglyNumber = uglyNumbers.Min;
+                uglyNumbers.Remove(nthUglyNumber);
 
-                uglyNumbers[i] = (int)min;
-                //! O(1) operation.
-                ss.Remove(min);
-                //! O(logn)
-                ss.Add(min * 2);
-                ss.Add(min * 3);
-                ss.Add(min * 5);
+                uglyNumbers.Add(nthUglyNumber * 2);
+                uglyNumbers.Add(nthUglyNumber * 3);
+                uglyNumbers.Add(nthUglyNumber * 5);
             }
 
-            return uglyNumbers[n - 1];
+            return (int)nthUglyNumber;
 
         }
         /// <summary>

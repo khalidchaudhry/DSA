@@ -10,26 +10,27 @@ namespace LeetCodeArrays.Medium
         {
             if (nums.Length == 0)
                 return;
-            int front = 0;
+            //! left  pointer points to first non-zero 
+            int left = 0;
             int iterator = 0;
-            int back = nums.Length - 1;
+            int right = nums.Length - 1;
 
             //! should be <= otherwise it will fail for [2,0,1]
-            while (iterator <= back)
+            while (iterator <= right)
             {
                 if (nums[iterator] == 0)
                 {
-                    Swap(nums, iterator, front);
-                    ++front;
-                    //! We are starting from left and hence we are incrementing it for let side only 
+                    Swap(nums, iterator, left);
+                    ++left;
+                    //! element at left is at its correct position hence incremeting
                     ++iterator;
                 }
                 else if (nums[iterator] == 2)
                 {
                    //! Not incrementing iterator because we may swapped with 0
                     //!incrementing iterator here  will fail for this test case [1 2 0]
-                    Swap(nums, iterator, back);
-                    --back;
+                    Swap(nums, iterator, right);
+                    --right;
                 }
                 //! only increament iterator if 1 is encounter. 
                 else

@@ -1,4 +1,5 @@
-﻿using LeetCodeArrays.Medium;
+﻿using LeetCodeArrays.Hard;
+using LeetCodeArrays.Medium;
 using System;
 using System.Collections.Generic;
 
@@ -193,7 +194,7 @@ namespace LeetCodeArrays
 
             //RotateImage.Rotate(matrix);
 
-            _31._31Main(); 
+            //_31._31Main(); 
 
             //_442 Duplicates = new _442();
 
@@ -265,6 +266,8 @@ namespace LeetCodeArrays
             //_54._54Main();   
             //_930._930Main();
             //_1428._1428Main();
+            _41._41Main();
+
             
         }
     }

@@ -48,7 +48,9 @@
     <Compile Include="Easy\119.cs" />
     <Compile Include="Easy\53.cs" />
     <Compile Include="Easy\70.cs" />
+    <Compile Include="Hard\123.cs" />
     <Compile Include="Hard\132.cs" />
+    <Compile Include="Hard\188.cs" />
     <Compile Include="Hard\45.cs" />
     <Compile Include="Hard\72.cs" />
     <Compile Include="Hard\85.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="Medium\334.cs" />
     <Compile Include="Medium\338.cs" />
     <Compile Include="Medium\368.cs" />
+    <Compile Include="Medium\376.cs" />
     <Compile Include="Medium\416.cs" />
     <Compile Include="Medium\494.cs" />
     <Compile Include="Medium\518.cs" />

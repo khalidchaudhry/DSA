@@ -7,6 +7,32 @@ namespace LeetCodeArrays.Medium
     public class _238
     {
 
+        public int[] ProductExceptSelf2(int[] nums)
+        {
+            int n = nums.Length;
+
+            int[] right = new int[n];
+
+
+            int prod = 1;
+            for (int i = n - 1; i >= 0; --i)
+            {
+                prod *= nums[i];
+                right[i] = prod;
+            }
+            int[] ans = new int[n];
+            int prev = 1;
+            for (int i = 0; i < n; ++i)
+            {
+                int next = i == n - 1 ? 1 : right[i + 1];
+                ans[i] = prev * next;
+                prev *= nums[i];
+            }
+
+            return ans;
+        }
+
+
         /// <summary>
         //! Basic intuition is that at given element , 
         //!if we know what's on its left side and on its right side
@@ -37,30 +63,7 @@ namespace LeetCodeArrays.Medium
             return result;
         }
 
-        public int[] ProductExceptSelf2(int[] nums)
-        {
-            int n = nums.Length;
-
-            int[] right = new int[n];
-
-
-            int prod = 1;
-            for (int i = n - 1; i >= 0; --i)
-            {
-                prod *= nums[i];
-                right[i] = prod;
-            }
-            int[] ans = new int[n];
-            int prev = 1;
-            for (int i = 0; i < n; ++i)
-            {
-                int next = i == n - 1 ? 1 : right[i + 1];
-                ans[i] = prev * next;
-                prev *= nums[i];
-            }
-
-            return ans;
-        }
+        
 
     }
 }

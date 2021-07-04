@@ -26,11 +26,10 @@ namespace LeetCodeDesign.Hard
         /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
         public bool Insert(int val)
         {
-            bool toReturn = false;
+            bool toReturn = _map.ContainsKey(val) && _map[val].Count > 0 ? false : true;
             if (!_map.ContainsKey(val))
             {
-                _map.Add(val, new HashSet<int>());
-                toReturn = true;
+              _map.Add(val, new HashSet<int>());               
             }
 
             //! adding element index into dictionary array

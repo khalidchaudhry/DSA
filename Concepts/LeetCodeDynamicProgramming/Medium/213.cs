@@ -10,31 +10,20 @@ namespace LeetCodeDynamicProgramming.Medium
     {
         public int Rob(int[] nums)
         {
-
-            if (nums.Length == 0)
-                return 0;
-            if (nums.Length == 1)
-                return nums[0];
-            if (nums.Length == 2)
-            {
-                return Math.Max(nums[0], nums[1]);
-            }
-
-            return Math.Max(Helper(nums, 0, nums.Length-1),Helper(nums,1,nums.Length));
+            return Rob(nums, 0, false);
         }
-
-        private int Helper(int[] nums, int startIndex, int endIndex)
+        private int Rob(int[] nums, int s, bool isFirstHouseRob)
         {
-            int length = endIndex - startIndex;
-            int[] dp = new int[length + 1];
-            dp[0] = 0;
-            dp[1] = nums[startIndex];
+            if (s >= nums.Length || (s == nums.Length - 1 && isFirstHouseRob))
+                return 0;
 
-            for (int i = 2; i < dp.Length; i++)
-            {
-                dp[i] = Math.Max(nums[startIndex+i - 1] + dp[i - 2], dp[i - 1]);
-            }
-            return dp[dp.Length-1];
+            int skip = Rob(nums, s + 1, isFirstHouseRob);
+
+            int rob = nums[s] + Rob(nums, s + 2, isFirstHouseRob || s == 0);
+
+
+            return Math.Max(skip, rob);
         }
+
     }
 }

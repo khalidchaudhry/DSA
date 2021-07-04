@@ -14,7 +14,7 @@ namespace LeetCodeDynamicProgramming
         static void Main(string[] args)
         {
 
-            _139._139Main();
+           // _139._139Main();
             //_322._322Main();
 
 
@@ -80,11 +80,11 @@ namespace LeetCodeDynamicProgramming
             //int[] nums = new int[] { 10, 9, 2, 5, 3, 7, 101, 18 };
             //_300._300Main();
 
-            _264._264Main();
+            //_264._264Main();
             //_368._368Main();
             //_532._532Main();
 
-            // _1027._1027Main();
+            _1027._1027Main();
             //_279._279Main();
             //_123._123Main();
             //_1277._1277Main();

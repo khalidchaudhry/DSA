@@ -12,9 +12,8 @@ namespace LeetCodeStack.cs.Hard
 
 
         /// <summary>
-        ///https://leetcode.com/problems/largest-rectangle-in-histogram/solution/
-
-        // /// # <image url="$(SolutionDir)\Images\84.png"  scale="0.5"/>
+        
+        // /// # <image url="$(SolutionDir)\Images\84.png"  scale="0.6"/>
 
         /// </summary>
         public int LargestRectangleArea0(int[] heights)
@@ -22,38 +21,24 @@ namespace LeetCodeStack.cs.Hard
 
             int n = heights.Length;
             int maxArea = 0;
+            //! Maintaining monotonicall increasing stack 
             Stack<int> stk = new Stack<int>();
             //!Setting -1 as the left limit
             stk.Push(-1);
-            for (int i = 0; i < n; ++i)
+            for (int i = 0; i <= n; ++i)
             {
-                //! Maintaining monotonicall increasing stack                
-                while (stk.Peek() != -1 && heights[i] <= heights[stk.Peek()])
+                //! i == n if all values  are in increasing order 
+                while (stk.Peek() != -1 && (i == n || heights[stk.Peek()] > heights[i]))
                 {
-                    //! when we are popping the element(bar) from stack, at that moment we are calculating area for it 
-                    int curr = stk.Pop();
-                    int rightLimit = i;
-                    int leftLimit = stk.Peek();
-
-                    int vd = heights[curr];
-                    int hd = rightLimit - leftLimit - 1;
+                    int vd = heights[stk.Pop()];
+                    int rightLimit = i - 1;
+                    int leftLimit = stk.Peek() + 1;
+                             //! right-left+1
+                    int hd = rightLimit - leftLimit + 1;
                     maxArea = Math.Max(maxArea, vd * hd);
                 }
-
                 stk.Push(i);
             }
-            //! process the elements left in the stack
-            while (stk.Peek() != -1)
-            {
-                int curr = stk.Pop();
-                int rightLimit = n;
-                int leftLimit = stk.Peek();
-
-                int vd = heights[curr];
-                int hd = rightLimit - leftLimit - 1;
-                maxArea = Math.Max(maxArea, vd * hd);
-            }
-
             return maxArea;
         }
 

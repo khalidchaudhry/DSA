@@ -22,9 +22,11 @@ namespace LeetCodeGraphs.Medium
             {
                 colors.Add(i, 0);
             }
-
+            //! The reason for below loop is because as per the question 
+            //! The graph may not be connected, meaning there may be two nodes u and v such that there is no path between them.
             for (int i = 0; i < graph.Length; ++i)
             {
+                //! If color already defined for the node , there is no point of coloring it 
                 if (colors[i] == 0)
                 {
                     if (!IsValidColor(graph, colors, 1, i))

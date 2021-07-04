@@ -7,12 +7,11 @@ namespace LeetCodeArrays.Medium
     public class _152
     {
 
+        /// <summary>
+        //! We need to keep track of max,min at every index 
+        /// </summary>
         public int MaxProduct(int[] nums)
-        {
-            if (nums.Length < 1)
-            {
-                return 0;
-            }
+        {          
 
             int maxSoFar = nums[0];
             int minSoFar = nums[0];

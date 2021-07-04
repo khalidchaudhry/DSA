@@ -32,7 +32,7 @@ namespace LeetCodeDivideAndConquer.Medium
                 int leftMax = Max(arr, s, i);
                 int rightMax = Max(arr, i + 1, e);
                 int product = leftMax * rightMax;
-                //Sum of non-leaf node
+                //!Sum of non-leaf node
                 int sumLeft = MctFromLeafValues(arr, s, i, memo);
                 int sumRight = MctFromLeafValues(arr, i + 1, e, memo);
                 min = Math.Min(min, product + sumLeft + sumRight);
