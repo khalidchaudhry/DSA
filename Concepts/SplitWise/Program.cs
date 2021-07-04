@@ -1,3 +1,4 @@
+using SplitWise.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,13 +33,14 @@ namespace SplitWise
               4. Borrower 
                    User BorrowedBy
                    double amount
-              //Actions on entities 
+
+              Actions on entities 
                   -CreateExpense
                   -CostSplit
                   -ShowBalance
-              // System Flow
+              System Flow
                  -- Create expense ---> Split ---> 
-             // Services
+              Services
                  -- Driver
                      --InputFromUser
                      
@@ -51,12 +53,7 @@ namespace SplitWise
                           -- Perform Split  
                           --HandleExpense
                   --BalanceViewer
-                           
-
-
-
-             */
-
+              */
 
         }
     }
