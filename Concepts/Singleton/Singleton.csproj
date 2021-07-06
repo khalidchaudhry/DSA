@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E14AB7B1-CB6B-4B7D-8CA6-95C655EE3CD2}</ProjectGuid>
+    <ProjectGuid>{68E45C0D-F612-4FB1-A52B-7BF036A74464}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SplitWise</RootNamespace>
-    <AssemblyName>SplitWise</AssemblyName>
+    <RootNamespace>Singleton</RootNamespace>
+    <AssemblyName>Singleton</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,32 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Borrower.cs" />
-    <Compile Include="Factory\SplitStrategyFactory.cs" />
-    <Compile Include="Repos\InMemoryUserRepo.cs" />
-    <Compile Include="Repos\Interfaces\IUserBalanceRepo.cs" />
-    <Compile Include="Repos\MySqlUserRepo.cs" />
-    <Compile Include="Services\EqualSplitStrategy.cs" />
-    <Compile Include="Services\ExactSplitStrategy.cs" />
-    <Compile Include="Entities\Expense.cs" />
-    <Compile Include="Services\Interfaces\IBalanceViewer.cs" />
-    <Compile Include="Services\PercentagSplitStrategy.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\UserBalance.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BalanceViewer.cs" />
-    <Compile Include="Services\ApplicationRunner.cs" />
-    <Compile Include="Services\ExpenseManager.cs" />
-    <Compile Include="Services\InputProcessor.cs" />
-    <Compile Include="Services\Interfaces\IInputProcessor.cs" />
-    <Compile Include="Services\Interfaces\ISplitStrategy.cs" />
-    <Compile Include="Util\Constants.cs" />
-    <Compile Include="Util\DoubleHelper.cs" />
+    <Compile Include="SingletonEagerInitialization.cs" />
+    <Compile Include="SingletonLazyInitialization.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

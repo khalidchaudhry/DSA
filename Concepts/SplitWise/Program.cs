@@ -1,3 +1,6 @@
+using SplitWise.Factory;
+using SplitWise.Repos;
+using SplitWise.Repos.Interfaces;
 using SplitWise.Services;
 using System;
 using System.Collections.Generic;
@@ -55,7 +58,22 @@ namespace SplitWise
                   --BalanceViewer
               */
 
+            ExactSplitStrategy exactSplitStrategy = new ExactSplitStrategy();
+            EqualSplitStrategy equalSplitStrategy = new EqualSplitStrategy();
+            PercentagSplitStrategy percentagSplitStrategy = new PercentagSplitStrategy();
+            SplitStrategyFactory factory = new SplitStrategyFactory(exactSplitStrategy, equalSplitStrategy, percentagSplitStrategy);
 
+
+            IUserBalanceRepo userBalanceRepo = new InMemoryUserRepo();
+
+            ConsoleBalanceViewer balanceViewer = new ConsoleBalanceViewer(userBalanceRepo);
+            ExpenseManager manager = new ExpenseManager(userBalanceRepo);
+
+
+            InputProcessor inputProcessor = new InputProcessor(factory, manager, balanceViewer);
+            ApplicationRunner runner = new ApplicationRunner(inputProcessor);
+
+            runner.Run();
 
 
         }

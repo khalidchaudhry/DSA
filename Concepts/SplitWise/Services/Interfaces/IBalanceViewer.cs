@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SplitWise.Services.Interfaces
 {
-    public interface IExpenseManager
+    public interface IBalanceViewer
     {
-        void HandleExpense();
+        void ShowBalance(string userId);
+        void ShowAllUsersBalance();
+
     }
 }
