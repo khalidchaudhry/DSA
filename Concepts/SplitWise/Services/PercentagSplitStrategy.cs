@@ -8,7 +8,8 @@ namespace SplitWise.Services
 {
     public class PercentagSplitStrategy : ISplitStrategy
     {
-        //EXPENSE u4 1200 4 u1 u2 u3 u4 PERCENT 40 20 20 20
+        //u4 1200 4 u1 u2 u3 u4 PERCENT 40 20 20 20
+        // 0   1  2  3  4  5  6  7      8   9 10 11
         public Expense Split(string line)
         {
             //The percent and amount provided could have decimals upto two decimal places.
@@ -16,13 +17,13 @@ namespace SplitWise.Services
             line = line.ToLower();
 
             string[] tokens = line.Split(' ');
-            string spentBy = tokens[1];
+            string spentBy = tokens[0];
 
-            double spentAmount = NumberHelper.RoundToTwoDecimalPlaces(Convert.ToDouble(tokens[2]));
-            int nPerson = Convert.ToInt32(tokens[3]);
-            string temp = line.Substring(line.IndexOf(tokens[4]));
+            double spentAmount = NumberHelper.RoundToTwoDecimalPlaces(Convert.ToDouble(tokens[1]));
+            int nPerson = Convert.ToInt32(tokens[2]);
+            string temp = line.Substring(line.IndexOf(tokens[3]));
 
-            string[] expenseTokens = temp.Split(Constants.EXACT_SPLIT_STRATEGY.ToCharArray());
+            string[] expenseTokens = temp.Split(new string[] { Constants.PERCENTAGE_SPLIT_STRATEGY }, StringSplitOptions.None);
             string[] borrowerTokens = expenseTokens[0].Split(' ');
             string[] percentageTokens = expenseTokens[1].Split(' ');
 
@@ -30,10 +31,11 @@ namespace SplitWise.Services
             IsValid(percentageTokens);
 
             List<Borrower> borrowers = new List<Borrower>();
-            for (int i = 0; i < nPerson; ++i)
+            for (int i = 1; i < nPerson; ++i)
             {
                 string user = borrowerTokens[i];
-                double amount = NumberHelper.RoundToTwoDecimalPlaces(Convert.ToDouble(percentageTokens[i]));
+                double percent = NumberHelper.RoundToTwoDecimalPlaces(Convert.ToDouble(percentageTokens[i+1]));
+                double amount = NumberHelper.RoundToTwoDecimalPlaces((percent / 100) * spentAmount);
                 Borrower borrower = new Borrower(user, amount);
                 borrowers.Add(borrower);
             }
@@ -42,8 +44,9 @@ namespace SplitWise.Services
         private void IsValid(string[] percentageTokens)
         {
             double sum = 0;
-            foreach (string amountToken in percentageTokens)
+            for (int i = 1; i < percentageTokens.Length; i++)
             {
+                string amountToken = percentageTokens[i];
                 sum += NumberHelper.RoundToTwoDecimalPlaces(Convert.ToDouble(amountToken));
             }
             if (sum != 100)
