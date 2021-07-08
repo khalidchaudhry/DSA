@@ -42,10 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoubleCheckThreadSafeLazyInitialization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonEagerInitialization.cs" />
     <Compile Include="SingletonLazyInitialization.cs" />
+    <Compile Include="ThreadSafeSingletonLazyInitialization.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

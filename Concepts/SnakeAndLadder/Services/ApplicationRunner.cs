@@ -1,29 +1,53 @@
-﻿using SnakeAndLadder.Services.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SnakeAndLadder.Services
 {
     public class ApplicationRunner
     {
-        private readonly IInputProcessor _inputProcessor;
-        public ApplicationRunner(IInputProcessor inputProcessor)
+
+        private GameRunner _gameRunner;
+        public ApplicationRunner(GameRunner gameRunner)
         {
-            _inputProcessor = inputProcessor;
+            _gameRunner = gameRunner;
         }
         public void Run()
         {
-            while (true)
+
+            string snakes = Console.ReadLine();
+            int snakesCount = Convert.ToInt32(snakes);
+            List<(int h, int t)> snakesPos = new List<(int h, int t)>();
+            Populate(snakesPos,snakesCount);
+            
+            string ladders = Console.ReadLine();
+            int laddersCount = Convert.ToInt32(ladders);
+            List<(int s, int e)> laddersPos = new List<(int s, int e)>();
+            Populate(laddersPos, laddersCount);
+
+            string players = Console.ReadLine();
+            int playersCount = Convert.ToInt32(players);
+            List<string> playersName = new List<string>();
+            for (int i = 0; i < playersCount; ++i)
             {
-                Console.WriteLine("Press enter to complete the input");
-                string input = Console.ReadLine();
-                _inputProcessor.Process(input);
+                string playerName = Console.ReadLine();
+                playersName.Add(playerName);    
             }
+
+            _gameRunner.InitBoard(snakesPos,laddersPos,playersName);
+            _gameRunner.Run();
+
         }
 
-
+        private void Populate(List<(int h, int t)> positions,int count)
+        {
+            for (int i = 0; i < count; ++i)
+            {
+                string position = Console.ReadLine();
+                string[] firstSecond = position.Split(' ');
+                int first = Convert.ToInt32(firstSecond[0]);
+                int second = Convert.ToInt32(firstSecond[1]);
+                positions.Add((first, second));
+            }
+        }
     }
 }

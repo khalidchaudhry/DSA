@@ -15,7 +15,8 @@ namespace SplitWise.Factory
         private readonly ExactSplitStrategy _exactSplitStrategy;
         private readonly EqualSplitStrategy _equalSplitStrategy;
         private readonly PercentagSplitStrategy _percentageSplitStrategy;
-        
+
+        //! Does not make sense to pass classes inside constructors.we can simply use new EqualSplitStrategy()
         public SplitStrategyFactory(ExactSplitStrategy exactSplitStrategy,
                                     EqualSplitStrategy equalSplitStrategy,
                                     PercentagSplitStrategy percentageSplitStrategy)
@@ -24,13 +25,14 @@ namespace SplitWise.Factory
             _exactSplitStrategy = exactSplitStrategy;
             _percentageSplitStrategy = percentageSplitStrategy;
         }
+
+        //! Why not creating it as a static method? There is no state in it ?
         public ISplitStrategy GetSplitStrategy(string input)
         {
             input = input.ToLower();
             if (input.Contains(Constants.EQUAL_SPLIT_STRATEGY))
             {
                 return _equalSplitStrategy;
-
             }
             else if (input.Contains(Constants.EXACT_SPLIT_STRATEGY))
             {
@@ -44,7 +46,7 @@ namespace SplitWise.Factory
             {
                 throw new NotSupportedException("Provided split strategy is not supported");
             }
-           
+
         }
 
 

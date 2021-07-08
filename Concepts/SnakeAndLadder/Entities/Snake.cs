@@ -8,13 +8,12 @@ namespace SnakeAndLadder.Entities
 {
     public class Snake
     {
-        public (int r, int c) HeadPosition { get; }
-        public (int r, int c) TailPosition { get; }
-        public Snake((int r,int c) headPosition, (int r, int c) TailPosition)
+        public int HeadPosition { get; }
+        public int TailPosition { get; }
+        public Snake(int headPosition, int tailPosition)
         {
-                
-
-
+            HeadPosition = headPosition;
+            TailPosition = tailPosition;
         }
     }
 }

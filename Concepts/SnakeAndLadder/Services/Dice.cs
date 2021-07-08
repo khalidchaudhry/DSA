@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace SnakeAndLadder.Services
 {
-    public static class Dice
+    public class Dice
     {
-        private static readonly Random _random;
-        static Dice()
+        private Random _random;
+        public int MaxValue { get; }
+        public Dice(int maxValue)
         {
-            _random = new Random(1);
+            _random = new Random();
+            MaxValue = maxValue;
+        }
+        public int Roll()
+        {
+            return _random.Next(MaxValue+1);
         }
 
-        public static int Roll()
-        {
-            return _random.Next(7);
-        }
     }
 }

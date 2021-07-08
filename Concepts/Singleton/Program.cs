@@ -10,9 +10,11 @@ namespace Singleton
     {
         static void Main(string[] args)
         {
-   
-            
-            Console.WriteLine();
+            //!  https://leetcode.com/discuss/interview-question/object-oriented-design/124738/5-flavors-of-singleton
+            var eager =SingletonEagerInitialization.GetInstance();
+           
+
+
 
             Console.ReadLine();        
         }

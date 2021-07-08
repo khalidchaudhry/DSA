@@ -8,9 +8,9 @@ namespace SnakeAndLadder.Entities
 {
     public class Ladder
     {
-        public (int r, int c) StartPosition { get; }
-        public (int r, int c) EndPosition { get; }
-        public Ladder((int r, int c) startPosition, (int r, int c) endPosition)
+        public int StartPosition { get; }
+        public int EndPosition { get; }
+        public Ladder(int startPosition, int endPosition)
         {
             StartPosition = startPosition;
             EndPosition = endPosition;
