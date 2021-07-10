@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Singleton
 {
-    public class SingletonLazyInitialization
+    public sealed class SingletonLazyInitialization
     {
         //! lazy initialization
         private static SingletonLazyInitialization _singleInstance;

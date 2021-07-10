@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Singleton
 {
-    public class DoubleCheckThreadSafeLazyInitialization
+    public sealed class DoubleCheckThreadSafeLazyInitialization
     {
         private static DoubleCheckThreadSafeLazyInitialization _instance;
 

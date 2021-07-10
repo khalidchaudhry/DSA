@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Singleton
 {
-    public class ThreadSafeSingletonLazyInitialization
+    public sealed class ThreadSafeSingletonLazyInitialization
     {
         private static ThreadSafeSingletonLazyInitialization _instance;
         private ThreadSafeSingletonLazyInitialization()
