@@ -8,6 +8,7 @@ namespace Tic_Tac_Toe.Services.Interfaces
 {
     public interface IPrint
     {
-        void Print<T>(T data);
+        void Print(string str);
+        void Print<T>(T[,] grid);
     }
 }

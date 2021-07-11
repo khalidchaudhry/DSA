@@ -8,8 +8,10 @@ namespace Tic_Tac_Toe.Services
 {
     public interface IInputProcessor<T>
     {
-        T[] Process(T input);
+        T[] TransformToArray(T input);
 
-        int[] Transform(T[] input);
+        int[] TransformToArray(T[] input);
+
+        char TransformToChar(string input);
     }
 }
