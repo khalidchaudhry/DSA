@@ -9,9 +9,24 @@ namespace Tic_Tac_Toe.Services
 {
     public class ConsolePrint : IPrint
     {
-        public void Print(int[,] data)
+
+        public void Print(string str)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(str);
+        }
+
+        public void Print<T>(T[,] grid)
+        {
+            int n = grid.GetLength(0);
+            for (int r = 0; r < n; ++r)
+            {
+                for (int c = 0; c < n; ++c)
+                {
+                    Console.Write($"{grid[r,c]} ");
+                }
+                Console.WriteLine();
+            }
+
         }
     }
 }

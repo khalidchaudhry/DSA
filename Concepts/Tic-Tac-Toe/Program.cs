@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tic_Tac_Toe.Entities;
+using Tic_Tac_Toe.Services;
 
 namespace Tic_Tac_Toe
 {
@@ -48,8 +50,13 @@ namespace Tic_Tac_Toe
                      Place(): void
               */
 
+            Board board = new Board(3);
+            ConsolePrint print = new ConsolePrint();
+            GameManager manager = new GameManager(board, print);
+            ConsoleInputProcessor consoleInputProcessor = new ConsoleInputProcessor(manager);
 
-
+            ApplicationRunner runner = new ApplicationRunner(consoleInputProcessor,manager);
+            runner.Run();
         }
     }
 }

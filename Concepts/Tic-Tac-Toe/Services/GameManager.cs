@@ -18,49 +18,48 @@ namespace Tic_Tac_Toe.Services
             _board = board;
         }
 
-        public void InitBoard(List<string[]> playerTokens)
+        public void InitBoard()
         {
-            List<Player> players = new List<Player>();
-            foreach (string[] playerToken in playerTokens)
-            {
-                players.Add(new Player(playerToken[0], Convert.ToChar(playerToken[1])));
-            }
-            _board.Initialize(_board.Size, players);
+            _board.Initialize(_board.Size);
         }
 
-        public bool MovePlayer(string playerName,int[] tokens)
+        public bool MovePlayer(char playerSymbol, int[] position)
         {
-            Position newPosition = new Position(tokens[0], tokens[1]);
-
-            foreach (var playerNamePosition in _board.PlayerNamePositions)
+            int r = position[0];
+            int c = position[1];
+            
+            if (r >= _board.Size || c >= _board.Size || _board.GetGirdCellValue(r, c) != '-')
             {
-                string currPlayerName = playerNamePosition.Key;
-                HashSet<Position> currPlayerPos = playerNamePosition.Value;
-
-                if (currPlayerPos.Contains(newPosition))
-                {
-                    _print.Print("Invalid Move");
-                    return false;
-                }
+                _print.Print("Invalid Move");
+                return false;
             }
-
-            _board.PlayerNamePositions[playerName].Add(newPosition);
-            _print.Print(_board.Grid);
-            return true;
-
-        }
-        public bool IsGameOver()
-        {
-            int count = 0;
-            foreach (var playerNamePosition  in _board.PlayerNamePositions)
-            {
-
-            }
+            _board.SetGirdCellValue(r, c, playerSymbol);
+            _print.Print(_board.GetGrid());
 
             return true;
         }
+        public bool IsGameOver(string playerName,int r,int c)
+        {
+            if (r >= _board.Size || c >= _board.Size)
+                return false;
 
-       
+            if (_board.IsWinner(r, c))
+            {
+                _print.Print($"{playerName} won the game");
+                return true;
+            }
+            else if (!_board.IsCellLeft())
+            {
+                _print.Print("exit");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
 
     }
 }

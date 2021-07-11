@@ -14,13 +14,13 @@ namespace Tic_Tac_Toe.Services
             _gameManager = gameManager;
         }
 
-        public string[] Process(string input)
+        public string[] TransformToArray(string input)
         {
             string[] tokens = input.Split(' ');
             return tokens;
-        } 
+        }
 
-        public int[] Transform(string[] input)
+        public int[] TransformToArray(string[] input)
         {
             int n = input.Length;
             int[] result = new int[n];
@@ -29,8 +29,11 @@ namespace Tic_Tac_Toe.Services
                 result[i] = Convert.ToInt32(input[i]);
             }
             return result;
-
         }
 
+        public char TransformToChar(string input)
+        {
+            return Convert.ToChar(input);
+        }
     }
 }
