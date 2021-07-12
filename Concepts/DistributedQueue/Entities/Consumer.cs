@@ -20,6 +20,5 @@ namespace DistributedQueue.Entities
         {
             ++Offset;
         }
-
     }
 }

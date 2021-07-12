@@ -18,7 +18,7 @@ namespace DistributedQueue.Entities
             _consumers = new List<Consumer>();
             _messages = new List<Message>();
         }
-        
+
         public void AddConsumer(Consumer consumer)
         {
             _consumers.Add(consumer);
@@ -32,6 +32,15 @@ namespace DistributedQueue.Entities
         public void AddMessage(Message message)
         {
             _messages.Add(message);
+        }
+
+        public int GetMessagesCount()
+        {
+            return _messages.Count;
+        }
+        public string GetMessage(int idx)
+        {
+            return _messages[idx].Text;
         }
 
     }
