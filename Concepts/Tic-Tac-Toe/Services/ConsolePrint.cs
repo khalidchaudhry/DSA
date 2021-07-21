@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tic_Tac_Toe.Services.Interfaces;
+using TicTacToe.Services.Interfaces;
 
-namespace Tic_Tac_Toe.Services
+namespace TicTacToe.Services
 {
     public class ConsolePrint : IPrint
     {

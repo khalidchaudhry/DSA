@@ -1,60 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tic_Tac_Toe.Entities;
+using TicTacToe.Entities;
 
-namespace Tic_Tac_Toe.Services
+
+namespace TicTacToe.Services
 {
     public class ApplicationRunner
     {
         private IInputProcessor<string> _inputProcessor;
         private GameManager _manager;
-        public ApplicationRunner(IInputProcessor<string> inputProcessor, GameManager manager)
+        private Board _board;
+        public ApplicationRunner(IInputProcessor<string> inputProcessor, Board board, GameManager manager)
         {
             _inputProcessor = inputProcessor;
             _manager = manager;
+            _board = board;
         }
 
         public void Run()
-        {
+        {          
+            
             Console.WriteLine("Enter piece symbol and player name");
             List<Player> players = new List<Player>();
-            for (int i = 1; i <= 2; ++i)
+            for (int i = 0; i <= 1; ++i)
             {
                 string inputForplayer = Console.ReadLine();
 
                 string[] playerTokens = _inputProcessor.TransformToArray(inputForplayer);
                 char playerSymbol = _inputProcessor.TransformToChar(playerTokens[0]);
                 string playerName = playerTokens[1];
-                
-                players.Add(new Player(playerName, playerSymbol));
+
+                players.Add(new Player(i, playerName, playerSymbol));
             }
 
-            _manager.InitBoard();
+            _manager.InitBoard(players);
 
             int totalPlayers = players.Count;
-            int playerNo = 0;
-            string currPlayerName = players[playerNo].PlayerName;
-            int[] pos = new int[] { 0, 0 };
+            int playerId = 0;
+            string currPlayerName = players[playerId].PlayerName;
+            int row = 0;
+            int col = 0;
 
-            while (!_manager.IsGameOver(currPlayerName,pos[0],pos[1]))
+            while (!_manager.IsGameOver(currPlayerName, row, col))
             {
                 string positions = Console.ReadLine();
                 string[] positionTokens = _inputProcessor.TransformToArray(positions);
-                pos = _inputProcessor.TransformToArray(positionTokens);
 
-                int currPlayerNo = playerNo % totalPlayers;
-                currPlayerName = players[currPlayerNo].PlayerName;
+                row = _inputProcessor.TransformToInt(positionTokens[0]);
+                col = _inputProcessor.TransformToInt(positionTokens[1]);
 
-                char currPlayerSymbol = players[currPlayerNo].PlayerSymbol;
+                int currPlayerId = playerId % totalPlayers;
+                currPlayerName = players[currPlayerId].PlayerName;
+                
 
-                bool isMoveSuccessful = _manager.MovePlayer(currPlayerSymbol, pos);
+                bool isMoveSuccessful = _manager.MovePlayer(currPlayerId, row,col);
 
                 if (isMoveSuccessful)
                 {
-                    ++playerNo;
+                    ++playerId;
                 }
             }
             Console.ReadLine();
