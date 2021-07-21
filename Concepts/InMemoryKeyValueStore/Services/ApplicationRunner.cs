@@ -12,8 +12,8 @@ namespace InMemoryKeyValueStore.Services
     {
 
         IPrint _print;
-        KeyValueStore _keyValueStore;
-        public ApplicationRunner(KeyValueStore store, IPrint print)
+        MemoryKeyValueStore _keyValueStore;
+        public ApplicationRunner(MemoryKeyValueStore store, IPrint print)
         {
             _keyValueStore = store;
             _print = print;
@@ -21,12 +21,12 @@ namespace InMemoryKeyValueStore.Services
 
         public void Run()
         {
-            List<(string attributeName, string attributeValue)> list = new List<(string attributeName, string attributeValue)>()
+            List<AttributePair> list = new List<AttributePair>()
             {
-                ("title","SDE-Bootcamp"),
-                ("price","30000.00"),
-                ("enrolled","false"),
-                ("estimated_time","30")
+                new AttributePair("title","SDE-Bootcamp"),
+                new AttributePair("price","30000.00"),
+                new AttributePair("enrolled","false"),
+                new AttributePair("estimated_time","30")
             };
             try
             {
@@ -41,12 +41,12 @@ namespace InMemoryKeyValueStore.Services
 
             _print.Print(_keyValueStore.Keys());
 
-            List<(string attributeName, string attributeValue)> list2 = new List<(string attributeName, string attributeValue)>()
+            List<AttributePair> list2 = new List<AttributePair>()
             {
-                ("title","SDE-KickStart"),
-                ("price","40000.00"),
-                ("enrolled","true"),
-                ("estimated_time","8")
+                new AttributePair("title","SDE-KickStart"),
+                new AttributePair("price","40000.00"),
+                new AttributePair("enrolled","true"),
+                new AttributePair("estimated_time","8")
             };
             try
             {
