@@ -11,31 +11,31 @@ namespace DistributedQueue
 {
     public class ConsumerWorker
     {
-        private Consumer _consumer;
+        private ConsoleConsumer _consumer;
         private Topic _topic;
         private int _offSet;
 
-        public ConsumerWorker(Consumer consumer, Topic topic)
+        public ConsumerWorker(ConsoleConsumer consumer, Topic topic)
         {
             _consumer = consumer;
             _topic = topic;
             _offSet = 0;
 
-            var thread = new Thread(new ThreadStart(OnStart));
-            thread.IsBackground = true;
+            var thread = new Thread(new ThreadStart(OnStart));            
             thread.Start();
 
         }
         private void OnStart()
         {
-
-            if (_offSet == _topic.GetMessagesCount())
+            while (true)
             {
-                return;
+                if (_offSet != _topic.GetMessagesCount())
+                {                    
+                    string msg=($"{_consumer.Name} received {_topic.GetMessage(_offSet)} ");
+                    _consumer.Consume(msg);
+                    ++_offSet;
+                }
             }
-            Console.WriteLine($"{_consumer.Name} received {_topic.GetMessage(_offSet)} ");
-            ++_offSet;            
         }
-
     }
 }

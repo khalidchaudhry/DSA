@@ -30,17 +30,19 @@ namespace DistributedQueue.Services
             producer1.PublishMessage("topic2", msg4);
             producer2.PublishMessage("topic1", msg5);
 
-            Consumer consumer1 = new Consumer("consumer1");
-            Consumer consumer2 = new Consumer("consumer2");
-            Consumer consumer3 = new Consumer("consumer3");
-            Consumer consumer4 = new Consumer("consumer4");
-            Consumer consumer5 = new Consumer("consumer5");
+            ConsolePrint print = new ConsolePrint();
+
+            ConsoleConsumer consumer1 = new ConsoleConsumer("consumer1", print);
+            ConsoleConsumer consumer2 = new ConsoleConsumer("consumer2", print);
+            ConsoleConsumer consumer3 = new ConsoleConsumer("consumer3", print);
+            ConsoleConsumer consumer4 = new ConsoleConsumer("consumer4", print);
+            ConsoleConsumer consumer5 = new ConsoleConsumer("consumer5", print);
 
             //Subscribing all consumers to topic 1
             //Make consumers 1, 3, and 4 subscribe to topic2
             //Make consumers 1, 3, and 4 subscribe to topic2
 
-            ConsumerWorker cosumer1Topic1Worker = new ConsumerWorker(consumer1,topic1);
+            ConsumerWorker cosumer1Topic1Worker = new ConsumerWorker(consumer1, topic1);
             ConsumerWorker cosumer2Topic1Worker = new ConsumerWorker(consumer2, topic1);
             ConsumerWorker cosumer3Topic1Worker = new ConsumerWorker(consumer3, topic1);
             ConsumerWorker cosumer4Topic1Worker = new ConsumerWorker(consumer4, topic1);

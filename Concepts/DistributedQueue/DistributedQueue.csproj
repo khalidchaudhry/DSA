@@ -42,15 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Interface\IConsumer.cs" />
     <Compile Include="Services\ApplicationRunner.cs" />
     <Compile Include="ConsumerWorker.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Producer.cs" />
     <Compile Include="Entities\Queue.cs" />
-    <Compile Include="Entities\Consumer.cs" />
+    <Compile Include="Entities\ConsoleConsumer.cs" />
     <Compile Include="Entities\Topic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ConsolePrint.cs" />
+    <Compile Include="Services\Interfaces\IPrint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
