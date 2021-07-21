@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tic_Tac_Toe.Entities;
-using Tic_Tac_Toe.Services.Interfaces;
+using TicTacToe.Entities;
+using TicTacToe.Services.Interfaces;
 
-namespace Tic_Tac_Toe.Services
+namespace TicTacToe.Services
 {
     public class GameManager
     {
@@ -18,27 +18,25 @@ namespace Tic_Tac_Toe.Services
             _board = board;
         }
 
-        public void InitBoard()
+        public void InitBoard(List<Player> players)
         {
-            _board.Initialize(_board.Size);
+            _board.Initialize(players);
         }
 
-        public bool MovePlayer(char playerSymbol, int[] position)
+        public bool MovePlayer(int playerId, int row,int col)
         {
-            int r = position[0];
-            int c = position[1];
-            
-            if (r >= _board.Size || c >= _board.Size || _board.GetGirdCellValue(r, c) != '-')
+          
+            if (row >= _board.Size || col >= _board.Size || _board.GetGirdCellValue(row, col) != '-')
             {
                 _print.Print("Invalid Move");
                 return false;
             }
-            _board.SetGirdCellValue(r, c, playerSymbol);
-            _print.Print(_board.GetGrid());
+            _board.SetGirdCellValue(playerId,row, col);
+            _print.Print(_board.GetGridData());
 
             return true;
         }
-        public bool IsGameOver(string playerName,int r,int c)
+        public bool IsGameOver(string playerName, int r, int c)
         {
             if (r >= _board.Size || c >= _board.Size)
                 return false;

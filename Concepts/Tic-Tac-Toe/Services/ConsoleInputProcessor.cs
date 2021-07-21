@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tic_Tac_Toe.Services
+namespace TicTacToe.Services
 {
     public class ConsoleInputProcessor : IInputProcessor<string>
     {
@@ -34,6 +34,11 @@ namespace Tic_Tac_Toe.Services
         public char TransformToChar(string input)
         {
             return Convert.ToChar(input);
+        }
+
+        public int TransformToInt(string input)
+        {
+            return Convert.ToInt32(input);
         }
     }
 }

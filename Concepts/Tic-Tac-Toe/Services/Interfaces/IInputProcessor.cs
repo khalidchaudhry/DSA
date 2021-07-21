@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tic_Tac_Toe.Services
+namespace TicTacToe.Services
 {
     public interface IInputProcessor<T>
     {
@@ -13,5 +13,7 @@ namespace Tic_Tac_Toe.Services
         int[] TransformToArray(T[] input);
 
         char TransformToChar(string input);
+
+        int  TransformToInt(string input);
     }
 }

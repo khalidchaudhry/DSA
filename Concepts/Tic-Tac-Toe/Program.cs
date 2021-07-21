@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tic_Tac_Toe.Entities;
-using Tic_Tac_Toe.Services;
+using TicTacToe.Entities;
+using TicTacToe.Services;
 
-namespace Tic_Tac_Toe
+namespace TicTacToe
 {
     class Program
     {
@@ -55,7 +55,7 @@ namespace Tic_Tac_Toe
             GameManager manager = new GameManager(board, print);
             ConsoleInputProcessor consoleInputProcessor = new ConsoleInputProcessor(manager);
 
-            ApplicationRunner runner = new ApplicationRunner(consoleInputProcessor,manager);
+            ApplicationRunner runner = new ApplicationRunner(consoleInputProcessor, board, manager);
             runner.Run();
         }
     }
