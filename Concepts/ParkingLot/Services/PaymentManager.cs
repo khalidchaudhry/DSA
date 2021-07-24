@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParkingLot
+namespace ParkingLotSystem.Services
 {
-    enum SlotType
+    public class PaymentManager
     {
-        Car=0,
-        Bike=1,
-        Truck=2
     }
 }

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParkingLot.Entities
+namespace ParkingLotSystem
 {
-    public class FloorSlot
+    public enum SlotType
     {
-        private int _floorSlotId;
-        private SlotType _slotType;
-
+        NONE=-1,
+        CAR =0,
+        BIKE=1,
+        TRUCK=2
     }
 }

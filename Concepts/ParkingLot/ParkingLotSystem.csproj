@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{34A35194-65A7-4250-9EEA-6084E1FA8DFF}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ParkingLot</RootNamespace>
-    <AssemblyName>ParkingLot</AssemblyName>
+    <RootNamespace>ParkingLotSystem</RootNamespace>
+    <AssemblyName>ParkingLotSystem</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,17 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Floor.cs" />
-    <Compile Include="Entities\FloorSlot.cs" />
+    <Compile Include="DisplayType.cs" />
     <Compile Include="Entities\ParkingLot.cs" />
+    <Compile Include="Entities\Ticket.cs" />
+    <Compile Include="Entities\Vehicle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ApplicationRunner.cs" />
+    <Compile Include="Services\ConsoleInputProcessor.cs" />
     <Compile Include="Services\ConsolePrint.cs" />
+    <Compile Include="Services\Convertor.cs" />
+    <Compile Include="Services\Interfaces\IInputProcessor.cs" />
     <Compile Include="Services\Interfaces\IPrint.cs" />
-    <Compile Include="SlotTypes.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="Services\Interfaces\IValidator.cs" />
+    <Compile Include="Services\IParkingManager.cs" />
+    <Compile Include="Services\ParkingManager.cs" />
+    <Compile Include="Services\PaymentManager.cs" />
+    <Compile Include="Services\TicketManager.cs" />
+    <Compile Include="Services\Validator.cs" />
+    <Compile Include="SlotType.cs" />
+    <Compile Include="Utils\Constants.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

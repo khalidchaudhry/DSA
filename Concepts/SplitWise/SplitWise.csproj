@@ -51,6 +51,7 @@
     <Compile Include="Services\ExactSplitStrategy.cs" />
     <Compile Include="Entities\Expense.cs" />
     <Compile Include="Services\Interfaces\IBalanceViewer.cs" />
+    <Compile Include="Services\Interfaces\IValidator.cs" />
     <Compile Include="Services\PercentagSplitStrategy.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserBalance.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Services\InputProcessor.cs" />
     <Compile Include="Services\Interfaces\IInputProcessor.cs" />
     <Compile Include="Services\Interfaces\ISplitStrategy.cs" />
+    <Compile Include="Services\Validator.cs" />
     <Compile Include="Util\Constants.cs" />
     <Compile Include="Util\DoubleHelper.cs" />
   </ItemGroup>

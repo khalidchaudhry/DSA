@@ -129,8 +129,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singleton", "Singleton\Singleton.csproj", "{68E45C0D-F612-4FB1-A52B-7BF036A74464}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ParkingLot", "ParkingLot", "{9F4E6C1F-E8B2-43B6-AAE8-74BD7D43861D}"
+	ProjectSection(SolutionItems) = preProject
+		SplitWise\Services\Interfaces\IValidator.cs = SplitWise\Services\Interfaces\IValidator.cs
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingLot", "ParkingLot\ParkingLot.csproj", "{34A35194-65A7-4250-9EEA-6084E1FA8DFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingLotSystem", "ParkingLot\ParkingLotSystem.csproj", "{34A35194-65A7-4250-9EEA-6084E1FA8DFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

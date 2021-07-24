@@ -1,10 +1,11 @@
+using ParkingLotSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParkingLot
+namespace ParkingLotSystem
 {
     class Program
     {
@@ -57,20 +58,21 @@ namespace ParkingLot
 
             /*
                Entities : 
-               ParkingLot                    
+               ParkingLotSystem                    
                     Consists of floors
                     HashSet<Floor> Floors
                     
 
-               Floor
+               ParkingFloor
                    FloorId   from 1 to n 
                    FreeSlot: HashSet<FloorSlots> 
-                   Occupied Slots 
-                   Consists of floor slots 
+                   Occupied Slots : HashSet<FloorSlots> 
+                   Consists of  slots 
                FloorSlot
                    Type
                    SlotId: numbered from 1 to n 
                Ticket
+                  TicketNumber
                   Ticket has Parking Slot and floor number on it           
                   ParingLotId:
                   FloorNumber:
@@ -85,19 +87,21 @@ namespace ParkingLot
                     Car, Bike,Truck
 
                Services:
-                   ParkingService
+                   Parking Manager
                            Will Park/UnPark 
-                   Ticketing Service
+                   Ticket Manager
                            Will issue/collect ticket 
-                   Payment Service
+                   Payment Manager
                            Will charge user based on time spent  in parking lot
 
               
              */
-
-
-
-
+            ConsoleInputProcessor consoleInputProcessor = new ConsoleInputProcessor();
+            Validator validator = new Validator();
+            ConsolePrint consolePrint = new ConsolePrint();
+            ParkingManager parkingManager = new ParkingManager(consolePrint);
+            ApplicationRunner applicationRunner = new ApplicationRunner(consoleInputProcessor, validator, consolePrint, parkingManager);
+            applicationRunner.Run();
         }
     }
 }
