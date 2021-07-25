@@ -9,8 +9,7 @@ namespace TicTacToe.Entities
 {
     public class Board
     {
-        private Dictionary<int, Player> _playerIdData;
-        private List<Player> _players;
+        private Dictionary<int, PlayerBoardData> _playerIdData;       
         private char[,] _grid;
         private int _occupiedCellsCount;
 
@@ -21,15 +20,14 @@ namespace TicTacToe.Entities
         {
             Size = size;
             _grid = new char[Size, Size];
+            _playerIdData = new Dictionary<int, PlayerBoardData>();
         }
 
-        public void Initialize(List<Player> players)
-        {
-            _players = players;
-            _playerIdData = new Dictionary<int, Player>();
-            foreach (Player player in players)
+        public void Initialize(List<PlayerInfo> playersInfo)
+        {                       
+            foreach (PlayerInfo playerInfo in playersInfo)
             {
-                _playerIdData.Add(player.PlayerId, player);
+                _playerIdData.Add(playerInfo.PlayerId,new PlayerBoardData(Size));
             }
 
             for (int r = 0; r < Size; ++r)
@@ -60,20 +58,21 @@ namespace TicTacToe.Entities
             return _grid[r, c];
         }
 
-        public void SetGirdCellValue(int playerId, int r, int c)
+        public void SetGirdCellValue(PlayerInfo playerInfo, int r, int c)
         {
-            _grid[r, c] = _playerIdData[playerId].PlayerSymbol;
+            _grid[r, c] = playerInfo.PlayerSymbol;
             ++_occupiedCellsCount;
 
-            ++_playerIdData[playerId].RowCount;
-            ++_playerIdData[playerId].ColumnCount;
+            ++_playerIdData[playerInfo.PlayerId].RowCount[r];
+            ++_playerIdData[playerInfo.PlayerId].RowCount[c];
+
             if (r == c)
             {
-                ++_playerIdData[playerId].DiagonalCount;
+                ++_playerIdData[playerInfo.PlayerId].DiagonalCount;
             }
             if (r == Size - 1)
             {
-                ++_playerIdData[playerId].AntiDiagonalCount;
+                ++_playerIdData[playerInfo.PlayerId].AntiDiagonalCount;
             }
         }
 
@@ -81,7 +80,7 @@ namespace TicTacToe.Entities
         {
             foreach (var keyValue in _playerIdData)
             {
-                if (keyValue.Value.RowCount == Size || keyValue.Value.ColumnCount == Size ||
+                if (keyValue.Value.RowCount[r]==Size || keyValue.Value.RowCount[r] == Size ||
                     keyValue.Value.DiagonalCount == Size || keyValue.Value.AntiDiagonalCount == Size)
                 {
                     return true;
@@ -93,6 +92,19 @@ namespace TicTacToe.Entities
         {
             return _occupiedCellsCount != (Size * Size);
         }
+        private class PlayerBoardData
+        {
+            public int[] RowCount { get; set; }
+            public int[] ColumnCount { get; set; }
+            public int DiagonalCount { get; set; }
+            public int AntiDiagonalCount { get; set; }
+            public PlayerBoardData(int size)
+            {
+                RowCount = new int[size];
+                ColumnCount = new int[size];
+            }
+        }
+
 
     }
 

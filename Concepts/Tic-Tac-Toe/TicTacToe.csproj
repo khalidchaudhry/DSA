@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Board.cs" />
-    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\PlayerInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApplicationRunner.cs" />

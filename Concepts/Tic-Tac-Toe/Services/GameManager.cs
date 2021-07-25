@@ -18,12 +18,12 @@ namespace TicTacToe.Services
             _board = board;
         }
 
-        public void InitBoard(List<Player> players)
+        public void InitBoard(List<PlayerInfo> playersInfo)
         {
-            _board.Initialize(players);
+            _board.Initialize(playersInfo);
         }
 
-        public bool MovePlayer(int playerId, int row,int col)
+        public bool MovePlayer(PlayerInfo playerInfo, int row,int col)
         {
           
             if (row >= _board.Size || col >= _board.Size || _board.GetGirdCellValue(row, col) != '-')
@@ -31,7 +31,7 @@ namespace TicTacToe.Services
                 _print.Print("Invalid Move");
                 return false;
             }
-            _board.SetGirdCellValue(playerId,row, col);
+            _board.SetGirdCellValue(playerInfo, row, col);
             _print.Print(_board.GetGridData());
 
             return true;
