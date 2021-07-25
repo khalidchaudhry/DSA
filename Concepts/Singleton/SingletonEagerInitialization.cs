@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Singleton
 {
-    public  class SingletonEagerInitialization
+    public sealed class SingletonEagerInitialization
     {
        //! Eager initialization
         private static readonly SingletonEagerInitialization _singleInstance =new SingletonEagerInitialization();

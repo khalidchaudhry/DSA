@@ -11,7 +11,7 @@ namespace SnakeAndLadder.Entities
         public int Size { get; }
         public Dictionary<int, Snake> HeadPosSnakes { get; }
         public Dictionary<int, Ladder> StartPosLadder { get; }
-        public Dictionary<string, int> PlayerPosition { get; }
+        public Dictionary<string, int> PlayerPosition { get; private set; }
 
         public Board(int size)
         {
