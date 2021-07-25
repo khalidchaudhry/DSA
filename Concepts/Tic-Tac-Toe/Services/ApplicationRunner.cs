@@ -18,10 +18,10 @@ namespace TicTacToe.Services
         }
 
         public void Run()
-        {          
-            
+        {
+
             Console.WriteLine("Enter piece symbol and player name");
-            List<Player> players = new List<Player>();
+            List<PlayerInfo> playersInfo = new List<PlayerInfo>();
             for (int i = 0; i <= 1; ++i)
             {
                 string inputForplayer = Console.ReadLine();
@@ -30,18 +30,18 @@ namespace TicTacToe.Services
                 char playerSymbol = _inputProcessor.TransformToChar(playerTokens[0]);
                 string playerName = playerTokens[1];
 
-                players.Add(new Player(i, playerName, playerSymbol));
+                playersInfo.Add(new PlayerInfo(i, playerName, playerSymbol));
             }
 
-            _manager.InitBoard(players);
+            _manager.InitBoard(playersInfo);
 
-            int totalPlayers = players.Count;
+            int totalPlayers = playersInfo.Count;
             int playerId = 0;
-            string currPlayerName = players[playerId].PlayerName;
+            string currPlayerName = playersInfo[playerId].PlayerName;
             int row = 0;
             int col = 0;
 
-            while (!_manager.IsGameOver(currPlayerName, row, col))
+            do
             {
                 string positions = Console.ReadLine();
                 string[] positionTokens = _inputProcessor.TransformToArray(positions);
@@ -50,16 +50,17 @@ namespace TicTacToe.Services
                 col = _inputProcessor.TransformToInt(positionTokens[1]);
 
                 int currPlayerId = playerId % totalPlayers;
-                currPlayerName = players[currPlayerId].PlayerName;
-                
+                currPlayerName = playersInfo[currPlayerId].PlayerName;
 
-                bool isMoveSuccessful = _manager.MovePlayer(currPlayerId, row,col);
+
+                bool isMoveSuccessful = _manager.MovePlayer(playersInfo[currPlayerId], row, col);
 
                 if (isMoveSuccessful)
                 {
                     ++playerId;
                 }
-            }
+            } while (!_manager.IsGameOver(currPlayerName, row, col));
+
             Console.ReadLine();
 
         }
