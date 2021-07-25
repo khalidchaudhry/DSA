@@ -22,16 +22,21 @@ namespace LeetCodeDivideAndConquer.Hard
             int hi = n; 
             while (lo <= hi)
             {
+                //! Find the pivot point in small array 
                 int i = lo + ((hi - lo) / 2); //! index for small 
 
+                //! Any pivot point in small array has a corresponding point on large array 
+                //! that divides the total number of elments into two 
                 int j = partitionSize - i; //! index for big 
 
+                //! Find the indexes 
                 int bigLeft = j == 0 ? int.MinValue : big[j - 1];
                 int smallLeft = i == 0 ? int.MinValue : small[i - 1];
 
                 int bigRight = j == m ? int.MaxValue : big[j];
                 int smallRight = i == n ? int.MaxValue : small[i];
 
+                //!If the partion is correct
                 if (bigRight >= smallLeft && smallRight >= bigLeft)
                 {
                     if ((m + n) % 2 == 1)
@@ -43,6 +48,7 @@ namespace LeetCodeDivideAndConquer.Hard
                         return (Math.Max(bigLeft, smallLeft) + Math.Min(bigRight, smallRight)) / (double)2;
                     }
                 }
+                //!Determine the direction where we need to go  
                 else if (smallLeft > bigRight)
                 {
                     hi = i - 1;
