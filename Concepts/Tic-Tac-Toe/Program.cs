@@ -55,7 +55,7 @@ namespace TicTacToe
             GameManager manager = new GameManager(board, print);
             ConsoleInputProcessor consoleInputProcessor = new ConsoleInputProcessor(manager);
 
-            ApplicationRunner runner = new ApplicationRunner(consoleInputProcessor, board, manager);
+            ApplicationRunner runner = new ApplicationRunner(consoleInputProcessor, board, manager, print);
             runner.Run();
         }
     }

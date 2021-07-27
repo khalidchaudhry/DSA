@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TicTacToe.Entities;
-
+using TicTacToe.Services.Interfaces;
 
 namespace TicTacToe.Services
 {
@@ -10,17 +10,19 @@ namespace TicTacToe.Services
         private IInputProcessor<string> _inputProcessor;
         private GameManager _manager;
         private Board _board;
-        public ApplicationRunner(IInputProcessor<string> inputProcessor, Board board, GameManager manager)
+        private IPrint _print;
+        public ApplicationRunner(IInputProcessor<string> inputProcessor, Board board, GameManager manager, IPrint print)
         {
             _inputProcessor = inputProcessor;
             _manager = manager;
             _board = board;
+            _print = print;
         }
 
         public void Run()
         {
 
-            Console.WriteLine("Enter piece symbol and player name");
+            _print.Print("Enter piece symbol and player name");
             List<PlayerInfo> playersInfo = new List<PlayerInfo>();
             for (int i = 0; i <= 1; ++i)
             {
@@ -37,7 +39,7 @@ namespace TicTacToe.Services
 
             int totalPlayers = playersInfo.Count;
             int playerId = 0;
-            string currPlayerName = playersInfo[playerId].PlayerName;
+            PlayerInfo currPlayerInfo = playersInfo[playerId];
             int row = 0;
             int col = 0;
 
@@ -49,17 +51,19 @@ namespace TicTacToe.Services
                 row = _inputProcessor.TransformToInt(positionTokens[0]);
                 col = _inputProcessor.TransformToInt(positionTokens[1]);
 
-                int currPlayerId = playerId % totalPlayers;
-                currPlayerName = playersInfo[currPlayerId].PlayerName;
-
-
-                bool isMoveSuccessful = _manager.MovePlayer(playersInfo[currPlayerId], row, col);
-
-                if (isMoveSuccessful)
+                if (Validator.IsInValidMove(row, col, _board))
                 {
-                    ++playerId;
+                    _print.Print("Invalid Move");
+                    continue;
                 }
-            } while (!_manager.IsGameOver(currPlayerName, row, col));
+
+                int currPlayerId = playerId % totalPlayers;
+                currPlayerInfo = playersInfo[currPlayerId];
+
+                _manager.MovePlayer(playersInfo[currPlayerId], row, col);
+                ++playerId;
+
+            } while (!_manager.IsGameOver(currPlayerInfo, row, col));
 
             Console.ReadLine();
 

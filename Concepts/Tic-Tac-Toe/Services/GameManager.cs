@@ -23,27 +23,16 @@ namespace TicTacToe.Services
             _board.Initialize(playersInfo);
         }
 
-        public bool MovePlayer(PlayerInfo playerInfo, int row,int col)
+        public void MovePlayer(PlayerInfo playerInfo, int row, int col)
         {
-          
-            if (row >= _board.Size || col >= _board.Size || _board.GetGirdCellValue(row, col) != '-')
-            {
-                _print.Print("Invalid Move");
-                return false;
-            }
             _board.SetGirdCellValue(playerInfo, row, col);
-            _print.Print(_board.GetGridData());
-
-            return true;
+            _print.Print(_board.GetGridData());           
         }
-        public bool IsGameOver(string playerName, int r, int c)
+        public bool IsGameOver(PlayerInfo playerInfo, int r, int c)
         {
-            if (r >= _board.Size || c >= _board.Size)
-                return false;
-
-            if (_board.IsWinner(r, c))
+            if (_board.IsWinner(playerInfo.PlayerId, r, c))
             {
-                _print.Print($"{playerName} won the game");
+                _print.Print($"{playerInfo.PlayerName} won the game");
                 return true;
             }
             else if (!_board.IsCellLeft())

@@ -52,6 +52,7 @@
     <Compile Include="Services\ConsoleInputProcessor.cs" />
     <Compile Include="Services\Interfaces\IPrint.cs" />
     <Compile Include="Services\ConsolePrint.cs" />
+    <Compile Include="Services\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

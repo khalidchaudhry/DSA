@@ -9,7 +9,7 @@ namespace TicTacToe.Entities
 {
     public class Board
     {
-        private Dictionary<int, PlayerBoardData> _playerIdData;       
+        private Dictionary<int, PlayerBoardData> _playerIdData;
         private char[,] _grid;
         private int _occupiedCellsCount;
 
@@ -24,10 +24,10 @@ namespace TicTacToe.Entities
         }
 
         public void Initialize(List<PlayerInfo> playersInfo)
-        {                       
+        {
             foreach (PlayerInfo playerInfo in playersInfo)
             {
-                _playerIdData.Add(playerInfo.PlayerId,new PlayerBoardData(Size));
+                _playerIdData.Add(playerInfo.PlayerId, new PlayerBoardData(Size));
             }
 
             for (int r = 0; r < Size; ++r)
@@ -76,16 +76,15 @@ namespace TicTacToe.Entities
             }
         }
 
-        public bool IsWinner(int r, int c)
+        public bool IsWinner(int playerId, int r, int c)
         {
-            foreach (var keyValue in _playerIdData)
+
+            if (_playerIdData[playerId].RowCount[r] == Size || _playerIdData[playerId].ColumnCount[c] == Size ||
+                _playerIdData[playerId].DiagonalCount == Size || _playerIdData[playerId].AntiDiagonalCount == Size)
             {
-                if (keyValue.Value.RowCount[r]==Size || keyValue.Value.RowCount[r] == Size ||
-                    keyValue.Value.DiagonalCount == Size || keyValue.Value.AntiDiagonalCount == Size)
-                {
-                    return true;
-                }
+                return true;
             }
+
             return false;
         }
         public bool IsCellLeft()
