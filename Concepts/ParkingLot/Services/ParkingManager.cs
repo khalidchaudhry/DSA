@@ -43,7 +43,7 @@ namespace ParkingLotSystem.Services
         public void Park(SlotType slotType, string registrationNumber, string color)
         {
 
-            ParkingLot.FloorSlot floorSlot = _parkingLot.AcquireFreeSlot(slotType);
+            ParkingLot.AcquiredFloorSlot floorSlot = _parkingLot.AcquireFreeSlot(slotType);
             if (floorSlot == null)
             {
                 _print.Print("Parking Lot Full");
