@@ -21,47 +21,47 @@ namespace ElevatorSystem.Services
 
         public ElevatorService()
         {
+            _elevator = new Elevator();
+
             _currentJobs = new SortedSet<int>();
             _upToDownJobs = new SortedSet<int>();
             _downToUpJobs = new SortedSet<int>();
         }
-        
+
 
         public void Move(int floorId)
         {
+            Console.WriteLine($"Elevator state:{State.MOVING}");
             Thread.Sleep(2000);
+            _elevator.CurrentState = State.STOPPED;
+            Console.WriteLine($"Elevator state:{State.STOPPED}");
             Console.WriteLine($"Reached at floor{floorId}");
-            
         }
         public bool HasInstructions()
         {
-            return _upToDownJobs.Count > 0 || _downToUpJobs.Count > 0;
+            bool hasInstructions = _upToDownJobs.Count > 0 || _downToUpJobs.Count > 0;
+            if (!hasInstructions)
+            {
+                _elevator.CurrentState = State.IDLE;
+                Console.WriteLine($"Elevator state:{State.IDLE}");
+            }
+            return hasInstructions;
         }
 
 
-        //TODO: Make the code compact and avid repitation 
+        //TODO: Make the code compact and avoid repitation 
         public int NextFloor()
         {
-            if (_currentJobs.Count > 0)
-            {
-                int first = _currentJobs.First();
-                _currentJobs.Remove(first);
-                return first;
-            }
-            if (_downToUpJobs.Count > 0)
-            {
-                _currentJobs = _downToUpJobs;
-                int first = _currentJobs.First();
-                _currentJobs.Remove(first);
-                return first;
-            }
-            else
-            {
-                _currentJobs = _upToDownJobs;
-                int first = _currentJobs.First();
-                _currentJobs.Remove(first);
-                return first;
-            }
+            //! If current jobs count > 0 assign _currentJobs  to _currentJobs
+            //! If _downToUpJobs>0  assign _currentJobs  to _downToUpJobs
+            //! else  _upToDownJobs>0 assign _currentJobs  to _upToDownJobs
+            _currentJobs = _currentJobs.Count > 0 ? _currentJobs :
+                                                   _downToUpJobs.Count > 0 ? _downToUpJobs :
+                                                                             _upToDownJobs;
+
+            int first = _currentJobs.First();
+            _currentJobs.Remove(first);
+            return first;
         }
         public void AddDownToUp(int floor)
         {
@@ -76,10 +76,7 @@ namespace ElevatorSystem.Services
         public void AddUpToDown(int floor)
         {
             _upToDownJobs.Add(floor);
-
         }
-
-
 
         /// <summary>
         //! Person inside the elevator and press button inside the elevator  
@@ -98,7 +95,7 @@ namespace ElevatorSystem.Services
             }
             else if (_elevator.CurrentDirection == Direction.Down)
             {
-               // ! if elevator going down and user also wants to go down 
+                // ! if elevator going down and user also wants to go down 
                 if (internalRequest.DestinationFloor <= _elevator.CurrentFloor)
                     AddUpToDown(internalRequest.DestinationFloor);
                 else
@@ -119,14 +116,14 @@ namespace ElevatorSystem.Services
             //! person  wants to go in  opposite direction where elevator is heading
             if (externalRequest.DirectionToGo == Direction.Up)
             {
-              AddDownToUp(externalRequest.Source);
+                AddDownToUp(externalRequest.Source);
             }
             //! If elevator car is coming from up to down (i.e. higher floor than user is on) and 
             //! person also wants to go in the same direction where elevator is heading  
-            else if(externalRequest.DirectionToGo==Direction.Down)
+            else if (externalRequest.DirectionToGo == Direction.Down)
             {
-              AddUpToDown(externalRequest.Source);
+                AddUpToDown(externalRequest.Source);
             }
-        }        
+        }
     }
 }

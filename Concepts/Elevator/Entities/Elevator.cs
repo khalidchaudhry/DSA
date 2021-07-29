@@ -17,17 +17,23 @@ namespace ElevatorSystem.Entities
         public int CurrentFloor { get; private set; }
         public Direction CurrentDirection { get; private set; }
 
-        public State CurrentState { get; private set; }
+        public State CurrentState { get; set; }
 
-        public Elevator(int maxLoad, int noOfPassengers, int maxSpeed)
+        public Elevator()
         {
-            _maxLoad = maxLoad;
-            _noOfPassengers = noOfPassengers;
-            _maxSpeed = maxSpeed;          
             CurrentFloor = 0;
             CurrentDirection = Direction.Up;
             CurrentState = State.IDLE;
 
+        }
+        public Elevator(int maxLoad, int noOfPassengers, int maxSpeed):this()
+        {
+            _maxLoad = maxLoad;
+            _noOfPassengers = noOfPassengers;
+            _maxSpeed = maxSpeed;
+           
         }     
+
+
     }
 }

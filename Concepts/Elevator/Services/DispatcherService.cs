@@ -13,10 +13,11 @@ namespace ElevatorSystem.Services
     public class DispatcherService
     {
         private ElevatorService _elevatorService;
-
+        private readonly object _floorLock = new object();
         public DispatcherService(ElevatorService elevatorService)
         {
             _elevatorService = elevatorService;
+            _floorLock = new object();
             var thread = new Thread(new ThreadStart(Run));
             thread.Start();
 
@@ -25,11 +26,14 @@ namespace ElevatorSystem.Services
         {
             while (true)
             {
-                if (_elevatorService.HasInstructions())
+                lock (_floorLock)
                 {
-                    int nextFloor=_elevatorService.NextFloor();
-                    _elevatorService.Move(nextFloor);
+                    if (_elevatorService.HasInstructions())
+                    {
 
+                        int nextFloor = _elevatorService.NextFloor();
+                        _elevatorService.Move(nextFloor);
+                    }
                 }
             }
         }
