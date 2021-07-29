@@ -24,7 +24,7 @@ namespace SnakeAndLadder.Services
 
         public void Run()
         {            
-            Dictionary<string, int> playerPosition = _board.PlayerPosition;
+            Dictionary<string, int> playerPosition = _board.PlayerPosition;          
             int totalPlayers = _board.PlayerPosition.Count;
             List<string> players = playerPosition.Keys.ToList();
             int playerNo = 0;
