@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ElevatorSystem.Services
 {
+    /// <summary>
+    // !Class is responsible for instructing the elevator service to move at certain floor
+    /// </summary>
     public class DispatcherService
     {
         private ElevatorService _elevatorService;
@@ -20,8 +23,16 @@ namespace ElevatorSystem.Services
         }
         public void Run()
         {
-            //! Start the elevator 
-            _elevatorService.StartElevator();
+            while (true)
+            {
+                if (_elevatorService.HasInstructions())
+                {
+                    int nextFloor=_elevatorService.NextFloor();
+                    _elevatorService.Move(nextFloor);
+
+                }
+            }
         }
+
     }
 }

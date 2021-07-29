@@ -12,46 +12,22 @@ namespace ElevatorSystem.Entities
 
         private int _maxLoad;
         private int _noOfPassengers;
-        private int _maxSpeed;
-
-        private SortedSet<int> _currentJobs;
-
-        private SortedSet<int> _upToDownJobs;
-
-        private SortedSet<int> _downToUpJobs;
+        private int _maxSpeed;       
 
         public int CurrentFloor { get; private set; }
         public Direction CurrentDirection { get; private set; }
 
         public State CurrentState { get; private set; }
 
-        public Elevator(int maxLoad,int noOfPassengers,int maxSpeed)
+        public Elevator(int maxLoad, int noOfPassengers, int maxSpeed)
         {
             _maxLoad = maxLoad;
             _noOfPassengers = noOfPassengers;
-            _maxSpeed = maxSpeed;
-            _currentJobs = new SortedSet<int>();
-            _upToDownJobs = new SortedSet<int>();
-            _downToUpJobs = new SortedSet<int>();
+            _maxSpeed = maxSpeed;          
             CurrentFloor = 0;
             CurrentDirection = Direction.Up;
             CurrentState = State.IDLE;
-            
-        }
-        public void AddDownToUp(int floor)
-        {
-            _downToUpJobs.Add(floor);
-        }
 
-        public int GetCurrentJobsCount()
-        {
-            return _currentJobs.Count;
-        }
-
-        public void AddUpToDown(int floor)
-        {
-            _upToDownJobs.Add(floor);
-
-        }
+        }     
     }
 }
