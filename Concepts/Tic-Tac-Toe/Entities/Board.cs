@@ -70,6 +70,11 @@ namespace TicTacToe.Entities
             {
                 ++_playerIdData[playerInfo.PlayerId].DiagonalCount;
             }
+
+            //!To calculate anti-diagonal , we need to find horizontal distance and vertical distance 
+           //! if horizontal distance==verticial distance then point lies on anti-diagonal 
+           // ! Horizontal distance=row+1 
+           //! Vertical distance=Size -column
             if (r + 1 == Size - c)
             {
                 ++_playerIdData[playerInfo.PlayerId].AntiDiagonalCount;
