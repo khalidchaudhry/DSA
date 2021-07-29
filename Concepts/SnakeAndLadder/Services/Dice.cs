@@ -17,7 +17,7 @@ namespace SnakeAndLadder.Services
         }
         public int Roll()
         {
-            return _random.Next(MaxValue+1);
+            return _random.Next(1,MaxValue+1);
         }
 
     }
