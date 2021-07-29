@@ -70,7 +70,7 @@ namespace TicTacToe.Entities
             {
                 ++_playerIdData[playerInfo.PlayerId].DiagonalCount;
             }
-            if (r == Size - 1)
+            if (r + 1 == Size - c)
             {
                 ++_playerIdData[playerInfo.PlayerId].AntiDiagonalCount;
             }
