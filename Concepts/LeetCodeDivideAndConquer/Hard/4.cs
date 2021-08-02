@@ -10,7 +10,7 @@ namespace LeetCodeDivideAndConquer.Hard
     {
         public double FindMedianSortedArrays(int[] nums1, int[] nums2)
         {
-
+            
             int[] big = nums1.Length > nums2.Length ? nums1 : nums2;
             int[] small = nums1.Length > nums2.Length ? nums2 : nums1;
 
@@ -23,18 +23,23 @@ namespace LeetCodeDivideAndConquer.Hard
             while (lo <= hi)
             {
                 //! Find the pivot point in small array 
+                //! We choose small array for partitioning because cut will always be deterministic 
                 int i = lo + ((hi - lo) / 2); //! index for small 
 
                 //! Any pivot point in small array has a corresponding point on large array 
                 //! that divides the total number of elments into two 
                 int j = partitionSize - i; //! index for big 
 
-                //! Find the indexes 
-                int bigLeft = j == 0 ? int.MinValue : big[j - 1];
-                int smallLeft = i == 0 ? int.MinValue : small[i - 1];
+                //! Find the indexes
 
-                int bigRight = j == m ? int.MaxValue : big[j];
+                int smallLeft = i == 0 ? int.MinValue : small[i - 1];
+                //! Right side will contain 1 more element  hence i is not i+1
                 int smallRight = i == n ? int.MaxValue : small[i];
+
+
+                int bigLeft = j == 0 ? int.MinValue : big[j - 1];
+                //! Right side will contain 1 more element  hence j is not j+1
+                int bigRight = j == m ? int.MaxValue : big[j];
 
                 //!If the partion is correct
                 if (bigRight >= smallLeft && smallRight >= bigLeft)
