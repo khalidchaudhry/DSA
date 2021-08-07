@@ -1,8 +1,10 @@
+using ElevatorSystem.Entities;
 using ElevatorSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ElevatorSystem
@@ -11,27 +13,20 @@ namespace ElevatorSystem
     {
         static void Main(string[] args)
         {
-            
 
             ElevatorService elevatorService = new ElevatorService();
 
-            DispatcherService service = new DispatcherService(elevatorService);
+            DispatcherService dispatcherService = new DispatcherService(elevatorService);
 
-            elevatorService.AddDownToUp(9);
-            //elevatorService.AddDownToUp(2);
-            //elevatorService.AddDownToUp(3);
-            //elevatorService.AddDownToUp(4);
-            //elevatorService.AddDownToUp(5);
+            ExternalRequest externalRequest = new ExternalRequest(Direction.Up, 0);
+            elevatorService.ProcesExternal(externalRequest);
 
-            elevatorService.AddUpToDown(0);
-            //elevatorService.AddUpToDown(9);
-            //elevatorService.AddUpToDown(3);
-            //elevatorService.AddUpToDown(4);
-            //elevatorService.AddUpToDown(5);
+            InternalRequest internalRequest = new InternalRequest(9);
+            elevatorService.ProcessInternal(internalRequest);
+                       
+            Thread thread = new Thread(new ThreadStart(dispatcherService.Run));
 
-            service.Run();
-
-
+            thread.Start();
         }
     }
 }

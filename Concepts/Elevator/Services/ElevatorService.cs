@@ -1,4 +1,5 @@
 ﻿using ElevatorSystem.Entities;
+using ElevatorSystem.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace ElevatorSystem.Services
 {
 
-    public class ElevatorService
+    public class ElevatorService: IElevatorService
     {
         private Elevator _elevator;
 
@@ -63,17 +64,17 @@ namespace ElevatorSystem.Services
             _currentJobs.Remove(first);
             return first;
         }
-        public void AddDownToUp(int floor)
+        private void AddDownToUp(int floor)
         {
             _downToUpJobs.Add(floor);
         }
 
-        public int GetCurrentJobsCount()
+        private int GetCurrentJobsCount()
         {
             return _currentJobs.Count;
         }
 
-        public void AddUpToDown(int floor)
+        private void AddUpToDown(int floor)
         {
             _upToDownJobs.Add(floor);
         }

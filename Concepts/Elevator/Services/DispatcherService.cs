@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElevatorSystem.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,31 +13,23 @@ namespace ElevatorSystem.Services
     /// </summary>
     public class DispatcherService
     {
-        private ElevatorService _elevatorService;
-        private readonly object _floorLock = new object();
-        public DispatcherService(ElevatorService elevatorService)
+        private IElevatorService _elevatorService;
+        public DispatcherService(IElevatorService elevatorService)
         {
             _elevatorService = elevatorService;
-            _floorLock = new object();
-            var thread = new Thread(new ThreadStart(Run));
-            thread.Start();
 
         }
         public void Run()
         {
             while (true)
             {
-                lock (_floorLock)
+                if (_elevatorService.HasInstructions())
                 {
-                    if (_elevatorService.HasInstructions())
-                    {
 
-                        int nextFloor = _elevatorService.NextFloor();
-                        _elevatorService.Move(nextFloor);
-                    }
+                    int nextFloor = _elevatorService.NextFloor();
+                    _elevatorService.Move(nextFloor);
                 }
             }
         }
-
     }
 }

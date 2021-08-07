@@ -9,5 +9,10 @@ namespace ElevatorSystem.Entities
     public class InternalRequest
     {
         public int DestinationFloor { get; private set; }
+
+        public InternalRequest(int destinationFloor)
+        {
+            DestinationFloor = destinationFloor;
+        }
     }
 }
