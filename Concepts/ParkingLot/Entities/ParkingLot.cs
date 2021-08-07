@@ -28,7 +28,7 @@ namespace ParkingLotSystem.Entities
             }
             _print.Print($"Created parking lot with {floorCount} floors and {slotsPerFloorCount} slots per floor");
         }
-        public AcquiredFloorSlot AcquireFreeSlot(SlotType slotType)
+        public AcquireFreeSlotResult AcquireFreeSlot(SlotType slotType)
         {
             for (int floorId = 1; floorId < _floors.Length; ++floorId)
             {
@@ -38,7 +38,7 @@ namespace ParkingLotSystem.Entities
                     _floors[floorId].SlotTypeFreeSlots[slotType].Remove(slot);
                     _floors[floorId].SlotTypeOccupiedSlots[slotType].Add(slot);
 
-                    return new AcquiredFloorSlot(floorId, slot.SlotId);
+                    return new AcquireFreeSlotResult(floorId, slot.SlotId);
                 }
             }
             return null;
@@ -67,7 +67,7 @@ namespace ParkingLotSystem.Entities
             Dictionary<int, List<int>> floorIdSlotIds = new Dictionary<int, List<int>>();
             for (int floorId = 1; floorId < _floors.Length; ++floorId)
             {
-                HashSet<ParkingFloorSlot> slots = displayType == DisplayType.free_slots ?
+                SortedSet<ParkingFloorSlot> slots = displayType == DisplayType.free_slots ?
                                                                 _floors[floorId].SlotTypeFreeSlots[slotType] :
                                                                 _floors[floorId].SlotTypeOccupiedSlots[slotType];
 
@@ -82,26 +82,26 @@ namespace ParkingLotSystem.Entities
 
         private class ParkingFloor
         {
-            public Dictionary<SlotType, HashSet<ParkingFloorSlot>> SlotTypeFreeSlots;
-            public Dictionary<SlotType, HashSet<ParkingFloorSlot>> SlotTypeOccupiedSlots;
+            public Dictionary<SlotType, SortedSet<ParkingFloorSlot>> SlotTypeFreeSlots;
+            public Dictionary<SlotType, SortedSet<ParkingFloorSlot>> SlotTypeOccupiedSlots;
            
             public ParkingFloor(int slotsPerFloor)
             {
 
-                SlotTypeFreeSlots = new Dictionary<SlotType, HashSet<ParkingFloorSlot>>
+                SlotTypeFreeSlots = new Dictionary<SlotType, SortedSet<ParkingFloorSlot>>
                 {                    
-                    [SlotType.TRUCK] = new HashSet<ParkingFloorSlot>(),
-                    [SlotType.BIKE] = new HashSet<ParkingFloorSlot>(),
-                    [SlotType.CAR] = new HashSet<ParkingFloorSlot>()
+                    [SlotType.TRUCK] = new SortedSet<ParkingFloorSlot>(),
+                    [SlotType.BIKE] = new SortedSet<ParkingFloorSlot>(),
+                    [SlotType.CAR] = new SortedSet<ParkingFloorSlot>()
                 };
 
-                SlotTypeOccupiedSlots = new Dictionary<SlotType, HashSet<ParkingFloorSlot>>
+                SlotTypeOccupiedSlots = new Dictionary<SlotType, SortedSet<ParkingFloorSlot>>
                 {
 
                     //! No slots occupied when initializing parking floor
-                    [SlotType.TRUCK] = new HashSet<ParkingFloorSlot>(),
-                    [SlotType.BIKE] = new HashSet<ParkingFloorSlot>(),
-                    [SlotType.CAR] = new HashSet<ParkingFloorSlot>()
+                    [SlotType.TRUCK] = new SortedSet<ParkingFloorSlot>(),
+                    [SlotType.BIKE] = new SortedSet<ParkingFloorSlot>(),
+                    [SlotType.CAR] = new SortedSet<ParkingFloorSlot>()
                 };
 
                 for (int slotId = 1; slotId <= slotsPerFloor; ++slotId)
@@ -144,11 +144,11 @@ namespace ParkingLotSystem.Entities
 
         }
 
-        public class AcquiredFloorSlot
+        public class AcquireFreeSlotResult
         {
             public int FloorId { get; private set; }
             public int SlotId { get; private set; }
-            public AcquiredFloorSlot(int floorId, int slotId)
+            public AcquireFreeSlotResult(int floorId, int slotId)
             {
                 FloorId = floorId;
                 SlotId = slotId;

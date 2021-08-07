@@ -10,7 +10,7 @@ namespace ParkingLotSystem.Services
     public static class TicketManager
     {
 
-        public static string IssueTicket(string parkingLotId,AcquiredFloorSlot floorSlot)
+        public static string IssueTicket(string parkingLotId,AcquireFreeSlotResult floorSlot)
         {
             return $"{parkingLotId}_{floorSlot.FloorId}_{floorSlot.SlotId}";
         }

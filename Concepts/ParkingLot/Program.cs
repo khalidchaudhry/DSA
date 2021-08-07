@@ -97,7 +97,7 @@ namespace ParkingLotSystem
               
              */
             ConsoleInputProcessor consoleInputProcessor = new ConsoleInputProcessor();
-            Validator validator = new Validator();
+            Validator validator = new Validator(consoleInputProcessor);
             ConsolePrint consolePrint = new ConsolePrint();
             ParkingManager parkingManager = new ParkingManager(consolePrint);
             ApplicationRunner applicationRunner = new ApplicationRunner(consoleInputProcessor, validator, consolePrint, parkingManager);
