@@ -9,6 +9,7 @@ namespace LeetCodeHeap.Medium
     public class _215
     {
         /// <summary>
+        /// https://www.youtube.com/watch?v=MZaf_9IZCrc
         //! Quick select algorithm. Same as in question 973
         /// </summary>
         public int FindKthLargest0(int[] nums, int k)
@@ -43,7 +44,7 @@ namespace LeetCodeHeap.Medium
         private int Partition(int[] nums, int left, int right, int pivotIndex)
         {            
             int pivotElemenet = nums[pivotIndex];
-            //! swap the 
+            //! swap the pivot element with the right element . Setting aside the pivot
             Swap(nums, right, pivotIndex);
             
             // !pivot tail index

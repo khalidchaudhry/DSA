@@ -8,7 +8,7 @@ namespace LeetCodeArrays.Medium
     {
 
         /// <summary>
-        //! We need to keep track of max,min at every index 
+        //! We need to keep track of max,min subarray at every index 
         /// </summary>
         public int MaxProduct(int[] nums)
         {          
