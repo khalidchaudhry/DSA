@@ -53,21 +53,29 @@ namespace LeetCodeBitManipulation.Medium
         {
 
             int maxXor = 0;
+            //!Starting from most significant bit and moving towards least significant bit
+            //! why because we need to increase the window size(bits we select) from  1,2,3........31
             for (int b = 31; b >= 0; --b)
             {
                 int test = b;
-                HashSet<int> numsPrefix = new HashSet<int>();
-                maxXor = maxXor << 1;
-                int target = maxXor | 1;
+                HashSet<int> prefix = new HashSet<int>();                
+               
+                //! We are extracting 1 bit when b=31 then 2 bits when b=30 then 3 bits so on ...untill 32 bits 
                 for (int i = 0; i < nums.Length; ++i)
-                {
+                {                    
                     int numPrefix = nums[i] >> b;
-                    numsPrefix.Add(numPrefix);
+                    prefix.Add(numPrefix);
                 }
 
-                foreach (int p in numsPrefix)
+                maxXor = maxXor << 1;
+                int target = maxXor | 1;
+
+                //! target=a^b
+                //! target^a=a^b^a
+                //! target^a=b
+                foreach (int a in prefix)
                 {
-                    if (numsPrefix.Contains(target ^ p))
+                    if (prefix.Contains(target ^ a))
                     {
                         maxXor = target;
                         break;

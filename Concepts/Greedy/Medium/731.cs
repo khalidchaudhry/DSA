@@ -27,9 +27,7 @@ namespace Greedy.Medium
         }
 
         public bool Book(int start, int end)
-        {
-
-            end = end - 1;
+        {           
 
             if (!_eventCount.ContainsKey(start))
             {

@@ -13,22 +13,22 @@ namespace LeetCodeBitManipulation.Easy
         public uint reverseBits2(uint n)
         {
 
-            uint result = 0;
-            for (int i = 1; i <= 32; ++i)
+            uint ans = 0;
+            for (int i = 0; i <= 31; ++i)
             {
-                //! left shift result as it will go to the 31st position. That's what the question asked
-                result = result << 1;
-                //! if last bit of number is 1 than add 1 to the result
-                if ((n & 1) == 1)
-                    ++result;
-                //! right shift number to drop-off as we have already processed it 
-                n = n >> 1;
+                //! Right shift by 1 to make spave for new bit 
+                ans = ans << 1;
+                //! Extracting the ith bit from the number 
+                uint temp = (n >> i) & 1;
+                //! if the bit is set than we will simply set the least significant bit of the answer
+                if (temp == 1)
+                {
+                    ++ans;
+                }
             }
-
-            return result;
-
-
+            return ans;
         }
+    
         public uint reverseBits3(uint n)
         {
             Stack<uint> stk = new Stack<uint>();

@@ -17,16 +17,11 @@ namespace BitsFundas
 
         public static int FlipAllBits(int number)
         {
-            int result = 0;
             for (int i = 0; i <= 31; ++i)
             {
-                int mask = 1 << i;
-                int newNumber = (number & mask);
-                result += FlipBitAtithPosition(newNumber, i);
+                number = FlipBitAtithPosition(number, i);
             }
-
-            return result;
-
+            return number;
         }
 
     }
