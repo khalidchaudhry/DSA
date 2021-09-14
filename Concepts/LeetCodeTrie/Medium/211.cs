@@ -15,11 +15,11 @@ namespace LeetCodeTrie.Medium
     /// </summary>
     public class WordDictionary
     {
-        Dictionary<int, List<string>> map;
+        Dictionary<int, List<string>> _lenWords;
         /** Initialize your data structure here. */
         public WordDictionary()
         {
-            map = new Dictionary<int, List<string>>();
+            _lenWords = new Dictionary<int, List<string>>();
         }
 
         /** Adds a word into the data structure. */
@@ -27,13 +27,13 @@ namespace LeetCodeTrie.Medium
         {
             int length = word.Length;
 
-            if (map.ContainsKey(length))
+            if (_lenWords.ContainsKey(length))
             {
-                map[length].Add(word);
+                _lenWords[length].Add(word);
             }
             else
             {
-                map.Add(length, new List<string>() { word });
+                _lenWords.Add(length, new List<string>() { word });
             }
 
         }
@@ -43,9 +43,9 @@ namespace LeetCodeTrie.Medium
         {
             int length = word.Length;
 
-            if (map.ContainsKey(length))
+            if (_lenWords.ContainsKey(length))
             {
-                foreach (string w in map[length])
+                foreach (string w in _lenWords[length])
                 {
                     int i = 0;
                     while (i < length && (word[i] ==w[i] || word[i]=='.'))

@@ -33,7 +33,11 @@ namespace LeetCodeBinaryTrees.Medium
                 List<long> possibilities = new List<long>() { lastDigit - 1, lastDigit + 1 };
                 foreach (int possibility in possibilities)
                 {
-                    //!current < high not current<=high as there is no value adding if current is equal 
+                    //! current < high not current<=high as there is no value being added if current =high
+                    //! e.g if current=10 and high=10 then there is no point adding as the value going to add will be > 10
+                    
+                    //! possibility >= 0 && possibility < 10 because in case 10 we don't want to add 10*10+(0-1)=99 since its  adjacent digits 
+                    //! don't have an absolute difference of exactly 1. 
                     if (possibility >= 0 && possibility < 10 && current < high)
                     {
                         queue.Enqueue(current * 10 + possibility);

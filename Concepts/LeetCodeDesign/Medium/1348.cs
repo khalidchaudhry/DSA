@@ -13,12 +13,14 @@ namespace LeetCodeDesign.Medium
     {
 
         Dictionary<string, List<int>> _tweetTimes;
-        public TweetCounts()
+        public TweetCounts() 
         {
             _tweetTimes = new Dictionary<string, List<int>>();
 
         }
-
+        /// <summary>
+        //!  time is always in secomds 
+        /// </summary>
         public void RecordTweet(string tweetName, int time)
         {
 
@@ -35,7 +37,7 @@ namespace LeetCodeDesign.Medium
 
             if (!_tweetTimes.ContainsKey(tweetName))
                 return new List<int>();
-
+           
             int delta = 0;
             if (freq == "minute")
             {
@@ -55,8 +57,10 @@ namespace LeetCodeDesign.Medium
             int[] buckets = new int[totalBuckets];
             foreach (int time in _tweetTimes[tweetName])
             {
+                //! we are only concerned to the time stamp in the range
                 if (time >= startTime && time <= endTime)
                 {
+                    //! 
                     ++buckets[(time - startTime) / delta];
                 }
             }

@@ -28,9 +28,10 @@ namespace LeetCodeBitManipulation.Medium
         //! Space Complexity: space complexity is O(m*n), where m  is the length of the longest key and and n is the total number of keys
         //! O(32*n)
         //// # <image url="https://bloggg-1254259681.cos.na-siliconvalley.myqcloud.com/5dhef.jpg" scale="0.3" />  
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
+       
+           //! We are representing 0 as left and 1 as right in Trie 
+            /// </summary>
+       
         public int FindMaximumXOR(int[] nums)
         {
             Trie trie = new Trie();
@@ -151,16 +152,16 @@ namespace LeetCodeBitManipulation.Medium
             int maxXOR = 0;
 
             TrieNode curr = root;
-            for (int i = 31; i >= 0; --i)
+            for (int bitPos = 31; bitPos >= 0; --bitPos)
             {
                 //! current bit can be 0 or 1 
-                int leftMostBit = (number >> i) & 1;
+                int leftMostBit = (number >> bitPos) & 1;
                 if (leftMostBit == 0)
                 {
                     //!curr.right is not null(it means we have 1) then we will take it as it will give maximum XOR
                     if (curr.Right != null)
                     {
-                        maxXOR = maxXOR + (int)Math.Pow(2, i);
+                        maxXOR = maxXOR + (int)Math.Pow(2, bitPos); //! or we can use 1<<bitPos to acheive the same
                         curr = curr.Right;
                     }
                     else
@@ -170,7 +171,7 @@ namespace LeetCodeBitManipulation.Medium
                 {
                     if (curr.Left != null)
                     {
-                        maxXOR = maxXOR + (int)Math.Pow(2, i);
+                        maxXOR = maxXOR + (int)Math.Pow(2, bitPos);
                         curr = curr.Left;
                     }
                     else

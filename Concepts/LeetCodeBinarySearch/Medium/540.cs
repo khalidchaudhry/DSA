@@ -39,7 +39,7 @@ namespace LeetCodeBinarySearch.Medium
 
 
         /// <summary>
-        //! Is the number at its correct index/position ?
+        //! Is the number at its correct index/position correspponding to its neighbor?
         //!TTTT'F'FFFF       
         /// </summary>
         private bool OK(int[] nums, int mid)

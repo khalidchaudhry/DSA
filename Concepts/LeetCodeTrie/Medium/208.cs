@@ -48,10 +48,11 @@ namespace LeetCodeTrie.Medium
     {
 
         /** Initialize your data structure here. */
-        Node root;
+        TrieNode _root;
         public Trie()
         {
-            root = new Node();
+            _root = new TrieNode();
+            _root.Children.Add('/', new TrieNode());
         }
 
         /** Inserts a word into the trie. */
@@ -60,19 +61,19 @@ namespace LeetCodeTrie.Medium
         public void Insert(string word)
         {
             //! We will always starts with the root. 
-            Node curr = root;
+            TrieNode curr = _root;
 
             foreach (char c in word)
             {
                 if (!curr.Children.ContainsKey(c))
                 {
-                    curr.Children.Add(c, new Node());
+                    curr.Children.Add(c, new TrieNode());
                 }
 
                 curr = curr.Children[c];
             }
             //! Marks the current node is the word 
-            curr.IsWord = true;
+            ++curr.WordEnd;
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace LeetCodeTrie.Medium
         public bool Search(string word)
         {
             //! We will always starts with the root. 
-            Node curr = root;
+            TrieNode curr = _root;
             foreach (char c in word)
             {
                 if (!curr.Children.ContainsKey(c))
@@ -95,7 +96,7 @@ namespace LeetCodeTrie.Medium
             }
 
             //! Returns true if and only if reached node returns true
-            return curr.IsWord;
+            return curr.WordEnd > 0;
         }
 
         /// <summary>
@@ -105,7 +106,7 @@ namespace LeetCodeTrie.Medium
         /// <returns></returns>
         public bool StartsWith(string prefix)
         {
-            Node curr = root;
+            TrieNode curr = _root;
 
             for (int i = 0; i < prefix.Length; ++i)
             {
@@ -119,15 +120,15 @@ namespace LeetCodeTrie.Medium
             return true;
         }
     }
-    public class Node
+    public class TrieNode
     {
-        public Dictionary<char, Node> Children { get; set; }
+        public Dictionary<char, TrieNode> Children { get; set; }
 
-        public bool IsWord { get; set; }
-        public Node()
+        public int WordEnd { get; set; }
+        public TrieNode()
         {
-            Children = new Dictionary<char, Node>();
-            IsWord = false;
+            Children = new Dictionary<char, TrieNode>();
+            WordEnd = 0;
         }
     }
 

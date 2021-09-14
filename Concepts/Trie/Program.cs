@@ -1,21 +1,22 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stack
+namespace Trie
 {
     class Program
     {
         static void Main(string[] args)
         {
 
-            ArithematicExpressionEval postfix = new ArithematicExpressionEval();
-            postfix.ArithematicExpressionEvalMain();
-            Console.ReadLine();
+            WordsWithPrefix prefix = new WordsWithPrefix();
+            prefix.WordsWithPrefixMain();
 
+            Console.ReadKey();
 
+          
         }
     }
 }

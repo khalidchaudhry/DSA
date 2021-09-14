@@ -36,6 +36,8 @@ namespace LeetCodeBinarySearch.Medium
         }
 
         //!Can we achieve at least 'mid' score
+        //! We can only achieve 'mid' score if mid is the smallest value in the path.
+        //! If neighbor valus is smaller than mid value then we can't achieve the mid score
         // TTTT'T'FFFFF
         private bool OK(int[][] A, int target)
         {

@@ -19,15 +19,16 @@ namespace LeetCodeBinaryTrees.Easy
         //! If tree is a BST 
         public TreeNode LowestCommonAncestor0(TreeNode root, TreeNode p, TreeNode q)
         {
+            //! if node value is >  then max of two given nodes then it will explicitly be greater then min of the two nodes values 
             if (root.val > Math.Max(p.val, q.val))
             {
                 return LowestCommonAncestor0(root.left, p, q);
             }
+            //! if node value is <  then min of two given nodes then it will explicitly be less then max of the two nodes values
             else if (root.val < Math.Min(p.val, q.val))
             {
                 return LowestCommonAncestor0(root.right, p, q);
             }
-
             else
                 return root;
 

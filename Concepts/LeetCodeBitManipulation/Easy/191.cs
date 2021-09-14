@@ -27,15 +27,13 @@ namespace LeetCodeBitManipulation.Easy
         public int HammingWeight(uint n)
 
         {
-            //Stack<uint> stk =new Stack<uint>();
-            int count=0;
-            while (n != 0)
+            int count = 0;
+            for (int i = 0; i <= 31; ++i)
             {
-                uint remainder=n % 2;
-                if (remainder == 1)
+                if (((n >> i) & 1) == 1)
+                {
                     ++count;
-
-                n = n / 2;
+                }
             }
             return count;
         }

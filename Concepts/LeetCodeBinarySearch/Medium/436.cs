@@ -49,7 +49,7 @@ namespace LeetCodeBinarySearch.Medium
                     lo = mid;
                 }
             }
-            //!  
+            //! returning interval index  for which  start >= target 
             return intervals[hi].Start >= target ? intervals[hi].Index : -1;
         }
         private bool OK(List<Interval> intervals, int mid, int target)

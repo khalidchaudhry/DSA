@@ -21,9 +21,7 @@ namespace LeetCodeBitManipulation.Easy
         /// <summary>
         //! First take xor then count number of 1's in it 
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
+      
         public int HammingDistance(int x, int y)
         {
             int xor = x ^ y;
@@ -36,6 +34,23 @@ namespace LeetCodeBitManipulation.Easy
                 xor = xor & (xor - 1);
             }
 
+            return count;
+        }
+
+        public int HammingDistance1(int x, int y)
+        {
+
+            int count = 0;
+            for (int i = 0; i <= 31; ++i)
+            {
+                int xBit = (x >> i) & 1;
+                int yBit = (y >> i) & 1;
+
+                if ((xBit ^ yBit) == 1)
+                {
+                    ++count;
+                }
+            }
             return count;
         }
 

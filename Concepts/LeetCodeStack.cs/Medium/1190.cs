@@ -39,6 +39,7 @@ namespace LeetCodeStack.cs.Medium
         }
         private string PrepareResult(Stack<char> stk)
         {
+            //! Populating at chars array from back
             char[] chars = new char[stk.Count];
             int index = stk.Count - 1;
             while (stk.Count != 0)

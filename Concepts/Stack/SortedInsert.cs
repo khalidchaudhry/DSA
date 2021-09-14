@@ -9,7 +9,28 @@ namespace Stack
 {
     class SortedInsert
     {
+        public void SortedInsertMain()
+        {
 
+            SortedInsert si = new SortedInsert();
+            Stack<int> stk = new Stack<int>();
+            stk.Push(0);
+            stk.Push(3);
+            stk.Push(4);
+            stk.Push(7);
+
+            si.SortedInsertWithRecursion(stk, 1);
+
+            foreach (var one in stk)
+            {
+                Console.WriteLine(one);
+            }
+
+            Console.ReadLine();
+
+
+
+        }
         public Stack<int> SortedInsertWithoutRecursion(Stack<int> stk,int element)
         {
             if (element >= stk.Peek())

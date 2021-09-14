@@ -8,6 +8,41 @@ namespace LeetCodeStack.cs.Medium
 {
     public class _456
     {
+
+
+        public bool Find132pattern(int[] nums)
+        {
+
+            if (nums.Length <= 2)
+                return false;
+            //K is holding the second largest
+            int k = int.MinValue;
+
+            Stack<int> j = new Stack<int>();
+            for (int i = nums.Length - 1; i >= 0; --i)
+            {
+                if (nums[i] < k)
+                {
+                    return true;
+                }
+                //! monotonoic descreasing stack
+                while (j.Count != 0 && nums[i] > j.Peek())
+                {
+
+                    k = j.Peek();
+                    j.Pop();
+                }
+
+                j.Push(nums[i]);
+            }
+            return false;
+        }
+
+
+
+        /// <summary>
+        //! Brute Force 
+        /// </summary>
         public bool Find132pattern1(int[] nums)
         {
 

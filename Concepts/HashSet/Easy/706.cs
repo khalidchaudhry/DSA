@@ -46,7 +46,7 @@ namespace HashSet
         public MyHashMap()
         {
             _itemsCount = 0;
-            //In order to minimize the potential collisions, it is advisable to use a prime number as the base of modulo, e.g. 2069.
+            //!In order to minimize the potential collisions, it is advisable to use a prime number as the base of modulo, e.g. 2069.
             _size = 2;
             _buckets = new List<List<(int key, int value)>>();
             InitializeBuckets();

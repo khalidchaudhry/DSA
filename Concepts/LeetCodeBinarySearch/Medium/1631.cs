@@ -14,6 +14,7 @@ namespace LeetCodeBinarySearch.Medium
         public int MinimumEffortPath(int[][] heights)
         {
 
+            //Since we need to minimize effort our search range is from 0 to 1000000
             int lo = -1;
             int hi = (int)Math.Pow(10, 6);
             while (lo + 1 < hi)
@@ -31,11 +32,14 @@ namespace LeetCodeBinarySearch.Medium
             }
             return hi;
         }
-
-        private bool OK(int[][] heights, int target)
+        /// <summary>
+        //! is the slected effort achievable  
+        //! FFFFFFTTTTTTT 
+        /// </summary>
+           private bool OK(int[][] heights, int effort)
         {
             bool[,] visited = new bool[heights.Length, heights[0].Length];
-            return DFS(heights, 0, 0, target, visited);
+            return DFS(heights, 0, 0, effort, visited);
         }
 
         private bool DFS(int[][] heights, int r, int c, int target, bool[,] visited)

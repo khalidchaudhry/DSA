@@ -8,7 +8,7 @@ namespace LeetCodeStack.cs.Easy
 {
     class _225
     {
-    
+
     }
 
 
@@ -59,7 +59,7 @@ namespace LeetCodeStack.cs.Easy
         /** Returns whether the stack is empty. */
         public bool Empty()
         {
-            return _queue.Count == 0 ? true : false;
+            return _queue.Count == 0;
         }
     }
 
@@ -99,7 +99,7 @@ namespace LeetCodeStack.cs.Easy
             }
 
             int toReturn = queue1.Dequeue();
-            
+
             //! We need to use temp queue here  before assigning value to queue2 becuase queue is a reference type            
             Queue<int> temp = queue1;
             queue1 = queue2;

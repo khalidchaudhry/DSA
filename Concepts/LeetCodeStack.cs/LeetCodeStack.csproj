@@ -51,7 +51,9 @@
     <Compile Include="Easy\232.cs" />
     <Compile Include="Easy\496.cs" />
     <Compile Include="Hard\224.cs" />
+    <Compile Include="Hard\227.cs" />
     <Compile Include="Hard\42.cs" />
+    <Compile Include="Hard\772.cs" />
     <Compile Include="Hard\84.cs" />
     <Compile Include="Medium\1019.cs" />
     <Compile Include="Medium\1190.cs" />
