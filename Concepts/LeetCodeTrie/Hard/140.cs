@@ -8,6 +8,41 @@ namespace LeetCodeTrie.Hard._140
 {
     public class _140
     {
+        public IList<string> WordBreak0(string s, IList<string> wordDict)
+        {
+            HashSet<string> words = new HashSet<string>();
+            foreach (string word in wordDict)
+            {
+                words.Add(word);
+            }
+            List<string> result = new List<string>();
+            Solve(s, 0, words, new StringBuilder(), result);
+            return result;
+        }
+        private void Solve(string s, int start, HashSet<string> words, StringBuilder path, List<string> result)
+        {
+            if (start == s.Length)
+            {
+                --path.Length;
+                result.Add(path.ToString());
+                return;
+            }
+            for (int i = start; i < s.Length; ++i)
+            {
+                string pre = s.Substring(start, i - start + 1);
+                if (words.Contains(pre))
+                {
+                    int len = path.Length;
+                    path.Append(pre);
+                    path.Append(' ');
+                    Solve(s, i + 1, words, path, result);
+                    path.Length = len;
+                }
+            }
+        }
+        /// <summary>
+        //! Trie solution. Rather than searching in hashset for word , we can search them in Trie and replace hashset with trie 
+        /// </summary>
         public IList<string> WordBreak(string s, IList<string> wordDict)
         {
 
@@ -78,17 +113,7 @@ namespace LeetCodeTrie.Hard._140
 
             }
         }
-
     }
 
-    public class TrieNode
-    {
-        public Dictionary<char, TrieNode> Children;
-        public int WordEnd;
-        public TrieNode()
-        {
-            Children = new Dictionary<char, TrieNode>();
-            WordEnd = 0;
-        }
-    }
+   
 }

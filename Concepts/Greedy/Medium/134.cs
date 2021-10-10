@@ -7,7 +7,17 @@ namespace Greedy.Medium
 {
     public class _134
     {
+        public static void _134Main()
+        {
+            int[] gas = new int[] { 1, 2, 3, 1, 6 };
+            int[] cost = new int[] { 2, 3, 4, 2, 0 };
+            _134 p = new _134();
+            p.CanCompleteCircuit0(gas, cost);
 
+        }
+        /// <summary>
+        //!  // !Same way of dealing with circular pattern as in leetcode 503 
+        /// </summary>
         public int CanCompleteCircuit0(int[] gas, int[] cost)
         {
             int n = gas.Length;
@@ -25,7 +35,9 @@ namespace Greedy.Medium
                 if (currGas < 0)
                 {
                     currGas = 0;
+                    //! idx=(i+1)%n  
                     idx = currIdx + 1;
+
                 }
             }
             return idx;

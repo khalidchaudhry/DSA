@@ -18,6 +18,9 @@ namespace LeetCodeArrays.Hard
         {
 
             int n = nums.Length;
+
+            //! we are marking negative numbers and 0 to  n 
+            //! Reason is we need to distinguish numbers which are alredy negative in array vs what we will mark them in below loop
             for (int i = 0; i < n; ++i)
             {
                 if (nums[i] <= 0)
@@ -29,6 +32,7 @@ namespace LeetCodeArrays.Hard
             for (int i = 0; i < n; ++i)
             {
                 int idx = Math.Abs(nums[i]);
+                //! We can mark only numbers that are within index array
                 if (idx <= n)
                 {
                     nums[idx - 1] = -Math.Abs(nums[idx - 1]);

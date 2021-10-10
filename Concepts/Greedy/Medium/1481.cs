@@ -20,6 +20,7 @@ namespace Greedy.Medium
                 ++numFreq[num];
             }
             numFreq = numFreq.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            //! We are getting keys seperately. If we iterate dictionary and get element from dictionary based on index than it will change as we are deleting elements from dictionary. 
             var allKeys = numFreq.Keys.ToArray();
             int i = 0;
             while (k > 0)

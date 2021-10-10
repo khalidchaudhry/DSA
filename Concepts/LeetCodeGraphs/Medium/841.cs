@@ -53,23 +53,22 @@ namespace LeetCodeGraphs.Medium
         public bool CanVisitAllRooms(IList<IList<int>> rooms)
         {
             HashSet<int> visited = new HashSet<int>();
-            int count = DFS(rooms, visited, 0);
-            return count == rooms.Count;
+            Solve(rooms, 0, visited);
+            return visited.Count == rooms.Count;
         }
 
-        private int DFS(IList<IList<int>> rooms, HashSet<int> visited, int at)
+        private void Solve(IList<IList<int>> rooms, int start, HashSet<int> visited)
         {
-            if (visited.Contains(at))
-                return 0;
-
-            int count = 1;
-            visited.Add(at);
-            foreach (int neighbor in rooms[at])
+            if (visited.Contains(start) || start >= rooms.Count)
             {
-                count += DFS(rooms, visited, neighbor);
+                return;
             }
 
-            return count;
+            visited.Add(start);
+            foreach (int neighbor in rooms[start])
+            {
+                Solve(rooms, neighbor, visited);
+            }
         }
 
     }

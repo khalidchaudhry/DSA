@@ -94,6 +94,9 @@ namespace LeetCodeDynamicProgramming.Medium
             {
                 for (int j = 1; j < dp.GetLength(1); ++j)
                 {
+                    //! Without this check below test will fail 
+                    //![[0,0,0],[0,1,0],[0,1,0],[1,1,1],[1,1,0]]
+                    //! if cell itself is 0 then no matter how high number we get from its top ,left and diagonal , result will be 0
                     if (matrix[i - 1][j - 1] == 1)
                     {
                         dp[i, j] = 1 + (Math.Min(Math.Min(dp[i - 1, j], dp[i, j - 1]), dp[i - 1, j - 1]));

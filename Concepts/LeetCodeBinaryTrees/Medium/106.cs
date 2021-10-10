@@ -21,6 +21,9 @@ namespace LeetCodeBinaryTrees.Medium
 
             Console.ReadLine();
         }
+        /// <summary>
+        // ! To build tree from array u need inorder and pre or post order 
+        /// </summary>
         public TreeNode BuildTree(int[] inorder, int[] postorder)
         {
             this.PostOrder = postorder;

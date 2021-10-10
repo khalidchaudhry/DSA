@@ -94,9 +94,9 @@ namespace LeetcodeBackTracking.Medium
             path.Add(candidates[start]);
             //! Key here is that when we include the item it does not prevent us from including it again. 
             //! by not incrementing i, we are staying at  same point in array so that we can include the item again
-            CombinationSum1(candidates, start, target - candidates[start], path, result);
+            CombinationSum1(candidates, start, target - candidates[start], path, result);//include
             path.RemoveAt(path.Count - 1);
-            CombinationSum1(candidates, start + 1, target, path, result);
+            CombinationSum1(candidates, start + 1, target, path, result);  //not include
         }       
     }
 }

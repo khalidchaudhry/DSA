@@ -14,6 +14,9 @@ namespace LeetCodeArrays.Medium
             {
                 minSuffix[i] = i == n - 1 ? nums[i] : Math.Min(nums[i], minSuffix[i + 1]);
             }
+            //!MaxPrefix will include the current element in left array
+            //! minSuffix will contain the min element from the right array
+            //! we are considering the current element in left side of array 
             int maxPrefix = nums[0];
             for (int i = 0; i < n - 1; ++i)
             {

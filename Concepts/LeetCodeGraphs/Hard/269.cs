@@ -63,6 +63,10 @@ namespace LeetCodeGraphs.Hard
                 string word2 = words[i + 1];
                 //!["abc","ab"]
                 //! Check that word2 is not a prefix of word1.In that case its not possible to do anything. Simply returns 
+                //!Below statement is in question 
+                //! A string s is lexicographically smaller than a string t if at the first letter where they differ,
+                //! the letter in s comes before the letter in t in the alien language. If the first min(s.length, t.length) letters are the same, 
+                //! then s is smaller if and only if s.length < t.length.
                 if (word1.Length > word2.Length && word1.StartsWith(word2))
                 {
                     return new Dictionary<char, List<char>>();

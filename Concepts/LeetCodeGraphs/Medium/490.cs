@@ -11,8 +11,65 @@ namespace LeetCodeGraphs.Medium
 
         public static void _490Main()
         {
+            int[][] maze = new int[5][] {
+                new int[] {0,0,1 },
+                new int[] {0,0,0 },
+                new int[] {0,0,0 },
+                new int[] {1,1,0},
+                new int[] {0,0,0}
+
+            };
+
+            _490 test = new _490();
+            test.HasPath0(maze,new int[] { 1,2},new int[] {3,2 });
 
         }
+
+        public bool HasPath0(int[][] maze, int[] start, int[] destination)
+        {
+
+            HashSet<(int r, int c)> visited = new HashSet<(int r, int c)>();
+            return Solve(maze, start, destination, visited);
+        }
+
+        private bool Solve(int[][] maze, int[] start, int[] destination, HashSet<(int r, int c)> visited)
+        {
+            if (visited.Contains((start[0], start[1])))
+            {
+                return false;
+            }
+            if (start[0] == destination[0] && start[1] == destination[1])
+            {
+                return true;
+            }
+            visited.Add((start[0], start[1]));
+
+
+            foreach ((int x, int y) in new List<(int x, int y)>() { (-1, 0), (1, 0), (0, 1), (0, -1) })
+            {
+                int[] newStart = new int[] { start[0], start[1] };
+                while (!IsOutOfBound(maze, newStart[0] + x, newStart[1] + y) && maze[newStart[0] + x][newStart[1] + y] == 0)
+                {
+                    newStart[0] = newStart[0] + x;
+                    newStart[1] = newStart[1] + y;
+                }
+                if (Solve(maze, newStart, destination, visited))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
+        private bool IsOutOfBound(int[][] grid, int r, int c)
+        {
+            return r < 0 || r >= grid.Length || c < 0 || c >= grid[0].Length;
+        }
+
+
+
         /// <summary>
         ///https://leetcode.com/problems/the-maze/discuss/97067/Simple-Java-DFS-with-comments
         ///See discussion

@@ -15,8 +15,8 @@ namespace LeetCodeBinarySearch.Medium
             int r = A.Length;
             int c = A[0].Length;
 
-            int lo = 0;
-            int hi = Math.Min(A[0][0], A[r - 1][c - 1]) + 1;
+            int lo = 0; //Valid
+            int hi = Math.Min(A[0][0], A[r - 1][c - 1]) + 1; //invalid
 
             while (lo + 1 < hi)
             {

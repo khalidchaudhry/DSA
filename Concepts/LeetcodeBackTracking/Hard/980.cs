@@ -44,6 +44,7 @@ namespace LeetcodeBackTracking.Hard
                     }
                 }
             }
+            //! path Length is always one less than totalNodes in path 
             return nodesCount - 1;
         }
 
@@ -61,7 +62,7 @@ namespace LeetcodeBackTracking.Hard
                 else
                     return 0;
             }
-
+            
             int prevValue = grid[r][c];
             grid[r][c] = -1;
 
@@ -70,7 +71,7 @@ namespace LeetcodeBackTracking.Hard
             {
                 count += UniquePaths(grid, nr, nc, pathLen - 1);
             }
-
+            //! We are reverting to prev values. Otherwise will always have one path that includes all the empty spaces
             grid[r][c] = prevValue;
 
             return count;

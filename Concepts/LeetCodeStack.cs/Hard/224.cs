@@ -12,7 +12,7 @@ namespace LeetCodeStack.cs.Hard
         {
 
             _224 Test = new _224();
-            var result = Test.Calculate1("2 - (5 - 6)");
+            var result = Test.Calculate("- (3 - (- (4 + 5) ) ) ");
             Console.ReadLine();
 
         }
@@ -21,12 +21,13 @@ namespace LeetCodeStack.cs.Hard
         //https://www.javatpoint.com/infix-to-postfix-java
         public int Calculate(string s)
         {
+
+
             List<string> postFix = InfixToPostFix(s);
             return EvalPostFix(postFix);
         }
         private List<string> InfixToPostFix(string infix)
         {
-
             Stack<char> operators = new Stack<char>();
             List<string> postfix = new List<string>();
 
@@ -47,14 +48,31 @@ namespace LeetCodeStack.cs.Hard
                     {
                         operand.Append(infix[i]);
                         ++i;
-                    }
-                    postfix.Add(operand.ToString());
+                    }               
+                    postfix.Add(operand.ToString());                   
                 }
                 //!push (  
                 else if (infix[i] == '(')
                 {
-                    operators.Push(infix[i]);
-                    ++i;
+
+                    if (infix[i + 1] == '-')
+                    {
+                        i += 2;//skipping ( and -
+                        StringBuilder operand = new StringBuilder();
+                        operand.Append('-');
+                        while (i < n && char.IsDigit(infix[i]))
+                        {
+                            operand.Append(infix[i]);
+                            ++i;
+                        }
+                        postfix.Add(operand.ToString());
+                        ++i;//Skip the )  bracket
+                    }
+                    else
+                    {
+                        operators.Push(infix[i]);
+                        ++i;
+                    }
                 }
                 else if (infix[i] == ')')
                 {
@@ -77,7 +95,6 @@ namespace LeetCodeStack.cs.Hard
                     {
                         postfix.Add(operators.Pop().ToString());
                     }
-
                     operators.Push(infix[i]);
                     ++i;
                 }
@@ -100,16 +117,12 @@ namespace LeetCodeStack.cs.Hard
         private int EvalPostFix(List<string> postFix)
         {
             Stack<int> stk = new Stack<int>();
-            foreach (string token in postFix)
+            for (int i = 0; i < postFix.Count; ++i)
             {
+                string token = postFix[i];
+
                 if (token == "+" || token == "-")
                 {
-                    if (token == "-" && stk.Count == 1)
-                    {
-                        int operand = stk.Pop();
-                        stk.Push(-operand);
-                        continue;
-                    }
                     int operand2 = stk.Pop();
                     int operand1 = stk.Pop();
                     switch (token)
@@ -119,18 +132,25 @@ namespace LeetCodeStack.cs.Hard
                             break;
                         case "-":
                             stk.Push(operand1 - operand2);
-                            break;                   
+                            break;
                     }
                 }
                 else
                 {
+                    if (token.StartsWith("."))
+                    {
+                        token = "-" + token.Substring(1);
+                    }
                     stk.Push(Convert.ToInt32(token));
                 }
             }
-
+            while (stk.Count != 1)
+            {
+                stk.Push(stk.Pop() + stk.Pop());
+            }
             return stk.Peek();
         }
-       
+
 
 
         /// <summary>

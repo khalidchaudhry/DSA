@@ -25,25 +25,25 @@ namespace LeetCodeGraphs.Medium
 
             bool[] visited = new bool[totalStudents];
             int friendCircles = 0;
-            for (int i = 0; i < totalStudents; i++)
+            for (int row = 0; row < totalStudents; row++)
             {
-                if (!visited[i])
+                if (!visited[row])
                 {
                     ++friendCircles;
-                    DFS(i, M, visited);
+                    DFS(row, M, visited);
                 }
             }
 
             return friendCircles;
         }
-        private void DFS(int i, int[][] M, bool[] visited)
+        private void DFS(int row, int[][] M, bool[] visited)
         {
-            for (int j = 0; j < M.Length; ++j) //! M.Length because given matrix N*N
+            for (int col = 0; col < M.Length; ++col) //! M.Length because given matrix N*N
             {
-                if (M[i][j] == 1 && !visited[j])
+                if (M[row][col] == 1 && !visited[col])
                 {
-                    visited[j] = true;
-                    DFS(j, M, visited);
+                    visited[col] = true;
+                    DFS(col, M, visited);
                 }
             }
         }

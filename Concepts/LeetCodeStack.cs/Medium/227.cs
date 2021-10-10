@@ -11,11 +11,110 @@ namespace LeetCodeStack.Medium
         {
 
             var test = new _227();
-            var ans = test.Calculate0("1 + 2 * 5 / 3 + 6 / 4 * 2");
+            var ans = test.Calculate("1-(-2)");
 
             Console.ReadLine();
 
         }
+
+        /// <summary>
+        //! Convert infix to post fix
+        //! Evaluation postfix
+        //  //https://www.javatpoint.com/infix-to-postfix-java
+        // # <image url="https://static.javatpoint.com/ds/images/applications-of-stack-in-data-structure2.png"  scale="0.9"/>
+        /// </summary>
+        public int Calculate(string s)
+        {
+            List<string> postfix = InfixToPostfix(s);
+            return EvaluatePostfix(postfix);
+        }
+        private List<string> InfixToPostfix(string s)
+        {
+            List<string> postfix = new List<string>(); //operands will be here 
+            Stack<char> stk = new Stack<char>();//operators
+
+            int n = s.Length;
+            int idx = 0;
+            while (idx < n)
+            {
+                if (s[idx] == ' ')
+                {
+                    ++idx;
+                }
+                else if (char.IsDigit(s[idx]))
+                {
+                    StringBuilder number = new StringBuilder();
+                    while (idx < n && char.IsDigit(s[idx]))
+                    {
+                        number.Append(s[idx]);
+                        ++idx;
+                    }
+                    postfix.Add(number.ToString());
+                }
+                else
+                {
+                    while (stk.Count > 0 && Precedence(s[idx]) <= Precedence(stk.Peek()))
+                    {
+                        postfix.Add(stk.Pop().ToString());
+                    }
+                    stk.Push(s[idx]);
+                    ++idx;
+                }
+            }
+
+            while (stk.Count > 0)
+            {
+                postfix.Add(stk.Pop().ToString());
+            }
+            return postfix;
+        }
+        private int Precedence(char c)
+        {
+            if (c == '+' || c == '-')
+                return 1;
+            if (c == '*' || c == '/')
+                return 2;
+
+            return 0;
+
+        }
+        private int EvaluatePostfix(List<string> postfix)
+        {
+            Stack<int> stk = new Stack<int>();
+            for (int i = 0; i < postfix.Count; ++i)
+            {
+                string curr = postfix[i];
+                if (curr == "+" || curr == "-" || curr == "*" || curr == "/")
+                {
+                    int operand2 = stk.Pop();
+                    int operand1 = stk.Pop();
+                    if (curr == "+")
+                    {
+                        stk.Push(operand1 + operand2);
+                    }
+                    else if (curr == "-")
+                    {
+                        stk.Push(operand1 - operand2);
+                    }
+                    else if (curr == "*")
+                    {
+                        stk.Push(operand1 * operand2);
+                    }
+                    else if (curr == "/")
+                    {
+                        stk.Push(operand1 / operand2);
+                    }
+                }
+                else
+                {
+                    stk.Push(Convert.ToInt32(curr));
+                }
+            }
+            return stk.Peek();
+        }
+
+
+
         /// <summary>
         //https://blog.baozitraining.org/search?q=calculator
         //! Basic idea is to push operator and operand into 2 different stacks
@@ -50,7 +149,7 @@ namespace LeetCodeStack.Medium
                 }
                 else
                 {
-                    CalPrevExprs(operators,operands,priority,s[index]);
+                    CalPrevExprs(operators, operands, priority, s[index]);
                     operators.Push(s[index]);
                     ++index;
                 }
@@ -71,7 +170,7 @@ namespace LeetCodeStack.Medium
             while (operators.Count != 0 &&
                    priority[currOperator] <= priority[operators.Peek()]
                   )
-                  
+
             {
                 CalPrevExpr(operators, operands);
             }
@@ -113,7 +212,7 @@ namespace LeetCodeStack.Medium
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public int Calculate(string s)
+        public int Calculate2(string s)
         {
             if (s.Length == 0)
                 return 0;

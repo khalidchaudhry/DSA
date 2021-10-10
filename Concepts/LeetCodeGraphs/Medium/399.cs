@@ -46,10 +46,11 @@ namespace LeetCodeGraphs.Medium
             string start,
             string end,
             Dictionary<string, Dictionary<string, double>> graph,
+            //! Main reason for using visited set is use case where query can be ["x2","x2"]. Without it we will stuck in cycle
             HashSet<string> visited)
         {
             // rejection case
-            if (!graph.ContainsKey(start))
+            if (!graph.ContainsKey(start) || visited.Contains(start))
             {
                 return -1;
             }
@@ -61,15 +62,12 @@ namespace LeetCodeGraphs.Medium
 
             visited.Add(start);
             foreach (var neighbour in graph[start])
-            {
-                if (!visited.Contains(neighbour.Key))
-                {
-                    double productWeight = GetPathWeight(neighbour.Key, end, graph, visited);
+            { 
+                double productWeight = GetPathWeight(neighbour.Key, end, graph, visited);
 
-                    if (productWeight != -1)
-                    {
-                        return neighbour.Value * productWeight;
-                    }
+                if (productWeight != -1)
+                {
+                    return neighbour.Value * productWeight;
                 }
             }
 

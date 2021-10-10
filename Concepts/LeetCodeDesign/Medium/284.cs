@@ -10,7 +10,7 @@ namespace LeetCodeDesign.Medium
     {
         class PeekingIterator
         {
-            // iterators refers to the first element of the array.
+            //! in C# iterators refers to the first element of the list/array.
             private int _next;
             private bool _hasNext;
             private IEnumerator<int> _iterator;
@@ -31,7 +31,7 @@ namespace LeetCodeDesign.Medium
             // Returns the next element in the iteration without advancing the iterator.
             public int Peek()
             {
-                if (_hasNext == false) throw new Exception("No element is next");
+                if (_hasNext == false) throw new InvalidOperationException("No element is next");
 
                 return _next;
             }

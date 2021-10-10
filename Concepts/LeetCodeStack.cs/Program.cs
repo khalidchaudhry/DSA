@@ -18,12 +18,12 @@ namespace LeetCodeStack.Stack
 
             //_394._394Main();
 
-            // _227._227Main();
+            //_227._227Main();
 
-            //_224._224Main();
+            _224._224Main();
             //_567._567Main();
 
-            _84._84Main();
+            //_84._84Main();
         }
     }
 }

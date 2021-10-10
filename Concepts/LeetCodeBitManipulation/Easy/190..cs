@@ -14,6 +14,7 @@ namespace LeetCodeBitManipulation.Easy
         {
 
             uint ans = 0;
+            //! in unsigned integer msb represents value and not symbol(+ or -)
             for (int i = 0; i <= 31; ++i)
             {
                 //! Right shift by 1 to make spave for new bit 

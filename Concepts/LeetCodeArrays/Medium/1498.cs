@@ -28,6 +28,7 @@ namespace LeetCodeArrays.Medium
 
             int mod = (int)Math.Pow(10, 9) + 7;
             int[] pows = new int[nums.Length];
+            //! We are precomputing powers since in case of big nums size , it will go out of bound
             PreComputerPowers(pows, mod);
 
             Array.Sort(nums);

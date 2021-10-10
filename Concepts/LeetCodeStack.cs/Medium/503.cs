@@ -10,7 +10,8 @@ namespace LeetCodeStack.cs.Medium
     {
         /// <summary>
         /// https://www.youtube.com/watch?v=sYINIANAFBY
-        //! Monotonically decreasing stack.
+        // !Same way of dealing with circular pattern as in leetcode 134
+        //! Monotonically increasing  stack.
         //! Trick is to think of it as regular array and code for next greater element. 
         //! After words change the loop to run till 2*n and replace i with i%n every where in the code. Pretty cool.         
         /// </summary>
@@ -23,7 +24,7 @@ namespace LeetCodeStack.cs.Medium
             Fill(ans);
             for (int i = 0; i < 2 * n; ++i)
             {
-                while (stk.Count != 0 && nums[stk.Peek()] < nums[i % n])
+                while (stk.Count != 0 && nums[i % n]>nums[stk.Peek()])
                 {
                     int index = stk.Pop();
                     ans[index] = nums[i % n];

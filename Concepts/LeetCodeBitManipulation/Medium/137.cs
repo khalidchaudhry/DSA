@@ -29,8 +29,13 @@ namespace LeetCodeBitManipulation.Medium
                 }
                 //! setBitCount value will be either 1 or 0 after below operation
                 setBitCount = setBitCount % 3;
-
-                result = result | (setBitCount << bitPos);
+                //! if setBitCount!=0 or setBitCount==1 then it means that bit  is set in the number 
+                if ((setBitCount % 3) != 0)
+                {
+                    // set the ith bit of the number 
+                    result = result | (setBitCount << bitPos);
+                }
+                
             }
 
             return result;

@@ -12,58 +12,56 @@ namespace LeetCodeGraphs.Medium
         //! Same as Leetcode 785 
         //  # <image url="https://leetcode.com/problems/is-graph-bipartite/Figures/785/color.png"  scale="0.4"/>
         /// </summary>
-        public bool PossibleBipartition0(int N, int[][] dislikes)
+        public bool PossibleBipartition0(int n, int[][] dislikes)
         {
-
-            Dictionary<int, List<int>> graph = BuildGraph(N, dislikes);
-
-            Dictionary<int, int> nodeColor = new Dictionary<int, int>();
-            for (int i = 1; i <= N; ++i)
+            Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+            for (int i = 1; i <= n; ++i)
             {
-                nodeColor.Add(i, 0);
+                graph.Add(i, new List<int>());
+            }
+            foreach (int[] dislike in dislikes)
+            {
+                int a = dislike[0];
+                int b = dislike[1];
+                graph[a].Add(b);
+                graph[b].Add(a);
             }
 
-            foreach (var keyValue in graph)
+            int[] colors = new int[n + 1];
+            for (int i = 1; i <= n; ++i)
             {
-                if (nodeColor[keyValue.Key] == 0)
+                if (colors[i] == 0)
                 {
-                    if (!IsValidColor(graph, nodeColor, 1, keyValue.Key))
+                    if (IsInCycle(graph, i, colors, 1))
                     {
                         return false;
                     }
                 }
             }
-
             return true;
         }
-
-        private bool IsValidColor(Dictionary<int, List<int>> graph,
-                              Dictionary<int, int> nodeColor, int color,
-                              int at)
+        private bool IsInCycle(Dictionary<int, List<int>> graph, int at, int[] colors, int color)
         {
-            nodeColor[at] = color;
-            int nextColor = -color;
+            colors[at] = color;
             foreach (int neighbor in graph[at])
             {
                 //! If we have already marked the node then its value will not be 0
-                if (nodeColor[neighbor] != 0)
+                if (colors[neighbor] != 0)
                 {
-                    //! Check if color is compatible
-                    if (nodeColor[neighbor] == color)
+                    if (colors[neighbor] == colors[at])
                     {
-                        return false;
+                        return true;
                     }
                 }
                 else
-                {
-                    if (!IsValidColor(graph, nodeColor, -color, neighbor))
+                {   //! Check if color is compatible
+                    if (IsInCycle(graph, neighbor, colors, -color))
                     {
-                        return false;
+                        return true;
                     }
-                }              
+                }
             }
-
-            return true;
+            return false;
         }
 
         private Dictionary<int, List<int>> BuildGraph(int n, int[][] dislikes)

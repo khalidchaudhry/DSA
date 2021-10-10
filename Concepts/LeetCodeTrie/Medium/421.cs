@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCodeTrie.Medium
+namespace LeetCodeTrie.Medium._421
 {
     public class _421
     {
@@ -26,7 +26,7 @@ namespace LeetCodeTrie.Medium
         public int FindMaximumXOR(int[] nums)
         {
             int maxXOR = int.MinValue;
-            TreeNode root = new TreeNode();
+            TrieNode root = new TrieNode();
             for (int i = 0; i < nums.Length; ++i)
             {
                 InsertNode(nums[i], root);
@@ -99,7 +99,7 @@ namespace LeetCodeTrie.Medium
 
             return maxXOR;
         }
-        private int FindMaxXORPair(int num, TreeNode curr)
+        private int FindMaxXORPair(int num, TrieNode curr)
         {
             int currXOR = 0;
 
@@ -141,7 +141,7 @@ namespace LeetCodeTrie.Medium
         /// </summary>
         /// <param name="nums"></param>
         /// <param name="curr"></param>
-        private void InsertNode(int nums, TreeNode curr)
+        private void InsertNode(int nums, TrieNode curr)
         {
             for (int i = 31; i >= 0; --i)
             {
@@ -150,7 +150,7 @@ namespace LeetCodeTrie.Medium
                 {
                     if (curr.left == null)
                     {
-                        curr.left = new TreeNode();
+                        curr.left = new TrieNode();
                     }
                     curr = curr.left;
                 }
@@ -158,7 +158,7 @@ namespace LeetCodeTrie.Medium
                 {
                     if (curr.right == null)
                     {
-                        curr.right = new TreeNode();
+                        curr.right = new TrieNode();
                     }
                     curr = curr.right;
                 }
@@ -167,10 +167,10 @@ namespace LeetCodeTrie.Medium
 
     }
 
-    public class TreeNode
+    public class TrieNode
     {
-        public TreeNode left;
+        public TrieNode left;
 
-        public TreeNode right;
+        public TrieNode right;
     }
 }

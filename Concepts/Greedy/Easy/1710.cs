@@ -22,9 +22,9 @@ namespace Greedy.Easy
             {
                 int numberOfBoxes = boxType[0];
                 int units = boxType[1];
-                int boxesTook = Math.Min(numberOfBoxes, truckSize);
-                truckSize -= boxesTook;
+                int boxesTook = Math.Min(numberOfBoxes, truckSize);                
                 maxUnits += boxesTook * units;
+                truckSize -= boxesTook;
             }
             return maxUnits;
 
