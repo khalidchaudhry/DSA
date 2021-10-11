@@ -8,56 +8,87 @@ namespace LeetCodeGraphs.Medium
 {
     public class _787
     {
+
+        /// <summary>
+        //! https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/1504019/c-BFS-solution-100ms
+        /// </summary>
         public int FindCheapestPrice(int n, int[][] flights, int src, int dst, int K)
         {
 
-            Dictionary<int, List<(int dst, int cost)>> graph = new Dictionary<int, List<(int dst, int cost)>>();
+            Dictionary<int, List<Node>> graph = new Dictionary<int, List<Node>>();
             for (int i = 0; i < n; ++i)
             {
-                graph.Add(i, new List<(int dst, int cost)>());
+                graph.Add(i, new List<Node>());
             }
-
             foreach (int[] flight in flights)
             {
                 int from = flight[0];
                 int to = flight[1];
                 int cost = flight[2];
-
-                graph[from].Add((to, cost));
+                graph[from].Add(new Node(to, cost));
             }
+
+            int[] price = new int[n];
+            for (int i = 0; i < n; ++i)
+            {
+                price[i] = int.MaxValue;
+            }
+
+            price[src] = 0;
 
             int cheapestPrice = int.MaxValue;
-            Queue<(int src, int cost, int stops)> queue = new Queue<(int src, int cost, int stops)>();
-            queue.Enqueue((src, 0, 0));
 
-
-            while (queue.Count != 0)
+            Queue<QueueData> queue = new Queue<QueueData>();
+            queue.Enqueue(new QueueData(src, 0, 0));
+            while (queue.Count > 0)
             {
-                if (queue.Peek().stops > K + 1)
-                    break;
-
-                int count = queue.Count;
-                while (count != 0)
+                QueueData curr = queue.Dequeue();
+                if (curr.NodeLabel == dst)
                 {
-                    (int source, int cost, int stops) = queue.Dequeue();
-
-                    if (source == dst)
+                    cheapestPrice = Math.Min(cheapestPrice, curr.Price);
+                }
+                foreach (Node neighbor in graph[curr.NodeLabel])
+                {
+                    int newPrice = neighbor.Price + curr.Price;
+                    //! This is the key, need to avoid adding current flightNode to Queue if:: 
+                    //! - the hop of the current node + 1 is greater than k
+                    //! - the price of current node's priceTillNow + current flight's weight not more than minPrice calculated till now
+                    //! - the price of flight's destination is not yet calculated or it is greater than current node's priceTillNow + current flight's weight
+                    if (curr.Hopes <= K && newPrice < price[neighbor.NodeLabel])
                     {
-                        cheapestPrice = Math.Min(cheapestPrice, cost);
+                        price[neighbor.NodeLabel] = newPrice;
+                        queue.Enqueue(new QueueData(neighbor.NodeLabel, newPrice, curr.Hopes + 1));
                     }
-                    foreach ((int neighbor, int nc) in graph[source])
-                    {
-                        int newCost = nc + cost;
-                        if (newCost < cheapestPrice)
-                        {
-                            queue.Enqueue((neighbor, newCost, stops + 1));
-                        }
-                    }
-                    --count;
                 }
             }
-            return cheapestPrice == int.MaxValue ? -1 : cheapestPrice;
+
+            return price[dst] == int.MaxValue ? -1 : price[dst];
         }
+        public class Node
+        {
+            public int NodeLabel;
+            public int Price;
+            public Node(int nodeLabel, int price)
+            {
+                NodeLabel = nodeLabel;
+                Price = price;
+            }
+        }
+
+        public class QueueData
+        {
+            public int NodeLabel;
+            public int Price;
+            public int Hopes;
+            public QueueData(int nodeLabel, int price, int hopes)
+            {
+                NodeLabel = nodeLabel;
+                Price = price;
+                Hopes = hopes;
+            }
+        }
+
+
 
         /// <summary>
         ///https://www.youtube.com/watch?v=o6dUXOk-GWQ 
