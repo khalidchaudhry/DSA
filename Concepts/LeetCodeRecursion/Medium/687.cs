@@ -8,7 +8,7 @@ namespace LeetCodeRecursion.Medium
     class _687
     {
         /// <summary>
-        //!Post Order Traversal
+        //!Pre Order Traversal
         //! Same pattern as used in problem 543
         //https://medium.com/@rebeccahezhang/leetcode-687-longest-univalue-path-c7791a03c4a0
         //!As long as we get the longest path length from the left child and right child, 

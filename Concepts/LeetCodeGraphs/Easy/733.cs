@@ -10,7 +10,7 @@ namespace LeetCodeGraphs.Easy
     {
         public int[][] FloodFill(int[][] image, int sr, int sc, int newColor)
         {
-            //if old Color is same as new Color return immediately
+            //!if old Color is same as new Color return immediately
             if (image[sr][sc] == newColor)
             {
                 return image;

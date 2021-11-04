@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeetCodeHeap;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace LeetCodeGraphs.Medium
 {
     public class _787
     {
+        
+
 
         /// <summary>
         //! https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/1504019/c-BFS-solution-100ms
@@ -87,75 +90,94 @@ namespace LeetCodeGraphs.Medium
                 Hopes = hopes;
             }
         }
-
-
-
-        /// <summary>
-        ///https://www.youtube.com/watch?v=o6dUXOk-GWQ 
-        //!Level order traversal of the graph
-        //Time Complexity Anayalsis: https://leetcode.com/problems/cheapest-flights-within-k-stops/solution/
-        //! Let E represent the number of flights and V represent the number of cities.
-        //! Time complexity: O(E*K) since each edge canbe visited multiple times but it can't be more than K
-        //! Space Complexity: O(E) Space is accupied by the queue holding nodes. At given time we can have all our nodes in queue
-        /// </summary>
-        public int FindCheapestPrice0(int n, int[][] flights, int src, int dst, int K)
+        public int FindCheapestPrice1(int n, int[][] flights, int src, int dst, int K)
         {
-            Dictionary<int, List<(int to, int cost)>> graph = new Dictionary<int, List<(int to, int cost)>>();
+
+            Dictionary<int, List<CityNode>> graph = new Dictionary<int, List<CityNode>>();
+            for (int i = 0; i < n; ++i)
+            {
+                graph.Add(i, new List<CityNode>());
+            }
 
             foreach (int[] flight in flights)
             {
                 int from = flight[0];
                 int to = flight[1];
                 int cost = flight[2];
-
-                if (!graph.ContainsKey(from))
-                {
-                    graph.Add(from, new List<(int to, int cost)>());
-                }
-                if (!graph.ContainsKey(to))
-                {
-                    graph.Add(to, new List<(int to, int cost)>());
-                }
-
-                graph[from].Add((to, cost));
+                graph[from].Add(new CityNode(to, cost, 0));
             }
 
-
-            int cheapestPrice = int.MaxValue;
-            int stops = 0;
-
-            Queue<(int node, int cost)> queue = new Queue<(int node, int cost)>();
-            queue.Enqueue((src, 0));
-
-            while (queue.Count != 0)
+            int[] distance = new int[n];
+            for (int i = 0; i < n; ++i)
             {
-                int count = queue.Count;
-                while (count != 0)
+                distance[i] = int.MaxValue;
+            }
+            distance[src] = 0;
+            int[] stops = new int[n];
+            for (int i = 0; i < n; ++i)
+            {
+                stops[i] = int.MaxValue;
+            }
+            stops[src] = 0;
+
+            var comparer = Comparer<CityNode>.Create((x, y) => {
+                //! In priority queue avaiable in java its not needed . However here we need it becauase in case of duplicate, data will not be added in pq
+                if (x.Cost == y.Cost)
                 {
-                    (int node, int cost) = queue.Dequeue();
+                    return x.Stops.CompareTo(y.Stops);
+                }
+                return x.Cost.CompareTo(y.Cost);
+            });
 
-                    if (node == dst)
-                    {
-                        cheapestPrice = Math.Min(cheapestPrice, cost);
-                    }
+            PQ<CityNode> pq = new PQ<CityNode>(comparer);
+            pq.Add(new CityNode(src, 0, 0));
 
-                    foreach ((int neighbor, int neighborCost) in graph[node])
-                    {
-                        //! Controlling the size of the queue. Otherwise , it will grow exponentially 
-                        if (neighborCost + cost < cheapestPrice)
-                            queue.Enqueue((neighbor, neighborCost + cost));
-                    }
-
-                    --count;
+            while (pq.Size > 0)
+            {
+                CityNode curr = pq.Poll();
+                if (curr.Label == dst)
+                {
+                    return curr.Cost;
+                }
+                // If there are no more steps left, continue 
+                if (curr.Stops == K + 1)
+                {
+                    continue;
                 }
 
-                if (stops++ > K)
+                foreach (CityNode neighbor in graph[curr.Label])
                 {
-                    break;
+                    int newCost = curr.Cost + neighbor.Cost;
+                    if (newCost < distance[neighbor.Label])
+                    {
+                        distance[neighbor.Label] = newCost;
+                        pq.Add(new CityNode(neighbor.Label, newCost, curr.Stops + 1));
+                    }
+                    else if (curr.Stops < stops[neighbor.Label])
+                    {
+                        pq.Add(new CityNode(neighbor.Label, newCost, curr.Stops + 1));
+                    }
+                    stops[neighbor.Label] = curr.Stops;
                 }
             }
 
-            return cheapestPrice == int.MaxValue ? -1 : cheapestPrice;
+            return distance[dst] == int.MaxValue ? -1 : distance[dst];
+
+
         }
+
+        public class CityNode
+        {
+            public int Label;
+            public int Cost;
+            public int Stops;
+            public CityNode(int label, int cost, int stops)
+            {
+                Label = label;
+                Cost = cost;
+                Stops = stops;
+            }
+        }
+
     }
 }

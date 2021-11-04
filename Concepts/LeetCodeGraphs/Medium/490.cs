@@ -34,20 +34,28 @@ namespace LeetCodeGraphs.Medium
 
         private bool Solve(int[][] maze, int[] start, int[] destination, HashSet<(int r, int c)> visited)
         {
-            if (visited.Contains((start[0], start[1])))
-            {
-                return false;
-            }
+           
             if (start[0] == destination[0] && start[1] == destination[1])
             {
                 return true;
             }
+            if (visited.Contains((start[0], start[1])))
+            {
+                return false;
+            }
+            //! once we visit cell, we will not  unvisit as per the question 
+            /*
+             * The ball can go through the empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. 
+             * When the ball stops, it could choose the next direction.
+             */ 
             visited.Add((start[0], start[1]));
 
 
             foreach ((int x, int y) in new List<(int x, int y)>() { (-1, 0), (1, 0), (0, 1), (0, -1) })
             {
                 int[] newStart = new int[] { start[0], start[1] };
+                //! before incrementing value we are checking if the value is valid . Only after that we increment
+                //! maze[newStart[0] + x][newStart[1] + y] == 0 as per requiremnt ball won't stop rolling until hitting a wall(1)
                 while (!IsOutOfBound(maze, newStart[0] + x, newStart[1] + y) && maze[newStart[0] + x][newStart[1] + y] == 0)
                 {
                     newStart[0] = newStart[0] + x;

@@ -75,7 +75,7 @@ namespace LeetCodeSlidingWindow.Hard
         private bool IsValid(Dictionary<char, int> sMap, Dictionary<char, int> tMap)
         {
             foreach (var keyValue in tMap)
-            {
+            {                                         //! Very important condition sMap[keyValue.Key] < keyValue.Value if sMap contains more character than target we are good
                 if (!sMap.ContainsKey(keyValue.Key) || sMap[keyValue.Key] < keyValue.Value)
                 {
                     return false;

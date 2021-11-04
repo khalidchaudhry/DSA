@@ -9,9 +9,13 @@ namespace LeetCodePrefixSum.Medium
     public class _1010
     {
         /// <summary>
-        //! (t1+t2)%60=0
-        //! t1%60+t2%60=60
-        //! t2=(60-t1%60)%60
+        //! (time[i] + time[j]) % 60==0
+        //! time[i]%60 +time[j]%60=60
+        //! time[j]%60=60-time[i]%60
+        //! time[j]=(60-time[i]%60)%60  
+        //! time[j]=(60-t1)%60
+        //! 
+        //! 
         /// </summary>
         public int NumPairsDivisibleBy60(int[] time)
         {
@@ -21,16 +25,16 @@ namespace LeetCodePrefixSum.Medium
             int totalPairs = 0;
             foreach (int t in time)
             {
-                int r1 = t % 60;
-                int r2 = (60 - r1) % 60;
-                if (timeRemainder.ContainsKey(r2))
+                int t1 = t % 60;
+                int t2 = (60 - t1) % 60;
+                if (timeRemainder.ContainsKey(t2))
                 {
-                    totalPairs += timeRemainder[r2];
+                    totalPairs += timeRemainder[t2];
                 }
-                if (!timeRemainder.ContainsKey(r1))
-                    timeRemainder.Add(r1, 0);
+                if (!timeRemainder.ContainsKey(t1))
+                    timeRemainder.Add(t1, 0);
 
-                ++timeRemainder[r1];
+                ++timeRemainder[t1];
             }
 
             return totalPairs;

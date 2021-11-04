@@ -1,4 +1,5 @@
 using LeetCodeGraphs.Easy;
+using LeetCodeGraphs.Hard;
 using LeetCodeGraphs.Medium;
 using LeetCodeGraphs.Medium._802;
 using System;
@@ -295,7 +296,8 @@ namespace LeetCodeGraphs
 
             //_1462._1462Main();
             //_444._444Main();
-            _490._490Main();
+            //_490._490Main();
+            _765._765Main();
             //Console.ReadKey();
 
         }

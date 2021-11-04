@@ -37,12 +37,7 @@ namespace LeetCodeTrie.Medium
     //! Take aways:
     //! Take away 1: How to represent TrieNode. We need nested structure that go from one level to the next 
     //! Take away 2: How we iterate from one level to the next level
-    /// https://leetcode.com/problems/implement-trie-prefix-tree/discuss/347038/HasMap-base-java-solution-fo-Trie
-    /// # <image url="https://64.media.tumblr.com/0115640d31399f8d00c17e785782b495/tumblr_inline_ovxxwnY5dO1u8bvyd_1280.png" scale="0.5" /> 
-
-
-
-    ///  /// # <image url="https://www.adamk.org/wp-content/uploads/2019/12/whiteboard-leetcode208.jpg" scale="0.2" /> 
+    //! /// # <image url="$(SolutionDir)\Images\208.jpg"  scale="0.4"/>
     /// </summary>
     public class Trie
     {
@@ -53,6 +48,7 @@ namespace LeetCodeTrie.Medium
         {
             _root = new TrieNode();
             _root.Children.Add('/', new TrieNode());
+            _root = _root.Children['/'];
         }
 
         /** Inserts a word into the trie. */
@@ -120,6 +116,4 @@ namespace LeetCodeTrie.Medium
             return true;
         }
     }
-    
-
 }

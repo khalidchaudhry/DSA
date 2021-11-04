@@ -11,45 +11,48 @@ namespace LeetCodeBinaryTrees.Medium
         /// </summary>
         public IList<int> DistanceK(TreeNode root, TreeNode target, int k)
         {
-           
+
             Dictionary<TreeNode, List<TreeNode>> graph = new Dictionary<TreeNode, List<TreeNode>>();
             //! First step is to convert the binary tree into graph
             BuildGraph(root, null, graph);
 
-            Queue<(TreeNode node, int level)> queue = new Queue<(TreeNode node, int level)>();
+            List<int> kdistanceNodes = new List<int>();
+
+            Queue<TreeNode> queue = new Queue<TreeNode>();
             HashSet<TreeNode> visited = new HashSet<TreeNode>();
-            foreach (var keyValue in graph)
+            queue.Enqueue(target);
+            visited.Add(target);
+            int level = 0;
+            while (queue.Count > 0)
             {
-                if (keyValue.Key == target)
+                int count = queue.Count;
+                while (count > 0)
                 {
-                    queue.Enqueue((keyValue.Key, 0));
-                    visited.Add(keyValue.Key);
-                    break;
-                }
-            }
-
-            List<int> distanceK = new List<int>();
-            while (queue.Count != 0)
-            {
-                (TreeNode currNode, int currLevel) = queue.Dequeue();
-                if (currLevel == k)
-                {
-                    distanceK.Add(currNode.val);
-                }
-                foreach (TreeNode children in graph[currNode])
-                {
-                    //! || currLevel + 1 > k is an optimization. So if currentLevel+1 >k there is no point going forward
-                    if (children == null || visited.Contains(children) || currLevel + 1 > k)
+                    TreeNode curr = queue.Dequeue();
+                    //! if we reaches to desired level than no point  explore the neighbors(going to next level) hence if/else 
+                    if (level == k)
                     {
-                        continue;
+                        kdistanceNodes.Add(curr.val);
                     }
-                    visited.Add(children);
-                    queue.Enqueue((children, currLevel + 1));
-                }
-            }
-            return distanceK;
-        }
+                    else
+                    {
+                        foreach (TreeNode neighbor in graph[curr])
+                        {
+                            if (neighbor == null || visited.Contains(neighbor))
+                            {
+                                continue;
+                            }
+                            visited.Add(neighbor);
+                            queue.Enqueue(neighbor);
+                        }
 
+                    }
+                    --count;
+                }
+                ++level;
+            }
+            return kdistanceNodes;
+        }
         private void BuildGraph(TreeNode node, TreeNode parent, Dictionary<TreeNode, List<TreeNode>> graph)
         {
             if (node == null)

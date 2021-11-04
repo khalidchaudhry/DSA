@@ -57,6 +57,8 @@ namespace LeetCodeGraphs.Medium
                     --n;
                 }
             }
+            
+            //! To connect N disconnected components you will need minimum of n-1 edges ,  simply return n - 1.
             return n - 1;
 
         }

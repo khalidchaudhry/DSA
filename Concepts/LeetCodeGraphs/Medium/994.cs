@@ -25,18 +25,93 @@ namespace LeetCodeGraphs.Medium
             Console.ReadLine();
 
         }
+
+        public int OrangesRotting0(int[][] grid)
+        {
+            //! important to keep track of fresh oranges.
+            int freshOranges = 0;
+            Queue<(int r, int c)> queue = new Queue<(int r, int c)>();
+
+            int rows = grid.Length;
+            int cols = grid[0].Length;
+            for (int r = 0; r < rows; ++r)
+            {
+                for (int c = 0; c < cols; ++c)
+                {
+                    if (grid[r][c] == 2)
+                    {
+                        queue.Enqueue((r, c));
+                    }
+                    if (grid[r][c] == 1)
+                    {
+                        ++freshOranges;
+                    }
+                }
+            }
+            //! Below code not needed. 
+            // if(freshOranges==0)
+            // {
+            //   return 0;  
+            // }
+
+            int time = 0;
+            while (queue.Count != 0)
+            {
+                int count = queue.Count;
+                bool anyOrangeRotten = false;
+                while (count > 0)
+                {
+                    (int r, int c) = queue.Dequeue();
+
+                    foreach ((int nr, int nc) in GetNeighbors(r, c))
+                    {
+                        if (IsOutOfBound(grid, nr, nc) || grid[nr][nc] != 1)
+                        {
+                            continue;
+                        }
+                        anyOrangeRotten = true;
+                        --freshOranges;
+                        grid[nr][nc] = 2;
+                        queue.Enqueue((nr, nc));
+                    }
+                    --count;
+                }
+                if (anyOrangeRotten)
+                {
+                    ++time;
+                }
+            }
+            return freshOranges == 0 ? time : -1;
+
+        }
+        private bool IsOutOfBound(int[][] grid, int r, int c)
+        {
+            return r < 0 || r >= grid.Length || c < 0 || c >= grid[0].Length;
+        }
+
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
+        {
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int r, int c)>() { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
+            {
+                neighbors.Add((nr, nc));
+            }
+            return neighbors;
+        }
         /// <summary>
         /// https://www.youtube.com/watch?v=CxrnOTUlNJE
         /// </summary>
 
         public int OrangesRotting(int[][] grid)
         {
+            //! Visited is also not neeed since we can modify the grid and work it as visited. 
             HashSet<(int, int)> visited = new HashSet<(int, int)>();
             Queue<(int, int)> queue = new Queue<(int, int)>();
             //! important to keep track of fresh oranges. 
             int freshOranges = SetUp(queue, visited, grid);
-            //!If no fresh oranges then we can immediately return 0 as it will take 0 minutes to rotten all the oranges  
-            if (freshOranges == 0) return 0;
+            //!If no fresh oranges then we can immediately return 0 as it will take 0 minutes to rotten all the oranges 
+            //! Not needed. Handling it  return statement using ternary operator
+            ///if (freshOranges == 0) return 0;
 
             int minutes = 0;
             while (queue.Count != 0)

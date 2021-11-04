@@ -58,6 +58,8 @@ namespace Greedy.Medium
                 }
             }
             int result = 0;
+
+            //! we are starting from 0 index to recreate original number
             foreach (int digit in digits)
             {
 

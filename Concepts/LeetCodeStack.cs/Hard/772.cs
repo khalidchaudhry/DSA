@@ -61,7 +61,8 @@ namespace LeetCodeStack.cs.Hard
                 {
                     while (operators.Count != 0 &&
                             //! Is above the most recently scanned left parenthesis
-                            operators.Peek() != '(' &&
+                            // Below line not needed. We are handling in Precedence function
+                            //operators.Peek() != '(' &&
                             //! Has Precedence of current operator <= operator on top of stack
                             Precedence(infix[i]) <= Precedence(operators.Peek())
                            )
@@ -86,11 +87,13 @@ namespace LeetCodeStack.cs.Hard
 
         private int Precedence(char x)
         {
+            if (x == '(' || x == ')')
+                return 0;
             if (x == '+' || x == '-')
                 return 1;
             if (x == '*' || x == '/' || x == '%')
                 return 2;
-            return 0;
+            return -1;
 
         }
 

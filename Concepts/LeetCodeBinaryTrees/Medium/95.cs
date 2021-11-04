@@ -34,8 +34,17 @@ namespace LeetCodeBinaryTrees.Medium
             {
                 List<TreeNode> leftTrees = GenerateTrees0(s, i - 1, memo);
                 List<TreeNode> rightTrees = GenerateTrees0(i + 1, e, memo);
-                List<TreeNode> combs = GenerateCombinations(i, leftTrees, rightTrees); //!O(N^2)
-                result.AddRange(combs);
+                //!O(N^2)
+                foreach (TreeNode l in leftTrees)
+                {
+                    foreach (TreeNode r in rightTrees)
+                    {
+                        TreeNode root = new TreeNode(i);
+                        root.left = l;
+                        root.right = r;
+                        result.Add(root);
+                    }
+                }                
             }
 
             memo[(s, e)] = result;

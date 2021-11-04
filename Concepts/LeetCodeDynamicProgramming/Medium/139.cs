@@ -66,7 +66,8 @@ namespace LeetCodeDynamicProgramming.Medium
             }
         }
 
-        //! Solution based on Trie
+        //! Solution based on Trie.
+        //! insert all words dictionary in Trie.Serch the string in Trie
         public bool WordBreak1(string s, IList<string> wordDict)
         {
 
@@ -108,7 +109,7 @@ namespace LeetCodeDynamicProgramming.Medium
                 if (memo.ContainsKey(start))
                     return memo[start];
 
-
+                //! We will always start from the root
                 TrieNode curr = _root;
                 for (int i = start; i < word.Length; ++i)
                 {

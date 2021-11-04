@@ -28,6 +28,7 @@ namespace LeetCodeGraphs.Medium
             }
 
             int[] colors = new int[n + 1];
+            //! graph may be disconnected hence below loop
             for (int i = 1; i <= n; ++i)
             {
                 if (colors[i] == 0)

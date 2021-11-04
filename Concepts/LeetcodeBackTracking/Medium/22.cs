@@ -23,7 +23,7 @@ namespace LeetcodeBackTracking.Medium
                        StringBuilder path,
                        IList<string> result)
         {
-
+            //! closeBracketsCnt > openBracketsCnt ensure that we don't adding unbalanced parenthesis
             if (openCount > n || closeCount > openCount)
                 return;
             //!2*n are the total number of positions we have. Once we reach to the positions , we can add them to the result. 

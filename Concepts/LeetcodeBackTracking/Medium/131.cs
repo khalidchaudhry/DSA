@@ -10,7 +10,7 @@ namespace LeetcodeBackTracking.Medium
     {
 
 
-        
+
         //  # <image url="$(SolutionDir)\Images\131.jpg"  scale="0.4"/>
 
         /// <summary>
@@ -27,6 +27,7 @@ namespace LeetcodeBackTracking.Medium
         {
             if (start == s.Length)
             {
+                //! new List<string>(path) --->  initializes a new instance of the List<T> class that contains elements copied from the specified collection
                 result.Add(new List<string>(path));//! O(n)
                 return;
             }

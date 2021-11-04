@@ -12,28 +12,20 @@ namespace LeetCodeStack.cs.Medium
 
         public bool Find132pattern(int[] nums)
         {
-
-            if (nums.Length <= 2)
-                return false;
-            //K is holding the second largest
-            int k = int.MinValue;
-
-            Stack<int> j = new Stack<int>();
+            Stack<int> stk = new Stack<int>();
+            int secondMax = int.MinValue;
             for (int i = nums.Length - 1; i >= 0; --i)
             {
-                if (nums[i] < k)
+                int curr = nums[i];
+                if (curr < secondMax)
                 {
                     return true;
                 }
-                //! monotonoic descreasing stack
-                while (j.Count != 0 && nums[i] > j.Peek())
+                while (stk.Count > 0 && curr > stk.Peek())
                 {
-
-                    k = j.Peek();
-                    j.Pop();
+                    secondMax = stk.Pop();
                 }
-
-                j.Push(nums[i]);
+                stk.Push(curr);
             }
             return false;
         }

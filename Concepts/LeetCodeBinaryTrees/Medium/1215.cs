@@ -45,8 +45,8 @@ namespace LeetCodeBinaryTrees.Medium
                 }
 
             }
-
-            result.Sort();
+            //! WE don't need sorting here since we are already adding number occuring first(lastDigit - 1) in queue
+            //result.Sort();
             return result;
 
         }

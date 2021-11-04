@@ -54,6 +54,7 @@
     <Compile Include="Medium\1102.cs" />
     <Compile Include="Medium\1129.cs" />
     <Compile Include="Medium\1135.cs" />
+    <Compile Include="Medium\1136.cs" />
     <Compile Include="Medium\1161.cs" />
     <Compile Include="Medium\1162.cs" />
     <Compile Include="Medium\1236.cs" />
@@ -105,6 +106,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeetCodeHeap\LeetCodeHeap.csproj">
+      <Project>{DA63F267-2361-487E-A4D5-AE9B4AF82F4B}</Project>
+      <Name>LeetCodeHeap</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

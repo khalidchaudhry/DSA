@@ -23,6 +23,7 @@ namespace LeetCodeTrie.Hard._140
         {
             if (start == s.Length)
             {
+                //! important to reduce the length since when we reach here there would be ' ' as per line 38
                 --path.Length;
                 result.Add(path.ToString());
                 return;
