@@ -25,20 +25,30 @@ namespace LeetCodeArrays.Medium
         /// </summary>
         public void NextPermutation0(int[] nums)
         {
-            int j = nums.Length - 2;
-            while (j >= 0)
+            int n = nums.Length;
+            int i = n - 2;
+            for (; i >= 0; --i)
             {
-                if (nums[j] < nums[j + 1])
+                if (nums[i] < nums[i + 1])
                 {
-                    Reverse(nums, j + 1);
-                    Swap(nums, j);
+                    //! reversing essentially sorting it in ascending  order from descending order
+                    Reverse(nums, i + 1, n - 1);
+                    //! we need to find the first element on right of nums[i] which is smaller than nums[i]
+                    int idx = i + 1;
+                    while (idx < n && nums[i] >= nums[idx])
+                    {
+                        ++idx;
+                    }
+                    int temp = nums[i];
+                    nums[i] = nums[idx];
+                    nums[idx] = temp;
                     break;
                 }
-                --j;
             }
-
-            if (j < 0)
-                Reverse(nums, 0);
+            if (i < 0)
+            {
+                Reverse(nums, 0, n - 1);
+            }
         }
 
 
@@ -56,22 +66,6 @@ namespace LeetCodeArrays.Medium
                 --j;
             }
         }
-        private void Swap(int[] nums, int index)
-        {
-            int j = index + 1;
-            while (j < nums.Length)
-            {
-                if (nums[j] > nums[index])
-                {
-                    int temp = nums[index];
-                    nums[index] = nums[j];
-                    nums[j] = temp;
-                    break;
-                }
-                ++j;
-            }
-        }
-
 
         /// <summary>
         /// https://www.youtube.com/watch?v=PYXl_yY-rms

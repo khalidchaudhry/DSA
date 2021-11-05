@@ -74,7 +74,6 @@
     <Compile Include="Hard\660.cs" />
     <Compile Include="Medium\1497.cs" />
     <Compile Include="Medium\264.cs" />
-    <Compile Include="Medium\31.cs" />
     <Compile Include="Medium\311.cs" />
     <Compile Include="Medium\319.cs" />
     <Compile Include="Medium\357.cs" />

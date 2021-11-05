@@ -39,17 +39,18 @@ namespace LeetCodeGraphs.Medium
 
             price[src] = 0;
 
-            int cheapestPrice = int.MaxValue;
+            //int cheapestPrice = int.MaxValue;
 
             Queue<QueueData> queue = new Queue<QueueData>();
             queue.Enqueue(new QueueData(src, 0, 0));
             while (queue.Count > 0)
             {
                 QueueData curr = queue.Dequeue();
-                if (curr.NodeLabel == dst)
-                {
-                    cheapestPrice = Math.Min(cheapestPrice, curr.Price);
-                }
+                //! we don't need below code becuase minPrices[] will contain cheapest price to all the nodes
+                //if (curr.NodeLabel == dst)
+                //{
+                //    cheapestPrice = Math.Min(cheapestPrice, curr.Price);
+                //}
                 foreach (Node neighbor in graph[curr.NodeLabel])
                 {
                     int newPrice = neighbor.Price + curr.Price;
