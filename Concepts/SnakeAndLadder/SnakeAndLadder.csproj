@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="Entities\Board.cs" />
     <Compile Include="Entities\Ladder.cs" />
-    <Compile Include="Entities\Piece.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Snake.cs" />
     <Compile Include="Program.cs" />
@@ -58,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

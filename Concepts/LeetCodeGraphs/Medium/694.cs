@@ -23,6 +23,7 @@ namespace LeetCodeGraphs.Medium
 
         }
         /// <summary>
+        //! Hash By Path Signature
         //!Time complexity=O(r*c) r =Number of rows c=NumberOf Columns??
         //! Space Complexity=O(r*c)
         ///  // # <image url="$(SolutionDir)\Images\694.png"  scale="0.4"/>

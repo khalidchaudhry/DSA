@@ -8,7 +8,14 @@ namespace LeetCodeStack.cs.Hard
 {
     public class _84
     {
+        public static void  _84Main()
+        {
 
+            _84 test = new _84();
+            test.LargestRectangleArea0(new int[] {3,2,2 });
+
+
+        }
 
 
         /// <summary>

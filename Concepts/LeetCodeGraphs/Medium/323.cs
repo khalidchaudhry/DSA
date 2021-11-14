@@ -8,12 +8,36 @@ namespace LeetCodeGraphs.Medium
 {
     class _323
     {
+
+
+        /// <summary>
+        //! Union find. 
+        //! Algorithm
+        //! Initially we will will have n connected components. 
+        //! As we go through edges we reduce connected componets
+        //! At the end what we left with are the number of connected components
+        /// </summary>
+        public int CountComponents0(int n, int[][] edges)
+        {
+            UF uf = new UF(n);
+            foreach (int[] edge in edges)
+            {
+                int u = edge[0];
+                int v = edge[1];
+                int pu = uf.FindSet(u);
+                int pv = uf.FindSet(v);
+                if (pu != pv)
+                {
+                    uf.Union(pu, pv);
+                    --n;
+                }
+            }
+            return n;
+        }
+
         /// <summary>
         // !Recursive version
         /// </summary>
-        /// <param name="n"></param>
-        /// <param name="edges"></param>
-        /// <returns></returns>
         public int CountComponents(int n, int[][] edges)
         {
             int ccCount = 0;
@@ -32,12 +56,40 @@ namespace LeetCodeGraphs.Medium
 
             return ccCount;
         }
+        private List<List<int>> BuildGraph(int n, int[][] edges)
+        {
+            List<List<int>> graph = new List<List<int>>();
+
+            for (int i = 0; i < n; i++)
+            {
+                graph.Add(new List<int>());
+            }
+
+            for (int i = 0; i < edges.Length; i++)
+            {
+                graph[edges[i][0]].Add(edges[i][1]);
+
+                graph[edges[i][1]].Add(edges[i][0]);
+            }
+
+            return graph;
+        }
+
+        private void DFS(int at, List<List<int>> graph, bool[] visited)
+        {
+            visited[at] = true;
+
+            List<int> neighbours = graph[at];
+
+            foreach (int neighbor in neighbours)
+            {
+                DFS(neighbor, graph, visited);
+
+            }
+        }
         /// <summary>
         //! Iterative version
         /// </summary>
-        /// <param name="n"></param>
-        /// <param name="edges"></param>
-        /// <returns></returns>
 
         public int CountComponents2(int n, int[][] edges)
         {
@@ -86,36 +138,6 @@ namespace LeetCodeGraphs.Medium
             }
         }
 
-        private List<List<int>> BuildGraph(int n, int[][] edges)
-        {
-            List<List<int>> graph = new List<List<int>>();
-
-            for (int i = 0; i < n; i++)
-            {
-                graph.Add(new List<int>());
-            }
-
-            for (int i = 0; i < edges.Length; i++)
-            {
-                graph[edges[i][0]].Add(edges[i][1]);
-
-                graph[edges[i][1]].Add(edges[i][0]);
-            }
-
-            return graph;
-        }
-
-        private void DFS(int at, List<List<int>> graph, bool[] visited)
-        {
-            visited[at] = true;
-
-            List<int> neighbours = graph[at];
-
-            foreach (int neighbor in neighbours)
-            {
-                DFS(neighbor, graph, visited);
-
-            }
-        }
+        
     }
 }

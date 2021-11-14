@@ -11,7 +11,7 @@ namespace LeetCodeGraphs.Medium
         /// <summary>
         //! Based on idea from Kai's class
         // ! Count connected components in the graph.
-        //! Minimum connections needed equal to total connected components-1
+        //! Minimum connections needed =total connected components-1
         //!Time: O(n+m), m is the total connections given and n is the total nodes given
         //!Space: O(n) 
         public int MakeConnected(int n, int[][] connections)
@@ -33,11 +33,9 @@ namespace LeetCodeGraphs.Medium
                     ++result;
                 }
             }
-            //! minimum steps needed equal to total connected components -1 in graph
+            //! minimum steps needed = total connected components -1 in graph
             return result - 1;
         }
-
-
         private void DFS(int node, Dictionary<int, List<int>> graph, bool[] visited)
         {
             visited[node] = true;
@@ -64,5 +62,33 @@ namespace LeetCodeGraphs.Medium
                 graph[connection[1]].Add(connection[0]);
             }
         }
+        public int MakeConnected1(int n, int[][] connections)
+        {
+
+            if (n > connections.Length + 1)
+            {
+                return -1;
+            }
+            UF uf = new UF(n);
+            foreach (int[] connection in connections)
+            {
+                int u = connection[0];
+                int v = connection[1];
+
+                int pu = uf.FindSet(u);
+                int pv = uf.FindSet(v);
+                if (pu != pv)
+                {
+                    uf.Union(pu, pv);
+                    --n;
+                }
+            }
+            
+            //! To connect N disconnected components you will need minimum of n-1 edges ,  simply return n - 1.
+            return n - 1;
+
+        }
+
+       
     }
 }

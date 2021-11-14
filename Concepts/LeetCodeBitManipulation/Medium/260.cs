@@ -26,14 +26,14 @@ namespace LeetCodeBitManipulation.Medium
                 xy = xy ^ nums[i];
             }
 
-            //! Two missing numbers will have atleast one bit different as they are different numbers 
+            //! Two missing numbers will have atleast one bit different(1 bit in one number and 0 bit in another number) as they are different numbers 
             //! below line gives the first set bit(least significant bit) from right side e.g. (000100010) will be (000000010) 
             //! or it will give the one bit differ between two numbers 
             int lowbit = xy & (-xy);
 
             for (int i = 0; i < nums.Length; ++i)
             {
-                //! if bit set then it belongs to first group else to other group
+               //! We will check that in given numbers if we have this bit set or  not 
                 if ((nums[i] & lowbit) == 0)
                 {
                     //!taking xor because duplicates will cancel each other.  

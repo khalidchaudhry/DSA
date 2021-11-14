@@ -1,4 +1,5 @@
 using LeetCodeGraphs.Easy;
+using LeetCodeGraphs.Hard;
 using LeetCodeGraphs.Medium;
 using LeetCodeGraphs.Medium._802;
 using System;
@@ -179,7 +180,7 @@ namespace LeetCodeGraphs
             //};
             //RedundantConnection.FindRedundantConnection(edges);
 
-            _802._802Main();
+            //_802._802Main();
 
             //_261 GraphValidTree = new _261();
             //int n = 5;
@@ -283,7 +284,7 @@ namespace LeetCodeGraphs
             //_1129 ShortestPath = new _1129();
 
             //ShortestPath.ShortestAlternatingPaths0(n,red_edges,blue_edges);
-            _994._994Main();
+            //_994._994Main();
 
             //_1245._1245Main();
 
@@ -295,6 +296,8 @@ namespace LeetCodeGraphs
 
             //_1462._1462Main();
             //_444._444Main();
+            //_490._490Main();
+            _765._765Main();
             //Console.ReadKey();
 
         }

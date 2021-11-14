@@ -20,52 +20,40 @@ namespace Greedy.Medium
     }
     public class MyCalendarTwo
     {       
-        SortedDictionary<int, int> _eventCount;
+        SortedDictionary<int, int> _intervalCount;
         public MyCalendarTwo()
         {
-            _eventCount = new SortedDictionary<int, int>();
+            _intervalCount = new SortedDictionary<int, int>();
         }
 
         public bool Book(int start, int end)
         {
 
-            end = end - 1;
-
-            if (!_eventCount.ContainsKey(start))
+            if (!_intervalCount.ContainsKey(start))
             {
-                _eventCount.Add(start, 0);
+                _intervalCount.Add(start, 0);
             }
-            ++_eventCount[start];
+            ++_intervalCount[start];
 
-
-            if (!_eventCount.ContainsKey(end))
+            if (!_intervalCount.ContainsKey(end))
             {
-                _eventCount.Add(end, 0);
+                _intervalCount.Add(end, 0);
             }
-            --_eventCount[end];
+            --_intervalCount[end];
 
-            bool canBook = true;
-            int max = 0;
             int sum = 0;
-            foreach (var keyValue in _eventCount)
+            foreach (var keyValue in _intervalCount)
             {
                 sum += keyValue.Value;
-                max = Math.Max(sum, max);
-                if (max >= 3)
+                if (sum == 3)
                 {
-                    canBook = false;
-                    Console.WriteLine("HJ");
-                    break;
+                    --_intervalCount[start];
+                    ++_intervalCount[end];
+                    return false;
                 }
             }
+            return true;
 
-            if (!canBook)
-            {
-                --_eventCount[start];
-                ++_eventCount[end];
-            }
-
-            return canBook;
         }
     }
 

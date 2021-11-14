@@ -9,7 +9,33 @@ namespace LeetCodeLinkedList.Easy
     class _160
     {
 
+        public static void _160Main()
+        {
+            ListNode four = new ListNode(4);
+            ListNode one = new ListNode(1);
+            ListNode eight = new ListNode(8);
+            ListNode four2 = new ListNode(4);
+            ListNode five = new ListNode(4);
 
+            ListNode five2 = new ListNode(5);
+            ListNode six = new ListNode(6);
+            ListNode one2 = new ListNode(1);
+
+
+            four.next = one;
+            one.next = eight;
+            eight.next = four;
+            four.next = five;
+
+            five2.next = six;
+            six.next = one2;
+            one2.next = eight;
+
+            _160 main = new _160();
+            main.getIntersectionNode2(four, five2);
+
+
+        }
         /// <summary>
         //! Using hashset  
         /// </summary>
@@ -91,9 +117,6 @@ namespace LeetCodeLinkedList.Easy
         // Very good solution
         public ListNode getIntersectionNode2(ListNode headA, ListNode headB)
         {
-            //boundary check
-            if (headA == null || headB == null) return null;
-
             ListNode a = headA;
             ListNode b = headB;
 
@@ -107,6 +130,6 @@ namespace LeetCodeLinkedList.Easy
 
             return a;
         }
-       
+
     }
 }

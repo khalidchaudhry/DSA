@@ -25,6 +25,7 @@ namespace LeetCodeBinarySearch.Medium
                 jobs.Add(new Job(startTime[i], endTime[i], profit[i]));
             }
 
+            //! We are sorting based on end time because we want previous event to finish before the current time
             var comparer = Comparer<Job>.Create((x, y) => {
                 return x.EndTime.CompareTo(y.EndTime);
             });
@@ -36,6 +37,8 @@ namespace LeetCodeBinarySearch.Medium
             for (int i = 0; i < n; ++i)
             {
                 int currProfit = jobs[i].Profit;
+                //! We will try to find out that what interval we can extend(if they are not overlapping)
+                //! if not overlapping then idx !=-1
                 int idx = BinarySearch(jobs, 0, i - 1, jobs[i].StartTime);
                 if (idx != -1)
                 {

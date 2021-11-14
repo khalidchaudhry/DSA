@@ -12,11 +12,11 @@ namespace DistributedQueue.Entities
     {
         private Queue _queue;
 
-        public string Name { get; private set; }
+        private string _producerName;
 
         public Producer(string name, Queue queue)
         {
-            Name = name;
+            _producerName = name;
             _queue = queue;
         }
 

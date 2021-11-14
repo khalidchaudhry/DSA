@@ -37,7 +37,11 @@ namespace LeetCodeDynamicProgramming.Medium
 
             }
 
-            return memo[(r, c)] = grid[r][c] + Math.Min(MinPathSum(grid, r, c + 1, memo), MinPathSum(grid, r + 1, c, memo));
+            //! right and down will never be out of bound at same time . One will be inbound atleast
+            int right = MinPathSum(grid, r, c + 1, memo);
+            int down = MinPathSum(grid, r + 1, c, memo);
+
+            return memo[(r, c)] = grid[r][c] + Math.Min(down, right);
         }
 
         /// <summary>

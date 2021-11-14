@@ -62,7 +62,7 @@ namespace LeetCodeDesign.Medium
 
             while (pq.Count != 0 && ans.Count < 10)
             {
-                Tweet maxTweetId = pq.First(); //! based on comparer First is actually having maximum tweet id now
+                Tweet maxTweetId = pq.First(); //! based on comparer First is actually having  tweet id with max timestamp
                 pq.Remove(pq.First());
 
                 ans.Add(maxTweetId.TweetId);

@@ -19,28 +19,28 @@ namespace LeetCodeBinaryTrees.Medium._117
         public Node Connect0(Node root)
         {
 
-            Node head = root;
-            while (head != null)
+            Node curr = root;
+            while (curr != null)
             {
                 //!using dummy node to move to the next level
-                Node next = new Node(0);
-                Node temp = next;
-                while (head != null)
+                Node future = new Node(0);
+                Node temp = future;
+                while (curr != null)
                 {
-                    if (head.left != null)
+                    if (curr.left != null)
                     {
-                        temp.next = head.left;
+                        temp.next = curr.left;
                         temp = temp.next;
                     }
-                    if (head.right != null)
+                    if (curr.right != null)
                     {
-                        temp.next = head.right;
+                        temp.next = curr.right;
                         temp = temp.next;
                     }
 
-                    head = head.next;
+                    curr = curr.next;
                 }
-                head = next.next;
+                curr = future.next;
             }
             return root;
         }

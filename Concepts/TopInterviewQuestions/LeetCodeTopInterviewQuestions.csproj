@@ -52,12 +52,10 @@
     <Compile Include="Easy\136.SingleNumber.cs" />
     <Compile Include="Easy\14.LongestCommonPrefix.cs" />
     <Compile Include="Easy\155.MinStack.cs" />
-    <Compile Include="Easy\160.IntersectionofTwoLinkedLists.cs" />
     <Compile Include="Easy\169.MajorityElement.cs" />
     <Compile Include="Easy\171.ExcelSheetColumnNumber.cs" />
     <Compile Include="Easy\172.FactorialTrailingZeroes.cs" />
     <Compile Include="Easy\189.RotateArray.cs" />
-    <Compile Include="Easy\190.ReverseBits.cs" />
     <Compile Include="Easy\198.HouseRobber.cs" />
     <Compile Include="Easy\20.cs" />
     <Compile Include="Easy\202.HappyNumber.cs" />

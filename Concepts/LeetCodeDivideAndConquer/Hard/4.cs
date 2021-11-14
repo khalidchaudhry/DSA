@@ -24,22 +24,22 @@ namespace LeetCodeDivideAndConquer.Hard
             {
                 //! Find the pivot point in small array 
                 //! We choose small array for partitioning because cut will always be deterministic 
-                int i = lo + ((hi - lo) / 2); //! index for small 
+                int mid = lo + ((hi - lo) / 2); //! index for small 
 
                 //! Any pivot point in small array has a corresponding point on large array 
                 //! that divides the total number of elments into two 
-                int j = partitionSize - i; //! index for big 
+                int bigArrayIdx = partitionSize - mid; //! index for big 
 
                 //! Find the indexes
 
-                int smallLeft = i == 0 ? int.MinValue : small[i - 1];
+                int smallLeft = mid == 0 ? int.MinValue : small[mid - 1];
+                int bigLeft = bigArrayIdx == 0 ? int.MinValue : big[bigArrayIdx - 1];
+
+
                 //! Right side will contain 1 more element  hence i is not i+1
-                int smallRight = i == n ? int.MaxValue : small[i];
-
-
-                int bigLeft = j == 0 ? int.MinValue : big[j - 1];
+                int smallRight = mid == n ? int.MaxValue : small[mid];              
                 //! Right side will contain 1 more element  hence j is not j+1
-                int bigRight = j == m ? int.MaxValue : big[j];
+                int bigRight = bigArrayIdx == m ? int.MaxValue : big[bigArrayIdx];
 
                 //!If the partion is correct
                 if (bigRight >= smallLeft && smallRight >= bigLeft)
@@ -56,11 +56,11 @@ namespace LeetCodeDivideAndConquer.Hard
                 //!Determine the direction where we need to go  
                 else if (smallLeft > bigRight)
                 {
-                    hi = i - 1;
+                    hi = mid - 1;
                 }
                 else
                 {
-                    lo = i + 1;
+                    lo = mid + 1;
                 }
             }
             return 0;

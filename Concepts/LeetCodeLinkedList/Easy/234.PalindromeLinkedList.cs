@@ -64,6 +64,50 @@ namespace LeetCodeLinkedList.Easy
             return prev;
         }
 
+        /// <summary>
+        //! Recursively reversing the linked list 
+        /// </summary>
+        public bool IsPalindrome1(ListNode head)
+        {
+
+            ListNode sp = head;
+            ListNode fp = head;
+
+            while (fp != null && fp.next != null)
+            {
+                sp = sp.next;
+                fp = fp.next.next;
+            }
+
+            ListNode firstList = head;
+            ListNode secondList = Reverse(null, sp);
+
+            while (secondList != null && firstList != null)
+            {
+                if (firstList.val != secondList.val)
+                {
+                    return false;
+                }
+                firstList = firstList.next;
+                secondList = secondList.next;
+            }
+            return true;
+        }
+        private ListNode Reverse(ListNode prev, ListNode curr)
+        {
+            if (curr == null)
+            {
+                return null;
+            }
+            if (curr.next == null)
+            {
+                curr.next = prev;
+                return curr;
+            }
+            ListNode toReturn = Reverse(curr, curr.next);
+            curr.next = prev;
+            return toReturn;
+        }
     }
    
 

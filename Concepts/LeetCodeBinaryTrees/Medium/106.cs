@@ -21,6 +21,9 @@ namespace LeetCodeBinaryTrees.Medium
 
             Console.ReadLine();
         }
+        /// <summary>
+        // ! To build tree from array u need inorder and pre or post order 
+        /// </summary>
         public TreeNode BuildTree(int[] inorder, int[] postorder)
         {
             this.PostOrder = postorder;
@@ -48,7 +51,7 @@ namespace LeetCodeBinaryTrees.Medium
             int rootIndex = InOrderMap[rootVal];
             TreeNode node = new TreeNode(rootVal);
             --this.PostStart;
-            //! we are going first on the right then on the left ? WHY?
+            //! we are going first on the right then on the left ? WHY? because we are iterating postorder array from right to left
             node.right = ConstructTree(rootIndex + 1, inEnd);
             node.left = ConstructTree(inStart, rootIndex - 1);
             return node;

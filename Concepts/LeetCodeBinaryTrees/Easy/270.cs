@@ -26,11 +26,11 @@ namespace LeetCodeBinaryTrees.Easy
                     closestValueSoFar = currValue;
                 }
                 //! If node value is > then there is no point going to the right
-                //! as difference will be more the right side and current node gives us the best result.
+                //! as difference will be more on right side and current node gives us the best result.Try left side
                 if (currValue > target)
                     curr = curr.left;
                 //!If node value is <= target then there is no point going on left
-                //! as difference will be more on the right side
+                //! as difference will be more on the left side
                 else
                     curr = curr.right;
             }

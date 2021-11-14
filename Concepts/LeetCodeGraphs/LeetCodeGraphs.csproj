@@ -47,10 +47,14 @@
   <ItemGroup>
     <Compile Include="Easy\690.cs" />
     <Compile Include="Easy\733.cs" />
+    <Compile Include="Hard\1579.cs" />
     <Compile Include="Hard\269.cs" />
+    <Compile Include="Hard\765.cs" />
     <Compile Include="Medium\1020.cs" />
     <Compile Include="Medium\1102.cs" />
     <Compile Include="Medium\1129.cs" />
+    <Compile Include="Medium\1135.cs" />
+    <Compile Include="Medium\1136.cs" />
     <Compile Include="Medium\1161.cs" />
     <Compile Include="Medium\1162.cs" />
     <Compile Include="Medium\1236.cs" />
@@ -63,7 +67,10 @@
     <Compile Include="Easy\1042.cs" />
     <Compile Include="Easy\997.cs" />
     <Compile Include="Medium\1462.cs" />
+    <Compile Include="Medium\1514.cs" />
     <Compile Include="Medium\1557.cs" />
+    <Compile Include="Medium\1584.cs" />
+    <Compile Include="Medium\1778.cs" />
     <Compile Include="Medium\200.cs" />
     <Compile Include="Medium\207.cs" />
     <Compile Include="Medium\210.cs" />
@@ -99,6 +106,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeetCodeHeap\LeetCodeHeap.csproj">
+      <Project>{DA63F267-2361-487E-A4D5-AE9B4AF82F4B}</Project>
+      <Name>LeetCodeHeap</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

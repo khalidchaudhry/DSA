@@ -10,71 +10,68 @@ namespace LeetCodeGraphs.Medium
     {
         /// <summary>
         //! Exactly like 200. Only difference is handling of boundary  case
+        //! out of bound cells are surronded by land(0) and not water 
         //https://leetcode.com/problems/number-of-closed-islands/discuss/479506/Java-Super-Straightforward-DFS-Solution-with-explanation-with-Two-Pass.-Beat-100
         /// </summary>      
         public int ClosedIsland(int[][] grid)
         {
-            SetBoundries(grid);
-            int closedIslands = 0;
-            for (int i = 0; i < grid.Length; ++i)
+            int rows = grid.Length;
+            int cols = grid[0].Length;
+
+            //For first row and last row
+            for (int c = 0; c < cols; ++c)
             {
-                for (int j = 0; j < grid[0].Length; ++j)
+                DFS(grid, 0, c);
+                DFS(grid, rows - 1, c);
+            }
+
+            //For first col and last column
+            for (int r = 0; r < rows; ++r)
+            {
+                DFS(grid, r, 0);
+                DFS(grid, r, cols - 1);
+            }
+
+            int closedIslandCount = 0;
+            for (int r = 0; r < rows; ++r)
+            {
+                for (int c = 0; c < cols; ++c)
                 {
-                    if (grid[i][j] == 0)
+                    if (grid[r][c] == 0)
                     {
-                        ++closedIslands;
-                        DFS(grid, i, j);
+                        ++closedIslandCount;
+                        DFS(grid, r, c);
                     }
                 }
             }
-            return closedIslands;
+            return closedIslandCount;
         }
-        private void SetBoundries(int[][] grid)
+        private void DFS(int[][] grid, int r, int c)
         {
-            int rows = grid.Length;
-            int columns = grid[0].Length;
-            //! Setting boundries column in grid equal to 1
-            for (int i = 0; i < rows; ++i)
+            if (IsOutOfBound(grid, r, c) || grid[r][c] != 0)
             {
-                if (grid[i][0] == 0)
-                    DFS(grid, i, 0);
-
-                if (grid[i][columns - 1] == 0)
-                    DFS(grid, i, columns - 1);
-            }
-            //! Setting boundries rows in grid equal to 1
-            for (int i = 0; i < columns; ++i)
-            {
-                if (grid[0][i] == 0)
-                    DFS(grid, 0, i);
-
-                if (grid[rows - 1][i] == 0)
-                    DFS(grid, rows - 1, i);
-            }
-        }
-        private void DFS(int[][] grid, int row, int column)
-        {
-            if (grid[row][column] != 0)
                 return;
-
-            grid[row][column] = 1;
-            foreach ((int nr, int nc) in GetNeighbors(grid, row, column))
+            }
+            grid[r][c] = 2; //!marked with some value so that we don't process them 
+            foreach ((int nr, int nc) in GetNeighbors(r, c))
             {
                 DFS(grid, nr, nc);
             }
         }
-        private IEnumerable<(int, int)> GetNeighbors(int[][] grid, int row, int column)
+        private bool IsOutOfBound(int[][] grid, int r, int c)
         {
-            foreach ((int nr, int nc) in new List<(int, int)>{(row+1,column),(row-1,column),
-                                                      (row,column+1),(row,column-1)})
-            {
-                if (nr >= 0 && nr < grid.Length && nc >= 0 && nc < grid[0].Length)
-                {
-                    yield return (nr, nc);
-                }
-            }
+            return r < 0 || r >= grid.Length || c < 0 || c >= grid[0].Length;
         }
 
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
+        {
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
 
+            foreach ((int nr, int nc) in new List<(int nr, int nc)> { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
+            {
+                neighbors.Add((nr, nc));
+            }
+            return neighbors;
+        }
     }
 }

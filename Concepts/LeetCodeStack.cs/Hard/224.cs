@@ -12,10 +12,146 @@ namespace LeetCodeStack.cs.Hard
         {
 
             _224 Test = new _224();
-            var result = Test.Calculate0("2 - (5 - 6)");
+            var result = Test.Calculate("- (3 - (- (4 + 5) ) ) ");
             Console.ReadLine();
 
         }
+
+        // # <image url="https://static.javatpoint.com/ds/images/applications-of-stack-in-data-structure2.png"  scale="0.9"/>
+        //https://www.javatpoint.com/infix-to-postfix-java
+        public int Calculate(string s)
+        {
+
+
+            List<string> postFix = InfixToPostFix(s);
+            return EvalPostFix(postFix);
+        }
+        private List<string> InfixToPostFix(string infix)
+        {
+            Stack<char> operators = new Stack<char>();
+            List<string> postfix = new List<string>();
+
+            int i = 0;
+            int n = infix.Length;
+            while (i < n)
+            {
+                //skip white spaces
+                if (infix[i] == ' ')
+                {
+                    ++i;
+                }
+                //!if it's an operand, add it to the string
+                else if (char.IsDigit(infix[i]))
+                {
+                    StringBuilder operand = new StringBuilder();
+                    while (i < n && char.IsDigit(infix[i]))
+                    {
+                        operand.Append(infix[i]);
+                        ++i;
+                    }               
+                    postfix.Add(operand.ToString());                   
+                }
+                //!push (  
+                else if (infix[i] == '(')
+                {
+
+                    if (infix[i + 1] == '-')
+                    {
+                        i += 2;//skipping ( and -
+                        StringBuilder operand = new StringBuilder();
+                        operand.Append('-');
+                        while (i < n && char.IsDigit(infix[i]))
+                        {
+                            operand.Append(infix[i]);
+                            ++i;
+                        }
+                        postfix.Add(operand.ToString());
+                        ++i;//Skip the )  bracket
+                    }
+                    else
+                    {
+                        operators.Push(infix[i]);
+                        ++i;
+                    }
+                }
+                else if (infix[i] == ')')
+                {
+                    while (operators.Peek() != '(')
+                    {
+                        postfix.Add(operators.Pop().ToString());
+                    }
+                    //!remove '('  
+                    operators.Pop();
+                    ++i;
+                }
+                //!Append  operators occurring before it that have greater precedence  
+                else
+                {
+                    while (operators.Count != 0 &&
+                           //! Is above the most recently scanned left parenthesis
+                           operators.Peek() != '(' &&
+                           Precedence(infix[i]) <= Precedence(operators.Peek())
+                           )
+                    {
+                        postfix.Add(operators.Pop().ToString());
+                    }
+                    operators.Push(infix[i]);
+                    ++i;
+                }
+            }
+
+            while (operators.Count != 0)
+            {
+                postfix.Add(operators.Pop().ToString());
+            }
+
+            return postfix;
+        }
+        private int Precedence(char x)
+        {
+            if (x == '+' || x == '-')
+                return 1;
+            return 0;
+
+        }
+        private int EvalPostFix(List<string> postFix)
+        {
+            Stack<int> stk = new Stack<int>();
+            for (int i = 0; i < postFix.Count; ++i)
+            {
+                string token = postFix[i];
+
+                if (token == "+" || token == "-")
+                {
+                    int operand2 = stk.Pop();
+                    int operand1 = stk.Pop();
+                    switch (token)
+                    {
+                        case "+":
+                            stk.Push(operand1 + operand2);
+                            break;
+                        case "-":
+                            stk.Push(operand1 - operand2);
+                            break;
+                    }
+                }
+                else
+                {
+                    if (token.StartsWith("."))
+                    {
+                        token = "-" + token.Substring(1);
+                    }
+                    stk.Push(Convert.ToInt32(token));
+                }
+            }
+            while (stk.Count != 1)
+            {
+                stk.Push(stk.Pop() + stk.Pop());
+            }
+            return stk.Peek();
+        }
+
+
 
         /// <summary>
         //https://blog.baozitraining.org/search?q=calculator
@@ -24,7 +160,7 @@ namespace LeetCodeStack.cs.Hard
         //! If yes, do the calculation , else push both the operators and operand on stack
         /// </summary>
 
-        public int Calculate0(string s)
+        public int Calculate1(string s)
         {
             Stack<char> operators = new Stack<char>();
             Stack<int> operands = new Stack<int>();
@@ -83,7 +219,7 @@ namespace LeetCodeStack.cs.Hard
         private void CalPrevExprs(Stack<char> operators, Stack<int> operands, Dictionary<char, int> priority, char currOperator)
         {
 
-            while ( operators.Count != 0 &&
+            while (operators.Count != 0 &&
                     operators.Peek() != '(' &&
                    (currOperator == ')' ||   //if encounter bracket than we need to evaluate whole expression till closing one
                     priority[currOperator] <= priority[operators.Peek()]

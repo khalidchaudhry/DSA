@@ -35,57 +35,9 @@ namespace LeetCodeGraphs.Medium._802
                 new int[]{0}
             };
 
-            EventualSafe.EventualSafeNodes(graph);
+            EventualSafe.EventualSafeNodes0(graph);
             Console.ReadLine();
-        }
-
-        public IList<int> EventualSafeNodes(int[][] graph)
-        {
-
-            int n = graph.Length;
-            Dictionary<int, int> nodeColor = new Dictionary<int, int>();
-            for (int i = 0; i < n; ++i)
-            {
-                nodeColor.Add(i, 0);
-            }
-
-            List<int> safeNodes = new List<int>();
-            for (int i = 0; i < n; ++i)
-            {
-                if (nodeColor[i] == 0)
-                {
-                    if (IsValidColor(graph, i, nodeColor, 1))
-                    {
-                        safeNodes.Add(i);
-                    }
-                }
-            }
-            return safeNodes;
-        }
-
-        private bool IsValidColor(int[][] graph, int start, Dictionary<int, int> nodeColor, int color)
-        {
-            nodeColor[start] = color;
-            int nextColor = -color;
-
-            foreach (int neighbor in graph[start])
-            {
-                if (nodeColor[neighbor] != 0) //neighbor already painted
-                {
-                    if (nodeColor[neighbor] == color)  // check if neighbor color is same as the current neighbor
-                        return false;
-                }
-                else
-                {
-                    if (!IsValidColor(graph, neighbor, nodeColor, nextColor))
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
+        }     
 
 
 
@@ -135,7 +87,7 @@ namespace LeetCodeGraphs.Medium._802
                 }
             }
 
-            color[start] = 2;//its being visited so marking it as black
+            color[start] = 2;//its being processed so marking it as black
             return false;
 
         }

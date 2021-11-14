@@ -40,6 +40,7 @@ namespace Greedy.Hard
                 Interval curr = allIntervals[i];
                 if (IsOverlap(prev, curr))
                 {
+                    //! if curr interval ending last then compare it with  next interval
                     if (curr.end > prev.end)
                     {
                         prev = curr;
@@ -51,6 +52,7 @@ namespace Greedy.Hard
                     int end = curr.start;
                     Interval newInterval = new Interval(start, end);
                     free.Add(newInterval);
+                    //! current interval is not overlaping with prev so  its definitely ending before the current
                     prev = curr;
                 }
             }

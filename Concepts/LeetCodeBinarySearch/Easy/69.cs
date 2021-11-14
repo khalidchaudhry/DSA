@@ -31,12 +31,12 @@ namespace LeetCodeBinarySearch.Easy
             //! Corner case
             if (x == 0)
                 return 0;
-
-            long lo = 1; //! valid candidate 
-            long hi = x / 2 + 1; //! invalid candidate 
+            //! We are strting from 1 rather than 0 because in case of x=1 it will return 0 rather than returning 1 
+            int lo = 1; //! valid candidate 
+            int hi = x / 2 + 1; //! invalid candidate 
             while (lo + 1 < hi)
             {
-                long mid = lo + (hi - lo) / 2;
+                int mid = lo + (hi - lo) / 2;
                 if (OK(mid, x))
                 {
                     lo = mid;
@@ -78,7 +78,7 @@ namespace LeetCodeBinarySearch.Easy
         //! ans^2=x
         //! ans=x/2
         /// </summary>
-        private bool OK(long number, int x)
+        private bool OK(int number, int x)
         {
             //!or we can write it like that as well and can avoid  using int.... number<=x/number;
             return number <= x / number;

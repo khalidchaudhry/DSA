@@ -16,25 +16,25 @@ namespace LeetCodeBinaryTrees.Medium
                 return 0;
             }
 
-            int leftLevel = 1;
+            int leftDepth = 1;
             TreeNode n = root.left;
             while (n != null)
             {
                 n = n.left;
-                leftLevel += 1;
+                ++leftDepth;
             }
 
-            int rightLevel = 1;
+            int rightDepth = 1;
             n = root.right;
             while (n != null)
             {
                 n = n.right;
-                rightLevel += 1;
+                ++rightDepth;
             }
 
-            if (leftLevel == rightLevel)
+            if (leftDepth == rightDepth)
             {
-                return (int)Math.Pow(2, leftLevel) - 1;
+                return (int)Math.Pow(2, leftDepth) - 1;
             }
             //! Adding 1 because we need to include the current node 
             return 1 + CountNodes0(root.left) + CountNodes0(root.right);

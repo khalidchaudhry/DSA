@@ -51,7 +51,7 @@ namespace LeetCodeBinaryTrees.Easy
         /// <summary>
         //! Below method does not consider that its BST and searches for all the nodes  
         /// </summary>
-        public int RangeSumBST(TreeNode root, int L, int R)
+        public int RangeSumBST2(TreeNode root, int L, int R)
         {
             int[] sum = new int[1];
             RangeSumSBSTHelper(root, L, R, sum);

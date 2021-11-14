@@ -15,8 +15,8 @@ namespace LeetCodeBinarySearch.Medium
             int r = A.Length;
             int c = A[0].Length;
 
-            int lo = 0;
-            int hi = Math.Min(A[0][0], A[r - 1][c - 1]) + 1;
+            int lo = 0; //Valid
+            int hi = Math.Min(A[0][0], A[r - 1][c - 1]) + 1; //invalid
 
             while (lo + 1 < hi)
             {
@@ -36,6 +36,8 @@ namespace LeetCodeBinarySearch.Medium
         }
 
         //!Can we achieve at least 'mid' score
+        //! We can only achieve 'mid' score if mid is the smallest value in the path.
+        //! If neighbor valus is smaller than mid value then we can't achieve the mid score
         // TTTT'T'FFFFF
         private bool OK(int[][] A, int target)
         {

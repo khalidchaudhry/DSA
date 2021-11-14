@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hard\1383.cs" />
     <Compile Include="Hard\239.cs" />
     <Compile Include="Hard\295.cs" />
     <Compile Include="Hard\871.cs" />

@@ -18,16 +18,22 @@ namespace LeetCodeBinaryTrees.Medium
             return IsValidBST0(root, long.MinValue, long.MaxValue);
         }
 
-        private bool IsValidBST0(TreeNode root, long lowerBound, long upperBound)
+        private bool IsValidBST0(TreeNode node, long lb, long ub)
         {
-            if (root == null)
+            if (node == null)
+            {
                 return true;
+            }
+            //! If value is == lb or ub than we should also return false as per definiation of BST
+            //! The left subtree of a node contains only nodes with keys less than the node's key.
+            //! The right subtree of a node contains only nodes with keys greater than the node's key.
+            //! Both the left and right subtrees must also be binary search trees.
+            if (node.val <= lb || node.val >= ub)
+            {
+                return false;
+            }
 
-            bool left = IsValidBST0(root.left, lowerBound, root.val);
-            bool isTrue = root.val > lowerBound && root.val < upperBound;
-            bool right = IsValidBST0(root.right, root.val, upperBound);
-
-            return left && isTrue && right;
+            return IsValidBST0(node.left, lb, node.val) && IsValidBST0(node.right, node.val, ub);
         }
 
 

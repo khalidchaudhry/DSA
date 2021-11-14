@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCodeTrie.Hard
+namespace LeetCodeTrie.Hard._212
 {
     public class _212
     {

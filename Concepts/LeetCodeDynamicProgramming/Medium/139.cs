@@ -52,12 +52,10 @@ namespace LeetCodeDynamicProgramming.Medium
 
                 if (WordBreak(s, i + 1, hs, cache))
                 {
-                    cache[start] = true;
-                    return cache[start];
+                    return cache[start]=true;
                 }
             }
-            cache[start] = false;
-            return cache[start];
+            return cache[start]=false;
         }
 
         private void PopulateHashSet(IList<string> wordDict, HashSet<string> hs)
@@ -68,9 +66,79 @@ namespace LeetCodeDynamicProgramming.Medium
             }
         }
 
+        //! Solution based on Trie.
+        //! insert all words dictionary in Trie.Serch the string in Trie
+        public bool WordBreak1(string s, IList<string> wordDict)
+        {
 
+            Trie trie = new Trie();
+            foreach (string word in wordDict)
+            {
+                trie.Insert(word);
+            }
+            Dictionary<int, bool> memo = new Dictionary<int, bool>();
+            return trie.Search(s, 0, memo);
+        }
+        public class Trie
+        {
+            TrieNode _root;
+            public Trie()
+            {
+                _root = new TrieNode();
+                _root.Children.Add('/', new TrieNode());
+            }
+            public void Insert(string word)
+            {
+                TrieNode curr = _root;
+                foreach (char c in word)
+                {
+                    if (!curr.Children.ContainsKey(c))
+                    {
+                        curr.Children.Add(c, new TrieNode());
+                    }
+                    curr = curr.Children[c];
+                }
+                ++curr.WordEnd;
+            }
 
+            public bool Search(string word, int start, Dictionary<int, bool> memo)
+            {
+                if (start == word.Length)
+                    return true;
 
+                if (memo.ContainsKey(start))
+                    return memo[start];
+
+                //! We will always start from the root
+                TrieNode curr = _root;
+                for (int i = start; i < word.Length; ++i)
+                {
+                    char c = word[i];
+                    if (!curr.Children.ContainsKey(c))
+                    {
+                        return memo[start] = false;
+                    }
+                    curr = curr.Children[c];
+                    if (curr.WordEnd > 0 && Search(word, i + 1, memo))
+                    {
+                        return memo[start] = true;
+                    }
+
+                }
+                return memo[start] = false;
+            }
+        }
+
+        public class TrieNode
+        {
+            public Dictionary<char, TrieNode> Children;
+            public int WordEnd;
+            public TrieNode()
+            {
+                Children = new Dictionary<Char, TrieNode>();
+                WordEnd = 0;
+            }
+        }
 
         /// <summary>
         //!DP with memoization based on idea in Kuai's class 
@@ -121,7 +189,7 @@ namespace LeetCodeDynamicProgramming.Medium
         //Space complexity : O(n) O(n). The depth of the recursion tree can go upto nn.
         /// </summary>
 
-        public bool WordBreak1(string s, IList<string> wordDict)
+        public bool WordBreak3(string s, IList<string> wordDict)
         {
             HashSet<string> hs = new HashSet<string>();
             foreach (string word in wordDict)
@@ -151,28 +219,5 @@ namespace LeetCodeDynamicProgramming.Medium
             }
             return false;
         }
-        
-
-        private bool word_Break(String s, HashSet<String> wordDict, int start)
-        {
-            if (start == s.Length)
-            {
-                return true;
-            }
-            for (int end = start + 1; end <= s.Length; end++)
-            {
-                //! rather than end-start we can also use end only
-                //! second argument to Substring corresponds to length
-                //! e.g. sands and assume end pointer is at last than 4 characters excluding s and hence the reason where we are specifying 
-                //! <= in for loop
-                //! Rather than passing s in word_break() we can also pass substring starting from end
-                //! e.gword_Break(s.Substring(end),0,hs) as it implies the same thing. 
-                if (wordDict.Contains(s.Substring(start, end - start)) && word_Break(s, wordDict, end))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }        
     }
 }

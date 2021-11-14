@@ -16,6 +16,10 @@ namespace LeetCodeDivideAndConquer.Medium
 
         private int MctFromLeafValues(int[] arr, int s, int e, Dictionary<(int, int), int> memo)
         {
+
+            //! we are returning  0 becuase when s==e it means that its leaf node. 
+            //! We return the smallest possible sum of the values of each non-leaf node.
+            //! By returning 0 we are not considering the leaf node value
             if (s == e)
             {
                 return 0;

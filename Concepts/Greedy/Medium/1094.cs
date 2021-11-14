@@ -14,7 +14,7 @@ namespace Greedy.Medium
         /// </summary>      
         public bool CarPooling(int[][] trips, int capacity)
         {
-            //!! Key is the location and value is the flow at that location
+            //!! Key is the location and value is the passenger in the car at that location
             Dictionary<int, int> map = new Dictionary<int, int>();
             ComputeFlow(map, trips);
             //! Sorting because we are  traveling from location 1 ,2,3..... n 

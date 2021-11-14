@@ -42,8 +42,9 @@ namespace LeetcodeBackTracking.Medium
             {
                 max = Math.Max(max, GetMaximumGold(nr, nc, grid));
             }
-            grid[r][c] = prev;
-
+            //! we need to backtrack hence resetting it to prev value 
+            grid[r][c] = prev; 
+            
             maxGold += max;
             return maxGold;
 

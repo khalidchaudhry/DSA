@@ -8,45 +8,35 @@ namespace LeetCodeStrings.Easy
 {
     public class _242
     {
+
+        /// <summary>
+        //! We are going from target to source to validate if we can make anagram. Question is asking if we can make anagram of t from s
+        /// </summary>
         public bool IsAnagram(string s, string t)
         {
 
-            if (s.Length!=t.Length)
+            if (s.Length != t.Length)
                 return false;
 
-            Dictionary<Char,int> dict = new Dictionary<char, int>();
-
-            for (int i=0;i<s.Length;i++)
+            Dictionary<char, int> freqMap = new Dictionary<char, int>();
+            foreach (char c in s)
             {
-                if (dict.ContainsKey(s[i]))
+                if (!freqMap.ContainsKey(c))
                 {
-                    dict[s[i]]++;
+                    freqMap.Add(c, 0);
                 }
-                else
-                {
-                    dict.Add(s[i],1);
-                }                
+                ++freqMap[c];
             }
-
-            for (int i = 0; i < t.Length; i++)
+            foreach (char c in t)
             {
-                if (dict.ContainsKey(t[i]))
-                {
-                    dict[t[i]]--;
-                }
-                else
+                if (!freqMap.ContainsKey(c) || freqMap[c] == 0)
                 {
                     return false;
                 }
+
+                --freqMap[c];
             }
 
-            foreach (var item in dict)
-            {
-                if (item.Value!=0)
-                {
-                    return false;
-                }
-            }
 
             return true;
         }

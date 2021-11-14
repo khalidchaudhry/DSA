@@ -8,91 +8,93 @@ namespace LeetCodeGraphs.Medium
 {
     public class _1129
     {
-        /// <summary>
-        /// https://leetcode.com/problems/shortest-path-with-alternating-colors/discuss/340246/Java-DFS-and-BFS-two-codes-each-wo-duplication-check.
-        /// </summary>
-        /// <param name="n"></param>
-        /// <param name="red_edges"></param>
-        /// <param name="blue_edges"></param>
-        /// <returns></returns>
+
+        
         public int[] ShortestAlternatingPaths0(int n, int[][] red_edges, int[][] blue_edges)
         {
-            //!Number of steps needed to reach to node 0 starting from red or blue. 
-            //!steps[0]  ---starting from red edge
-            //!steps[1]--- startign from blue edge
-            int[][] steps = new int[2][];
-            steps[0] = new int[n];
-            steps[1] = new int[n];
-            //! Initialized with MAX values, except that 2 starting points initialized with 0.
-            for (int i = 1; i < n; i++)
+
+            Dictionary<int, Dictionary<int, List<int>>> graph = new Dictionary<int, Dictionary<int, List<int>>>();
+
+            for (int i = 0; i < n; ++i)
             {
-                steps[0][i] = int.MaxValue;
-                steps[1][i] = int.MaxValue;
+                Dictionary<int, List<int>> neighbors = new Dictionary<int, List<int>>();
+                //! 0 represents red color
+                //! 1 represents blue color
+                neighbors.Add(0, new List<int>());
+                neighbors.Add(1, new List<int>());
+                graph.Add(i, neighbors);
             }
-
-            // Build graphs for red and blue edges, respectively.
-            Dictionary<int, List<int>> red = new Dictionary<int, List<int>>();
-            foreach (int[] redEdge in red_edges)
+            foreach (int[] red_edge in red_edges)
             {
-                if (!red.ContainsKey(redEdge[0]))
-                {
-                    red[redEdge[0]] = new List<int>();
-                }
+                int from = red_edge[0];
+                int to = red_edge[1];
 
-                red[redEdge[0]].Add(redEdge[1]);
+                graph[from][0].Add(to);
             }
-
-            Dictionary<int, List<int>> blue = new Dictionary<int, List<int>>();
-            foreach (int[] blueEdge in blue_edges)
+            foreach (int[] blue_edge in blue_edges)
             {
-                if (!blue.ContainsKey(blueEdge[0]))
-                {
-                    blue[blueEdge[0]] = new List<int>();
-                }
+                int from = blue_edge[0];
+                int to = blue_edge[1];
 
-                blue[blueEdge[0]].Add(blueEdge[1]);
+                graph[from][1].Add(to);
             }
-
-
-            Queue<(int node, int color)> queue = new Queue<(int node, int color)>();
-
-            //! 0 =Red edge
-            //! 1=Blue edge
-            //! first dimension = node,  second dimension=color
-            //! Not sure which color edge the first node will take hence queue both
-            queue.Enqueue((0, 0));
-            queue.Enqueue((0, 1));
-
-            while (queue.Count != 0)
+            int[] answer = new int[n];
+            for (int i = 0; i < n; ++i)
             {
-                (int node, int color) = queue.Dequeue();
-                Dictionary<int, List<int>> map = color == 0 ? red : blue;
+                answer[i] = int.MaxValue;
+            }
+            //0 Red
+            //1 Blue  
 
-                if (!map.ContainsKey(node)) { continue; }
-
-                foreach (int neighbor in map[node])
+            BFS(graph, 0, answer);
+            BFS(graph, 1, answer);
+            for (int i = 0; i < n; ++i)
+            {
+                if (answer[i] == int.MaxValue)
                 {
-                    int oppositeColor = 1 - color;
-                    if (steps[oppositeColor][neighbor] == int.MaxValue)
-                    {    // 1 - color: the other color.
-                        steps[oppositeColor][neighbor] = steps[color][node] + 1;
-
-                        queue.Enqueue((neighbor, oppositeColor));
-                    }
+                    answer[i] = -1;
                 }
             }
+            return answer;
 
-            for (int i = 1; i < n; ++i)
-            {
-                int shorter = Math.Min(steps[0][i], steps[1][i]);
-                steps[0][i] = shorter == int.MaxValue ? -1 : shorter;
-            }
-
-            return steps[0];
         }
+        private void BFS(Dictionary<int, Dictionary<int, List<int>>> graph, int color, int[] answer)
+        {
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(0);
+            //! We need to add edgeColor in visited set
+            //! since we can have edge with different color that give us path.
+            //! see below picture 
+            //  # <image url="$(SolutionDir)\Images\1129.jpg"  scale="0.1"/>
+            HashSet<(int node, int color)> visited = new HashSet<(int node, int color)>();
+            visited.Add((0, color));
 
+            int level = 0;
 
+            while (queue.Count > 0)
+            {
+                color = color % 2;
 
+                int count = queue.Count;
+                while (count > 0)
+                {
+                    int first = queue.Dequeue();
+                    answer[first] = Math.Min(answer[first], level);
+                    foreach (int neighbor in graph[first][color])
+                    {
+                        if (visited.Contains((neighbor, color)))
+                        {
+                            continue;
+                        }
+                        visited.Add((neighbor, color));
+                        queue.Enqueue(neighbor);
+                    }
+                    --count;
+                }
+                ++level;
+                ++color;
+            }
+        }
 
 
         /// <summary>

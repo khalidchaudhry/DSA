@@ -18,19 +18,20 @@ namespace LeetcodeBackTracking.Medium
             return result;
         }
         // # <image url="$(SolutionDir)\Images\89.jpg"  scale="0.5"/>
-        private void GrayCode(int path, int n, HashSet<int> visited, List<int> result)
+        private void GrayCode(int integer, int totalBits, HashSet<int> visited, List<int> result)
         {
-            if (visited.Contains(path))
+            if (visited.Contains(integer))
                 return;
 
-            visited.Add(path);
+            visited.Add(integer);
 
-            result.Add(path);
-
-            for (int i = 0; i < n; ++i)
+            result.Add(integer);
+            //!Question asks us to return  n-bit gray code sequence.
+            for (int i = 0; i < totalBits; ++i)
             {
-                int next = Flip(path, i);
-                GrayCode(next, n, visited, result);
+                int next = Flip(integer, i);
+                //! We will go into recursion by flipping  bit of number 
+                GrayCode(next, totalBits, visited, result);
             }
         }
 

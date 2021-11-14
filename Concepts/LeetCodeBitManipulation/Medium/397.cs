@@ -45,8 +45,7 @@ namespace LeetCodeBitManipulation.Medium
             if (n % 2 == 0)
                 min = 1 + IntegerReplacement0(n / 2);
             else
-            {
-                //!if adding 1 to number ends up giving even we will go with it
+            {               
                 if (((n + 1) / 2) % 2 == 0)
                 {
                     min = 1 + IntegerReplacement0(n + 1);

@@ -33,9 +33,9 @@ namespace LeetCodeArrays.Medium
             //!                   i        j
             //! e.g. for array [3,4, 7, 2,-3, 1, 4, 2 ]
             //! current_sum [0, 3,7,14,16,13, 14,18,20]
-
-            //! Below video for more explanation
+            //! Below video for more explanation           
             //https://youtu.be/HbbYPQc-Oo4?t=122
+            //! Another reason is to accomadate the answers that starts from index 0 
             map.Add(0, 1);
             for (int i = 0; i < nums.Length; ++i)
             {

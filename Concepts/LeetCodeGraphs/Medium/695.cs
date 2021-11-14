@@ -18,11 +18,9 @@ namespace LeetCodeGraphs.Medium
             {
                 for (int j = 0; j < c; ++j)
                 {
-                    if (grid[i][j] == 1)
-                    {
-                        int area = DFS(grid, i, j);
-                        maxArea = Math.Max(area, maxArea);
-                    }
+                    int area = DFS(grid, i, j);
+                    maxArea = Math.Max(area, maxArea);
+
                 }
             }
             return maxArea;
@@ -34,7 +32,7 @@ namespace LeetCodeGraphs.Medium
                 return 0;
 
             grid[r][c] = 0;
-
+            //!Adding DFS result to area will give us the max area we can get
             int area = 1;
             foreach ((int nr, int nc) in GetNeighbors(r, c))
             {

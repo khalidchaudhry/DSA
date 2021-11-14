@@ -31,7 +31,7 @@ namespace DistributedQueue
             {
                 if (_offSet != _topic.GetMessagesCount())
                 {                    
-                    string msg=($"{_consumer.Name} received {_topic.GetMessage(_offSet)} ");
+                    string msg=($"{_consumer.ConsumerName} received {_topic.GetMessage(_offSet)} ");
                     _consumer.Consume(msg);
                     ++_offSet;
                 }

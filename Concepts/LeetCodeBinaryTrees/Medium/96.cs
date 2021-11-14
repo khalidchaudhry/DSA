@@ -53,8 +53,11 @@ namespace LeetCodeBinaryTrees.Medium
             int numTrees = 0;
             for (int i = 1; i <= n; ++i)
             {
+                //!  Subtrees we will get from left side
                 int left = NumTrees1(i - 1);
+                //! subtrees we will get from right side
                 int right = NumTrees1(n - i);
+                //! Catalan product 
                 numTrees += left * right;
             }
             return numTrees;

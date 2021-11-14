@@ -9,13 +9,77 @@ namespace LeetCodeDesign.Hard
     class _381
     {
     }
+
+
     public class RandomizedCollection
+    {
+
+        Random _random;
+        List<int> _vals;
+        Dictionary<int, LinkedList<int>> _valueIdxs;
+
+        public RandomizedCollection()
+        {
+            _random = new Random();
+            _vals = new List<int>();
+            _valueIdxs = new Dictionary<int, LinkedList<int>>();
+        }
+
+        public bool Insert(int val)
+        {
+
+            bool isAdded = !(_valueIdxs.ContainsKey(val)) || _valueIdxs[val].Count == 0 ? true : false;
+            if (!_valueIdxs.ContainsKey(val))
+            {
+                _valueIdxs.Add(val, new LinkedList<int>());
+            }
+            _valueIdxs[val].AddLast(_vals.Count);
+            _vals.Add(val);
+            return isAdded;
+        }
+
+        public bool Remove(int val)
+        {
+
+            if (!_valueIdxs.ContainsKey(val) || _valueIdxs[val].Count == 0)
+            {
+                return false;
+            }
+            int firstIdx = _valueIdxs[val].First.Value;
+            //_valueIdxs[val].RemoveFirst();
+
+            int listlastIdx = _vals.Count - 1;
+            int listLastVal = _vals[listlastIdx];
+
+            _valueIdxs[listLastVal].Find(listlastIdx).Value = firstIdx;
+
+            _vals[firstIdx] = listLastVal;
+
+            //! We need to to REMOVALS in last because we may have just one  element that added and removed  e.g. added 1 ,removed 1
+            //! If we remove first from linkedlist then line 54 will throw an exception since it will not find any element in linked list
+            //! If not  found then  _valueIdxs[listLastVal].Find(listlastIdx) will return null and accessing value will return null
+            _valueIdxs[val].RemoveFirst();
+            _vals.RemoveAt(_vals.Count - 1);
+
+            return true;
+        }
+
+        public int GetRandom()
+        {
+            int idx = _random.Next(0, _vals.Count);
+            return _vals[idx];
+        }
+    }
+    /// <summary>
+    //! Solution not correct. Insertion in hashset is not ordered as per 
+    /// </summary>
+    public class RandomizedCollection1
     {
         List<int> _lst;
         Dictionary<int, HashSet<int>> _map;
         Random _random;
         /** Initialize your data structure here. */
-        public RandomizedCollection()
+        public RandomizedCollection1()
         {
             _lst = new List<int>();
             _map = new Dictionary<int, HashSet<int>>();

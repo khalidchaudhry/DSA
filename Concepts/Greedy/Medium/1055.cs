@@ -8,13 +8,22 @@ namespace Greedy.Medium
     {
         public int ShortestWay(string source, string target)
         {
-            Dictionary<char, int> sMap = new Dictionary<char, int>();
-            Dictionary<char, int> tMap = new Dictionary<char, int>();
-            BuildMap(source, sMap);
-            BuildMap(target, tMap);
-            if (IsNotPossible(sMap, tMap))
+
+            HashSet<char> sourceChars = new HashSet<char>();
+           
+            foreach (char c in source)
             {
-                return -1;
+                sourceChars.Add(c);
+            }
+
+            //! We need to look target chars in source map 
+            //! e.g source=abc   target=abcd
+            foreach (char c in target)
+            {
+                if (!sourceChars.Contains(c))
+                {
+                    return -1;
+                }
             }
             //!we need atleast one subsequence e.g. 
             //! source="abc"  and target="abc" then we need atleast one subsequence of source to make target
@@ -42,28 +51,5 @@ namespace Greedy.Medium
             }
             return subsequences;
         }
-        private void BuildMap(string s, Dictionary<char, int> map)
-        {
-            foreach (char c in s)
-            {
-                if (!map.ContainsKey(c))
-                {
-                    map.Add(c, 0);
-                }
-                ++map[c];
-            }
-        }
-        private bool IsNotPossible(Dictionary<char, int> sMap, Dictionary<char, int> tMap)
-        {
-            foreach (var keyValue in tMap)
-            {
-                if (!sMap.ContainsKey(keyValue.Key))
-                    return true;
-            }
-
-            return false;
-        }
-
-
     }
 }

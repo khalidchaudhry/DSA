@@ -11,37 +11,23 @@ namespace LeetCodeBitManipulation.Easy
         public bool HasAlternatingBits(int n)
         {
 
-            int curr = n % 2;
-
-            n = n / 2;
-
-            while (n != 0)
+            if (n == 0)
             {
-                if (n % 2 == curr) return false;
-
-                curr = n % 2;
-
-                n = n / 2;
+                return false;
             }
 
-            return true;
-        }
-
-        public bool HasAlternatingBits2(int n)
-        {
-            int base2 = 2;
-            string binaryString = Convert.ToString(n, base2);
-
-            for (int i = 0; i < binaryString.Length - 1; ++i)
+            int prev = n & 1;
+            while (n != 0)
             {
-                if (binaryString[i] == binaryString[i + 1])
+                n = n >> 1;
+                int currBit = n & 1;
+                if (currBit == prev)
                 {
                     return false;
                 }
+                prev = currBit;
             }
-
             return true;
-
         }
     }
 }

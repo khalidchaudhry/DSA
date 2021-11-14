@@ -30,26 +30,26 @@ namespace LeetCodeDynamicProgramming.Medium
         {
             int[] uglyNumbers = new int[n];
             uglyNumbers[0] = 1;
-            int p1, p2, p3;
-            p1 = p2 = p3 = 0;
+            int p2, p3, p5;
+            p2 = p3 = p5 = 0;
             for (int idx = 1; idx < n; ++idx)
             {
-                int r1 = uglyNumbers[p1] * 2;
-                int r2 = uglyNumbers[p2] * 3;
-                int r3 = uglyNumbers[p3] * 5;
-                int min = Math.Min(r3, Math.Min(r1, r2));
+                int next2 = uglyNumbers[p2] * 2;
+                int next3 = uglyNumbers[p3] * 3;
+                int next5 = uglyNumbers[p5] * 5;
+                int min = Math.Min(next5, Math.Min(next2, next3));
                 uglyNumbers[idx] = min;
-                if (r1 == min)
-                {
-                    ++p1;
-                }
-                if (r2 == min)
+                if (next2 == min)
                 {
                     ++p2;
                 }
-                if (r3 == min)
+                if (next3 == min)
                 {
                     ++p3;
+                }
+                if (next5 == min)
+                {
+                    ++p5;
                 }
             }
             return uglyNumbers[n - 1];

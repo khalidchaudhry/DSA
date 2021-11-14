@@ -16,6 +16,7 @@ namespace LeetCodeDynamicProgramming.Medium
             Dictionary<(int, int), long> memo = new Dictionary<(int, int), long>();
             Initialize();
             long ans = 0;
+            //! We will place knight on  each numeric cell and then perform n - 1 jumps(target)
             for (int i = 0; i <= 9; ++i)
             {
                 ans = (ans + KnightDialer(i, 0, n - 1, memo)) % _mod;

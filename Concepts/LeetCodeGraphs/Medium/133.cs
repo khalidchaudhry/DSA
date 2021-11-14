@@ -48,10 +48,53 @@ namespace LeetCodeGraphs.Medium
             }
             return visited[node];
         }
+        /// <summary>
+        //! Same approach as above but using DFS rather than BFS 
+        /// </summary>
+        public Node CloneGraph1(Node node)
+        {
+            if (node == null)
+            {
+                return null;
+            }
+            Dictionary<Node, Node> originalClonned = new Dictionary<Node, Node>();
+            DFS(node, originalClonned);
+            foreach (var keyValue in originalClonned)
+            {
+                Node originalNode = keyValue.Key;
+                Node clonnedNode = keyValue.Value;
+                if (originalNode.neighbors != null)
+                {
+                    foreach (Node neighbor in originalNode.neighbors)
+                    {
+                        Node clonnedNeighbor = originalClonned[neighbor];
+                        clonnedNode.neighbors.Add(clonnedNeighbor);
+                    }
+                }
+            }
+            return originalClonned.ElementAt(0).Value;
+        }
+        private void DFS(Node at, Dictionary<Node, Node> originalClonned)
+        {
+            if (originalClonned.ContainsKey(at))
+            {
+                return;
+            }
 
+            Node clonnedNode = new Node(at.val);
+            originalClonned.Add(at, clonnedNode);
+            if (at.neighbors != null)
+            {
+                foreach (Node neighbor in at.neighbors)
+                {
+                    DFS(neighbor, originalClonned);
+                }
+            }
+        }
 
         /// <summary>
         /// https://leetcode.com/problems/clone-graph/solution/
+        //! One pass solution
         /// </summary>      
         public Node CloneGraph(Node node)
         {

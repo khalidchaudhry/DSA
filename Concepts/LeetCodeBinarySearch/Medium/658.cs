@@ -38,10 +38,12 @@ namespace LeetCodeBinarySearch.Medium
             List<int> result = new List<int>();
             while (hi - lo + 1 > k)
             {
+
                 if (Math.Abs(arr[lo] - x) > Math.Abs(arr[hi] - x))
                 {
                     ++lo;
                 }
+                //! incase difference is same for lo and hi , we will move hi as array is sorted
                 else
                 {
                     --hi;
