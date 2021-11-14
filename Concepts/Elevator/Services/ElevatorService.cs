@@ -84,32 +84,31 @@ namespace ElevatorSystem.Services
         /// </summary>
         public void ProcessInternal(InternalRequest internalRequest)
         {
+            //! If elevator is going from down to up. 
             if (_elevator.CurrentDirection == Direction.Up)
             {
-                //! If user destination  >= than current elevator floor and elevator is also going up  
+                //! If user going in the same direction as elevator 
                 if (internalRequest.DestinationFloor >= _elevator.CurrentFloor)
                     AddDownToUp(internalRequest.DestinationFloor);
                 else
-                    //!if user destinaation is less than current elevator  floor and elevator is going up
-                    //! i.e. User want to go in opposite direction where the lift is going
+                    //! If user going in the opposite direction as elevator
                     AddUpToDown(internalRequest.DestinationFloor);
             }
+            //! If elevator is going from up to down
             else if (_elevator.CurrentDirection == Direction.Down)
             {
-                // ! if elevator going down and user also wants to go down 
+                //! If user going in the same direction as elevator 
                 if (internalRequest.DestinationFloor <= _elevator.CurrentFloor)
                     AddUpToDown(internalRequest.DestinationFloor);
                 else
-                    //! if elevator going down and user want to go up . 
-                    //! i.e. User want to go in opposite direction where the lift is going
+                    //! If user going in the opposite direction as elevator
                     AddDownToUp(internalRequest.DestinationFloor);
             }
         }
 
 
         /// <summary>
-        //! Person standing on the floor issue the request
-        //! 
+        //! Person standing on the floor issue the request        
         /// </summary>
         public void ProcesExternal(ExternalRequest externalRequest)
         {
@@ -117,13 +116,13 @@ namespace ElevatorSystem.Services
             //! person  wants to go in  opposite direction where elevator is heading
             if (externalRequest.DirectionToGo == Direction.Up)
             {
-                AddDownToUp(externalRequest.Source);
+                AddDownToUp(externalRequest.UserFloor);
             }
             //! If elevator car is coming from up to down (i.e. higher floor than user is on) and 
             //! person also wants to go in the same direction where elevator is heading  
             else if (externalRequest.DirectionToGo == Direction.Down)
             {
-                AddUpToDown(externalRequest.Source);
+                AddUpToDown(externalRequest.UserFloor);
             }
         }
     }

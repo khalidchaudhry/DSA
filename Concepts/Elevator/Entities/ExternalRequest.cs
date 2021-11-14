@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace ElevatorSystem.Entities
 {
+    /// <summary>
+    //! Request from person outside of the elevator
+    /// </summary>
     public class ExternalRequest
     {
 
         public Direction DirectionToGo { get; private set; }
-        public int Source { get; private set; }
-        public ExternalRequest(Direction directionToGo,int source)
+        public int UserFloor { get; private set; }
+        public ExternalRequest(Direction directionToGo,int userFloor)
         {
             DirectionToGo = directionToGo;
-            Source = source;
+            UserFloor = userFloor;
         }
     }
 }

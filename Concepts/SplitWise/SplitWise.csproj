@@ -63,10 +63,12 @@
     <Compile Include="Services\Interfaces\IInputProcessor.cs" />
     <Compile Include="Services\Interfaces\ISplitStrategy.cs" />
     <Compile Include="Util\Constants.cs" />
-    <Compile Include="Util\DoubleHelper.cs" />
+    <Compile Include="Util\NumberHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="CodeMap.dgml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

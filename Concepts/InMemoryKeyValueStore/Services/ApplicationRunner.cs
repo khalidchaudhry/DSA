@@ -1,4 +1,5 @@
 ﻿using InMemoryKeyValueStore.Entities;
+using InMemoryKeyValueStore.Entities.Interfaces;
 using InMemoryKeyValueStore.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace InMemoryKeyValueStore.Services
     {
 
         IPrint _print;
-        MemoryKeyValueStore _keyValueStore;
-        public ApplicationRunner(MemoryKeyValueStore store, IPrint print)
+        IKeyValueStore _keyValueStore;
+        public ApplicationRunner(IKeyValueStore store, IPrint print)
         {
             _keyValueStore = store;
             _print = print;

@@ -12,11 +12,11 @@ namespace DistributedQueue.Entities
     public class ConsoleConsumer: IConsumer
     {
         private IPrint _print;
-        public string Name{ get; private set; }
+        public string ConsumerName{ get; private set; }
 
         public ConsoleConsumer(string name,IPrint print)
         {
-            Name = name;
+            ConsumerName = name;
             _print = print;
         }
 

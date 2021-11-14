@@ -43,12 +43,12 @@ namespace LeetCodeTrie.Medium
     {
 
         /** Initialize your data structure here. */
-        TrieNode _root;
+        TrieNode _start;
         public Trie()
         {
-            _root = new TrieNode();
-            _root.Children.Add('/', new TrieNode());
-            _root = _root.Children['/'];
+            _start = new TrieNode();
+            _start.Children.Add('/', new TrieNode());
+            _start = _start.Children['/'];
         }
 
         /** Inserts a word into the trie. */
@@ -57,7 +57,7 @@ namespace LeetCodeTrie.Medium
         public void Insert(string word)
         {
             //! We will always starts with the root. 
-            TrieNode curr = _root;
+            TrieNode curr = _start;
 
             foreach (char c in word)
             {
@@ -80,7 +80,7 @@ namespace LeetCodeTrie.Medium
         public bool Search(string word)
         {
             //! We will always starts with the root. 
-            TrieNode curr = _root;
+            TrieNode curr = _start;
             foreach (char c in word)
             {
                 if (!curr.Children.ContainsKey(c))
@@ -102,7 +102,7 @@ namespace LeetCodeTrie.Medium
         /// <returns></returns>
         public bool StartsWith(string prefix)
         {
-            TrieNode curr = _root;
+            TrieNode curr = _start;
 
             for (int i = 0; i < prefix.Length; ++i)
             {

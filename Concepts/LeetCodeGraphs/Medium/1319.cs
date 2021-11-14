@@ -36,6 +36,32 @@ namespace LeetCodeGraphs.Medium
             //! minimum steps needed = total connected components -1 in graph
             return result - 1;
         }
+        private void DFS(int node, Dictionary<int, List<int>> graph, bool[] visited)
+        {
+            visited[node] = true;
+            List<int> neighbours = graph[node];
+
+            foreach (int neighbour in neighbours)
+            {
+                if (!visited[neighbour])
+                {
+                    DFS(neighbour, graph, visited);
+                }
+            }
+        }
+        private void BuildGraph(Dictionary<int, List<int>> graph, int[][] connections, int n)
+        {
+            for (int i = 0; i < n; ++i)
+            {
+                graph.Add(i, new List<int>());
+            }
+
+            foreach (int[] connection in connections)
+            {
+                graph[connection[0]].Add(connection[1]);
+                graph[connection[1]].Add(connection[0]);
+            }
+        }
         public int MakeConnected1(int n, int[][] connections)
         {
 
@@ -63,31 +89,6 @@ namespace LeetCodeGraphs.Medium
 
         }
 
-        private void DFS(int node, Dictionary<int, List<int>> graph, bool[] visited)
-        {
-            visited[node] = true;
-            List<int> neighbours = graph[node];
-
-            foreach (int neighbour in neighbours)
-            {
-                if (!visited[neighbour])
-                {
-                    DFS(neighbour, graph, visited);
-                }
-            }
-        }
-        private void BuildGraph(Dictionary<int, List<int>> graph, int[][] connections, int n)
-        {
-            for (int i = 0; i < n; ++i)
-            {
-                graph.Add(i, new List<int>());
-            }
-
-            foreach (int[] connection in connections)
-            {
-                graph[connection[0]].Add(connection[1]);
-                graph[connection[1]].Add(connection[0]);
-            }
-        }
+       
     }
 }

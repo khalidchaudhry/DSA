@@ -49,6 +49,7 @@
       <FileName>Services\ApplicationRunner.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="_print" />
       <Field Name="_keyValueStore" />
     </ShowAsAssociation>
   </Class>
