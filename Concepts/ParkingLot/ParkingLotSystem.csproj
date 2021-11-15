@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="DisplayType.cs" />
     <Compile Include="Entities\ParkingLot.cs" />
-    <Compile Include="Entities\Ticket.cs" />
     <Compile Include="Entities\Vehicle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,12 +56,13 @@
     <Compile Include="Services\Interfaces\IValidator.cs" />
     <Compile Include="Services\IParkingManager.cs" />
     <Compile Include="Services\ParkingManager.cs" />
-    <Compile Include="Services\PaymentManager.cs" />
     <Compile Include="Services\TicketManager.cs" />
     <Compile Include="Services\Validator.cs" />
     <Compile Include="SlotType.cs" />
     <Compile Include="Utils\Constants.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

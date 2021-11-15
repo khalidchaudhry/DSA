@@ -33,10 +33,12 @@ namespace LeetCodeTrie.Hard._140
                 string pre = s.Substring(start, i - start + 1);
                 if (words.Contains(pre))
                 {
+
                     int len = path.Length;
                     path.Append(pre);
                     path.Append(' ');
                     Solve(s, i + 1, words, path, result);
+                    //! we need to backtrack hence resetting it to prev Length
                     path.Length = len;
                 }
             }

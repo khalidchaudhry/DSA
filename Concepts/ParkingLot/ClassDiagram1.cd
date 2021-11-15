@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="ParkingLotSystem.Program">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParkingLotSystem.Entities.ParkingLot">
+    <Position X="8" Y="4.75" Width="6" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="ParkingLotSystem.Entities.ParkingLot.ParkingFloor">
+        <TypeIdentifier>
+          <NewMemberFileName>Entities\ParkingLot.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ParkingLotSystem.Entities.ParkingLot.ParkingFloorSlot">
+        <TypeIdentifier>
+          <NewMemberFileName>Entities\ParkingLot.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ParkingLotSystem.Entities.ParkingLot.AcquireFreeSlotResult">
+        <TypeIdentifier>
+          <NewMemberFileName>Entities\ParkingLot.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAEQAAAQQAAAAAgAAAAEAAAAAAAQ=</HashCode>
+      <FileName>Entities\ParkingLot.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_print" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ParkingLotSystem.Entities.Vehicle">
+    <Position X="0.75" Y="8" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAgAACAAA=</HashCode>
+      <FileName>Entities\Vehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParkingLotSystem.Services.ApplicationRunner">
+    <Position X="2.5" Y="1.75" Width="3.5" />
+    <AssociationLine Name="_inputProcessor" Type="ParkingLotSystem.Services.Interfaces.IInputProcessor" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="1.938" />
+        <Point X="6.625" Y="1.938" />
+        <Point X="6.625" Y="1.062" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAIgY=</HashCode>
+      <FileName>Services\ApplicationRunner.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_inputProcessor" />
+      <Field Name="_validator" />
+      <Field Name="_print" />
+      <Field Name="_parkingManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ParkingLotSystem.Services.ConsoleInputProcessor" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="2.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ConsoleInputProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ParkingLotSystem.Services.ConsolePrint" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="0.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Services\ConsolePrint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ParkingLotSystem.Services.Convertor">
+    <Position X="14.75" Y="3.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEIAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Convertor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParkingLotSystem.Services.ParkingManager" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="3.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAQAAEAAAAAAAAAAQAAAAAQAAAAAAAQ=</HashCode>
+      <FileName>Services\ParkingManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_parkingLot" />
+      <Field Name="_print" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_ticketIdVehicle" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ParkingLotSystem.Services.TicketManager">
+    <Position X="9.5" Y="2.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Services\TicketManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParkingLotSystem.Services.Validator" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="5.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEQEAEAAAAAAAAAAAAAAIAAAAAAAAAAAgAAgA=</HashCode>
+      <FileName>Services\Validator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ParkingLotSystem.Utils.Constants">
+    <Position X="14.75" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAACAAAGiAAAABgAQAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ParkingLotSystem.Services.IParkingManager">
+    <Position X="8.25" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAEAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\IParkingManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ParkingLotSystem.Services.Interfaces.IInputProcessor" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Interfaces\IInputProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ParkingLotSystem.Services.Interfaces.IPrint" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Services\Interfaces\IPrint.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ParkingLotSystem.Services.Interfaces.IValidator" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEQEAEAAAAAAAAAAAAAAIAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Services\Interfaces\IValidator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ParkingLotSystem.DisplayType">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
+      <FileName>DisplayType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ParkingLotSystem.SlotType">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAABQAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>SlotType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
