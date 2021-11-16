@@ -8,6 +8,8 @@ using System.Text;
 
 namespace InMemoryKeyValueStore.Entities
 {
+    //!To make the class thread safe , one approach is to wrap
+    //! PUT and delete methods with lock
     public class MemoryKeyValueStore : IKeyValueStore
     {
 
@@ -39,7 +41,7 @@ namespace InMemoryKeyValueStore.Entities
             }
             return result;
         }
-
+        
         public void Put(string key, List<AttributePair> listOfAttributePairs)
         {
             Dictionary<string, Value> attritbuteNameValue = Transform(listOfAttributePairs);
