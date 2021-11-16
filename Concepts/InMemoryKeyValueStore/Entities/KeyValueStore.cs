@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static InMemoryKeyValueStore.Entities.MemoryKeyValueStore.ValueStore;
+//using static InMemoryKeyValueStore.Entities.MemoryKeyValueStore.ValueStore;
 
 namespace InMemoryKeyValueStore.Entities
 {
-    public class MemoryKeyValueStore: IKeyValueStore
+    public class MemoryKeyValueStore : IKeyValueStore
     {
 
         private Dictionary<string, ValueStore> _keyValue;
@@ -42,7 +42,7 @@ namespace InMemoryKeyValueStore.Entities
 
         public void Put(string key, List<AttributePair> listOfAttributePairs)
         {
-            Dictionary<string, Value> attritbuteNameValue = Transformer.Transform(listOfAttributePairs);
+            Dictionary<string, Value> attritbuteNameValue = Transform(listOfAttributePairs);
             //! is it good practice to create an object of another class inside the class?
             ValueStore valueStore = new ValueStore(attritbuteNameValue);
 
@@ -81,7 +81,44 @@ namespace InMemoryKeyValueStore.Entities
         {
             return string.Join(",", _keyValue.Keys.OrderBy(x => x));
         }
-        public class ValueStore
+        private  Dictionary<string, Value> Transform(List<AttributePair> pairs)
+        {
+            Dictionary<string, Value> attributeNamesValues = new Dictionary<string, Value>();
+
+            AttributeTypes attributeType = AttributeTypes.None;
+            foreach (AttributePair pair in pairs)
+            {
+                //! incase same attribute name provided multiple times, we will just refer the first attributes
+                if (attributeNamesValues.ContainsKey(pair.Name))
+                {
+                    continue;
+                }
+
+                //! what  will be the sequence in which we need to apply parsing ?
+                //attribute values could be string, integer, double or boolean.
+                if (int.TryParse(pair.Value, out int intResult))
+                {
+                    attributeType = AttributeTypes.IntegerType;
+                }
+                else if (double.TryParse(pair.Value, out double doubleResult))
+                {
+                    attributeType = AttributeTypes.DoubleType;
+                }
+                else if (bool.TryParse(pair.Value, out bool boolResult))
+                {
+                    attributeType = AttributeTypes.BooleanType;
+                }
+                else
+                {
+                    attributeType = AttributeTypes.stringType;
+                }
+
+                attributeNamesValues.Add(pair.Name, new Value(pair.Value, attributeType));
+            }
+            return attributeNamesValues;
+        }
+
+        private class ValueStore
         {
             Dictionary<string, Value> _attributeNameValue;
             public ValueStore()
@@ -125,33 +162,32 @@ namespace InMemoryKeyValueStore.Entities
             public Dictionary<string, Value> GetAttributeNameValue()
             {
                 return _attributeNameValue;
-            }
-            public class Value
+            }          
+        }
+        private class Value
+        {
+            private string _attributeValue;
+            private AttributeTypes _attributeType;
+
+            public Value(string attributeValue, AttributeTypes attributeType)
             {
-                private string _attributeValue;
-                private AttributeTypes _attributeType;
+                _attributeValue = attributeValue;
+                _attributeType = attributeType;
+            }
 
-                public Value(string attributeValue, AttributeTypes attributeType)
-                {
-                    _attributeValue = attributeValue;
-                    _attributeType = attributeType;
-                }
+            public string GetAttributeValue()
+            {
+                return _attributeValue;
+            }
 
-                public string GetAttributeValue()
-                {
-                    return _attributeValue;
-                }
+            public AttributeTypes GetAttributeType()
+            {
+                return _attributeType;
+            }
 
-                public AttributeTypes GetAttributeType()
-                {
-                    return _attributeType;
-                }
-
-                public override string ToString()
-                {
-                    return _attributeValue;
-                }
-
+            public override string ToString()
+            {
+                return _attributeValue;
             }
         }
     }

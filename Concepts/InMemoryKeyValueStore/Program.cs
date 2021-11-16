@@ -55,8 +55,7 @@ namespace InMemoryKeyValueStore
               */
 
             ConsolePrint consolePrint = new ConsolePrint();
-            MemoryKeyValueStore keyValueStore = new MemoryKeyValueStore();
-
+            MemoryKeyValueStore keyValueStore = new MemoryKeyValueStore();           
             ApplicationRunner runner = new ApplicationRunner(keyValueStore, consolePrint);
             runner.Run();
             Console.ReadLine();
