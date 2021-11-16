@@ -55,7 +55,6 @@
     <Compile Include="Services\ApplicationRunner.cs" />
     <Compile Include="Services\ConsolePrint.cs" />
     <Compile Include="Services\Interfaces\IPrint.cs" />
-    <Compile Include="Services\Transformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
