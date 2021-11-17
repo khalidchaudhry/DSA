@@ -24,20 +24,22 @@ namespace LeetCodeDynamicProgramming.Medium
             return (int)ans;
         }
 
-        private long KnightDialer(int start, int jumps, int target, Dictionary<(int, int), long> memo)
+        private long KnightDialer(int start, int jumpsSoFar, int target, Dictionary<(int, int), long> memo)
         {
-            if (jumps == target)
+            //! in question, its mentioned that you should perform n - 1 jumps(target) to dial a number of length n
+            //! When our jumps reaches to target we have 1 phone number
+            if (jumpsSoFar == target)
                 return 1;
-            if (memo.ContainsKey((start, jumps)))
+            if (memo.ContainsKey((start, jumpsSoFar)))
             {
-                return memo[(start, jumps)];
+                return memo[(start, jumpsSoFar)];
             }
             long total = 0;
             foreach (int dest in _numTargets[start])
             {
-                total = (total + KnightDialer(dest, jumps + 1, target, memo) % _mod) % _mod;
+                total = (total + KnightDialer(dest, jumpsSoFar + 1, target, memo) % _mod) % _mod;
             }
-            return memo[(start, jumps)] = total;
+            return memo[(start, jumpsSoFar)] = total;
         }
 
         private void Initialize()

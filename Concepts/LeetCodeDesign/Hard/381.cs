@@ -71,7 +71,7 @@ namespace LeetCodeDesign.Hard
         }
     }
     /// <summary>
-    //! Solution not correct. Insertion in hashset is not ordered as per 
+    //!
     /// </summary>
     public class RandomizedCollection1
     {
@@ -114,7 +114,9 @@ namespace LeetCodeDesign.Hard
 
             int listLastElementIndex = _lst.Count - 1;
             int listLastElement = _lst[listLastElementIndex];
-            //! Setting  remove index to last element and then delete last element 
+            //! Setting  remove index to last element and then delete last element
+            //! Use this example insert(1) remove(1) insert(1) to have justfication
+            //TODO: Research more on it
             _lst[removeIndex] = _lst[listLastElementIndex];
 
             _map[listLastElement].Add(removeIndex);

@@ -133,9 +133,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "Tic-Tac-Toe\TicTacToe.csproj", "{5B522C10-E270-4936-B0E2-6752D26D48C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KeyValuePair", "KeyValuePair", "{C0A2BA07-023C-4D9D-8644-77AEB4DB8D0E}"
-	ProjectSection(SolutionItems) = preProject
-		InMemoryKeyValueStore\CodeMap1.dgml = InMemoryKeyValueStore\CodeMap1.dgml
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryKeyValueStore", "InMemoryKeyValueStore\InMemoryKeyValueStore.csproj", "{8B6FE37C-193B-4DE4-82DB-B5F5CEEA073D}"
 EndProject
