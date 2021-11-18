@@ -93,7 +93,7 @@ namespace LeetCodeDesign.Hard
             bool toReturn = _map.ContainsKey(val) && _map[val].Count > 0 ? false : true;
             if (!_map.ContainsKey(val))
             {
-              _map.Add(val, new HashSet<int>());               
+                _map.Add(val, new HashSet<int>());
             }
 
             //! adding element index into dictionary array
@@ -105,23 +105,41 @@ namespace LeetCodeDesign.Hard
         }
 
         /** Removes a value from the collection. Returns true if the collection contained the specified element. */
+        /*!
+               Step1:  Remove any index of the element being removed
+               Step2:  Swap the last element in the random list with the element being removed
+               Step3:  Add new index for the swapped (last) element
+               Step4:  Remove old index for the swapped (last) element
+               
+        */
         public bool Remove(int val)
         {
             if (!_map.ContainsKey(val) || _map[val].Count == 0) return false;
-
             int removeIndex = _map[val].First();
+            /*
+                We need to remove first(line 115) , else we will have same element deleted twice
+                  e.g. insert(1)-->insert(1)-->delete(1)->delete(1)
+             */
+            //! Step1: Remove any index of the element being removed
             _map[val].Remove(removeIndex);
 
             int listLastElementIndex = _lst.Count - 1;
             int listLastElement = _lst[listLastElementIndex];
             //! Setting  remove index to last element and then delete last element
             //! Use this example insert(1) remove(1) insert(1) to have justfication
-            //TODO: Research more on it
+
+            //!Step2: Swap the last element in the random list with the element being removed
             _lst[removeIndex] = _lst[listLastElementIndex];
-
+            /*
+                 We need to add it first and then remove
+                 If we remove first and then add then it will not remove the element
+                 e.g. insert(1)-->remove(1)   
+             */
+            //!Step3: Add new index for the swapped (last) element
             _map[listLastElement].Add(removeIndex);
+            //!Step4: Remove old index for the swapped (last) element
             _map[listLastElement].Remove(listLastElementIndex);
-
+            //!Step4: Remove last element from random list
             _lst.RemoveAt(listLastElementIndex);
 
             return true;
