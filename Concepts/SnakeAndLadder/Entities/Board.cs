@@ -8,16 +8,17 @@ namespace SnakeAndLadder.Entities
 {
     public class Board
     {
-        public int Size { get; }
-        public Dictionary<int, Snake> HeadPosSnakes { get; }
-        public Dictionary<int, Ladder> StartPosLadder { get; }
+        public int Size { get; private set; }
+        private Dictionary<int, Snake> _headPosSnakes;
+        private Dictionary<int, Ladder> _startPosLadder;
+        // TODO: Refactor below . It should be private field than public property becuase currently we can modify it from outside.   
         public Dictionary<string, int> PlayerNamePosition { get; private set; }
 
         public Board(int size)
         {
             Size = size;
-            HeadPosSnakes = new Dictionary<int, Snake>();
-            StartPosLadder = new Dictionary<int, Ladder>();
+            _headPosSnakes = new Dictionary<int, Snake>();
+            _startPosLadder = new Dictionary<int, Ladder>();
             PlayerNamePosition = new Dictionary<string, int>();
         }
 
@@ -25,12 +26,12 @@ namespace SnakeAndLadder.Entities
         {
             foreach ((int h, int t) in snakesPos)
             {
-                HeadPosSnakes.Add(h, new Snake(h, t));
+                _headPosSnakes.Add(h, new Snake(h, t));
             }
 
             foreach ((int s, int e) in laddersPos)
             {
-                StartPosLadder.Add(s, new Ladder(s, e));
+                _startPosLadder.Add(s, new Ladder(s, e));
             }
 
             foreach (string playerName in playersName)
@@ -43,18 +44,18 @@ namespace SnakeAndLadder.Entities
         {
             int currPos = PlayerNamePosition[player];
 
-            if (HeadPosSnakes.ContainsKey(newPos))
+            if (_headPosSnakes.ContainsKey(newPos))
             {
-                PlayerNamePosition[player] = HeadPosSnakes[newPos].TailPosition;
+                PlayerNamePosition[player] = _headPosSnakes[newPos].TailPosition;
             }
-            else if (StartPosLadder.ContainsKey(newPos))
+            else if (_startPosLadder.ContainsKey(newPos))
             {
-                PlayerNamePosition[player] = StartPosLadder[newPos].EndPosition;
+                PlayerNamePosition[player] = _startPosLadder[newPos].EndPosition;
             }
             else if (currPos + newPos <= Size)
             {
                 PlayerNamePosition[player] = currPos + newPos;
-            }            
+            }
         }
 
 

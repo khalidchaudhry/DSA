@@ -35,6 +35,7 @@ namespace LeetCodeArrays.Medium
                     Reverse(nums, i + 1, n - 1);
                     //! we need to find the first element on right of nums[i] which is smaller than nums[i]
                     int idx = i + 1;
+                    //! >= because if element is equal we can't swap with it. Need to find bigger element than current one
                     while (idx < n && nums[i] >= nums[idx])
                     {
                         ++idx;

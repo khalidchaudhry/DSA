@@ -58,6 +58,7 @@ namespace LeetcodeBackTracking.Hard
             }
         }
 
+        //!Refer below  function as its avoid double loop used in the code
         private bool CanPlace(char[,] board, bool[] used, int r, int c)
         {
             if (used[c])
@@ -74,6 +75,21 @@ namespace LeetcodeBackTracking.Hard
                     {
                         return false;
                     }
+                }
+            }
+            return true;
+        }        
+        private bool CanPlace(int currRow, int currCol, bool[] used, HashSet<(int r, int c)> usedCells)
+        {
+            if (used[currCol])
+            {
+                return false;
+            }
+            foreach ((int usedRow, int usedCol) in usedCells)
+            {
+                if (Math.Abs(usedRow - currRow) == Math.Abs(usedCol - currCol))
+                {
+                    return false;
                 }
             }
             return true;

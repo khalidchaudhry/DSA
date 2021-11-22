@@ -16,9 +16,12 @@ namespace LeetCodeGraphs.Medium
         //!Space: O(n) 
         public int MakeConnected(int n, int[][] connections)
         {
-            //! If given computers are greater then 1+ connections , then its impossible to connect them 
-            if (n > connections.Length + 1)
+            //! To represent computer in terms of edges we can say that bare min we  n-1 edges
+            //! if given connections are less than bare minimum(n-1), we can't connect them. 
+            if (connections.Length < n - 1)
+            {
                 return -1;
+            }
 
             Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
             BuildGraph(graph, connections, n);
@@ -64,8 +67,8 @@ namespace LeetCodeGraphs.Medium
         }
         public int MakeConnected1(int n, int[][] connections)
         {
-
-            if (n > connections.Length + 1)
+            //! To represent computer in terms of edges we can say that min there will be n-1 edges 
+            if (connections.Length < n - 1)
             {
                 return -1;
             }

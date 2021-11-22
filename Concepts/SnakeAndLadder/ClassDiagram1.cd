@@ -3,13 +3,9 @@
   <Class Name="SnakeAndLadder.Entities.Board">
     <Position X="4" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAIAAgIEAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AEAAAAAAAIAAgAAAAAAAAAEAAAAAAAAAAAAAAIAAABA=</HashCode>
       <FileName>Entities\Board.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="HeadPosSnakes" />
-      <Property Name="StartPosLadder" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="SnakeAndLadder.Entities.Ladder">
     <Position X="7.25" Y="2.5" Width="1.5" />
