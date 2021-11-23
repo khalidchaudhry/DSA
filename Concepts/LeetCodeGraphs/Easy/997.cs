@@ -48,6 +48,7 @@ namespace LeetCodeGraphs.Easy
         public int FindJudge(int N, int[][] trust)
         {
             Dictionary<int, (int indegree, int outdegree)> degree = new Dictionary<int, (int indegree, int outdegree)>();
+            //! without initialization, it will return return -1 for test case n=1,trust=[] 
             for (int i = 1; i <= N; ++i)
             {
                 degree[i] = (0, 0);

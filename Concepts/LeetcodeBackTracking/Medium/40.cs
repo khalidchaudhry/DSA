@@ -38,16 +38,16 @@ namespace LeetcodeBackTracking.Medium
 
         private void CombinationSum(int[] candidates, int start, int target, List<int> path, List<IList<int>> result)
         {
-            if (target < 0)
-                return;
 
             if (target == 0)
             {
                 result.Add(new List<int>(path));
                 return;
             }
-
-            if (start == candidates.Length)
+            //! This condition needs tobe after above condition because in case of last element equal to target 
+            //! it will not add it to the result
+            //! e.g candidates = [1,2,2,5], target = 5
+            if (target < 0 || start >= candidates.Length)
             {
                 return;
             }
