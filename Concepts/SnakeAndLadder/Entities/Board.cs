@@ -11,15 +11,16 @@ namespace SnakeAndLadder.Entities
         public int Size { get; private set; }
         private Dictionary<int, Snake> _headPosSnakes;
         private Dictionary<int, Ladder> _startPosLadder;
-        // TODO: Refactor below . It should be private field than public property becuase currently we can modify it from outside.   
-        public Dictionary<string, int> PlayerNamePosition { get; private set; }
+        // TODO: Refactor below . It should be private field than public property becuase currently we can modify it from outside.
+        //! Done
+        private Dictionary<string, int> _playerNamePosition;
 
         public Board(int size)
         {
             Size = size;
             _headPosSnakes = new Dictionary<int, Snake>();
             _startPosLadder = new Dictionary<int, Ladder>();
-            PlayerNamePosition = new Dictionary<string, int>();
+            _playerNamePosition = new Dictionary<string, int>();
         }
 
         public void InitBoard(List<(int h, int t)> snakesPos, List<(int h, int t)> laddersPos, List<string> playersName)
@@ -36,25 +37,39 @@ namespace SnakeAndLadder.Entities
 
             foreach (string playerName in playersName)
             {
-                PlayerNamePosition.Add(playerName, 0);
+                _playerNamePosition.Add(playerName, 0);
             }
         }
+        public Dictionary<string, int> GetPlayerNamesPositions()
+        {
+            //! The reason for returning new dictionary is because we don't want class dictionary to get modified
+            return new Dictionary<string, int>(_playerNamePosition);
+        }
+        public int GetPlayersCount()
+        {
+            return _playerNamePosition.Count;
+        }
+        public int GetPlayerPosition(string  playerName)
+        {
+            return _playerNamePosition[playerName];
+        }
+       
 
         public void Move(string player, int newPos)
         {
-            int currPos = PlayerNamePosition[player];
+            int currPos = _playerNamePosition[player];
 
             if (_headPosSnakes.ContainsKey(newPos))
             {
-                PlayerNamePosition[player] = _headPosSnakes[newPos].TailPosition;
+                _playerNamePosition[player] = _headPosSnakes[newPos].TailPosition;
             }
             else if (_startPosLadder.ContainsKey(newPos))
             {
-                PlayerNamePosition[player] = _startPosLadder[newPos].EndPosition;
+                _playerNamePosition[player] = _startPosLadder[newPos].EndPosition;
             }
             else if (currPos + newPos <= Size)
             {
-                PlayerNamePosition[player] = currPos + newPos;
+                _playerNamePosition[player] = currPos + newPos;
             }
         }
 

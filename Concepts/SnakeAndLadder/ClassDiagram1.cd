@@ -1,42 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="SnakeAndLadder.Entities.Board">
-    <Position X="4" Y="2.5" Width="1.5" />
+    <Position X="5.5" Y="0.5" Width="4.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAIAAgAAAAAAAAAEAAAAAAAAAAAAAAIAAABA=</HashCode>
+      <HashCode>AEAAAACCAIAAgAAAAAAAAAEAAAAAAAAAAgAAQIAAAAA=</HashCode>
       <FileName>Entities\Board.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnakeAndLadder.Entities.Ladder">
-    <Position X="7.25" Y="2.5" Width="1.5" />
+    <Position X="11.75" Y="2.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Ladder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnakeAndLadder.Entities.Player">
-    <Position X="7.25" Y="4.75" Width="1.5" />
+    <Position X="9" Y="5.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnakeAndLadder.Entities.Snake">
-    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Position X="11.75" Y="0.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Snake.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnakeAndLadder.Program">
-    <Position X="0.5" Y="0.5" Width="1.75" />
+    <Position X="0.5" Y="0.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnakeAndLadder.Services.ApplicationRunner">
-    <Position X="0.5" Y="2" Width="1.75" />
+    <Position X="0.5" Y="2" Width="3.5" />
     <TypeIdentifier>
       <HashCode>CAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Services\ApplicationRunner.cs</FileName>
@@ -46,14 +46,21 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="SnakeAndLadder.Services.Dice">
-    <Position X="4" Y="5" Width="1.5" />
+    <Position X="5.5" Y="6.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAgAAAAAAE=</HashCode>
       <FileName>Services\Dice.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnakeAndLadder.Services.GameRunner">
-    <Position X="0.5" Y="4" Width="1.75" />
+    <Position X="0.5" Y="4" Width="4.75" />
+    <AssociationLine Name="_dice" Type="SnakeAndLadder.Services.Dice" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.75" Y="5.488" />
+        <Point X="3.75" Y="7.35" />
+        <Point X="5.5" Y="7.35" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAECAAAAEAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Services\GameRunner.cs</FileName>

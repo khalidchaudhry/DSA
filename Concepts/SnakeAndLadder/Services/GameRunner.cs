@@ -24,8 +24,8 @@ namespace SnakeAndLadder.Services
 
         public void Run()
         {            
-            Dictionary<string, int> playerPosition = _board.PlayerNamePosition;          
-            int totalPlayers = _board.PlayerNamePosition.Count;
+            Dictionary<string, int> playerPosition = _board.GetPlayerNamesPositions();
+            int totalPlayers = _board.GetPlayersCount();
             List<string> players = playerPosition.Keys.ToList();
             int playerNo = 0;
             while (true)
@@ -33,14 +33,14 @@ namespace SnakeAndLadder.Services
                 int pos = _dice.Roll();
                 int currPlayerIdx = playerNo % totalPlayers;
                 string currPlayerName = players[currPlayerIdx];
-                int currPlayerPos = _board.PlayerNamePosition[currPlayerName];
+                int currPlayerPos = _board.GetPlayerNamesPositions()[currPlayerName];
 
                 _board.Move(currPlayerName, pos);
 
                 Console.WriteLine($"{currPlayerName} rolled a {pos} and moved from {currPlayerPos} " +
-                    $"to {_board.PlayerNamePosition[currPlayerName]}");
+                    $"to {_board.GetPlayerNamesPositions()[currPlayerName]}");
 
-                if (_board.PlayerNamePosition[currPlayerName] == _board.Size)
+                if (_board.GetPlayerNamesPositions()[currPlayerName] == _board.Size)
                 {
                     Console.WriteLine($"{currPlayerName} wins the game");
                     break;
