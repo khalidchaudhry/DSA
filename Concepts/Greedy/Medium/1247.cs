@@ -31,8 +31,8 @@ namespace Greedy.Medium
                 //! Why Math.Ceiling         
                 //! s1=xy 
                 //! s2=yx 
-                //! we need one swap 
-                //! in case of even,we need 1 swaps and for odd we need 1 more swap  hence Math.Ceiling
+                //! we need one swap in case of even 
+                //! for odd we need 1 more swap  hence Math.Ceiling
                 //  {
                 //!  (x,y):5  =>(4+1) 2 swaps for even and 1 swap for the odd
                 //!  (y,x):3  =>(2+1) 1 swaps for even and 1 swap for the odd

@@ -12,36 +12,38 @@ namespace LeetCodeDynamicProgramming.Medium
         //! Same pattern as Leetcode 300 
         public int WiggleMaxLength(int[] nums)
         {
-            
-            Dictionary<int, (int down, int up)> map = new Dictionary<int, (int down, int up)>();
-            int longest = 1;
-            foreach (int num in nums)
-            {
 
-                int maxUp = 1;
-                int maxDown = 1;
+            int longest = 0;
+            Dictionary<int, (int ud, int du)> map = new Dictionary<int, (int ud, int du)>();
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                int curr = nums[i];
+                //! Setting it with 1 as we have atleast 1 for maxUpToDown and maxDownToUp
+                int maxUpToDown = 1;
+                int maxDownToUp = 1;
                 foreach (var keyValue in map)
-                {
-                    int prev = keyValue.Key;
-                    (int prevDown, int prevUp) = keyValue.Value;
-                    if (prev < num)
+                {   
+                    //! You are comming from small value to bigger value hence update DownToUp but extend up to down of previous value
+                    if (keyValue.Key < curr)
                     {
-                        maxUp = Math.Max(maxUp, prevDown + 1);
+                        maxDownToUp = Math.Max(maxDownToUp, 1 + keyValue.Value.ud);
                     }
-                    else if (prev > num)
+                    //! You are comming from big value to small value hence update UpToDown  but extend down to up of previous value 
+                    else if (keyValue.Key > curr)
                     {
-                        maxDown = Math.Max(maxDown, prevUp + 1);
+                        maxUpToDown = Math.Max(maxUpToDown, 1 + keyValue.Value.du);
                     }
+                    //! if value is same as encountered before get the max of maxUpToDown and maxDownToUp
                     else
                     {
-                        maxUp = Math.Max(maxUp, prevUp);
-                        maxDown = Math.Max(maxDown, prevDown);
+                        maxUpToDown = Math.Max(maxUpToDown, keyValue.Value.ud);
+                        maxDownToUp = Math.Max(maxDownToUp, keyValue.Value.du);
                     }
                 }
-                map[num] = (maxDown, maxUp);
-
-                longest = Math.Max(longest, Math.Max(maxUp, maxDown));
+                map[curr] = (maxUpToDown, maxDownToUp);
+                longest = Math.Max(longest, Math.Max(map[curr].ud, map[curr].du));
             }
+
             return longest;
 
 
