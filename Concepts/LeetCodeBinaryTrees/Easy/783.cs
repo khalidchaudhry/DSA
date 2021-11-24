@@ -7,6 +7,11 @@ namespace LeetCodeBinaryTrees.Easy
     // same problem as 530
     class _783
     {
+
+
+        /// <summary>
+        //! Using explicit list to find the difference  
+        /// </summary>
         public int MinDiffInBST(TreeNode root)
         {
             List<int> nodes = new List<int>();
@@ -19,8 +24,33 @@ namespace LeetCodeBinaryTrees.Easy
             }
 
             return minDiff;
+        }
 
-
+        TreeNode _prevNode;
+        int _minDiff;
+        /// <summary>
+        //! Using recursion stack  
+        /// </summary>
+        public int MinDiffInBST0(TreeNode root)
+        {
+            _prevNode = null;
+            _minDiff = int.MaxValue;
+            DFS(root);
+            return _minDiff;
+        }
+        private void DFS(TreeNode node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+            DFS(node.left);
+            if (_prevNode != null)
+            {
+                _minDiff = Math.Min(_minDiff, node.val - _prevNode.val);
+            }
+            _prevNode = node;
+            DFS(node.right);
         }
         /// <summary>
         // !Based on idea discuss in Kuai's class 
