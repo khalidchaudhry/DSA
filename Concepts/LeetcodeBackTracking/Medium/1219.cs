@@ -8,6 +8,10 @@ namespace LeetcodeBackTracking.Medium
 {
     public class _1219
     {
+
+        //Time and space complexity 
+       //! Time =O(k*3^k) where k is the number  of cells with gold. (branchingfactor^recursionDepth)3^k
+       //! Space=O(k)
         public int GetMaximumGold(int[][] grid)
         {
             int rows = grid.Length;
