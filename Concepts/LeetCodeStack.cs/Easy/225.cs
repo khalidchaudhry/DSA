@@ -26,6 +26,10 @@ namespace LeetCodeStack.cs.Easy
         }
 
         /** Push element x onto stack. */
+        //
+        //! Time=O(n)
+        //! Space=O(n)
+        //
         public void Push(int x)
         {
 
@@ -42,6 +46,8 @@ namespace LeetCodeStack.cs.Easy
         }
 
         /** Removes the element on top of the stack and returns that element. */
+        //! Time=O(1)
+        //! Space=O(1)
         public int Pop()
         {
             if (_queue.Count == 0) throw new Exception("Stack is empty");
@@ -50,6 +56,8 @@ namespace LeetCodeStack.cs.Easy
         }
 
         /** Get the top element. */
+        //! Time=O(1)
+        //! Space=O(1)
         public int Top()
         {
             if (_queue.Count == 0) throw new Exception("Stack is empty");
