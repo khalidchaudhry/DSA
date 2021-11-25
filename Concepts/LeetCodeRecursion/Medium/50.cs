@@ -21,11 +21,13 @@ namespace LeetCodeRecursion.Medium
         }
         /// <summary>
         // # <image url="$(SolutionDir)\Images\50.png"  scale="1.0"/>
-
+        /// </summary>
         //http://www.platinumgmat.com/gmat_study_guide/exponential_powers
         //https://www.youtube.com/watch?v=GyL7FJn0gso
         //! Take away1: Look for stack overflow exception when input is large and you need to go to very base case which is very small
         //! Think about recurence relationship when n is even vs when not
+        //! Space Complexity=O(logn)  ---> We are halfing the input each time
+        //! Time Complexity=O(logn)
         /// </summary>
         public double MyPow(double x, int n)
         {           
@@ -35,8 +37,8 @@ namespace LeetCodeRecursion.Medium
                 n = -n;
             }
             //! recurrence relationship    
-            //! F(x,n)=F(x*x,n/2) for even n      e.g. 2^10=(2^10/2) * (2^10/2)= 2^5 * 2^5=(2*2)^5 
-            //! F(x,n)=x*F(x*x,n/2) for odd n     e.g. 2^11=2 * (2^10/2) * (2^10/2)= 2(2^5 * 2^5)= 2 * (2*2)^5 
+            //! F(x,n)=F(x*x,n/2) for even n      e.g. 2^10= 2^(5+5) =(2*2)^5 
+            //! F(x,n)=x*F(x*x,n/2) for odd n     e.g. 2^11=2^(1+10)= 2*(2*2)^5 
             return Helper(x, n);
         }
         private double Helper(double x, int n)
