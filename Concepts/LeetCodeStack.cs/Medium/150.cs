@@ -8,50 +8,43 @@ namespace LeetCodeStack.cs.Medium
 {
     public class _150
     {
+        /// <summary>
+        //! Time=O(n)  
+        //! Space=O(n)
+        /// </summary>
+        
         public int EvalRPN(string[] tokens)
         {
             Stack<int> stk = new Stack<int>();
-            for (int i = 0; i < tokens.Length; ++i)
+            foreach (string token in tokens)
             {
-                if (tokens[i] == "+" ||
-                   tokens[i] == "-" ||
-                   tokens[i] == "*" ||
-                   tokens[i] == "/"
-                   )
+                if (token == "+" || token == "-" || token == "*" || token == "/")
                 {
-                    Calculate(stk, tokens[i]);
+                    //! We always pop twice and push once hence its O(1)
+                    int operand2 = stk.Pop();
+                    int operand1 = stk.Pop();
+                    switch (token)
+                    {
+                        case "+":
+                            stk.Push(operand1 + operand2);
+                            break;
+                        case "-":
+                            stk.Push(operand1 - operand2);
+                            break;
+                        case "*":
+                            stk.Push(operand1 * operand2);
+                            break;
+                        case "/":
+                            stk.Push(operand1 / operand2);
+                            break;
+                    }
                 }
                 else
                 {
-                    stk.Push(Convert.ToInt32(tokens[i]));
+                    stk.Push(Convert.ToInt32(token));
                 }
             }
-
-            return stk.Count == 0 ? 0 : stk.Peek();
-        }
-        private void Calculate(Stack<int> stk, string oper)
-        {
-            int operand2 = stk.Pop();
-            int operand1 = stk.Pop();
-            int result = 0;
-            if (oper == "+")
-            {
-                result = operand1 + operand2;
-            }
-            else if (oper == "-")
-            {
-                result = operand1 - operand2;
-            }
-            else if (oper == "*")
-            {
-                result = operand1 * operand2;
-            }
-            else
-            {
-                result = operand1 / operand2;
-            }
-
-            stk.Push(result);
-        }
+            return stk.Peek();
+        }       
     }
 }
