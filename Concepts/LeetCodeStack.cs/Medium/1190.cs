@@ -8,6 +8,10 @@ namespace LeetCodeStack.cs.Medium
 {
     public class _1190
     {
+        ///Space and time complexity
+        //!Time=O(n^2)  worst case is (((u)i)l) 
+        //!Space=O(n)
+      
         public string ReverseParentheses(string s)
         {
             Stack<char> stk = new Stack<char>();
