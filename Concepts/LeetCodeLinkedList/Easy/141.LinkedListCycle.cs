@@ -13,7 +13,7 @@ namespace LeetCodeLinkedList.Easy
             ListNode node = new ListNode(1);
             var test = new _141();
             test.HasCycle(node);
-            
+
 
         }
 
@@ -29,7 +29,7 @@ namespace LeetCodeLinkedList.Easy
             ListNode sp = head;
             ListNode fp = head;
 
-            while (fp.next != null &&  fp.next.next != null)
+            while (fp != null && fp.next != null)
             {
                 sp = sp.next;
                 fp = fp.next.next;
