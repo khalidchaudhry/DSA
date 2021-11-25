@@ -33,8 +33,7 @@ namespace LeetCodeRecursion.Medium
         {           
             if (n < 0)
             {
-                x = 1 / x;
-                n = -n;
+                x = 1 / x;               
             }
             //! recurrence relationship    
             //! F(x,n)=F(x*x,n/2) for even n      e.g. 2^10= 2^(5+5) =(2*2)^5 
