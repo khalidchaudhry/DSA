@@ -18,38 +18,50 @@ namespace LeetCodeGraphs.Medium
         //V=numCourses
         //E =prerequisites.Length
         //! Time complexity=O(V+E)
+        //! Space=O(V+E)
         /// </summary>
-       
+
         public bool CanFinish0(int numCourses, int[][] prerequisites)
         {
-
-            if (numCourses == 1 && prerequisites.Length == 0) return true;
-
             Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
-            int[] indegree = new int[numCourses];
-
-            BuildGraph(prerequisites, indegree, graph);
-
-            Queue<int> queue = new Queue<int>();
-            InitializeQueue(queue, indegree);
-
-            int count = queue.Count;
-
-            while (queue.Count != 0)
+            for (int i = 0; i < numCourses; ++i)
             {
-                int dequeue = queue.Dequeue();
-                foreach (int neighbor in graph[dequeue])
+                graph.Add(i, new List<int>());
+            }
+
+            int[] indegree = new int[numCourses];
+            foreach (int[] prerequisite in prerequisites)
+            {
+                int a = prerequisite[0];
+                int b = prerequisite[1];
+                ++indegree[a];
+                graph[b].Add(a);
+            }
+
+            int coursesCompleted = 0;
+            Queue<int> queue = new Queue<int>();
+            for (int i = 0; i < indegree.Length; ++i)
+            {
+                if (indegree[i] == 0)
+                {
+                    queue.Enqueue(i);
+                    ++coursesCompleted;
+                }
+            }
+            while (queue.Count > 0)
+            {
+                int curr = queue.Dequeue();
+                foreach (int neighbor in graph[curr])
                 {
                     --indegree[neighbor];
                     if (indegree[neighbor] == 0)
                     {
+                        ++coursesCompleted;
                         queue.Enqueue(neighbor);
-                        ++count;
                     }
                 }
             }
-
-            return count == numCourses ? true : false;
+            return coursesCompleted == numCourses;
         }
 
         //! DFS recursive solution
@@ -85,6 +97,22 @@ namespace LeetCodeGraphs.Medium
 
             return true;
 
+        }
+        public bool IsDFSContainsCycle(Dictionary<int, List<int>> graph, int at, int[] color)
+        {
+            if (color[at] == 1) return true;
+            if (color[at] == 2) return false;
+
+            color[at] = 1; //! painting the node with grey color
+            foreach (int neighbor in graph[at])
+            {
+                if (IsDFSContainsCycle(graph, neighbor, color))
+                {
+                    return true;
+                }
+            }
+            color[at] = 2; //! painting the node with black color(completed)
+            return false;
         }
 
         /// <summary>
@@ -139,22 +167,7 @@ namespace LeetCodeGraphs.Medium
             return count == n;
         }
 
-        public bool IsDFSContainsCycle(Dictionary<int, List<int>> graph, int at, int[] color)
-        {
-            if (color[at] == 1) return true;
-            if (color[at] == 2) return false;
-
-            color[at] = 1; //! painting the node with grey color
-            foreach (int neighbor in graph[at])
-            {
-                if (IsDFSContainsCycle(graph, neighbor, color))
-                {
-                    return true;
-                }
-            }
-            color[at] = 2; //! painting the node with black color(completed)
-            return false;
-        }
+       
 
         private void BuildGraph(int[][] prerequisites, int[] indegree, Dictionary<int, List<int>> adj)
         {
@@ -162,8 +175,8 @@ namespace LeetCodeGraphs.Medium
             {
                 // !index 1---> index0
                 int from = relation[1];
-                int to = relation[0];               
-                
+                int to = relation[0];
+
                 // relation[0] depends on relation[1]. It means course at index 0 depends upon course at index 1
                 // In order to take course at index 0 , you must first take course at index 1.
                 // index 1---> index0
