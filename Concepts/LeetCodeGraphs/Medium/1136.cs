@@ -8,6 +8,11 @@ namespace LeetCodeGraphs.Medium
 {
     public class _1136
     {
+
+        /// <summary>
+        //!Time complexity=O(V+E)
+        //!Space Complexity =O(V+E)
+        /// </summary>
         public int MinimumSemesters(int n, int[][] relations)
         {
 
