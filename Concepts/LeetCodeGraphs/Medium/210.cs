@@ -42,67 +42,6 @@ namespace LeetCodeGraphs.Medium
             ans.Reverse();
             return ans.ToArray();
         }
-
-        public int[] FindOrder(int numCourses, int[][] prerequisites)
-        {
-            List<int> result = new List<int>();
-            Dictionary<int, List<int>> adjList = new Dictionary<int, List<int>>();
-            int[] indegree = new int[numCourses];
-            //! Build Graph
-            BuildGraph(prerequisites, adjList, indegree);
-            Queue<int> queue = new Queue<int>();
-            //! Queue courses that don't have prerequisite 
-            InitializeQueue(queue, indegree);
-            //! BFS           
-            while (queue.Count != 0)
-            {
-                int curr = queue.Dequeue();
-                if (indegree[curr] == 0)
-                {
-                    result.Add(curr);
-                }
-                foreach (int neighbour in adjList[curr])
-                {
-                    --indegree[neighbour];
-                    if (indegree[neighbour] == 0)
-                    {
-                        queue.Enqueue(neighbour);
-                    }
-                }
-            }
-
-            if (result.Count != numCourses)
-            {
-                result.Clear();
-            }
-
-            return result.ToArray();
-        }
-
-        private void BuildGraph(int[][] prerequisites, Dictionary<int, List<int>> adjList, int[] indegree)
-        {
-            for (int i = 0; i < prerequisites.Length; i++)
-            {
-                if (!adjList.ContainsKey(prerequisites[i][1]))
-                {
-                    adjList.Add(prerequisites[i][1], new List<int>());
-                }
-
-                adjList[prerequisites[i][1]].Add(prerequisites[i][0]);
-                ++indegree[prerequisites[i][0]];
-            }
-        }
-
-        private void InitializeQueue(Queue<int> queue, int[] indegree)
-        {
-            for (int i = 0; i < indegree.Length; i++)
-            {
-                if (indegree[i] == 0)
-                {
-                    queue.Enqueue(i);
-                }
-            }
-        }
         private bool IsDFSContainsCycle(Dictionary<int, List<int>> graph, int at, int[] color, List<int> ans)
         {
             if (color[at] == 1) return true;
@@ -122,5 +61,52 @@ namespace LeetCodeGraphs.Medium
             return false;
         }
 
+        /// <summary>
+        //! Top Sort
+        //! Time complexity=O(V+E) where V are the number of courses and E are the relationship of that course with other courses
+        //! Space Complexity=O(V+E)
+        /// </summary>
+        public int[] FindOrder(int numCourses, int[][] prerequisites)
+        {
+            Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+            for (int i = 0; i < numCourses; ++i)
+            {
+                graph.Add(i, new List<int>());
+            }
+            int[] indegree = new int[numCourses];
+            foreach (int[] prereq in prerequisites)
+            {
+                int a = prereq[0];
+                int b = prereq[1];
+                graph[b].Add(a);
+                ++indegree[a];
+            }
+
+            List<int> result = new List<int>();
+            Queue<int> queue = new Queue<int>();
+            for (int i = 0; i < numCourses; ++i)
+            {
+                if (indegree[i] == 0)
+                {
+                    queue.Enqueue(i);
+                    result.Add(i);
+                }
+            }
+
+            while (queue.Count > 0)
+            {
+                int curr = queue.Dequeue();
+                foreach (int neighbor in graph[curr])
+                {
+                    --indegree[neighbor];
+                    if (indegree[neighbor] == 0)
+                    {
+                        queue.Enqueue(neighbor);
+                        result.Add(neighbor);
+                    }
+                }
+            }
+            return result.Count == numCourses ? result.ToArray() : new int[] { };
+        }
     }
 }

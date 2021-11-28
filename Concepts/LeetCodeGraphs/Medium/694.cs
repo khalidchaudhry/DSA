@@ -32,14 +32,14 @@ namespace LeetCodeGraphs.Medium
         {
             HashSet<string> paths = new HashSet<string>();
 
-            for (int i = 0; i < grid.Length; ++i)
+            for (int r = 0; r < grid.Length; ++r)
             {
-                for (int j = 0; j < grid[0].Length; ++j)
+                for (int c = 0; c < grid[0].Length; ++c)
                 {
-                    if (grid[i][j] == 1)
+                    if (grid[r][c] == 1)
                     {
                         StringBuilder path = new StringBuilder();
-                        DFS(grid, i, j, path);
+                        DFS(grid, r, c, path);
                         paths.Add(path.ToString());
                     }
                 }
@@ -48,21 +48,23 @@ namespace LeetCodeGraphs.Medium
             return paths.Count;
         }
 
-        private void DFS(int[][] grid, int i, int j, StringBuilder path)
+        private void DFS(int[][] grid, int r, int c, StringBuilder path)
         {
-            if (i < 0 || i >= grid.Length ||
-                j < 0 || j >= grid[0].Length ||
-                grid[i][j] != 1)
+            if (IsOutOfBound(grid, r, c))
             {
                 return;
             }
             //! Marking it as 0 equivalent to creating visited array
-            grid[i][j] = 0;
+            grid[r][c] = 0;
 
-            DFS(grid, i - 1, j, path.Append('U'));
-            DFS(grid, i + 1, j, path.Append('D'));
-            DFS(grid, i, j - 1, path.Append('L'));
-            DFS(grid, i, j + 1, path.Append('R'));
-        }       
+            DFS(grid, r - 1, c, path.Append('U'));
+            DFS(grid, r + 1, c, path.Append('D'));
+            DFS(grid, r, c - 1, path.Append('L'));
+            DFS(grid, r, c + 1, path.Append('R'));
+        }
+        private bool IsOutOfBound(int[][] grid, int r, int c)
+        {
+            return r < 0 || r >= grid.Length || c < 0 || c >= grid[0].Length;
+        }
     }
 }
