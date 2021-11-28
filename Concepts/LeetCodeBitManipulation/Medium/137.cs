@@ -12,6 +12,8 @@ namespace LeetCodeBitManipulation.Medium
         /// <summary>
         /// https://www.youtube.com/watch?v=cOFAmaMBVps
         //! Counting set bit approach  
+        //! Time=O(32*n)
+        //! Space=O(1)
         /// </summary>
         public int SingleNumber0(int[] nums)
         {
@@ -29,13 +31,12 @@ namespace LeetCodeBitManipulation.Medium
                 }
                 //! setBitCount value will be either 1 or 0 after below operation
                 setBitCount = setBitCount % 3;
-                //! if setBitCount!=0 or setBitCount==1 then it means that bit  is set in the number 
-                if ((setBitCount % 3) != 0)
-                {
-                    // set the ith bit of the number 
-                    result = result | (setBitCount << bitPos);
-                }
-                
+                //! either  setBitCount will be 0 or 1. If 1 it means that bit is set in the number or 0 if bit is not set 
+                // set the ith bit of the number. Value of  setBitCount will be 0 or 1 
+                //and we are taking OR(|) so even in case of 0 it will impact the result
+                result = result | (setBitCount << bitPos);
+
+
             }
 
             return result;
