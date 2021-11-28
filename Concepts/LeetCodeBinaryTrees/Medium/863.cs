@@ -8,6 +8,8 @@ namespace LeetCodeBinaryTrees.Medium
     {
         /// <summary>
         //!https://www.youtube.com/watch?v=nPtARJ2cYrg 
+        //! Time complexity=O(V+3) where V is the number of nodes in the graph and 3 are the maximum edges we can have from a node 
+        //! Space Complexity=O(V) 
         /// </summary>
         public IList<int> DistanceK(TreeNode root, TreeNode target, int k)
         {
