@@ -8,6 +8,11 @@ namespace LeetCodeBinaryTrees.Medium
     {
         /// <summary>
         //! Based on idea in Kuai's class 
+        //!https://leetcode.com/problems/stepping-numbers/discuss/590902/Python3-BFS-Solution-with-Commentary-and-Analysis
+        //!  Time complexity = O(2 ^ log_10(high))
+        //! Space Complexity= O(2 ^ log_10(high))
+        /// # <image url="$(SolutionDir)\Images\1215b.png"  scale="0.7"/>
+
         /// # <image url="$(SolutionDir)\Images\1215.png"  scale="0.6"/>
         /// </summary>
         public IList<int> CountSteppingNumbers(int low, int high)
