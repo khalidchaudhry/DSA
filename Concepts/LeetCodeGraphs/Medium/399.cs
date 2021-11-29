@@ -12,16 +12,15 @@ namespace LeetCodeGraphs.Medium
         // # of equations - m
         //# of queries - n
         //# of variables - v <= 2 * m
-        //!Build Graph: O(|Edge(# of Equations)|)
+        //!Build Graph: O(E(# of Equations))
         //Assume there are K queries:
-        //Evaluate one query: O(|Edge| +|Vertex|) (Assume the graph is a list)
+        //Evaluate one query: O(V+E) 
         // totaltime:Evaulate K queries+Build Graph
-        //!total time: O(K* (|E| + |V|) + |E|)
-
+        //!total time: O(K* (V+E)+E)
         //Space:
-        //Graph: O(2 * (|E| + |V|))
-        //visited set: O(|V|)
-        //!total space: O(2*|E| + 3*|V|)
+        //!Graph: O(V+2E)
+        //!visited set: O(V)
+        //!total space: O(2*E + 2*V)
         /// </summary>
 
         //https://leetcode.com/problems/evaluate-division/discuss/171649/1ms-DFS-with-Explanations
