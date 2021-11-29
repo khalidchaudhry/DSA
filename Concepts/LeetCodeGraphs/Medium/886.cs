@@ -9,6 +9,8 @@ namespace LeetCodeGraphs.Medium
     public class _886
     {
         /// <summary>
+        //!Time Complexity: O(N + E) where N is the number of people and E is the number of dislike pairs.
+        //!Space Complexity: O(N + E)
         //! Same as Leetcode 785 
         //  # <image url="https://leetcode.com/problems/is-graph-bipartite/Figures/785/color.png"  scale="0.4"/>
         /// </summary>
