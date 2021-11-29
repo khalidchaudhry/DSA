@@ -10,6 +10,8 @@ namespace LeetCodeGraphs.Medium
     {
         /// <summary>
         //! This problem is very similar to leetcode problem 994 and little bit similar with 542
+        //! Time Complexity: O(rc(r+c)) where r number of rows and c=number of columns
+        //! Space Complexity=O(rc) 
         /// </summary>
         public int ShortestBridge(int[][] A)
         {
