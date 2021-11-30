@@ -17,13 +17,24 @@ namespace LeetCodeBinarySearch.Medium
         /// </summary>
         public int SingleNonDuplicate(int[] nums)
         {
+            int n = nums.Length;
+            //! Boundary cases
+            if (nums.Length == 1)
+            {
+                return nums[0];
+            }
+            if (nums[0] != nums[1])
+            {
+                return nums[0];
+            }
+            if (nums[n - 1] != nums[n - 2])
+            {
+                //! we are returning n-1 not n-2 because if n-2 is the missing number , it will be tackled in above if condition
+                return nums[n - 1];  
+            }
 
             int lo = 0;
-            int hi = nums.Length;
-            //! Boundary cases
-            if (nums.Length == 1) return nums[0];
-            if (nums[0] != nums[1]) return nums[0];
-            if (nums[nums.Length - 1] != nums[nums.Length - 2]) return nums[nums.Length - 1];
+            int hi = n;
 
             while (lo + 1 < hi)
             {
