@@ -12,6 +12,8 @@ namespace LeetCodeGraphs.Medium
         /// <summary>
         //! DFS recursive . Similar to pattern used in question 207,802 except here we are using 2 colors and alternating them
         //! Same as 886
+        //! Time=O(V+2E) 2E since we visit each edge twice
+        //! Space=O(V+(V+E)) 1V for color array and V+E for DFS  
         //  # <image url="https://leetcode.com/problems/is-graph-bipartite/Figures/785/color.png"  scale="0.4"/>
         /// </summary>       
         public bool IsBipartite2(int[][] graph)
