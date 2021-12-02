@@ -79,7 +79,7 @@ namespace LeetCodeBinaryTrees.Medium
 
             nodes.Sort(comparer);
             */
-
+            nodes = nodes.OrderBy(x => x.column).ThenBy(y => y.row).ThenBy(z => z.value).ToList();
             List<int> level = new List<int>();           
             for (int i = 0; i < nodes.Count; ++i)
             {
