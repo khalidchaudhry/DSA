@@ -21,9 +21,10 @@ namespace LeetCodeBitManipulation.Medium
         }
         /// <summary>
         //! Optimzation rather then going both with n+1 and n-1 , we go with the one that turns out tobe even
+        //! Time=O(logn)
+        //! Space=O(logn)
         /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
+        
 
         public int IntegerReplacement0(int n)
         {
@@ -58,11 +59,10 @@ namespace LeetCodeBitManipulation.Medium
             return min;
         }
 
-        /// <summary>
         //!DP Memoization
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
+        //!Space=O(n)
+        //!Time= O(n)
+
         public int IntegerReplacement1(int n)
         {
             Dictionary<long, int> map = new Dictionary<long, int>();
