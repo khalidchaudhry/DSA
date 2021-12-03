@@ -21,7 +21,7 @@ namespace LeetCodeGraphs.Medium
             };
 
             _490 test = new _490();
-            test.HasPath0(maze,new int[] { 1,2},new int[] {3,2 });
+            test.HasPath0(maze, new int[] { 1, 2 }, new int[] { 3, 2 });
 
         }
 
@@ -34,7 +34,7 @@ namespace LeetCodeGraphs.Medium
 
         private bool Solve(int[][] maze, int[] start, int[] destination, HashSet<(int r, int c)> visited)
         {
-           
+
             if (start[0] == destination[0] && start[1] == destination[1])
             {
                 return true;
@@ -47,21 +47,25 @@ namespace LeetCodeGraphs.Medium
             /*
              * The ball can go through the empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. 
              * When the ball stops, it could choose the next direction.
-             */ 
+             */
             visited.Add((start[0], start[1]));
 
 
             foreach ((int x, int y) in new List<(int x, int y)>() { (-1, 0), (1, 0), (0, 1), (0, -1) })
             {
-                int[] newStart = new int[] { start[0], start[1] };
+                //! arrays are reference types. so we need to create new one. 
+                //! int[] newStart=start will not work in this case
+                //int[] newStart = new int[] { start[0], start[1] };
+                int newRow = start[0];
+                int newCol = start[1];
                 //! before incrementing value we are checking if the value is valid . Only after that we increment
                 //! maze[newStart[0] + x][newStart[1] + y] == 0 as per requiremnt ball won't stop rolling until hitting a wall(1)
-                while (!IsOutOfBound(maze, newStart[0] + x, newStart[1] + y) && maze[newStart[0] + x][newStart[1] + y] == 0)
+                while (!IsOutOfBound(maze, newRow + x, newCol + y) && maze[newRow + x][newCol + y] == 0)
                 {
-                    newStart[0] = newStart[0] + x;
-                    newStart[1] = newStart[1] + y;
+                    newRow += x;
+                    newCol += y;
                 }
-                if (Solve(maze, newStart, destination, visited))
+                if (Solve(maze, new int[] { newRow, newCol}, destination, visited))
                 {
                     return true;
                 }
