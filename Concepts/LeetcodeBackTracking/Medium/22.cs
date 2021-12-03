@@ -10,6 +10,8 @@ namespace LeetcodeBackTracking.Medium
 
         //! Same as leetcode question 784, there we have two choices(opening bracket & closing bracket) 
         //! Here we have two choices too. Either we can have opening bracket or closing bracket. 
+        //! Time=2^n  
+        //! Space=2^n
         public IList<string> GenerateParenthesis0(int n)
         {
             IList<string> result = new List<string>();
