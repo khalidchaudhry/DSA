@@ -54,13 +54,13 @@ namespace Greedy.Hard
                     --leftOver;
                     if (curr.Freq > 0)
                     {
-                        temp.Add(new Data(curr.Char, curr.Freq));
+                        temp.Add(curr);
                     }
                 }
                 while (temp.Size > 0)
                 {
                     Data curr = temp.Poll();
-                    pq.Add(new Data(curr.Char, curr.Freq));
+                    pq.Add(curr);
                 }
             }
             return result.ToString();
