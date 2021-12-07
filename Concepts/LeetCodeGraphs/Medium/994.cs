@@ -25,7 +25,8 @@ namespace LeetCodeGraphs.Medium
             Console.ReadLine();
 
         }
-
+        //! TimeComplexity=O(rows*cols)
+        //! Space Complexity=O(rows*cols)
         public int OrangesRotting0(int[][] grid)
         {
             //! important to keep track of fresh oranges.

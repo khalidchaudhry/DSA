@@ -25,19 +25,20 @@ namespace LeetCodeUnionFind.Hard
 
             for (int i = 0; i < n; ++i)
             {
-                int curr = 1;
+               
                 //! If element is not the first element in the sequence e.g. [1,2,3,4] for 2,3,4 it will continue
                 if (hs.Contains(nums[i] - 1))
                     continue;
                 //! If we are here , it means that this the first element in the sequence. We need to check how much longer we can go. 
+                int currLen = 1;
                 int temp = nums[i] + 1;
                 while (hs.Contains(temp))
                 {
                     ++temp;
-                    ++curr;
+                    ++currLen;
                 }
 
-                longest = Math.Max(longest, curr);
+                longest = Math.Max(longest, currLen);
             }
             return longest;
         }
