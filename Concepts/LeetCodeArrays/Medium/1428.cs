@@ -21,7 +21,7 @@ namespace LeetCodeArrays.Medium
         
         /// <summary>
         //! Approach is very similar to what followed in leetcode 240,1351 
-        //! Time complexity=O(n+m)
+        //! Time complexity=O(rows+Colums)
         //! Space Complexity=O(1)
         /// </summary>
         public int LeftMostColumnWithOne(BinaryMatrix binaryMatrix)
