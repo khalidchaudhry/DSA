@@ -20,36 +20,19 @@ namespace LeetCodeGraphs.Medium
 
             //!we are zooming/scaling out to 3.
             //! why 3 because scaling to 2 the minimal distance between the line is 2 which is impossible to detect 
-            bool[][] map = new bool[3 * n][];
+            bool[,] aux = new bool[n * 3, n * 3];            
 
-            int m = map.Length;
-            for (int i = 0; i < m; ++i)
-            {
-                map[i] = new bool[m];
-            }
-
-            //! below code of turning everything to true is not necessary .
-            //! Its to make DFS more similar to number of islands problem(200)
-            //! Without below code, we need to do DFS where cell value is false and turn it to true 
-            for (int i = 0; i < m; ++i)
-            {
-                for (int j = 0; j < m; ++j)
-                {
-                    map[i][j] = true;
-                }
-            }
-
-            UpdateMap(grid, map);
+            UpdateMap(grid, aux);
 
             int result = 0;
-            for (int i = 0; i < map.Length; ++i)
+            for (int i = 0; i < aux.GetLength(0); ++i)
             {
-                for (int j = 0; j < map.Length; ++j)
+                for (int j = 0; j < aux.GetLength(1); ++j)
                 {
-                    if (map[i][j])
+                    if (!aux[i,j])
                     {
                         ++result;
-                        DFS(map, i, j);
+                        DFS(aux, i, j);
                     }
                 }
             }
@@ -57,7 +40,7 @@ namespace LeetCodeGraphs.Medium
             return result;
         }
         /// /// # <image url="$(SolutionDir)\Images\959.png"  scale="0.2"/>
-        private static void UpdateMap(string[] grid, bool[][] map)
+        private static void UpdateMap(string[] grid, bool[,] aux)
         {
             //! Turn every cell to false where there is a / or \ since they make the region not connected 
             for (int i = 0; i < grid.Length; ++i)
@@ -69,40 +52,47 @@ namespace LeetCodeGraphs.Medium
                     int actualColumn = 3 * j;
                     if (grid[i][j] == '/')
                     {
-                        map[actualRow][actualColumn + 2] = false;//top right
-                        map[actualRow + 1][actualColumn + 1] = false;//center
-                        map[actualRow + 2][actualColumn] = false;//bottom left
+                        aux[actualRow,actualColumn + 2] = true;//top right
+                        aux[actualRow + 1,actualColumn + 1] = true;//center
+                        aux[actualRow + 2,actualColumn] = true;//bottom left
                     }
 
                     if (grid[i][j] == '\\')
                     {
-                        map[actualRow][actualColumn] = false;//top left
-                        map[actualRow + 1][actualColumn + 1] = false;//center
-                        map[actualRow + 2][actualColumn + 2] = false;//bottom right
+                        aux[actualRow,actualColumn] = true;//top left
+                        aux[actualRow + 1,actualColumn + 1] = true;//center
+                        aux[actualRow + 2,actualColumn + 2] = true;//bottom right
                     }
                 }
             }
         }
 
-        private void DFS(bool[][] map, int i, int j)
+        private void DFS(bool[,] aux, int r, int c)
         {
-            if (
-                i < 0 ||
-                i >= map.Length ||
-                j < 0 ||
-                j >= map.Length ||
-                map[i][j] == false
-                )
+            if (IsOutOfBound(aux, r, c) || aux[r, c])
             {
                 return;
             }
+            aux[r, c] = true;
+            foreach ((int nr, int nc) in GetNeighbors(r, c))
+            {
+                DFS(aux, nr, nc);
+            }
+        }
+        private bool IsOutOfBound(bool[,] arr, int r, int c)
+        {
+            return r < 0 || r >= arr.GetLength(0) || c < 0 || c >= arr.GetLength(1);
+        }
 
-            map[i][j] = false;
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
+        {
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int nr, int nc)>() { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
+            {
+                neighbors.Add((nr, nc));
+            }
 
-            DFS(map, i - 1, j);//up
-            DFS(map, i + 1, j);//down
-            DFS(map, i, j - 1);//left
-            DFS(map, i, j + 1);//right
+            return neighbors;
         }
 
         // https://www.youtube.com/watch?v=tIZkh7mpIDo
