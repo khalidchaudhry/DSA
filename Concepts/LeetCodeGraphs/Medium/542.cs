@@ -13,6 +13,8 @@ namespace LeetCodeGraphs.Medium
         ///  // # <image url="$(SolutionDir)\Images\542.png"  scale="0.5"/>
         /// https://www.youtube.com/watch?v=UWykmfK7ta4
         //! Same pattern in question 286
+        //! Time=O(r*c)
+        //! Space=O(r*c)
         /// </summary>        
         public int[][] UpdateMatrix(int[][] matrix)
         {
