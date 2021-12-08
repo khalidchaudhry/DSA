@@ -8,13 +8,20 @@ namespace LeetCodeHeap.Medium
 {
     class _1057
     {
-
+        /// <summary>        
+        //! Time Complexity=O(m*n)
+        //!Space Complexity = O(1999*W*B)+O(W)+O(B) 
+        /// </summary>
         public int[] AssignBikes0(int[][] workers, int[][] bikes)
         {
 
             int n = workers.Length;
-            List<WorkerBikeIndex>[] distance = new List<WorkerBikeIndex>[2001];
-            for (int i = 0; i < 2001; ++i)
+            //!1999 because that's the maximimum possible manhatan distance based on question constraint
+            //! Possible worker indexes=0 <= xi, yi < 1000
+            //! Possible bike indexes=0 <= xj, yj < 1000
+            int maxDistance = 1999;
+            List<WorkerBikeIndex>[] distance = new List<WorkerBikeIndex>[maxDistance];
+            for (int i = 0; i < maxDistance; ++i)
             {
                 distance[i] = new List<WorkerBikeIndex>();
             }
@@ -30,22 +37,20 @@ namespace LeetCodeHeap.Medium
             }
 
             int[] result = new int[n];
-            HashSet<int> bikesIdx = new HashSet<int>();
-            HashSet<int> workersIdx = new HashSet<int>();
+            HashSet<int> bikesIdxs = new HashSet<int>();
+            HashSet<int> workerIdxs = new HashSet<int>();
 
-            for (int i = 0; i < 2001; ++i)
+            foreach (List<WorkerBikeIndex> item in distance)
             {
-                foreach (WorkerBikeIndex d in distance[i])
+                foreach (WorkerBikeIndex data in item)
                 {
-                    int currWIdx = d.WIdx;
-                    int currBIdx = d.BIdx;
-                    if (workersIdx.Contains(currWIdx) || bikesIdx.Contains(currBIdx))
+                    if (bikesIdxs.Contains(data.BIdx) || workerIdxs.Contains(data.WIdx))
+                    {
                         continue;
-
-                    result[currWIdx] = currBIdx;
-
-                    workersIdx.Add(currWIdx);
-                    bikesIdx.Add(currBIdx);
+                    }
+                    result[data.WIdx] = data.BIdx;
+                    bikesIdxs.Add(data.BIdx);
+                    workerIdxs.Add(data.WIdx);
                 }
             }
             return result;
@@ -53,12 +58,15 @@ namespace LeetCodeHeap.Medium
 
         /// <summary>
         //! Giving TLE in Leetcode . Good from interview perspective 
+        //! Time complexity=O(wblogwb) where w number of worker and b number of bikes
+        //!Space complexity=O(w)+O(b)+O(wb) where O(w) for workers hashset O(b) fior bikes hashset and O(wb) the elements in pq 
         /// </summary>
         public int[] AssignBikes(int[][] workers, int[][] bikes)
         {
 
             int n = workers.Length;
-            var comparer = Comparer<Data>.Create((x, y) => {
+            var comparer = Comparer<Data>.Create((x, y) =>
+            {
 
                 if (x.Distance != y.Distance)
                     return x.Distance.CompareTo(y.Distance);
