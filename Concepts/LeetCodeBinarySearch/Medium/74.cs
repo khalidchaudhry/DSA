@@ -22,12 +22,42 @@ namespace LeetCodeBinarySearch.Medium
 
         }
         /// <summary>
+        //! Space=O(m+n)
+        //! Time=O(1)
+        /// </summary>
+       
+        public bool SearchMatrix(int[][] matrix, int target)
+        {
+            int rows = matrix.Length;
+            int cols = matrix[0].Length;
+
+            int r = 0;
+            int c = cols - 1;
+
+            while (r < rows && c >= 0)
+            {
+                if (matrix[r][c] == target)
+                {
+                    return true;
+                }
+                else if (matrix[r][c] > target)
+                {
+                    --c;
+                }
+                else
+                {
+                    ++r;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         //! Key intuition here is to visualize it as 1D arrray
         //! Excellent explanation https://www.youtube.com/watch?v=FOa55B9Ikfg
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <param name="target"></param>
-        /// <returns></returns>
+        //! Time=O(logmn)
+        //! Space=O(1)
+        /// </summary>      
         public bool SearchMatrix0(int[][] matrix, int target)
         {
 
@@ -62,14 +92,7 @@ namespace LeetCodeBinarySearch.Medium
 
             return false;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <param name="target"></param>
-        /// <returns></returns>
-
+        
         public bool SearchMatrix1(int[][] matrix, int target)
         {
 
