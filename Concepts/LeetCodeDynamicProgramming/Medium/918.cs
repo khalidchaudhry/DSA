@@ -22,16 +22,7 @@ namespace LeetCodeDynamicProgramming.Medium
 
 
 //      # <image url="$(SolutionDir)\Images\918.png"  scale="0.8"/>
-        /// <summary>
-        //! Apply Kadane's algorithm for getting max sum for non-circular case &  max subarray sum for circular 
-        //! Answer=Max(maxSubArray sum non-circular ,maxSubArray sum circular)
-        //! How to calculate "maxSubArray sum circular"=(sum - min sub array sum)
-        //! min sub array sum
-        //! 1. Negate all sub array elements  
-        //! 2. Apply Kandanes algorithm to calculate max sub array sum
-        //! 3. Negate maxsub array sum to get min sub array sum
-        /// </summary>
-
+        
         public int MaxSubarraySumCircular(int[] nums)
         {
             int sum = nums.Sum();

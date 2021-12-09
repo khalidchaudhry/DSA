@@ -14,7 +14,7 @@ namespace LeetCodeDynamicProgramming.Hard
             Dictionary<int, int> cache = new Dictionary<int, int>();
             bool[,] isPalindromes = new bool[s.Length, s.Length];
             PreComputePalindromes(s, isPalindromes);
-            //! cuts=partitions -1
+            //! cuts=total partitions -1
             return MinCut(s, 0, cache,isPalindromes) - 1; 
 
         }
@@ -36,7 +36,7 @@ namespace LeetCodeDynamicProgramming.Hard
             {
                 if (isPalindromes[start, i])
                 {
-                    //! 1+ because we are making 1 cut 
+                    //! 1+ because we have 1 partition
                     minCuts = Math.Min(minCuts, 1 + MinCut(s, i + 1, cache, isPalindromes));
                 }
             }
