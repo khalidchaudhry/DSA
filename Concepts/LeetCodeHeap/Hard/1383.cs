@@ -65,7 +65,12 @@ namespace LeetCodeHeap.Hard
             });
 
             PQ<int> pq = new PQ<int>(pqComparer);
-
+            //! How long type is appropriate here?
+            // Max Speed=10^5
+            // Max n=10^5
+            // Max k=10^5
+            // Max Efficiency=10^8
+            //Max Value of performance=maxEfficiency*Sum(all n engineer speed)=10^8 * (10^5*10^5)=10^18
             long maxPerf = 0;
             long speedSum = 0;
             foreach ((int s, int e) in speedEff)
