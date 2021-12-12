@@ -57,9 +57,9 @@ namespace LeetCodeGraphs.Medium._802
             int nodeCount = graph.Length;
             //! initially all the nodes will be not visited. 
             //! color array holds there possible values 
-            //! 0=White= Not processed
-            //! 1=Grey= Currently processing
-            //! 2=Black=Completely processed 
+            //! 0=Not processed
+            //! 1=Currently processing
+            //! 2=Completely processed 
             int[] color = new int[nodeCount];
 
             for (int i = 0; i < nodeCount; i++)

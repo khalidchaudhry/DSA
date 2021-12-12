@@ -43,6 +43,17 @@ namespace LeetCodeStrings.Easy
 
             return true;
         }
+        private bool Helper(string s, int i, int j)
+        {
+            while (i < j)
+            {
+                if (s[i] != s[j])
+                    return false;
+                ++i;
+                --j;
+            }
+            return true;
+        }
 
         /// <summary>
         //! Using recursion 
@@ -51,10 +62,10 @@ namespace LeetCodeStrings.Easy
         /// </summary>
         public bool ValidPalindrome1(string s)
         {
-            return Helper(s, 0, s.Length - 1, 0);
+            return Solve(s, 0, s.Length - 1, 0);
         }
 
-        private bool Helper(string str, int s, int e, int deleteCount)
+        private bool Solve(string str, int s, int e, int deleteCount)
         {
 
             if (deleteCount > 1)
@@ -65,24 +76,14 @@ namespace LeetCodeStrings.Easy
 
             if (str[s] == str[e])
             {
-                return Helper(str, s + 1, e - 1, deleteCount);
+                return Solve(str, s + 1, e - 1, deleteCount);
             }
             else
             {
-                return Helper(str, s + 1, e, deleteCount + 1) || Helper(str, s, e - 1, deleteCount + 1);
+                return Solve(str, s + 1, e, deleteCount + 1) || Solve(str, s, e - 1, deleteCount + 1);
             }
         }
 
-        private bool Helper(string s, int i, int j)
-        {
-            while (i < j)
-            {
-                if (s[i] != s[j])
-                return false;
-                ++i;
-                --j;
-            }
-            return true;
-        }
+        
     }
 }

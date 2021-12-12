@@ -78,13 +78,13 @@ namespace LeetCodeDynamicProgramming
 
             //_918._918Main();
             //int[] nums = new int[] { 10, 9, 2, 5, 3, 7, 101, 18 };
-            //_300._300Main();
+            _300._300Main();
 
             //_264._264Main();
             //_368._368Main();
             //_532._532Main();
 
-            _1027._1027Main();
+            //_1027._1027Main();
             //_279._279Main();
             //_123._123Main();
             //_1277._1277Main();

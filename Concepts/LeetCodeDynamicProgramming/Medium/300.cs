@@ -25,11 +25,15 @@ namespace LeetCodeDynamicProgramming.Medium
         /// 
         public int LengthOfLIS0(int[] nums)
         {
-            int ans = 0;
+            
             List<int> lis = new List<int>();
 
             for (int i = 0; i < nums.Length; ++i)
             {
+                //! if item found  the zero based index of the element
+                //! If item not found than negative number
+                //! negative number=insertion index(in negative)-1
+
                 int index = lis.BinarySearch(nums[i]);
 
                 if (index < 0)
