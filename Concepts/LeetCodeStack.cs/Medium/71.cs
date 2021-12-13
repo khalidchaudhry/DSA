@@ -23,6 +23,7 @@ namespace LeetCodeStack.Medium
         public string SimplifyPath0(string path)
         {
             //! Tokenize based on the '/'
+            //! there will be empty string(s) in the tokens e.g. /home will produce ["",home] as there is nothing on left side
             string[] tokens = path.Split('/');
 
             List<string> interResult = new List<string>();
