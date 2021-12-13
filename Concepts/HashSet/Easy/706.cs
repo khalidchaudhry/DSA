@@ -33,6 +33,7 @@ namespace HashSet
     //!Potiential followup 
     //!For simplicity, are the keys integers only?
     //!For collision resolution, can we use chaining?
+    //!             2 collision resolution techniques -- Chaining/open addressing
     //!Do we have to worry about load factors?
     //!Can we assume inputs are valid or do we have to validate them?
     //!Can we assume this fits memory?
@@ -91,9 +92,11 @@ namespace HashSet
             int hashKey = key % _size;
 
             //! its not possible to remove an item from list while iterating forward. 
+
             //! However iterating backward can do it :) 
             int bucketSize = _buckets[hashKey].Count;
 
+            //! no need to iterate backward as we have already extracted bucketSize in variable
             for (int i = bucketSize - 1; i >= 0; --i)
             {
                 if (_buckets[hashKey][i].key == key)
