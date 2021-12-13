@@ -22,6 +22,8 @@ namespace LeetcodeBackTracking.Hard
 
         }
 
+        //!Time complexity=O(s.Length*p.Length)
+        //!Space complexity=O(s.Length*p.Length)
         public bool IsMatch(string s, string p)
         {
             Dictionary<(int sIdx, int pIdx), bool> memo = new Dictionary<(int sIdx, int pIdx), bool>();
