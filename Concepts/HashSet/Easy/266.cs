@@ -17,6 +17,11 @@ namespace LeetcodeHasTable.Easy
 
             Console.ReadLine();
         }
+        /// <summary>
+        //! Time=O(n)
+        //! Space=O(n)
+        /// </summary>
+        
         public bool CanPermutePalindrome(string s)
         {
             Dictionary<char, int> map = new Dictionary<char, int>();

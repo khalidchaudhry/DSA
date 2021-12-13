@@ -9,6 +9,8 @@ namespace LeetCodeStrings.Medium
 
 
         /// <summary>
+        //! Time=O(n^2)
+        //! Space=O(n^2)
         //!Same approach as used in problem 132  
         /// </summary>
         public string LongestPalindrome0(string s)
