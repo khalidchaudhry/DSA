@@ -53,5 +53,26 @@ namespace LeetCodeArrays.Medium
 
             return result;
         }
+        /// <summary>
+        //! Brute Force 
+        /// </summary>
+        public int SubarraySum(int[] nums, int k)
+        {
+            int n = nums.Length;
+            if (n == 0) return 0;
+            int result = 0;
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                int sum = 0;
+                for (int j = i; j < nums.Length; ++j)
+                {
+                    sum += nums[i];
+                    if (sum == k) ++result;
+                }
+            }
+
+            return result;
+        }
+
     }
 }
