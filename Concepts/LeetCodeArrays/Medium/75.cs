@@ -6,6 +6,10 @@ namespace LeetCodeArrays.Medium
 {
     public class _75
     {
+
+        //! Three way partition
+        //! All the elements in left partition are 0, all elements in  right partition are 1 and all the elements in right partition are 2
+       //! 0..........1.............2
         public void SortColors(int[] nums)
         {
             if (nums.Length == 0)
