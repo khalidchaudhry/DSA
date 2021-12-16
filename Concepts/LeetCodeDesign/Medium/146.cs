@@ -101,6 +101,8 @@ namespace LeetCodeDesign.Medium_146
             node.Prev.Next = node.Next;
             node.Next.Prev = node.Prev;
         }
+
+        //! Very important method as it  will help in speeding things up
         public void MoveToHead(Node node)
         {
             RemoveNode(node);

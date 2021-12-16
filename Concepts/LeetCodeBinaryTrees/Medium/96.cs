@@ -56,6 +56,9 @@ namespace LeetCodeBinaryTrees.Medium
                 //!  Subtrees we will get from left side
                 int left = NumTrees1(i - 1);
                 //! subtrees we will get from right side
+                //! n-i because we if we subtract left side and root from total(n), we will have right side 
+                //!1.............n
+                //!i   
                 int right = NumTrees1(n - i);
                 //! Catalan product 
                 numTrees += left * right;
