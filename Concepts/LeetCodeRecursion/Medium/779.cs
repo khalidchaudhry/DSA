@@ -29,9 +29,9 @@ namespace LeetCodeRecursion.Medium
             if (N == 1 && K == 1)
                 return 0;
             //! Length(items) of current row is 2^N-1 of the previous row
-            int length = (int)Math.Pow(2, N - 1);
+            int currRowColsCnt = (int)Math.Pow(2, N - 1);
             
-            int mid = length / 2;
+            int mid = currRowColsCnt / 2;
 
             if (K <= mid)
             {
