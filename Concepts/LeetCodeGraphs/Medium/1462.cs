@@ -36,9 +36,11 @@ namespace LeetCodeGraphs.Medium
         public IList<bool> CheckIfPrerequisite(int n, int[][] prerequisites, int[][] queries)
         {
             Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+            Dictionary<int, HashSet<int>> nodePrereqs = new Dictionary<int, HashSet<int>>();
             for (int i = 0; i < n; ++i)
             {
                 graph[i] = new List<int>();
+                nodePrereqs[i] = new HashSet<int>();
             }
 
             int[] inDegree = new int[n];
@@ -56,23 +58,18 @@ namespace LeetCodeGraphs.Medium
                     queue.Enqueue(i);
                 }
             }
-            //! Key is the course and HashSet is the list of prerequisite for the course 
-            Dictionary<int, HashSet<int>> map = new Dictionary<int, HashSet<int>>();
-            for (int i = 0; i < n; ++i)
-            {
-                map[i] = new HashSet<int>();
-            }
 
             while (queue.Count != 0)
             {
                 int curr = queue.Dequeue();
                 foreach (int neighbor in graph[curr])
                 {
+                    //! We need to add prereq IRRESPECTIVE of indegree==0 because curr node is anyway preq 
                     //! C# does not have AddAll for hashset
-                    map[neighbor].Add(curr); //! Adding current node as prerequisite for its neighbor
                     //!adding all current node  prerequisites to its neighbor as well as current node
+                    nodePrereqs[neighbor].Add(curr); 
                     //! Adding union will result in generating new hashset not modifying the original
-                    map[neighbor].UnionWith(map[curr]);
+                    nodePrereqs[neighbor].UnionWith(nodePrereqs[curr]);
 
                     --inDegree[neighbor];
                     if (inDegree[neighbor] == 0)
@@ -88,7 +85,7 @@ namespace LeetCodeGraphs.Medium
                 int course0 = query[0];
                 int course1 = query[1];
                 //! We are checking course 1 and finding that course 0 is its prerequisite or not. 
-                if (map[course1].Contains(course0))
+                if (nodePrereqs[course1].Contains(course0))
                 {
                     result.Add(true);
                 }
