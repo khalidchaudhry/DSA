@@ -20,6 +20,7 @@ namespace LeetcodeBackTracking.Medium
 
         public IList<IList<int>> PermuteUnique0(int[] nums)
         {
+            //! To avoid generating duplicate permutation we consider each unique number as candidate rather then just number. 
             Dictionary<int, int> freqMap = new Dictionary<int, int>();
             PopulateFrequencyMap(nums, freqMap);
             List<IList<int>> result = new List<IList<int>>();
