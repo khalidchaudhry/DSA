@@ -9,6 +9,7 @@ namespace LeetCodeArrays.Hard
 
         /// <summary>
         //! https://www.youtube.com/watch?v=dI2FGXiL4Js&t=343s 
+
         /// </summary>
         public int[][] Insert(int[][] intervals, int[] newInterval)
         {
@@ -50,7 +51,9 @@ namespace LeetCodeArrays.Hard
 
         private bool IsOverLapping(int[] e1, int[] e2)
         {
-            return e2[0] <= e1[1] && e2[0] >= e1[0];
+            //! Intervals given in question are closed intervals that includes its endpoint hence <=
+            //! Clarify from interviewer first the given intervals are closed intervals or open intervals or half open intervals 
+            return Math.Max(e1[0], e2[0]) <= Math.Min(e1[1], e2[1]);
         }
         private int[] Merge(int[] e1, int[] e2)
         {
