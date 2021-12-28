@@ -20,6 +20,7 @@ namespace LeetcodeBackTracking.Medium
 
             IList<IList<int>> result = new List<IList<int>>();
 
+            //! k represents the number of positions we have
             Combine0(1, n, k, new List<int>(), result);
             return result;
         }
