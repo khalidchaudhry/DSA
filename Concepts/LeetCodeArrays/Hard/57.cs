@@ -51,7 +51,8 @@ namespace LeetCodeArrays.Hard
 
         private bool IsOverLapping(int[] e1, int[] e2)
         {
-            //! Intervals given in question are closed intervals that includes its endpoint hence <=
+            //! Overlapping defination changed based on the interval type given i.e. Closed interval, open interval or half open interval
+            //! Intervals given in question are closed intervals that includes its endpoint hence <=            
             //! Clarify from interviewer first the given intervals are closed intervals or open intervals or half open intervals 
             return Math.Max(e1[0], e2[0]) <= Math.Min(e1[1], e2[1]);
         }
