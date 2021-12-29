@@ -11,6 +11,8 @@ namespace LeetCodeDesign.Medium
     }
 
     /// <summary>
+    //! if the number of hits per second is huge? Does your design scale?
+    //! Yes below solution scales but if we need to count hit for a day than it will not work 
     /// https://www.youtube.com/watch?v=vMB0XjFpt_s
     ///  /// # <image url="$(SolutionDir)\Images\362(2).png"  scale="0.5"/>A
     // </summary>
@@ -50,7 +52,10 @@ namespace LeetCodeDesign.Medium
             int value = 0;
             for (int i = 0; i < 300; ++i)
             {
-                if (_time[i] > timestamp - 300)
+                //!If time falls within the window(i-k+1), consider it
+                //! How will you reverse this equation queue.Peek() < timestamp - 300 + 1
+                //! queue.Peek() >=timestamp - 300 + 1
+                if (_time[i] >= timestamp - 300 + 1)
                 {
                     value += _counter[i];
                 }
