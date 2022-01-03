@@ -21,6 +21,8 @@ namespace LeetcodeBackTracking.Medium
         }
 
         /// <summary>
+        //! Time Complexity=2^n where n are number candidates. Why 2^n because we can have 2^n possible subsets from n numbers
+        //! Space=O(min(n,target)) since the min(n,target)is max depth of the recursion 
         //! Bounded Knapsack
         //! This problem  combines the  technique used in problem 90 to handle with duplicates & 
         //! problem 39 to reach the target

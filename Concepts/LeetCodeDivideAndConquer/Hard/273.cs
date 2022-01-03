@@ -74,7 +74,7 @@ namespace LeetCodeDivideAndConquer.Hard
                 return _numberWord[num];
 
             StringBuilder sb = new StringBuilder();
-
+            //! Handling <100 seperately since we dont want word to be appended e.g. for 10,000 we append thousand after 10
             if (num < 100)
             {
                 sb.Append(Solve(num / 10 * 10));

@@ -39,7 +39,7 @@ namespace LeetCodeBackTracking.Medium
 
         public IList<IList<int>> Subsets0(int[] nums)
         {
-
+            //TODO: Is the powerset same as subsequence ?Is the subset same as subsequence   
             List<IList<int>> powerSet = new List<IList<int>>();
             Subset0(nums, 0, new List<int>(), powerSet);
             return powerSet;

@@ -59,7 +59,19 @@ namespace LeetCodeGraphs.Medium
                 int newRow = start[0];
                 int newCol = start[1];
                 //! before incrementing value we are checking if the value is valid . Only after that we increment
-                //! maze[newStart[0] + x][newStart[1] + y] == 0 as per requiremnt ball won't stop rolling until hitting a wall(1)
+                //! maze[newStart[0] + x][newStart[1] + y] == 0 as per requiremnt ball won't stop rolling until hitting a wall(1)  
+                //! why do we not check visited below ? 
+                /*                 
+                    Because the point [xx,yy] can be visited again in different direction. For eg: assume the matrix
+                    [ 0 0 1 0 0 ]
+                    [ 0 0 0 0 0 ]
+                    [ 0 0 0 1 0 ]
+                    [ 1 1 0 1 1 ]
+                    [ 0 0 0 0 0 ]
+                    Assume start is [0,4] and dest is [1,2]. 
+                    Then the direction we will take is [0,4] -> [0,3] -> [1,3] -> [1,2](Cannot stop here) -> [1,1] -> [1,0] -> [2,0] -> [2,1] -> [2,2] ->[1,2](Stop here). 
+                    (Technically [1,2] is visited twice but only when it is visited in one direction it counts.) Hope this helps.
+                  */
                 while (!IsOutOfBound(maze, newRow + x, newCol + y) && maze[newRow + x][newCol + y] == 0)
                 {
                     newRow += x;
