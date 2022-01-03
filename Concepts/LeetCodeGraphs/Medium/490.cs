@@ -24,7 +24,11 @@ namespace LeetCodeGraphs.Medium
             test.HasPath0(maze, new int[] { 1, 2 }, new int[] { 3, 2 });
 
         }
-
+        /// <summary>
+        //! Pay close attention to when we should return true or solution exists 
+        //! Ball will keep rolling untill it hits the wall. No matter if cell is the desination or not
+        //!Return true if ball STOPS at destination
+        /// </summary>
         public bool HasPath0(int[][] maze, int[] start, int[] destination)
         {
 
