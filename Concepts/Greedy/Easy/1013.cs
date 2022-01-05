@@ -30,7 +30,7 @@ namespace Greedy.Easy
                 }
             }
             //!>= for edege case when all numbers are 0 .e..g [0,0,0,0] 
-            //! If count>3 we can always include include partitions more than 3 in 3rd partition
+            //! If count>3 we can always include  partitions more than 3 in 3rd partition
             return count >= 3;
 
         }
