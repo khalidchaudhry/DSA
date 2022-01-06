@@ -18,11 +18,13 @@ namespace LeetCodeDynamicProgramming.Medium
 
         private int UniquePathsWithObstacles2(int[][] obstacleGrid, int r, int c, Dictionary<(int, int), int> memo)
         {
+            //!obstacleGrid[r][c] == 1 need to check it before r == obstacleGrid.Length - 1 && c == obstacleGrid[0].Length - 1
+            //! in case destination itself is an obstacle and if we have 
+            //! r == obstacleGrid.Length - 1 && c == obstacleGrid[0].Length -1 before we will return  1 which is wrong
             if (r >= obstacleGrid.Length || c >= obstacleGrid[0].Length || obstacleGrid[r][c] == 1)
             {
                 return 0;
             }
-
             if (r == obstacleGrid.Length - 1 && c == obstacleGrid[0].Length - 1)
             {
                 return 1;
