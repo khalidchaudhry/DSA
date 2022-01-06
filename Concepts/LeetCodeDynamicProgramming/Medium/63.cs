@@ -18,6 +18,7 @@ namespace LeetCodeDynamicProgramming.Medium
 
         private int UniquePathsWithObstacles2(int[][] obstacleGrid, int r, int c, Dictionary<(int, int), int> memo)
         {
+            /* if destination itself is an obstacle*/
             //!obstacleGrid[r][c] == 1 need to check it before r == obstacleGrid.Length - 1 && c == obstacleGrid[0].Length - 1
             //! in case destination itself is an obstacle and if we have 
             //! r == obstacleGrid.Length - 1 && c == obstacleGrid[0].Length -1 before we will return  1 which is wrong
