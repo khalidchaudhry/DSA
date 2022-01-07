@@ -59,9 +59,7 @@ namespace LeetCodeLinkedList.Easy
             return null;
         }
 
-        /// <summary>
-        //! Finding the length of two linked list. Move one  , one step 
-        /// </summary>
+        //! Start both the linked list at same length
         public ListNode GetIntersectionNode(ListNode headA, ListNode headB)
         {
 
@@ -114,7 +112,8 @@ namespace LeetCodeLinkedList.Easy
             return len;
         }
 
-        // Very good solution
+        //!Same as above approach but we don't need to upfront calculate length of two linked list
+        //! Two linked list starting of the same length
         public ListNode getIntersectionNode2(ListNode headA, ListNode headB)
         {
             ListNode a = headA;

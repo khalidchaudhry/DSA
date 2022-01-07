@@ -24,7 +24,7 @@ namespace Greedy.Medium
                 else
                 {
                     //! we can only gain power if score >=1
-                    //!left!=right means that we are at last turn and there is no point playing as u are going 
+                    //!left!=right means that we are not at last turn and there is no point playing as u are going 
                     //! to loose the score anway so we are going to skip it 
                     if (score >= 1 && left != right)
                     {
