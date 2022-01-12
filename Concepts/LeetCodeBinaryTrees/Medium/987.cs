@@ -33,48 +33,92 @@ namespace LeetCodeBinaryTrees.Medium
             if (root == null)
                 return result;
 
-            List<(int column, int row, int value)> nodes = new List<(int column, int row, int value)>();
-            Queue<(TreeNode node, int x, int y)> queue = new Queue<(TreeNode node, int x, int y)>();
-            queue.Enqueue((root, 0, 0));
+            List<Data> allNodes = new List<Data>();
+            Queue<Data> queue = new Queue<Data>();
+            queue.Enqueue(new Data(0, 0, root));
             while (queue.Count != 0)
             {
-                (TreeNode node, int x, int y) = queue.Dequeue();
-                //! we are pushing y then x simply to make sorting easier for us 
-                nodes.Add((y, x, node.val));
+                Data curr = queue.Dequeue();
+                allNodes.Add(curr);
 
                 //!Question says that For each node at position (X, Y), its left and right children respectively will be at positions (X-1, Y-1) and (X+1, Y-1).
                 //! Note that, we assign a higher row index value to a node's child node. 
                 //!This convention is at odds with the denotation given in the problem description. 
                 //! This is done intentionally, in order to keep the ordering of all coordinates consistent, i.e. a lower value in any specific coordinate represents a higher order. 
                 //! As a result, a sorting operation in ascending order would work for each coordinate consistently. 
-                if (node.left != null)
-
-                    queue.Enqueue((node.left, x + 1, y - 1));
-                if (node.right != null)
-                    queue.Enqueue((node.right, x + 1, y + 1));
+                if (curr.Node.left != null)
+                {
+                    queue.Enqueue(new Data(curr.Row + 1, curr.Col - 1, curr.Node.left));
+                }
+                if (curr.Node.right != null)
+                {
+                    queue.Enqueue(new Data(curr.Row + 1, curr.Col + 1, curr.Node.right));
+                }
             }
 
-            PrepareResult(nodes, result);
-            return result;
+            //!Sorting first on colums,If they are same sort based on rows , if they are same sort based on value
+            //! We can also use custom comparer like below
+            //! Custom comparer
+            /*
+                var comparer=Comparer<Data>.Create((a,b)=>{
+
+                int res = a.Col.CompareTo(b.Col);
+                if (res != 0)
+                {
+                    return res;
+                }
+                res= a.Row.CompareTo(b.Row);
+                if (res != 0)
+                {
+                    return res;
+                }
+                return a.Node.Val.CompareTo(b.Node.Val);
+            });
+
+            nodes.Sort(comparer);
+            */
+            allNodes = allNodes.OrderBy(x => x.Col).ThenBy(x => x.Row).ThenBy(x => x.Node.val).ToList();
+
+            int prevCol = allNodes[0].Col;
+            List<int> row = new List<int>();
+            foreach (Data node in allNodes)
+            {
+                int currCol = node.Col;
+                if (prevCol == currCol)
+                {
+                    row.Add(node.Node.val);
+                }
+                else
+                {
+                    result.Add(new List<int>(row));
+                    row = new List<int>();
+                    row.Add(node.Node.val);
+                }
+                prevCol = currCol;
+            }
+            //! Need to add last row as above loop did not add it. 
+            result.Add(new List<int>(row));
+
+            return result;            
         }
 
         private void PrepareResult(List<(int column, int row, int value)> nodes, List<IList<int>> result)
         {
             //! Custom comparer
             /*
-                var comparer=Comparer<(int y,int x,int nodeValue)>.Create((a,b)=>{
+                var comparer=Comparer<Data>.Create((a,b)=>{
 
-                int res = a.y.CompareTo(b.y);
+                int res = a.Col.CompareTo(b.Col);
                 if (res != 0)
                 {
                     return res;
                 }
-                res= a.x.CompareTo(b.x);
+                res= a.Row.CompareTo(b.Row);
                 if (res != 0)
                 {
                     return res;
                 }
-                return a.nodeValue.CompareTo(b.nodeValue);
+                return a.Node.Val.CompareTo(b.Node.Val);
             });
 
             nodes.Sort(comparer);
@@ -100,81 +144,18 @@ namespace LeetCodeBinaryTrees.Medium
                     result.Add(level);
             }
             
-        }
-
-        public IList<IList<int>> VerticalTraversal(TreeNode root)
+        }       
+    }
+    public class Data
+    {
+        public int Row;
+        public int Col;
+        public TreeNode Node;
+        public Data(int row, int col, TreeNode node)
         {
-            List<IList<int>> result = new List<IList<int>>();
-
-            Dictionary<int, List<(int, int)>> map = new Dictionary<int, List<(int, int)>>();
-
-            (int minValue, int maxValue) = LevelOrderTraversal(root, map);
-
-            for (int i = minValue; i <= maxValue; ++i)
-            {
-                List<int> level = new List<int>();
-                if (map[i].Count > 1)
-                {
-                    //!reason for sorting. If two nodes have the same position, then the value of the node that is reported first is the value that is smaller.
-                    map[i].Sort();
-                }
-                foreach ((int x, int value) in map[i])
-                {
-                    level.Add(value);
-                }
-                result.Add(level);
-            }
-
-            return result;
-        }
-
-        private (int minValue, int maxValue) LevelOrderTraversal(TreeNode root, Dictionary<int, List<(int, int)>> map)
-        {
-            if (root == null)
-                return (0, 0);
-
-
-            Queue<(TreeNode node, int x, int y)> queue = new Queue<(TreeNode node, int x, int y)>();
-            int yMin, yMax;
-            yMin = yMax = 0;
-
-            queue.Enqueue((root, 0, 0));
-
-            while (queue.Count != 0)
-            {
-
-                (TreeNode node, int x, int y) = queue.Dequeue();
-
-                //! Keeping the minimum and maximum value for y
-                if (y > yMax) yMax = y;
-
-                if (y < yMin) yMin = y;
-
-                if (map.ContainsKey(y))
-                {
-                    map[y].Add((x, node.val));
-                }
-                else
-                {
-                    map[y] = new List<(int, int)>() { (x, node.val) };
-                }
-                //!Question says that For each node at position (X, Y), its left and right children respectively will be at positions (X-1, Y-1) and (X+1, Y-1).
-                //! Note that, we assign a higher row index value to a node's child node. 
-                //!This convention is at odds with the denotation given in the problem description. 
-                //! This is done intentionally, in order to keep the ordering of all coordinates consistent, i.e. a lower value in any specific coordinate represents a higher order. 
-                //! As a result, a sorting operation in ascending order would work for each coordinate consistently. 
-
-                if (node.left != null)
-                {
-                    queue.Enqueue((node.left, x + 1, y - 1));
-                }
-                if (node.right != null)
-                {
-                    queue.Enqueue((node.right, x + 1, y + 1));
-                }
-            }
-
-            return (yMin, yMax);
+            Row = row;
+            Col = col;
+            Node = node;
         }
     }
 }
