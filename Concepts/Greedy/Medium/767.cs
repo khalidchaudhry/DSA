@@ -6,7 +6,7 @@ using System.Linq;
 namespace Greedy.Medium
 {
     class _767
-    {
+    {   
         public static void _767Main()
         {
             _767 Reorganize = new _767();
