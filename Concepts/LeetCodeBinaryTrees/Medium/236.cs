@@ -76,9 +76,10 @@ namespace LeetCodeBinaryTrees.Medium
             //!bottom to up...so we return what we hold...'root'
             return root;
 
-        }      
+        }
 
         /// <summary>
+        ///  # <image url="$(SolutionDir)\Images\236.png" scale="0.3"/>
         // ! Iterative(Pre0rder traversal)
         /// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/
         /// </summary>

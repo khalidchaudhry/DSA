@@ -13,72 +13,72 @@ namespace Greedy.Medium
 
             string s = "aab";
 
-            var result=Reorganize.ReorganizeString2(s);
+            var result = Reorganize.ReorganizeString0(s);
 
             Console.ReadLine();
         }
 
-        public string ReorganizeString2(string S)
+        public string ReorganizeString(string S)
         {
-            Dictionary<char, int> map = new Dictionary<char, int>();
-            BuildFrequency(S, map);
-            map = map.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
-            int totalBuckets = map.First().Value;
-
-            List<StringBuilder> buckets = new List<StringBuilder>();
-            InitializeBuckets(buckets, totalBuckets);
-
-            int i = 0;
-            foreach (var keyValue in map)
+            Dictionary<char, int> charFreq = new Dictionary<char, int>();
+            foreach (char c in S)
             {
-                for (int j = 0; i < keyValue.Value; ++j)
+                if (!charFreq.ContainsKey(c))
                 {
-                    buckets[i % totalBuckets].Append(keyValue.Key);
-                    ++i;
+                    charFreq.Add(c, 0);
                 }
+                ++charFreq[c];
             }
-            return PrepareResult(buckets);
-        }
 
-        private void BuildFrequency(string s, Dictionary<char, int> map)
-        {
-            for (int i = 0; i < s.Length; ++i)
+            var comparer = Comparer<(int freq, Char c)>.Create((x, y) => {
+
+                if (x.freq == y.freq)
+                    return x.c.CompareTo(y.c);
+
+                return y.freq.CompareTo(x.freq);
+
+            });
+
+            PQ<(int freq, Char c)> pq = new PQ<(int freq, Char c)>(comparer);
+
+            foreach (var keyValue in charFreq)
             {
-                if (!map.ContainsKey(s[i]))
-                {
-                    map.Add(s[i], 0);
-                }
-                ++map[s[i]];
+                pq.Add((keyValue.Value, keyValue.Key));
             }
-        }
 
-        private void InitializeBuckets(List<StringBuilder> buckets, int totalBuckets)
-        {
-            for (int i = 0; i < totalBuckets; ++i)
-            {
-                buckets.Add(new StringBuilder());
-            }
-        }
-
-        private string PrepareResult(List<StringBuilder> buckets)
-        {
             StringBuilder sb = new StringBuilder();
-            foreach (StringBuilder bucket in buckets)
+            while (pq.Size != 0)
             {
-                sb.Append(bucket);
-            }
+                (int freq1, char char1) = pq.Poll();
+                sb.Append(char1);
+                --freq1;
 
-            for (int i = 0; i < sb.Length - 1; ++i)
-            {
-                if (sb[i] == sb[i + 1])
+                if (pq.Size != 0)
                 {
-                    return string.Empty;
+                    (int freq2, char char2) = pq.Poll();
+                    sb.Append(char2);
+                    --freq2;
+                    if (freq2 != 0)
+                    {
+                        pq.Add((freq2, char2));
+                    }
+                }
+                if (freq1 != 0)
+                {
+                    pq.Add((freq1, char1));
                 }
             }
 
-            return sb.ToString();
-        }
+            string result = sb.ToString();
+            for (int i = 0; i < result.Length - 1; ++i)
+            {
+                if (result[i] == result[i + 1])
+                    return string.Empty;
+            }
 
+            return result;
+
+        }
 
         //Kai class
         //! Same concept as in 621,767
@@ -156,77 +156,7 @@ namespace Greedy.Medium
             }
 
             return result;
-        }
-       
+        }        
         
-        
-        
-        /// <summary>
-        /// https://leetcode.com/problems/reorganize-string/discuss/232469/Java-No-Sort-O(N)-0ms-beat-100
-        /// </summary>
-        /// <param name="S"></param>
-        /// <returns></returns>
-        public string ReorganizeString(string S)
-        {
-            int[] charMap = new int[26];
-
-            int n = S.Length;
-
-            for (int i = 0; i < n; i++)
-            {
-                charMap[S[i] - 'a']++;
-            }
-
-            char[] result = new char[n];
-            //Find the first highest frequency item as we need to place them first in our resultant array
-            int maxFreq = 0;
-            int maxfreqLetterIndex = 0;
-
-            for (int i = 0; i < charMap.Length; i++)
-            {
-                if (charMap[i] > maxFreq)
-                {
-                    maxFreq = charMap[i];
-                    maxfreqLetterIndex = i;
-                }
-            }
-            // If  max frequency > (N + 1) / 2, the task is impossible as we can't place them .
-            if (maxFreq > ((n + 1) / 2))
-                return string.Empty;
-
-
-            int idx = 0;
-            //! place the highest frequently characters first into even index number (0, 2, 4 ...) char array
-            char maxFreqCharacter = Convert.ToChar(maxfreqLetterIndex + 'a');
-            while (charMap[maxfreqLetterIndex] > 0)
-            {
-
-                result[idx] = maxFreqCharacter;
-                idx += 2;
-                --charMap[maxfreqLetterIndex];
-            }
-
-            for (int i = 0; i < charMap.Length; i++)
-            {
-                if (charMap[i] == 0)
-                    continue;
-
-                while (charMap[i] > 0)
-                {
-                    //!Because we can reach the end and we want to add new letter at the first available position.
-                    //! Notice that this will happen once because if that's not the case, 
-                    //!then more slots would have been needed to add at the end of our result.
-                    if (idx >= result.Length)
-                    {
-                        idx = 1;
-                    }
-                    result[idx] = Convert.ToChar(i + 'a');
-                    idx += 2;
-                    charMap[i]--;
-                }
-            }
-
-            return new string(result);
-        }
     }
 }
