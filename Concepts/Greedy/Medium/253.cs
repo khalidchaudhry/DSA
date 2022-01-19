@@ -23,8 +23,34 @@ namespace Greedy.Medium
 
         }
 
+        /// <summary>
+        //! O(n) solution but it has limitation as it can only work for small interval end value. 
+        /// </summary>
+        public int MinMeetingRooms(int[][] intervals)
+        {
+            int[] result = new int[1000001];
+            foreach (int[] interval in intervals)
+            {
+                int start = interval[0];
+                int end = interval[1];
+                ++result[start];
+                --result[end];
+            }
 
+            int maxRooms = 0;
+            int currSum = 0;
+            for (int i = 0; i < result.Length; ++i)
+            {
+                currSum += result[i];
+                maxRooms = Math.Max(currSum, maxRooms);
+            }
+            return maxRooms;
 
+        }
+
+        /// <summary>
+        //! Sorted dictionary nlogn solution 
+        /// </summary>
         public int MinMeetingRooms0(int[][] intervals)
         {
 
@@ -57,6 +83,7 @@ namespace Greedy.Medium
             return maxRooms;
         }
 
+        //! Using PQ . nlogn solution
         public int MinMeetingRooms1(int[][] intervals)
         {
             var comparer = Comparer<int[]>.Create((x, y) => {

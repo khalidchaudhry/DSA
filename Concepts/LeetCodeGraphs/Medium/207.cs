@@ -17,19 +17,21 @@ namespace LeetCodeGraphs.Medium
 
         //V=numCourses
         //E =prerequisites.Length
-        //! Time complexity=O(V+E)
+        //! Time complexity=O(V)+O(E)+O(V)=O(2V)+O(E)~=O(V+E)
         //! Space=O(V+E)
         /// </summary>
 
         public bool CanFinish0(int numCourses, int[][] prerequisites)
         {
             Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
+            //! Time=O(V)
             for (int i = 0; i < numCourses; ++i)
             {
                 graph.Add(i, new List<int>());
             }
 
             int[] indegree = new int[numCourses];
+            //!Time=O(E)
             foreach (int[] prerequisite in prerequisites)
             {
                 int a = prerequisite[0];
@@ -48,6 +50,7 @@ namespace LeetCodeGraphs.Medium
                     ++coursesCompleted;
                 }
             }
+            //! O(V) At max below loop will run O(V) time as at max we can have V vertices in the queue
             while (queue.Count > 0)
             {
                 int curr = queue.Dequeue();
