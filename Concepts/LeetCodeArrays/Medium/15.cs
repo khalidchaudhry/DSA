@@ -48,12 +48,14 @@ namespace LeetCodeArrays.Medium
 
                         ++left;
                         --right;
-                        //! To skip duplicates
+                        //!Processing duplicates of Number 2
+                        //! Rolling the left pointer to the next different number forward
                         while (left < right && nums[left] == nums[left - 1])
                         {
                             ++left;
                         }
-                        //! To skip duplicates
+                        //! Processing duplicates of Number 3
+                        //! Rolling the right pointer to the next different number backwards
                         while (left < right && nums[right] == nums[right + 1])
                         {
                             --right;
@@ -158,22 +160,22 @@ namespace LeetCodeArrays.Medium
         }
         private void TwoSumII(int[] nums, int i, List<IList<int>> res)
         {
-            int lo = i + 1, hi = nums.Length - 1;
-            while (lo < hi)
+            int left = i + 1, right = nums.Length - 1;
+            while (left < right)
             {
-                int sum = nums[i] + nums[lo] + nums[hi];
+                int sum = nums[i] + nums[left] + nums[right];
                 //! lo > i + 1 to avoid duplicates 
-                if (sum < 0 || (lo > i + 1 && nums[lo] == nums[lo - 1]))
-                    ++lo;
+                if (sum < 0 || (left > i + 1 && nums[left] == nums[left - 1]))
+                    ++left;
                 //! hi < nums.Length - 1 to avoid duplicates
-                else if (sum > 0 || (hi < nums.Length - 1 && nums[hi] == nums[hi + 1]))
-                    --hi;
+                else if (sum > 0 || (right < nums.Length - 1 && nums[right] == nums[right + 1]))
+                    --right;
                 else
                 {
                     List<int> triplet = new List<int>();
                     triplet.Add(nums[i]);
-                    triplet.Add(nums[lo++]);
-                    triplet.Add(nums[hi--]);
+                    triplet.Add(nums[left++]);
+                    triplet.Add(nums[right--]);
 
                     res.Add(triplet);
                 }

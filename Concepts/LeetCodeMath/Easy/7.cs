@@ -13,7 +13,7 @@ namespace LeetCodeMath.Easy
             int x = -321;
 
             _7 Reverse = new _7();
-            var ans=Reverse.Reverse1(x);
+            var ans = Reverse.Reverse1(x);
             Console.ReadLine();
         }
         /// <summary>
@@ -25,37 +25,26 @@ namespace LeetCodeMath.Easy
 
         public int Reverse1(int x)
         {
-            int result = 0;
+            int reversedNumber = 0;
             while (x != 0)
             {
-                //! We are no expecting postive result here.
-                //! Otherwise we will have to use (n%10+10)%10 
-                int remainder = x % 10;
-                checked
+                int lastDigit = x % 10;
+                int newResult = reversedNumber * 10 + lastDigit;
+                if ((newResult - lastDigit) / 10 != reversedNumber)
                 {
-                    try
-                    {
-                        result = (result * 10) + remainder;
-                    }
-                    catch (OverflowException ex)
-                    {
-                        result = 0;
-                        break;
-                    }
+                    return 0;
                 }
-                
+                reversedNumber = newResult;
                 x = x / 10;
             }
-
-            return result;
-
+            return reversedNumber;
         }
         /// <summary>
         //! Wrong solution below. We are not allowed to use long
         /// </summary>
-        
+
         public int Reverse(int x)
-        {            
+        {
             bool isNegative = x < 0 ? true : false;
             long number = x;
             //! Math.Abs will not work if input is Int.MinValue hence we need to convert it into long first before taking Abs
