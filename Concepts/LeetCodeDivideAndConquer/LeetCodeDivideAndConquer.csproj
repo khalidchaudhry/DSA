@@ -63,5 +63,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeetCodeHeap\LeetCodeHeap.csproj">
+      <Project>{DA63F267-2361-487E-A4D5-AE9B4AF82F4B}</Project>
+      <Name>LeetCodeHeap</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

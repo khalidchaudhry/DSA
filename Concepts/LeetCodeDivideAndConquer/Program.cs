@@ -12,11 +12,7 @@ namespace LeetCodeDivideAndConquer
     {
         static void Main(string[] args)
         {
-
-            //_215 KthLargestElement = new _215();
-            //int[] nums = new int[] { 2, 1 };
-            //int k = 1;
-            //KthLargestElement.FindKthLargest0(nums, k);
+            _215._215Main();
 
             //_240 Search = new _240();
 
@@ -42,7 +38,7 @@ namespace LeetCodeDivideAndConquer
             //KClosestPoint.KClosest0(points,2);
 
             //_240._240Main();
-            _493._493Main();
+            //_493._493Main();
             //_315._315Main();
 
             Console.ReadLine();

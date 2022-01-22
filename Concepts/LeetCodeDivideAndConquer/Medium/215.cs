@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeetCodeHeap;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,126 +9,97 @@ namespace LeetCodeDivideAndConquer.Medium
 {
     public class _215
     {
+        public static void _215Main()
+        {
+            _215 test = new _215();
+            int[] nums = new int[] { 3, 2, 1, 5, 6, 4 };
+            test.FindKthLargest0(nums, 2);
+
+
+        }
         /// <summary>
         //! Quick select algorithm. Same as in question 973
         /// </summary>
         /// <param name="nums"></param>
         /// <param name="k"></param>
         /// <returns></returns>
+        /// 
         public int FindKthLargest0(int[] nums, int k)
         {
-            //! The index where final answer will reside
-            int requiredIndex = nums.Length - k;
-            int left = 0;
-
-            int right = nums.Length - 1;
-            
-            while (left < right)
+            int requiredIdx = nums.Length - k;
+            return QuickSelect(nums, 0, nums.Length - 1, requiredIdx);
+        }
+        private int QuickSelect(int[] nums, int s, int e, int k)
+        {
+            Random random = new Random();
+            while (s <= e)
             {
-                //! Pivot tail Index
-                int pti = PivotIndex(nums, left, right);
-
-                if (pti == requiredIndex)
+                int pIndex = random.Next(s, e + 1);
+                int index = Partition(nums, s, e, pIndex);
+                if (index == k)
                 {
-                    break;
+                    return nums[index];
                 }
-
-                else if (pti > requiredIndex)
+                else if (index > k)
                 {
-                    right = pti - 1;
+                    e = index - 1;
                 }
                 else
                 {
-                    left = pti + 1;
+                    s = index + 1;
                 }
-
             }
 
-            return nums[requiredIndex];
-
+            return -1;
         }
         /// <summary>
-        // ! The correct location of  the pivot(It is the element in the array that is at index left)
+        //! All the elements on the left of the partition are < pivot
+        //! All the element od the right of the partition are >=pivot
         /// </summary>
-        /// <param name="nums"></param>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
-        /// <returns></returns>
-        private int PivotIndex(int[] nums, int left, int right)
+        private int Partition(int[] arr, int s, int e, int pIndex)
         {
-            // !pivot tail index
-            int pti = left;
-            for (int i = left; i < right; i++)
+            //!swap last element in array with pivot essentially keeping it aside
+            Swap(arr, e, pIndex);
+            int pti = s;
+            //! We are doing < e since e has pivot element
+            for (int i = s; i < e; ++i)
             {
-                //!<= for duplicate condition
-                if (nums[i] <= nums[right])
+                if (arr[i] < arr[e])
                 {
-                    Swap(nums, i, pti);
+                    Swap(arr, i, pti);
                     ++pti;
                 }
             }
-
-            //!Swap 
-            Swap(nums, pti, right);
-
+            Swap(arr, pti, e);
             return pti;
         }
-
         private void Swap(int[] arr, int i, int j)
         {
             int temp = arr[i];
-
             arr[i] = arr[j];
-
             arr[j] = temp;
         }
 
 
         /// <summary>
-        //! heap sort brings down complexity from O(nlog(n)) for sorting to O(nlogK) 
+        //! heap sort brings down complexity from O(nlog(n)) for sorting to O(nlogK) for k < n
         /// </summary>
         /// <param name="nums"></param>
         /// <param name="k"></param>
         /// <returns></returns>
         public int FindKthLargest(int[] nums, int k)
         {
+            PQ<int> pq = new PQ<int>();
 
-            //! we want to remove  the smallest element hence we are taking sorted dictionary 
-            SortedDictionary<int, int> heap = new SortedDictionary<int, int>();
-            //! Count variable is use to track if elements in dictionary are greater than we will 
-            // !remove the smallest element from sorted dictionary 
-            // ! we are not using sorted dictionary count because  it will contain only distinct element counts 
-            int count = 0;
-            for (int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; ++i)
             {
-                if (heap.ContainsKey(nums[i]))
+                pq.Add(nums[i]);
+                if (pq.Size > k)
                 {
-                    heap[nums[i]]++;
-
-                }
-                else
-                {
-                    heap.Add(nums[i], 1);
-                }
-
-                ++count;
-                if (count > k)
-                {
-                    int minKey = heap.First().Key;
-                    if (heap[minKey] == 1)
-                    {
-                        heap.Remove(minKey);
-                    }
-                    else
-                    {
-                        --heap[minKey];
-                    }
-                    --count;
-
+                    pq.Poll();
                 }
             }
-
-            return heap.First().Key;
+            return pq.Peek();
 
         }
 
@@ -140,7 +112,7 @@ namespace LeetCodeDivideAndConquer.Medium
             int n = nums.Length;
             Array.Sort(nums);
             //! returning an index from the last
-            return nums[n-k];
+            return nums[n - k];
 
         }
 
