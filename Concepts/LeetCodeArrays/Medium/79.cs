@@ -9,55 +9,69 @@ namespace LeetCodeArrays.Medium
         /// <summary>
         //! Similar to Problem 200,130
         //! Depth first search
-        /// </summary>
-        /// <param name="board"></param>
-        /// <param name="word"></param>
-        /// <returns></returns>
+        //! Time=M*N*4^L
+        //! Space=O(L)+O(M*N)
+        //! L= word length
+        /// </summary>      
         public bool Exist(char[][] board, string word)
         {
-            if (board.Length == 0)
-                return false;
-            int rows = board.Length;
-            int columns = board[0].Length;
 
-            for (int row = 0; row < rows; row++)
-                for (int column = 0; column < columns; column++)
+            int rows = board.Length;
+            int cols = board[0].Length;
+            //!Time= m*n for iterating the grid
+            for (int r = 0; r < rows; ++r)
+            {
+                for (int c = 0; c < cols; ++c)
                 {
-                    if (DFS(board, row, column, 0, word))
+                    if (Solve(board, r, c, word, 0, new HashSet<(int r, int c)>()))
                     {
                         return true;
                     }
                 }
-
+            }
             return false;
         }
 
-        private bool DFS(char[][] board, int row, int column, int index, string word)
+        /// <summary>
+        //! Time=branching factor^recursion depth= 4^L(WordLength) 
+        // ! Space=recursion depth+visited set space
+        //!  Space=O(L){where L is word length}+O(M*N)
+        /// </summary>
+        private bool Solve(char[][] board, int r, int c, string word, int wordIdx, HashSet<(int r, int c)> visited)
         {
-            if (index == word.Length)
+            if (wordIdx == word.Length)
             {
                 return true;
             }
 
-            int rows = board.Length;
-            int columns = board[0].Length;
-            if (row < 0 || row >= rows || column < 0 || column >= columns || board[row][column] != word[index])
+            if (IsOutOfBound(board, r, c) || visited.Contains((r, c)) || board[r][c] != word[wordIdx])
             {
                 return false;
             }
 
-            char c = board[row][column];
-            board[row][column] = '#';
-
-            bool result =
-                DFS(board, row - 1, column, index + 1, word) ||  //up
-                DFS(board, row + 1, column, index + 1, word) ||  //down
-                DFS(board, row, column + 1, index + 1, word) || //right
-                DFS(board, row, column - 1, index + 1, word); // left
-
-            board[row][column] = c;
-
-            return result;
+            visited.Add((r, c));
+            foreach ((int nr, int nc) in GetNeighbors(r, c))   //branching factor=4
+            {
+                if (Solve(board, nr, nc, word, wordIdx + 1, visited))
+                {
+                    return true;
+                }
+            }
+            visited.Remove((r, c));
+            return false;
+        }
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
+        {
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int nr, int nc)>() { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
+            {
+                neighbors.Add((nr, nc));
+            }
+            return neighbors;
+        }
+        private bool IsOutOfBound(char[][] board, int r, int c)
+        {
+            return r < 0 || r >= board.Length || c < 0 || c >= board[0].Length;
         }
     }
 }
