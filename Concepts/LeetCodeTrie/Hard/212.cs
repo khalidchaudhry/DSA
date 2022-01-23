@@ -10,8 +10,7 @@ namespace LeetCodeTrie.Hard._212
     {
 
         /// <summary>
-        //! DFS + Trie
-        // https://leetcode.com/problems/word-search-ii/discuss/712722/Two-Solution-or-Trie-DFS-Backtracking-or-Steps-and-Well-commented
+        //! DFS + Trie       
         /// </summary>
         /// <param name="board"></param>
         /// <param name="words"></param>
@@ -34,33 +33,30 @@ namespace LeetCodeTrie.Hard._212
             return result;
         }
 
-        private void DFS(char[][] board, int row, int column, TrieNode root, List<string> result)
+        private void DFS(char[][] board, int row, int column, TrieNode trieNode, List<string> result)
         {
-            char c = board[row][column]; // get the current character from the board at i, j
-            if (c == '*' || !root.Children.ContainsKey(c))
+            //! if trie children does not contain the character we are looking for just backtrack
+            //!trieNode.Children.ContainsKey(board[row][column]
+            if (IsOutOfBound(board, row, column) || board[row][column] == '*' || !trieNode.Children.ContainsKey(board[row][column]))
+            {
                 return;
+            }
 
-            root = root.Children[c];
-            if (root.word != null)
-            {   // found one words add in the result list
-                result.Add(root.word);
-                root.word = null;     // de-duplicate remove the word from trie
+            char c = board[row][column];
+            trieNode = trieNode.Children[c];
+            if (trieNode.word != null)
+            {   // found one word add in the result list
+                result.Add(trieNode.word);
+                trieNode.word = null;     // de-duplicate remove the word from trie
             }
 
             board[row][column] = '*'; // update the character of at i , j no need for visited array
 
-            foreach ((int x, int y) in GetNeighbors(board, row, column))
+            foreach ((int x, int y) in GetNeighbors(row, column))
             {
-                DFS(board, x, y, root, result);               
+                DFS(board, x, y, trieNode, result);
             }
-
             board[row][column] = c; //! backtrack the character
-
-            //if (row > 0) DFS(board, row - 1, column, root, result); // up
-            //if (column > 0) DFS(board, row, column - 1, root, result); // left
-            //if (row < board.Length - 1) DFS(board, row + 1, column, root, result); // down
-            //if (column < board[0].Length - 1) DFS(board, row, column + 1, root, result); // right
-            //board[row][column] = c; // backtrack the character
         }
 
         private void ConstructTrie(string[] words, TrieNode root)
@@ -84,14 +80,18 @@ namespace LeetCodeTrie.Hard._212
                 node.word = word;
             }
         }
-
-        private IEnumerable<(int x, int y)> GetNeighbors(char[][] board, int i, int j)
+        private List<(int nr, int nc)> GetNeighbors(int r, int c)
         {
-            foreach ((int x, int y) in new List<(int, int)> { (i - 1, j), (i + 1, j), (i, j + 1), (i, j - 1) })
+            List<(int nr, int nc)> neighbors = new List<(int nr, int nc)>();
+            foreach ((int nr, int nc) in new List<(int nr, int nc)>() { (r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1) })
             {
-                if (x >= 0 && x < board.Length && y >= 0 && y < board[0].Length)
-                    yield return (x, y);
+                neighbors.Add((nr, nc));
             }
+            return neighbors;
+        }
+        private bool IsOutOfBound(char[][] board, int r, int c)
+        {
+            return r < 0 || r >= board.Length || c < 0 || c >= board[0].Length;
         }
     }
 

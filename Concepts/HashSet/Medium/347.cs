@@ -7,18 +7,45 @@ namespace LeetCodeHashTable.Medium
 {
     public class _347
     {
+
+        /// <summary>
+        //!Bucket sort 
+        /// </summary>
         public int[] TopKFrequent(int[] nums, int k)
         {
-            if (nums.Length == 0 || k == 0)
-                return new int[] { };
+            Dictionary<int, int> freqMap = new Dictionary<int, int>();
+            foreach (int num in nums)
+            {
+                if (!freqMap.ContainsKey(num))
+                {
+                    freqMap.Add(num, 0);
+                }
+                ++freqMap[num];
+            }
 
-            Dictionary<int, int> map = new Dictionary<int, int>();
-            int totalBuckets = BuildFrequency(nums, map);
+            int n = nums.Length + 1;
+            List<int>[] buckets = new List<int>[n];
+            for (int i = 0; i < n; ++i)
+            {
+                buckets[i] = new List<int>();
+            }
 
-            List<int>[] buckets = new List<int>[totalBuckets + 1];
-            PopulateBuckets(map, buckets);
+            foreach (var keyValue in freqMap)
+            {
+                buckets[keyValue.Value].Add(keyValue.Key);
+            }
 
-            return TopK(buckets, k);
+            int[] topK = new int[k];
+            for (int i = n - 1; i >= 0; --i)
+            {
+                for (int j = 0; j < buckets[i].Count && k > 0; ++j)
+                {
+                    topK[--k] = buckets[i][j];
+                }
+            }
+
+            return topK;
+
         }
 
 
@@ -87,18 +114,7 @@ namespace LeetCodeHashTable.Medium
         }
         private int[] TopK(List<int>[] buckets, int k)
         {
-            List<int> topK = new List<int>();
-            for (int i = buckets.Length - 1; i >= 0; --i)
-            {
-                for (int j = 0; j < buckets[i].Count; ++j)
-                {
-                    topK.Add(buckets[i][j]);
-                    if (topK.Count == k)
-                        return topK.ToArray();
-                }
-            }
-
-            return topK.ToArray();
+           
         }
 
     }

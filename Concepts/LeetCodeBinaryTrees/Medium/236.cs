@@ -88,26 +88,28 @@ namespace LeetCodeBinaryTrees.Medium
             //Stack for tree traversal
             Stack<TreeNode> stk = new Stack<TreeNode>();
             // Storing parent pointers 
-            Dictionary<TreeNode, TreeNode> parent = new Dictionary<TreeNode, TreeNode>();
+            Dictionary<TreeNode, TreeNode> nodeParent = new Dictionary<TreeNode, TreeNode>();
             //!Ancestors for p including p itself because p can be a parent of itself
             HashSet<TreeNode> ancestors = new HashSet<TreeNode>();
 
             stk.Push(root);
-            parent.Add(root, null);
+            nodeParent.Add(root, null);
             //! Iterate until we find both the nodes p and q
-            while (!parent.ContainsKey(p) || !parent.ContainsKey(q))
+            //! Below line is just optimization. We can have hierarchy build up for whole tree so below statement will be replaced like this
+            //! stk.Count>0
+            while (!nodeParent.ContainsKey(p) || !nodeParent.ContainsKey(q))
             {
                 TreeNode curr = stk.Pop();
 
                 if (curr.left != null)
                 {
                     stk.Push(curr.left);
-                    parent.Add(curr.left, curr);
+                    nodeParent.Add(curr.left, curr);
                 }
                 if (curr.right != null)
                 {
                     stk.Push(curr.right);
-                    parent.Add(curr.right, curr);
+                    nodeParent.Add(curr.right, curr);
                 }
             }
             //! Process all ancestors for node p using parent pointers.
@@ -115,13 +117,13 @@ namespace LeetCodeBinaryTrees.Medium
             {
                 //!Ancestors for p including p itself because p can be a parent of itself hence adding p
                 ancestors.Add(p);
-                p = parent[p];
+                p = nodeParent[p];
             }
             // !The first ancestor of q which appears in
             // !p's ancestor set() is their lowest common ancestor.
             while (!ancestors.Contains(q))
             {
-                q = parent[q];
+                q = nodeParent[q];
             }
 
             return q;
