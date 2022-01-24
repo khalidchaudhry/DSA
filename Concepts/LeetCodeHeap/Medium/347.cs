@@ -59,7 +59,10 @@ namespace LeetCodeHeap.Medium
             return topK;
         }
 
-
+        /// <summary>
+        //! T=O(nlogk)
+        //! S=O(n)+O(k)=Freq map +Heap
+        /// </summary>
         public int[] TopKFrequent1(int[] nums, int k)
         {
             Dictionary<int, int> freqMap = new Dictionary<int, int>();
@@ -81,6 +84,7 @@ namespace LeetCodeHeap.Medium
                 return freqMap[x].CompareTo(freqMap[y]);
             });
 
+            //! Min heap and min is frequency 
             PQ<int> pq = new PQ<int>(comparer);
 
             foreach (var keyValue in freqMap)
@@ -88,6 +92,7 @@ namespace LeetCodeHeap.Medium
                 pq.Add(keyValue.Key);
                 if (pq.Size > k)
                 {
+                    //! we will poll an element having min frequency
                     pq.Poll();
                 }
             }

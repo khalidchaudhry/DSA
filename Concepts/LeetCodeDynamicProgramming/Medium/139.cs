@@ -25,6 +25,12 @@ namespace LeetCodeDynamicProgramming.Medium
 
         /// <summary>
         //! With AA 
+        //!Time complexity With memoization=O(n^3)       
+        //!(possible recursive function states) * (amount of work we are doing per recursive call)
+        //! n*(substring cost=n *loop inside going from 1---n)
+        //! Space=O(n)
+        //! Time complexity without memoization=2^n*n
+        //!branchingFactor^recurion depth=2^n * amount of work(n)          
         /// </summary>
         public bool WordBreak(string s, IList<string> wordDict)
         {

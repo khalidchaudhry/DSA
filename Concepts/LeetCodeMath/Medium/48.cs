@@ -9,6 +9,7 @@ namespace LeetCodeMath.Medium
     public class _48
     {
 
+
         public static void _48Main()
         {
             _48 Rotate = new _48();
@@ -25,7 +26,9 @@ namespace LeetCodeMath.Medium
         // To  rotate anticlock wise or rotate by 180 see below link
         //https://leetcode.com/problems/rotate-image/discuss/401356/Rotate-90-clockwise-anti-clockwise-and-rotate-180-degree
 
-        //https://afteracademy.com/blog/rotate-matrix       
+        //https://afteracademy.com/blog/rotate-matrix  
+
+        ///  // # <image url="$(SolutionDir)\Images\48.jpg"  scale="0.4"/>
         public void Rotate90ByClockWise(int[][] matrix)
         {
             TransposeMatrix(matrix);
