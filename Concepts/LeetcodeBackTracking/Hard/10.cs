@@ -35,6 +35,9 @@ namespace LeetcodeBackTracking.Hard
 
             if (pIndex + 1 < p.Length && p[pIndex + 1] == '*')
             {
+                //! In below line we are not matching any character in string . Our sub problem become
+                //! sIdx -------s.Length
+                //! pIdx+2-------p.Length
                 memo[(pIndex, sIndex)] = IsMatch(s, p, sIndex, pIndex + 2, memo);
                 if (memo[(pIndex, sIndex)])
                 {
@@ -42,6 +45,7 @@ namespace LeetcodeBackTracking.Hard
                 }
                 if (isFirstMatch)
                 {
+                    //! We are matching 1 character in string hence sIdx+1
                     memo[(pIndex, sIndex)] = IsMatch(s, p, sIndex + 1, pIndex, memo);
                     return memo[(pIndex, sIndex)];
                 }
