@@ -52,7 +52,9 @@ namespace LeetCodeHeap.Medium
             result.Reverse();
             return result;
         }
-
+        /// <summary>
+        ///! Using Bucket approach 
+        /// </summary>
         public IList<string> TopKFrequent(string[] words, int k)
         {
             if (words.Length == 0 || k == 0)
