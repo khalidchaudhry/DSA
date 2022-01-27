@@ -176,7 +176,8 @@ namespace LeetCodeStrings
 
             //_468._468Main();
             //_125._125Main();
-            _186._186Main();
+            //_186._186Main();
+            _14._14Main();
             Console.ReadLine();
         }
     }

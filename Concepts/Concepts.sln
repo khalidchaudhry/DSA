@@ -154,6 +154,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingLotSystem", "Parking
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trie", "Trie\Trie.csproj", "{FAEF7294-42EE-4C57-85E4-D883D86BEC00}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interviews", "Interviews", "{B22854CF-617F-4D94-BE33-DAB58328AFCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interviews", "ConsoleApp3\interviews.csproj", "{61340FDE-E0B0-4714-A8F5-11F7C60E226F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -392,6 +396,10 @@ Global
 		{FAEF7294-42EE-4C57-85E4-D883D86BEC00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAEF7294-42EE-4C57-85E4-D883D86BEC00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAEF7294-42EE-4C57-85E4-D883D86BEC00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61340FDE-E0B0-4714-A8F5-11F7C60E226F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61340FDE-E0B0-4714-A8F5-11F7C60E226F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61340FDE-E0B0-4714-A8F5-11F7C60E226F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61340FDE-E0B0-4714-A8F5-11F7C60E226F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -452,6 +460,7 @@ Global
 		{44F7BA3D-4AD6-4342-980D-CD147971E2C5} = {33F91358-3CA9-49EE-80AA-A2E5DEBA6D04}
 		{9F4E6C1F-E8B2-43B6-AAE8-74BD7D43861D} = {763506BA-E1D6-43B8-9BD7-580FFECC8DC4}
 		{34A35194-65A7-4250-9EEA-6084E1FA8DFF} = {9F4E6C1F-E8B2-43B6-AAE8-74BD7D43861D}
+		{61340FDE-E0B0-4714-A8F5-11F7C60E226F} = {B22854CF-617F-4D94-BE33-DAB58328AFCD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {827F52FF-EF11-4FEE-96D9-2D8DC87620FE}

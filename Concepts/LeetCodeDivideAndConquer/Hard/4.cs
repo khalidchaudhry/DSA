@@ -8,6 +8,8 @@ namespace LeetCodeDivideAndConquer.Hard
 {
     class _4
     {
+        //! Time=O(log(Min(m,n))
+        //! Space=O(1)
         public double FindMedianSortedArrays(int[] nums1, int[] nums2)
         {
             
