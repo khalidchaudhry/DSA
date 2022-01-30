@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LeetCodeBinaryTrees.Medium
@@ -20,29 +21,53 @@ namespace LeetCodeBinaryTrees.Medium
             levelOrdder.LevelOrder0(root);
         }
         /// <summary>
-        /// ////////////////////////////////////////////
-        /// https://leetcode.com/problems/binary-tree-vertical-order-traversal/solution/
-        //! Do BFS traversal and store the result in sorted dictionary with index and values         
-        //! 0(n)= Number of nodes in the binary* Work perform per node(logn)....logn for inserting into dictionary
-        //! Time complexity=O(nlogn) 
-        ///////////////////////////////////////////////
-        //! O(d) space for queue  where d is the tree diameter
-        //! O(n) space for holding nodes in dictionary 
-        //! Space Complexity=O(n)
+        //! We are going with BFS becuase of  requirment "If two nodes are in the same row and column, the order should be from left to right" 
+        //!BFS will gurantee we will process left node first before right  
+        //! Time complexity=O(n)+nlogn
+        //! Number of nodes in the binary+Sorting dictionary
+        //! Space Complexity=O(n)+O(n)=O(2N)=O(n)
+        //! O(n) for Queue and O(n) for dictionary
         /// </summary>
-        /// <param name="root"></param>
-        /// <returns></returns>
         public IList<IList<int>> LevelOrder0(TreeNode root)
         {
 
             List<IList<int>> result = new List<IList<int>>();
-            SortedDictionary<int, List<int>> map = new SortedDictionary<int, List<int>>();
-            LevelByLevel0(root, map);
-
-
-            foreach (KeyValuePair<int, List<int>> item in map)
+            if (root == null)
             {
-                result.Add(item.Value);
+                return result;
+            }
+
+            Dictionary<int, List<int>> colIdxValues = new Dictionary<int, List<int>>();
+            Queue<(TreeNode node, int colIdx)> queue = new Queue<(TreeNode node, int colIdx)>();
+            queue.Enqueue((root, 0));
+            while (queue.Count > 0)
+            {
+                int count = queue.Count;
+                while (count > 0)
+                {
+                    (TreeNode curr, int colIdx) = queue.Dequeue();
+
+                    if (!colIdxValues.ContainsKey(colIdx))
+                    {
+                        colIdxValues.Add(colIdx, new List<int>());
+                    }
+                    colIdxValues[colIdx].Add(curr.val);
+
+                    if (curr.left != null)
+                    {
+                        queue.Enqueue((curr.left, colIdx - 1));
+                    }
+                    if (curr.right != null)
+                    {
+                        queue.Enqueue((curr.right, colIdx + 1));
+                    }
+                    --count;
+                }
+            }
+            colIdxValues = colIdxValues.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+            foreach (var keyValue in colIdxValues)
+            {
+                result.Add(keyValue.Value);
             }
             return result;
         }
@@ -70,40 +95,7 @@ namespace LeetCodeBinaryTrees.Medium
             }
 
             return result;
-        }
-        private void LevelByLevel0(TreeNode root, SortedDictionary<int, List<int>> map)
-        {
-            if (root == null)
-                return;
-
-            Queue<(TreeNode, int)> queue = new Queue<(TreeNode, int)>();
-
-            queue.Enqueue((root, 0));
-
-            while (queue.Count != 0)
-            {
-                (TreeNode node, int index) = queue.Dequeue();
-
-                if (map.ContainsKey(index))
-                {
-                    map[index].Add(node.val);
-                }
-                else
-                {
-                    map.Add(index, new List<int>() { node.val });
-                }
-
-                if (node.left != null)
-                {
-                    queue.Enqueue((node.left, index - 1));
-                }
-
-                if (node.right != null)
-                {
-                    queue.Enqueue((node.right, index + 1));
-                }
-            }
-        }
+        }       
 
         private (int min, int max) LevelByLevel1(TreeNode root, Dictionary<int, List<int>> map)
         {

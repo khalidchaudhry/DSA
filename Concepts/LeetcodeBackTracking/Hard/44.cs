@@ -44,7 +44,7 @@ namespace LeetcodeBackTracking.Hard
             if (memo.ContainsKey((sIdx, pIdx)))
                 return memo[(sIdx, pIdx)];
             //! We need to ensure that we have some characters left in string to match hence sIdx < s.Length
-            if (p[pIdx] == '?' || (sIdx < s.Length && s[sIdx] == p[pIdx]))
+            if (sIdx < s.Length && (p[pIdx] == '.' || s[sIdx] == p[pIdx]))
             {
                 return memo[(sIdx, pIdx)] = IsMatch(s, sIdx + 1, p, pIdx + 1, memo);
             }

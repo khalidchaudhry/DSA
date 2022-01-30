@@ -18,34 +18,34 @@ namespace LeetcodeBackTracking.Hard
         {
             if (memo.ContainsKey((pIndex, sIndex)))
                 return memo[(pIndex, sIndex)];
-
+            //! We reach to end of pattern 
             if (pIndex == p.Length)
             {
+                //!We need to ensure that we reach to end of string
                 memo[(pIndex, sIndex)] = sIndex == s.Length;
                 return memo[(pIndex, sIndex)];
             }
-
-            if (sIndex > s.Length)
-            {
-                memo[(pIndex, sIndex)] = false;
-                return memo[(pIndex, sIndex)];
-            }
-
-            bool isFirstMatch = p[pIndex] == '.' || (sIndex < s.Length && s[sIndex] == p[pIndex]);
-
+           
+            //! We are matching one character 
+            //! Conditions for matching one character
+            //! 1. We have . in pattern or 
+            //! 2. Characters in the position matching. 
+            bool isFirstMatch = sIndex < s.Length && (p[pIndex] == '.' ||  s[sIndex] == p[pIndex]);
+            //! if we have * prceeding character (e.g. a*) , we have two choices 
+            //! 1. We match 0 character in string . Our subproblem becomes sIdx,pIdx+2
+            //! 2. We match 1 characer in string.  Our subproblem becomes sIdx+1,pIdx
             if (pIndex + 1 < p.Length && p[pIndex + 1] == '*')
             {
-                //! In below line we are not matching any character in string . Our sub problem become
-                //! sIdx -------s.Length
-                //! pIdx+2-------p.Length
+                //! 1. We match 0 character in string . Our subproblem becomes sIdx,pIdx+2
                 memo[(pIndex, sIndex)] = IsMatch(s, p, sIndex, pIndex + 2, memo);
                 if (memo[(pIndex, sIndex)])
                 {
                     return memo[(pIndex, sIndex)];
                 }
+                //! 2. We match 1 characer in string.  Our subproblem becomes sIdx+1,pIdx
                 if (isFirstMatch)
                 {
-                    //! We are matching 1 character in string hence sIdx+1
+                    //! We are matching 1 or more characters in string hence sIdx+1
                     memo[(pIndex, sIndex)] = IsMatch(s, p, sIndex + 1, pIndex, memo);
                     return memo[(pIndex, sIndex)];
                 }
