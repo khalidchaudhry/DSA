@@ -59,6 +59,7 @@
     <Compile Include="Medium\3.cs" />
     <Compile Include="Medium\340.cs" />
     <Compile Include="Medium\424.cs" />
+    <Compile Include="Medium\438.cs" />
     <Compile Include="Medium\487.cs" />
     <Compile Include="Medium\567.cs" />
     <Compile Include="Medium\713.cs" />
