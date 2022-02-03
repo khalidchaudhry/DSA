@@ -33,7 +33,6 @@ namespace LeetCodeTrie.Hard._140
                 string pre = s.Substring(start, i - start + 1);
                 if (words.Contains(pre))
                 {
-
                     int len = path.Length;
                     path.Append(pre);
                     path.Append(' ');

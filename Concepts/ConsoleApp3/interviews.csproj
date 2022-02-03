@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Amazon\AmazonPhoneScreen.cs" />
+    <Compile Include="Expedia\ExpediaScreening.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Robinhood\RobinhoodScreening.cs" />

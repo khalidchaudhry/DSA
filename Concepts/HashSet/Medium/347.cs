@@ -100,22 +100,8 @@ namespace LeetCodeHashTable.Medium
             }
             return max;
         }
-        private void PopulateBuckets(Dictionary<int, int> map, List<int>[] buckets)
-        {
-            for (int i = 0; i < buckets.Length; ++i)
-            {
-                buckets[i] = new List<int>();
-            }
-
-            foreach (var keyValue in map)
-            {
-                buckets[keyValue.Value].Add(keyValue.Key);
-            }
-        }
-        private int[] TopK(List<int>[] buckets, int k)
-        {
-           
-        }
+        
+       
 
     }
 }

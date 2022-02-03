@@ -9,7 +9,7 @@ namespace LeetCodeArrays.Medium
     public class _48
     {
 
-        // To  rotate anticlock wise or rotate by 180 see below link
+        // To  Frotate anticlock wise or rotate by 180 see below link
         //https://leetcode.com/problems/rotate-image/discuss/401356/Rotate-90-clockwise-anti-clockwise-and-rotate-180-degree
         
         //https://afteracademy.com/blog/rotate-matrix         

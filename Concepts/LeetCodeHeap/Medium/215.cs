@@ -10,6 +10,8 @@ namespace LeetCodeHeap.Medium
     {
         /// <summary>
         /// https://www.youtube.com/watch?v=MZaf_9IZCrc
+        //!  Guranteed O(N)
+        /// https://efficientcodeblog.wordpress.com/2017/12/04/quick-select/#:~:text=It%20is%20related%20to%20the%20quicksort%20sorting%20algorithm.&text=However%2C%20instead%20of%20recursing%20into,of%20O(n2).
         //! Quick select algorithm. Same as in question 973
         /// </summary>
         public int FindKthLargest0(int[] nums, int k)

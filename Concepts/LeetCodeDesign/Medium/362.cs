@@ -13,6 +13,8 @@ namespace LeetCodeDesign.Medium
     /// <summary>
     //! if the number of hits per second is huge? Does your design scale?
     //! Yes below solution scales but if we need to count hit for a day than it will not work 
+    //! Scaling to multiple machines
+    //http://blog.gainlo.co/index.php/2016/09/12/dropbox-interview-design-hit-counter/
     /// https://www.youtube.com/watch?v=vMB0XjFpt_s
     ///  /// # <image url="$(SolutionDir)\Images\362(2).png"  scale="0.5"/>A
     // </summary>

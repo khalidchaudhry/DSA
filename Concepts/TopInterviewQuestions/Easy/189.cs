@@ -8,25 +8,19 @@ namespace TopInterviewQuestions.Easy
 {
     class _189
     {
-        //[1,2,3]
-        //and k = 1
 
-        //[5,6,7,1,2,3,4]
+        //https://www.youtube.com/watch?v=BHr381Guz3Y
+        
         public void Rotate(int[] nums, int k)
         {
-            int[] aux = new int[nums.Length];
 
-            //from where to start copying the array
-            //nums.Length - k
+            int n = nums.Length;
 
-            for (int i = nums.Length - k, j = 0; i < nums.Length; i++, j++)
+            int[] aux = new int[n];
+            for (int i = 0; i < n; i++)
             {
-                aux[j] = nums[i];
-            }
-
-            for (int i = k, j = 0; i < nums.Length; i++, j++)
-            {
-                aux[i] = nums[j];
+                int idx = (i + k) % n;
+                aux[idx] = nums[i];
             }
 
             for (int i = 0; i < nums.Length; i++)
@@ -61,22 +55,5 @@ namespace TopInterviewQuestions.Easy
                 --endIndex;
             }
         }
-        public void Rotate3(int[] nums, int k)
-        {
-            for (int i = 0; i < k; i++)
-            {
-
-                // take out the last element
-                int temp = nums[nums.Length - 1];
-                for (int j = nums.Length - 1; j > 0; j--)
-                {
-                    // shift array elements towards right by one place
-                    nums[j] = nums[j - 1];
-                }
-                nums[0] = temp;
-            }
-
-        }
-
     }
 }

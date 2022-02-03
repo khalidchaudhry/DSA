@@ -15,13 +15,31 @@ namespace Greedy.Medium
         public bool CarPooling(int[][] trips, int capacity)
         {
             //!! Key is the location and value is the passenger in the car at that location
-            Dictionary<int, int> map = new Dictionary<int, int>();
-            ComputeFlow(map, trips);
-            //! Sorting because we are  traveling from location 1 ,2,3..... n 
-            map = map.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+            //! Sorted dictionary because we are  traveling from location 1 ,2,3..... n 
+            SortedDictionary<int, int> locRequiredCap = new SortedDictionary<int, int>();
+            foreach (int[] trip in trips)
+            {
+                int passengers = trip[0];
+                int src = trip[1];
+                int dest = trip[2];
+
+                if (!locRequiredCap.ContainsKey(src))
+                {
+                    locRequiredCap.Add(src, 0);
+                }
+                //! passengers inflow in car at src
+                locRequiredCap[src] += passengers;
+
+                if (!locRequiredCap.ContainsKey(dest))
+                {
+                    locRequiredCap.Add(dest, 0);
+                }
+                //! passengers outflow in car at dest
+                locRequiredCap[dest] -= passengers;
+            }           
 
             int usedCapacity = 0;
-            foreach (var keyValue in map)
+            foreach (var keyValue in locRequiredCap)
             {
                 usedCapacity += keyValue.Value;
                 if (usedCapacity > capacity)
@@ -30,29 +48,6 @@ namespace Greedy.Medium
 
             return true;
         }
-
-        private void ComputeFlow(Dictionary<int, int> map, int[][] trips)
-        {
-            foreach (int[] trip in trips)
-            {
-                int passengers = trip[0];
-                int src = trip[1];
-                int dest = trip[2];
-                
-                if (!map.ContainsKey(src))
-                {
-                    map.Add(src, 0);
-                }
-                //! passengers inflow in car at src
-                map[src] += passengers;
-
-                if (!map.ContainsKey(dest))
-                {
-                    map.Add(dest, 0);
-                }
-                //! passengers outflow in car at dest
-                map[dest] -= passengers;
-            }
-        }
+        
     }
 }

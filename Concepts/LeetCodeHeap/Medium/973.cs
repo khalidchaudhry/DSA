@@ -63,10 +63,9 @@ namespace LeetCodeDivideAndConquer.Medium
         //! Quick select algorithm
         //! tail--->Pivot--->Head
         //! All the elements till Pivot will be sorted
+        //!
         /// </summary>
-        /// <param name="nums"></param>
-        /// <param name="k"></param>
-        /// <returns></returns>        
+          
         public int[][] KClosest0(int[][] points, int K)
         {
 

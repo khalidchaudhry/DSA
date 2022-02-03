@@ -1,3 +1,5 @@
+using ConsoleApp3.Amazon;
+using ConsoleApp3.Expedia;
 using ConsoleApp3.Robinhood;
 using ConsoleApp3.Wayfair;
 using System;
@@ -16,7 +18,10 @@ namespace ConsoleApp3
             // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
             //RobinhoodScreening robinhood = new RobinhoodScreening();
             //robinhood.ScreeningMain();
-            KaratScreening.Run();
+            //KaratScreening.Run();
+            //AmazonPhoneScreen.Run();
+            ExpediaScreening.ExpediaScreeningMain();
+
         }
     }
 }

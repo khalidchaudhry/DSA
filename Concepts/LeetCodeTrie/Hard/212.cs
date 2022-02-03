@@ -42,15 +42,16 @@ namespace LeetCodeTrie.Hard._212
                 return;
             }
 
-            char c = board[row][column];
+            char c = board[row][column];//Storing the current char so that we can use it to backtrack 
+
+            board[row][column] = '*'; // update the character of at i , j no need for visited array
+
             trieNode = trieNode.Children[c];
             if (trieNode.word != null)
             {   // found one word add in the result list
                 result.Add(trieNode.word);
                 trieNode.word = null;     // de-duplicate remove the word from trie
-            }
-
-            board[row][column] = '*'; // update the character of at i , j no need for visited array
+            }         
 
             foreach ((int x, int y) in GetNeighbors(row, column))
             {

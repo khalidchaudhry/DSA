@@ -7,6 +7,7 @@ namespace LeetCodeStrings.Easy
     public class _796
     {
 
+        //https://www.youtube.com/watch?v=M04IJUf_jEQ
         //! Time Complexity =O(m*n) where m is length of string A and n is the length of string n
         //! Space Complexity=O(m+m) where m is the length of string
         public bool RotateString(string A, string B)

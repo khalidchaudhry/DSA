@@ -55,7 +55,7 @@
     <Compile Include="Easy\169.MajorityElement.cs" />
     <Compile Include="Easy\171.ExcelSheetColumnNumber.cs" />
     <Compile Include="Easy\172.FactorialTrailingZeroes.cs" />
-    <Compile Include="Easy\189.RotateArray.cs" />
+    <Compile Include="Easy\189.cs" />
     <Compile Include="Easy\198.HouseRobber.cs" />
     <Compile Include="Easy\20.cs" />
     <Compile Include="Easy\202.HappyNumber.cs" />
