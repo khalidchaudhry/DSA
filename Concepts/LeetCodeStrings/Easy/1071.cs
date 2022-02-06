@@ -6,6 +6,9 @@ namespace LeetCodeStrings.Easy
 {
     public class _1071
     {
+        /// <summary>
+        //!  https://www.youtube.com/watch?v=H8jbNa6lcB4
+        /// </summary>
         public string GcdOfStrings(string str1, string str2)
         {
 

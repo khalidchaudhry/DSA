@@ -12,7 +12,7 @@ namespace LeetCodeBitManipulation.Medium
         /// <summary>
         /// https://www.youtube.com/watch?v=cOFAmaMBVps
         //! Counting set bit approach  
-        //! Time=O(32*n)
+        //! Time=O(32*n)=O(logn)
         //! Space=O(1)
         /// </summary>
         public int SingleNumber0(int[] nums)

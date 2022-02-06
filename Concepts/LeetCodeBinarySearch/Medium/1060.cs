@@ -11,31 +11,7 @@ namespace LeetCodeBinarySearch.Medium
     public class _1060
     {
 
-        /// <summary>
-        /// https://www.youtube.com/watch?v=eLDT92Q0D9U
-        /// https://leetcode.com/problems/missing-element-in-sorted-array/discuss/700495/Java-logn-solution-which-follows-regular-binary-search-template
-        //!                 [1,2,4], K = 3
-        //! Missing numbers [0,0,1]   To  find missing numbers here is the formula nums[i]-nums[0] -i    
-        public int MissingElement0(int[] nums, int k)
-        {
-            int lo = 0;//! not valid candidate because k can't be 0 
-            int hi = nums.Length - 1;  //! possible valid candidate 
-            //! binary search only calculating the correct index. After we have correct index , we will do the processing to find the Kth misssing element
-            while (lo <= hi)
-            {
-                int mid = lo + (hi - lo) / 2;
-
-                int missingNumbersSoFar = MissingNumbersCount(nums, mid);
-
-                if (missingNumbersSoFar >= k)
-                    hi = mid - 1;
-                else
-                    lo = mid + 1;
-            }
-            //! Why hi because we are looking for right most element(hi is in charge of right most element ) that satisfies the condition
-            //! subtract missing numbers. Otherwise , it will be calculated twice
-            return nums[hi] + k - MissingNumbersCount(nums, hi);
-        }
+       
         /// <summary>
         //! Based on Roger's template 
         /// </summary>
@@ -78,6 +54,31 @@ namespace LeetCodeBinarySearch.Medium
             return nums[index] - nums[0] - index;
         }
 
+        /// <summary>
+        /// https://www.youtube.com/watch?v=eLDT92Q0D9U
+        /// https://leetcode.com/problems/missing-element-in-sorted-array/discuss/700495/Java-logn-solution-which-follows-regular-binary-search-template
+        //!                 [1,2,4], K = 3
+        //! Missing numbers [0,0,1]   To  find missing numbers here is the formula nums[i]-nums[0] -i    
+        public int MissingElement0(int[] nums, int k)
+        {
+            int lo = 0;//! not valid candidate because k can't be 0 
+            int hi = nums.Length - 1;  //! possible valid candidate 
+            //! binary search only calculating the correct index. After we have correct index , we will do the processing to find the Kth misssing element
+            while (lo <= hi)
+            {
+                int mid = lo + (hi - lo) / 2;
+
+                int missingNumbersSoFar = MissingNumbersCount(nums, mid);
+
+                if (missingNumbersSoFar >= k)
+                    hi = mid - 1;
+                else
+                    lo = mid + 1;
+            }
+            //! Why hi because we are looking for right most element(hi is in charge of right most element ) that satisfies the condition
+            //! subtract missing numbers. Otherwise , it will be calculated twice
+            return nums[hi] + k - MissingNumbersCount(nums, hi);
+        }
 
         /// <summary>
         //! Brute Force 
