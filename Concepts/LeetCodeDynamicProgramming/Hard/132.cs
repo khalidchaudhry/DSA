@@ -21,7 +21,7 @@ namespace LeetCodeDynamicProgramming.Hard
 
         private int MinCut(string s, int start, Dictionary<int, int> cache, bool[,] isPalindromes)
         {
-
+            //! Given an empty string we will have 0 partitions 
             if (start == s.Length)
             {
                 return 0;

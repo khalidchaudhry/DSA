@@ -37,6 +37,7 @@ namespace LeetcodeBackTracking.Medium
 
         private void CombinationSum0(int[] candidates, int start, int target, List<int> path, List<IList<int>> result)
         {
+            //!BackTrack if target falls below 0
             if (target < 0) return;         
             if (target == 0)
             {

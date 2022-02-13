@@ -6,7 +6,13 @@ namespace LeetCodeBinaryTrees.Easy
 {
     class _590
     {
-
+        /// <summary>
+        //! Post order is the reverse of preorder traversal 
+        //! We need to do just pre order traversal and then reverse it
+        //! PrOrder=RootleftRight    PostOrder=LeftRightRoot 
+        //!1. Reverse the part after Root= Root|RightLeft
+        //!2. Reverse what got from above step=LeftRightRoot
+        /// </summary>
         public List<int> postorder(Node root)
         {
             List<int> list = new List<int>();
@@ -19,8 +25,11 @@ namespace LeetCodeBinaryTrees.Easy
             {
                 root = stack.Pop();
                 list.Add(root.val);
+                //! We need to process right first. Stack is helping us doing it. 
                 foreach (Node node in root.children)
+                {
                     stack.Push(node);
+                }
             }
             list.Reverse();
             return list;

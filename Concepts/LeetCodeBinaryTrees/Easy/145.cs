@@ -7,25 +7,27 @@ namespace LeetCodeBinaryTrees.Easy
     public class _145
     {
         /// <summary>
-        //! Reverse of preorder traversal  
+        //! Reverse of preorder traversal
+        //! Preorder to post order traversal process  
+        //! PrOrder=RootleftRight    PostOrder=LeftRightRoot 
+        //!1. Reverse the part after Root= Root|RightLeft
+        //!2. Reverse what got from above step=LeftRightRoot 
         /// </summary>
         public IList<int> PostorderTraversal(TreeNode root)
         {
 
+            List<int> result = new List<int>();
             if (root == null)
             {
-                return new List<int>();
+                return result;
             }
-            //! Using linked list so we have O(1) insertion
-            LinkedList<int> ll = new LinkedList<int>();
-
             Stack<TreeNode> stk = new Stack<TreeNode>();
             stk.Push(root);
+
             while (stk.Count > 0)
             {
                 TreeNode top = stk.Pop();
-                ll.AddFirst(top.val);
-
+                result.Add(top.val);
                 if (top.left != null)
                 {
                     stk.Push(top.left);
@@ -35,15 +37,8 @@ namespace LeetCodeBinaryTrees.Easy
                     stk.Push(top.right);
                 }
             }
-
-            List<int> postorder = new List<int>();
-
-            while (ll.Count > 0)
-            {
-                postorder.Add(ll.First.Value);
-                ll.RemoveFirst();
-            }
-            return postorder;
+            result.Reverse();
+            return result;
         }
 
     }

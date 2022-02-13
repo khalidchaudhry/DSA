@@ -47,6 +47,8 @@ namespace LeetcodeBackTracking.Medium
                 max = Math.Max(max, GetMaximumGold(nr, nc, grid));
             }
             //! we need to backtrack hence resetting it to prev value 
+            //! From every cell we are checking which neighbour gives us more gold. 
+            //! If we don't unvisit it than we may get more gold from other neighbor comming to that cell
             grid[r][c] = prev; 
             
             maxGold += max;

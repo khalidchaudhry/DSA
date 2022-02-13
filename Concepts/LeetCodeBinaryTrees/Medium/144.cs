@@ -23,7 +23,7 @@ namespace LeetCodeBinaryTrees.Medium
                 TreeNode curr= stk.Pop();
 
                 result.Add(curr.val);
-                //! Pushing first right because we want left to top of stack
+                //! Pushing first right because we want left to top of stack as per preorder traveral Root--->left--->right
                 if (curr.right != null)
                 {
                     stk.Push(curr.right);

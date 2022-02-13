@@ -47,7 +47,7 @@ namespace LeetCodeBinarySearch.Easy
                 }
             }
 
-            return (int)lo;
+            return lo;
         }
         //! incase we need to return  doubles 
         public double Sqrt2(int x)
