@@ -18,8 +18,9 @@ namespace LeetCodeBinaryTrees.Medium
             {
                 return 0;
             }
-            //! Whatever we get from left subtree we need to add 1 to it for left height
-            //! Whatever we get from right subtree we need to add 1 to it for right height
+
+            //! To caculate height , we are considering node to calculate height rather than edge. See description below
+            //!https://stackoverflow.com/questions/4065439/height-of-a-tree-with-only-one-node#:~:text=According%20to%20Wikipedia%2C,of%20zero%20(or%20one).
             int leftTreeHeight = 1 + LeftTreeHeight(root.left);
             int rightTreeHeight = 1 + LeftTreeHeight(root.right);
 
