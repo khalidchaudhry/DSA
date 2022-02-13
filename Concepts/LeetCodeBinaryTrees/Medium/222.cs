@@ -6,8 +6,11 @@ namespace LeetCodeBinaryTrees.Medium
 {
     public class _222
     {
-        /// <summary>
-        //! https://www.youtube.com/watch?v=CvrPf1-flAA 
+        /// <summary>        
+        //https://www.youtube.com/watch?v=u-yWemKGWO0
+        //! Number of Nodes in perfect binary Tree=2^height - 1
+        //! TC=Log(n)^2= logn for tree height and we will do it at max logn times 
+        //! SC=Log(n)==Height of the recursion. As its complete binary tree , height will be logn
         /// </summary>
         public int CountNodes0(TreeNode root)
         {
@@ -15,29 +18,38 @@ namespace LeetCodeBinaryTrees.Medium
             {
                 return 0;
             }
+            //! Whatever we get from left subtree we need to add 1 to it to include the current node
+            //! Whatever we get from right subtree we need to add 1 to it to include the current node
+            int leftTreeHeight =1+ LeftTreeHeight(root.left);
+            int rightTreeHeight =1+ LeftTreeHeight(root.right);
 
-            int leftDepth = 1;
-            TreeNode n = root.left;
-            while (n != null)
+            if (leftTreeHeight == rightTreeHeight)
             {
-                n = n.left;
-                ++leftDepth;
-            }
-
-            int rightDepth = 1;
-            n = root.right;
-            while (n != null)
-            {
-                n = n.right;
-                ++rightDepth;
-            }
-
-            if (leftDepth == rightDepth)
-            {
-                return (int)Math.Pow(2, leftDepth) - 1;
+                return (int)Math.Pow(2, leftTreeHeight) - 1;
             }
             //! Adding 1 because we need to include the current node 
             return 1 + CountNodes0(root.left) + CountNodes0(root.right);
+        }
+
+        private int LeftTreeHeight(TreeNode node)
+        {
+            int height = 0;
+            while (node != null)
+            {
+                ++height;
+                node = node.left;
+            }
+            return height;
+        }
+        private int RightTreeHeight(TreeNode node)
+        {
+            int height = 0;
+            while (node != null)
+            {
+                ++height;
+                node = node.right;
+            }
+            return height;
         }
 
 
