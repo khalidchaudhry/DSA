@@ -25,7 +25,7 @@ namespace LeetCodeBinaryTrees.Easy
             {
                 root = stack.Pop();
                 list.Add(root.val);
-                //! We need to process right first. Stack is helping us doing it. 
+                //!To get post order from preorder we need to process right node first than left. Stack  helps us do it as right node will be the top of stack
                 foreach (Node node in root.children)
                 {
                     stack.Push(node);

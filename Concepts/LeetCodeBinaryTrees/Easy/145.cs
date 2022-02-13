@@ -28,6 +28,7 @@ namespace LeetCodeBinaryTrees.Easy
             {
                 TreeNode top = stk.Pop();
                 result.Add(top.val);
+                //! To get post order from preorder we need to process right first hence pushing left and then right first so stack top will contain left  
                 if (top.left != null)
                 {
                     stk.Push(top.left);
