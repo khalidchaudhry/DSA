@@ -18,10 +18,10 @@ namespace LeetCodeBinaryTrees.Medium
             {
                 return 0;
             }
-            //! Whatever we get from left subtree we need to add 1 to it to include the current node
-            //! Whatever we get from right subtree we need to add 1 to it to include the current node
-            int leftTreeHeight =1+ LeftTreeHeight(root.left);
-            int rightTreeHeight =1+ LeftTreeHeight(root.right);
+            //! Whatever we get from left subtree we need to add 1 to it for left height
+            //! Whatever we get from right subtree we need to add 1 to it for right height
+            int leftTreeHeight = 1 + LeftTreeHeight(root.left);
+            int rightTreeHeight = 1 + LeftTreeHeight(root.right);
 
             if (leftTreeHeight == rightTreeHeight)
             {
