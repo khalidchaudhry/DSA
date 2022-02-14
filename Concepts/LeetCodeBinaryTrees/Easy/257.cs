@@ -28,19 +28,18 @@ namespace LeetCodeBinaryTrees.Easy
             }
             if (node.left == null && node.right == null)
             {
-                int len = path.Length;
                 path.Append(node.val);
-                //! sb.ToString() time complexity O(n)
                 paths.Add(path.ToString());
-                path.Length = len;
                 return;
             }
 
-            int length = path.Length;
-            path.Append($"{node.val}->");
+            path.Append(node.val);
+            path.Append("->");
+            int len = path.Length;
             Helper(node.left, path, paths);
+            path.Length = len;
             Helper(node.right, path, paths);
-            path.Length = length;
+            path.Length = len;
         }
 
         public IList<string> BinaryTreePaths1(TreeNode root)

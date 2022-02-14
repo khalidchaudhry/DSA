@@ -32,25 +32,28 @@ namespace LeetCodeBinaryTrees.Medium._116
             Node head = root;
             while (head != null)
             {
-                //!using dummy node to move to the next level
-                Node dummy = new Node(0);
-                Node temp = dummy;
-                while (head != null)
+                Node curr = root;
+                while (curr != null)
                 {
-                    if (head.left != null)
+                    Node sentinel = new Node();
+                    Node temp = sentinel;
+                    while (curr != null)
                     {
-                        temp.next = head.left;
-                        temp = temp.next;
+                        if (curr.left != null) //! The reason we have this check is for last level where left will be null
+                        {
+                            temp.next = curr.left;
+                            temp = temp.next;
+                        }
+                        if (curr.right != null)//! The reason we have this check is for last level where right will be null
+                        {
+                            temp.next = curr.right;
+                            temp = temp.next;
+                        }
+                        curr = curr.next;
                     }
-                    if (head.right != null)
-                    {
-                        temp.next = head.right;
-                        temp = temp.next;
-                    }
-
-                    head = head.next;
+                    curr = sentinel.next;
                 }
-                head = dummy.next;
+                return root;
             }
             return root;
         }
