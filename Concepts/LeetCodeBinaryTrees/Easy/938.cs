@@ -38,15 +38,24 @@ namespace LeetCodeBinaryTrees.Easy
         {
             if (node == null)
                 return;
-            if (node.val >= low && node.val <= high)
-                sum += node.val;
-
-            //! if node value greater then low it means there may be more nodes on the left side, that falls in the range 
-            if (node.val > low)
+           
+            //!if node value is greater then high it will be greater than low too so no point going to right as value will be more
+            if (node.val > high)
+            {
                 Helper(node.left, low, high);
-            //! if node value less then high it means there may be more nodes on the right side, that falls in the range 
-            if (node.val < high)
+            }
+
+            //!if node value is less then low it will be lower then high  too so no point going to left  as value will be less 
+            else if (node.val < low)
+            {
                 Helper(node.right, low, high);
+            }
+            else
+            {
+                sum += node.val;
+                Helper(node.left, low, high);
+                Helper(node.right, low, high);
+            }
         }
         /// <summary>
         //! Below method does not consider that its BST and searches for all the nodes  

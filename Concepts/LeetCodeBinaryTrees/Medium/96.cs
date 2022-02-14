@@ -51,6 +51,7 @@ namespace LeetCodeBinaryTrees.Medium
                 return n;
 
             int numTrees = 0;
+            //! Making i as root node how many structurally  binary search trees I can get from left side and right side. 
             for (int i = 1; i <= n; ++i)
             {
                 //!  Subtrees we will get from left side
@@ -60,7 +61,7 @@ namespace LeetCodeBinaryTrees.Medium
                 //!1.............n
                 //!i   
                 int right = NumTrees1(n - i);
-                //! Catalan product 
+                //! Catalan product                
                 numTrees += left * right;
             }
             return numTrees;

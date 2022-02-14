@@ -25,7 +25,7 @@ namespace LeetCodeBinaryTrees.Easy
                 {
                     closestValueSoFar = currValue;
                 }
-                //! If node value is > then there is no point going to the right
+                //! If node value is > then target there is no point going to the right
                 //! as difference will be more on right side and current node gives us the best result.Try left side
                 if (currValue > target)
                     curr = curr.left;
