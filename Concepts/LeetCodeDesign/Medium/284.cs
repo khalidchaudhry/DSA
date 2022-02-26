@@ -69,7 +69,7 @@ namespace LeetCodeDesign.Medium
             {   
                 int previous = _next;
 
-                if (_iterator.MoveNext())
+                if (_iterator.MoveNext()) //! MoveNext in C# move the iterator next if there is an element and returns true. Else return false
                     _next = _iterator.Current;
                 else
                 {

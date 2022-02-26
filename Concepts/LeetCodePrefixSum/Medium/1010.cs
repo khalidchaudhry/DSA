@@ -9,10 +9,14 @@ namespace LeetCodePrefixSum.Medium
     public class _1010
     {
         /// <summary>
+        /// https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/modular-addition-and-subtraction
+        /// (a+b)%m=0
+        /// (a%m+b%m)%m=0
+        /// 3
         //! (time[i] + time[j]) % 60==0
         //! time[i]%60 +time[j]%60=60
         //! time[j]%60=60-time[i]%60
-        //! time[j]=(60-time[i]%60)%60  
+        //! time[j]%60=(60-time[i]%60)%60  
         //! time[j]=(60-t1)%60
         //! 
         //! 

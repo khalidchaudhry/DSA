@@ -26,7 +26,7 @@ namespace LeetCodeHeap.Hard
                 int loc = station[0];
                 int fuel = station[1];
                 tank -= loc - prev;
-                //! why tank<0 and tank<=0
+                //! why tank<0 and not tank<=0
                 //! Note that if the car reaches a gas station with 0 fuel left, the car can still refuel there.
                 //! If the car reaches the destination with 0 fuel left, it is still considered to have arrived.
                 while (pq.Size != 0 && tank < 0)

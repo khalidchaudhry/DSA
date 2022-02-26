@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Greedy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,34 +56,43 @@ namespace LeetCodeHashTable.Medium
         public int[] TopKFrequent2(int[] nums, int k)
         {
 
-            Dictionary<int, int> map = new Dictionary<int, int>();
-            for (int i = 0; i < nums.Length; ++i)
+            Dictionary<int, int> freqMap = new Dictionary<int, int>();
+            foreach (int num in nums)
             {
-                if (!map.ContainsKey(nums[i]))
+                if (!freqMap.ContainsKey(num))
                 {
-                    map.Add(nums[i], 0);
+                    freqMap.Add(num, 0);
                 }
-                ++map[nums[i]];
+                ++freqMap[num];
             }
+            var comparer = Comparer<int>.Create((x, y) => {
 
-            SortedSet<(int freq, int val)> ss = new SortedSet<(int freq, int val)>();
-
-            foreach (var keyValue in map)
-            {
-                ss.Add((keyValue.Value, keyValue.Key));//! worst case O(n)
-                if (ss.Count > k)
+                if (freqMap[x] == freqMap[y])
                 {
-                    ss.Remove(ss.Min); //! worst case O(n)
+                    return x.CompareTo(y);
+                }
+
+                return freqMap[x].CompareTo(freqMap[y]);
+            });
+
+            PQ<int> pq = new PQ<int>(comparer);
+
+            foreach (var keyValue in freqMap)
+            {
+                pq.Add(keyValue.Key);
+                if (pq.Size > k)
+                {
+                    pq.Poll();
                 }
             }
 
-            int[] result = new int[k];
-            foreach ((int freq, int val) in ss)
+            int[] topK = new int[k];
+            int index = 0;
+            while (pq.Size != 0)
             {
-                result[--k] = val;
+                topK[index++] = pq.Poll();
             }
-
-            return result;
+            return topK;
         }
 
         private int BuildFrequency(int[] nums, Dictionary<int, int> map)

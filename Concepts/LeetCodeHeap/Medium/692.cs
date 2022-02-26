@@ -27,6 +27,7 @@ namespace LeetCodeHeap.Medium
                     return freqMap[x].CompareTo(freqMap[y]);
                 }
                 //! If Frequency equal than word with the higher alphabetical order comes first as we are going to remove them
+                //! Think of scnerio k=2 ----- a:2  b:2  c:2 since we want to keep an word that comes first(lexographically ) hence we will remove word that comes after lexographhically  
                 return y.CompareTo(x);
             });
 

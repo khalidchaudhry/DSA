@@ -29,6 +29,9 @@ namespace LeetCodeHeap.Hard
 
         }
 
+        /// <summary>
+        //! Time=O(3*logn) where k are elements in the heap 
+        /// </summary>
         public void AddNum(int num)
         {
             //! If the size is equal than max heap will contain 1 extra element
@@ -46,6 +49,9 @@ namespace LeetCodeHeap.Hard
             }
         }
 
+        /// <summary>
+        //! Time=O(1) 
+        /// </summary>
         public double FindMedian()
         {
 

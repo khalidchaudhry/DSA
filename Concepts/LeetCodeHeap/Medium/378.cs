@@ -33,41 +33,52 @@ namespace LeetCodeHeap.Medium
         /// </summary>
         public int KthSmallest(int[][] matrix, int k)
         {
-            int n = matrix.Length;
-
-            var comparer = Comparer<(int value, int r, int c)>.Create((a, b) =>
-            {
-                if (a.value == b.value)
+            var comparer = Comparer<PQData>.Create((x, y) => {
+                if (x.Value == y.Value)
                 {
-                    return (a.r, a.c).CompareTo((b.r, b.c));
+                    if (x.Row == y.Row)
+                    {
+                        return x.Col.CompareTo(y.Col);
+                    }
+                    return x.Row.CompareTo(y.Row);
                 }
+                return x.Value.CompareTo(y.Value);
 
-                return a.value.CompareTo(b.value);
             });
 
-            PQ<(int, int, int)> pq = new PQ<(int, int, int)>(comparer);
-            HashSet<(int, int)> visited = new HashSet<(int, int)>();
-            pq.Add((matrix[0][0], 0, 0));
+            PQ<PQData> pq = new PQ<PQData>(comparer);
+            HashSet<(int r, int c)> visited = new HashSet<(int r, int c)>();
+            pq.Add(new PQData(matrix[0][0], 0, 0));
             visited.Add((0, 0));
-            int kthSmallest = matrix[0][0];
-            while (pq.Size != 0 && k != 0)
+            int kthSmallest = 0;
+            while (pq.Size > 0 && k > 0)
             {
-                (int value, int r, int c) = pq.Poll();
+                PQData top = pq.Poll();
                 --k;
-                kthSmallest = matrix[r][c];
-                if (r + 1 < n && !visited.Contains((r+1,c)))
+                kthSmallest = top.Value;
+                foreach ((int nr, int nc) in new List<(int r, int c)>() { (top.Row + 1, top.Col), (top.Row, top.Col + 1) })
                 {
-                    pq.Add((matrix[r + 1][c], r + 1, c));
-                    visited.Add((r + 1, c));
-                }
-                if (c + 1 < n && !visited.Contains((r, c+1)))
-                {
-                    pq.Add((matrix[r][c + 1], r, c + 1));
-                    visited.Add((r, c+1));
+                    if (nr >= matrix.Length || nc >= matrix.Length || visited.Contains((nr, nc)))
+                    {
+                        continue;
+                    }
+                    visited.Add((nr, nc));
+                    pq.Add(new PQData(matrix[nr][nc], nr, nc));
                 }
             }
-
             return kthSmallest;
+        }
+    }
+    public class PQData
+    {
+        public int Value;
+        public int Row;
+        public int Col;
+        public PQData(int val, int row, int col)
+        {
+            Value = val;
+            Row = row;
+            Col = col;
         }
     }
 }

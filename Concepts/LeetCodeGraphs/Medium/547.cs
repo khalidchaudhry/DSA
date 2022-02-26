@@ -23,26 +23,29 @@ namespace LeetCodeGraphs.Medium
             //! No need to build graph first. We can do DFS on given array itself
             //List<List<int>> graph = BuildGraph(M);
 
-            bool[] visited = new bool[totalStudents];
+            HashSet<int> visited = new HashSet<int>();
             int friendCircles = 0;
             for (int row = 0; row < totalStudents; row++)
             {
-                if (!visited[row])
+                if (!visited.Contains(row))
                 {
                     ++friendCircles;
                     DFS(row, M, visited);
                 }
             }
-
             return friendCircles;
         }
-        private void DFS(int row, int[][] M, bool[] visited)
+        private void DFS(int row, int[][] M, HashSet<int> visited)
         {
+            if (visited.Contains(row))
+            {
+                return;
+            }
+            visited.Add(row);
             for (int col = 0; col < M.Length; ++col) //! M.Length because given matrix N*N
             {
-                if (M[row][col] == 1 && !visited[col])
+                if (M[row][col] == 1)
                 {
-                    visited[col] = true;
                     DFS(col, M, visited);
                 }
             }

@@ -9,7 +9,10 @@ namespace LeetCodeStack.cs.Medium
     public class _456
     {
 
-
+        /// <summary>
+        //! Essentially we need to keep track of max and second max in nums.
+        //! At anypoint , we check if second max> curr element than it means its also greater then element at top of stack and hence we can return true
+        /// </summary>
         public bool Find132pattern(int[] nums)
         {
             Stack<int> stk = new Stack<int>();

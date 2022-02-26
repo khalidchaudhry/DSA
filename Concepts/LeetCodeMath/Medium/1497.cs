@@ -15,9 +15,9 @@ namespace LeetCodeMath.Medium
         /// </summary>
         public bool CanArrange(int[] arr, int k)
         {
-            Dictionary<int, int> map = new Dictionary<int, int>();
-            BuildMap(arr, map, k);
-            foreach (var keyValue in map)
+            Dictionary<int, int> remainderCount = new Dictionary<int, int>();
+            BuildMap(arr, remainderCount, k);
+            foreach (var keyValue in remainderCount)
             {   //! numbers having remainder 0 can only be pair with other numbers have remainder 0 
                 if (keyValue.Key == 0)
                 {
@@ -29,7 +29,7 @@ namespace LeetCodeMath.Medium
 
                 int complement = k - keyValue.Key;
 
-                if (map.ContainsKey(complement) && map[complement] == keyValue.Value)
+                if (remainderCount.ContainsKey(complement) && remainderCount[complement] == keyValue.Value)
                     continue;
                 else
                     return false;

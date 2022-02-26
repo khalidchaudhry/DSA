@@ -9,7 +9,8 @@ namespace LeetCodeDesign.Medium
     class _348
     {
     }
-
+    //  https://www.youtube.com/watch?v=3iONGQqlj_I
+    //# <image url="$(SolutionDir)\Images\348.png" scale="0.6"/>
     public class TicTacToe
     {
 
@@ -39,12 +40,14 @@ namespace LeetCodeDesign.Medium
                     2: Player 2 wins. */
         public int Move(int row, int col, int player)
         {
-
+            //! We represent player 1 move with 1 and player 2 move with -1
             int move = player == 1 ? 1 : -1;
             rows[row] += move;
             cols[col] += move;
+            //! Checking for diagonal 
             if (row == col)
                 leftDiag += move;
+            //! checking for antidiagonal
             if (row == n - col - 1)
                 rightDiag += move;
 

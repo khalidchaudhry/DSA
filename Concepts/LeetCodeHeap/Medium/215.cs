@@ -31,7 +31,7 @@ namespace LeetCodeHeap.Medium
                 //! We are randomly picking an index &  
                 //! place element at that index to its correct position
                 int pivotIndex = random.Next(left, right + 1);
-                //! Below function returns the index of the element that is at its correct position
+                //! Below function returns the index of the element( at pivot index returns by above method)  after placing it at its correct position
                 int index = Partition(nums, left, right, pivotIndex);
                 if (index == requiredIndex)
                     break;
@@ -62,7 +62,7 @@ namespace LeetCodeHeap.Medium
             }
             //!Swap 
             Swap(nums, pti, right);
-
+            // pti is the correct position of the element which was previously at pivotIndex position
             return pti;
         }
         private void Swap(int[] arr, int i, int j)

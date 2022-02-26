@@ -42,7 +42,7 @@ namespace LeetCodeGraphs.Medium
         /// /// # <image url="$(SolutionDir)\Images\959.png"  scale="0.2"/>
         private static void UpdateMap(string[] grid, bool[,] aux)
         {
-            //! Turn every cell to false where there is a / or \ since they make the region not connected 
+            //! Turn every cell to true where there is a / or \ since they make the region not connected 
             for (int i = 0; i < grid.Length; ++i)
             {
                 for (int j = 0; j < grid[i].Length; ++j)

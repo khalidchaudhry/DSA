@@ -30,60 +30,86 @@ namespace LeetCodeDesign.Medium
     /// </summary>
     public class BrowserHistory
     {
-        Node _curr;
+
+        DLL _dll;
         public BrowserHistory(string homepage)
         {
-            _curr = new Node(homepage);
+            _dll = new DLL();
+            _dll.Add(homepage);
         }
 
         public void Visit(string url)
         {
-            _curr.Next = null; // clears up all the forward history.
-            _curr.Next = new Node(url);
-            _curr.Next.Previous = _curr;
-            _curr = _curr.Next;
+            _dll.Add(url);
         }
 
         public string Back(int steps)
         {
-            while (_curr.Previous != null && steps > 0)
-            {
-                _curr = _curr.Previous;
-                --steps;
-            }
-
-            return _curr.Value;
+            return _dll.GetCurrValueBack(steps);
         }
 
         public string Forward(int steps)
         {
-            while (_curr.Next != null && steps > 0)
-            {
-                _curr = _curr.Previous;
-                --steps;
-            }
-
-            return _curr.Value;
-
+            return _dll.GetCurrValueForward(steps);
         }
     }
 
+    public class DLL
+    {
+        private Node _head;
+        private Node _tail;
+        private Node _curr;
+        public DLL()
+        {
+            _head = new Node(string.Empty);
+            _tail = new Node(string.Empty);
+            _head.Next = _tail;
+            _tail.Prev = _head;
+            _curr = _head;
+        }
+        public void Add(string url)
+        {
+            Node newNode = new Node(url);
 
+            newNode.Next = _tail;
+            newNode.Prev = _curr;
+            _curr.Next.Prev = newNode;
+            _curr.Next = newNode;
 
+            _curr = newNode;
+        }
+        public string GetCurrValueBack(int steps)
+        {
+            while (steps != 0 && _curr.Prev.Prev != null)
+            {
+                _curr = _curr.Prev;
+                --steps;
+            }
+            return _curr.Value;
+        }
+        public string GetCurrValueForward(int steps)
+        {
+            while (steps != 0 && _curr.Next.Next != null)
+            {
+                _curr = _curr.Next;
+                --steps;
+            }
+            return _curr.Value;
+        }
+    }
 
     public class Node
     {
-        public string Value { get; set; }
-        public Node Next { get; set; }
-        public Node Previous { get; set; }
-
+        public string Value;
+        public Node Next;
+        public Node Prev;
         public Node(string value)
         {
             Value = value;
+            Next = null;
+            Prev = null;
         }
     }
-
-
 
     /// <summary>
     /// https://leetcode.com/problems/design-browser-history/discuss/674486/Two-Stacks-Pretty-code.

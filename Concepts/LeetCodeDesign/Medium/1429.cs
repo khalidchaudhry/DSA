@@ -72,6 +72,10 @@ namespace LeetCodeDesign.Medium_1429
             Tail.Previous = Head;
 
         }
+        /// <summary>
+        //! Add the element to the tail
+        /// </summary>
+
         public void Add(Node node)
         {
             node.Previous = Tail.Previous;
@@ -80,7 +84,9 @@ namespace LeetCodeDesign.Medium_1429
             Tail.Previous.Next = node;
             Tail.Previous = node;
         }
-
+        /// <summary>
+        //! Remove it from the head
+        /// </summary>        
         public void Remove(Node node)
         {
             node.Previous.Next = node.Next;

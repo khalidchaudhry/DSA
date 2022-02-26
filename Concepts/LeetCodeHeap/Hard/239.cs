@@ -32,9 +32,7 @@ namespace LeetCodeHeap.Hard
             int rsultIdx = 0;
             for (int i = 0; i < n; ++i)
             {
-                //! 1. Maintain dequeue in descending order. This will give quick access to max element of the window  
-                //! ll.Last.Value ensures that we move from right to left in linked list  and remove all the elements less then current element
-               
+                //!Maintain dequeue in increasing order(monotonically increasing stack). This will give quick access to max element of the window               
                 while (ll.Count != 0 && nums[ll.Last.Value] < nums[i])
                 {
                     ll.RemoveLast();
@@ -66,36 +64,47 @@ namespace LeetCodeHeap.Hard
         public int[] MaxSlidingWindow0(int[] nums, int k)
         {
             int n = nums.Length;
-            var comparer = Comparer<(int val, int index)>.Create((x, y) =>
-            {
-                if (x.val == y.val)
+            var comparer = Comparer<PQData>.Create((x, y) => {
+                if (x.Val == y.Val)
                 {
-                    return x.index.CompareTo(y.index); //! sorting in ascneding order based on value
+                    return x.Idx.CompareTo(y.Idx);//! If value are same then we need to sort by idx and remove item from heap which is comming first  
                 }
-                return y.val.CompareTo(x.val);   //!sorting in descending order based on idex
+                return y.Val.CompareTo(x.Val);//! Because of max heap we need to sort based on value.  
             });
 
-            PQ<(int val, int index)> pq = new PQ<(int value, int index)>(comparer);
+            PQ<PQData> pq = new PQ<PQData>(comparer);
             int[] result = new int[n - k + 1];
             int start = 0;
             for (int i = 0; i < n; ++i)
             {
-                pq.Add((nums[i], i));
+                pq.Add(new PQData(i, nums[i]));
                 //! Below condition is when we hit our required window length=k
                 if (i >= k - 1)
                 {
                     //! we only pop an element from heap if its going to effect our answer i.e. top of heap contains max outside of window
                     //! Heap can contain elements outside of the window as well if its not going to effect our answer
-                    while (pq.Peek().index < start)
+                    int ws = i - k + 1;//Window start
+                    while (pq.Peek().Idx < ws)
                     {
                         pq.Poll();
                     }
-                    result[start++] = pq.Peek().val;
+                    result[start++] = pq.Peek().Val;
                 }
             }
 
             return result;
         }
+        public class PQData
+        {
+            public int Idx;
+            public int Val;
+            public PQData(int idx, int val)
+            {
+                Idx = idx;
+                Val = val;
+            }
+        }
+
 
         /// <summary>
         //! Time  complexity=O(N*K) where N are number of elements and K is the window size

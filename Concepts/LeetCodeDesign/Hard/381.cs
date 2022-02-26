@@ -107,6 +107,7 @@ namespace LeetCodeDesign.Hard
         /** Removes a value from the collection. Returns true if the collection contained the specified element. */
         /*!
                Step1:  Remove any index of the element being removed
+               //We can do step 3 before step2 as well. Important thing is we need to delete at last
                Step2:  Swap the last element in the random list with the element being removed
                Step3:  Add new index for the swapped (last) element
                Step4:  Remove old index for the swapped (last) element

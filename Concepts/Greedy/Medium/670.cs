@@ -42,11 +42,6 @@ namespace Greedy.Medium
                     suffix[i] = suffix[i + 1];
             }
 
-            foreach (int digit in suffix)
-            {
-                Console.WriteLine(digit);
-            }
-
             for (int i = 0; i < n; ++i)
             {
                 if (digits[suffix[i]] > digits[i])

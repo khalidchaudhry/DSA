@@ -19,10 +19,48 @@ namespace LeetCodeDynamicProgramming.Medium
 
         }
         /// <summary>
-        // ! Iterate the array from left to right and then right to left 
+        //! O(n) space  O(n) time with 
+        //! 
         /// </summary>
-        /// <param name="prices"></param>
-        /// <returns></returns>
+        public int MaxProfit1(int[] prices)
+        {
+
+            Dictionary<(int start, bool isBought, int k), int> memo = new Dictionary<(int start, bool isBought, int k), int>();
+            return Solve(prices, 0, false, 2, memo);
+        }
+        private int Solve(int[] prices, int start, bool isBought, int k, Dictionary<(int start, bool isBought, int k), int> memo)
+        {
+            if (start == prices.Length || k == 0)
+            {
+                return 0;
+            }
+            if (memo.ContainsKey((start, isBought, k)))
+            {
+                return memo[(start, isBought, k)];
+            }
+
+            int skip = Solve(prices, start + 1, isBought, k, memo);
+            int buy = 0;
+            int sell = 0;
+
+            if (isBought)
+            {
+                //! not sell-= because choice is for every day . we are not doing any accumilation
+                sell = prices[start] + Solve(prices, start + 1, false, k - 1, memo);
+            }
+            else
+            {
+                buy = -prices[start] + Solve(prices, start + 1, true, k, memo);
+            }
+
+            return memo[(start, isBought, k)] = Math.Max(skip, Math.Max(buy, sell));
+        }
+
+
+
+        /// <summary>
+        // ! Iterate the array from left to right and then right to left 
+        /// </summary>      
         public int MaxProfit(int[] prices)
         {
             int n = prices.Length;

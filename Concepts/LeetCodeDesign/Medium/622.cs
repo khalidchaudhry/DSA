@@ -50,7 +50,7 @@ namespace LeetCodeDesign.Medium._622Main
         /** Insert an element into the circular queue. Return true if the operation is successful. */
         public bool EnQueue(int value)
         {
-            if (_dll.NodesCount == _size)
+            if (_dll.Size == _size)
                 return false;
             else
             {
@@ -63,7 +63,7 @@ namespace LeetCodeDesign.Medium._622Main
         public bool DeQueue()
         {
 
-            if (_dll.NodesCount == 0)
+            if (_dll.Size == 0)
                 return false;
             else
             {
@@ -75,7 +75,7 @@ namespace LeetCodeDesign.Medium._622Main
         /** Get the front item from the queue. */
         public int Front()
         {
-            if (_dll.NodesCount == 0)
+            if (_dll.Size == 0)
                 return -1;
             else
                 return _dll.GetFront();
@@ -84,7 +84,7 @@ namespace LeetCodeDesign.Medium._622Main
         /** Get the last item from the queue. */
         public int Rear()
         {
-            if (_dll.NodesCount == 0)
+            if (_dll.Size == 0)
                 return -1;
             else
                 return _dll.GetRear();
@@ -94,7 +94,7 @@ namespace LeetCodeDesign.Medium._622Main
         public bool IsEmpty()
         {
 
-            if (_dll.NodesCount == 0)
+            if (_dll.Size == 0)
                 return true;
             else
                 return false;
@@ -104,7 +104,7 @@ namespace LeetCodeDesign.Medium._622Main
         public bool IsFull()
         {
 
-            if (_dll.NodesCount == _size)
+            if (_dll.Size == _size)
                 return true;
             else
                 return false;
@@ -200,7 +200,7 @@ namespace LeetCodeDesign.Medium._622Main
     {
         public Node Head { get; set; }
         public Node Tail { get; set; }
-        public int NodesCount { get; set; }
+        public int Size { get; set; }
         public DLL()
         {
             Head = new Node(0);
@@ -208,7 +208,7 @@ namespace LeetCodeDesign.Medium._622Main
             Head.Next = Tail;
             Tail.Previous = Head;
             //! Better to keep nodes count in DLL class rather than in CircularQueue Class
-            NodesCount = 0;
+            Size = 0;
         }
 
         public void Insert(int value)
@@ -222,7 +222,7 @@ namespace LeetCodeDesign.Medium._622Main
 
             Tail.Previous = newNode;
 
-            ++NodesCount;
+            ++Size;
 
         }
         public void Remove()
@@ -230,7 +230,7 @@ namespace LeetCodeDesign.Medium._622Main
             Head.Next = Head.Next.Next;
             Head.Next.Previous = Head;
 
-            --NodesCount;
+            --Size;
         }
         public int GetFront()
         {

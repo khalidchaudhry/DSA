@@ -10,7 +10,7 @@ namespace LeetCodeDivideAndConquer.Hard
     {
         //   # <image url="$(SolutionDir)\Images\23.png"  scale="0.5"/>
         //!K^2L=>Time complexity for merging two lists at a time solution
-        //! L is the length of the linked list
+        //! L is the length of one linked list
         //! Number of iterations it take to merge 2 lists=2L(L+L) 
         //! Number of iterations it take to merge 3 lists=3L(2L+L)
         //!2L+3L+4L+KL=K((K+1)/2)=(K^2)/2+K/2=K^2        
