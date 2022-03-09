@@ -95,7 +95,7 @@ namespace LeetCodeGraphs.Medium
             return maxDistance;
         }
 
-       
+
 
         private (int node, int distance) FindFurthest(Dictionary<int, List<int>> map, bool[] visited, int at)
         {
@@ -111,9 +111,9 @@ namespace LeetCodeGraphs.Medium
             foreach (int neighbour in neighbours)
             {
                 (int node, int distance) = FindFurthest(map, visited, neighbour);
-                if (maxDistance < distance + 1)
+                if (maxDistance < 1 + distance)
                 {
-                    maxDistance = distance + 1;
+                    maxDistance = 1 + distance;
                     furthestNode = node;
                 }
             }

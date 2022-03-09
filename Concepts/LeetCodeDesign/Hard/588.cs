@@ -78,6 +78,7 @@ namespace LeetCodeDesign.Hard
             string[] tokens = filePath.Split('/');
             var curr = Root;
             int n = tokens.Length;
+            //! As step 1, we reach to directory. If directory does not exist , we will create directory.  
             for (int i = 1; i < n - 1; ++i)
             {
                 string token = tokens[i];
@@ -99,10 +100,11 @@ namespace LeetCodeDesign.Hard
         }
         public string ReadContentFromFile(string filePath)
         {
-
+            //!After splitting , our last entry in tokens contains the fileName
             string[] tokens = filePath.Split('/');
             var curr = Root;
             int n = tokens.Length;
+            //! When splitting, the first token contains empty string hence starting from 1
             for (int i = 1; i < n - 1; ++i)
             {
                 string token = tokens[i];
@@ -112,7 +114,7 @@ namespace LeetCodeDesign.Hard
                 }
                 curr = curr.Dirs[token];
             }
-
+            //! After above loop, curr will point to last directory.If curr contains last entry in token in files , we will return it
             if (curr.Files.ContainsKey(tokens[n - 1]))
             {
                 return curr.Files[tokens[n - 1]].FileContent;
@@ -122,8 +124,10 @@ namespace LeetCodeDesign.Hard
         }
     }
 
+    //! Directory is equivalent to TrieNode in Trie
     public class Directory
     {
+        // Key is the file name and File is the contenty of the file
         public Dictionary<string, File> Files { get; set; }
         public Dictionary<string, Directory> Dirs { get; set; }
         public Directory()
