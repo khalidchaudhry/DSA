@@ -1,2 +1,2 @@
 # learning
-repository for learning concepts in  C#
+Branch for learning DSA in C#
