@@ -32,7 +32,7 @@ namespace LeetCodeArrays.Easy
         /// <summary>
         //! ONLY WORKS IF WE NEED TO RETURN THE MERGE LIST  
         /// </summary>
-        public void Merge(int[] nums1, int m, int[] nums2, int n)
+        public void Merge2(int[] nums1, int m, int[] nums2, int n)
         {
 
             int[] result = new int[m + n];
